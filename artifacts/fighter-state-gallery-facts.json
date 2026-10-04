@@ -67,7 +67,7 @@
     "height": 4885,
     "file": "artifacts/fighter-state-gallery.jpg"
   },
-  "packed_texture_bytes": 5603556,
+  "packed_texture_bytes": 5571556,
   "planes": [
     {
       "name": "raven-normal",
@@ -1615,7 +1615,7 @@
         "viper-normal.webp"
       ],
       "assigned_texture_sha256": [
-        "73a2ae978b9d4d0433f856d032c35edabcaf66f153ddb5bc535e14a0bf0fde78"
+        "bfe26ac05f26c554d9d050c610c6893b38c2b89ee2d791b87ec0d3ba17245842"
       ],
       "world_bounds": [
         [
@@ -1659,9 +1659,9 @@
       ],
       "source": "public/assets/fighters/states/viper-normal.webp",
       "channels": 4,
-      "source_bytes": 196116,
-      "packed_bytes": 196116,
-      "source_sha256": "73a2ae978b9d4d0433f856d032c35edabcaf66f153ddb5bc535e14a0bf0fde78",
+      "source_bytes": 202700,
+      "packed_bytes": 202700,
+      "source_sha256": "bfe26ac05f26c554d9d050c610c6893b38c2b89ee2d791b87ec0d3ba17245842",
       "packed_source_unchanged": true,
       "format": "WebP"
     },
@@ -1699,7 +1699,7 @@
         "viper-excited.webp"
       ],
       "assigned_texture_sha256": [
-        "f8cdba14961380c8f951b32d3178cccc497a84f00e62adb3950445c8d36b28c4"
+        "0c05614372859d8374c3447418f5408409a9c6e0ed6a62b161131dbfc0534562"
       ],
       "world_bounds": [
         [
@@ -1743,9 +1743,9 @@
       ],
       "source": "public/assets/fighters/states/viper-excited.webp",
       "channels": 4,
-      "source_bytes": 210952,
-      "packed_bytes": 210952,
-      "source_sha256": "f8cdba14961380c8f951b32d3178cccc497a84f00e62adb3950445c8d36b28c4",
+      "source_bytes": 202254,
+      "packed_bytes": 202254,
+      "source_sha256": "0c05614372859d8374c3447418f5408409a9c6e0ed6a62b161131dbfc0534562",
       "packed_source_unchanged": true,
       "format": "WebP"
     },
@@ -1783,7 +1783,7 @@
         "viper-fiery.webp"
       ],
       "assigned_texture_sha256": [
-        "e4d52c15bc744ad406b5b4d5cf0df458033c091e1c1c87a66d40c59235cbd661"
+        "08a427fed9cbf34f92789cdaabe1bc4ed0769188e773cb7f9f34adc6e42893dd"
       ],
       "world_bounds": [
         [
@@ -1827,9 +1827,9 @@
       ],
       "source": "public/assets/fighters/states/viper-fiery.webp",
       "channels": 4,
-      "source_bytes": 221110,
-      "packed_bytes": 221110,
-      "source_sha256": "e4d52c15bc744ad406b5b4d5cf0df458033c091e1c1c87a66d40c59235cbd661",
+      "source_bytes": 222934,
+      "packed_bytes": 222934,
+      "source_sha256": "08a427fed9cbf34f92789cdaabe1bc4ed0769188e773cb7f9f34adc6e42893dd",
       "packed_source_unchanged": true,
       "format": "WebP"
     },
@@ -1867,7 +1867,7 @@
         "viper-frustrated.webp"
       ],
       "assigned_texture_sha256": [
-        "192c85e8be135238624e1a544af2aa46f1c6865490d2de6b87770a1579cf2883"
+        "db92afb4c08af669266c6aef523378e1cf4b9885389ff9145bdf9838faaeb40d"
       ],
       "world_bounds": [
         [
@@ -1911,9 +1911,9 @@
       ],
       "source": "public/assets/fighters/states/viper-frustrated.webp",
       "channels": 4,
-      "source_bytes": 214102,
-      "packed_bytes": 214102,
-      "source_sha256": "192c85e8be135238624e1a544af2aa46f1c6865490d2de6b87770a1579cf2883",
+      "source_bytes": 205976,
+      "packed_bytes": 205976,
+      "source_sha256": "db92afb4c08af669266c6aef523378e1cf4b9885389ff9145bdf9838faaeb40d",
       "packed_source_unchanged": true,
       "format": "WebP"
     },
@@ -1951,7 +1951,7 @@
         "viper-tired.webp"
       ],
       "assigned_texture_sha256": [
-        "dd62b43d2256eeee8f4b19bd4d33493729f40a13629232898f2ba103e821798f"
+        "347fdda875c8b4f6c76f8e0fd749dc1539dd5b185e0eeadbd397e0ef2f2afe0d"
       ],
       "world_bounds": [
         [
@@ -1995,9 +1995,9 @@
       ],
       "source": "public/assets/fighters/states/viper-tired.webp",
       "channels": 4,
-      "source_bytes": 204056,
-      "packed_bytes": 204056,
-      "source_sha256": "dd62b43d2256eeee8f4b19bd4d33493729f40a13629232898f2ba103e821798f",
+      "source_bytes": 195590,
+      "packed_bytes": 195590,
+      "source_sha256": "347fdda875c8b4f6c76f8e0fd749dc1539dd5b185e0eeadbd397e0ef2f2afe0d",
       "packed_source_unchanged": true,
       "format": "WebP"
     },
@@ -2035,7 +2035,7 @@
         "viper-groggy.webp"
       ],
       "assigned_texture_sha256": [
-        "7d430ef1d299f964d326ba6b1a67fac02ff8b7a9cc4c6750c3744c8410044eca"
+        "e6dda6620593d244f8a5fdd26da8d266db9884824443848c83f2a67e8d1dce09"
       ],
       "world_bounds": [
         [
@@ -2079,9 +2079,9 @@
       ],
       "source": "public/assets/fighters/states/viper-groggy.webp",
       "channels": 4,
-      "source_bytes": 222928,
-      "packed_bytes": 222928,
-      "source_sha256": "7d430ef1d299f964d326ba6b1a67fac02ff8b7a9cc4c6750c3744c8410044eca",
+      "source_bytes": 207810,
+      "packed_bytes": 207810,
+      "source_sha256": "e6dda6620593d244f8a5fdd26da8d266db9884824443848c83f2a67e8d1dce09",
       "packed_source_unchanged": true,
       "format": "WebP"
     },
@@ -2591,5 +2591,5 @@
     }
   ],
   "blend_file": "artifacts/fighter-state-gallery.blend",
-  "blend_bytes": 5723891
+  "blend_bytes": 5691943
 }

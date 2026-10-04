@@ -1,0 +1,587 @@
+{
+  "version": 1,
+  "cardCount": 25,
+  "finalTotal": 50,
+  "notes": "Final IDs are stable. Generate one technique-specific complete illustration per card. Original adult female wrestlers, controlled demonstration, no injury or blood. No new engine effect fields.",
+  "techniqueReferences": [
+    "https://www.wwe.com/shows/extremerules/currentepisode/14109368",
+    "https://www.gracieuniversity.com/UploadsFiles/Documents/UploadsConvert/lc59_it2385_e4e14bea_GCFEB2026.pdf"
+  ],
+  "cards": [
+    {
+      "id": "sitoutpowerbomb",
+      "name": "싯아웃 파워밤",
+      "nameEn": "Sit-out Powerbomb",
+      "discipline": "throw",
+      "art": "cards/sitoutpowerbomb.webp",
+      "pose": "Attacker sits with legs spread while the opponent descends back-first from an upright shoulder carry; both full bodies visible.",
+      "technique": "상대를 정면 어깨 높이로 들어 올린 뒤 함께 앉아 중심을 낮추는 파워밤입니다. 피해와 방어를 동시에 확보해 긴 공세 뒤에도 버틸 수 있습니다.",
+      "type": "attack",
+      "cost": 2,
+      "rarity": "uncommon",
+      "effects": {
+        "damage": 17,
+        "block": 5
+      },
+      "upgrade": {
+        "damage": 22,
+        "block": 7
+      },
+      "extra": {}
+    },
+    {
+      "id": "jackknifepowerbomb",
+      "name": "잭나이프 파워밤",
+      "nameEn": "Jackknife Powerbomb",
+      "discipline": "throw",
+      "art": "cards/jackknifepowerbomb.webp",
+      "pose": "Standing attacker releases the opponent forward from the shoulder carry, hands visibly separated; opponent back faces the mat, no impact/injury.",
+      "technique": "서 있는 자세에서 상대를 높이 들어 전방으로 놓는 파워밤입니다. 에너지와 압박을 감수해 큰 피해와 취약을 남기는 강한 오프닝입니다.",
+      "type": "attack",
+      "cost": 3,
+      "rarity": "rare",
+      "effects": {
+        "damage": 32,
+        "vulnerable": 2,
+        "stress": 4
+      },
+      "upgrade": {
+        "damage": 41,
+        "vulnerable": 2,
+        "stress": 2
+      },
+      "extra": {}
+    },
+    {
+      "id": "popuppowerbomb",
+      "name": "팝업 파워밤",
+      "nameEn": "Pop-up Powerbomb",
+      "discipline": "throw",
+      "art": "cards/popuppowerbomb.webp",
+      "pose": "Attacker drives both hands upward under the opponent hips, popping the opponent vertically airborne before catching a powerbomb shoulder carry.",
+      "technique": "상대의 진입을 위로 띄워 어깨 위에서 받아내는 파워밤입니다. 먼저 공격해 콤보를 만든 뒤 사용하면 추가 피해와 관중 열기를 얻습니다.",
+      "type": "attack",
+      "cost": 2,
+      "rarity": "uncommon",
+      "effects": {
+        "damage": 14,
+        "comboDamage": 9,
+        "comboRequired": 1,
+        "hype": 1
+      },
+      "upgrade": {
+        "damage": 18,
+        "comboDamage": 11,
+        "hype": 1
+      },
+      "extra": {}
+    },
+    {
+      "id": "gutwrenchpowerbomb",
+      "name": "거트렌치 파워밤",
+      "nameEn": "Gutwrench Powerbomb",
+      "discipline": "throw",
+      "art": "cards/gutwrenchpowerbomb.webp",
+      "pose": "Attacker stands beside a bent opponent with a locked waist grip and rotates the opponent sideways upward into a shoulder carry; the side waist lift is clear.",
+      "technique": "상대 옆에서 허리를 감아 잡고 몸을 회전시켜 들어 올리는 파워밤입니다. 약화와 방어를 함께 준비해 다음 상대 공격을 완화합니다.",
+      "type": "attack",
+      "cost": 2,
+      "rarity": "uncommon",
+      "effects": {
+        "damage": 15,
+        "weak": 2,
+        "block": 3
+      },
+      "upgrade": {
+        "damage": 20,
+        "weak": 3,
+        "block": 3
+      },
+      "extra": {}
+    },
+    {
+      "id": "foldingpowerbomb",
+      "name": "폴딩 파워밤",
+      "nameEn": "Folding Powerbomb",
+      "discipline": "throw",
+      "art": "cards/foldingpowerbomb.webp",
+      "pose": "After a controlled powerbomb, opponent lies back-down with knees folded toward the chest; attacker leans forward over both legs in a folding pin, not a kneebar.",
+      "technique": "파워밤에서 바로 상대의 접힌 다리를 눌러 핀으로 연결하는 변형입니다. 두 번의 공격을 먼저 이어 놓으면 큰 추가 피해와 방어를 얻습니다.",
+      "type": "attack",
+      "cost": 2,
+      "rarity": "rare",
+      "effects": {
+        "damage": 18,
+        "comboDamage": 10,
+        "comboRequired": 2,
+        "block": 7
+      },
+      "upgrade": {
+        "damage": 24,
+        "comboDamage": 13,
+        "block": 10
+      },
+      "extra": {}
+    },
+    {
+      "id": "bodyslam",
+      "name": "바디 슬램",
+      "nameEn": "Scoop Body Slam",
+      "discipline": "throw",
+      "art": "cards/bodyslam.webp",
+      "pose": "Attacker supports one opponent shoulder and the opposite thigh, holding a horizontal opponent across the chest before rotating them sideways toward the mat.",
+      "technique": "한 팔로 상대의 어깨, 다른 팔로 허벅지를 받쳐 몸을 가로로 들어 넘기는 기본 슬램입니다. 적은 에너지로 공격과 가벼운 방어를 함께 챙깁니다.",
+      "type": "attack",
+      "cost": 1,
+      "rarity": "common",
+      "effects": {
+        "damage": 8,
+        "block": 2
+      },
+      "upgrade": {
+        "damage": 11,
+        "block": 4
+      },
+      "extra": {}
+    },
+    {
+      "id": "powerslam",
+      "name": "파워 슬램",
+      "nameEn": "Scoop Powerslam",
+      "discipline": "throw",
+      "art": "cards/powerslam.webp",
+      "pose": "Attacker cradles a horizontal opponent at chest height and rotates while falling forward with them, clearly different from a stationary scoop body slam.",
+      "technique": "가로로 안은 상대와 함께 회전하며 앞으로 떨어지는 슬램입니다. 선행 공격으로 추가 피해를 얻고 압박을 낮춰 공세를 안정적으로 이어갑니다.",
+      "type": "attack",
+      "cost": 2,
+      "rarity": "uncommon",
+      "effects": {
+        "damage": 16,
+        "comboDamage": 6,
+        "comboRequired": 1,
+        "calm": 3
+      },
+      "upgrade": {
+        "damage": 22,
+        "comboDamage": 7,
+        "calm": 5
+      },
+      "extra": {}
+    },
+    {
+      "id": "sidewalkslam",
+      "name": "사이드워크 슬램",
+      "nameEn": "Sidewalk Slam",
+      "discipline": "throw",
+      "art": "cards/sidewalkslam.webp",
+      "pose": "Opponent lies horizontally along the attacker side at hip/chest height; attacker drops into a seated stance, supporting the opponent back and thighs.",
+      "technique": "상대를 옆구리 쪽에 가로로 걸친 뒤 앉으며 중심을 떨어뜨리는 슬램입니다. 공격과 충분한 방어를 묶어 상대 의도에 유연하게 대응합니다.",
+      "type": "attack",
+      "cost": 1,
+      "rarity": "common",
+      "effects": {
+        "damage": 6,
+        "block": 6
+      },
+      "upgrade": {
+        "damage": 9,
+        "block": 8
+      },
+      "extra": {}
+    },
+    {
+      "id": "spinebuster",
+      "name": "스파인버스터",
+      "nameEn": "Spinebuster",
+      "discipline": "throw",
+      "art": "cards/spinebuster.webp",
+      "pose": "Attacker catches both opponent thighs from the front and lifts them while driving forward; opponent upper back rotates toward the mat, no neck/head impact.",
+      "technique": "정면으로 들어오는 상대의 양허벅지를 잡아 들어 올리는 슬램입니다. 상대가 공격 준비 중일 때 사용하면 추가 방어를 확보하는 카운터입니다.",
+      "type": "attack",
+      "cost": 2,
+      "rarity": "uncommon",
+      "effects": {
+        "damage": 14,
+        "block": 7,
+        "counterBlock": 6
+      },
+      "upgrade": {
+        "damage": 19,
+        "block": 10,
+        "counterBlock": 7
+      },
+      "extra": {}
+    },
+    {
+      "id": "bellysuplex",
+      "name": "벨리 투 벨리 수플렉스",
+      "nameEn": "Belly-to-Belly Suplex",
+      "discipline": "throw",
+      "art": "cards/bellysuplex.webp",
+      "pose": "Chest-to-chest standing waist lock; attacker arches backward while throwing the opponent over to the side/back, clearly not a rear German suplex.",
+      "technique": "정면에서 가슴을 맞대고 허리를 잠근 뒤 몸을 뒤로 젖혀 넘기는 수플렉스입니다. 취약을 남기고 다음 카드를 뽑아 후속 공격을 준비합니다.",
+      "type": "attack",
+      "cost": 2,
+      "rarity": "uncommon",
+      "effects": {
+        "damage": 15,
+        "vulnerable": 1,
+        "draw": 1
+      },
+      "upgrade": {
+        "damage": 20,
+        "vulnerable": 2,
+        "draw": 1
+      },
+      "extra": {}
+    },
+    {
+      "id": "snapsuplex",
+      "name": "스냅 수플렉스",
+      "nameEn": "Snap Suplex",
+      "discipline": "throw",
+      "art": "cards/snapsuplex.webp",
+      "pose": "Front facelock with the opponent near arm draped over attacker shoulder; quick rotational lift sends opponent over the shoulder/back, not a head-first driver.",
+      "technique": "정면 헤드·팔 락에서 상대를 빠르게 뒤로 넘기는 수플렉스입니다. 작은 압박 증가를 감수하고 카드 한 장을 뽑아 템포를 유지합니다.",
+      "type": "attack",
+      "cost": 1,
+      "rarity": "common",
+      "effects": {
+        "damage": 6,
+        "draw": 1,
+        "stress": 2
+      },
+      "upgrade": {
+        "damage": 9,
+        "draw": 1,
+        "stress": 1
+      },
+      "extra": {}
+    },
+    {
+      "id": "samoandrop",
+      "name": "사모안 드롭",
+      "nameEn": "Samoan Drop",
+      "discipline": "throw",
+      "art": "cards/samoandrop.webp",
+      "pose": "Opponent is horizontal across both attacker shoulders in a fireman carry; attacker begins to fall backward, keeping the carry clear and both heads intact.",
+      "technique": "상대를 양어깨 위에 가로로 걸친 파이어맨 캐리에서 뒤로 떨어지는 기술입니다. 약화와 열기를 함께 얻어 다음 교환과 피니셔를 준비합니다.",
+      "type": "attack",
+      "cost": 2,
+      "rarity": "uncommon",
+      "effects": {
+        "damage": 16,
+        "weak": 1,
+        "hype": 1
+      },
+      "upgrade": {
+        "damage": 22,
+        "weak": 1,
+        "hype": 1
+      },
+      "extra": {}
+    },
+    {
+      "id": "armbar",
+      "name": "암바",
+      "nameEn": "Armbar",
+      "discipline": "submission",
+      "art": "cards/armbar.webp",
+      "pose": "Grounded attacker holds one opponent wrist with both hands, isolating the same straight arm between the attacker thighs, with one leg across upper chest.",
+      "technique": "바닥에서 상대의 한 팔을 양다리 사이에 고정해 손목과 팔꿈치 선을 제어하는 홀드입니다. 취약을 부여해 뒤따르는 공격을 강화합니다.",
+      "type": "attack",
+      "cost": 1,
+      "rarity": "common",
+      "effects": {
+        "damage": 5,
+        "vulnerable": 2
+      },
+      "upgrade": {
+        "damage": 8,
+        "vulnerable": 2
+      },
+      "extra": {}
+    },
+    {
+      "id": "kimura",
+      "name": "기무라 록",
+      "nameEn": "Kimura Lock",
+      "discipline": "submission",
+      "art": "cards/kimura.webp",
+      "pose": "Attacker uses a figure-four wrist grip on an opponent bent arm, controlling the wrist behind/toward the opponent back; two connected hands and one elbow are clear.",
+      "technique": "상대 손목과 자신의 손목을 연결한 피겨 포 그립으로 굽힌 팔을 제어합니다. 약화와 취약을 함께 만들어 수비와 후속 공격의 균형을 잡습니다.",
+      "type": "attack",
+      "cost": 1,
+      "rarity": "uncommon",
+      "effects": {
+        "damage": 6,
+        "weak": 1,
+        "vulnerable": 1
+      },
+      "upgrade": {
+        "damage": 9,
+        "weak": 2,
+        "vulnerable": 1
+      },
+      "extra": {}
+    },
+    {
+      "id": "americana",
+      "name": "아메리카나 록",
+      "nameEn": "Americana Lock",
+      "discipline": "submission",
+      "art": "cards/americana.webp",
+      "pose": "Opponent lies on their back with one elbow bent 90 degrees and wrist beside the head; attacker holds a top-position figure-four grip with wrist near the mat.",
+      "technique": "등으로 누운 상대의 굽힌 팔을 위에서 피겨 포 그립으로 고정하는 홀드입니다. 약화와 방어를 함께 얻어 안정적인 교환을 만듭니다.",
+      "type": "attack",
+      "cost": 1,
+      "rarity": "common",
+      "effects": {
+        "damage": 5,
+        "block": 5,
+        "weak": 1
+      },
+      "upgrade": {
+        "damage": 8,
+        "block": 7,
+        "weak": 1
+      },
+      "extra": {}
+    },
+    {
+      "id": "anklelock",
+      "name": "앵클 록",
+      "nameEn": "Ankle Lock",
+      "discipline": "submission",
+      "art": "cards/anklelock.webp",
+      "pose": "Opponent is prone and attacker kneels/stands behind, controlling one ankle and foot with both hands at chest height; avoid confusing it with a heelhook ground entanglement.",
+      "technique": "엎드린 상대의 한 발목과 발을 양손으로 잡아 하체 움직임을 제한합니다. 상대를 약화시키면서 자신의 압박을 낮추는 제압 기술입니다.",
+      "type": "attack",
+      "cost": 1,
+      "rarity": "common",
+      "effects": {
+        "damage": 6,
+        "weak": 2,
+        "calm": 3
+      },
+      "upgrade": {
+        "damage": 9,
+        "weak": 2,
+        "calm": 5
+      },
+      "extra": {}
+    },
+    {
+      "id": "kneebar",
+      "name": "니바",
+      "nameEn": "Kneebar",
+      "discipline": "submission",
+      "art": "cards/kneebar.webp",
+      "pose": "Grounded attacker isolates one opponent straight leg between both thighs and controls the ankle with both hands; knee line visibly centered between the hips.",
+      "technique": "상대의 한 다리를 양다리 사이에 고정하고 발목과 무릎 선을 제어하는 홀드입니다. 취약 지속과 방어를 확보해 다음 공격의 시간을 벌어 줍니다.",
+      "type": "attack",
+      "cost": 2,
+      "rarity": "uncommon",
+      "effects": {
+        "damage": 12,
+        "vulnerable": 2,
+        "block": 4
+      },
+      "upgrade": {
+        "damage": 17,
+        "vulnerable": 3,
+        "block": 6
+      },
+      "extra": {}
+    },
+    {
+      "id": "heelhook",
+      "name": "힐 훅",
+      "nameEn": "Heel Hook",
+      "discipline": "submission",
+      "art": "cards/heelhook.webp",
+      "pose": "Two grounded wrestlers in a leg entanglement; attacker hooks the opponent heel in the elbow crook with toes beneath the armpit, no rotation injury or deformity.",
+      "technique": "다리가 얽힌 바닥 자세에서 상대의 뒤꿈치를 팔꿈치 안쪽에 걸어 제어합니다. 피해보다 긴 약화·취약을 준비하는 일회성 제압 카드입니다.",
+      "type": "attack",
+      "cost": 1,
+      "rarity": "rare",
+      "effects": {
+        "damage": 3,
+        "weak": 3,
+        "vulnerable": 2
+      },
+      "upgrade": {
+        "damage": 6,
+        "weak": 4,
+        "vulnerable": 3
+      },
+      "extra": {
+        "exhaust": true
+      }
+    },
+    {
+      "id": "figurefour",
+      "name": "피겨 포 레그록",
+      "nameEn": "Figure-Four Leglock",
+      "discipline": "submission",
+      "art": "cards/figurefour.webp",
+      "pose": "Both wrestlers are seated/back-down on the mat, with opponent legs crossed into a visible figure-four around one attacker leg; full leg arrangement clearly readable.",
+      "technique": "상대의 두 다리를 숫자 4 모양으로 엇갈리게 고정하는 프로레슬링 홀드입니다. 낮은 체력에서 추가 방어를 얻어 컴백의 시간을 마련합니다.",
+      "type": "attack",
+      "cost": 2,
+      "rarity": "uncommon",
+      "effects": {
+        "damage": 10,
+        "block": 11,
+        "lowHpBlock": 6
+      },
+      "upgrade": {
+        "damage": 15,
+        "block": 14,
+        "lowHpBlock": 8
+      },
+      "extra": {}
+    },
+    {
+      "id": "bostoncrab",
+      "name": "보스턴 크랩",
+      "nameEn": "Boston Crab",
+      "discipline": "submission",
+      "art": "cards/bostoncrab.webp",
+      "pose": "Opponent lies prone; attacker faces away and sits low over opponent hips, holding both ankles raised backward in a symmetrical two-leg Boston Crab.",
+      "technique": "엎드린 상대 위에서 뒤를 향해 낮게 앉고 양발목을 들어 제어하는 홀드입니다. 약화와 관중 열기를 동시에 얻어 경기의 흐름을 가져옵니다.",
+      "type": "attack",
+      "cost": 1,
+      "rarity": "common",
+      "effects": {
+        "damage": 4,
+        "weak": 1,
+        "hype": 1
+      },
+      "upgrade": {
+        "damage": 7,
+        "weak": 2,
+        "hype": 1
+      },
+      "extra": {}
+    },
+    {
+      "id": "sharpshooter",
+      "name": "샤프슈터",
+      "nameEn": "Sharpshooter",
+      "discipline": "submission",
+      "art": "cards/sharpshooter.webp",
+      "pose": "Opponent lies prone with crossed legs around one planted attacker leg; attacker faces away in a low standing/squatting Sharpshooter, visibly different from the symmetrical Boston Crab.",
+      "technique": "자신의 한 다리를 상대의 교차된 다리 사이에 넣고 낮게 앉아 고정하는 홀드입니다. 열기를 쓰는 서브미션 피니셔로 큰 피해와 긴 약화를 남깁니다.",
+      "type": "finisher",
+      "cost": 2,
+      "rarity": "rare",
+      "effects": {
+        "damage": 25,
+        "spendHype": 3,
+        "weak": 3
+      },
+      "upgrade": {
+        "damage": 34,
+        "weak": 4
+      },
+      "extra": {
+        "exhaust": true
+      }
+    },
+    {
+      "id": "crossface",
+      "name": "크로스페이스",
+      "nameEn": "Crossface",
+      "discipline": "submission",
+      "art": "cards/crossface.webp",
+      "pose": "Opponent lies prone with one arm trapped between attacker legs; attacker is seated beside the shoulder, hands clasped in front of the chin controlling the upper body.",
+      "technique": "상대의 한 팔을 다리로 고정하고 양손으로 얼굴 앞쪽을 제어하는 홀드입니다. 상대 공격에 맞춰 추가 방어를 얻고 압박을 낮춥니다.",
+      "type": "attack",
+      "cost": 1,
+      "rarity": "uncommon",
+      "effects": {
+        "damage": 6,
+        "block": 4,
+        "counterBlock": 5,
+        "calm": 4
+      },
+      "upgrade": {
+        "damage": 9,
+        "block": 6,
+        "counterBlock": 6,
+        "calm": 6
+      },
+      "extra": {}
+    },
+    {
+      "id": "collartie",
+      "name": "칼라 앤 엘보",
+      "nameEn": "Collar-and-Elbow Tie-up",
+      "discipline": "grapple",
+      "art": "cards/collartie.webp",
+      "pose": "Two upright wrestlers face each other, each using one hand behind the opponent neck and the other at the elbow in a clear opening collar-and-elbow lockup.",
+      "technique": "서서 상대의 목 뒤와 팔꿈치를 동시에 잡는 기본 락업입니다. 에너지 없이 방어와 다음 공격 보너스를 준비하며 사용 후 소멸합니다.",
+      "type": "skill",
+      "cost": 0,
+      "rarity": "common",
+      "effects": {
+        "block": 3,
+        "nextAttack": 3
+      },
+      "upgrade": {
+        "block": 5,
+        "nextAttack": 4
+      },
+      "extra": {
+        "exhaust": true
+      }
+    },
+    {
+      "id": "armdrag",
+      "name": "암 드래그",
+      "nameEn": "Arm Drag",
+      "discipline": "grapple",
+      "art": "cards/armdrag.webp",
+      "pose": "Attacker grips one opponent wrist and upper arm, lowers their torso and pulls the opponent sideways over the shoulder line; two distinct connected arms visible.",
+      "technique": "상대의 손목과 위팔을 잡아 몸을 낮추고 옆으로 넘기는 연결 기술입니다. 에너지 없이 추가 콤보와 작은 방어를 얻으며 사용 후 소멸합니다.",
+      "type": "attack",
+      "cost": 0,
+      "rarity": "common",
+      "effects": {
+        "damage": 3,
+        "block": 2,
+        "extraCombo": 1
+      },
+      "upgrade": {
+        "damage": 5,
+        "block": 4
+      },
+      "extra": {
+        "exhaust": true
+      }
+    },
+    {
+      "id": "waistlock",
+      "name": "리어 웨이스트록",
+      "nameEn": "Rear Waist Lock",
+      "discipline": "grapple",
+      "art": "cards/waistlock.webp",
+      "pose": "Both wrestlers stand upright; attacker is directly behind the opponent, arms wrapped around the waist with hands connected at the front, before any lifting throw.",
+      "technique": "상대 뒤에서 허리를 양팔로 감아 잡고 손을 연결하는 준비 자세입니다. 방어·드로우·다음 공격 보너스로 강한 던지기의 순서를 설계합니다.",
+      "type": "skill",
+      "cost": 1,
+      "rarity": "uncommon",
+      "effects": {
+        "block": 6,
+        "nextAttack": 6,
+        "draw": 1
+      },
+      "upgrade": {
+        "block": 9,
+        "nextAttack": 8
+      },
+      "extra": {}
+    }
+  ]
+}

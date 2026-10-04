@@ -1,0 +1,996 @@
+[
+  {
+    "arena": {
+      "bottom": 503,
+      "height": 453,
+      "left": 8,
+      "right": 385,
+      "top": 50,
+      "width": 377,
+      "x": 8,
+      "y": 50
+    },
+    "bothFightersFit": true,
+    "canvas": 0,
+    "cards": [
+      {
+        "bottom": 777,
+        "height": 208,
+        "left": 8,
+        "right": 148,
+        "top": 569,
+        "width": 140,
+        "x": 8,
+        "y": 569
+      },
+      {
+        "bottom": 777,
+        "height": 208,
+        "left": 156,
+        "right": 296,
+        "top": 569,
+        "width": 140,
+        "x": 156,
+        "y": 569
+      },
+      {
+        "bottom": 777,
+        "height": 208,
+        "left": 304,
+        "right": 444,
+        "top": 569,
+        "width": 140,
+        "x": 304,
+        "y": 569
+      },
+      {
+        "bottom": 777,
+        "height": 208,
+        "left": 452,
+        "right": 592,
+        "top": 569,
+        "width": 140,
+        "x": 452,
+        "y": 569
+      },
+      {
+        "bottom": 777,
+        "height": 208,
+        "left": 600,
+        "right": 740,
+        "top": 569,
+        "width": 140,
+        "x": 600,
+        "y": 569
+      }
+    ],
+    "fighters": [
+      {
+        "bottom": 470,
+        "height": 295,
+        "left": 16.5,
+        "right": 192.75,
+        "top": 175,
+        "width": 176.25,
+        "x": 16.5,
+        "y": 175
+      },
+      {
+        "bottom": 470,
+        "height": 295,
+        "left": 200.25,
+        "right": 376.5,
+        "top": 175,
+        "width": 176.25,
+        "x": 200.25,
+        "y": 175
+      }
+    ],
+    "hand": {
+      "bottom": 842,
+      "height": 298,
+      "left": 8,
+      "right": 385,
+      "top": 544,
+      "width": 377,
+      "x": 8,
+      "y": 544
+    },
+    "handFits": true,
+    "hud": [
+      {
+        "bottom": 142.296875,
+        "height": 83.296875,
+        "left": 19,
+        "right": 182.5,
+        "top": 59,
+        "width": 163.5,
+        "x": 19,
+        "y": 59
+      },
+      {
+        "bottom": 163.296875,
+        "height": 104.296875,
+        "left": 210.5,
+        "right": 374,
+        "top": 59,
+        "width": 163.5,
+        "x": 210.5,
+        "y": 59
+      }
+    ],
+    "page": [
+      393,
+      852
+    ],
+    "turn": {
+      "bottom": 842,
+      "height": 44,
+      "left": 231,
+      "right": 331,
+      "top": 798,
+      "width": 100,
+      "x": 231,
+      "y": 798
+    },
+    "turnFits": true,
+    "verticalPageOverflow": false,
+    "viewport": [
+      393,
+      852
+    ],
+    "visibleCards": 3
+  },
+  {
+    "arena": {
+      "bottom": 463,
+      "height": 413,
+      "left": 8,
+      "right": 367,
+      "top": 50,
+      "width": 359,
+      "x": 8,
+      "y": 50
+    },
+    "bothFightersFit": true,
+    "canvas": 0,
+    "cards": [
+      {
+        "bottom": 737,
+        "height": 208,
+        "left": 8,
+        "right": 148,
+        "top": 529,
+        "width": 140,
+        "x": 8,
+        "y": 529
+      },
+      {
+        "bottom": 737,
+        "height": 208,
+        "left": 156,
+        "right": 296,
+        "top": 529,
+        "width": 140,
+        "x": 156,
+        "y": 529
+      },
+      {
+        "bottom": 737,
+        "height": 208,
+        "left": 304,
+        "right": 444,
+        "top": 529,
+        "width": 140,
+        "x": 304,
+        "y": 529
+      },
+      {
+        "bottom": 737,
+        "height": 208,
+        "left": 452,
+        "right": 592,
+        "top": 529,
+        "width": 140,
+        "x": 452,
+        "y": 529
+      },
+      {
+        "bottom": 737,
+        "height": 208,
+        "left": 600,
+        "right": 740,
+        "top": 529,
+        "width": 140,
+        "x": 600,
+        "y": 529
+      }
+    ],
+    "fighters": [
+      {
+        "bottom": 430,
+        "height": 255,
+        "left": 16.1328125,
+        "right": 183.921875,
+        "top": 175,
+        "width": 167.7890625,
+        "x": 16.1328125,
+        "y": 175
+      },
+      {
+        "bottom": 430,
+        "height": 255,
+        "left": 191.078125,
+        "right": 358.8671875,
+        "top": 175,
+        "width": 167.7890625,
+        "x": 191.078125,
+        "y": 175
+      }
+    ],
+    "hand": {
+      "bottom": 802,
+      "height": 298,
+      "left": 8,
+      "right": 367,
+      "top": 504,
+      "width": 359,
+      "x": 8,
+      "y": 504
+    },
+    "handFits": true,
+    "hud": [
+      {
+        "bottom": 142.296875,
+        "height": 83.296875,
+        "left": 19,
+        "right": 173.5,
+        "top": 59,
+        "width": 154.5,
+        "x": 19,
+        "y": 59
+      },
+      {
+        "bottom": 163.296875,
+        "height": 104.296875,
+        "left": 201.5,
+        "right": 356,
+        "top": 59,
+        "width": 154.5,
+        "x": 201.5,
+        "y": 59
+      }
+    ],
+    "page": [
+      375,
+      812
+    ],
+    "turn": {
+      "bottom": 802,
+      "height": 44,
+      "left": 213,
+      "right": 313,
+      "top": 758,
+      "width": 100,
+      "x": 213,
+      "y": 758
+    },
+    "turnFits": true,
+    "verticalPageOverflow": false,
+    "viewport": [
+      375,
+      812
+    ],
+    "visibleCards": 3
+  },
+  {
+    "arena": {
+      "bottom": 387,
+      "height": 337,
+      "left": 6,
+      "right": 314,
+      "top": 50,
+      "width": 308,
+      "x": 6,
+      "y": 50
+    },
+    "bothFightersFit": true,
+    "canvas": 0,
+    "cards": [
+      {
+        "bottom": 647,
+        "height": 194,
+        "left": 6,
+        "right": 136,
+        "top": 453,
+        "width": 130,
+        "x": 6,
+        "y": 453
+      },
+      {
+        "bottom": 647,
+        "height": 194,
+        "left": 144,
+        "right": 274,
+        "top": 453,
+        "width": 130,
+        "x": 144,
+        "y": 453
+      },
+      {
+        "bottom": 647,
+        "height": 194,
+        "left": 282,
+        "right": 412,
+        "top": 453,
+        "width": 130,
+        "x": 282,
+        "y": 453
+      },
+      {
+        "bottom": 647,
+        "height": 194,
+        "left": 420,
+        "right": 550,
+        "top": 453,
+        "width": 130,
+        "x": 420,
+        "y": 453
+      },
+      {
+        "bottom": 647,
+        "height": 194,
+        "left": 558,
+        "right": 688,
+        "top": 453,
+        "width": 130,
+        "x": 558,
+        "y": 453
+      }
+    ],
+    "fighters": [
+      {
+        "bottom": 354,
+        "height": 183,
+        "left": 13.1171875,
+        "right": 156.9296875,
+        "top": 171,
+        "width": 143.8125,
+        "x": 13.1171875,
+        "y": 171
+      },
+      {
+        "bottom": 354,
+        "height": 183,
+        "left": 163.0703125,
+        "right": 306.8828125,
+        "top": 171,
+        "width": 143.8125,
+        "x": 163.0703125,
+        "y": 171
+      }
+    ],
+    "hand": {
+      "bottom": 712,
+      "height": 284,
+      "left": 6,
+      "right": 314,
+      "top": 428,
+      "width": 308,
+      "x": 6,
+      "y": 428
+    },
+    "handFits": true,
+    "hud": [
+      {
+        "bottom": 155.6875,
+        "height": 96.6875,
+        "left": 15,
+        "right": 146,
+        "top": 59,
+        "width": 131,
+        "x": 15,
+        "y": 59
+      },
+      {
+        "bottom": 161.09375,
+        "height": 102.09375,
+        "left": 174,
+        "right": 305,
+        "top": 59,
+        "width": 131,
+        "x": 174,
+        "y": 59
+      }
+    ],
+    "page": [
+      320,
+      720
+    ],
+    "turn": {
+      "bottom": 712,
+      "height": 44,
+      "left": 176,
+      "right": 266,
+      "top": 668,
+      "width": 90,
+      "x": 176,
+      "y": 668
+    },
+    "turnFits": true,
+    "verticalPageOverflow": false,
+    "viewport": [
+      320,
+      720
+    ],
+    "visibleCards": 3
+  },
+  {
+    "arena": {
+      "bottom": 384,
+      "height": 346,
+      "left": 6,
+      "right": 418,
+      "top": 38,
+      "width": 412,
+      "x": 6,
+      "y": 38
+    },
+    "bothFightersFit": true,
+    "canvas": 0,
+    "cards": [
+      {
+        "bottom": 300,
+        "height": 204,
+        "left": 426,
+        "right": 558,
+        "top": 96,
+        "width": 132,
+        "x": 426,
+        "y": 96
+      },
+      {
+        "bottom": 300,
+        "height": 204,
+        "left": 567,
+        "right": 699,
+        "top": 96,
+        "width": 132,
+        "x": 567,
+        "y": 96
+      },
+      {
+        "bottom": 300,
+        "height": 204,
+        "left": 708,
+        "right": 840,
+        "top": 96,
+        "width": 132,
+        "x": 708,
+        "y": 96
+      },
+      {
+        "bottom": 300,
+        "height": 204,
+        "left": 849,
+        "right": 981,
+        "top": 96,
+        "width": 132,
+        "x": 849,
+        "y": 96
+      },
+      {
+        "bottom": 300,
+        "height": 204,
+        "left": 990,
+        "right": 1122,
+        "top": 96,
+        "width": 132,
+        "x": 990,
+        "y": 96
+      }
+    ],
+    "fighters": [
+      {
+        "bottom": 353,
+        "height": 198,
+        "left": 19.296875,
+        "right": 207.890625,
+        "top": 155,
+        "width": 188.59375,
+        "x": 19.296875,
+        "y": 155
+      },
+      {
+        "bottom": 353,
+        "height": 198,
+        "left": 216.109375,
+        "right": 404.703125,
+        "top": 155,
+        "width": 188.59375,
+        "x": 216.109375,
+        "y": 155
+      }
+    ],
+    "hand": {
+      "bottom": 384,
+      "height": 313,
+      "left": 426,
+      "right": 838,
+      "top": 71,
+      "width": 412,
+      "x": 426,
+      "y": 71
+    },
+    "handFits": true,
+    "hud": [
+      {
+        "bottom": 126.09375,
+        "height": 81.09375,
+        "left": 17,
+        "right": 198,
+        "top": 45,
+        "width": 181,
+        "x": 17,
+        "y": 45
+      },
+      {
+        "bottom": 147.09375,
+        "height": 102.09375,
+        "left": 226,
+        "right": 407,
+        "top": 45,
+        "width": 181,
+        "x": 226,
+        "y": 45
+      }
+    ],
+    "page": [
+      844,
+      390
+    ],
+    "turn": {
+      "bottom": 384,
+      "height": 44,
+      "left": 689,
+      "right": 787,
+      "top": 340,
+      "width": 98,
+      "x": 689,
+      "y": 340
+    },
+    "turnFits": true,
+    "verticalPageOverflow": false,
+    "viewport": [
+      844,
+      390
+    ],
+    "visibleCards": 3
+  },
+  {
+    "arena": {
+      "bottom": 369,
+      "height": 331,
+      "left": 6,
+      "right": 402,
+      "top": 38,
+      "width": 396,
+      "x": 6,
+      "y": 38
+    },
+    "bothFightersFit": true,
+    "canvas": 0,
+    "cards": [
+      {
+        "bottom": 295,
+        "height": 199,
+        "left": 410,
+        "right": 542,
+        "top": 96,
+        "width": 132,
+        "x": 410,
+        "y": 96
+      },
+      {
+        "bottom": 295,
+        "height": 199,
+        "left": 551,
+        "right": 683,
+        "top": 96,
+        "width": 132,
+        "x": 551,
+        "y": 96
+      },
+      {
+        "bottom": 295,
+        "height": 199,
+        "left": 692,
+        "right": 824,
+        "top": 96,
+        "width": 132,
+        "x": 692,
+        "y": 96
+      },
+      {
+        "bottom": 295,
+        "height": 199,
+        "left": 833,
+        "right": 965,
+        "top": 96,
+        "width": 132,
+        "x": 833,
+        "y": 96
+      },
+      {
+        "bottom": 295,
+        "height": 199,
+        "left": 974,
+        "right": 1106,
+        "top": 96,
+        "width": 132,
+        "x": 974,
+        "y": 96
+      }
+    ],
+    "fighters": [
+      {
+        "bottom": 338,
+        "height": 183,
+        "left": 18.8125,
+        "right": 200.046875,
+        "top": 155,
+        "width": 181.234375,
+        "x": 18.8125,
+        "y": 155
+      },
+      {
+        "bottom": 338,
+        "height": 183,
+        "left": 207.953125,
+        "right": 389.1875,
+        "top": 155,
+        "width": 181.234375,
+        "x": 207.953125,
+        "y": 155
+      }
+    ],
+    "hand": {
+      "bottom": 369,
+      "height": 298,
+      "left": 410,
+      "right": 806,
+      "top": 71,
+      "width": 396,
+      "x": 410,
+      "y": 71
+    },
+    "handFits": true,
+    "hud": [
+      {
+        "bottom": 126.09375,
+        "height": 81.09375,
+        "left": 17,
+        "right": 190,
+        "top": 45,
+        "width": 173,
+        "x": 17,
+        "y": 45
+      },
+      {
+        "bottom": 147.09375,
+        "height": 102.09375,
+        "left": 218,
+        "right": 391,
+        "top": 45,
+        "width": 173,
+        "x": 218,
+        "y": 45
+      }
+    ],
+    "page": [
+      812,
+      375
+    ],
+    "turn": {
+      "bottom": 369,
+      "height": 44,
+      "left": 657,
+      "right": 755,
+      "top": 325,
+      "width": 98,
+      "x": 657,
+      "y": 325
+    },
+    "turnFits": true,
+    "verticalPageOverflow": false,
+    "viewport": [
+      812,
+      375
+    ],
+    "visibleCards": 3
+  },
+  {
+    "arena": {
+      "bottom": 369,
+      "height": 331,
+      "left": 6,
+      "right": 329.5,
+      "top": 38,
+      "width": 323.5,
+      "x": 6,
+      "y": 38
+    },
+    "bothFightersFit": true,
+    "canvas": 0,
+    "cards": [
+      {
+        "bottom": 295,
+        "height": 199,
+        "left": 337.5,
+        "right": 469.5,
+        "top": 96,
+        "width": 132,
+        "x": 337.5,
+        "y": 96
+      },
+      {
+        "bottom": 295,
+        "height": 199,
+        "left": 477.5,
+        "right": 609.5,
+        "top": 96,
+        "width": 132,
+        "x": 477.5,
+        "y": 96
+      },
+      {
+        "bottom": 295,
+        "height": 199,
+        "left": 617.5,
+        "right": 749.5,
+        "top": 96,
+        "width": 132,
+        "x": 617.5,
+        "y": 96
+      },
+      {
+        "bottom": 295,
+        "height": 199,
+        "left": 757.5,
+        "right": 889.5,
+        "top": 96,
+        "width": 132,
+        "x": 757.5,
+        "y": 96
+      },
+      {
+        "bottom": 295,
+        "height": 199,
+        "left": 897.5,
+        "right": 1029.5,
+        "top": 96,
+        "width": 132,
+        "x": 897.5,
+        "y": 96
+      }
+    ],
+    "fighters": [
+      {
+        "bottom": 338,
+        "height": 183,
+        "left": 13.4296875,
+        "right": 164.53125,
+        "top": 155,
+        "width": 151.1015625,
+        "x": 13.4296875,
+        "y": 155
+      },
+      {
+        "bottom": 338,
+        "height": 183,
+        "left": 170.96875,
+        "right": 322.0703125,
+        "top": 155,
+        "width": 151.1015625,
+        "x": 170.96875,
+        "y": 155
+      }
+    ],
+    "hand": {
+      "bottom": 369,
+      "height": 298,
+      "left": 337.5,
+      "right": 661,
+      "top": 71,
+      "width": 323.5,
+      "x": 337.5,
+      "y": 71
+    },
+    "handFits": true,
+    "hud": [
+      {
+        "bottom": 126.09375,
+        "height": 81.09375,
+        "left": 17,
+        "right": 153.75,
+        "top": 45,
+        "width": 136.75,
+        "x": 17,
+        "y": 45
+      },
+      {
+        "bottom": 147.09375,
+        "height": 102.09375,
+        "left": 181.75,
+        "right": 318.5,
+        "top": 45,
+        "width": 136.75,
+        "x": 181.75,
+        "y": 45
+      }
+    ],
+    "page": [
+      667,
+      375
+    ],
+    "turn": {
+      "bottom": 369,
+      "height": 44,
+      "left": 512,
+      "right": 610,
+      "top": 325,
+      "width": 98,
+      "x": 512,
+      "y": 325
+    },
+    "turnFits": true,
+    "verticalPageOverflow": false,
+    "viewport": [
+      667,
+      375
+    ],
+    "visibleCards": 3
+  },
+  {
+    "arena": {
+      "bottom": 409,
+      "height": 351,
+      "left": 82,
+      "right": 1262,
+      "top": 58,
+      "width": 1180,
+      "x": 82,
+      "y": 58
+    },
+    "bothFightersFit": true,
+    "canvas": 0,
+    "cards": [
+      {
+        "bottom": 693,
+        "height": 218,
+        "left": 162,
+        "right": 310,
+        "top": 475,
+        "width": 148,
+        "x": 162,
+        "y": 475
+      },
+      {
+        "bottom": 693,
+        "height": 218,
+        "left": 319,
+        "right": 467,
+        "top": 475,
+        "width": 148,
+        "x": 319,
+        "y": 475
+      },
+      {
+        "bottom": 693,
+        "height": 218,
+        "left": 476,
+        "right": 624,
+        "top": 475,
+        "width": 148,
+        "x": 476,
+        "y": 475
+      },
+      {
+        "bottom": 693,
+        "height": 218,
+        "left": 633,
+        "right": 781,
+        "top": 475,
+        "width": 148,
+        "x": 633,
+        "y": 475
+      },
+      {
+        "bottom": 693,
+        "height": 218,
+        "left": 790,
+        "right": 938,
+        "top": 475,
+        "width": 148,
+        "x": 790,
+        "y": 475
+      }
+    ],
+    "fighters": [
+      {
+        "bottom": 374,
+        "height": 195,
+        "left": 118.3359375,
+        "right": 660.2109375,
+        "top": 179,
+        "width": 541.875,
+        "x": 118.3359375,
+        "y": 179
+      },
+      {
+        "bottom": 374,
+        "height": 195,
+        "left": 683.7890625,
+        "right": 1225.6640625,
+        "top": 179,
+        "width": 541.875,
+        "x": 683.7890625,
+        "y": 179
+      }
+    ],
+    "hand": {
+      "bottom": 708,
+      "height": 258,
+      "left": 82,
+      "right": 1262,
+      "top": 450,
+      "width": 1180,
+      "x": 82,
+      "y": 450
+    },
+    "handFits": true,
+    "hud": [
+      {
+        "bottom": 152.5,
+        "height": 85.5,
+        "left": 101,
+        "right": 461,
+        "top": 67,
+        "width": 360,
+        "x": 101,
+        "y": 67
+      },
+      {
+        "bottom": 173.5,
+        "height": 106.5,
+        "left": 883,
+        "right": 1243,
+        "top": 67,
+        "width": 360,
+        "x": 883,
+        "y": 67
+      }
+    ],
+    "page": [
+      1280,
+      720
+    ],
+    "turn": {
+      "bottom": 583.25,
+      "height": 48,
+      "left": 1150,
+      "right": 1262,
+      "top": 535.25,
+      "width": 112,
+      "x": 1150,
+      "y": 535.25
+    },
+    "turnFits": true,
+    "verticalPageOverflow": false,
+    "viewport": [
+      1280,
+      720
+    ],
+    "visibleCards": 5
+  }
+]

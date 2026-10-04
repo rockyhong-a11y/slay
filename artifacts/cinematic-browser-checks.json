@@ -1,0 +1,67 @@
+{
+  "headlock": {
+    "allHandDisabled": true,
+    "art": {
+      "bottom": 546.710205078125,
+      "height": 398.9248962402344,
+      "left": 13.311638832092283,
+      "right": 373.2839593887329,
+      "top": 147.78530883789062,
+      "width": 359.9723205566406,
+      "x": 13.311638832092283,
+      "y": 147.78530883789062
+    },
+    "blur": "blur(26px) brightness(0.32) saturate(0.75)",
+    "canvas": 0,
+    "card": "headlock",
+    "copy": {
+      "bottom": 681.171875,
+      "height": 69.7890625,
+      "left": 20,
+      "right": 373,
+      "top": 611.3828125,
+      "width": 353,
+      "x": 20,
+      "y": 611.3828125
+    },
+    "duration": "2650",
+    "motion": "hold",
+    "results": {
+      "bottom": 735.171875,
+      "height": 38,
+      "left": 20,
+      "right": 373,
+      "top": 697.171875,
+      "width": 353,
+      "x": 20,
+      "y": 697.171875
+    },
+    "scene": {
+      "bottom": 852,
+      "height": 852,
+      "left": 0,
+      "right": 393,
+      "top": 0,
+      "width": 393,
+      "x": 0,
+      "y": 0
+    },
+    "turnDisabled": true
+  },
+  "sidewalkslam": {
+    "art": {
+      "bottom": 478.0855407714844,
+      "height": 307.15313720703125,
+      "left": 41.89304733276367,
+      "right": 403.6753654479981,
+      "top": 170.93240356445312,
+      "width": 361.7823181152344,
+      "x": 41.89304733276367,
+      "y": 170.93240356445312
+    },
+    "canvas": 0,
+    "card": "sidewalkslam",
+    "motion": "slam"
+  },
+  "acquisition": "Won a real match, chose Sidewalk Slam reward, entered the next fight, drew and played the card via UI"
+}

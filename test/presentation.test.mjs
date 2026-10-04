@@ -9,6 +9,7 @@ import {
   selectFighterState,
   fighterPoseArt,
   createCardCue,
+  techniqueShot,
 } from "../src/presentation.js";
 
 // Only the piles and encounter are arranged. Effects are resolved by playCard.
@@ -140,7 +141,7 @@ test("conditions return naturally after real healing, calming and finisher heat 
 });
 
 test("every card cue uses its unique technique artwork and actual engine outcome", () => {
-  assert.equal(Object.keys(CARDS).length, 25);
+  assert.equal(Object.keys(CARDS).length, 50);
   const artPaths = new Set();
   for (const id of Object.keys(CARDS)) {
     const before = combatWith([id]);
@@ -171,7 +172,127 @@ test("every card cue uses its unique technique artwork and actual engine outcome
       `${id} presentation must not mutate engine state`,
     );
   }
-  assert.equal(artPaths.size, 25);
+  assert.equal(artPaths.size, 50);
+});
+
+test("all 50 technique cameras are finite, serializable and leave time to read the full scene", () => {
+  for (const [id, definition] of Object.entries(CARDS)) {
+    const shot = techniqueShot(
+      id,
+      CARD_DETAILS[id].disciplineSlug,
+      definition.type === "finisher",
+    );
+    assert.ok(shot.duration >= 2000 && shot.duration <= 3300, id);
+    if (definition.type === "finisher") assert.ok(shot.duration >= 3100, id);
+    assert.equal(shot.times[0], 0, id);
+    assert.equal(shot.times.at(-1), 1, id);
+    for (let index = 1; index < shot.times.length; index++)
+      assert.ok(shot.times[index] > shot.times[index - 1], id);
+    for (const channel of ["x", "y", "scale", "rotate"]) {
+      assert.equal(shot[channel].length, shot.times.length, `${id} ${channel}`);
+      assert.ok(shot[channel].every(Number.isFinite), `${id} ${channel}`);
+    }
+    assert.ok(
+      shot.scale.every((scale) => scale >= 0.8 && scale <= 1.25),
+      id,
+    );
+    assert.ok(
+      shot.impacts.every((time) => time > 0 && time < 1),
+      id,
+    );
+    assert.equal(shot.phases.length, 3, id);
+    assert.match(shot.origin, /^\d+% \d+%$/, id);
+    assert.ok(shot.portrait.field >= 0.6 && shot.portrait.field <= 0.9, id);
+    assert.equal(shot.portrait.center.length, 2, id);
+    assert.ok(
+      shot.portrait.center.every((value) => value > 0 && value < 1),
+      id,
+    );
+    assert.deepEqual(JSON.parse(JSON.stringify(shot)), shot, id);
+  }
+});
+
+test("portrait fields enlarge close holds while retaining more of wide landing actions", () => {
+  const headlock = techniqueShot("headlock", "submission");
+  const slam = techniqueShot("sidewalkslam", "throw");
+  const suplex = techniqueShot("suplex", "throw");
+  const armbar = techniqueShot("armbar", "submission");
+  assert.equal(headlock.portrait.field, 0.6);
+  assert.deepEqual(headlock.portrait.center, [0.51, 0.36]);
+  assert.ok(slam.portrait.field >= 0.8 && suplex.portrait.field >= 0.8);
+  assert.deepEqual(slam.portrait.center, [0.44, 0.4]);
+  assert.ok(armbar.portrait.field > slam.portrait.field);
+  const portraitHeight = (viewportWidth, shot) =>
+    (viewportWidth - 28) / (1.5 * shot.portrait.field);
+  assert.ok(portraitHeight(393, headlock) >= 400);
+  assert.ok(portraitHeight(320, headlock) >= 320);
+  headlock.portrait.center[0] = 0;
+  assert.deepEqual(
+    techniqueShot("headlock", "submission").portrait.center,
+    [0.51, 0.36],
+    "a consumer cannot change the next cue's focal point",
+  );
+});
+
+test("powerbomb cameras lift, hold visibly, then drive down before the landing impact", () => {
+  for (const id of [
+    "powerbomb",
+    "sitoutpowerbomb",
+    "jackknifepowerbomb",
+    "popuppowerbomb",
+    "gutwrenchpowerbomb",
+    "foldingpowerbomb",
+  ]) {
+    const shot = techniqueShot(id, "throw");
+    assert.equal(shot.kind, "powerbomb", id);
+    assert.ok(shot.y[0] > shot.y[1] && shot.y[1] > shot.y[2], id);
+    assert.equal(shot.y[2], shot.y[3], `${id} holds the lift`);
+    assert.ok(
+      (shot.times[3] - shot.times[2]) * shot.duration >= 300,
+      `${id} lift pause remains visible`,
+    );
+    assert.ok(shot.y[4] > 0 && shot.y[4] > shot.y[3], id);
+    assert.equal(shot.impacts[0], shot.times[4], id);
+    assert.equal(shot.heavy, true, id);
+    assert.deepEqual(shot.phases, ["LIFT", "DRIVE", "MAT IMPACT"], id);
+  }
+});
+
+test("throws follow an arc, slams fall to the mat, and locks use pressure close-ups", () => {
+  const thrown = techniqueShot("bellysuplex", "throw");
+  assert.equal(thrown.kind, "throw");
+  assert.ok(thrown.y[0] > 0 && thrown.y[3] < 0 && thrown.y[4] > 0);
+  assert.notEqual(thrown.x[0], thrown.x[4]);
+  const slammed = techniqueShot("spinebuster", "throw");
+  assert.equal(slammed.kind, "slam");
+  assert.ok(slammed.y[2] < 0 && slammed.y[4] > 0);
+  assert.notDeepEqual(thrown.y, slammed.y);
+  const locked = techniqueShot("crossface", "submission");
+  assert.equal(locked.kind, "hold");
+  assert.equal(locked.pressure, true);
+  assert.ok(locked.scale.at(-1) > locked.scale[0] + 0.2);
+  assert.ok(Math.max(...locked.y) - Math.min(...locked.y) < 10);
+  assert.equal(locked.origin, "58% 36%");
+  assert.notEqual(
+    locked.origin,
+    techniqueShot("heelhook", "submission").origin,
+    "upper-body and leg locks focus on different regions",
+  );
+  assert.equal(techniqueShot("armdrag", "grapple").kind, "throw");
+  assert.equal(techniqueShot("collartie", "grapple").kind, "clinch");
+  assert.equal(techniqueShot("waistlock", "grapple").kind, "clinch");
+});
+
+test("combo cameras have two impacts and tactical recovery does not invent a hit", () => {
+  assert.deepEqual(techniqueShot("doubletap", "strike").impacts, [0.34, 0.59]);
+  assert.deepEqual(techniqueShot("focus", "tactics").impacts, []);
+  const before = combatWith(["sitoutpowerbomb"]);
+  before.energy = 10;
+  const { after, cue } = cast(before);
+  assert.equal(cue.camera.kind, "powerbomb");
+  assert.equal(cue.duration, cue.camera.duration);
+  assert.equal(cue.damage, before.enemy.hp - after.enemy.hp);
+  assert.equal(cue.announcement.includes(`피해 ${cue.damage}`), true);
 });
 
 test("invalid public card actions do not create presentation cues", () => {

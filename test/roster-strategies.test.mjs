@@ -38,7 +38,7 @@ test("five selectable adults expose distinct strategies and their exact eleven-c
     "viper",
     "ember",
   ]);
-  assert.equal(Object.keys(CARDS).length, 25);
+  assert.equal(Object.keys(CARDS).length, 50);
   assert.equal(new Set(Object.values(WRESTLERS).map((w) => w.role)).size, 5);
   for (const [id, w] of Object.entries(WRESTLERS)) {
     assert.ok(w.age >= 18);

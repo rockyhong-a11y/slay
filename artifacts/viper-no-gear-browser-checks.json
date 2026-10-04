@@ -1,0 +1,110 @@
+[
+  {
+    "art": [
+      "fighters/states/viper-normal.webp",
+      "fighters/states/viper-normal.webp"
+    ],
+    "canvas": 0,
+    "loaded": [
+      {
+        "loaded": true,
+        "src": "/assets/fighters/states/viper-normal.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/assets/fighters/states/viper-normal.webp"
+      }
+    ],
+    "state": "보통"
+  },
+  {
+    "art": [
+      "fighters/states/viper-excited.webp",
+      "fighters/states/viper-excited.webp"
+    ],
+    "canvas": 0,
+    "loaded": [
+      {
+        "loaded": true,
+        "src": "/assets/fighters/states/viper-excited.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/assets/fighters/states/viper-excited.webp"
+      }
+    ],
+    "state": "흥분"
+  },
+  {
+    "art": [
+      "fighters/states/viper-fiery.webp",
+      "fighters/states/viper-fiery.webp"
+    ],
+    "canvas": 0,
+    "loaded": [
+      {
+        "loaded": true,
+        "src": "/assets/fighters/states/viper-fiery.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/assets/fighters/states/viper-fiery.webp"
+      }
+    ],
+    "state": "열혈"
+  },
+  {
+    "art": [
+      "fighters/states/viper-frustrated.webp",
+      "fighters/states/viper-frustrated.webp"
+    ],
+    "canvas": 0,
+    "loaded": [
+      {
+        "loaded": true,
+        "src": "/assets/fighters/states/viper-frustrated.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/assets/fighters/states/viper-frustrated.webp"
+      }
+    ],
+    "state": "좌절"
+  },
+  {
+    "art": [
+      "fighters/states/viper-tired.webp",
+      "fighters/states/viper-tired.webp"
+    ],
+    "canvas": 0,
+    "loaded": [
+      {
+        "loaded": true,
+        "src": "/assets/fighters/states/viper-tired.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/assets/fighters/states/viper-tired.webp"
+      }
+    ],
+    "state": "지침"
+  },
+  {
+    "art": [
+      "fighters/states/viper-groggy.webp",
+      "fighters/states/viper-groggy.webp"
+    ],
+    "canvas": 0,
+    "loaded": [
+      {
+        "loaded": true,
+        "src": "/assets/fighters/states/viper-groggy.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/assets/fighters/states/viper-groggy.webp"
+      }
+    ],
+    "state": "그로기"
+  }
+]

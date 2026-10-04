@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
+import { createPortal } from "react-dom";
 import { Fire, Heartbeat, Shield, Sparkle } from "@phosphor-icons/react";
 import { FIGHTER_STATES, fighterPoseArt } from "./presentation.js";
 import "./combat-presentation.css";
@@ -65,15 +66,19 @@ export function TechniqueScene({ cue, onComplete, shortened = false }) {
   const reduced = useReducedMotion();
   const complete = useRef(onComplete);
   complete.current = onComplete;
-  const duration = reduced || shortened ? 650 : cue.duration;
+  const still = reduced || shortened;
+  const duration = still ? 650 : cue.duration;
+  const camera = cue.camera;
   useEffect(() => {
     const timer = setTimeout(() => complete.current(cue.id), duration);
     return () => clearTimeout(timer);
   }, [cue.id, duration]);
-  return (
+  const scene = (
     <motion.div
-      className={`technique-scene scene-${cue.disciplineSlug} ${cue.finisher ? "scene-finisher" : ""} ${reduced || shortened ? "scene-still" : ""}`}
+      className={`technique-scene scene-${cue.disciplineSlug} ${cue.finisher ? "scene-finisher" : ""} ${still ? "scene-still" : ""}`}
       data-card={cue.cardId}
+      data-motion={camera.kind}
+      data-duration={duration}
       role="status"
       aria-live="polite"
       aria-atomic="true"
@@ -81,34 +86,113 @@ export function TechniqueScene({ cue, onComplete, shortened = false }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: reduced ? 0 : motionTokens.duration.fast }}
-      style={{ "--scene-duration": `${duration}ms` }}
+      style={{
+        "--scene-duration": `${duration}ms`,
+        "--portrait-ratio": 1.5 * camera.portrait.field,
+        "--portrait-focus": camera.portrait.center
+          .map((value) => `${value * 100}%`)
+          .join(" "),
+      }}
     >
       <span className="combat-sr-only">{cue.announcement}</span>
-      <div className="technique-scene-visual" aria-hidden="true">
-        <div className="technique-art-frame">
-          <Artwork art={cue.art} alt={cue.alt} />
-        </div>
-        <div className="technique-film-shade" />
-        <div className="technique-scene-copy">
-          <span className="technique-kicker">
-            {cue.finisher ? "FINISHER" : cue.discipline} <i /> {cue.nameEn}
-          </span>
-          <strong>{cue.name}</strong>
-        </div>
-        <div className="technique-results">
-          {cue.results.map((result, index) => (
-            <span
-              key={`${result.kind}-${index}`}
-              className={`result-${result.kind}`}
-            >
-              {result.text}
-            </span>
-          ))}
-        </div>
-        <div className="technique-scene-progress" />
+      <div className="technique-backdrop" aria-hidden="true">
+        <Artwork art={cue.art} alt="" fit="cover" />
       </div>
+      <div className="technique-film-shade" aria-hidden="true" />
+      <div className="technique-broadcast-head" aria-hidden="true">
+        <strong>
+          SLAY<span> / </span>
+          {cue.finisher ? "MAIN EVENT" : "RINGSIDE"}
+        </strong>
+        <span>
+          {still ? "TECHNIQUE" : "REPLAY"} <i /> {cue.discipline}
+        </span>
+      </div>
+      <div className="technique-scene-visual" aria-hidden="true">
+        <div className="technique-art-stage">
+          <div className="technique-art-window">
+            <motion.div
+              className="technique-art-frame"
+              initial={false}
+              animate={
+                still
+                  ? { x: 0, y: 0, scale: 1, rotate: 0 }
+                  : {
+                      x: camera.x,
+                      y: camera.y,
+                      scale: camera.scale,
+                      rotate: camera.rotate,
+                    }
+              }
+              transition={{
+                duration: duration / 1000,
+                times: camera.times,
+                ease: "easeInOut",
+              }}
+              style={{ transformOrigin: camera.origin }}
+            >
+              <Artwork art={cue.art} alt={cue.alt} />
+            </motion.div>
+            {!still &&
+              camera.impacts.map((at, index) => (
+                <motion.div
+                  key={index}
+                  className={`technique-impact ${camera.heavy ? "impact-heavy" : ""} ${camera.pressure ? "impact-pressure" : ""}`}
+                  initial={{ opacity: 0, scale: 0.55 }}
+                  animate={{
+                    opacity: [0, 0, camera.pressure ? 0.25 : 0.55, 0],
+                    scale: [0.55, 0.55, 1, 1.35],
+                  }}
+                  transition={{
+                    duration: duration / 1000,
+                    times: [
+                      0,
+                      Math.max(0.01, at - 0.015),
+                      at,
+                      Math.min(1, at + 0.11),
+                    ],
+                  }}
+                  style={{
+                    left: camera.origin.split(" ")[0],
+                    top: camera.origin.split(" ")[1],
+                  }}
+                />
+              ))}
+          </div>
+          <div className="technique-phase-track">
+            {camera.phases.map((phase, index) => (
+              <span key={phase}>
+                <small>0{index + 1}</small>
+                {phase}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="technique-caption-panel">
+          <div className="technique-scene-copy">
+            <span className="technique-kicker">
+              {cue.finisher ? "FINISHER" : cue.discipline}
+              <i />
+              {cue.nameEn}
+            </span>
+            <strong>{cue.name}</strong>
+          </div>
+          <div className="technique-results">
+            {cue.results.map((result, index) => (
+              <span
+                key={`${result.kind}-${index}`}
+                className={`result-${result.kind}`}
+              >
+                {result.text}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="technique-scene-progress" aria-hidden="true" />
     </motion.div>
   );
+  return createPortal(scene, document.body);
 }
 
 export function ConditionGuide({ actor, name }) {

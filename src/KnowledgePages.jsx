@@ -484,7 +484,7 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
           <div className="guide-bottom">
             <div>
               <span className="knowledge-eyebrow">KNOW YOUR MOVES</span>
-              <h2>이제 25장의 기술을 살펴보세요.</h2>
+              <h2>이제 {Object.keys(CARDS).length}장의 기술을 살펴보세요.</h2>
               <p>타격, 던지기, 서브미션과 운영. 당신의 다음 수를 찾아보세요.</p>
             </div>
             <button
@@ -646,7 +646,7 @@ export function CardLibraryPage({ onOpenGuide, onBack }) {
       <KnowledgeHeader
         eyebrow="THE COMPLETE MOVE LIBRARY"
         title="카드 도감"
-        description="모든 기술에는 고유한 리듬이 있습니다. 25장의 기술과 악몽을 살펴보고, 기본과 강화를 비교하세요."
+        description={`모든 기술에는 고유한 리듬이 있습니다. ${Object.keys(CARDS).length}장의 기술과 악몽을 살펴보고, 기본과 강화를 비교하세요.`}
         onBack={onBack}
         onRelated={onOpenGuide}
         relatedLabel="카드 시스템 가이드"

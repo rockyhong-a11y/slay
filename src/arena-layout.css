@@ -101,107 +101,11 @@
   top: calc(var(--arena-hud-height) + var(--arena-stage-height) * 0.38);
 }
 
-/* Keep the two performers visible beside the card broadcast. */
-.arena.cinematic-active > .fighter {
-  z-index: 8;
-  opacity: 1;
-  width: 17%;
-}
-.arena.cinematic-active > .player-fighter {
-  left: 0;
-}
-.arena.cinematic-active > .enemy-fighter {
-  left: 16%;
-  right: auto;
-}
-.arena.cinematic-active .technique-art-frame {
-  margin-left: 54%;
-  margin-right: 12px;
-}
-
 .arena .arena-bottom {
   min-height: var(--arena-footer-height);
   padding: 7px var(--arena-gutter);
   gap: 12px;
   background: linear-gradient(0deg, #0d0e18e8, #0d0e1870);
-}
-
-/* Desktop broadcasts reserve the whole lower left stage for the full action.
-   Captions share a separate column, vertically centered as two stacked rows. */
-.arena .technique-scene-visual {
-  display: grid;
-  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-  grid-template-rows: minmax(0, 1fr) auto auto minmax(0, 1fr);
-  column-gap: 14px;
-  padding-top: var(--arena-hud-height);
-  overflow: hidden;
-}
-
-.arena .technique-art-frame {
-  position: relative;
-  inset: auto;
-  grid-column: 1;
-  grid-row: 1 / -1;
-  min-width: 0;
-  min-height: 0;
-  margin: 24px 46px 32px var(--arena-gutter);
-  z-index: 1;
-}
-
-.arena .technique-art-frame img {
-  object-fit: contain;
-  object-position: center;
-  mask-image: none;
-}
-
-.arena .technique-film-shade {
-  top: var(--arena-hud-height);
-  background: linear-gradient(
-    90deg,
-    #090b1366,
-    transparent 28%,
-    transparent 72%,
-    #090b1366
-  );
-  z-index: 1;
-}
-
-.arena .technique-scene-copy,
-.arena .technique-results {
-  position: relative;
-  inset: auto;
-  width: auto;
-  max-width: none;
-  max-height: none;
-  min-width: 0;
-  z-index: 2;
-  background: #0c0f19f7;
-}
-
-.arena .technique-scene-copy {
-  grid-column: 2;
-  grid-row: 2;
-  padding: 16px var(--arena-gutter) 0 20px;
-  border-left: 1px solid #ffffff12;
-}
-
-.arena .technique-scene-copy strong {
-  margin-top: 3px;
-  overflow-wrap: anywhere;
-}
-
-.arena .technique-results {
-  grid-column: 2;
-  grid-row: 3;
-  padding: 10px var(--arena-gutter) 16px 20px;
-  gap: 5px 8px;
-  align-content: start;
-  border-left: 1px solid #ffffff12;
-}
-
-.arena .technique-results span {
-  max-width: 100%;
-  overflow-wrap: anywhere;
 }
 
 /* Preview text has its own column and never sits on the portrait. */
@@ -355,49 +259,6 @@
     padding-bottom: 6px;
   }
 
-  /* On narrow screens, keep full art above naturally sized caption rows. */
-  .arena .technique-scene-visual {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: minmax(0, 1fr) auto auto;
-    column-gap: 0;
-  }
-
-  .arena .technique-art-frame {
-    grid-column: 1;
-    grid-row: 1;
-    margin: 22px 18px 14px;
-  }
-
-  .arena.cinematic-active > .fighter {
-    top: calc(var(--arena-hud-height) + 22px);
-    bottom: auto;
-    height: 116px;
-    width: 17%;
-  }
-  .arena.cinematic-active .technique-art-frame {
-    margin-left: 34%;
-    margin-right: 12px;
-  }
-
-  .arena .technique-kicker {
-    gap: 5px 8px;
-    letter-spacing: 0.7px;
-  }
-
-  .arena .technique-scene-copy {
-    grid-column: 1;
-    padding: 8px var(--arena-gutter) 0;
-    border-left: 0;
-    border-top: 1px solid #ffffff0e;
-  }
-
-  .arena .technique-results {
-    grid-column: 1;
-    padding: 6px var(--arena-gutter) 11px;
-    gap: 4px 6px;
-    border-left: 0;
-  }
-
   .condition-preview {
     grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
     min-height: 220px;
@@ -456,5 +317,827 @@
 
   .arena .round-label {
     width: 22px;
+  }
+}
+
+/* During a live turn, reserve one viewport for the arena and its controls.
+   Reward screens and reference pages keep their normal scrolling layout. */
+.app-shell.combat-view {
+  --combat-card-width: 148px;
+  --combat-card-height: 218px;
+  height: 100dvh;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  padding-bottom: 0;
+  overflow: hidden;
+}
+.combat-view .sidebar {
+  width: 64px;
+}
+.combat-view .sidebar .nav-button {
+  width: 44px;
+}
+.combat-view .sidebar .nav-button.active::before {
+  left: -10px;
+}
+.combat-view .main-shell {
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 48px minmax(0, 1fr);
+}
+.combat-view .topbar {
+  height: 48px;
+  min-height: 0;
+  padding: 0 18px;
+  gap: 20px;
+}
+.combat-view .wordmark {
+  font-size: 28px;
+}
+.combat-view main {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: 10px 18px 12px;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  overflow: hidden;
+}
+.combat-view .chapter-header,
+.combat-view .game-footer {
+  display: none;
+}
+.combat-view .combat-workspace {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+.combat-view .arena {
+  --arena-gutter: 18px;
+  --arena-hud-height: 112px;
+  --arena-footer-height: 26px;
+  --arena-stage-height: calc(
+    100% - var(--arena-hud-height) - var(--arena-footer-height)
+  );
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.combat-view .arena .fighter-hud {
+  top: 8px;
+  width: min(360px, calc((100% - 2 * var(--arena-gutter) - 40px) / 2));
+}
+.combat-view .arena .fighter-side,
+.combat-view .arena .fighter-name > span {
+  display: none;
+}
+.combat-view .arena .fighter-name {
+  display: block;
+  margin: 0 0 4px;
+}
+.combat-view .arena .fighter-name h2 {
+  font-size: 25px;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.combat-view .arena .health-label {
+  min-height: 19px;
+  margin-bottom: 4px;
+  gap: 4px;
+}
+.combat-view .arena .health-label strong {
+  font-size: 19px;
+  line-height: 1;
+}
+.combat-view .arena .health-label small {
+  font-size: 13px;
+}
+.combat-view .arena .health-track {
+  height: 4px;
+}
+.combat-view .arena .block-stat {
+  font-size: 10px;
+  gap: 3px;
+}
+.combat-view .arena .fighter-status {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5px;
+  gap: 3px 8px;
+  font-size: 10px;
+  line-height: 1.4;
+}
+.combat-view .arena .fighter-status > span {
+  gap: 3px;
+}
+.combat-view .arena .fighter-condition {
+  min-height: 22px;
+  padding: 2px 5px;
+  gap: 3px;
+  font-size: 9px;
+  line-height: 1.4;
+}
+.combat-view .arena .intent {
+  margin-top: 5px;
+  gap: 4px;
+  font-size: 10px;
+  line-height: 1.4;
+}
+.combat-view .arena .intent span {
+  flex-wrap: nowrap;
+  gap: 4px;
+  white-space: nowrap;
+}
+.combat-view .arena .intent strong {
+  font-size: 18px;
+}
+.combat-view .arena .enemy-condition-row {
+  margin-top: 3px;
+}
+.combat-view .arena .round-label {
+  top: 10px;
+  width: 30px;
+}
+.combat-view .arena .round-label > span {
+  font-size: 7px;
+  letter-spacing: 0.8px;
+}
+.combat-view .arena .round-label strong {
+  font-size: 26px;
+  line-height: 1;
+}
+.combat-view .arena .round-line {
+  width: 18px;
+  margin-top: 4px;
+}
+.combat-view .arena > .fighter {
+  top: calc(var(--arena-hud-height) + 8px);
+  bottom: auto;
+  height: calc(
+    100% - var(--arena-hud-height) - var(--arena-footer-height) - 16px
+  );
+  width: 46%;
+}
+.combat-view .arena > .player-fighter {
+  left: 3%;
+}
+.combat-view .arena > .enemy-fighter {
+  right: 3%;
+  left: auto;
+}
+.combat-view .arena .fighter-pose > img {
+  object-fit: contain;
+  object-position: center bottom;
+}
+.combat-view .arena .vs-mark {
+  font-size: 52px;
+}
+.combat-view .arena .arena-bottom {
+  height: var(--arena-footer-height);
+  min-height: 0;
+  padding: 3px var(--arena-gutter);
+  gap: 8px;
+}
+.combat-view .arena .turn-badge {
+  padding: 3px 8px;
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+.combat-view .arena .arena-location,
+.combat-view .arena .arena-match {
+  font-size: 8px;
+  letter-spacing: 0.8px;
+}
+.combat-view .combat-bottom {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 28px auto;
+  gap: 5px;
+}
+.combat-view .combat-strip {
+  min-width: 0;
+  min-height: 0;
+  padding: 0 2px 4px;
+  margin: 0;
+  align-items: center;
+  gap: 12px;
+}
+.combat-view .stress-meter {
+  gap: 6px;
+}
+.combat-view .stress-meter > div {
+  width: 154px;
+}
+.combat-view .stress-meter > div > span {
+  font-size: 9px;
+  gap: 10px;
+}
+.combat-view .stress-meter strong,
+.combat-view .stress-meter small {
+  font-size: 14px;
+}
+.combat-view .stress-track {
+  margin-top: 3px;
+}
+.combat-view .stress-info {
+  display: none;
+}
+.combat-view .combo-meter {
+  gap: 6px;
+  font-size: 9px;
+}
+.combat-view .combo-meter > span:nth-child(2) {
+  font-size: 9px;
+}
+.combat-view .combo-meter strong {
+  font-size: 17px;
+}
+.combat-view .hype-pips {
+  gap: 4px;
+}
+.combat-view .hype-pips span {
+  width: 6px;
+  height: 6px;
+}
+.combat-view .hand-area {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 66px minmax(0, 1fr) 112px;
+  grid-template-rows: auto;
+  align-items: stretch;
+  gap: 12px;
+}
+.combat-view .hand-main {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 20px minmax(0, 1fr);
+  grid-column: auto;
+  grid-row: auto;
+}
+.combat-view .hand-heading {
+  min-width: 0;
+  margin: 0;
+  gap: 8px;
+}
+.combat-view .hand-heading h2 {
+  font-size: 11px;
+  gap: 7px;
+}
+.combat-view .hand-heading > span {
+  font-size: 9px;
+}
+.combat-view .card-hand {
+  min-width: 0;
+  min-height: 0;
+  height: calc(var(--combat-card-height) + 20px);
+  margin: 0;
+  padding: 5px 2px 7px;
+  gap: 9px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: #63515d #15151b;
+  touch-action: pan-x;
+}
+.combat-view .card-hand .game-card {
+  width: var(--combat-card-width);
+  min-width: var(--combat-card-width);
+  height: var(--combat-card-height);
+  min-height: var(--combat-card-height);
+  max-height: var(--combat-card-height);
+  aspect-ratio: auto;
+  flex: 0 0 var(--combat-card-width);
+  scroll-snap-align: start;
+  border-radius: 7px;
+}
+.combat-view .card-hand .game-card:hover:not(:disabled) {
+  transform: translateY(-3px) !important;
+}
+.combat-view .card-hand .game-card:focus-visible {
+  outline-offset: 1px;
+}
+.combat-view .card-hand .card-top {
+  height: 26px;
+  min-height: 26px;
+  padding: 4px 8px 0;
+  gap: 5px;
+}
+.combat-view .card-hand .card-cost {
+  width: 22px;
+  height: 22px;
+  font-size: 21px;
+}
+.combat-view .card-hand .card-type {
+  font-size: 8px;
+  letter-spacing: 0;
+}
+.combat-view .card-hand .card-art {
+  height: 34%;
+  margin: 4px 5px 0;
+}
+.combat-view .card-hand .card-art > .artwork > img {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+  filter: none;
+}
+.combat-view .card-hand .card-text {
+  margin: 0;
+  padding: 6px 8px 0;
+  min-height: 0;
+}
+.combat-view .card-hand .card-text h3 {
+  font-size: 13px;
+  line-height: 1.2;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.combat-view .card-hand .card-text p {
+  margin-top: 5px;
+  font-size: 10px;
+  line-height: 1.45;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+.combat-view .card-hand .card-en {
+  display: none;
+}
+.combat-view .card-hand .card-foot {
+  min-height: 19px;
+  padding: 3px 8px 5px;
+  font-size: 7px;
+  letter-spacing: 0;
+}
+.combat-view .card-hand .card-foot kbd {
+  display: inline;
+}
+.combat-view .hand-controls,
+.combat-view .turn-controls {
+  min-width: 0;
+  min-height: 0;
+  padding: 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.combat-view .energy-orb {
+  width: 54px;
+  height: 54px;
+  flex: 0 0 auto;
+  margin: 0;
+  box-shadow: inset 0 0 0 3px #0e0e1166;
+}
+.combat-view .energy-orb strong {
+  font-size: 28px;
+}
+.combat-view .energy-orb small {
+  font-size: 13px;
+}
+.combat-view .energy-orb svg {
+  width: 17px;
+}
+.combat-view .energy-label {
+  display: none;
+}
+.combat-view .pile-button {
+  min-height: 44px;
+  margin: 0;
+  padding: 5px 6px;
+  gap: 3px 5px;
+}
+.combat-view .pile-button > span {
+  font-size: 9px;
+}
+.combat-view .pile-button strong {
+  font-size: 18px;
+}
+.combat-view .end-turn {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.combat-view .end-turn kbd {
+  display: none;
+}
+.combat-view .turn-controls .pile-button {
+  display: grid;
+}
+.combat-view .empty-hand {
+  height: var(--combat-card-height);
+  width: 100%;
+  min-width: 0;
+  font-size: 12px;
+}
+
+/* Portrait phones keep both performers above a full-width, scrolling hand.
+   Energy, pile counts, and the primary action share one reserved control row. */
+@media (max-width: 767px) {
+  .app-shell.combat-view {
+    --combat-card-width: 140px;
+    --combat-card-height: 208px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .combat-view .sidebar {
+    display: none;
+  }
+  .combat-view .main-shell {
+    grid-column: 1;
+    grid-template-rows: 44px minmax(0, 1fr);
+  }
+  .combat-view .topbar {
+    height: 44px;
+    padding: 0 12px;
+    gap: 10px;
+  }
+  .combat-view .wordmark {
+    font-size: 26px;
+  }
+  .combat-view .wordmark > span {
+    display: none;
+  }
+  .combat-view .top-actions {
+    gap: 6px;
+  }
+  .combat-view .top-actions .audio {
+    border: 0;
+    padding-left: 0;
+  }
+  .combat-view .top-actions .icon-button,
+  .combat-view .top-actions .help-button {
+    width: 30px;
+    height: 32px;
+  }
+  .combat-view main {
+    padding: 6px 8px 10px;
+  }
+  .combat-view .arena {
+    --arena-gutter: 10px;
+    --arena-hud-height: 116px;
+    --arena-footer-height: 24px;
+  }
+  .combat-view .arena .fighter-hud {
+    width: calc((100% - 2 * var(--arena-gutter) - 28px) / 2);
+  }
+  .combat-view .arena .fighter-name h2 {
+    font-size: 23px;
+  }
+  .combat-view .arena .fighter-status {
+    font-size: 9px;
+    gap: 3px 6px;
+  }
+  .combat-view .arena .fighter-status > span > svg {
+    width: 12px;
+    height: 12px;
+  }
+  .combat-view .arena .intent {
+    font-size: 9px;
+  }
+  .combat-view .arena .intent > svg:last-child {
+    display: none;
+  }
+  .combat-view .arena > .fighter {
+    width: 47%;
+  }
+  .combat-view .arena > .player-fighter {
+    left: 2%;
+  }
+  .combat-view .arena > .enemy-fighter {
+    right: 2%;
+  }
+  .combat-view .arena .arena-location {
+    font-size: 7px;
+    letter-spacing: 0.5px;
+  }
+  .combat-view .arena .arena-match {
+    display: none;
+  }
+  .combat-view .stress-meter > div {
+    width: 120px;
+  }
+  .combat-view .stress-meter > svg,
+  .combat-view .combo-meter > svg {
+    width: 14px;
+    height: 14px;
+  }
+  .combat-view .combo-meter > span:nth-child(4),
+  .combat-view .combo-divide {
+    display: none;
+  }
+  .combat-view .hand-area {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto 44px;
+    column-gap: 8px;
+    row-gap: 6px;
+  }
+  .combat-view .hand-main {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  .combat-view .hand-heading > span {
+    display: none;
+  }
+  .combat-view .card-hand {
+    gap: 8px;
+  }
+  .combat-view .hand-controls,
+  .combat-view .turn-controls {
+    flex-direction: row;
+    padding: 0;
+    gap: 5px;
+  }
+  .combat-view .hand-controls {
+    grid-column: 1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+  .combat-view .turn-controls {
+    grid-column: 2;
+    grid-row: 2;
+    justify-content: flex-end;
+  }
+  .combat-view .energy-orb {
+    width: 40px;
+    height: 40px;
+  }
+  .combat-view .energy-orb strong {
+    font-size: 24px;
+  }
+  .combat-view .energy-orb small {
+    font-size: 11px;
+  }
+  .combat-view .energy-orb svg {
+    width: 12px;
+  }
+  .combat-view .pile-button {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 70px;
+    padding: 4px;
+    gap: 1px 4px;
+  }
+  .combat-view .pile-button > span {
+    width: 100%;
+    font-size: 8px;
+    text-align: center;
+  }
+  .combat-view .pile-button > svg {
+    width: 14px;
+    height: 14px;
+  }
+  .combat-view .end-turn {
+    width: 100px;
+    min-height: 44px;
+    height: 44px;
+    padding: 8px;
+    gap: 5px;
+    font-size: 11px;
+  }
+  .combat-view .turn-controls .pile-button {
+    display: flex;
+    width: 49px;
+  }
+  .combat-view .end-turn svg {
+    width: 15px;
+  }
+}
+
+@media (max-width: 370px) {
+  .app-shell.combat-view {
+    --combat-card-width: 130px;
+    --combat-card-height: 194px;
+  }
+  .combat-view main {
+    padding: 6px 6px 8px;
+  }
+  .combat-view .arena {
+    --arena-gutter: 8px;
+    --arena-hud-height: 112px;
+  }
+  .combat-view .arena .fighter-name h2 {
+    font-size: 21px;
+  }
+  .combat-view .stress-meter > div {
+    width: 109px;
+  }
+  .combat-view .combat-strip {
+    gap: 6px;
+  }
+  .combat-view .combo-meter {
+    gap: 4px;
+  }
+  .combat-view .hand-area {
+    column-gap: 5px;
+  }
+  .combat-view .pile-button {
+    width: 57px;
+  }
+  .combat-view .end-turn {
+    width: 90px;
+    padding: 7px 5px;
+    font-size: 10px;
+  }
+  .combat-view .turn-controls .pile-button {
+    width: 43px;
+  }
+  .combat-view .card-hand .card-text h3 {
+    font-size: 12px;
+  }
+}
+
+/* A short landscape viewport works as two panels: the complete arena on the
+   left and a readable, horizontally scrolling hand with controls on the right. */
+@media (orientation: landscape) and (max-height: 520px) and (max-width: 1100px) {
+  .app-shell.combat-view {
+    --combat-card-width: 132px;
+    --combat-card-height: clamp(176px, calc(100dvh - 176px), 204px);
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .combat-view .sidebar {
+    display: none;
+  }
+  .combat-view .main-shell {
+    grid-column: 1;
+    grid-template-rows: 32px minmax(0, 1fr);
+  }
+  .combat-view .topbar {
+    height: 32px;
+    padding: 0 10px;
+    gap: 12px;
+  }
+  .combat-view .wordmark {
+    font-size: 23px;
+  }
+  .combat-view .wordmark > span,
+  .combat-view .top-breadcrumb,
+  .combat-view .help-button > span {
+    display: none;
+  }
+  .combat-view .top-actions {
+    gap: 7px;
+  }
+  .combat-view .top-actions .audio {
+    border: 0;
+    padding: 0;
+  }
+  .combat-view .top-actions .icon-button,
+  .combat-view .top-actions .help-button {
+    width: 27px;
+    height: 28px;
+  }
+  .combat-view main {
+    padding: 6px;
+  }
+  .combat-view .combat-workspace {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    gap: 8px;
+  }
+  .combat-view .arena {
+    --arena-gutter: 10px;
+    --arena-hud-height: 108px;
+    --arena-footer-height: 22px;
+  }
+  .combat-view .arena .fighter-hud {
+    top: 6px;
+    width: calc((100% - 2 * var(--arena-gutter) - 28px) / 2);
+  }
+  .combat-view .arena .fighter-name h2 {
+    font-size: 21px;
+  }
+  .combat-view .arena .fighter-status {
+    font-size: 9px;
+    gap: 3px 6px;
+  }
+  .combat-view .arena .intent {
+    font-size: 9px;
+  }
+  .combat-view .arena .intent > svg:last-child,
+  .combat-view .arena .arena-match {
+    display: none;
+  }
+  .combat-view .arena .arena-location {
+    font-size: 6px;
+    letter-spacing: 0.4px;
+  }
+  .combat-view .arena .arena-location svg {
+    width: 11px;
+  }
+  .combat-view .combat-bottom {
+    grid-template-rows: 28px minmax(0, 1fr);
+    align-self: stretch;
+  }
+  .combat-view .stress-meter > div {
+    width: 107px;
+  }
+  .combat-view .stress-meter > svg,
+  .combat-view .combo-meter > svg,
+  .combat-view .combo-meter > span:nth-child(4),
+  .combat-view .combo-divide {
+    display: none;
+  }
+  .combat-view .combat-strip {
+    gap: 8px;
+  }
+  .combat-view .combo-meter {
+    gap: 4px;
+  }
+  .combat-view .hand-area {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) 44px;
+    gap: 6px;
+  }
+  .combat-view .hand-main {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  .combat-view .hand-heading > span {
+    display: none;
+  }
+  .combat-view .hand-controls,
+  .combat-view .turn-controls {
+    flex-direction: row;
+    padding: 0;
+    gap: 5px;
+  }
+  .combat-view .hand-controls {
+    grid-column: 1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+  .combat-view .turn-controls {
+    grid-column: 2;
+    grid-row: 2;
+    justify-content: flex-end;
+  }
+  .combat-view .energy-orb {
+    width: 40px;
+    height: 40px;
+  }
+  .combat-view .energy-orb strong {
+    font-size: 24px;
+  }
+  .combat-view .energy-orb small {
+    font-size: 11px;
+  }
+  .combat-view .energy-orb svg {
+    width: 12px;
+  }
+  .combat-view .pile-button {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 65px;
+    padding: 4px;
+    gap: 1px 4px;
+  }
+  .combat-view .pile-button > span {
+    width: 100%;
+    text-align: center;
+    font-size: 8px;
+  }
+  .combat-view .pile-button > svg {
+    width: 14px;
+    height: 14px;
+  }
+  .combat-view .end-turn {
+    width: 98px;
+    height: 44px;
+    min-height: 44px;
+    padding: 8px;
+    gap: 5px;
+    font-size: 11px;
+  }
+  .combat-view .turn-controls .pile-button {
+    display: flex;
+    width: 46px;
   }
 }

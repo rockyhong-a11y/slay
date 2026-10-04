@@ -14,7 +14,7 @@ import {
 
 test("the encyclopedia covers every real engine card with unique technique art and acquisition", () => {
   assert.deepEqual(Object.keys(CARD_DETAILS).sort(), Object.keys(CARDS).sort());
-  assert.equal(getLibraryCards().length, 25);
+  assert.equal(getLibraryCards().length, 50);
   const paths = new Set();
   for (const [id, definition] of Object.entries(CARDS)) {
     const detail = getCardDetail(id);
@@ -31,7 +31,7 @@ test("the encyclopedia covers every real engine card with unique technique art a
     assert.ok(CARD_RARITY_LABELS[definition.rarity]);
     paths.add(detail.art);
   }
-  assert.equal(paths.size, 25);
+  assert.equal(paths.size, 50);
   assert.equal(getCardDetail("not-a-card"), null);
   assert.equal(
     getCardDetail({ id: "strike", upgraded: true }),
@@ -44,7 +44,23 @@ test("physical technique discipline stays separate from engine card type", () =>
   const throws = getLibraryCards({ discipline: "throw" }).map((c) => c.id);
   assert.deepEqual(
     throws.sort(),
-    ["suplex", "powerbomb", "championship"].sort(),
+    [
+      "suplex",
+      "powerbomb",
+      "championship",
+      "sitoutpowerbomb",
+      "jackknifepowerbomb",
+      "popuppowerbomb",
+      "gutwrenchpowerbomb",
+      "foldingpowerbomb",
+      "bodyslam",
+      "powerslam",
+      "sidewalkslam",
+      "spinebuster",
+      "bellysuplex",
+      "snapsuplex",
+      "samoandrop",
+    ].sort(),
   );
   assert.equal(CARD_DETAILS.finisher.disciplineSlug, "strike");
   assert.equal(CARD_DETAILS.championship.disciplineSlug, "throw");
@@ -52,18 +68,32 @@ test("physical technique discipline stays separate from engine card type", () =>
     getLibraryCards({ type: "finisher" })
       .map((c) => c.id)
       .sort(),
-    ["finisher", "championship"].sort(),
+    ["finisher", "championship", "sharpshooter"].sort(),
   );
   assert.deepEqual(
     getLibraryCards({ discipline: "submission" })
       .map((c) => c.id)
       .sort(),
-    ["ironclad", "headlock", "reversal"].sort(),
+    [
+      "ironclad",
+      "headlock",
+      "reversal",
+      "armbar",
+      "kimura",
+      "americana",
+      "anklelock",
+      "kneebar",
+      "heelhook",
+      "figurefour",
+      "bostoncrab",
+      "sharpshooter",
+      "crossface",
+    ].sort(),
   );
   assert.equal(CARD_DETAILS.moonsault.disciplineSlug, "aerial");
 });
 
-test("all 25 technique illustrations exist as distinct WebP files", () => {
+test("all 50 technique illustrations exist as distinct WebP files", () => {
   const hashes = new Set();
   for (const detail of Object.values(CARD_DETAILS)) {
     const bytes = readFileSync(
@@ -100,6 +130,18 @@ test("search, type, discipline, and rarity filters combine without hiding nightm
   assert.deepEqual(
     getLibraryCards({ search: "파이어맨스 캐리" }).map((c) => c.id),
     ["championship"],
+  );
+  assert.deepEqual(
+    getLibraryCards({ search: " KIMURA LOCK ", discipline: "submission" }).map(
+      (c) => c.id,
+    ),
+    ["kimura"],
+  );
+  assert.deepEqual(
+    getLibraryCards({ type: "finisher", discipline: "submission" }).map(
+      (c) => c.id,
+    ),
+    ["sharpshooter"],
   );
   assert.deepEqual(
     getLibraryCards({

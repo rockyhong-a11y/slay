@@ -11,7 +11,7 @@ The final character set uses **30 complete, static full-body illustrations**: fi
 | RAVEN    | Long crimson hair, side fringe, black/navy athletic gear   | Opening damage and attack combos           |
 | VALKYRIE | Blonde bob, navy gear and white wraps                      | Guard retention and grappling              |
 | NOVA     | Long black hair, dark gear and red/steel guards            | Zero-cost draw and deck cycling            |
-| VIPER    | Blonde twin braids, red beret/guards and green gear        | Weak/vulnerable setup and follow-up damage |
+| VIPER    | Blonde twin braids, bare hands/forearms and green gear        | Weak/vulnerable setup and follow-up damage |
 | EMBER    | Wavy brunette hair, muscular build and black/red/gold gear | Crowd heat, calm and low-health comeback   |
 
 States are `normal`, `excited`, `fiery`, `frustrated`, `tired` and `groggy`. They use distinct complete poses and expressions while preserving each fighter's cartoon body and gear. State priority is health ≤25%, health ≤50%, stress ≥60, heat ≥6, heat ≥3, then normal. An enemy's weakness ≥2 also selects frustrated. The condition badge opens all six state previews without changing the run.
@@ -36,19 +36,25 @@ Original PNG outputs are preserved locally in ignored `artifacts/fighter-state-s
 
 The earlier [five base prompts](cartoon-fighter-prompts.json) and [five atlas prompts](cartoon-puppet-prompts.json) remain historical production records.
 
+## Viper gear removal and grappling expansion
+
+All six active VIPER state files and the loading fallback now remove the red beret, headband, armored gauntlets and attached gloves. Natural blonde hair, bare hands and forearms replace those accessories while preserving the existing face, green gear, pose and condition. These are six individual built-in image edit calls, documented in [the exact prompts](viper-no-gear-prompts.json). Exports retain genuine alpha and the 1000×1500 production framing. [Browser checks](viper-no-gear-browser-checks.json) confirm all six whole-body/portrait pairs load the same complete state image.
+
+The expanded card collection adds 25 separate techniques: five powerbomb variants, seven slams/suplexes, ten joint locks/submissions and three grappling connections. Their dedicated 1024×683 WebP illustrations and exact built-in generation prompts are recorded in [new card prompts](new-card-prompts.json). The earlier 25 realistic illustrations remain available; the new series uses coherent cartoon wrestling anatomy matching the current fighter direction.
+
 ## Static rendering and card cinematics
 
 The active app renders completed images. Continuous Canvas puppets, WebGL meshes, procedural facial painting, hair springs and their frame scheduler are removed. Previous six-part atlases and photographic pose records are historical production material and do not supply the current character presentation.
 
-The 25 dedicated card illustrations remain at `public/assets/cards/{card-id}.webp`. Cards, rewards, deck views, encyclopedia details and card-cast scenes use the same technique mapping. Full composition views use `contain`; face portraits intentionally crop a completed fighter illustration.
+The 50 dedicated card illustrations are stored at `public/assets/cards/{card-id}.webp`. Cards, rewards, deck views, encyclopedia details and card-cast scenes use the same technique mapping. Library detail views retain the full composition; face portraits intentionally crop a completed fighter illustration. Full-screen cast scenes use a sharp technique foreground and a blurred duplicate of the same image behind it.
 
 Finite card-cast cinematics retain discipline-specific timing and transitions for strikes, aerial moves, throws, submissions, grapples, defense, tactics and nightmare. They show actual engine outcomes: damage, absorbed guard, healing, draw, energy, heat, pressure and status effects. Card-play and end-turn input remain locked during each cue. Full / Concise and operating-system reduced-motion preferences apply to the cinematic presentation.
 
-HUD, performers and captions occupy separate reserved regions. Desktop captions sit beside the contained technique art; narrow screens place title and outcomes below it. These layout checks and final screenshots are tracked in [the verification record](cartoon-fighter-qa.md) and [arena checklist](arena-layout-checklist.md).
+HUD, performers and captions occupy separate reserved regions. Cast titles and outcomes sit below the technique foreground. Portrait casts crop outer arena space to focus on the wrestlers and contact point; wide slams and throws preserve more of the pose. Powerbombs lift and drop, slams load and hit the mat, and submissions tighten progressively. [Actual cast checks](cinematic-browser-checks.json), [portrait/landscape combat checks](combat-responsive-browser-checks.json) and screenshots confirm these layouts. The earlier [verification record](cartoon-fighter-qa.md) and [arena checklist](arena-layout-checklist.md) remain historical records.
 
 ## Card illustration provenance
 
-The 25 card images were generated with built-in imagegen as individual move-specific illustrations. Production files are 1024×683 WebP, exported at quality 88. Original PNG sources are retained locally in ignored artifact files; complete prompts are versioned:
+The original 25 card images were generated with built-in imagegen as individual move-specific illustrations. Together with the new grappling series, all 50 production files are 1024×683 WebP, exported at quality 88. Original PNG sources are retained locally in ignored artifact files; complete prompts for the original series are versioned:
 
 - [Strikes, aerial moves and finishers — 9 prompts](card-art-strikes.md)
 - [Throws, submissions and defense — 8 prompts](card-art-holds.md)

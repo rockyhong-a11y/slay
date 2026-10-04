@@ -1,0 +1,211 @@
+{
+  "tool": "built-in image_gen",
+  "transparent_background": false,
+  "format": "1024x683 WebP quality 88",
+  "cards": [
+    {
+      "id": "sitoutpowerbomb",
+      "name": "Sit-out Powerbomb",
+      "discipline": "throw",
+      "attacker": "ember",
+      "opponent": "nova",
+      "prompt": "Use case: premium technique illustration for SLAY, a female professional wrestling deckbuilding card game. Create ONE new opaque landscape 3:2 image, 1536x1024. The two supplied character pictures are identity/outfit/style references ONLY; do NOT copy their neutral standing poses. Exact adult women faces, hair colors, costume palettes and athletic builds remain recognizable, now performing the named technique. Style: polished rich anime sports comic, sharp clean ink contours, luminous 2-to-3-band cel shading and restrained detailed 3D-toon volumes matching the references, expressive mature faces, crisp fabric highlights. NOT photographic or photobashed. Exactly TWO adult female professional athletes in practical fully opaque professional wrestling gear. Stage: dark indoor pro wrestling ring with grey-blue canvas, red ropes, softly BLURRED crowded stands and cold blue/red spotlights behind. The two wrestlers and every technique contact point are SHARP and occupy most of the scene. Medium-wide full-body composition with generous margins; keep all heads, hands, hips and boots visible, correct natural joints, coherent necks, no floating heads, no extra or fused limbs, fingers correct. Emphasize readable mechanics and distinct technique silhouette, athletic determined expressions. No text, card frame, labels, numbers, logos, trademarks, watermark, UI, weapons, blood, graphic injury or sensual posing. No sticker overlays or synthetic eye patches. ATTACKER: EMBER, wavy shoulder-length brunette hair, warm tan skin, muscular athletic build, black sports top and black shorts with crimson trim and small plain gold accents, black/red knee pads and black/gold lace-up boots. OPPONENT: NOVA, long black hair and brown eyes, black/teal cropped sports top and fitted black shorts, black knee pads and black boots with subtle grey/red protective sporting trim. EXACT TECHNIQUE: Sit-out Powerbomb. Sit-out powerbomb landing phase, side three-quarter wide camera. Muscular brunette attacker has landed SEATED upright on canvas, BOTH of her legs extended and spread in a wide V toward camera. Black-haired opponent lies BACK DOWN between those spread legs, her shoulders just meeting mat, hips elevated slightly, knees bent toward her own chest and boots pointing upward. Attacker's BOTH hands grip opponent upper thighs just above knees, holding the opponent's hips in front of her chest. Attacker seated legs clearly separate from opponent raised legs. Show complete arms/heads/boots and the clear seated landing silhouette. No head-first impact, no broken joints, no blood.",
+      "references": [
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/ember-normal.webp",
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/nova-normal.webp"
+      ],
+      "status": "visually reviewed and exported",
+      "source": null,
+      "output": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-e9e4399b-16ed-4fde-ac81-09a550327a7a.png",
+      "mode": "built-in generation with character style references",
+      "asset": "public/assets/cards/sitoutpowerbomb.webp"
+    },
+    {
+      "id": "jackknifepowerbomb",
+      "name": "Jackknife Powerbomb",
+      "discipline": "throw",
+      "attacker": "raven",
+      "opponent": "valkyrie",
+      "prompt": "Use case: premium technique illustration for SLAY, a female professional wrestling deckbuilding card game. Create ONE new opaque landscape 3:2 image, 1536x1024. The two supplied character pictures are identity/outfit/style references ONLY; do NOT copy their neutral standing poses. Exact adult women faces, hair colors, costume palettes and athletic builds remain recognizable, now performing the named technique. Style: polished rich anime sports comic, sharp clean ink contours, luminous 2-to-3-band cel shading and restrained detailed 3D-toon volumes matching the references, expressive mature faces, crisp fabric highlights. NOT photographic or photobashed. Exactly TWO adult female professional athletes in practical fully opaque professional wrestling gear. Stage: dark indoor pro wrestling ring with grey-blue canvas, red ropes, softly BLURRED crowded stands and cold blue/red spotlights behind. The two wrestlers and every technique contact point are SHARP and occupy most of the scene. Medium-wide full-body composition with generous margins; keep all heads, hands, hips and boots visible, correct natural joints, coherent necks, no floating heads, no extra or fused limbs, fingers correct. Emphasize readable mechanics and distinct technique silhouette, athletic determined expressions. No text, card frame, labels, numbers, logos, trademarks, watermark, UI, weapons, blood, graphic injury or sensual posing. No sticker overlays or synthetic eye patches. ATTACKER: RAVEN, long deep-crimson straight hair, grey eyes, black sleeveless cropped sports top, full-length dark navy wrestling leggings with crimson side trim, black/crimson lace-up boots, small black fingerless gloves. OPPONENT: VALKYRIE, short jaw-length blonde bob, blue eyes, powerful athletic build, navy racerback sports top and navy shorts with ivory edging, plain white hand wraps, navy-white knee pads and lace-up boots. EXACT TECHNIQUE: Jackknife Powerbomb. Jackknife release powerbomb, low side-wide camera at the instant of release. Red-haired attacker remains STANDING with feet wide on mat and bends sharply forward from hips. Her two open hands have just released the blonde opponent's upper thighs, palms visibly separated from opponent by a small gap. Blonde opponent is airborne directly in FRONT of attacker, BACK faces downward toward mat, hips higher than shoulders, legs extended upward and outward in a tall V, knees slightly soft, arms out for the landing. Attacker's torso leans forward but she is NOT seated and NOT holding opponent on shoulders. Full two-body athletic release, clear descending diagonal silhouette, no head-first impact or injury.",
+      "references": [
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/raven-normal.webp",
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/valkyrie-normal.webp"
+      ],
+      "status": "visually reviewed and exported",
+      "source": null,
+      "output": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-75b4fdbc-fbd6-444c-9525-afd4e011fa8c.png",
+      "mode": "built-in generation with character style references",
+      "asset": "public/assets/cards/jackknifepowerbomb.webp"
+    },
+    {
+      "id": "popuppowerbomb",
+      "name": "Pop-up Powerbomb",
+      "discipline": "throw",
+      "attacker": "valkyrie",
+      "opponent": "nova",
+      "prompt": "Use case: premium technique illustration for SLAY, a female professional wrestling deckbuilding card game. Create ONE new opaque landscape 3:2 image, 1536x1024. The two supplied character pictures are identity/outfit/style references ONLY; do NOT copy their neutral standing poses. Exact adult women faces, hair colors, costume palettes and athletic builds remain recognizable, now performing the named technique. Style: polished rich anime sports comic, sharp clean ink contours, luminous 2-to-3-band cel shading and restrained detailed 3D-toon volumes matching the references, expressive mature faces, crisp fabric highlights. NOT photographic or photobashed. Exactly TWO adult female professional athletes in practical fully opaque professional wrestling gear. Stage: dark indoor pro wrestling ring with grey-blue canvas, red ropes, softly BLURRED crowded stands and cold blue/red spotlights behind. The two wrestlers and every technique contact point are SHARP and occupy most of the scene. Medium-wide full-body composition with generous margins; keep all heads, hands, hips and boots visible, correct natural joints, coherent necks, no floating heads, no extra or fused limbs, fingers correct. Emphasize readable mechanics and distinct technique silhouette, athletic determined expressions. No text, card frame, labels, numbers, logos, trademarks, watermark, UI, weapons, blood, graphic injury or sensual posing. No sticker overlays or synthetic eye patches. ATTACKER: VALKYRIE, short jaw-length blonde bob, blue eyes, powerful athletic build, navy racerback sports top and navy shorts with ivory edging, plain white hand wraps, navy-white knee pads and lace-up boots. OPPONENT: NOVA, long black hair and brown eyes, black/teal cropped sports top and fitted black shorts, black knee pads and black boots with subtle grey/red protective sporting trim. EXACT TECHNIQUE: Pop-up Powerbomb. Pop-up powerbomb upward catching phase, low-wide camera. Blonde attacker stands square with BOTH feet on mat, knees springing out of a squat and both arms reaching HIGH above her head to catch the black-haired opponent's upper thighs. Opponent is airborne upright FACING the attacker above shoulder height, hips a clear head-height ABOVE attacker's face, knees bent apart and feet hanging to either side of attacker's upper shoulders. Opponent hands extend outward for balance, no arm gripping attacker neck. Small graphic upward action arcs show vertical launch, without text. The opponent has been popped UP off the mat, not already landing, and attacker is not seated. Complete legs and hands visible.",
+      "references": [
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/valkyrie-normal.webp",
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/nova-normal.webp"
+      ],
+      "status": "visually reviewed and exported",
+      "source": null,
+      "output": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-7ab862eb-c002-4bd8-a4e5-5a9d9a4739ca.png",
+      "mode": "built-in generation with character style references",
+      "asset": "public/assets/cards/popuppowerbomb.webp"
+    },
+    {
+      "id": "gutwrenchpowerbomb",
+      "name": "Gutwrench Powerbomb",
+      "discipline": "throw",
+      "attacker": "ember",
+      "opponent": "raven",
+      "prompt": "Use case: premium technique illustration for SLAY, a female professional wrestling deckbuilding card game. Create ONE new opaque landscape 3:2 image, 1536x1024. The two supplied character pictures are identity/outfit/style references ONLY; do NOT copy their neutral standing poses. Exact adult women faces, hair colors, costume palettes and athletic builds remain recognizable, now performing the named technique. Style: polished rich anime sports comic, sharp clean ink contours, luminous 2-to-3-band cel shading and restrained detailed 3D-toon volumes matching the references, expressive mature faces, crisp fabric highlights. NOT photographic or photobashed. Exactly TWO adult female professional athletes in practical fully opaque professional wrestling gear. Stage: dark indoor pro wrestling ring with grey-blue canvas, red ropes, softly BLURRED crowded stands and cold blue/red spotlights behind. The two wrestlers and every technique contact point are SHARP and occupy most of the scene. Medium-wide full-body composition with generous margins; keep all heads, hands, hips and boots visible, correct natural joints, coherent necks, no floating heads, no extra or fused limbs, fingers correct. Emphasize readable mechanics and distinct technique silhouette, athletic determined expressions. No text, card frame, labels, numbers, logos, trademarks, watermark, UI, weapons, blood, graphic injury or sensual posing. No sticker overlays or synthetic eye patches. ATTACKER: EMBER, wavy shoulder-length brunette hair, warm tan skin, muscular athletic build, black sports top and black shorts with crimson trim and small plain gold accents, black/red knee pads and black/gold lace-up boots. OPPONENT: RAVEN, long deep-crimson straight hair, grey eyes, black sleeveless cropped sports top, full-length dark navy wrestling leggings with crimson side trim, black/crimson lace-up boots, small black fingerless gloves. EXACT TECHNIQUE: Gutwrench Powerbomb. Gutwrench powerbomb rotating lift, side-wide camera. Brunette attacker stands low with spread feet and leans sideways, her BOTH forearms clasped firmly around red-haired opponent's ABDOMEN/WAIST in a gutwrench grip, hands locked over opponent far side ribs. Opponent is being rotated UPSIDE DOWN alongside attacker's chest: opponent head points downward to the LEFT well above mat, her hips are raised near attacker right shoulder and both legs arc overhead to the RIGHT. Opponent torso is diagonal across attacker front, not seated astride shoulders. Attacker lifts using waist grip rather than holding thighs or neck. Show locked waist arms, full upside-down body and two separate boots. No contact with mat, no head-first impact.",
+      "references": [
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/ember-normal.webp",
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/raven-normal.webp"
+      ],
+      "status": "visually reviewed and exported",
+      "source": null,
+      "output": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-f8299d62-df6e-45bb-b10d-4342ce8369cf.png",
+      "mode": "built-in generation with character style references",
+      "asset": "public/assets/cards/gutwrenchpowerbomb.webp"
+    },
+    {
+      "id": "foldingpowerbomb",
+      "name": "Folding Powerbomb",
+      "discipline": "throw",
+      "attacker": "nova",
+      "opponent": "valkyrie",
+      "prompt": "Use case: premium technique illustration for SLAY, a female professional wrestling deckbuilding card game. Create ONE new opaque landscape 3:2 image, 1536x1024. The two supplied character pictures are identity/outfit/style references ONLY; do NOT copy their neutral standing poses. Exact adult women faces, hair colors, costume palettes and athletic builds remain recognizable, now performing the named technique. Style: polished rich anime sports comic, sharp clean ink contours, luminous 2-to-3-band cel shading and restrained detailed 3D-toon volumes matching the references, expressive mature faces, crisp fabric highlights. NOT photographic or photobashed. Exactly TWO adult female professional athletes in practical fully opaque professional wrestling gear. Stage: dark indoor pro wrestling ring with grey-blue canvas, red ropes, softly BLURRED crowded stands and cold blue/red spotlights behind. The two wrestlers and every technique contact point are SHARP and occupy most of the scene. Medium-wide full-body composition with generous margins; keep all heads, hands, hips and boots visible, correct natural joints, coherent necks, no floating heads, no extra or fused limbs, fingers correct. Emphasize readable mechanics and distinct technique silhouette, athletic determined expressions. No text, card frame, labels, numbers, logos, trademarks, watermark, UI, weapons, blood, graphic injury or sensual posing. No sticker overlays or synthetic eye patches. ATTACKER: NOVA, long black hair and brown eyes, black/teal cropped sports top and fitted black shorts, black knee pads and black boots with subtle grey/red protective sporting trim. OPPONENT: VALKYRIE, short jaw-length blonde bob, blue eyes, powerful athletic build, navy racerback sports top and navy shorts with ivory edging, plain white hand wraps, navy-white knee pads and lace-up boots. EXACT TECHNIQUE: Folding Powerbomb. Folding powerbomb finish and pin, side three-quarter wide view. Blonde opponent lies BACK DOWN on mat, both shoulders flat and head turned safely sideways. Black-haired attacker squats/kneels at opponent hips FACING opponent head, BOTH hands press opponent upper thighs forward. Opponent hips are folded high and BOTH knees are tucked toward her own chest, both boots held overhead past the shoulders without touching face, creating a compact folded body silhouette. Attacker keeps one knee grounded outside opponent hip and one planted boot, torso forward over the folded legs. This is a compact folding powerbomb pin after a back landing, not a person seated on shoulders. All limbs connected correctly, no neck compression/injury.",
+      "references": [
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/nova-normal.webp",
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/valkyrie-normal.webp"
+      ],
+      "status": "visually reviewed and exported",
+      "source": null,
+      "output": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-e4cc653a-4335-41c5-a7b4-ac525f9760e6.png",
+      "mode": "built-in generation with character style references",
+      "asset": "public/assets/cards/foldingpowerbomb.webp"
+    },
+    {
+      "id": "bodyslam",
+      "name": "Scoop Body Slam",
+      "discipline": "throw",
+      "attacker": "valkyrie",
+      "opponent": "raven",
+      "prompt": "Use case: premium technique illustration for SLAY, a female professional wrestling deckbuilding card game. Create ONE new opaque landscape 3:2 image, 1536x1024. The two supplied character pictures are identity/outfit/style references ONLY; do NOT copy their neutral standing poses. Exact adult women faces, hair colors, costume palettes and athletic builds remain recognizable, now performing the named technique. Style: polished rich anime sports comic, sharp clean ink contours, luminous 2-to-3-band cel shading and restrained detailed 3D-toon volumes matching the references, expressive mature faces, crisp fabric highlights. NOT photographic or photobashed. Exactly TWO adult female professional athletes in practical fully opaque professional wrestling gear. Stage: dark indoor pro wrestling ring with grey-blue canvas, red ropes, softly BLURRED crowded stands and cold blue/red spotlights behind. The two wrestlers and every technique contact point are SHARP and occupy most of the scene. Medium-wide full-body composition with generous margins; keep all heads, hands, hips and boots visible, correct natural joints, coherent necks, no floating heads, no extra or fused limbs, fingers correct. Emphasize readable mechanics and distinct technique silhouette, athletic determined expressions. No text, card frame, labels, numbers, logos, trademarks, watermark, UI, weapons, blood, graphic injury or sensual posing. No sticker overlays or synthetic eye patches. ATTACKER: VALKYRIE, short jaw-length blonde bob, blue eyes, powerful athletic build, navy racerback sports top and navy shorts with ivory edging, plain white hand wraps, navy-white knee pads and lace-up boots. OPPONENT: RAVEN, long deep-crimson straight hair, grey eyes, black sleeveless cropped sports top, full-length dark navy wrestling leggings with crimson side trim, black/crimson lace-up boots, small black fingerless gloves. EXACT TECHNIQUE: Scoop Body Slam. Scoop body slam held just before rotation, wide side-on camera. Blonde attacker is STANDING in wide base and holds red-haired opponent horizontally ACROSS her chest, opponent facing upward with head on frame LEFT and boots on frame RIGHT. Attacker's LEFT arm supports opponent upper back/shoulders and RIGHT arm scoops beneath opponent upper thighs, two clear support points. Opponent body tilts slightly head-down, knees loosely bent but both feet visible in air; opponent one forearm touches attacker shoulder for balance. Attacker is upright, not falling, not on knees, no waistlock, no opponent seated on shoulders. Clean full-body scoop lift silhouette.",
+      "references": [
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/valkyrie-normal.webp",
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/raven-normal.webp"
+      ],
+      "status": "visually reviewed and exported",
+      "source": null,
+      "output": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-96284d9e-1cbb-43d7-bf60-fc262690aa35.png",
+      "mode": "built-in generation with character style references",
+      "asset": "public/assets/cards/bodyslam.webp"
+    },
+    {
+      "id": "powerslam",
+      "name": "Scoop Powerslam",
+      "discipline": "throw",
+      "attacker": "ember",
+      "opponent": "nova",
+      "prompt": "Use case: premium technique illustration for SLAY, a female professional wrestling deckbuilding card game. Create ONE new opaque landscape 3:2 image, 1536x1024. The two supplied character pictures are identity/outfit/style references ONLY; do NOT copy their neutral standing poses. Exact adult women faces, hair colors, costume palettes and athletic builds remain recognizable, now performing the named technique. Style: polished rich anime sports comic, sharp clean ink contours, luminous 2-to-3-band cel shading and restrained detailed 3D-toon volumes matching the references, expressive mature faces, crisp fabric highlights. NOT photographic or photobashed. Exactly TWO adult female professional athletes in practical fully opaque professional wrestling gear. Stage: dark indoor pro wrestling ring with grey-blue canvas, red ropes, softly BLURRED crowded stands and cold blue/red spotlights behind. The two wrestlers and every technique contact point are SHARP and occupy most of the scene. Medium-wide full-body composition with generous margins; keep all heads, hands, hips and boots visible, correct natural joints, coherent necks, no floating heads, no extra or fused limbs, fingers correct. Emphasize readable mechanics and distinct technique silhouette, athletic determined expressions. No text, card frame, labels, numbers, logos, trademarks, watermark, UI, weapons, blood, graphic injury or sensual posing. No sticker overlays or synthetic eye patches. ATTACKER: EMBER, wavy shoulder-length brunette hair, warm tan skin, muscular athletic build, black sports top and black shorts with crimson trim and small plain gold accents, black/red knee pads and black/gold lace-up boots. OPPONENT: NOVA, long black hair and brown eyes, black/teal cropped sports top and fitted black shorts, black knee pads and black boots with subtle grey/red protective sporting trim. EXACT TECHNIQUE: Scoop Powerslam. Scoop powerslam in forward falling phase, low side-wide view. Brunette attacker has launched FORWARD and rotates downward chest-first, carrying black-haired opponent BACK DOWN beneath her. Opponent horizontal torso is across attacker chest, opponent shoulders lower toward canvas, legs swing to the RIGHT; attacker LEFT arm wraps opponent upper back/shoulder and RIGHT arm supports opponent thigh. Attacker's torso is almost parallel to mat, one attacker knee folds underneath to land beside opponent hip, other boot trails in air. Two athletes moving down together in a rotating scoop landing, unlike an upright body slam. Mat visible beneath both; no facial/head impact, no gore.",
+      "references": [
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/ember-normal.webp",
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/nova-normal.webp"
+      ],
+      "status": "visually reviewed and exported",
+      "source": null,
+      "output": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-a6d5b2a1-b8bf-495f-9d4b-3d875988e221.png",
+      "mode": "built-in generation with character style references",
+      "asset": "public/assets/cards/powerslam.webp"
+    },
+    {
+      "id": "sidewalkslam",
+      "name": "Sidewalk Slam",
+      "discipline": "throw",
+      "attacker": "raven",
+      "opponent": "ember",
+      "prompt": "Use case: premium technique illustration for SLAY, a female professional wrestling deckbuilding card game. Create ONE new opaque landscape 3:2 image, 1536x1024. The two supplied character pictures are identity/outfit/style references ONLY; do NOT copy their neutral standing poses. Exact adult women faces, hair colors, costume palettes and athletic builds remain recognizable, now performing the named technique. Style: polished rich anime sports comic, sharp clean ink contours, luminous 2-to-3-band cel shading and restrained detailed 3D-toon volumes matching the references, expressive mature faces, crisp fabric highlights. NOT photographic or photobashed. Exactly TWO adult female professional athletes in practical fully opaque professional wrestling gear. Stage: dark indoor pro wrestling ring with grey-blue canvas, red ropes, softly BLURRED crowded stands and cold blue/red spotlights behind. The two wrestlers and every technique contact point are SHARP and occupy most of the scene. Medium-wide full-body composition with generous margins; keep all heads, hands, hips and boots visible, correct natural joints, coherent necks, no floating heads, no extra or fused limbs, fingers correct. Emphasize readable mechanics and distinct technique silhouette, athletic determined expressions. No text, card frame, labels, numbers, logos, trademarks, watermark, UI, weapons, blood, graphic injury or sensual posing. No sticker overlays or synthetic eye patches. ATTACKER: RAVEN, long deep-crimson straight hair, grey eyes, black sleeveless cropped sports top, full-length dark navy wrestling leggings with crimson side trim, black/crimson lace-up boots, small black fingerless gloves. OPPONENT: EMBER, wavy shoulder-length brunette hair, warm tan skin, muscular athletic build, black sports top and black shorts with crimson trim and small plain gold accents, black/red knee pads and black/gold lace-up boots. EXACT TECHNIQUE: Sidewalk Slam. Sidewalk slam side-carry drop, low three-quarter wide view. Red-haired attacker has brunette opponent held horizontally along her own RIGHT side, opponent BACK faces canvas, opponent head near attacker's right armpit and legs project toward frame RIGHT. Attacker RIGHT arm wraps around opponent upper torso from behind, LEFT hand supports the opponent far upper thigh. Attacker is dropping to one RIGHT knee while LEFT foot remains planted; opponent back hovers just above mat outside attacker's right hip. Entire opponent is alongside attacker, not across front/chest and not on shoulders. Readable one-knee side carry landing, naturally joined arms, no head-first contact or injury.",
+      "references": [
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/raven-normal.webp",
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/ember-normal.webp"
+      ],
+      "status": "visually reviewed and exported",
+      "source": null,
+      "output": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-a50956c0-3e1a-452d-bdf9-21d0f24e0d24.png",
+      "mode": "built-in generation with character style references",
+      "asset": "public/assets/cards/sidewalkslam.webp"
+    },
+    {
+      "id": "spinebuster",
+      "name": "Spinebuster",
+      "discipline": "throw",
+      "attacker": "valkyrie",
+      "opponent": "ember",
+      "prompt": "Use case: premium technique illustration for SLAY, a female professional wrestling deckbuilding card game. Create ONE new opaque landscape 3:2 image, 1536x1024. The two supplied character pictures are identity/outfit/style references ONLY; do NOT copy their neutral standing poses. Exact adult women faces, hair colors, costume palettes and athletic builds remain recognizable, now performing the named technique. Style: polished rich anime sports comic, sharp clean ink contours, luminous 2-to-3-band cel shading and restrained detailed 3D-toon volumes matching the references, expressive mature faces, crisp fabric highlights. NOT photographic or photobashed. Exactly TWO adult female professional athletes in practical fully opaque professional wrestling gear. Stage: dark indoor pro wrestling ring with grey-blue canvas, red ropes, softly BLURRED crowded stands and cold blue/red spotlights behind. The two wrestlers and every technique contact point are SHARP and occupy most of the scene. Medium-wide full-body composition with generous margins; keep all heads, hands, hips and boots visible, correct natural joints, coherent necks, no floating heads, no extra or fused limbs, fingers correct. Emphasize readable mechanics and distinct technique silhouette, athletic determined expressions. No text, card frame, labels, numbers, logos, trademarks, watermark, UI, weapons, blood, graphic injury or sensual posing. No sticker overlays or synthetic eye patches. ATTACKER: VALKYRIE, short jaw-length blonde bob, blue eyes, powerful athletic build, navy racerback sports top and navy shorts with ivory edging, plain white hand wraps, navy-white knee pads and lace-up boots. OPPONENT: EMBER, wavy shoulder-length brunette hair, warm tan skin, muscular athletic build, black sports top and black shorts with crimson trim and small plain gold accents, black/red knee pads and black/gold lace-up boots. EXACT TECHNIQUE: Spinebuster. Spinebuster lifting drive, low side-wide camera. Blonde attacker faces brunette opponent FRONT TO FRONT, bends knees and grips BOTH arms around opponent hips/upper thighs at waist height. Opponent is lifted only a short distance off canvas, torso upright tilted backward, both knees bending loosely, feet suspended, arms out around attacker shoulders. Blonde attacker's chest drives forward and one knee begins to lower, opponent BACK rotates toward mat in front of attacker. Key pose is front-facing double-leg/hip lift, opponent NOT atop shoulders, NOT horizontal side carry, NOT over-head suplex. Sharp clear hands at hips, complete bodies visible, no injury.",
+      "references": [
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/valkyrie-normal.webp",
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/ember-normal.webp"
+      ],
+      "status": "visually reviewed and exported",
+      "source": null,
+      "output": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-0cd93887-8e7f-4f9f-a9d3-42a794553861.png",
+      "mode": "built-in generation with character style references",
+      "asset": "public/assets/cards/spinebuster.webp"
+    },
+    {
+      "id": "bellysuplex",
+      "name": "Belly-to-Belly Suplex",
+      "discipline": "throw",
+      "attacker": "ember",
+      "opponent": "valkyrie",
+      "prompt": "Use case: premium technique illustration for SLAY, a female professional wrestling deckbuilding card game. Create ONE new opaque landscape 3:2 image, 1536x1024. The two supplied character pictures are identity/outfit/style references ONLY; do NOT copy their neutral standing poses. Exact adult women faces, hair colors, costume palettes and athletic builds remain recognizable, now performing the named technique. Style: polished rich anime sports comic, sharp clean ink contours, luminous 2-to-3-band cel shading and restrained detailed 3D-toon volumes matching the references, expressive mature faces, crisp fabric highlights. NOT photographic or photobashed. Exactly TWO adult female professional athletes in practical fully opaque professional wrestling gear. Stage: dark indoor pro wrestling ring with grey-blue canvas, red ropes, softly BLURRED crowded stands and cold blue/red spotlights behind. The two wrestlers and every technique contact point are SHARP and occupy most of the scene. Medium-wide full-body composition with generous margins; keep all heads, hands, hips and boots visible, correct natural joints, coherent necks, no floating heads, no extra or fused limbs, fingers correct. Emphasize readable mechanics and distinct technique silhouette, athletic determined expressions. No text, card frame, labels, numbers, logos, trademarks, watermark, UI, weapons, blood, graphic injury or sensual posing. No sticker overlays or synthetic eye patches. ATTACKER: EMBER, wavy shoulder-length brunette hair, warm tan skin, muscular athletic build, black sports top and black shorts with crimson trim and small plain gold accents, black/red knee pads and black/gold lace-up boots. OPPONENT: VALKYRIE, short jaw-length blonde bob, blue eyes, powerful athletic build, navy racerback sports top and navy shorts with ivory edging, plain white hand wraps, navy-white knee pads and lace-up boots. EXACT TECHNIQUE: Belly-to-Belly Suplex. Belly-to-belly suplex mid-arch, low side-wide camera. Brunette attacker and blonde opponent face each other chest-to-chest with arms locked around each OTHER's torso at ribcage. Brunette attacker arches BACKWARD dramatically, feet still planted and hips driving upward, shoulder/head descending toward mat behind her. Blonde opponent is lifted high across the attacker and rotates backward over attacker, her torso arcing above attacker chest and both boots airborne toward upper LEFT. Both faces and distinct chest-to-chest torso direction readable. Attacker is in FRONT of opponent, never behind: must not resemble German rear-waist suplex. Full leg silhouettes and arms locked at ribs, no injury.",
+      "references": [
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/ember-normal.webp",
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/valkyrie-normal.webp"
+      ],
+      "status": "visually reviewed and exported",
+      "source": null,
+      "output": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-29eaaa5d-9c36-40b2-9990-9a894579fc7b.png",
+      "mode": "built-in generation with character style references",
+      "asset": "public/assets/cards/bellysuplex.webp"
+    },
+    {
+      "id": "snapsuplex",
+      "name": "Snap Suplex",
+      "discipline": "throw",
+      "attacker": "nova",
+      "opponent": "raven",
+      "prompt": "Use case: premium technique illustration for SLAY, a female professional wrestling deckbuilding card game. Create ONE new opaque landscape 3:2 image, 1536x1024. The two supplied character pictures are identity/outfit/style references ONLY; do NOT copy their neutral standing poses. Exact adult women faces, hair colors, costume palettes and athletic builds remain recognizable, now performing the named technique. Style: polished rich anime sports comic, sharp clean ink contours, luminous 2-to-3-band cel shading and restrained detailed 3D-toon volumes matching the references, expressive mature faces, crisp fabric highlights. NOT photographic or photobashed. Exactly TWO adult female professional athletes in practical fully opaque professional wrestling gear. Stage: dark indoor pro wrestling ring with grey-blue canvas, red ropes, softly BLURRED crowded stands and cold blue/red spotlights behind. The two wrestlers and every technique contact point are SHARP and occupy most of the scene. Medium-wide full-body composition with generous margins; keep all heads, hands, hips and boots visible, correct natural joints, coherent necks, no floating heads, no extra or fused limbs, fingers correct. Emphasize readable mechanics and distinct technique silhouette, athletic determined expressions. No text, card frame, labels, numbers, logos, trademarks, watermark, UI, weapons, blood, graphic injury or sensual posing. No sticker overlays or synthetic eye patches. ATTACKER: NOVA, long black hair and brown eyes, black/teal cropped sports top and fitted black shorts, black knee pads and black boots with subtle grey/red protective sporting trim. OPPONENT: RAVEN, long deep-crimson straight hair, grey eyes, black sleeveless cropped sports top, full-length dark navy wrestling leggings with crimson side trim, black/crimson lace-up boots, small black fingerless gloves. EXACT TECHNIQUE: Snap Suplex. Snap vertical suplex being whipped through rotation, low side-wide camera. Black-haired attacker wraps LEFT forearm around red-haired opponent's head/neck in a FRONT facelock, opponent's near arm draped over attacker's shoulder. Attacker RIGHT hand grips opponent's FAR waist/hip clothing area to support lift. Attacker starts falling sharply BACKWARD, one planted boot pivoting, opposite knee soft. Opponent body is almost VERTICAL upside-down ABOVE attacker, opponent both straight legs point high upward, torso turns through a quick backward arc. Clear front facelock plus waist support, no rear waistlock and no thigh-grip powerbomb. Whole two athletes visible, no head landing shown and no injury.",
+      "references": [
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/nova-normal.webp",
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/raven-normal.webp"
+      ],
+      "status": "visually reviewed and exported",
+      "source": null,
+      "output": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-cd5f5c38-be54-439c-b906-6ede86b12dca.png",
+      "mode": "built-in generation with character style references",
+      "asset": "public/assets/cards/snapsuplex.webp"
+    },
+    {
+      "id": "samoandrop",
+      "name": "Samoan Drop",
+      "discipline": "throw",
+      "attacker": "valkyrie",
+      "opponent": "nova",
+      "prompt": "Use case: premium technique illustration for SLAY, a female professional wrestling deckbuilding card game. Create ONE new opaque landscape 3:2 image, 1536x1024. The two supplied character pictures are identity/outfit/style references ONLY; do NOT copy their neutral standing poses. Exact adult women faces, hair colors, costume palettes and athletic builds remain recognizable, now performing the named technique. Style: polished rich anime sports comic, sharp clean ink contours, luminous 2-to-3-band cel shading and restrained detailed 3D-toon volumes matching the references, expressive mature faces, crisp fabric highlights. NOT photographic or photobashed. Exactly TWO adult female professional athletes in practical fully opaque professional wrestling gear. Stage: dark indoor pro wrestling ring with grey-blue canvas, red ropes, softly BLURRED crowded stands and cold blue/red spotlights behind. The two wrestlers and every technique contact point are SHARP and occupy most of the scene. Medium-wide full-body composition with generous margins; keep all heads, hands, hips and boots visible, correct natural joints, coherent necks, no floating heads, no extra or fused limbs, fingers correct. Emphasize readable mechanics and distinct technique silhouette, athletic determined expressions. No text, card frame, labels, numbers, logos, trademarks, watermark, UI, weapons, blood, graphic injury or sensual posing. No sticker overlays or synthetic eye patches. ATTACKER: VALKYRIE, short jaw-length blonde bob, blue eyes, powerful athletic build, navy racerback sports top and navy shorts with ivory edging, plain white hand wraps, navy-white knee pads and lace-up boots. OPPONENT: NOVA, long black hair and brown eyes, black/teal cropped sports top and fitted black shorts, black knee pads and black boots with subtle grey/red protective sporting trim. EXACT TECHNIQUE: Samoan Drop. Samoan drop from fireman's carry at instant before back fall, side three-quarter wide view. Blonde attacker carries black-haired opponent sideways ACROSS BOTH SHOULDERS, opponent torso draped horizontally behind attacker's neck, opponent head and one arm hang on attacker's LEFT, opponent hips and both booted legs hang on attacker's RIGHT. Attacker LEFT hand controls opponent near wrist/upper arm, RIGHT arm hooks under opponent near thigh, precise fireman's carry. Blonde attacker leans BACKWARD with knees flexed and begins to fall onto her own back while still supporting opponent. Opponent lies across shoulders horizontally, never seated astride the neck. Full body, clearly visible separate four legs, no mat impact or injury.",
+      "references": [
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/valkyrie-normal.webp",
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/states/nova-normal.webp"
+      ],
+      "status": "visually reviewed and exported",
+      "source": null,
+      "output": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-52a9d5c7-e1b9-4268-a0a9-0893fa98265b.png",
+      "mode": "built-in generation with character style references",
+      "asset": "public/assets/cards/samoandrop.webp"
+    }
+  ]
+}

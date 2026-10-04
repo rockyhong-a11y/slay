@@ -1,4 +1,4 @@
-/* State-specific poses and card-art cinematics live inside the existing arena. */
+/* Complete state illustrations and finite, full-screen card-art cinematics. */
 .combat-sr-only {
   position: absolute;
   width: 1px;
@@ -76,146 +76,240 @@ button.fighter-condition:focus-visible {
 }
 
 .technique-scene {
-  position: absolute;
-  inset: 0;
-  z-index: 7;
-  pointer-events: none;
-  overflow: hidden;
-  background: #090b13e8;
-}
-.cinematic-active .fighter-hud,
-.cinematic-active .round-label {
-  z-index: 8;
-}
-.cinematic-active .arena-bottom {
-  opacity: 0;
-}
-.cinematic-active .fighter {
-  opacity: 0.18;
-}
-.technique-scene-visual {
-  position: absolute;
-  inset: 0;
   --scene-accent: #f48a94;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  z-index: 1000;
+  overflow: hidden;
+  background: #080a10;
+  pointer-events: auto;
+  isolation: isolate;
 }
-.scene-throw .technique-scene-visual {
+.scene-throw {
   --scene-accent: #edbf83;
 }
-.scene-submission .technique-scene-visual {
+.scene-submission {
   --scene-accent: #c4a5ed;
 }
-.scene-grapple .technique-scene-visual {
+.scene-grapple {
   --scene-accent: #9fb5e6;
 }
-.scene-aerial .technique-scene-visual {
+.scene-aerial {
   --scene-accent: #92d5ed;
 }
-.scene-defense .technique-scene-visual {
+.scene-defense {
   --scene-accent: #a8cde5;
 }
-.scene-tactics .technique-scene-visual {
+.scene-tactics {
   --scene-accent: #a8d7b3;
 }
-.scene-nightmare .technique-scene-visual {
+.scene-nightmare {
   --scene-accent: #bc91d1;
 }
-.scene-finisher .technique-scene-visual {
+.scene-finisher {
   --scene-accent: #ebc98b;
 }
-.technique-art-frame {
+.technique-backdrop {
   position: absolute;
-  inset: 5% 13% 2%;
-  transform-origin: 50% 60%;
-}
-.technique-art-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  mask-image: linear-gradient(
-    90deg,
-    transparent,
-    #000 10%,
-    #000 90%,
-    transparent
-  );
+  inset: -35px;
+  filter: blur(26px) brightness(0.32) saturate(0.75);
+  transform: scale(1.08);
+  z-index: -2;
 }
 .technique-film-shade {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(
-      180deg,
-      #080b17b8,
-      transparent 36%,
-      transparent 57%,
-      #090b15dc 88%
-    ),
-    linear-gradient(
-      90deg,
-      #0b0d17c9,
-      transparent 30%,
-      transparent 70%,
-      #0b0d17c9
-    );
+    linear-gradient(90deg, #080b1380, #080b1326 52%, #080b13d9),
+    linear-gradient(180deg, #080b1390, transparent 30%, #080b13d9);
+  z-index: -1;
+}
+.technique-broadcast-head {
+  position: absolute;
+  top: max(18px, env(safe-area-inset-top));
+  left: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  color: #eeedf4;
+}
+.technique-broadcast-head > strong {
+  font:
+    600 21px "Teko",
+    sans-serif;
+  letter-spacing: 1.8px;
+}
+.technique-broadcast-head > strong > span {
+  color: var(--scene-accent);
+}
+.technique-broadcast-head > span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #dad8e3;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+.technique-broadcast-head i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--scene-accent);
+  box-shadow: 0 0 12px var(--scene-accent);
+}
+.technique-scene-visual {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 2.3fr) minmax(210px, 1fr);
+  align-items: center;
+  column-gap: clamp(20px, 3vw, 50px);
+  padding: 60px 32px max(30px, env(safe-area-inset-bottom));
+}
+.technique-art-stage {
+  position: relative;
+  justify-self: center;
+  width: min(100%, calc((100dvh - 135px) * 1.5));
+  min-width: 0;
+}
+.technique-art-window {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid #ffffff1d;
+  background: #090b1390;
+  box-shadow:
+    0 25px 65px #0008,
+    0 0 80px #ffffff04;
+}
+.technique-art-frame {
+  position: absolute;
+  inset: 0;
+  animation: none;
+  will-change: transform;
+}
+.technique-art-frame img {
+  object-fit: contain;
+  object-position: center;
+  mask-image: none;
+}
+.technique-impact {
+  position: absolute;
+  width: 46%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border: 2px solid var(--scene-accent);
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff5, #ffffff12 27%, transparent 58%);
+  box-shadow:
+    0 0 30px var(--scene-accent),
+    inset 0 0 20px var(--scene-accent);
+  pointer-events: none;
+}
+.technique-impact.impact-heavy {
+  width: 68%;
+  border-width: 3px;
+  background: radial-gradient(ellipse, #fff8, #ffffff20 20%, transparent 55%);
+}
+.technique-impact.impact-pressure {
+  width: 32%;
+  border-width: 1px;
+  background: radial-gradient(
+    circle,
+    transparent 35%,
+    #c4a5ed33,
+    transparent 68%
+  );
+  box-shadow: 0 0 45px var(--scene-accent);
+}
+.technique-phase-track {
+  display: flex;
+  justify-content: center;
+  gap: clamp(12px, 3vw, 28px);
+  padding-top: 15px;
+  color: #d2d2df;
+  font:
+    500 10px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 1.7px;
+}
+.technique-phase-track > span {
+  white-space: nowrap;
+}
+.technique-phase-track small {
+  color: var(--scene-accent);
+  font-size: 9px;
+  margin-right: 6px;
+}
+.technique-caption-panel {
+  position: relative;
+  min-width: 0;
+  padding: 24px 0 24px 24px;
+  border-left: 1px solid #ffffff28;
 }
 .technique-scene-copy {
-  position: absolute;
-  bottom: 52px;
-  left: 7%;
-  max-width: 86%;
+  position: relative;
+  width: 100%;
+  max-width: none;
 }
 .technique-kicker {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  gap: 6px 10px;
   color: var(--scene-accent);
   font:
-    600 11px/1.5 "Barlow Condensed",
+    600 12px/1.6 "Barlow Condensed",
     sans-serif;
   letter-spacing: 1.8px;
   text-transform: uppercase;
 }
 .technique-kicker i {
-  display: inline-block;
-  width: 24px;
+  width: 18px;
   height: 1px;
   background: currentColor;
 }
 .technique-scene-copy strong {
   display: block;
-  font-size: clamp(19px, 3vw, 34px);
+  margin-top: 12px;
+  color: #fff4ed;
+  font-size: clamp(27px, 3.1vw, 48px);
+  line-height: 1.22;
   font-weight: 700;
-  letter-spacing: -1.2px;
-  line-height: 1.4;
-  color: #fff1ec;
-  text-shadow: 0 3px 18px #05060a;
-  margin-top: 5px;
+  letter-spacing: -0.8px;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  text-shadow: 0 3px 20px #05060a;
 }
 .technique-results {
-  position: absolute;
+  position: relative;
   display: flex;
   flex-wrap: wrap;
-  gap: 5px 8px;
-  bottom: 14px;
-  left: 7%;
-  right: 7%;
-  max-height: 40px;
   align-items: center;
+  gap: 7px;
+  margin-top: 24px;
+  max-height: none;
 }
-.technique-results span {
-  font-size: 10px;
+.technique-results > span {
+  max-width: 100%;
+  padding: 7px 10px;
+  color: #e4e3ee;
+  border: 1px solid #ffffff25;
+  background: #111421d9;
+  border-radius: 4px;
+  font-size: 11px;
   line-height: 1.5;
-  color: #e0dfeb;
-  border: 1px solid #ffffff22;
-  background: #10131edd;
-  padding: 4px 7px;
-  border-radius: 2px;
+  overflow-wrap: anywhere;
 }
 .technique-results .result-damage {
   color: #fff3e9;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 700;
   border-color: var(--scene-accent);
 }
@@ -240,12 +334,134 @@ button.fighter-condition:focus-visible {
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 2px;
+  height: 3px;
   width: 100%;
   background: var(--scene-accent);
   transform-origin: left;
   animation: scene-progress var(--scene-duration) linear both;
 }
+@keyframes scene-progress {
+  to {
+    transform: scaleX(0);
+  }
+}
+@media (max-width: 767px) and (orientation: portrait) {
+  .technique-broadcast-head {
+    left: 16px;
+    right: 16px;
+  }
+  .technique-broadcast-head > strong {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+  .technique-broadcast-head > span {
+    font-size: 8px;
+    gap: 6px;
+    letter-spacing: 1px;
+  }
+  .technique-scene-visual {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, auto) auto;
+    align-content: center;
+    gap: 22px;
+    padding: 57px 14px max(32px, env(safe-area-inset-bottom));
+  }
+  .technique-art-stage {
+    width: 100%;
+    min-height: 0;
+  }
+  .technique-art-window {
+    aspect-ratio: auto;
+    height: min(52dvh, calc((100vw - 28px) / var(--portrait-ratio, 1.08)));
+    border-radius: 9px;
+  }
+  .technique-art-frame img {
+    object-fit: cover !important;
+    object-position: var(--portrait-focus, 50% 45%) !important;
+  }
+  .technique-phase-track {
+    padding-top: 12px;
+    font-size: 9px;
+    gap: 13px;
+    letter-spacing: 1px;
+  }
+  .technique-phase-track small {
+    margin-right: 4px;
+    font-size: 8px;
+  }
+  .technique-caption-panel {
+    padding: 18px 6px 0;
+    border-left: 0;
+    border-top: 1px solid #ffffff24;
+  }
+  .technique-scene-copy strong {
+    font-size: 34px;
+    margin-top: 8px;
+  }
+  .technique-kicker {
+    font-size: 11px;
+  }
+  .technique-results {
+    margin-top: 16px;
+    gap: 6px;
+  }
+  .technique-results > span {
+    font-size: 11px;
+    padding: 6px 9px;
+  }
+}
+@media (orientation: landscape) and (max-height: 520px) {
+  .technique-broadcast-head {
+    top: 10px;
+    left: 18px;
+    right: 18px;
+  }
+  .technique-broadcast-head > strong {
+    font-size: 17px;
+  }
+  .technique-broadcast-head > span {
+    font-size: 8px;
+  }
+  .technique-scene-visual {
+    padding: 45px 18px 22px;
+    column-gap: 20px;
+    grid-template-columns: minmax(0, 2fr) minmax(190px, 1fr);
+  }
+  .technique-art-stage {
+    width: min(100%, calc((100dvh - 105px) * 1.5));
+  }
+  .technique-phase-track {
+    padding-top: 9px;
+    font-size: 8px;
+    gap: 12px;
+    letter-spacing: 1px;
+  }
+  .technique-caption-panel {
+    padding: 10px 0 10px 16px;
+  }
+  .technique-scene-copy strong {
+    font-size: 27px;
+    margin-top: 7px;
+  }
+  .technique-kicker {
+    font-size: 10px;
+  }
+  .technique-results {
+    margin-top: 14px;
+    gap: 5px;
+  }
+  .technique-results > span {
+    font-size: 10px;
+    padding: 5px 7px;
+  }
+  .technique-results .result-damage {
+    font-size: 14px;
+  }
+}
+.scene-still .technique-scene-progress {
+  animation: none;
+}
+
 .condition-guide > p {
   color: var(--muted);
   font-size: 12px;
@@ -331,158 +547,6 @@ button.fighter-condition:focus-visible {
   line-height: 1.8;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .technique-art-frame {
-    animation: scene-strike var(--scene-duration)
-      cubic-bezier(0.22, 0.68, 0.16, 1) both;
-  }
-  .scene-throw .technique-art-frame,
-  .scene-grapple .technique-art-frame {
-    animation-name: scene-throw;
-  }
-  .scene-submission .technique-art-frame {
-    animation-name: scene-hold;
-  }
-  .scene-aerial .technique-art-frame {
-    animation-name: scene-aerial;
-  }
-  .scene-defense .technique-art-frame,
-  .scene-tactics .technique-art-frame {
-    animation-name: scene-control;
-  }
-  .scene-nightmare .technique-art-frame {
-    animation-name: scene-nightmare;
-  }
-  .scene-finisher .technique-art-frame {
-    animation-name: scene-finisher;
-  }
-  .technique-scene-copy {
-    animation: scene-title 280ms both;
-  }
-  .technique-results {
-    animation: scene-title 200ms both;
-  }
-  .scene-still * {
-    animation: none !important;
-  }
-}
-@keyframes scene-progress {
-  to {
-    transform: scaleX(0);
-  }
-}
-@keyframes scene-title {
-  from {
-    opacity: 0;
-    translate: -14px 0;
-  }
-  to {
-    opacity: 1;
-    translate: 0 0;
-  }
-}
-@keyframes scene-strike {
-  0% {
-    transform: translateX(-25px) scale(0.96);
-    opacity: 0;
-  }
-  16% {
-    transform: translateX(3px) scale(1.015);
-    opacity: 1;
-  }
-  70% {
-    transform: translateX(0) scale(1.03);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(5px) scale(1.035);
-    opacity: 1;
-  }
-}
-@keyframes scene-throw {
-  from {
-    transform: translateY(16px) rotate(-2deg) scale(0.96);
-    opacity: 0;
-  }
-  24% {
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-3px) rotate(1deg) scale(1.03);
-    opacity: 1;
-  }
-}
-@keyframes scene-hold {
-  from {
-    transform: scale(0.96);
-    opacity: 0;
-  }
-  22% {
-    opacity: 1;
-  }
-  to {
-    transform: scale(1.045);
-    opacity: 1;
-  }
-}
-@keyframes scene-aerial {
-  from {
-    transform: translateY(-22px) scale(0.97);
-    opacity: 0;
-  }
-  24% {
-    opacity: 1;
-  }
-  to {
-    transform: translateY(5px) scale(1.025);
-    opacity: 1;
-  }
-}
-@keyframes scene-control {
-  from {
-    transform: scale(0.97);
-    opacity: 0;
-  }
-  25% {
-    opacity: 1;
-  }
-  to {
-    transform: scale(1.02);
-    opacity: 1;
-  }
-}
-@keyframes scene-nightmare {
-  from {
-    transform: scale(0.97);
-    opacity: 0;
-    filter: saturate(0.6);
-  }
-  30% {
-    opacity: 1;
-  }
-  to {
-    transform: scale(1.06);
-    opacity: 1;
-    filter: saturate(1);
-  }
-}
-@keyframes scene-finisher {
-  0% {
-    transform: scale(0.93) rotate(-1deg);
-    opacity: 0;
-  }
-  20% {
-    transform: scale(1.02) rotate(0);
-    opacity: 1;
-  }
-  38% {
-    transform: scale(1.015);
-  }
-  100% {
-    transform: scale(1.065);
-    opacity: 1;
-  }
-}
 @media (max-width: 767px) {
   .fighter-condition {
     font-size: 9px;
@@ -493,50 +557,6 @@ button.fighter-condition:focus-visible {
   }
   .enemy-condition-row {
     margin-top: 5px;
-  }
-  .technique-art-frame {
-    inset: 10% 4% 8%;
-  }
-  .technique-art-frame img {
-    mask-image: linear-gradient(
-      90deg,
-      transparent,
-      #000 6%,
-      #000 94%,
-      transparent
-    );
-  }
-  .technique-scene-copy {
-    bottom: 77px;
-    left: 5%;
-  }
-  .technique-kicker {
-    font-size: 9px;
-    letter-spacing: 1px;
-    gap: 6px;
-  }
-  .technique-scene-copy strong {
-    font-size: 23px;
-  }
-  .technique-results {
-    left: 5%;
-    right: 5%;
-    bottom: 24px;
-    gap: 4px;
-    max-height: 45px;
-  }
-  .technique-results span {
-    font-size: 9px;
-    padding: 3px 5px;
-  }
-  .technique-results .result-damage {
-    font-size: 11px;
-  }
-  .cinematic-active .round-label {
-    opacity: 0;
-  }
-  .condition-preview {
-    height: 210px;
   }
   .condition-options > button {
     padding: 10px 8px;

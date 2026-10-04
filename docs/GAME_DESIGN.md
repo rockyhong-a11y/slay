@@ -16,7 +16,7 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 
 체력 25% 이하의 그로기가 가장 먼저 적용되고, 50% 이하의 지침이 뒤따릅니다. 체력이 50%를 넘으면 압박 60 이상을 좌절로 표시하고, 열기 6 이상은 열혈, 3–5는 흥분, 나머지는 보통입니다. 상대의 약화 2 이상도 좌절 조건에 포함됩니다. 회복·진정·열기 소모 후에는 현재 수치에 맞는 상태 그림으로 돌아갑니다.
 
-선수와 카드 일러스트는 정적 완성 이미지입니다. 카드 25종의 짧은 기술 시네마틱은 실제 전투 결과를 읽어 피해·방어·회복·드로우·열기·압박을 표시합니다. 전체/간결 설정과 운영체제의 모션 감소 설정을 따르며, 재생 중에는 카드 사용·턴 종료 입력을 잠급니다. 정적 상태 변경은 게임 규칙이나 저장 데이터를 바꾸지 않습니다.
+선수와 카드 일러스트는 정적 완성 이미지입니다. 카드 50종의 기술 시네마틱은 실제 전투 결과를 읽어 피해·방어·회복·드로우·열기·압박을 표시합니다. 전체/간결 설정과 운영체제의 모션 감소 설정을 따르며, 재생 중에는 카드 사용·턴 종료 입력을 잠급니다. 정적 상태 변경은 게임 규칙이나 저장 데이터를 바꾸지 않습니다.
 
 ## 플레이 루프
 
@@ -39,7 +39,7 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 
 모든 시작 덱은 11장입니다. 레이븐·발키리·노바의 기존 덱은 엘보 스트라이크 4장, 로프 가드 3장, 클린치·호흡 조절·피니시 무브 각 1장과 전용 시그니처 1장을 유지합니다.
 
-바이퍼는 엘보 스트라이크 3장, 로프 가드 2장, 클린치·호흡 조절·피니시 무브 각 1장, 헤드록 2장, 카운터 홀드 1장으로 시작합니다. 엠버는 엘보 스트라이크 3장, 로프 가드 2장, 클린치·호흡 조절·피니시 무브 각 1장, 스포트라이트·관중의 함성·네버 세이 다이 각 1장으로 시작합니다. 신규 선수는 기존 25종 카드에서 다른 조합을 사용하며 카드 수나 기본 효과를 변경하지 않습니다.
+바이퍼는 엘보 스트라이크 3장, 로프 가드 2장, 클린치·호흡 조절·피니시 무브 각 1장, 헤드록 2장, 카운터 홀드 1장으로 시작합니다. 엠버는 엘보 스트라이크 3장, 로프 가드 2장, 클린치·호흡 조절·피니시 무브 각 1장, 스포트라이트·관중의 함성·네버 세이 다이 각 1장으로 시작합니다. 선수별 시작 덱 구성과 기존 카드 효과는 유지하며, 새 25종 기술은 경기 보상과 상점에서 덱에 추가합니다.
 
 레이븐은 첫 공격에 강한 카드를 배치한 뒤 콤보 보상을 노립니다. 발키리는 상대 공격 의도에 잡기·카운터를 맞춰 방어를 확보합니다. 노바는 첫 0코스트 카드와 에너지·드로우를 연결하고 소멸 이후 얇아진 덱을 순환합니다. 바이퍼는 제압 카드를 먼저 써 후속타의 빈틈을 만들고, 엠버는 기술 카드로 피니셔의 열기를 준비하면서 낮은 체력의 컴백을 활용합니다.
 
@@ -80,7 +80,7 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 
 락커룸에서는 최대 체력의 30% 회복, 압박 25 감소와 악몽 1장 제거, 카드 1장 영구 강화 중 하나를 선택합니다. 상점에는 카드, 회복, 멘탈 코칭, 자동 강화와 최대 에너지 +1의 컨디셔닝 벨트가 있습니다. 이벤트는 크레딧·기술 획득·체력·압박 사이의 선택을 제공합니다.
 
-## 카드 25종
+## 카드 50종
 
 표는 강화 전의 효과입니다. 강화는 피해, 방어, 드로우 또는 회복량을 개선하며 카드의 UI 설명도 함께 바뀝니다.
 
@@ -111,6 +111,44 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 | `championship` | 챔피언십 드라이브 | 2    | 피니셔          | 열기 3 소모, 피해 32, 체력 +6, 소멸       |
 | `comeback`     | 네버 세이 다이    | 1    | 기술            | 방어 12, 체력 절반 이하 시 방어 +10       |
 | `nightmare`    | 악몽 · 시선       | 1    | 악몽            | 드로우 시 압박 +3, 사용 시 압박 −10, 소멸 |
+
+새 카드 25종은 파워밤 변형 5종, 슬램·수플렉스·드롭 7종, 관절기·서브미션 10종, 잡기 연결 3종입니다. 물리적 기술 분류는 던지기·서브미션·잡기로 구분하고, 엔진의 공격·기술·피니셔 유형은 별도로 표시합니다. 예를 들어 샤프슈터는 서브미션이면서 피니셔입니다.
+
+| ID                   | 카드                  | 비용 | 분류              | 기본 효과                                              |
+| -------------------- | --------------------- | ---- | ----------------- | ------------------------------------------------------ |
+| `sitoutpowerbomb`    | 싯아웃 파워밤         | 2    | 공격 · 던지기     | 피해 17, 방어 5                                        |
+| `jackknifepowerbomb` | 잭나이프 파워밤       | 3    | 공격 · 던지기     | 피해 32, 압박 +4, 취약 2                               |
+| `popuppowerbomb`     | 팝업 파워밤           | 2    | 공격 · 던지기     | 피해 14, 이번 턴 콤보 1 이상이면 피해 +9, 열기 +1      |
+| `gutwrenchpowerbomb` | 거트렌치 파워밤       | 2    | 공격 · 던지기     | 피해 15, 방어 3, 약화 2                                |
+| `foldingpowerbomb`   | 폴딩 파워밤           | 2    | 공격 · 던지기     | 피해 18, 이번 턴 콤보 2 이상이면 피해 +10, 방어 7      |
+| `bodyslam`           | 바디 슬램             | 1    | 공격 · 던지기     | 피해 8, 방어 2                                         |
+| `powerslam`          | 파워 슬램             | 2    | 공격 · 던지기     | 피해 16, 이번 턴 콤보 1 이상이면 피해 +6, 압박 3 감소  |
+| `sidewalkslam`       | 사이드워크 슬램       | 1    | 공격 · 던지기     | 피해 6, 방어 6                                         |
+| `spinebuster`        | 스파인버스터          | 2    | 공격 · 던지기     | 피해 14, 방어 7, 상대 공격 준비 시 방어 +6             |
+| `bellysuplex`        | 벨리 투 벨리 수플렉스 | 2    | 공격 · 던지기     | 피해 15, 1장 드로우, 취약 1                            |
+| `snapsuplex`         | 스냅 수플렉스         | 1    | 공격 · 던지기     | 피해 6, 압박 +2, 1장 드로우                            |
+| `samoandrop`         | 사모안 드롭           | 2    | 공격 · 던지기     | 피해 16, 열기 +1, 약화 1                               |
+| `armbar`             | 암바                  | 1    | 공격 · 서브미션   | 피해 5, 취약 2                                         |
+| `kimura`             | 기무라 록             | 1    | 공격 · 서브미션   | 피해 6, 약화 1, 취약 1                                 |
+| `americana`          | 아메리카나 록         | 1    | 공격 · 서브미션   | 피해 5, 방어 5, 약화 1                                 |
+| `anklelock`          | 앵클 록               | 1    | 공격 · 서브미션   | 피해 6, 압박 3 감소, 약화 2                            |
+| `kneebar`            | 니바                  | 2    | 공격 · 서브미션   | 피해 12, 방어 4, 취약 2                                |
+| `heelhook`           | 힐 훅                 | 1    | 공격 · 서브미션   | 피해 3, 약화 3, 취약 2, 소멸                           |
+| `figurefour`         | 피겨 포 레그록        | 2    | 공격 · 서브미션   | 피해 10, 방어 11, 체력 절반 이하 시 방어 +6            |
+| `bostoncrab`         | 보스턴 크랩           | 1    | 공격 · 서브미션   | 피해 4, 열기 +1, 약화 1                                |
+| `sharpshooter`       | 샤프슈터              | 2    | 피니셔 · 서브미션 | 열기 3 소모, 피해 25, 약화 3, 소멸                     |
+| `crossface`          | 크로스페이스          | 1    | 공격 · 서브미션   | 피해 6, 방어 4, 상대 공격 준비 시 방어 +5, 압박 4 감소 |
+| `collartie`          | 칼라 앤 엘보          | 0    | 기술 · 잡기       | 방어 3, 다음 공격 피해 +3, 소멸                        |
+| `armdrag`            | 암 드래그             | 0    | 공격 · 잡기       | 피해 3, 콤보 +1, 방어 2, 소멸                          |
+| `waistlock`          | 리어 웨이스트록       | 1    | 기술 · 잡기       | 방어 6, 다음 공격 피해 +6, 1장 드로우                  |
+
+모든 신규 카드는 잡기 태그가 있어, 피해를 주는 카드에는 발키리의 피해 +2가 적용됩니다. 칼라 앤 엘보와 리어 웨이스트록은 피해 없는 기술 카드이므로 다음 공격을 준비하고 엠버의 관중 패시브를 발동합니다. 약화·취약은 지속 턴 수를 더하며, 수치가 높아져도 감소·증폭 비율 자체는 그대로입니다.
+
+암 드래그는 에너지를 쓰지 않고 공격 콤보를 2 올려 열기 1을 얻습니다. 그 뒤 팝업 파워밤·파워 슬램은 선행 콤보 1, 폴딩 파워밤은 2부터 추가 피해를 받습니다. 칼라 앤 엘보와 리어 웨이스트록의 다음 공격 보너스는 같은 턴 안에서 누적할 수 있지만 공격 한 번에 모두 소모되며, 새 턴에는 초기화됩니다. 기술 카드 자체는 공격 콤보를 올리지 않습니다.
+
+스파인버스터와 크로스페이스는 상대가 공격을 준비할 때만 추가 방어를 얻습니다. 피겨 포 레그록은 정확히 체력 절반 이하에서 컴백 방어가 늘고, 암바·기무라·니바 등은 공격 뒤 취약을 남겨 후속 공격을 지원합니다. 샤프슈터는 열기 3과 에너지 2를 소비해 큰 피해와 약화를 주고 소멸합니다. 일반적인 공격 콤보의 열기 생성은 피니셔에도 적용되므로, 두 번째 공격으로 사용했다면 소비 뒤 열기 1을 다시 얻습니다.
+
+일반 보상과 상점의 획득 풀은 커먼·언커먼·레어 41종이며 신규 25종이 모두 포함됩니다. 정예 보상은 이 중 언커먼·레어만 제공합니다. 기존 시작 카드·시그니처와 악몽은 해당 보상 풀에 포함되지 않습니다. 카드마다 `cards/{id}.webp`의 전용 기술 이미지를 사용하며, 도감의 기본·강화 효과는 `getCard`에서 읽습니다.
 
 ## Engine API
 
@@ -160,9 +198,9 @@ A [Blender QA gallery](../artifacts/fighter-state-gallery.blend) displays the 30
 
 `fighterPoseArt(actor, condition)` accepts a state ID or a state object and returns `fighters/states/{actor}-{state}.webp`; an unknown actor falls back to Nova and an unknown state falls back to normal. Card images continue to use their individual technique paths. Continuous puppet/mesh rendering and its dedicated tests are removed.
 
-The engine suite covers reproducible initialization and save/load, invalid actions, energy, block, combos and finishers, exhaustion and reshuffling, nightmare thresholds, defeat, rewards, map transitions, rest, upgrades, shops, events, and full eight-floor wins for all five wrestlers on two deterministic seeds. Strategy regressions cover debuff timing, multi-hit damage previews, conditional comeback recovery, caps, per-turn limits, old status compatibility, and nightmare-draw defeat without passive recursion or resurrection.
+The engine suite covers reproducible initialization and save/load, invalid actions, energy, block, combos and finishers, exhaustion and reshuffling, nightmare thresholds, defeat, rewards, map transitions, rest, upgrades, shops, events, and full eight-floor wins for all five wrestlers on two deterministic seeds. Strategy regressions cover debuff timing, multi-hit damage previews, conditional comeback recovery, caps, per-turn limits, old status compatibility, and nightmare-draw defeat without passive recursion or resurrection. The expansion suite resolves all 50 cards at both upgrade levels for each of the five wrestlers, compares damage previews with actual results, and verifies JSON restore and immutable actions. Across 768 deterministic seeds it checks that all 25 new moves appear in normal rewards and shops, can be acquired once per offer, and can be permanently upgraded at rest.
 
-Presentation tests cover exact health boundaries, health/pressure/heat priority, recovery after real engine actions, the 30 distinct state paths and WebP files, and unchanged outcomes for all 25 card cues. A reachable-source check rejects app-owned canvas drawing or continuous illustration frame loops. The final automated run passed all 45 tests and the production build succeeded. Automated checks do not establish visual reference fidelity or browser layout; those are tracked in the [verification record](../artifacts/cartoon-fighter-qa.md) and [arena checklist](../artifacts/arena-layout-checklist.md).
+Presentation tests cover exact health boundaries, health/pressure/heat priority, recovery after real engine actions, the 30 distinct state paths and WebP files, and unchanged outcomes for all 50 card cues. A reachable-source check rejects app-owned canvas drawing or continuous illustration frame loops. Automated checks do not establish visual reference fidelity or browser layout; those are tracked in the [verification record](../artifacts/cartoon-fighter-qa.md) and [arena checklist](../artifacts/arena-layout-checklist.md).
 
 ```sh
 npm install

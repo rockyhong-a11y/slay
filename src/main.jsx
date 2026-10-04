@@ -40,6 +40,7 @@ import {
   Footprints,
   Crown,
   BookOpen,
+  List,
 } from "@phosphor-icons/react";
 import {
   CARDS,
@@ -403,6 +404,7 @@ function App() {
   const [nav, setNav] = useState(pageFromHash);
   const [hit, setHit] = useState(null);
   const [cue, setCue] = useState(null);
+  const [combatMenuOpen, setCombatMenuOpen] = useState(false);
   const busyRef = useRef(false);
   const cueSequence = useRef(0);
   const arenaRef = useRef(null);
@@ -562,6 +564,9 @@ function App() {
         modal ||
         document.querySelector("dialog[open]") ||
         e.target.closest("input,textarea,select,[contenteditable='true']") ||
+        e.ctrlKey ||
+        e.metaKey ||
+        e.altKey ||
         e.repeat
       )
         return;
@@ -575,7 +580,7 @@ function App() {
         if (c) play(c.uid);
       }
       if (e.code === "Space" && state.phase === "combat") {
-        if (e.target.closest("button,a,[role='button']")) return;
+        if (e.target.closest("button,a,summary,[role='button']")) return;
         e.preventDefault();
         end();
       }
@@ -620,7 +625,9 @@ function App() {
   const activePhase = state.phase;
   return (
     <MotionConfig reducedMotion="user">
-      <div className="app-shell">
+      <div
+        className={`app-shell ${nav === "battle" && (activePhase === "combat" || cue) ? "combat-view" : ""}`}
+      >
         <aside className="sidebar">
           <a
             href={import.meta.env.BASE_URL}
@@ -699,6 +706,56 @@ function App() {
               </strong>
             </div>
             <div className="top-actions">
+              <details
+                className="combat-menu"
+                onToggle={(event) =>
+                  setCombatMenuOpen(event.currentTarget.open)
+                }
+                onKeyDown={(event) => {
+                  if (event.key !== "Escape") return;
+                  event.preventDefault();
+                  event.stopPropagation();
+                  event.currentTarget.open = false;
+                  event.currentTarget.querySelector("summary").focus();
+                }}
+                onBlur={(event) => {
+                  if (!event.currentTarget.contains(event.relatedTarget))
+                    event.currentTarget.open = false;
+                }}
+              >
+                <summary
+                  role="button"
+                  aria-label="경기 메뉴"
+                  aria-expanded={combatMenuOpen}
+                  aria-controls="combat-navigation"
+                >
+                  <List size={18} />
+                  <span>메뉴</span>
+                </summary>
+                <nav id="combat-navigation" aria-label="경기 메뉴">
+                  {navItems.map((item) => (
+                    <button
+                      key={item.id}
+                      type="button"
+                      aria-current={
+                        nav === item.id || modal === item.id
+                          ? "page"
+                          : undefined
+                      }
+                      onClick={(event) => {
+                        const menu = event.currentTarget.closest("details");
+                        menu.open = false;
+                        menu.querySelector("summary").focus();
+                        navigate(item.id);
+                      }}
+                    >
+                      <item.icon size={18} />
+                      <span>{item.label}</span>
+                      <ArrowRight size={13} />
+                    </button>
+                  ))}
+                </nav>
+              </details>
               <span
                 className="coins"
                 title="보유 크레딧"
@@ -807,7 +864,7 @@ function App() {
                 />
               </section>
             ) : (
-              <>
+              <div className="combat-workspace">
                 <section
                   className={`arena ${activePhase === "reward" ? "reward-arena" : ""} ${hit?.target === "player" ? "player-hit" : ""} ${cue ? "cinematic-active" : ""}`}
                   aria-label="전투 아레나"
@@ -950,143 +1007,145 @@ function App() {
                     </div>
                   )}
                 </section>
-                <div className="combat-strip">
-                  <div className="stress-meter">
-                    <Brain size={19} />
-                    <div>
-                      <span>
-                        심리적 압박{" "}
-                        <strong>
-                          {state.player.stress}
-                          <small> / 100</small>
-                        </strong>
-                      </span>
-                      <div className="stress-track">
-                        <span style={{ width: `${state.player.stress}%` }} />
+                <div className="combat-bottom">
+                  <div className="combat-strip">
+                    <div className="stress-meter">
+                      <Brain size={19} />
+                      <div>
+                        <span>
+                          심리적 압박{" "}
+                          <strong>
+                            {state.player.stress}
+                            <small> / 100</small>
+                          </strong>
+                        </span>
+                        <div className="stress-track">
+                          <span style={{ width: `${state.player.stress}%` }} />
+                        </div>
                       </div>
-                    </div>
-                    <span
-                      className="stress-info"
-                      title="압박이 쌓이면 악몽 카드가 덱에 추가됩니다."
-                    >
-                      악몽을 경계하세요
-                    </span>
-                  </div>
-                  <div className="combo-meter">
-                    <Fire size={19} />
-                    <span>
-                      COMBO <strong>{state.combo || 0}</strong>
-                    </span>
-                    <span className="combo-divide" />
-                    <span>피니셔 열기</span>
-                    <div className="hype-pips">
-                      {Array.from({ length: 3 }, (_, i) => (
-                        <span
-                          key={i}
-                          className={state.player.hype > i ? "on" : ""}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <section
-                  className={`hand-area ${activePhase !== "combat" ? "inactive-hand" : ""}`}
-                  aria-label="손에 든 카드"
-                >
-                  <div className="hand-controls">
-                    <div className="energy-orb">
-                      <Lightning size={28} weight="fill" />
-                      <strong>
-                        {state.energy}
-                        <small>/{state.maxEnergy || 3}</small>
-                      </strong>
-                    </div>
-                    <span className="energy-label">ENERGY</span>
-                    <button
-                      className="pile-button"
-                      onClick={() => setModal("draw")}
-                    >
-                      <Stack size={21} />
-                      <strong>{state.draw.length}</strong>
-                      <span>드로우 덱</span>
-                    </button>
-                  </div>
-                  <div className="hand-main">
-                    <div className="hand-heading">
-                      <h2>
-                        당신의 패<span>{state.hand.length} CARDS</span>
-                      </h2>
-                      <span>
-                        카드를 선택해 플레이하세요 <kbd>1</kbd>
-                        <span className="shortcut-range">~</span>
-                        <kbd>
-                          {state.hand.length === 10
-                            ? 0
-                            : state.hand.length || 5}
-                        </kbd>
+                      <span
+                        className="stress-info"
+                        title="압박이 쌓이면 악몽 카드가 덱에 추가됩니다."
+                      >
+                        악몽을 경계하세요
                       </span>
                     </div>
-                    <div className="card-hand">
-                      <AnimatePresence mode="popLayout">
-                        {state.hand.map((c, i) => (
-                          <Card
-                            key={c.uid}
-                            instance={c}
-                            index={i}
-                            onClick={() => play(c.uid)}
-                            disabled={!!cue || !canPlayCard(state, c)}
+                    <div className="combo-meter">
+                      <Fire size={19} />
+                      <span>
+                        COMBO <strong>{state.combo || 0}</strong>
+                      </span>
+                      <span className="combo-divide" />
+                      <span>피니셔 열기</span>
+                      <div className="hype-pips">
+                        {Array.from({ length: 3 }, (_, i) => (
+                          <span
+                            key={i}
+                            className={state.player.hype > i ? "on" : ""}
                           />
                         ))}
-                      </AnimatePresence>
-                      {state.hand.length === 0 && (
-                        <div className="empty-hand">
-                          <Stack size={32} />
-                          <p>패가 비었습니다.</p>
-                          <span>
-                            {activePhase === "combat"
-                              ? "턴을 종료해 새로운 카드를 드로우하세요."
-                              : "다음 경기를 준비하세요."}
-                          </span>
-                        </div>
-                      )}
+                      </div>
                     </div>
                   </div>
-                  <div className="turn-controls">
-                    <button
-                      className="end-turn"
-                      onClick={end}
-                      disabled={!!cue || activePhase !== "combat"}
-                    >
-                      <span>{cue ? "기술 시전 중" : "턴 종료"}</span>
-                      <ArrowRight size={19} />
-                      <kbd>SPACE</kbd>
-                    </button>
-                    <button
-                      className="pile-button discard"
-                      onClick={() => setModal("discard")}
-                    >
-                      <Backpack size={21} />
-                      <strong>{state.discard.length}</strong>
-                      <span>버린 카드</span>
-                    </button>
-                  </div>
-                </section>
-                <footer className="game-footer">
-                  <button
-                    className="text-button"
-                    onClick={() => setModal("log")}
+                  <section
+                    className={`hand-area ${activePhase !== "combat" ? "inactive-hand" : ""}`}
+                    aria-label="손에 든 카드"
                   >
-                    <Eye size={14} />
-                    경기 기록
-                    <ArrowSquareOut size={12} />
-                  </button>
-                  <span>카드 순서를 설계하세요. 링의 흐름을 바꾸세요.</span>
-                  <span className="autosave">
-                    <Check size={12} />
-                    자동 저장
-                  </span>
-                </footer>
-              </>
+                    <div className="hand-controls">
+                      <div className="energy-orb">
+                        <Lightning size={28} weight="fill" />
+                        <strong>
+                          {state.energy}
+                          <small>/{state.maxEnergy || 3}</small>
+                        </strong>
+                      </div>
+                      <span className="energy-label">ENERGY</span>
+                      <button
+                        className="pile-button"
+                        onClick={() => setModal("draw")}
+                      >
+                        <Stack size={21} />
+                        <strong>{state.draw.length}</strong>
+                        <span>드로우 덱</span>
+                      </button>
+                    </div>
+                    <div className="hand-main">
+                      <div className="hand-heading">
+                        <h2>
+                          당신의 패<span>{state.hand.length} CARDS</span>
+                        </h2>
+                        <span>
+                          카드를 선택해 플레이하세요 <kbd>1</kbd>
+                          <span className="shortcut-range">~</span>
+                          <kbd>
+                            {state.hand.length === 10
+                              ? 0
+                              : state.hand.length || 5}
+                          </kbd>
+                        </span>
+                      </div>
+                      <div className="card-hand">
+                        <AnimatePresence mode="popLayout">
+                          {state.hand.map((c, i) => (
+                            <Card
+                              key={c.uid}
+                              instance={c}
+                              index={i}
+                              onClick={() => play(c.uid)}
+                              disabled={!!cue || !canPlayCard(state, c)}
+                            />
+                          ))}
+                        </AnimatePresence>
+                        {state.hand.length === 0 && (
+                          <div className="empty-hand">
+                            <Stack size={32} />
+                            <p>패가 비었습니다.</p>
+                            <span>
+                              {activePhase === "combat"
+                                ? "턴을 종료해 새로운 카드를 드로우하세요."
+                                : "다음 경기를 준비하세요."}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="turn-controls">
+                      <button
+                        className="end-turn"
+                        onClick={end}
+                        disabled={!!cue || activePhase !== "combat"}
+                      >
+                        <span>{cue ? "기술 시전 중" : "턴 종료"}</span>
+                        <ArrowRight size={19} />
+                        <kbd>SPACE</kbd>
+                      </button>
+                      <button
+                        className="pile-button discard"
+                        onClick={() => setModal("discard")}
+                      >
+                        <Backpack size={21} />
+                        <strong>{state.discard.length}</strong>
+                        <span>버린 카드</span>
+                      </button>
+                    </div>
+                  </section>
+                  <footer className="game-footer">
+                    <button
+                      className="text-button"
+                      onClick={() => setModal("log")}
+                    >
+                      <Eye size={14} />
+                      경기 기록
+                      <ArrowSquareOut size={12} />
+                    </button>
+                    <span>카드 순서를 설계하세요. 링의 흐름을 바꾸세요.</span>
+                    <span className="autosave">
+                      <Check size={12} />
+                      자동 저장
+                    </span>
+                  </footer>
+                </div>
+              </div>
             )}
           </main>
         </div>
