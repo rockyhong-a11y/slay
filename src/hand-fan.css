@@ -115,6 +115,9 @@
   color: #f1e5e9;
   pointer-events: none;
 }
+.combat-view .card-hand.hand-fan:not(:has(> .game-card:nth-child(4))) .card-peek {
+  display: none;
+}
 .combat-view .card-hand.hand-fan .card-peek .peek-cost {
   width: 16px;
   height: 20px;

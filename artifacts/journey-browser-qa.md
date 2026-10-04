@@ -29,3 +29,5 @@ After a real 16-point attack, using the medical icepack restored the capped 16 H
 The original local saved run was still Viper at 71/72 HP, enemy Iron Rose at 15/47 HP, zero energy and round one after DEV checks. Restoring the ordinary URL retained those values and added exactly one migration starter item. The original full-cinematic preference was restored.
 
 Final local validation: 78/78 tests, production build with `/slay/` base, and diff whitespace checks passed. Built JavaScript contains none of the DEV fixture query names or fixture UID strings.
+
+Production commit `08d9c3c` deployed successfully through [GitHub Actions](https://github.com/rockyhong-a11y/slay/actions/runs/37227867654). The public page loaded its new compiled bundle, overlapped three cards inside 393×852, retained the previous Raven battle and showed one migration starter item. A final CSS refinement hides the extra vertical rail for hands of one to three cards so their horizontal titles remain unobstructed; the two-card ordinary local save confirmed both rails hidden with no overflow.
