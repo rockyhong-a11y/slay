@@ -1,0 +1,619 @@
+/* State-specific poses and card-art cinematics live inside the existing arena. */
+.combat-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+.fighter-sprite-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 100%;
+  container-type: size;
+}
+.fighter-sprite-frame .fighter-pose {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 100%;
+  translate: 0
+    calc(
+      min(100cqh, calc(100cqw / var(--pose-aspect, 0.666923))) *
+        var(--pose-bottom, 0)
+    );
+}
+.fighter-condition {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: #c0c6d2;
+  background: #121620b8;
+  border: 1px solid #ffffff1d;
+  padding: 3px 7px;
+  border-radius: 3px;
+  font-size: 10px;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+button.fighter-condition {
+  min-height: 28px;
+  cursor: pointer;
+}
+button.fighter-condition:hover {
+  border-color: currentColor;
+  background: #181e2f;
+}
+button.fighter-condition:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+.fighter-condition.condition-excited {
+  color: #ecbf7b;
+}
+.fighter-condition.condition-fiery {
+  color: #f9868c;
+}
+.fighter-condition.condition-frustrated {
+  color: #c6a7e5;
+}
+.fighter-condition.condition-tired {
+  color: #adb9ce;
+}
+.fighter-condition.condition-groggy {
+  color: #f1ae84;
+}
+.fighter-status {
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 5px;
+}
+.enemy-condition-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+.pose-groggy {
+  scale: 0.74;
+}
+.pose-tired {
+  filter: saturate(0.85);
+}
+.pose-groggy {
+  filter: saturate(0.7);
+}
+
+.technique-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  pointer-events: none;
+  overflow: hidden;
+  background: #090b13e8;
+}
+.cinematic-active .fighter-hud,
+.cinematic-active .round-label {
+  z-index: 8;
+}
+.cinematic-active .arena-bottom {
+  opacity: 0;
+}
+.cinematic-active .fighter {
+  opacity: 0.18;
+}
+.technique-scene-visual {
+  position: absolute;
+  inset: 0;
+  --scene-accent: #f48a94;
+}
+.scene-throw .technique-scene-visual {
+  --scene-accent: #edbf83;
+}
+.scene-submission .technique-scene-visual {
+  --scene-accent: #c4a5ed;
+}
+.scene-grapple .technique-scene-visual {
+  --scene-accent: #9fb5e6;
+}
+.scene-aerial .technique-scene-visual {
+  --scene-accent: #92d5ed;
+}
+.scene-defense .technique-scene-visual {
+  --scene-accent: #a8cde5;
+}
+.scene-tactics .technique-scene-visual {
+  --scene-accent: #a8d7b3;
+}
+.scene-nightmare .technique-scene-visual {
+  --scene-accent: #bc91d1;
+}
+.scene-finisher .technique-scene-visual {
+  --scene-accent: #ebc98b;
+}
+.technique-art-frame {
+  position: absolute;
+  inset: 5% 13% 2%;
+  transform-origin: 50% 60%;
+}
+.technique-art-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 10%,
+    #000 90%,
+    transparent
+  );
+}
+.technique-film-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      #080b17b8,
+      transparent 36%,
+      transparent 57%,
+      #090b15dc 88%
+    ),
+    linear-gradient(
+      90deg,
+      #0b0d17c9,
+      transparent 30%,
+      transparent 70%,
+      #0b0d17c9
+    );
+}
+.technique-scene-copy {
+  position: absolute;
+  bottom: 52px;
+  left: 7%;
+  max-width: 86%;
+}
+.technique-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  color: var(--scene-accent);
+  font:
+    600 11px/1.5 "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+.technique-kicker i {
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+}
+.technique-scene-copy strong {
+  display: block;
+  font-size: clamp(19px, 3vw, 34px);
+  font-weight: 700;
+  letter-spacing: -1.2px;
+  line-height: 1.4;
+  color: #fff1ec;
+  text-shadow: 0 3px 18px #05060a;
+  margin-top: 5px;
+}
+.technique-results {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 8px;
+  bottom: 14px;
+  left: 7%;
+  right: 7%;
+  max-height: 40px;
+  align-items: center;
+}
+.technique-results span {
+  font-size: 10px;
+  line-height: 1.5;
+  color: #e0dfeb;
+  border: 1px solid #ffffff22;
+  background: #10131edd;
+  padding: 4px 7px;
+  border-radius: 2px;
+}
+.technique-results .result-damage {
+  color: #fff3e9;
+  font-size: 13px;
+  font-weight: 700;
+  border-color: var(--scene-accent);
+}
+.technique-results .result-guard,
+.technique-results .result-blocked {
+  color: #b4d9f1;
+}
+.technique-results .result-calm,
+.technique-results .result-heal {
+  color: #b2dec6;
+}
+.technique-results .result-hype {
+  color: #efc88b;
+}
+.technique-results .result-pressure {
+  color: #d6a8e2;
+}
+.technique-results .result-self-damage {
+  color: #ff979e;
+}
+.technique-scene-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--scene-accent);
+  transform-origin: left;
+  animation: scene-progress var(--scene-duration) linear both;
+}
+.condition-guide > p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
+.condition-preview {
+  position: relative;
+  height: 230px;
+  margin: 22px 0;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(ellipse at 30% 90%, #e44b591a, transparent 60%),
+    var(--surface2);
+  overflow: hidden;
+  border-radius: 4px;
+}
+.condition-preview .fighter {
+  inset: 0 auto 7px 0;
+  width: 47%;
+  height: 96%;
+  opacity: 1;
+}
+.condition-preview > div:last-child {
+  position: absolute;
+  top: 50%;
+  left: 52%;
+  right: 18px;
+  translate: 0 -50%;
+}
+.condition-preview > div:last-child > span {
+  color: var(--red);
+  font:
+    600 11px "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 2px;
+}
+.condition-preview h3 {
+  font-size: 23px;
+  margin: 6px 0 12px;
+}
+.condition-preview p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.condition-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+.condition-options > button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  text-align: left;
+  padding: 12px;
+  background: var(--surface2);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  min-height: 80px;
+}
+.condition-options > button[aria-pressed="true"] {
+  border-color: var(--red);
+  background: #ed48520b;
+}
+.condition-options > button > span:last-child {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.condition-guide .condition-priority {
+  font-size: 10px;
+  margin-top: 18px;
+}
+.setting-row.cinematic-setting {
+  flex-wrap: wrap;
+}
+.cinematic-setting > small {
+  flex-basis: 100%;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pose-normal {
+    animation: pose-breathe 3.8s ease-in-out infinite;
+  }
+  .pose-excited {
+    animation: pose-bounce 1.5s ease-in-out infinite;
+  }
+  .pose-fiery {
+    animation: pose-surge 2.1s ease-in-out infinite;
+  }
+  .pose-frustrated {
+    animation: pose-unsteady 4s ease-in-out infinite;
+  }
+  .pose-tired {
+    animation: pose-heavy-breathe 2.5s ease-in-out infinite;
+  }
+  .pose-groggy {
+    animation: pose-sway 4.6s ease-in-out infinite;
+  }
+  .pose-still {
+    animation: none;
+  }
+  .technique-art-frame {
+    animation: scene-strike var(--scene-duration)
+      cubic-bezier(0.22, 0.68, 0.16, 1) both;
+  }
+  .scene-throw .technique-art-frame,
+  .scene-grapple .technique-art-frame {
+    animation-name: scene-throw;
+  }
+  .scene-submission .technique-art-frame {
+    animation-name: scene-hold;
+  }
+  .scene-aerial .technique-art-frame {
+    animation-name: scene-aerial;
+  }
+  .scene-defense .technique-art-frame,
+  .scene-tactics .technique-art-frame {
+    animation-name: scene-control;
+  }
+  .scene-nightmare .technique-art-frame {
+    animation-name: scene-nightmare;
+  }
+  .scene-finisher .technique-art-frame {
+    animation-name: scene-finisher;
+  }
+  .technique-scene-copy {
+    animation: scene-title 280ms both;
+  }
+  .technique-results {
+    animation: scene-title 200ms both;
+  }
+  .scene-still * {
+    animation: none !important;
+  }
+}
+@keyframes pose-breathe {
+  50% {
+    transform: translateY(-2px) scaleY(1.008);
+  }
+}
+@keyframes pose-bounce {
+  50% {
+    transform: translateY(-4px) rotate(0.35deg);
+  }
+}
+@keyframes pose-surge {
+  50% {
+    transform: translateX(2px) rotate(0.6deg) scale(1.008);
+  }
+}
+@keyframes pose-unsteady {
+  50% {
+    transform: translateY(2px) rotate(-0.7deg);
+  }
+}
+@keyframes pose-heavy-breathe {
+  50% {
+    transform: translateY(3px) scaleY(0.985);
+  }
+}
+@keyframes pose-sway {
+  25% {
+    transform: rotate(-0.7deg);
+  }
+  75% {
+    transform: rotate(0.6deg) translateY(1px);
+  }
+}
+@keyframes scene-progress {
+  to {
+    transform: scaleX(0);
+  }
+}
+@keyframes scene-title {
+  from {
+    opacity: 0;
+    translate: -14px 0;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@keyframes scene-strike {
+  0% {
+    transform: translateX(-25px) scale(0.96);
+    opacity: 0;
+  }
+  16% {
+    transform: translateX(3px) scale(1.015);
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(0) scale(1.03);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(5px) scale(1.035);
+    opacity: 1;
+  }
+}
+@keyframes scene-throw {
+  from {
+    transform: translateY(16px) rotate(-2deg) scale(0.96);
+    opacity: 0;
+  }
+  24% {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-3px) rotate(1deg) scale(1.03);
+    opacity: 1;
+  }
+}
+@keyframes scene-hold {
+  from {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+  22% {
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.045);
+    opacity: 1;
+  }
+}
+@keyframes scene-aerial {
+  from {
+    transform: translateY(-22px) scale(0.97);
+    opacity: 0;
+  }
+  24% {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(5px) scale(1.025);
+    opacity: 1;
+  }
+}
+@keyframes scene-control {
+  from {
+    transform: scale(0.97);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+}
+@keyframes scene-nightmare {
+  from {
+    transform: scale(0.97);
+    opacity: 0;
+    filter: saturate(0.6);
+  }
+  30% {
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.06);
+    opacity: 1;
+    filter: saturate(1);
+  }
+}
+@keyframes scene-finisher {
+  0% {
+    transform: scale(0.93) rotate(-1deg);
+    opacity: 0;
+  }
+  20% {
+    transform: scale(1.02) rotate(0);
+    opacity: 1;
+  }
+  38% {
+    transform: scale(1.015);
+  }
+  100% {
+    transform: scale(1.065);
+    opacity: 1;
+  }
+}
+@media (max-width: 767px) {
+  .fighter-condition {
+    font-size: 9px;
+    padding: 2px 5px;
+  }
+  .fighter-status {
+    gap: 7px 9px;
+  }
+  .enemy-condition-row {
+    margin-top: 5px;
+  }
+  .technique-art-frame {
+    inset: 10% 4% 8%;
+  }
+  .technique-art-frame img {
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 6%,
+      #000 94%,
+      transparent
+    );
+  }
+  .technique-scene-copy {
+    bottom: 77px;
+    left: 5%;
+  }
+  .technique-kicker {
+    font-size: 9px;
+    letter-spacing: 1px;
+    gap: 6px;
+  }
+  .technique-scene-copy strong {
+    font-size: 23px;
+  }
+  .technique-results {
+    left: 5%;
+    right: 5%;
+    bottom: 24px;
+    gap: 4px;
+    max-height: 45px;
+  }
+  .technique-results span {
+    font-size: 9px;
+    padding: 3px 5px;
+  }
+  .technique-results .result-damage {
+    font-size: 11px;
+  }
+  .cinematic-active .round-label {
+    opacity: 0;
+  }
+  .condition-preview {
+    height: 210px;
+  }
+  .condition-options > button {
+    padding: 10px 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fighter-sprite-frame,
+  .technique-scene-visual * {
+    animation: none !important;
+  }
+}

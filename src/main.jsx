@@ -59,6 +59,13 @@ import {
 } from "./game.js";
 import { getCardDetail, CARD_RARITY_LABELS } from "./card-library.js";
 import { CardGuidePage, CardLibraryPage } from "./KnowledgePages.jsx";
+import { selectFighterState, createCardCue } from "./presentation.js";
+import {
+  FighterSprite,
+  FighterCondition,
+  TechniqueScene,
+  ConditionGuide,
+} from "./CombatPresentation.jsx";
 import "@fontsource/barlow-condensed/latin-600.css";
 import "@fontsource/barlow-condensed/latin-700.css";
 import "@fontsource/barlow-condensed/latin-800-italic.css";
@@ -364,6 +371,17 @@ function App() {
   const [modal, setModal] = useState(null);
   const [nav, setNav] = useState(pageFromHash);
   const [hit, setHit] = useState(null);
+  const [cue, setCue] = useState(null);
+  const busyRef = useRef(false);
+  const cueSequence = useRef(0);
+  const arenaRef = useRef(null);
+  const [cinematics, setCinematics] = useState(() => {
+    try {
+      return localStorage.getItem("slay.cinematics") !== "short";
+    } catch {
+      return true;
+    }
+  });
   const [toast, setToast] = useState("");
   const [theme, setTheme] = useState(() => {
     try {
@@ -376,6 +394,23 @@ function App() {
   const wrestler = WRESTLERS[state.player.id] || WRESTLERS.raven;
   const toastTimer = useRef(null);
   const hitTimer = useRef(null);
+  const playerCondition = selectFighterState(state.player);
+  const enemyCondition = selectFighterState(state.enemy, { enemy: true });
+  const completeCue = (id) => {
+    setCue((current) => (current?.id === id ? null : current));
+    if (cueSequence.current === id) busyRef.current = false;
+  };
+  const clearPresentation = () => {
+    busyRef.current = false;
+    setCue(null);
+    setHit(null);
+    clearTimeout(hitTimer.current);
+  };
+  useEffect(() => {
+    try {
+      localStorage.setItem("slay.cinematics", cinematics ? "full" : "short");
+    } catch {}
+  }, [cinematics]);
   const notify = (message) => {
     setToast(message);
     clearTimeout(toastTimer.current);
@@ -408,6 +443,7 @@ function App() {
   );
   const act = (fn) => setState((current) => fn(current));
   const changePage = (id) => {
+    clearPresentation();
     setNav(id);
     const hash = id === "battle" ? "" : `#${id}`;
     if (window.location.hash !== hash) {
@@ -421,6 +457,7 @@ function App() {
   };
   useEffect(() => {
     const syncPage = () => {
+      clearPresentation();
       setNav(pageFromHash());
       window.scrollTo(0, 0);
     };
@@ -440,8 +477,9 @@ function App() {
           : "SLAY | Ring of Nightmares";
   }, [nav]);
   const play = (uid) => {
-    if (state.phase !== "combat") return;
-    const card = getCard(state.hand.find((c) => c.uid === uid));
+    if (state.phase !== "combat" || busyRef.current) return;
+    const instance = state.hand.find((c) => c.uid === uid);
+    const card = getCard(instance);
     const next = playCard(state, uid);
     if (next === state) {
       notify(
@@ -451,19 +489,30 @@ function App() {
       );
       return;
     }
-    const damage = state.enemy.hp - next.enemy.hp;
-    const block = next.player.block - state.player.block;
-    setHit({
-      target: damage > 0 ? "enemy" : "player",
-      text: damage > 0 ? `-${damage}` : block > 0 ? `+${block} 가드` : "FOCUS",
-      id: Date.now(),
-    });
+    const actionCue = createCardCue(state, next, instance);
+    const id = ++cueSequence.current;
+    busyRef.current = true;
+    setCue({ ...actionCue, id });
+    const arenaBounds = arenaRef.current?.getBoundingClientRect();
+    if (
+      arenaBounds &&
+      (arenaBounds.top < 0 || arenaBounds.bottom > window.innerHeight - 30)
+    ) {
+      arenaRef.current.scrollIntoView({ block: "center", behavior: "instant" });
+    }
+    const damage = actionCue.damage;
+    setHit(
+      card.effects.damage
+        ? { target: "enemy", text: damage ? `-${damage}` : "BLOCK", id }
+        : null,
+    );
     clearTimeout(hitTimer.current);
     hitTimer.current = setTimeout(() => setHit(null), 650);
     sound.play(damage > 0 ? "attack" : "skill");
     setState(next);
   };
   const end = () => {
+    if (busyRef.current) return;
     const next = endTurn(state);
     if (next === state) return;
     const damage = state.player.hp - next.player.hp;
@@ -503,6 +552,7 @@ function App() {
     return () => window.removeEventListener("keydown", key);
   }, [state, modal, nav, sound.enabled]);
   const startRun = (id) => {
+    clearPresentation();
     setState(newRun(id, crypto.getRandomValues(new Uint32Array(1))[0]));
     setModal(null);
     changePage("battle");
@@ -706,8 +756,9 @@ function App() {
             ) : (
               <>
                 <section
-                  className={`arena ${activePhase === "reward" ? "reward-arena" : ""} ${hit?.target === "player" ? "player-hit" : ""}`}
+                  className={`arena ${activePhase === "reward" ? "reward-arena" : ""} ${hit?.target === "player" ? "player-hit" : ""} ${cue ? "cinematic-active" : ""}`}
                   aria-label="전투 아레나"
+                  ref={arenaRef}
                 >
                   <img
                     className="arena-background"
@@ -732,6 +783,10 @@ function App() {
                         <Fire size={14} />
                         열기 {state.player.hype}
                       </span>
+                      <FighterCondition
+                        condition={playerCondition}
+                        onClick={() => setModal("condition")}
+                      />
                     </div>
                   </div>
                   <div className="round-label">
@@ -772,29 +827,32 @@ function App() {
                       </span>
                       <Eye size={13} />
                     </div>
+                    <div className="enemy-condition-row">
+                      <FighterCondition condition={enemyCondition} enemy />
+                    </div>
                   </div>
-                  <div
-                    className={`fighter player-fighter ${hit?.target === "player" ? "hit" : ""}`}
-                  >
-                    <img
-                      src={art(state.player.id)}
-                      alt={`${wrestler.name} 선수`}
+                  <FighterSprite
+                    actor={state.player.id}
+                    condition={playerCondition}
+                    name={wrestler.name}
+                    side="player"
+                    hit={hit?.target === "player"}
+                    cast={cue}
+                    still={activePhase === "defeat"}
+                  />
+                  {state.enemy && (
+                    <FighterSprite
+                      actor={state.enemy.artKey || state.enemy.id || "valkyrie"}
+                      condition={enemyCondition}
+                      name={enemyHUD.name}
+                      side="enemy"
+                      hit={hit?.target === "enemy"}
+                      still={state.enemy.hp === 0}
                     />
-                  </div>
-                  <div
-                    className={`fighter enemy-fighter ${hit?.target === "enemy" ? "hit" : ""}`}
-                    aria-hidden={!state.enemy}
-                  >
-                    <img
-                      src={art(
-                        state.enemy?.artKey || state.enemy?.id || "valkyrie",
-                      )}
-                      alt={`${enemyHUD.name} 선수`}
-                    />
-                  </div>
+                  )}
                   <span className="vs-mark">VS</span>
                   <AnimatePresence>
-                    {hit && (
+                    {hit && !cue && (
                       <motion.div
                         key={hit.id}
                         className={`damage-number ${hit.target}`}
@@ -804,6 +862,16 @@ function App() {
                       >
                         {hit.text}
                       </motion.div>
+                    )}
+                  </AnimatePresence>
+                  <AnimatePresence>
+                    {cue && (
+                      <TechniqueScene
+                        key={cue.id}
+                        cue={cue}
+                        onComplete={completeCue}
+                        shortened={!cinematics}
+                      />
                     )}
                   </AnimatePresence>
                   <div className="arena-bottom">
@@ -823,7 +891,7 @@ function App() {
                       {state.floor === 8 ? "TITLE MATCH" : "SINGLES MATCH"}
                     </span>
                   </div>
-                  {activePhase !== "combat" && (
+                  {activePhase !== "combat" && !cue && (
                     <div className="phase-overlay">
                       <PhasePanel
                         state={state}
@@ -918,7 +986,7 @@ function App() {
                             instance={c}
                             index={i}
                             onClick={() => play(c.uid)}
-                            disabled={!canPlayCard(state, c)}
+                            disabled={!!cue || !canPlayCard(state, c)}
                           />
                         ))}
                       </AnimatePresence>
@@ -939,9 +1007,9 @@ function App() {
                     <button
                       className="end-turn"
                       onClick={end}
-                      disabled={activePhase !== "combat"}
+                      disabled={!!cue || activePhase !== "combat"}
                     >
-                      <span>턴 종료</span>
+                      <span>{cue ? "기술 시전 중" : "턴 종료"}</span>
                       <ArrowRight size={19} />
                       <kbd>SPACE</kbd>
                     </button>
@@ -997,6 +1065,7 @@ function App() {
                 discard: "버린 카드",
                 roster: "CHOOSE YOUR WRESTLER",
                 settings: "설정",
+                condition: "컨디션 및 모션",
                 log: "경기 기록",
                 upgrade: "카드 강화",
               }[modal]
@@ -1113,6 +1182,19 @@ function App() {
                     {sound.enabled ? "켜짐" : "꺼짐"}
                   </button>
                 </div>
+                <div className="setting-row cinematic-setting">
+                  <span>기술 연출</span>
+                  <button
+                    aria-label={`기술 연출: ${cinematics ? "전체" : "간결"}. ${cinematics ? "간결" : "전체"}로 변경`}
+                    onClick={() => setCinematics((value) => !value)}
+                  >
+                    {cinematics ? "전체" : "간결"}
+                  </button>
+                  <small>
+                    전체는 카드 아트를 움직이며 보여줍니다. 간결은 같은 아트와
+                    결과를 짧게 표시합니다. 기기의 모션 감소 설정도 반영합니다.
+                  </small>
+                </div>
                 <div className="setting-row">
                   <span>화면 테마</span>
                   <button
@@ -1135,6 +1217,9 @@ function App() {
                   <ArrowCounterClockwise size={18} />새 런 시작
                 </button>
               </div>
+            )}
+            {modal === "condition" && (
+              <ConditionGuide actor={state.player.id} name={wrestler.name} />
             )}
             {modal === "log" && (
               <div className="match-log">

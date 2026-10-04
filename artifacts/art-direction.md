@@ -16,6 +16,14 @@ Built with the imagegen image-generation tool. All characters are adults, all im
 
 Shared generation direction: premium semi-realistic 2.5D character illustration, precise anatomy, fully clothed practical wrestling costume, warm red rim / cool front lighting, full head-to-boots framing, isolated transparent background, no scenery, text, logos, watermark, or existing franchise identity.
 
+## Fighter conditions and pose provenance
+
+Each wrestler has six presentation states: **normal, excited, fiery, frustrated, tired and groggy**. Normal reuses the original character asset. The other five states per wrestler add **15 independent transparent pose WebP assets**, each 867×1300 RGBA at quality 88, under `public/assets/poses/{wrestler}-{state}.webp`.
+
+Built-in imagegen edits used each existing character as the identity reference. Face, hairstyle, body proportions, palette and painted style remain consistent. RAVEN's tired/groggy recovery cuts add black/crimson warm-up jacket and track-pants layers; the other poses retain their athletic wrestling gear. Selected PNG originals remain in ignored `artifacts/pose-sources/` files. Exact prompts, references, generated sources and final paths are recorded in [RAVEN](pose-art-raven.md), [VALKYRIE](pose-art-valkyrie.md) and [NOVA](pose-art-nova.md).
+
+Health takes priority: at most 25% selects groggy, then at most 50% selects tired. Above 50%, stress 60+ selects frustrated, hype 6+ selects fiery, hype 3–5 selects excited, otherwise normal. Enemy weakness of 2+ can also select frustrated. The condition badge opens an interactive preview of all six poses, motion styles and thresholds without changing the run. See the [condition preview screenshot](slay-condition.jpg).
+
 ## Card illustrations
 
 All 25 active cards now use independent, move-specific imagegen illustrations at `public/assets/cards/{card-id}.webp`. Every asset is 1024×683 WebP at quality 88. Strikes show the named elbow, shoulder, fist or boot contact; throws show waist locks, backward arches or shoulder carries; submissions show specific arm and head control. Defensive and support cards show guarding, breathing, crowd interaction and recovery. The nightmare has its own psychological scene.
@@ -29,6 +37,12 @@ Generation mode: built-in imagegen, one final image per card. Original PNG sourc
 - [Support, recovery and nightmare — 8 prompts](card-art-support.md)
 
 The three initial generic card images remain as historical source assets and are no longer referenced by active card rendering.
+
+## Card-art cinematics
+
+All 25 dedicated card-art compositions now drive short 2D cinematic overlays. Strikes, aerial moves, throws, submissions, grapples, defense, tactics and nightmare use distinct motion paths and timing. Results come from actual before/after engine snapshots: damage and absorbed guard, healing, draw, energy, hype, stress and applied status effects. A serial input lock holds card-play and end-turn controls during the active cue.
+
+Settings offers **Full / Concise** presentation. Concise keeps the same artwork and real outcomes with shorter timing; operating-system reduced-motion preferences suppress spatial motion. The [cinematic screenshot](slay-cinematic.jpg) shows the current presentation.
 
 ## Higgsfield attempt
 
