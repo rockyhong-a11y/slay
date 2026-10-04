@@ -1,77 +1,91 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { registerLiveArt } from "./live-art-renderer.js";
-import { FighterPuppet } from "./FighterPuppet.jsx";
-import "./live-art.css";
+import { createFighterController } from "./fighter-puppet.js";
+import "./fighter-puppet.css";
 
-const asset = (path) => import.meta.env.BASE_URL + "assets/" + path;
+const root = `${import.meta.env.BASE_URL}assets/`;
 
-// One visible image, locally deformed. The original remains the safe loading fallback.
-export function LiveArt(props) {
-  return props.art?.startsWith("fighters/") ? (
-    <FighterPuppet {...props} />
-  ) : (
-    <MeshArt {...props} />
-  );
-}
-
-function MeshArt({
+export function FighterPuppet({
   art,
   alt,
   className = "",
   style,
   fit = "contain",
-  position = [0.5, 0.5],
+  position = [0.5, 1],
   condition = "normal",
   still = false,
   loading,
   portrait = false,
+  cast = null,
+  castDuration,
+  hit = false,
+  hitId = null,
+  side,
 }) {
   const wrapper = useRef(null),
     canvas = useRef(null),
-    handle = useRef(null);
-  const [ready, setReady] = useState(false);
-  const options = useRef(null);
+    handle = useRef(null),
+    options = useRef(null);
+  const [readyArt, setReadyArt] = useState(null);
   options.current = {
     art,
-    src: asset(art),
-    condition,
-    still,
     fit,
     position,
+    condition,
+    still,
     portrait,
+    cast,
+    castDuration,
+    hit,
+    hitId,
+    side,
   };
   useEffect(() => {
     handle.current = registerLiveArt(
       wrapper.current,
       canvas.current,
       () => options.current,
-      () => setReady(true),
+      () => setReadyArt(options.current.art),
+      createFighterController(root),
     );
     return () => handle.current.dispose();
   }, []);
   useEffect(() => {
     handle.current?.refresh();
-  }, [art, condition, still, fit, position[0], position[1]]);
+  }, [
+    art,
+    condition,
+    still,
+    fit,
+    position[0],
+    position[1],
+    portrait,
+    cast,
+    castDuration,
+    hit,
+    hitId,
+    side,
+  ]);
   return (
     <span
       ref={wrapper}
       role="img"
       aria-label={alt}
-      className={"live-art " + className + (ready ? " live-art-ready" : "")}
+      className={`live-art fighter-puppet ${className} ${readyArt === art ? "live-art-ready" : ""}`}
       style={style}
       data-art={art}
       data-condition={condition}
     >
       <img
-        src={asset(art)}
+        src={root + art}
         alt=""
         aria-hidden="true"
         loading={loading}
         decoding="async"
         style={{
           objectFit: fit,
-          objectPosition: position.map((value) => value * 100 + "%").join(" "),
+          objectPosition: position.map((value) => `${value * 100}%`).join(" "),
         }}
       />
       <canvas ref={canvas} aria-hidden="true" />

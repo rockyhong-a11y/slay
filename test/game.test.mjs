@@ -264,8 +264,8 @@ test("all card definitions have renderable Korean descriptions and usable artwor
   }
 });
 
-function strategicRun(id) {
-  let state = newRun(id);
+function strategicRun(id, seed = 20903) {
+  let state = newRun(id, seed);
   const priority = [
     "championship",
     "quickdraw",
@@ -369,22 +369,25 @@ function strategicRun(id) {
   return state;
 }
 
-test("all three wrestlers can complete a real eight-floor run using only public actions", () => {
+test("all five wrestlers can complete a real eight-floor run using only public actions", () => {
   for (const id of Object.keys(WRESTLERS)) {
-    const result = strategicRun(id);
-    assert.equal(result.phase, "victory", id);
-    assert.equal(result.floor, 8, id);
-    assert.equal(result.history.length, 8, id);
-    assert.ok(result.stats.enemiesDefeated >= 3, id);
-    assert.ok(result.stats.cardsPlayed > 20, id);
-    assert.ok(
-      result.relics.some((item) => item.id === "energy-belt"),
-      id,
-    );
-    assert.ok(
-      result.deck.some((card) => card.upgraded),
-      id,
-    );
+    for (const seed of [20903, 424242]) {
+      const result = strategicRun(id, seed);
+      const label = `${id}/${seed}`;
+      assert.equal(result.phase, "victory", label);
+      assert.equal(result.floor, 8, label);
+      assert.equal(result.history.length, 8, label);
+      assert.ok(result.stats.enemiesDefeated >= 3, label);
+      assert.ok(result.stats.cardsPlayed > 20, label);
+      assert.ok(
+        result.relics.some((item) => item.id === "energy-belt"),
+        label,
+      );
+      assert.ok(
+        result.deck.some((card) => card.upgraded),
+        label,
+      );
+    }
   }
 });
 

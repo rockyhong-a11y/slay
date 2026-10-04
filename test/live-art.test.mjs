@@ -1,9 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
-import { CARDS, WRESTLERS } from "../src/game.js";
+import { CARDS } from "../src/game.js";
 import { CARD_DETAILS } from "../src/card-library.js";
-import { FIGHTER_STATES, fighterPoseArt } from "../src/presentation.js";
 import { LIVE_ART_RIGS } from "../src/live-art-rigs.js";
 import {
   CONDITION_MOTION,
@@ -22,26 +21,23 @@ const closeTo = (actual, expected, message) =>
     `${message}: ${actual} vs ${expected}`,
   );
 
-test("rigs cover every real card and every wrestler pose exactly once", () => {
+test("mesh rigs cover every real card exactly once while fighters use separate puppets", () => {
   const cardArt = Object.keys(CARDS).map((id) => CARD_DETAILS[id].art);
-  const fighterArt = Object.keys(WRESTLERS).flatMap((id) =>
-    Object.keys(FIGHTER_STATES).map((condition) =>
-      fighterPoseArt(id, condition),
-    ),
-  );
-  const required = [...cardArt, ...fighterArt];
-  assert.equal(required.length, 43);
+  const required = cardArt;
+  assert.equal(required.length, 25);
   assert.equal(new Set(required).size, required.length);
-  assert.deepEqual(Object.keys(LIVE_ART_RIGS).sort(), required.sort());
+  assert.deepEqual(
+    Object.keys(LIVE_ART_RIGS)
+      .filter((art) => art.startsWith("cards/"))
+      .sort(),
+    required.sort(),
+  );
   for (const art of required) {
     assert.ok(
       existsSync(new URL(`../public/assets/${art}`, import.meta.url)),
       art,
     );
-    assert.equal(
-      LIVE_ART_RIGS[art].kind,
-      art.startsWith("cards/") ? "card" : "fighter",
-    );
+    assert.equal(LIVE_ART_RIGS[art].kind, "card");
   }
 });
 

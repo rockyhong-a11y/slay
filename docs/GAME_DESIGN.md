@@ -6,9 +6,9 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 
 ## 세계와 시각 방향
 
-배경은 가상의 **UNDERGROUND ARENA**입니다. 붉은 로프, 검은 캔버스, 차가운 스포트라이트와 거친 방송 그래픽으로 긴장감을 만듭니다. 세 주인공은 모두 성인인 오리지널 여성 선수이며, 실존 선수나 기존 게임 캐릭터의 신원을 사용하지 않습니다.
+배경은 가상의 **UNDERGROUND ARENA**입니다. 붉은 로프, 검은 캔버스, 차가운 스포트라이트와 거친 방송 그래픽으로 긴장감을 만듭니다. 다섯 주인공은 모두 성인인 오리지널 여성 선수이며, 실존 선수나 기존 게임 캐릭터의 신원을 사용하지 않습니다.
 
-선수의 실루엣과 장비는 전투 역할을 드러냅니다. 레이븐은 붉은 머리와 타격 중심의 자세, 발키리는 금발과 견고한 그래플러 실루엣, 노바는 검은 머리와 민첩한 움직임을 가진 선수입니다. 제공된 이미지의 격투 자세, 스포츠웨어, 조명을 시각 연구에 참고합니다. 원본 참고 파일은 배포하지 않습니다.
+선수의 실루엣과 장비는 전투 역할을 드러냅니다. 레이븐은 긴 진홍색 머리의 스트라이커, 발키리는 금발 단발의 그래플러, 노바는 긴 검은 머리의 테크니션입니다. 바이퍼는 금발의 두 갈래 땋은 머리와 그린·레드 장비를 갖춘 제압 전문가, 엠버는 물결치는 갈색 머리와 블랙·레드·골드 장비를 갖춘 근육질 관중 챔피언입니다. 제공된 다섯 참고 이미지의 실루엣·자세·의상 배색을 반영하며, 캐릭터는 선명한 윤곽과 표정의 카툰 2D 방향으로 제작합니다. 원본 참고 파일은 배포하지 않습니다.
 
 ## 플레이 루프
 
@@ -19,15 +19,25 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 5. 다음 경로에서 경기, 정예전, 휴식, 상점 또는 이벤트를 선택합니다.
 6. 8번째 구간의 챔피언 EMPRESS를 꺾으면 런이 끝납니다. 체력이 0이면 패배합니다.
 
-## 세 선수
+## 다섯 선수와 서로 다른 운영
 
-| 선수              | 나이 / 체력 | 플레이 성향              | 패시브                                        | 시그니처      |
-| ----------------- | ----------- | ------------------------ | --------------------------------------------- | ------------- |
-| RAVEN · 레이븐    | 28 / 74     | 무자비한 스트라이커      | 매 턴 첫 공격 피해 +2                         | 레드라인      |
-| VALKYRIE · 발키리 | 31 / 82     | 방어와 잡기의 그래플러   | 잡기 피해 +2, 다음 턴에 방어 최대 3 유지      | 아이언 클러치 |
-| NOVA · 노바       | 26 / 68     | 드로우와 템포의 테크니션 | 매 턴 첫 0코스트 카드 사용 시 1장 추가 드로우 | 플래시 스텝   |
+| 선수              | 나이 / 체력 | 성향 / 난이도      | 실제 패시브                                                                  | 시작 핵심 기술                          |
+| ----------------- | ----------- | ------------------ | ---------------------------------------------------------------------------- | --------------------------------------- |
+| RAVEN · 레이븐    | 28 / 74     | 콤보 타격 / 입문   | 매 턴 첫 공격 피해 +2                                                        | 레드라인                                |
+| VALKYRIE · 발키리 | 31 / 82     | 가드·잡기 / 입문   | 잡기 피해 +2, 다음 턴에 방어 최대 3 유지                                     | 아이언 클러치                           |
+| NOVA · 노바       | 26 / 68     | 드로우·순환 / 숙련 | 매 턴 첫 0코스트 카드에 1장 추가 드로우                                      | 플래시 스텝                             |
+| VIPER · 바이퍼    | 27 / 72     | 상태 제압 / 전술   | 약화·취약 상대에게 공격 피해 +2. 매 턴 첫 약화·취약 카드 사용 후 취약 1 추가 | 헤드록·카운터 홀드                      |
+| EMBER · 엠버      | 32 / 80     | 관중·컴백 / 전술   | 매 턴 첫 기술 카드로 열기 +1, 압박 −3. 현재 체력이 절반 이하면 체력 +2       | 스포트라이트·관중의 함성·네버 세이 다이 |
 
-시작 덱은 엘보 스트라이크 4장, 로프 가드 3장, 클린치·호흡 조절·피니시 무브 각 1장과 선수별 시그니처 1장입니다.
+모든 시작 덱은 11장입니다. 레이븐·발키리·노바의 기존 덱은 엘보 스트라이크 4장, 로프 가드 3장, 클린치·호흡 조절·피니시 무브 각 1장과 전용 시그니처 1장을 유지합니다.
+
+바이퍼는 엘보 스트라이크 3장, 로프 가드 2장, 클린치·호흡 조절·피니시 무브 각 1장, 헤드록 2장, 카운터 홀드 1장으로 시작합니다. 엠버는 엘보 스트라이크 3장, 로프 가드 2장, 클린치·호흡 조절·피니시 무브 각 1장, 스포트라이트·관중의 함성·네버 세이 다이 각 1장으로 시작합니다. 신규 선수는 기존 25종 카드에서 다른 조합을 사용하며 카드 수나 기본 효과를 변경하지 않습니다.
+
+레이븐은 첫 공격에 강한 카드를 배치한 뒤 콤보 보상을 노립니다. 발키리는 상대 공격 의도에 잡기·카운터를 맞춰 방어를 확보합니다. 노바는 첫 0코스트 카드와 에너지·드로우를 연결하고 소멸 이후 얇아진 덱을 순환합니다. 바이퍼는 제압 카드를 먼저 써 후속타의 빈틈을 만들고, 엠버는 기술 카드로 피니셔의 열기를 준비하면서 낮은 체력의 컴백을 활용합니다.
+
+바이퍼의 추가 피해는 **공격 직전에 이미 있는** 약화·취약을 확인합니다. 첫 헤드록의 피해는 7이며, 그 사용 후 약화 2와 패시브 취약 1을 부여합니다. 다음 엘보 스트라이크는 `(6 + 2) × 1.5`를 내림한 피해 12를 줍니다. 같은 턴의 두 번째 약화·취약 카드는 자체 상태 효과만 적용합니다. 멀티 히트는 각 타격에 피해 보너스를 적용하며 피해 미리보기와 실제 결과가 같습니다.
+
+엠버는 카드 유형이 `skill`인 카드에만 발동합니다. 악몽과 피니셔는 대상이 아닙니다. 카드의 기본 효과를 먼저 처리한 뒤 열기·진정·조건부 회복을 적용하므로, 체력 40/80에서 네버 세이 다이는 방어 22를 확보한 후 체력 42가 됩니다. 열기는 최대 9, 압박은 최소 0을 지키며 한 턴에 여러 기술을 사용해도 패시브는 다시 발동하지 않습니다. 패시브 회복·진정은 새 카드 사용으로 취급하지 않습니다.
 
 ## 전투 규칙
 
@@ -119,6 +129,10 @@ The rules module is [`src/game.js`](../src/game.js). It has no browser or third-
 
 The state includes `player`, `enemy`, `hand`, `draw`, `discard`, `exhaust`, `deck`, `energy`, `maxEnergy`, `turn`, `floor`, `maxFloor`, `phase`, `combo`, `status`, `rewards`, `rewardCoins`, `mapNodes`, `event`, `shopItems`, `history`, `relics`, `stats`, `log`, and the PRNG `seed`. Card instances have stable UIDs. `log` is a string array; `logEvents` provides message types and turn numbers.
 
+`WRESTLERS` now contains five IDs: `raven`, `valkyrie`, `nova`, `viper`, `ember`. Each definition includes `role`, `roleEn`, `strategy`, `complexity` (1–3), `complexityLabel`, `easyLabel`, `strengths`, `playstyle`, `recommendedCards`, and the exact `startingDeck` card IDs. `newRun` constructs instances from that deck. Encyclopedia `startingWrestlers` and acquisition text derive from these definitions.
+
+Turn-scoped `status.precisionUsed` and `status.crowdUsed` preserve the new once-per-turn limits through JSON save/load. Both reset when a new turn or encounter starts. Missing flags in an older version-1 status are interpreted as unused, while existing flags are never rearmed merely by restoring a save. Existing Raven/Valkyrie/Nova saved decks remain unchanged, and the save version remains 1. Invalid actions return the original state and cannot consume or trigger a passive.
+
 ```text
 combat → reward → map → combat / rest / event / shop
 rest / event / shop → map
@@ -134,7 +148,7 @@ Blender source is retained in [`artifacts/arena.blend`](../artifacts/arena.blend
 
 Higgsfield was attempted as requested, but did not produce a verified asset. The reference-media upload confirmation remained unanswered for more than 1,350 seconds. A separate text-only generation attempt was stopped after 400.9 seconds without returned generation IDs or a confirmed outcome. It was not resubmitted. Higgsfield is therefore recorded as an attempted workflow, rather than the source of the shipped images. Original reference files are not distributed.
 
-The engine test suite covers reproducible initialization and save/load behavior, invalid actions, energy, block, combos and finishers, exhaustion and reshuffling, nightmare thresholds, defeat, rewards, map transitions, rest, upgrades, shops, events, and full eight-floor wins for all three wrestlers.
+The engine test suite covers reproducible initialization and save/load behavior, invalid actions, energy, block, combos and finishers, exhaustion and reshuffling, nightmare thresholds, defeat, rewards, map transitions, rest, upgrades, shops, events, and full eight-floor wins for all five wrestlers on two deterministic seeds. Strategy regressions also cover debuff timing, multi-hit damage preview, conditional comeback recovery, caps, per-turn limits, old status compatibility, and defeat during nightmare draws without passive recursion or resurrection.
 
 ```sh
 npm install

@@ -43,7 +43,7 @@ export const FIGHTER_STATES = {
     label: "그로기",
     subtitle: "GROGGY",
     rule: "체력 25% 이하",
-    motion: "무릎과 손으로 버티는 낮은 자세",
+    motion: "고개가 처지고 가드가 무너진 자세",
   },
 };
 
@@ -63,11 +63,10 @@ export function selectFighterState(fighter, { enemy = false } = {}) {
 }
 
 export function fighterPoseArt(actor, condition = "normal") {
-  const id = ["raven", "valkyrie", "nova"].includes(actor) ? actor : "nova";
-  const stateId = typeof condition === "string" ? condition : condition.id;
-  return stateId === "normal" || !FIGHTER_STATES[stateId]
-    ? `${id}.webp`
-    : `poses/${id}-${stateId}.webp`;
+  const id = ["raven", "valkyrie", "nova", "viper", "ember"].includes(actor)
+    ? actor
+    : "nova";
+  return `fighters/${id}.webp`;
 }
 
 const timings = {

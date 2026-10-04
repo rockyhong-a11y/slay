@@ -6,7 +6,21 @@ The visual world is an original adult female professional wrestling league: a da
 
 Created procedurally in Blender 5.2.2 and rendered with Cycles. The editable scene is `artifacts/arena.blend`; `tools/render-arena.py` rebuilds it. The browser uses `public/assets/arena.webp`.
 
-## Original wrestlers
+## Five active cartoon wrestlers
+
+All five supplied references were inspected, then newly rendered with built-in imagegen as cel-shaded cartoon adults. Production full-body images are 1000×1500 transparent WebP at quality 92. Each independently generated six-part atlas is 1536×1024 transparent WebP at quality 93. Assets live in `public/assets/fighters/`.
+
+- RAVEN: crimson long hair, side fringe, black sports top and navy leggings; combo striker.
+- VALKYRIE: blonde bob, blue eyes, navy gear and white wraps; guard grappler.
+- NOVA: long black hair, dark gear and red/steel guards; draw technician.
+- VIPER: blonde twin braids, red beret/guards and emerald bodysuit; precision controller.
+- EMBER: wavy brunette hair, warm complexion, muscular arms and black/red/gold gear; crowd champion.
+
+The exact per-image prompts and provenance are in [five full-body prompts](cartoon-fighter-prompts.json) and [five atlas prompts](cartoon-puppet-prompts.json). Each atlas was generated using its new full-body render as the reference. Selected original PNGs are preserved locally in ignored `artifacts/fighter-sources/`. Pillow performs resizing, format export and alpha-based geometric measurement, without repainting or removing source backgrounds. Runtime clip rectangles exclude neighboring pieces where atlas bounding boxes overlap.
+
+## Historical character art
+
+The following photographic art and pose provenance describes the previous version. These assets remain archived but no longer supply active character rendering.
 
 Built with the imagegen image-generation tool. All characters are adults, all images use genuine RGBA transparency, and browser assets are optimized WebP at a maximum height of 1300 pixels.
 
@@ -38,19 +52,21 @@ Generation mode: built-in imagegen, one final image per card. Original PNG sourc
 
 The three initial generic card images remain as historical source assets and are no longer referenced by active card rendering.
 
-## Live art rigs
+## Active animated art
 
-The original **43 active WebP images** remain unchanged: 18 fighter/pose images and 25 card illustrations. Hand-authored landmarks in [`src/live-art-rigs.js`](../src/live-art-rigs.js) define each image's local head, hair, torso, limb and visible-eye regions. The renderer uses a custom WebGL 2D deformation mesh, with Canvas 2D fallback. This is a **Live2D-style custom rig**, not native Cubism `.moc3` model data or 3D skeletal animation.
+Each active fighter uses six genuinely separated painted pieces: body, head, rear hair, front hair, left arm and right arm. The measured atlas source rectangles, destination bounds, joint pivots, hierarchy and facial coordinates are versioned in `public/assets/fighters/puppet-manifest.json`. Canvas 2D draws only those pieces once ready; the full-body loading fallback is hidden, preventing duplicate-body ghosts.
 
-Breathing, gaze, head movement, delayed hair/body motion and blinking operate inside those regions; ropes, crowd, planted feet and image boundaries stay pinned. Closed, obscured, profile and very small eyes omit painted blink masks. The same art component appears in fighters, avatars, roster selection, hand/deck/reward cards, encyclopedia/detail views and cinematics.
+Parent transforms connect head and arms to the body, and hair to the head. Six condition profiles smoothly alter guard, lean, head tilt, breathing, eyes, eyebrows and mouth. Independent hair springs follow with lag. ID-based attacks and repeated hits use articulated reactions, mirrored toward the opponent. Ended cues cancel when returning from hidden tabs, offscreen views or dialogs. A face portrait camera follows the actual transformed head in every condition.
 
-Pose changes crossfade smoothly while preserving the motion clock and easing condition parameters. A saved global **Illustration Motion On / Still** setting applies throughout the app. OS reduced motion suppresses spatial motion; offscreen art, art behind an open modal and hidden tabs pause rendering. The original image remains visible while its live renderer loads. Shared motion math and fit calculations are covered by the `npm test` suite.
+The 25 card illustrations retain their local WebGL mesh rigs and Canvas fallback. Ring ropes, crowd and image boundaries remain pinned. Characters and cards share a single RAF scheduler. The saved Illustration Motion setting and OS reduced motion apply throughout; offscreen, dialog-obscured and hidden-tab art pauses. This is a custom Live2D-style 2D puppet implementation, not native Cubism `.moc3` data.
+
+See [the current verification record](cartoon-fighter-qa.md) and [face preview](slay-cartoon-condition.jpg).
 
 ## Card-art cinematics
 
 All 25 dedicated card-art compositions now drive short 2D cinematic overlays. Strikes, aerial moves, throws, submissions, grapples, defense, tactics and nightmare use distinct motion paths and timing. Results come from actual before/after engine snapshots: damage and absorbed guard, healing, draw, energy, hype, stress and applied status effects. A serial input lock holds card-play and end-turn controls during the active cue.
 
-Settings offers **Full / Concise** presentation. Concise keeps the same artwork and real outcomes with shorter timing; operating-system reduced-motion preferences suppress spatial motion. Reserved HUD, performer and caption regions keep text clear. Desktop cinematics place contained action art in the left 60% and vertically stacked title/outcomes in the right 40%; mobile uses art above separate caption rows and a 300px stage. Condition previews and roster cards also separate art from text. See the [cinematic screenshot](slay-cinematic.jpg) and [layout geometry checklist](arena-layout-checklist.md).
+Settings offers **Full / Concise** presentation. Concise keeps the same artwork and real outcomes with shorter timing; operating-system reduced-motion preferences suppress spatial motion. Reserved HUD, performer and caption regions keep text clear. Desktop cinematics reserve the left portion for both visible articulated performers and contained card art, with captions on the right; mobile uses performers beside art above separate caption rows. Condition previews and roster cards also separate art from text. See the [cinematic screenshot](slay-cinematic.jpg) and [layout geometry checklist](arena-layout-checklist.md).
 
 ## Higgsfield attempt
 

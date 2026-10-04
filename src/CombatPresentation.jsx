@@ -4,11 +4,9 @@ import { motion, useReducedMotion } from "motion/react";
 import { Fire, Heartbeat, Shield, Sparkle } from "@phosphor-icons/react";
 import { FIGHTER_STATES, fighterPoseArt } from "./presentation.js";
 import "./combat-presentation.css";
-import poseLayout from "./pose-layout.json";
 import { LiveArt } from "./LiveArt.jsx";
 import { motionTokens } from "./motion-config.js";
 
-const asset = (path) => `${import.meta.env.BASE_URL}assets/${path}`;
 const icons = {
   normal: Shield,
   excited: Sparkle,
@@ -51,24 +49,13 @@ export function FighterSprite({
   name,
   side,
   hit = false,
+  hitId = null,
   cast = null,
   still = false,
+  shortened = false,
 }) {
+  const reduced = useReducedMotion();
   const requested = fighterPoseArt(actor, condition);
-  useEffect(() => {
-    const images = Object.keys(FIGHTER_STATES)
-      .filter((id) => id !== "normal")
-      .map((id) => {
-        const image = new Image();
-        image.decoding = "async";
-        image.src = asset(fighterPoseArt(actor, id));
-        return image;
-      });
-    return () =>
-      images.forEach((image) => {
-        image.onload = null;
-      });
-  }, [actor]);
   return (
     <div
       className={`fighter ${side}-fighter ${hit ? "hit" : ""} ${cast ? `casting casting-${cast.disciplineSlug}` : ""}`}
@@ -83,11 +70,12 @@ export function FighterSprite({
           className="fighter-pose"
           condition={condition.id}
           still={still}
+          cast={cast}
+          castDuration={reduced || shortened ? 650 : cast?.duration}
+          hit={hit}
+          hitId={hitId}
+          side={side}
           position={[0.5, 1]}
-          style={{
-            "--pose-aspect": poseLayout[requested]?.aspect,
-            "--pose-bottom": poseLayout[requested]?.bottom,
-          }}
         />
       </div>
     </div>
@@ -164,9 +152,21 @@ export function ConditionGuide({ actor, name }) {
           name={name}
           side="preview"
         />
-        <div>
-          <span>{condition.subtitle}</span>
-          <h3>{condition.label}</h3>
+        <div className="condition-preview-copy">
+          <div className="condition-face-heading">
+            <LiveArt
+              art={fighterPoseArt(actor, condition)}
+              alt={`${name} · ${condition.label} 표정 확대`}
+              className="condition-face-portrait"
+              condition={condition.id}
+              portrait
+              position={[0.5, 0]}
+            />
+            <div>
+              <span>{condition.subtitle}</span>
+              <h3>{condition.label}</h3>
+            </div>
+          </div>
           <p>{condition.motion}</p>
         </div>
       </div>

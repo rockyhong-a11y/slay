@@ -1,4 +1,4 @@
-import { CARDS, getCard } from "./game.js";
+import { CARDS, WRESTLERS, getCard } from "./game.js";
 
 export const CARD_DISCIPLINES = [
   { id: "strike", slug: "strike", label: "타격" },
@@ -26,18 +26,36 @@ export const CARD_RARITY_LABELS = {
   nightmare: "악몽",
 };
 
-const starting = "세 선수 모두의 시작 덱에 포함됩니다.";
+const starting = "모든 선수의 시작 덱에 포함됩니다.";
 const reward = "일반 경기 카드 보상 또는 프로 숍에서 획득합니다.";
 const premium = "일반·정예 경기 카드 보상 또는 프로 숍에서 획득합니다.";
-const detail = (id, disciplineSlug, alt, technique, acquisition) => ({
-  id,
-  discipline: CARD_DISCIPLINES.find((d) => d.id === disciplineSlug).label,
-  disciplineSlug,
-  art: `cards/${id}.webp`,
-  alt,
-  technique,
-  acquisition,
-});
+const detail = (id, disciplineSlug, alt, technique, acquisition) => {
+  const owners = Object.values(WRESTLERS).filter((w) =>
+    w.startingDeck.includes(id),
+  );
+  let startHint = "";
+  if (owners.length === Object.keys(WRESTLERS).length) startHint = starting;
+  else if (owners.length)
+    startHint = `${owners.map((w) => `${w.nameKo} (${w.name})`).join("·")}의 시작 덱에 포함됩니다.`;
+  if (CARDS[id].rarity === "signature")
+    startHint += " 시작 선수 전용 시그니처 카드입니다.";
+  return {
+    id,
+    discipline: CARD_DISCIPLINES.find((d) => d.id === disciplineSlug).label,
+    disciplineSlug,
+    art: `cards/${id}.webp`,
+    alt,
+    technique,
+    startingWrestlers: owners.map((w) => w.id),
+    acquisition:
+      [
+        startHint,
+        ["starter", "signature"].includes(CARDS[id].rarity) ? "" : acquisition,
+      ]
+        .filter(Boolean)
+        .join(" ") || acquisition,
+  };
+};
 
 export const CARD_DETAILS = {
   strike: detail(
@@ -114,21 +132,21 @@ export const CARD_DETAILS = {
     "reversal",
     "submission",
     "선수가 상대의 잡기를 뒤집어 팔을 비틀며 카운터 홀드를 거는 장면",
-    "상대의 진입을 받아 손목과 팔을 되잡는 역전 홀드입니다. 공격을 준비하는 상대에게 사용할 때 추가 방어를 얻습니다. 발키리의 잡기 피해 보너스도 받습니다.",
+    "상대의 진입을 받아 손목과 팔을 되잡는 역전 홀드입니다. 공격 준비 중인 상대에게 추가 방어를 얻습니다. 발키리의 잡기 보너스와 바이퍼의 상태 상대 추가 피해를 활용할 수 있습니다.",
     reward,
   ),
   spotlight: detail(
     "spotlight",
     "tactics",
     "선수가 링 한가운데에서 스포트라이트와 관중의 함성을 받는 장면",
-    "관중의 시선을 끌어 경기의 분위기를 자기 쪽으로 가져옵니다. 열기 확보와 드로우를 함께 제공해 피니셔를 준비합니다.",
+    "관중의 시선을 끌어 경기의 분위기를 자기 쪽으로 가져옵니다. 열기 확보와 드로우로 피니셔를 준비합니다. 엠버는 턴의 첫 기술 카드에 관중 패시브를 더합니다.",
     reward,
   ),
   rally: detail(
     "rally",
     "tactics",
     "트레이닝복을 입은 선수가 정면에서 두 팔을 펼쳐 올리며 관중의 응원을 끌어내는 장면",
-    "관중의 응원에 응답하며 자신감을 되찾습니다. 에너지를 쓰지 않고 열기를 얻고 압박을 낮추지만 해당 경기에서 소멸합니다.",
+    "관중의 응원에 응답하며 자신감을 되찾습니다. 에너지 없이 열기를 얻고 압박을 낮추며 소멸합니다. 엠버가 턴의 첫 기술로 사용하면 추가 열기·진정과 조건부 회복을 얻습니다.",
     "일반 경기 보상·프로 숍 또는 스폰서 제안 이벤트에서 획득합니다.",
   ),
   shoulder: detail(
@@ -149,7 +167,7 @@ export const CARD_DETAILS = {
     "headlock",
     "submission",
     "선수가 상대의 머리를 팔 아래로 잡아 사이드 헤드록을 거는 장면",
-    "머리와 목 주변을 팔로 고정해 상대의 자세를 제한하는 헤드록입니다. 피해와 약화를 함께 주며 발키리의 잡기 피해 보너스도 받습니다.",
+    "머리와 목 주변을 고정해 상대의 자세를 제한하는 헤드록입니다. 피해와 약화를 주며 발키리의 잡기 보너스를 받습니다. 바이퍼의 턴 첫 약화·취약 카드라면 사용 후 취약 1도 부여합니다.",
     reward,
   ),
   quickdraw: detail(
@@ -205,7 +223,7 @@ export const CARD_DETAILS = {
     "comeback",
     "defense",
     "선수가 매트에서 다시 일어나 양팔로 가드를 세우는 장면",
-    "다운 직후 다시 자세를 세워 다음 공격을 버티는 회복력의 표현입니다. 체력이 최대치의 절반 이하일 때 추가 방어를 얻습니다.",
+    "다운 직후 다시 자세를 세워 다음 공격을 버팁니다. 체력이 최대치의 절반 이하일 때 추가 방어를 얻습니다. 엠버는 턴 첫 기술의 관중 패시브로 열기·진정과 낮은 체력의 회복을 더할 수 있습니다.",
     premium,
   ),
   nightmare: detail(
@@ -249,6 +267,7 @@ export function getLibraryCards({
           card.description,
           card.technique,
           card.acquisition,
+          card.startingWrestlers.join(" "),
         ]
           .join(" ")
           .toLocaleLowerCase()

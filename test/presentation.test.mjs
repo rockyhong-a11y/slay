@@ -314,16 +314,14 @@ test("pressure breakdown cues report actual self damage and the reset pressure w
   }
 });
 
-test("all 15 generated pose paths are present, valid independent WebP assets", () => {
+test("five original puppet bases exist and every condition keeps its actor's stable source", () => {
   const paths = new Set();
   const hashes = new Set();
   for (const id of Object.keys(WRESTLERS)) {
-    assert.equal(fighterPoseArt(id, "normal"), `${id}.webp`);
-    for (const state of Object.values(FIGHTER_STATES).filter(
-      (state) => state.id !== "normal",
-    )) {
+    assert.equal(fighterPoseArt(id, "normal"), `fighters/${id}.webp`);
+    for (const state of Object.values(FIGHTER_STATES)) {
       const path = fighterPoseArt(id, state);
-      assert.equal(path, `poses/${id}-${state.id}.webp`);
+      assert.equal(path, `fighters/${id}.webp`);
       const bytes = readFileSync(
         new URL(`../public/assets/${path}`, import.meta.url),
       );
@@ -334,8 +332,12 @@ test("all 15 generated pose paths are present, valid independent WebP assets", (
       hashes.add(createHash("sha256").update(bytes).digest("hex"));
     }
   }
-  assert.equal(paths.size, 15);
-  assert.equal(hashes.size, 15, "each pose must be its own generated asset");
-  assert.equal(fighterPoseArt("unknown", "normal"), "nova.webp");
-  assert.equal(fighterPoseArt("raven", "unknown"), "raven.webp");
+  assert.equal(paths.size, 5);
+  assert.equal(
+    hashes.size,
+    5,
+    "each wrestler has an independent original cartoon source",
+  );
+  assert.equal(fighterPoseArt("unknown", "normal"), "fighters/nova.webp");
+  assert.equal(fighterPoseArt("raven", "unknown"), "fighters/raven.webp");
 });

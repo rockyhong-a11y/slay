@@ -318,6 +318,20 @@ export const CARDS = {
   ),
 };
 
+const standardDeck = (signature) => [
+  "strike",
+  "strike",
+  "strike",
+  "strike",
+  "guard",
+  "guard",
+  "guard",
+  "grapple",
+  "focus",
+  "finisher",
+  signature,
+];
+
 export const WRESTLERS = {
   raven: {
     id: "raven",
@@ -331,6 +345,21 @@ export const WRESTLERS = {
     description: "한 번의 빈틈도 놓치지 않는 무자비한 스트라이커.",
     accent: "#e54b59",
     artKey: "raven",
+    role: "콤보 스트라이커",
+    roleEn: "Combo Striker",
+    strategy:
+      "첫 공격 보너스로 공세를 열고, 공격 콤보와 레드라인 드로우를 이어 피니셔로 끝냅니다.",
+    complexity: 1,
+    complexityLabel: "입문",
+    easyLabel: "공격 순서만 잡아도 강해집니다",
+    strengths: ["첫 공격 피해", "공격 연결", "빠른 피니셔"],
+    playstyle: [
+      "첫 공격에 가장 강한 타격을 배치",
+      "레드라인으로 다음 공격 확보",
+      "콤보 열기 3으로 피니셔 준비",
+    ],
+    recommendedCards: ["redline", "doubletap", "dropkick", "powerbomb"],
+    startingDeck: standardDeck("redline"),
   },
   valkyrie: {
     id: "valkyrie",
@@ -344,6 +373,21 @@ export const WRESTLERS = {
     description: "링의 중심을 장악하는 압도적인 그래플러.",
     accent: "#dbb970",
     artKey: "valkyrie",
+    role: "가드 그래플러",
+    roleEn: "Guard Grappler",
+    strategy:
+      "잡기 피해 보너스와 공격·방어 겸용 홀드로 상대 의도를 받아내고 남은 방어를 다음 턴에 이어 갑니다.",
+    complexity: 1,
+    complexityLabel: "입문",
+    easyLabel: "공격과 방어를 한 카드로 해결합니다",
+    strengths: ["잡기 피해", "높은 체력", "방어 최대 3 유지"],
+    playstyle: [
+      "공격 의도에 카운터 홀드 사용",
+      "잡기로 피해와 방어 동시 확보",
+      "남은 방어를 다음 턴에 유지",
+    ],
+    recommendedCards: ["ironclad", "reversal", "headlock", "suplex"],
+    startingDeck: standardDeck("ironclad"),
   },
   nova: {
     id: "nova",
@@ -357,6 +401,105 @@ export const WRESTLERS = {
     description: "속도와 변칙적인 리듬으로 경기를 뒤집는 테크니션.",
     accent: "#79a8da",
     artKey: "nova",
+    role: "드로우 테크니션",
+    roleEn: "Draw Technician",
+    strategy:
+      "턴마다 첫 0코스트 카드로 추가 드로우를 얻고, 소멸 카드와 에너지 회복을 묶어 긴 공세를 설계합니다.",
+    complexity: 3,
+    complexityLabel: "숙련",
+    easyLabel: "덱 순환과 에너지 계산을 즐기는 선수",
+    strengths: ["추가 드로우", "0코스트 연결", "유연한 카드 순환"],
+    playstyle: [
+      "첫 0코스트 카드로 손패 확장",
+      "템포 스틸로 에너지 확보",
+      "소멸 후 얇아진 덱으로 핵심 카드 반복",
+    ],
+    recommendedCards: ["flashstep", "quickdraw", "encore", "doubletap"],
+    startingDeck: standardDeck("flashstep"),
+  },
+  viper: {
+    id: "viper",
+    name: "VIPER",
+    nameKo: "바이퍼",
+    title: "THE PRECISION ACE",
+    age: 27,
+    maxHp: 72,
+    signature: "headlock",
+    passive:
+      "약화·취약 상대 공격 피해 +2 · 매 턴 첫 약화·취약 카드 사용 후 취약 1 추가",
+    description:
+      "금발의 두 갈래 땋은 머리와 그린·레드 장비를 갖춘 냉철한 제압 전문가.",
+    accent: "#9fbe65",
+    artKey: "viper",
+    role: "상태 제압 전문가",
+    roleEn: "Precision Controller",
+    strategy:
+      "헤드록으로 공격을 약화시키고 취약을 열어, 강화된 후속 공격과 카운터 홀드로 유리한 교환을 반복합니다.",
+    complexity: 2,
+    complexityLabel: "전술",
+    easyLabel: "상태를 건 뒤 후속타를 넣으세요",
+    strengths: ["약화로 피해 억제", "취약 생성", "상태 상대 추가 피해"],
+    playstyle: [
+      "첫 약화·취약 카드로 취약 1 추가",
+      "상태가 남은 상대에게 후속 공격",
+      "공격 의도에 카운터 홀드로 방어",
+    ],
+    recommendedCards: ["headlock", "reversal", "suplex", "doubletap"],
+    startingDeck: [
+      "strike",
+      "strike",
+      "strike",
+      "guard",
+      "guard",
+      "grapple",
+      "focus",
+      "finisher",
+      "headlock",
+      "headlock",
+      "reversal",
+    ],
+  },
+  ember: {
+    id: "ember",
+    name: "EMBER",
+    nameKo: "엠버",
+    title: "THE CROWD'S CHAMPION",
+    age: 32,
+    maxHp: 80,
+    signature: "spotlight",
+    passive:
+      "매 턴 첫 기술 카드로 열기 +1·압박 -3 · 체력이 절반 이하면 체력 +2",
+    description:
+      "물결치는 갈색 머리와 블랙·레드·골드 장비로 관중을 이끄는 파워 챔피언.",
+    accent: "#e6a958",
+    artKey: "ember",
+    role: "관중 컴백 챔피언",
+    roleEn: "Crowd Champion",
+    strategy:
+      "기술 카드로 관중 열기와 침착함을 얻고, 낮은 체력에서는 회복과 컴백 방어로 버티며 피니셔를 반복합니다.",
+    complexity: 2,
+    complexityLabel: "전술",
+    easyLabel: "기술 카드가 피니셔의 시동을 겁니다",
+    strengths: ["기술 카드 열기", "압박 관리", "낮은 체력의 컴백"],
+    playstyle: [
+      "첫 기술 카드로 관중 패시브 발동",
+      "스포트라이트와 함성으로 열기 확보",
+      "절반 이하 체력에서 컴백 방어와 회복",
+    ],
+    recommendedCards: ["spotlight", "rally", "comeback", "championship"],
+    startingDeck: [
+      "strike",
+      "strike",
+      "strike",
+      "guard",
+      "guard",
+      "grapple",
+      "focus",
+      "finisher",
+      "spotlight",
+      "rally",
+      "comeback",
+    ],
   },
 };
 
@@ -388,7 +531,7 @@ export const ENEMIES = {
     maxHp: 39,
     attack: 7,
     taunt: 11,
-    artKey: "nova",
+    artKey: "viper",
     pattern: ["taunt", "attack", "guard", "attack"],
   },
   elite: {
@@ -408,7 +551,7 @@ export const ENEMIES = {
     maxHp: 120,
     attack: 13,
     taunt: 12,
-    artKey: "valkyrie",
+    artKey: "ember",
     pattern: ["attack", "guard", "taunt", "attack", "attack"],
   },
 };
@@ -595,7 +738,7 @@ function startCombat(state, type = "fight") {
   state.discard = [];
   state.exhaust = [];
   state.draw = shuffle(state, clone(state.deck));
-  state.status = { firstAttack: true, firstZero: true, nextAttack: 0 };
+  state.status = freshTurnStatus();
   state.rewards = [];
   state.rewardCoins = 0;
   state.mapNodes = [];
@@ -652,19 +795,7 @@ export function newRun(wrestlerId = "raven", seed = 20903) {
       },
     ],
   };
-  for (const id of [
-    "strike",
-    "strike",
-    "strike",
-    "strike",
-    "guard",
-    "guard",
-    "guard",
-    "grapple",
-    "focus",
-    "finisher",
-    wrestler.signature,
-  ]) {
+  for (const id of wrestler.startingDeck) {
     state.deck.push(makeInstance(state, id));
   }
   startCombat(state);
@@ -693,6 +824,69 @@ function dealDamage(state, amount) {
   return damage;
 }
 
+function freshTurnStatus() {
+  return {
+    firstAttack: true,
+    firstZero: true,
+    nextAttack: 0,
+    precisionUsed: false,
+    crowdUsed: false,
+  };
+}
+
+// This bonus is shared with the damage preview. Viper checks statuses that
+// already exist before this card; the card's new debuff benefits follow-up hits.
+function attackBonus(state, definition) {
+  const effects = definition.effects;
+  const id = wrestlerFor(state).id;
+  let bonus = state.status.nextAttack || 0;
+  if (state.status.firstAttack && id === "raven") bonus += 2;
+  if (definition.grapple && id === "valkyrie") bonus += 2;
+  if (id === "viper" && (state.enemy.weak > 0 || state.enemy.vulnerable > 0))
+    bonus += 2;
+  if (effects.comboDamage && state.combo >= (effects.comboRequired || 1))
+    bonus += effects.comboDamage;
+  return bonus;
+}
+
+function applyCardPassive(state, definition) {
+  if (state.phase !== "combat" || state.player.hp <= 0) return;
+  const id = wrestlerFor(state).id;
+  const effects = definition.effects;
+  // Missing flags in older JSON saves mean "not yet used". Once written,
+  // these plain booleans survive saving without rearming during the same turn.
+  if (
+    id === "viper" &&
+    !state.status.precisionUsed &&
+    (effects.weak || effects.vulnerable)
+  ) {
+    state.status.precisionUsed = true;
+    state.enemy.vulnerable += 1;
+    addLog(state, "정밀 제압 · 취약 +1. 후속 공격의 기회입니다.", "passive");
+  }
+  if (
+    id === "ember" &&
+    definition.type === "skill" &&
+    !state.status.crowdUsed
+  ) {
+    state.status.crowdUsed = true;
+    const hype = Math.min(1, 9 - state.player.hype);
+    const stress = Math.min(3, state.player.stress);
+    const healing =
+      state.player.hp <= state.player.maxHp / 2
+        ? Math.min(2, state.player.maxHp - state.player.hp)
+        : 0;
+    state.player.hype += hype;
+    calm(state, 3);
+    state.player.hp += healing;
+    addLog(
+      state,
+      `관중의 챔피언 · 열기 +${hype}, 압박 -${stress}${healing ? `, 체력 +${healing}` : ""}.`,
+      "passive",
+    );
+  }
+}
+
 export function playCard(current, instanceId) {
   if (!canPlayCard(current, instanceId)) return current;
   const state = clone(current);
@@ -710,12 +904,8 @@ export function playCard(current, instanceId) {
     state.stats.finishers++;
   }
   if (effects.damage) {
-    let bonus = state.status.nextAttack;
+    const bonus = attackBonus(state, definition);
     state.status.nextAttack = 0;
-    if (state.status.firstAttack && wrestler.id === "raven") bonus += 2;
-    if (definition.grapple && wrestler.id === "valkyrie") bonus += 2;
-    if (effects.comboDamage && state.combo >= (effects.comboRequired || 1))
-      bonus += effects.comboDamage;
     let amount = effects.damage + bonus;
     if (state.enemy.vulnerable > 0) amount = Math.floor(amount * 1.5);
     for (let hit = 0; hit < (effects.hits || 1); hit++)
@@ -752,6 +942,7 @@ export function playCard(current, instanceId) {
   if (effects.stress) gainStress(state, effects.stress);
   if (effects.weak) state.enemy.weak += effects.weak;
   if (effects.vulnerable) state.enemy.vulnerable += effects.vulnerable;
+  applyCardPassive(state, definition);
   (definition.exhaust ? state.exhaust : state.discard).push(instance);
   addLog(
     state,
@@ -851,7 +1042,7 @@ export function endTurn(current) {
   state.turn++;
   state.energy = state.maxEnergy;
   state.combo = 0;
-  state.status = { firstAttack: true, firstZero: true, nextAttack: 0 };
+  state.status = freshTurnStatus();
   setIntent(state);
   drawCards(state, 5);
   return state;
@@ -1241,12 +1432,7 @@ export function getCardDamage(state, instance) {
   const definition = getCard(instance);
   if (!definition?.effects.damage || !state.enemy) return 0;
   const effects = definition.effects;
-  const wrestler = wrestlerFor(state);
-  let bonus = state.status.nextAttack || 0;
-  if (state.status.firstAttack && wrestler.id === "raven") bonus += 2;
-  if (definition.grapple && wrestler.id === "valkyrie") bonus += 2;
-  if (effects.comboDamage && state.combo >= (effects.comboRequired || 1))
-    bonus += effects.comboDamage;
+  const bonus = attackBonus(state, definition);
   let damage = effects.damage + bonus;
   if (state.enemy.vulnerable > 0) damage = Math.floor(damage * 1.5);
   return damage * (effects.hits || 1);

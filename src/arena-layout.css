@@ -101,6 +101,24 @@
   top: calc(var(--arena-hud-height) + var(--arena-stage-height) * 0.38);
 }
 
+/* Keep the two articulated performers visible beside the card broadcast. */
+.arena.cinematic-active > .fighter {
+  z-index: 8;
+  opacity: 1;
+  width: 17%;
+}
+.arena.cinematic-active > .player-fighter {
+  left: 0;
+}
+.arena.cinematic-active > .enemy-fighter {
+  left: 16%;
+  right: auto;
+}
+.arena.cinematic-active .technique-art-frame {
+  margin-left: 54%;
+  margin-right: 12px;
+}
+
 .arena .arena-bottom {
   min-height: var(--arena-footer-height);
   padding: 7px var(--arena-gutter);
@@ -349,6 +367,17 @@
     grid-column: 1;
     grid-row: 1;
     margin: 22px 18px 14px;
+  }
+
+  .arena.cinematic-active > .fighter {
+    top: calc(var(--arena-hud-height) + 22px);
+    bottom: auto;
+    height: 116px;
+    width: 17%;
+  }
+  .arena.cinematic-active .technique-art-frame {
+    margin-left: 34%;
+    margin-right: 12px;
   }
 
   .arena .technique-kicker {

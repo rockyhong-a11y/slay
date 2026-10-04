@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
   AnimatePresence,
@@ -22,6 +22,7 @@ import {
   Coins,
   Skull,
   ArrowRight,
+  ArrowLeft,
   ArrowCounterClockwise,
   X,
   CaretRight,
@@ -59,6 +60,7 @@ import {
 } from "./game.js";
 import { getCardDetail, CARD_RARITY_LABELS } from "./card-library.js";
 import { CardGuidePage, CardLibraryPage } from "./KnowledgePages.jsx";
+import { Roster } from "./Roster.jsx";
 import {
   selectFighterState,
   createCardCue,
@@ -79,6 +81,7 @@ import "./style.css";
 import { LiveArt } from "./LiveArt.jsx";
 import { setLiveArtMotion } from "./live-art-renderer.js";
 import "./arena-layout.css";
+import "./roster.css";
 import "./typography.css";
 
 const asset = (name) => `${import.meta.env.BASE_URL}assets/${name}`;
@@ -170,16 +173,34 @@ function useSound() {
   return { enabled, toggle: () => setEnabled((v) => !v), play };
 }
 
-function Modal({ title, subtitle, onClose, children, wide = false }) {
+function Modal({
+  title,
+  subtitle,
+  onClose,
+  children,
+  wide = false,
+  className = "",
+  closeLabel = "닫기",
+}) {
   const ref = useRef(null);
+  const heading = useRef(null);
+  const titleId = useId();
   useEffect(() => {
     ref.current?.showModal();
   }, []);
+  useEffect(() => {
+    if (ref.current) ref.current.scrollTop = 0;
+    heading.current?.focus({ preventScroll: true });
+  }, [title]);
   return (
     <dialog
       ref={ref}
-      className={`modal ${wide ? "wide" : ""}`}
-      onCancel={onClose}
+      className={`modal ${wide ? "wide" : ""} ${className}`}
+      aria-labelledby={titleId}
+      onCancel={(event) => {
+        event.preventDefault();
+        onClose();
+      }}
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -187,9 +208,15 @@ function Modal({ title, subtitle, onClose, children, wide = false }) {
       <div className="modal-head">
         <div>
           {subtitle && <span className="eyebrow">{subtitle}</span>}
-          <h2>{title}</h2>
+          <h2 id={titleId} ref={heading} tabIndex={-1}>
+            {title}
+          </h2>
         </div>
-        <button className="icon-button" onClick={onClose} aria-label="닫기">
+        <button
+          className="icon-button"
+          onClick={onClose}
+          aria-label={closeLabel}
+        >
           <X size={22} />
         </button>
       </div>
@@ -372,6 +399,8 @@ function RouteMap({ state, onChoose, preview = false }) {
 function App() {
   const [state, setState] = useState(loadRun);
   const [modal, setModal] = useState(null);
+  const [previewActor, setPreviewActor] = useState(null);
+  const [previewFromRoster, setPreviewFromRoster] = useState(false);
   const [nav, setNav] = useState(pageFromHash);
   const [hit, setHit] = useState(null);
   const [cue, setCue] = useState(null);
@@ -408,6 +437,7 @@ function App() {
   });
   const sound = useSound();
   const wrestler = WRESTLERS[state.player.id] || WRESTLERS.raven;
+  const previewWrestler = WRESTLERS[previewActor] || wrestler;
   const toastTimer = useRef(null);
   const hitTimer = useRef(null);
   const playerCondition = selectFighterState(state.player);
@@ -571,12 +601,26 @@ function App() {
     clearPresentation();
     setState(newRun(id, crypto.getRandomValues(new Uint32Array(1))[0]));
     setModal(null);
+    setPreviewFromRoster(false);
     changePage("battle");
     notify("새로운 챔피언 로드가 시작됩니다.");
   };
   const navigate = (id) => {
     if (id === "deck" || id === "roster") setModal(id);
     else changePage(id);
+  };
+  const openConditionPreview = (id, fromRoster = false) => {
+    setPreviewActor(id);
+    setPreviewFromRoster(fromRoster);
+    setModal("condition");
+  };
+  const closeModal = () => {
+    if (modal === "condition" && previewFromRoster) {
+      setPreviewFromRoster(false);
+      setModal("roster");
+    } else {
+      setModal(null);
+    }
   };
   const intent = state.enemy?.intent;
   const enemyHUD = state.enemy || {
@@ -807,7 +851,7 @@ function App() {
                       </span>
                       <FighterCondition
                         condition={playerCondition}
-                        onClick={() => setModal("condition")}
+                        onClick={() => openConditionPreview(state.player.id)}
                       />
                     </div>
                   </div>
@@ -859,7 +903,9 @@ function App() {
                     name={wrestler.name}
                     side="player"
                     hit={hit?.target === "player"}
+                    hitId={hit?.target === "player" ? hit.id : null}
                     cast={cue}
+                    shortened={!cinematics}
                     still={activePhase === "defeat"}
                   />
                   {state.enemy && (
@@ -869,6 +915,8 @@ function App() {
                       name={enemyHUD.name}
                       side="enemy"
                       hit={hit?.target === "enemy"}
+                      hitId={hit?.target === "enemy" ? hit.id : null}
+                      shortened={!cinematics}
                       still={state.enemy.hp === 0}
                     />
                   )}
@@ -1087,7 +1135,7 @@ function App() {
                 discard: "버린 카드",
                 roster: "CHOOSE YOUR WRESTLER",
                 settings: "설정",
-                condition: "컨디션 및 모션",
+                condition: `${previewWrestler.nameKo} 컨디션 및 모션`,
                 log: "경기 기록",
                 upgrade: "카드 강화",
               }[modal]
@@ -1096,13 +1144,20 @@ function App() {
               {
                 deck: `${state.deck.length} CARDS IN YOUR DECK`,
                 roster: "THE CONTENDERS",
+                condition: `${previewWrestler.name} · LIVE PREVIEW`,
                 upgrade: "TRAINING ROOM",
               }[modal]
             }
             wide={["deck", "draw", "discard", "roster", "upgrade"].includes(
               modal,
             )}
-            onClose={() => setModal(null)}
+            className={modal === "roster" ? "roster-modal" : ""}
+            closeLabel={
+              modal === "condition" && previewFromRoster
+                ? "선수 선택으로 돌아가기"
+                : "닫기"
+            }
+            onClose={closeModal}
           >
             {["deck", "draw", "discard", "upgrade"].includes(modal) && (
               <>
@@ -1152,49 +1207,12 @@ function App() {
               </>
             )}
             {modal === "roster" && (
-              <>
-                <p className="muted modal-desc">
-                  선수마다 시작 덱과 전투 방식이 다릅니다. 선택하면 새 런을
-                  시작합니다.
-                </p>
-                <div className="roster-grid">
-                  {Object.entries(WRESTLERS).map(([id, w]) => (
-                    <div className={`roster-card ${id}`} key={id}>
-                      <LiveArt
-                        art={fighterPoseArt(id)}
-                        alt={w.name}
-                        position={[0.5, 1]}
-                      />
-                      <div>
-                        <span className="eyebrow">{w.title}</span>
-                        <h3>{w.name}</h3>
-                        <div className="roster-stats">
-                          <span>
-                            <Heart size={13} weight="fill" />
-                            {w.maxHp}
-                          </span>
-                          <span>{w.passive}</span>
-                        </div>
-                        <p>
-                          {w.description ||
-                            (id === "raven"
-                              ? "공격 콤보와 폭발적인 피니셔로 링을 지배합니다."
-                              : id === "valkyrie"
-                                ? "견고한 가드와 그래플링으로 흐름을 뒤집습니다."
-                                : "빠른 드로우와 침착함으로 압박을 극복합니다.")}
-                        </p>
-                        <button
-                          className="primary-button"
-                          onClick={() => startRun(id)}
-                        >
-                          이 선수로 새 런 시작
-                          <ArrowRight size={18} />
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </>
+              <Roster
+                currentId={state.player.id}
+                onStart={startRun}
+                onPreview={(id) => openConditionPreview(id, true)}
+                motionEnabled={artMotion}
+              />
             )}
             {modal === "settings" && (
               <div className="settings-content">
@@ -1259,7 +1277,21 @@ function App() {
               </div>
             )}
             {modal === "condition" && (
-              <ConditionGuide actor={state.player.id} name={wrestler.name} />
+              <>
+                {previewFromRoster && (
+                  <div className="roster-preview-toolbar">
+                    <button type="button" onClick={closeModal}>
+                      <ArrowLeft size={15} /> 선수 선택으로 돌아가기
+                    </button>
+                    <span>{previewWrestler.role}</span>
+                  </div>
+                )}
+                <ConditionGuide
+                  key={previewWrestler.id}
+                  actor={previewWrestler.id}
+                  name={previewWrestler.name}
+                />
+              </>
             )}
             {modal === "log" && (
               <div className="match-log">

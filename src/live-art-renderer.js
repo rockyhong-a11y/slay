@@ -317,6 +317,17 @@ function canvasFrame(record, rig, vectors, blink, width, height) {
 }
 
 function drawEntry(entry, delta, now, animate) {
+  if (entry.controller) {
+    entry.controllerNeedsFrame = !!entry.controller.draw(entry, {
+      delta,
+      now,
+      animate,
+      reduced,
+      pointer,
+      wake,
+    })?.needsFrame;
+    return;
+  }
   const options = entry.options(),
     next = textureFor(options.art, options.src);
   if (!next.ready) return;
@@ -447,6 +458,7 @@ function pruneTextures() {
   if (!device.gl || textures.size <= 18) return;
   const used = new Set();
   entries.forEach((entry) => {
+    if (entry.controller) return;
     if (!entry.visible) return;
     // Keep the incoming image while it loads and the outgoing pose while fading.
     used.add(entry.options().art);
@@ -490,6 +502,10 @@ function tick(now) {
       return;
     }
     drawEntry(entry, delta, now, animate);
+    if (entry.controller) {
+      if (entry.controllerNeedsFrame) continuation = true;
+      return;
+    }
     if (animate && !entry.options().still) continuation = true;
     if (entry.previous) continuation = true;
     if (entry.activity > 0.005 && !reduced) continuation = true;
@@ -547,13 +563,20 @@ function boot() {
   });
 }
 
-export function registerLiveArt(wrapper, canvas, options, onReady) {
+export function registerLiveArt(
+  wrapper,
+  canvas,
+  options,
+  onReady,
+  controller = null,
+) {
   boot();
   const entry = {
     wrapper,
     canvas,
     options,
     onReady,
+    controller,
     visible: false,
     ready: false,
     frames: 0,
@@ -591,10 +614,12 @@ export function registerLiveArt(wrapper, canvas, options, onReady) {
   wake();
   return {
     refresh() {
+      controller?.refresh?.();
       entry.bounds = wrapper.getBoundingClientRect();
       wake();
     },
     dispose() {
+      controller?.dispose?.();
       intersection.disconnect();
       resize.disconnect();
       entries.delete(entry);
