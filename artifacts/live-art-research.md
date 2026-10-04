@@ -1,3 +1,5 @@
+> Historical research: the continuous rig approach below was withdrawn. The active app uses 30 complete static fighter-state illustrations and static card art, with finite card-cast cinematics. This document records the earlier investigation rather than current implementation or verification. See [current art direction](art-direction.md) and [verification](cartoon-fighter-qa.md).
+
 # SLAY living illustration research
 
 Reviewed on 2026-10-04. This note records the starting architecture and authoring

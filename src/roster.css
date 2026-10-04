@@ -18,25 +18,6 @@
   font-size: 13px;
   line-height: 1.9;
 }
-.roster-motion-status {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  color: var(--muted);
-  white-space: nowrap;
-  font-size: 10px;
-  padding-top: 6px;
-}
-.roster-motion-status > span {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--muted);
-}
-.roster-motion-status > .motion-active {
-  background: #a6cb8d;
-  box-shadow: 0 0 8px #a6cb8d55;
-}
 .roster-role-controls {
   display: flex;
   gap: 8px;
@@ -119,7 +100,7 @@
   filter: blur(5px);
   z-index: -1;
 }
-.contender-stage > .live-art {
+.contender-stage > .artwork {
   z-index: 1;
 }
 .contender-number {
@@ -409,9 +390,6 @@
   .roster-intro {
     flex-direction: column;
     gap: 8px;
-  }
-  .roster-motion-status {
-    padding-top: 0;
   }
 }
 @media (max-width: 600px) {

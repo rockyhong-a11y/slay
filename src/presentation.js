@@ -8,42 +8,42 @@ export const FIGHTER_STATES = {
     label: "보통",
     subtitle: "READY",
     rule: "체력 50% 초과 · 열기 0–2 · 압박 60 미만",
-    motion: "안정적인 가드와 느린 호흡",
+    description: "차분한 표정과 안정적인 가드",
   },
   excited: {
     id: "excited",
     label: "흥분",
     subtitle: "HYPED",
     rule: "체력 50% 초과 · 열기 3–5 · 압박 60 미만",
-    motion: "올라간 가드와 가벼운 바운스",
+    description: "자신감 있는 미소와 올라간 가드",
   },
   fiery: {
     id: "fiery",
     label: "열혈",
     subtitle: "ON FIRE",
     rule: "체력 50% 초과 · 열기 6 이상 · 압박 60 미만",
-    motion: "강하게 쥔 주먹과 전진하는 자세",
+    description: "투지의 표정과 강하게 쥔 주먹",
   },
   frustrated: {
     id: "frustrated",
     label: "좌절",
     subtitle: "UNDER PRESSURE",
     rule: "체력 50% 초과 · 압박 60 이상",
-    motion: "걱정스러운 표정과 흐트러진 가드",
+    description: "걱정스러운 표정과 흐트러진 가드",
   },
   tired: {
     id: "tired",
     label: "지침",
     subtitle: "FATIGUED",
     rule: "체력 25% 초과–50% 이하",
-    motion: "내려간 어깨와 무거운 호흡",
+    description: "처진 어깨와 지친 표정",
   },
   groggy: {
     id: "groggy",
     label: "그로기",
     subtitle: "GROGGY",
     rule: "체력 25% 이하",
-    motion: "고개가 처지고 가드가 무너진 자세",
+    description: "고개가 처지고 가드가 무너진 자세",
   },
 };
 
@@ -66,7 +66,9 @@ export function fighterPoseArt(actor, condition = "normal") {
   const id = ["raven", "valkyrie", "nova", "viper", "ember"].includes(actor)
     ? actor
     : "nova";
-  return `fighters/${id}.webp`;
+  const requested = typeof condition === "string" ? condition : condition?.id;
+  const state = Object.hasOwn(FIGHTER_STATES, requested) ? requested : "normal";
+  return `fighters/states/${id}-${state}.webp`;
 }
 
 const timings = {

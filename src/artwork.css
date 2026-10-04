@@ -1,18 +1,41 @@
-.fighter-puppet {
-  contain: layout paint;
+.artwork {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  pointer-events: none;
+  isolation: isolate;
 }
-.fighter-puppet.live-art-ready > img {
-  visibility: hidden;
+.artwork > img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  animation: none !important;
+  transition: none !important;
 }
-.fighter-puppet > canvas {
-  image-rendering: auto;
+.artwork-mirrored {
+  transform: scaleX(-1);
 }
-.fighter-sprite-frame:has(> .fighter-puppet) {
-  scale: 1;
-  filter: none;
+.profile > .artwork {
+  border-radius: 50%;
 }
-.fighter-sprite-frame > .fighter-puppet {
-  translate: none;
+.card-art > .artwork,
+.knowledge-card-image > .artwork,
+.knowledge-detail-art > .artwork,
+.technique-art-frame > .artwork {
+  position: absolute;
+  inset: 0;
+}
+.artwork.artwork-portrait > img {
+  right: auto;
+  bottom: auto;
+  object-fit: initial;
 }
 .condition-preview .condition-face-heading {
   display: flex;
@@ -40,6 +63,10 @@
 }
 .condition-preview .condition-face-heading h3 {
   margin: 5px 0 0;
+}
+.condition-preview .condition-preview-copy > p {
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 @media (max-width: 600px) {
   .condition-preview .condition-face-heading {

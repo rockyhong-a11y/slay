@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { Fire, Heartbeat, Shield, Sparkle } from "@phosphor-icons/react";
 import { FIGHTER_STATES, fighterPoseArt } from "./presentation.js";
 import "./combat-presentation.css";
-import { LiveArt } from "./LiveArt.jsx";
+import { Artwork } from "./Artwork.jsx";
 import { motionTokens } from "./motion-config.js";
 
 const icons = {
@@ -28,12 +28,12 @@ export function FighterCondition({ condition, enemy = false, onClick }) {
         enemy
           ? "상대는 체력과 약화 상태에 따라 자세가 바뀝니다."
           : onClick
-            ? `${condition.rule}. 컨디션과 모션 보기`
+            ? `${condition.rule}. 컨디션과 표정 보기`
             : condition.rule
       }
       aria-label={
         onClick
-          ? `현재 선수 상태: ${condition.label}. 컨디션과 모션 보기`
+          ? `현재 선수 상태: ${condition.label}. 컨디션과 표정 보기`
           : `${enemy ? "상대" : "선수"} 상태: ${condition.label}`
       }
     >
@@ -43,38 +43,17 @@ export function FighterCondition({ condition, enemy = false, onClick }) {
   );
 }
 
-export function FighterSprite({
-  actor,
-  condition,
-  name,
-  side,
-  hit = false,
-  hitId = null,
-  cast = null,
-  still = false,
-  shortened = false,
-}) {
-  const reduced = useReducedMotion();
+export function FighterSprite({ actor, condition, name, side }) {
   const requested = fighterPoseArt(actor, condition);
   return (
-    <div
-      className={`fighter ${side}-fighter ${hit ? "hit" : ""} ${cast ? `casting casting-${cast.disciplineSlug}` : ""}`}
-      data-condition={condition.id}
-    >
-      <div
-        className={`fighter-sprite-frame pose-${condition.id} ${still ? "pose-still" : ""}`}
-      >
-        <LiveArt
+    <div className={`fighter ${side}-fighter`} data-condition={condition.id}>
+      <div className="fighter-sprite-frame">
+        <Artwork
           art={requested}
           alt={`${name} · ${condition.label} 자세`}
           className="fighter-pose"
           condition={condition.id}
-          still={still}
-          cast={cast}
-          castDuration={reduced || shortened ? 650 : cast?.duration}
-          hit={hit}
-          hitId={hitId}
-          side={side}
+          mirrored={side === "enemy"}
           position={[0.5, 1]}
         />
       </div>
@@ -107,11 +86,7 @@ export function TechniqueScene({ cue, onComplete, shortened = false }) {
       <span className="combat-sr-only">{cue.announcement}</span>
       <div className="technique-scene-visual" aria-hidden="true">
         <div className="technique-art-frame">
-          <LiveArt
-            art={cue.art}
-            alt={cue.alt}
-            still={!!(reduced || shortened)}
-          />
+          <Artwork art={cue.art} alt={cue.alt} />
         </div>
         <div className="technique-film-shade" />
         <div className="technique-scene-copy">
@@ -142,8 +117,8 @@ export function ConditionGuide({ actor, name }) {
   return (
     <div className="condition-guide">
       <p>
-        체력과 마음의 변화가 선수의 표정·자세·대기 움직임에 드러납니다. 아래
-        상태를 선택해 {name}의 모션을 미리 볼 수 있습니다.
+        체력과 마음의 변화가 선수의 표정과 자세에 드러납니다. 아래 상태를 선택해{" "}
+        {name}의 완성된 상태별 일러스트를 미리 볼 수 있습니다.
       </p>
       <div className="condition-preview" data-condition={condition.id}>
         <FighterSprite
@@ -154,7 +129,7 @@ export function ConditionGuide({ actor, name }) {
         />
         <div className="condition-preview-copy">
           <div className="condition-face-heading">
-            <LiveArt
+            <Artwork
               art={fighterPoseArt(actor, condition)}
               alt={`${name} · ${condition.label} 표정 확대`}
               className="condition-face-portrait"
@@ -167,7 +142,7 @@ export function ConditionGuide({ actor, name }) {
               <h3>{condition.label}</h3>
             </div>
           </div>
-          <p>{condition.motion}</p>
+          <p>{condition.description}</p>
         </div>
       </div>
       <div
@@ -180,7 +155,7 @@ export function ConditionGuide({ actor, name }) {
             type="button"
             key={item.id}
             aria-pressed={selected === item.id}
-            aria-label={`${item.label} 모션 미리보기. ${item.rule}`}
+            aria-label={`${item.label} 표정과 자세 미리보기. ${item.rule}`}
             onClick={() => setSelected(item.id)}
           >
             <FighterCondition condition={item} />

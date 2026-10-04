@@ -1,0 +1,308 @@
+{
+  "viewport": {
+    "width": 393,
+    "height": 852
+  },
+  "checks": [
+    {
+      "art": "fighters/states/viper-normal.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/viper-normal.webp",
+      "state": "normal"
+    },
+    {
+      "art": "fighters/states/viper-excited.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/viper-excited.webp",
+      "state": "excited"
+    },
+    {
+      "art": "fighters/states/viper-fiery.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/viper-fiery.webp",
+      "state": "fiery"
+    },
+    {
+      "art": "fighters/states/viper-frustrated.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/viper-frustrated.webp",
+      "state": "frustrated"
+    },
+    {
+      "art": "fighters/states/viper-tired.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/viper-tired.webp",
+      "state": "tired"
+    },
+    {
+      "art": "fighters/states/viper-groggy.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/viper-groggy.webp",
+      "state": "groggy"
+    },
+    {
+      "art": "fighters/states/raven-normal.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/raven-normal.webp",
+      "state": "normal"
+    },
+    {
+      "art": "fighters/states/raven-excited.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/raven-excited.webp",
+      "state": "excited"
+    },
+    {
+      "art": "fighters/states/raven-fiery.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/raven-fiery.webp",
+      "state": "fiery"
+    },
+    {
+      "art": "fighters/states/raven-frustrated.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/raven-frustrated.webp",
+      "state": "frustrated"
+    },
+    {
+      "art": "fighters/states/raven-tired.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/raven-tired.webp",
+      "state": "tired"
+    },
+    {
+      "art": "fighters/states/raven-groggy.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/raven-groggy.webp",
+      "state": "groggy"
+    },
+    {
+      "art": "fighters/states/valkyrie-normal.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/valkyrie-normal.webp",
+      "state": "normal"
+    },
+    {
+      "art": "fighters/states/valkyrie-excited.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/valkyrie-excited.webp",
+      "state": "excited"
+    },
+    {
+      "art": "fighters/states/valkyrie-fiery.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/valkyrie-fiery.webp",
+      "state": "fiery"
+    },
+    {
+      "art": "fighters/states/valkyrie-frustrated.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/valkyrie-frustrated.webp",
+      "state": "frustrated"
+    },
+    {
+      "art": "fighters/states/valkyrie-tired.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/valkyrie-tired.webp",
+      "state": "tired"
+    },
+    {
+      "art": "fighters/states/valkyrie-groggy.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/valkyrie-groggy.webp",
+      "state": "groggy"
+    },
+    {
+      "art": "fighters/states/nova-normal.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/nova-normal.webp",
+      "state": "normal"
+    },
+    {
+      "art": "fighters/states/nova-excited.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/nova-excited.webp",
+      "state": "excited"
+    },
+    {
+      "art": "fighters/states/nova-fiery.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/nova-fiery.webp",
+      "state": "fiery"
+    },
+    {
+      "art": "fighters/states/nova-frustrated.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/nova-frustrated.webp",
+      "state": "frustrated"
+    },
+    {
+      "art": "fighters/states/nova-tired.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/nova-tired.webp",
+      "state": "tired"
+    },
+    {
+      "art": "fighters/states/nova-groggy.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/nova-groggy.webp",
+      "state": "groggy"
+    },
+    {
+      "art": "fighters/states/ember-normal.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/ember-normal.webp",
+      "state": "normal"
+    },
+    {
+      "art": "fighters/states/ember-excited.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/ember-excited.webp",
+      "state": "excited"
+    },
+    {
+      "art": "fighters/states/ember-fiery.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/ember-fiery.webp",
+      "state": "fiery"
+    },
+    {
+      "art": "fighters/states/ember-frustrated.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/ember-frustrated.webp",
+      "state": "frustrated"
+    },
+    {
+      "art": "fighters/states/ember-tired.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/ember-tired.webp",
+      "state": "tired"
+    },
+    {
+      "art": "fighters/states/ember-groggy.webp",
+      "canvases": 0,
+      "fallbacks": 0,
+      "loaded": true,
+      "overflow": false,
+      "overlap": false,
+      "portraitArt": "fighters/states/ember-groggy.webp",
+      "state": "groggy"
+    }
+  ]
+}

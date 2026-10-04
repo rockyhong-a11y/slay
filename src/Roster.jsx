@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { useReducedMotion } from "motion/react";
 import {
   ArrowRight,
   CaretDown,
   Check,
   Heart,
-  PlayCircle,
+  Eye,
   Sparkle,
 } from "@phosphor-icons/react";
 import { WRESTLERS, getCard } from "./game.js";
 import { fighterPoseArt } from "./presentation.js";
-import { LiveArt } from "./LiveArt.jsx";
+import { Artwork } from "./Artwork.jsx";
 
 function deckGroups(deck) {
   return Object.entries(
@@ -21,15 +20,13 @@ function deckGroups(deck) {
   );
 }
 
-export function Roster({ currentId, onStart, onPreview, motionEnabled }) {
+export function Roster({ currentId, onStart, onPreview }) {
   const [role, setRole] = useState("all");
-  const reducedMotion = useReducedMotion();
   const fighters = Object.entries(WRESTLERS);
   const visible = fighters.filter(([, fighter]) =>
     role === "all" ? true : fighter.role === role,
   );
   const roles = [...new Set(fighters.map(([, fighter]) => fighter.role))];
-  const motionActive = motionEnabled && !reducedMotion;
 
   return (
     <div className="fighter-roster">
@@ -38,14 +35,6 @@ export function Roster({ currentId, onStart, onPreview, motionEnabled }) {
           {fighters.length}명의 선수, 서로 다른 경기 운영. 역할과 패시브를
           비교하고 나의 링 스타일을 선택하세요.
         </p>
-        <span className="roster-motion-status">
-          <span className={motionActive ? "motion-active" : ""} />
-          {motionActive
-            ? "살아 움직이는 2D 선수"
-            : reducedMotion
-              ? "기기의 모션 감소 설정 적용 중"
-              : "설정에서 일러스트 모션 정지 중"}
-        </span>
       </div>
       <div
         className="roster-role-controls"
@@ -71,7 +60,7 @@ export function Roster({ currentId, onStart, onPreview, motionEnabled }) {
         ))}
       </div>
       <p className="roster-run-note">
-        모션 미리보기로 표정과 상태를 확인할 수 있습니다. 새 런을 시작하면 현재
+        상태 미리보기로 표정과 자세를 확인할 수 있습니다. 새 런을 시작하면 현재
         진행이 선택한 선수의 시작 덱으로 바뀝니다.
       </p>
       <div className="contender-grid">
@@ -94,7 +83,7 @@ export function Roster({ currentId, onStart, onPreview, motionEnabled }) {
                   <Check size={12} weight="bold" /> 현재 선수
                 </span>
               )}
-              <LiveArt
+              <Artwork
                 art={fighterPoseArt(id)}
                 alt={`${fighter.nameKo} · ${fighter.role}`}
                 position={[0.5, 1]}
@@ -177,9 +166,9 @@ export function Roster({ currentId, onStart, onPreview, motionEnabled }) {
                   type="button"
                   className="contender-preview-button"
                   onClick={() => onPreview(id)}
-                  aria-label={`${fighter.nameKo}의 표정과 상태별 모션 미리보기`}
+                  aria-label={`${fighter.nameKo}의 상태별 표정과 자세 미리보기`}
                 >
-                  <PlayCircle size={18} /> 모션 미리보기
+                  <Eye size={18} /> 상태 미리보기
                 </button>
                 <button
                   type="button"

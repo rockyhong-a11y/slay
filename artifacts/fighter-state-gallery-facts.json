@@ -1,0 +1,2595 @@
+{
+  "purpose": "QA comparison gallery of complete 2D state illustrations on image planes",
+  "is_3d_character_model": false,
+  "is_character_rig_or_animation": false,
+  "blender_version": "5.2.2 LTS",
+  "rows": [
+    "raven",
+    "valkyrie",
+    "nova",
+    "viper",
+    "ember"
+  ],
+  "columns": [
+    "normal",
+    "excited",
+    "fiery",
+    "frustrated",
+    "tired",
+    "groggy"
+  ],
+  "inventory": {
+    "MESH": 30,
+    "ARMATURE": 0,
+    "FONT": 48,
+    "CAMERA": 1,
+    "LIGHT": 0,
+    "EMPTY": 0
+  },
+  "inventory_all_types": {
+    "CAMERA": 1,
+    "FONT": 48,
+    "MESH": 30
+  },
+  "animation_or_driver_owners": [],
+  "mesh_data_blocks": 30,
+  "camera_world_bounds": {
+    "left": 2.574920654296875e-05,
+    "right": 15.249974250793457,
+    "bottom": 0.0,
+    "top": 19.399999618530273
+  },
+  "checks": {
+    "thirty_single_image_planes": true,
+    "four_vertices_one_face_per_image": true,
+    "one_complete_texture_per_plane": true,
+    "assigned_texture_is_exact_reported_source": true,
+    "full_image_uv_mapping": true,
+    "identical_scale_orientation_and_dimensions": true,
+    "no_armatures": true,
+    "no_actions": true,
+    "no_animation_or_drivers_anywhere": true,
+    "only_image_planes_font_captions_and_camera": true,
+    "no_animation_modifiers_constraints_or_parents": true,
+    "exact_source_files_packed": true,
+    "all_complete_planes_inside_camera": true
+  },
+  "orientation": {
+    "plane_normal": "+Z",
+    "image_up": "+Y",
+    "camera_view": "-Z",
+    "mirrored": false
+  },
+  "render": {
+    "engine": "CYCLES",
+    "color_transform": "Standard",
+    "width": 3840,
+    "height": 4885,
+    "file": "artifacts/fighter-state-gallery.jpg"
+  },
+  "packed_texture_bytes": 5603556,
+  "planes": [
+    {
+      "name": "raven-normal",
+      "actor": "raven",
+      "state": "normal",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        2.1500000953674316,
+        16.25,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "raven-normal.webp"
+      ],
+      "assigned_texture_sha256": [
+        "dab64b1b116bc500ed97fbe92d3f0c30853e2c34f6f82df54c82cc1bbca81640"
+      ],
+      "world_bounds": [
+        [
+          1.1500000953674316,
+          14.75,
+          0.0
+        ],
+        [
+          3.1500000953674316,
+          14.75,
+          0.0
+        ],
+        [
+          3.1500000953674316,
+          17.75,
+          0.0
+        ],
+        [
+          1.1500000953674316,
+          17.75,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/raven-normal.webp",
+      "channels": 4,
+      "source_bytes": 172988,
+      "packed_bytes": 172988,
+      "source_sha256": "dab64b1b116bc500ed97fbe92d3f0c30853e2c34f6f82df54c82cc1bbca81640",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "raven-excited",
+      "actor": "raven",
+      "state": "excited",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        4.46999979019165,
+        16.25,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "raven-excited.webp"
+      ],
+      "assigned_texture_sha256": [
+        "a92931b6ae8f3c05d45f106eb5b24aab7cf4d709bed12f9b01bb04e67e2fa27b"
+      ],
+      "world_bounds": [
+        [
+          3.4699997901916504,
+          14.75,
+          0.0
+        ],
+        [
+          5.46999979019165,
+          14.75,
+          0.0
+        ],
+        [
+          5.46999979019165,
+          17.75,
+          0.0
+        ],
+        [
+          3.4699997901916504,
+          17.75,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/raven-excited.webp",
+      "channels": 4,
+      "source_bytes": 184046,
+      "packed_bytes": 184046,
+      "source_sha256": "a92931b6ae8f3c05d45f106eb5b24aab7cf4d709bed12f9b01bb04e67e2fa27b",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "raven-fiery",
+      "actor": "raven",
+      "state": "fiery",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        6.789999961853027,
+        16.25,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "raven-fiery.webp"
+      ],
+      "assigned_texture_sha256": [
+        "c053ec5854d334393e3931886ae3ef566a32dfd8102c4446de42656906f521cd"
+      ],
+      "world_bounds": [
+        [
+          5.789999961853027,
+          14.75,
+          0.0
+        ],
+        [
+          7.789999961853027,
+          14.75,
+          0.0
+        ],
+        [
+          7.789999961853027,
+          17.75,
+          0.0
+        ],
+        [
+          5.789999961853027,
+          17.75,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/raven-fiery.webp",
+      "channels": 4,
+      "source_bytes": 191798,
+      "packed_bytes": 191798,
+      "source_sha256": "c053ec5854d334393e3931886ae3ef566a32dfd8102c4446de42656906f521cd",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "raven-frustrated",
+      "actor": "raven",
+      "state": "frustrated",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        9.109999656677246,
+        16.25,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "raven-frustrated.webp"
+      ],
+      "assigned_texture_sha256": [
+        "3bb2c8a2576eb911521d40dcb043fccfc77bdf5b1d801102012d320fdc01cdf5"
+      ],
+      "world_bounds": [
+        [
+          8.109999656677246,
+          14.75,
+          0.0
+        ],
+        [
+          10.109999656677246,
+          14.75,
+          0.0
+        ],
+        [
+          10.109999656677246,
+          17.75,
+          0.0
+        ],
+        [
+          8.109999656677246,
+          17.75,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/raven-frustrated.webp",
+      "channels": 4,
+      "source_bytes": 182466,
+      "packed_bytes": 182466,
+      "source_sha256": "3bb2c8a2576eb911521d40dcb043fccfc77bdf5b1d801102012d320fdc01cdf5",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "raven-tired",
+      "actor": "raven",
+      "state": "tired",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        11.430000305175781,
+        16.25,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "raven-tired.webp"
+      ],
+      "assigned_texture_sha256": [
+        "fdb77c9fcbbed0e664ae6b78c80e60532f42e6a7d5f4a552bce70e142f5a7813"
+      ],
+      "world_bounds": [
+        [
+          10.430000305175781,
+          14.75,
+          0.0
+        ],
+        [
+          12.430000305175781,
+          14.75,
+          0.0
+        ],
+        [
+          12.430000305175781,
+          17.75,
+          0.0
+        ],
+        [
+          10.430000305175781,
+          17.75,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/raven-tired.webp",
+      "channels": 4,
+      "source_bytes": 175868,
+      "packed_bytes": 175868,
+      "source_sha256": "fdb77c9fcbbed0e664ae6b78c80e60532f42e6a7d5f4a552bce70e142f5a7813",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "raven-groggy",
+      "actor": "raven",
+      "state": "groggy",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        13.75,
+        16.25,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "raven-groggy.webp"
+      ],
+      "assigned_texture_sha256": [
+        "f0c4cdc71c253b66bd12b34102910c6ff315faa33e504a1a16911ab0bd899a26"
+      ],
+      "world_bounds": [
+        [
+          12.75,
+          14.75,
+          0.0
+        ],
+        [
+          14.75,
+          14.75,
+          0.0
+        ],
+        [
+          14.75,
+          17.75,
+          0.0
+        ],
+        [
+          12.75,
+          17.75,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/raven-groggy.webp",
+      "channels": 4,
+      "source_bytes": 186058,
+      "packed_bytes": 186058,
+      "source_sha256": "f0c4cdc71c253b66bd12b34102910c6ff315faa33e504a1a16911ab0bd899a26",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "valkyrie-normal",
+      "actor": "valkyrie",
+      "state": "normal",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        2.1500000953674316,
+        12.699999809265137,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "valkyrie-normal.webp"
+      ],
+      "assigned_texture_sha256": [
+        "b85f5e3c2e631f26e5dd0453691b0b120ddb22753d47d150ac16b0bfdcce48d8"
+      ],
+      "world_bounds": [
+        [
+          1.1500000953674316,
+          11.199999809265137,
+          0.0
+        ],
+        [
+          3.1500000953674316,
+          11.199999809265137,
+          0.0
+        ],
+        [
+          3.1500000953674316,
+          14.199999809265137,
+          0.0
+        ],
+        [
+          1.1500000953674316,
+          14.199999809265137,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/valkyrie-normal.webp",
+      "channels": 4,
+      "source_bytes": 175814,
+      "packed_bytes": 175814,
+      "source_sha256": "b85f5e3c2e631f26e5dd0453691b0b120ddb22753d47d150ac16b0bfdcce48d8",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "valkyrie-excited",
+      "actor": "valkyrie",
+      "state": "excited",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        4.46999979019165,
+        12.699999809265137,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "valkyrie-excited.webp"
+      ],
+      "assigned_texture_sha256": [
+        "28125ec70f923f6be72197dc4cc0af9fcf13dd22c0df51c767105d5b0a74edc8"
+      ],
+      "world_bounds": [
+        [
+          3.4699997901916504,
+          11.199999809265137,
+          0.0
+        ],
+        [
+          5.46999979019165,
+          11.199999809265137,
+          0.0
+        ],
+        [
+          5.46999979019165,
+          14.199999809265137,
+          0.0
+        ],
+        [
+          3.4699997901916504,
+          14.199999809265137,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/valkyrie-excited.webp",
+      "channels": 4,
+      "source_bytes": 168552,
+      "packed_bytes": 168552,
+      "source_sha256": "28125ec70f923f6be72197dc4cc0af9fcf13dd22c0df51c767105d5b0a74edc8",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "valkyrie-fiery",
+      "actor": "valkyrie",
+      "state": "fiery",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        6.789999961853027,
+        12.699999809265137,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "valkyrie-fiery.webp"
+      ],
+      "assigned_texture_sha256": [
+        "6bb91f96cf4476b55da580c4dd58064a49cc3c1e302fe3df638891eb822f4f63"
+      ],
+      "world_bounds": [
+        [
+          5.789999961853027,
+          11.199999809265137,
+          0.0
+        ],
+        [
+          7.789999961853027,
+          11.199999809265137,
+          0.0
+        ],
+        [
+          7.789999961853027,
+          14.199999809265137,
+          0.0
+        ],
+        [
+          5.789999961853027,
+          14.199999809265137,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/valkyrie-fiery.webp",
+      "channels": 4,
+      "source_bytes": 175986,
+      "packed_bytes": 175986,
+      "source_sha256": "6bb91f96cf4476b55da580c4dd58064a49cc3c1e302fe3df638891eb822f4f63",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "valkyrie-frustrated",
+      "actor": "valkyrie",
+      "state": "frustrated",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        9.109999656677246,
+        12.699999809265137,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "valkyrie-frustrated.webp"
+      ],
+      "assigned_texture_sha256": [
+        "45bea9a57e4b4a628fc8b303e919805fda440accb3d02ba7f7e4bcf53bc0d16e"
+      ],
+      "world_bounds": [
+        [
+          8.109999656677246,
+          11.199999809265137,
+          0.0
+        ],
+        [
+          10.109999656677246,
+          11.199999809265137,
+          0.0
+        ],
+        [
+          10.109999656677246,
+          14.199999809265137,
+          0.0
+        ],
+        [
+          8.109999656677246,
+          14.199999809265137,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/valkyrie-frustrated.webp",
+      "channels": 4,
+      "source_bytes": 175482,
+      "packed_bytes": 175482,
+      "source_sha256": "45bea9a57e4b4a628fc8b303e919805fda440accb3d02ba7f7e4bcf53bc0d16e",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "valkyrie-tired",
+      "actor": "valkyrie",
+      "state": "tired",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        11.430000305175781,
+        12.699999809265137,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "valkyrie-tired.webp"
+      ],
+      "assigned_texture_sha256": [
+        "c146b74a401c0e214623da6744284cdedd2df2715c6253d1056879fff23d2bd9"
+      ],
+      "world_bounds": [
+        [
+          10.430000305175781,
+          11.199999809265137,
+          0.0
+        ],
+        [
+          12.430000305175781,
+          11.199999809265137,
+          0.0
+        ],
+        [
+          12.430000305175781,
+          14.199999809265137,
+          0.0
+        ],
+        [
+          10.430000305175781,
+          14.199999809265137,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/valkyrie-tired.webp",
+      "channels": 4,
+      "source_bytes": 183954,
+      "packed_bytes": 183954,
+      "source_sha256": "c146b74a401c0e214623da6744284cdedd2df2715c6253d1056879fff23d2bd9",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "valkyrie-groggy",
+      "actor": "valkyrie",
+      "state": "groggy",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        13.75,
+        12.699999809265137,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "valkyrie-groggy.webp"
+      ],
+      "assigned_texture_sha256": [
+        "637a8365f92de26202379c80d31a2f20a61927a28534ccb7c9bf20c8f858997b"
+      ],
+      "world_bounds": [
+        [
+          12.75,
+          11.199999809265137,
+          0.0
+        ],
+        [
+          14.75,
+          11.199999809265137,
+          0.0
+        ],
+        [
+          14.75,
+          14.199999809265137,
+          0.0
+        ],
+        [
+          12.75,
+          14.199999809265137,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/valkyrie-groggy.webp",
+      "channels": 4,
+      "source_bytes": 199636,
+      "packed_bytes": 199636,
+      "source_sha256": "637a8365f92de26202379c80d31a2f20a61927a28534ccb7c9bf20c8f858997b",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "nova-normal",
+      "actor": "nova",
+      "state": "normal",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        2.1500000953674316,
+        9.149999618530273,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "nova-normal.webp"
+      ],
+      "assigned_texture_sha256": [
+        "f836ae8a458a106c100149d497484733ae9b1933f6e1329f610be6cf8796e90b"
+      ],
+      "world_bounds": [
+        [
+          1.1500000953674316,
+          7.649999618530273,
+          0.0
+        ],
+        [
+          3.1500000953674316,
+          7.649999618530273,
+          0.0
+        ],
+        [
+          3.1500000953674316,
+          10.649999618530273,
+          0.0
+        ],
+        [
+          1.1500000953674316,
+          10.649999618530273,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/nova-normal.webp",
+      "channels": 4,
+      "source_bytes": 152368,
+      "packed_bytes": 152368,
+      "source_sha256": "f836ae8a458a106c100149d497484733ae9b1933f6e1329f610be6cf8796e90b",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "nova-excited",
+      "actor": "nova",
+      "state": "excited",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        4.46999979019165,
+        9.149999618530273,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "nova-excited.webp"
+      ],
+      "assigned_texture_sha256": [
+        "b49ae018effa6899a7908ce2fbe1108444cdf4f83fc0f380daa20a3ec7a5a66c"
+      ],
+      "world_bounds": [
+        [
+          3.4699997901916504,
+          7.649999618530273,
+          0.0
+        ],
+        [
+          5.46999979019165,
+          7.649999618530273,
+          0.0
+        ],
+        [
+          5.46999979019165,
+          10.649999618530273,
+          0.0
+        ],
+        [
+          3.4699997901916504,
+          10.649999618530273,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/nova-excited.webp",
+      "channels": 4,
+      "source_bytes": 152170,
+      "packed_bytes": 152170,
+      "source_sha256": "b49ae018effa6899a7908ce2fbe1108444cdf4f83fc0f380daa20a3ec7a5a66c",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "nova-fiery",
+      "actor": "nova",
+      "state": "fiery",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        6.789999961853027,
+        9.149999618530273,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "nova-fiery.webp"
+      ],
+      "assigned_texture_sha256": [
+        "dfe9b911f50dc9c7df61c84fa28e8ab7930db968750620650755242043e584c5"
+      ],
+      "world_bounds": [
+        [
+          5.789999961853027,
+          7.649999618530273,
+          0.0
+        ],
+        [
+          7.789999961853027,
+          7.649999618530273,
+          0.0
+        ],
+        [
+          7.789999961853027,
+          10.649999618530273,
+          0.0
+        ],
+        [
+          5.789999961853027,
+          10.649999618530273,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/nova-fiery.webp",
+      "channels": 4,
+      "source_bytes": 163434,
+      "packed_bytes": 163434,
+      "source_sha256": "dfe9b911f50dc9c7df61c84fa28e8ab7930db968750620650755242043e584c5",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "nova-frustrated",
+      "actor": "nova",
+      "state": "frustrated",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        9.109999656677246,
+        9.149999618530273,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "nova-frustrated.webp"
+      ],
+      "assigned_texture_sha256": [
+        "0d61e97ae51ba87b44614cfc7fdfae97690a14f910be6493e75f3dfc5340e6e3"
+      ],
+      "world_bounds": [
+        [
+          8.109999656677246,
+          7.649999618530273,
+          0.0
+        ],
+        [
+          10.109999656677246,
+          7.649999618530273,
+          0.0
+        ],
+        [
+          10.109999656677246,
+          10.649999618530273,
+          0.0
+        ],
+        [
+          8.109999656677246,
+          10.649999618530273,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/nova-frustrated.webp",
+      "channels": 4,
+      "source_bytes": 155004,
+      "packed_bytes": 155004,
+      "source_sha256": "0d61e97ae51ba87b44614cfc7fdfae97690a14f910be6493e75f3dfc5340e6e3",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "nova-tired",
+      "actor": "nova",
+      "state": "tired",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        11.430000305175781,
+        9.149999618530273,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "nova-tired.webp"
+      ],
+      "assigned_texture_sha256": [
+        "f32695be50979149780cd33cda3e51be9fd847693a9671691d0dbb6d1861a016"
+      ],
+      "world_bounds": [
+        [
+          10.430000305175781,
+          7.649999618530273,
+          0.0
+        ],
+        [
+          12.430000305175781,
+          7.649999618530273,
+          0.0
+        ],
+        [
+          12.430000305175781,
+          10.649999618530273,
+          0.0
+        ],
+        [
+          10.430000305175781,
+          10.649999618530273,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/nova-tired.webp",
+      "channels": 4,
+      "source_bytes": 158378,
+      "packed_bytes": 158378,
+      "source_sha256": "f32695be50979149780cd33cda3e51be9fd847693a9671691d0dbb6d1861a016",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "nova-groggy",
+      "actor": "nova",
+      "state": "groggy",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        13.75,
+        9.149999618530273,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "nova-groggy.webp"
+      ],
+      "assigned_texture_sha256": [
+        "e7e3f2ba1ee4010170f53b39dbde3f3658d2da80b6e21d2bd716543154835c06"
+      ],
+      "world_bounds": [
+        [
+          12.75,
+          7.649999618530273,
+          0.0
+        ],
+        [
+          14.75,
+          7.649999618530273,
+          0.0
+        ],
+        [
+          14.75,
+          10.649999618530273,
+          0.0
+        ],
+        [
+          12.75,
+          10.649999618530273,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/nova-groggy.webp",
+      "channels": 4,
+      "source_bytes": 177294,
+      "packed_bytes": 177294,
+      "source_sha256": "e7e3f2ba1ee4010170f53b39dbde3f3658d2da80b6e21d2bd716543154835c06",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "viper-normal",
+      "actor": "viper",
+      "state": "normal",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        2.1500000953674316,
+        5.599999904632568,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "viper-normal.webp"
+      ],
+      "assigned_texture_sha256": [
+        "73a2ae978b9d4d0433f856d032c35edabcaf66f153ddb5bc535e14a0bf0fde78"
+      ],
+      "world_bounds": [
+        [
+          1.1500000953674316,
+          4.099999904632568,
+          0.0
+        ],
+        [
+          3.1500000953674316,
+          4.099999904632568,
+          0.0
+        ],
+        [
+          3.1500000953674316,
+          7.099999904632568,
+          0.0
+        ],
+        [
+          1.1500000953674316,
+          7.099999904632568,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/viper-normal.webp",
+      "channels": 4,
+      "source_bytes": 196116,
+      "packed_bytes": 196116,
+      "source_sha256": "73a2ae978b9d4d0433f856d032c35edabcaf66f153ddb5bc535e14a0bf0fde78",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "viper-excited",
+      "actor": "viper",
+      "state": "excited",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        4.46999979019165,
+        5.599999904632568,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "viper-excited.webp"
+      ],
+      "assigned_texture_sha256": [
+        "f8cdba14961380c8f951b32d3178cccc497a84f00e62adb3950445c8d36b28c4"
+      ],
+      "world_bounds": [
+        [
+          3.4699997901916504,
+          4.099999904632568,
+          0.0
+        ],
+        [
+          5.46999979019165,
+          4.099999904632568,
+          0.0
+        ],
+        [
+          5.46999979019165,
+          7.099999904632568,
+          0.0
+        ],
+        [
+          3.4699997901916504,
+          7.099999904632568,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/viper-excited.webp",
+      "channels": 4,
+      "source_bytes": 210952,
+      "packed_bytes": 210952,
+      "source_sha256": "f8cdba14961380c8f951b32d3178cccc497a84f00e62adb3950445c8d36b28c4",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "viper-fiery",
+      "actor": "viper",
+      "state": "fiery",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        6.789999961853027,
+        5.599999904632568,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "viper-fiery.webp"
+      ],
+      "assigned_texture_sha256": [
+        "e4d52c15bc744ad406b5b4d5cf0df458033c091e1c1c87a66d40c59235cbd661"
+      ],
+      "world_bounds": [
+        [
+          5.789999961853027,
+          4.099999904632568,
+          0.0
+        ],
+        [
+          7.789999961853027,
+          4.099999904632568,
+          0.0
+        ],
+        [
+          7.789999961853027,
+          7.099999904632568,
+          0.0
+        ],
+        [
+          5.789999961853027,
+          7.099999904632568,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/viper-fiery.webp",
+      "channels": 4,
+      "source_bytes": 221110,
+      "packed_bytes": 221110,
+      "source_sha256": "e4d52c15bc744ad406b5b4d5cf0df458033c091e1c1c87a66d40c59235cbd661",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "viper-frustrated",
+      "actor": "viper",
+      "state": "frustrated",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        9.109999656677246,
+        5.599999904632568,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "viper-frustrated.webp"
+      ],
+      "assigned_texture_sha256": [
+        "192c85e8be135238624e1a544af2aa46f1c6865490d2de6b87770a1579cf2883"
+      ],
+      "world_bounds": [
+        [
+          8.109999656677246,
+          4.099999904632568,
+          0.0
+        ],
+        [
+          10.109999656677246,
+          4.099999904632568,
+          0.0
+        ],
+        [
+          10.109999656677246,
+          7.099999904632568,
+          0.0
+        ],
+        [
+          8.109999656677246,
+          7.099999904632568,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/viper-frustrated.webp",
+      "channels": 4,
+      "source_bytes": 214102,
+      "packed_bytes": 214102,
+      "source_sha256": "192c85e8be135238624e1a544af2aa46f1c6865490d2de6b87770a1579cf2883",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "viper-tired",
+      "actor": "viper",
+      "state": "tired",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        11.430000305175781,
+        5.599999904632568,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "viper-tired.webp"
+      ],
+      "assigned_texture_sha256": [
+        "dd62b43d2256eeee8f4b19bd4d33493729f40a13629232898f2ba103e821798f"
+      ],
+      "world_bounds": [
+        [
+          10.430000305175781,
+          4.099999904632568,
+          0.0
+        ],
+        [
+          12.430000305175781,
+          4.099999904632568,
+          0.0
+        ],
+        [
+          12.430000305175781,
+          7.099999904632568,
+          0.0
+        ],
+        [
+          10.430000305175781,
+          7.099999904632568,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/viper-tired.webp",
+      "channels": 4,
+      "source_bytes": 204056,
+      "packed_bytes": 204056,
+      "source_sha256": "dd62b43d2256eeee8f4b19bd4d33493729f40a13629232898f2ba103e821798f",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "viper-groggy",
+      "actor": "viper",
+      "state": "groggy",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        13.75,
+        5.599999904632568,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "viper-groggy.webp"
+      ],
+      "assigned_texture_sha256": [
+        "7d430ef1d299f964d326ba6b1a67fac02ff8b7a9cc4c6750c3744c8410044eca"
+      ],
+      "world_bounds": [
+        [
+          12.75,
+          4.099999904632568,
+          0.0
+        ],
+        [
+          14.75,
+          4.099999904632568,
+          0.0
+        ],
+        [
+          14.75,
+          7.099999904632568,
+          0.0
+        ],
+        [
+          12.75,
+          7.099999904632568,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/viper-groggy.webp",
+      "channels": 4,
+      "source_bytes": 222928,
+      "packed_bytes": 222928,
+      "source_sha256": "7d430ef1d299f964d326ba6b1a67fac02ff8b7a9cc4c6750c3744c8410044eca",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "ember-normal",
+      "actor": "ember",
+      "state": "normal",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        2.1500000953674316,
+        2.049999952316284,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "ember-normal.webp"
+      ],
+      "assigned_texture_sha256": [
+        "8935a4fe3395a463ba6f2d5d026e86b1ae682682aa2240edd9df02d94a73b127"
+      ],
+      "world_bounds": [
+        [
+          1.1500000953674316,
+          0.5499999523162842,
+          0.0
+        ],
+        [
+          3.1500000953674316,
+          0.5499999523162842,
+          0.0
+        ],
+        [
+          3.1500000953674316,
+          3.549999952316284,
+          0.0
+        ],
+        [
+          1.1500000953674316,
+          3.549999952316284,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/ember-normal.webp",
+      "channels": 4,
+      "source_bytes": 205746,
+      "packed_bytes": 205746,
+      "source_sha256": "8935a4fe3395a463ba6f2d5d026e86b1ae682682aa2240edd9df02d94a73b127",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "ember-excited",
+      "actor": "ember",
+      "state": "excited",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        4.46999979019165,
+        2.049999952316284,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "ember-excited.webp"
+      ],
+      "assigned_texture_sha256": [
+        "e9acf481ede0a5db4c024199b2fe6a0f4f69e02edb41ff4fdf14151961fb1d17"
+      ],
+      "world_bounds": [
+        [
+          3.4699997901916504,
+          0.5499999523162842,
+          0.0
+        ],
+        [
+          5.46999979019165,
+          0.5499999523162842,
+          0.0
+        ],
+        [
+          5.46999979019165,
+          3.549999952316284,
+          0.0
+        ],
+        [
+          3.4699997901916504,
+          3.549999952316284,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/ember-excited.webp",
+      "channels": 4,
+      "source_bytes": 194848,
+      "packed_bytes": 194848,
+      "source_sha256": "e9acf481ede0a5db4c024199b2fe6a0f4f69e02edb41ff4fdf14151961fb1d17",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "ember-fiery",
+      "actor": "ember",
+      "state": "fiery",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        6.789999961853027,
+        2.049999952316284,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "ember-fiery.webp"
+      ],
+      "assigned_texture_sha256": [
+        "ef7cebbb407483d2a4516ddbf44565ffba448467693d266286e97585eb306dd4"
+      ],
+      "world_bounds": [
+        [
+          5.789999961853027,
+          0.5499999523162842,
+          0.0
+        ],
+        [
+          7.789999961853027,
+          0.5499999523162842,
+          0.0
+        ],
+        [
+          7.789999961853027,
+          3.549999952316284,
+          0.0
+        ],
+        [
+          5.789999961853027,
+          3.549999952316284,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/ember-fiery.webp",
+      "channels": 4,
+      "source_bytes": 201142,
+      "packed_bytes": 201142,
+      "source_sha256": "ef7cebbb407483d2a4516ddbf44565ffba448467693d266286e97585eb306dd4",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "ember-frustrated",
+      "actor": "ember",
+      "state": "frustrated",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        9.109999656677246,
+        2.049999952316284,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "ember-frustrated.webp"
+      ],
+      "assigned_texture_sha256": [
+        "833e5e90e41acd0fe0aa7364b53c5f95afbf6ac04873c1d0dddee5087ca5a815"
+      ],
+      "world_bounds": [
+        [
+          8.109999656677246,
+          0.5499999523162842,
+          0.0
+        ],
+        [
+          10.109999656677246,
+          0.5499999523162842,
+          0.0
+        ],
+        [
+          10.109999656677246,
+          3.549999952316284,
+          0.0
+        ],
+        [
+          8.109999656677246,
+          3.549999952316284,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/ember-frustrated.webp",
+      "channels": 4,
+      "source_bytes": 193720,
+      "packed_bytes": 193720,
+      "source_sha256": "833e5e90e41acd0fe0aa7364b53c5f95afbf6ac04873c1d0dddee5087ca5a815",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "ember-tired",
+      "actor": "ember",
+      "state": "tired",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        11.430000305175781,
+        2.049999952316284,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "ember-tired.webp"
+      ],
+      "assigned_texture_sha256": [
+        "661e32d79c41cc3e538940f95ccb1585c8eb5c95f754c7dfaa6aeecc4f9da072"
+      ],
+      "world_bounds": [
+        [
+          10.430000305175781,
+          0.5499999523162842,
+          0.0
+        ],
+        [
+          12.430000305175781,
+          0.5499999523162842,
+          0.0
+        ],
+        [
+          12.430000305175781,
+          3.549999952316284,
+          0.0
+        ],
+        [
+          10.430000305175781,
+          3.549999952316284,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/ember-tired.webp",
+      "channels": 4,
+      "source_bytes": 203222,
+      "packed_bytes": 203222,
+      "source_sha256": "661e32d79c41cc3e538940f95ccb1585c8eb5c95f754c7dfaa6aeecc4f9da072",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    },
+    {
+      "name": "ember-groggy",
+      "actor": "ember",
+      "state": "groggy",
+      "vertices": 4,
+      "faces": 1,
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "location": [
+        13.75,
+        2.049999952316284,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "parent": null,
+      "modifiers": 0,
+      "constraints": 0,
+      "animation_data": false,
+      "texture_nodes": 1,
+      "assigned_texture_names": [
+        "ember-groggy.webp"
+      ],
+      "assigned_texture_sha256": [
+        "966feda12da3edaa5b003144e7b01234c389baae9cf39dbb2fb03ee98b6159c8"
+      ],
+      "world_bounds": [
+        [
+          12.75,
+          0.5499999523162842,
+          0.0
+        ],
+        [
+          14.75,
+          0.5499999523162842,
+          0.0
+        ],
+        [
+          14.75,
+          3.549999952316284,
+          0.0
+        ],
+        [
+          12.75,
+          3.549999952316284,
+          0.0
+        ]
+      ],
+      "whole_image_uv": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "source": "public/assets/fighters/states/ember-groggy.webp",
+      "channels": 4,
+      "source_bytes": 204318,
+      "packed_bytes": 204318,
+      "source_sha256": "966feda12da3edaa5b003144e7b01234c389baae9cf39dbb2fb03ee98b6159c8",
+      "packed_source_unchanged": true,
+      "format": "WebP"
+    }
+  ],
+  "blend_file": "artifacts/fighter-state-gallery.blend",
+  "blend_bytes": 5723891
+}

@@ -78,8 +78,7 @@ import "@fontsource/barlow-condensed/latin-800-italic.css";
 import "@fontsource/noto-sans-kr/korean-400.css";
 import "@fontsource/noto-sans-kr/korean-700.css";
 import "./style.css";
-import { LiveArt } from "./LiveArt.jsx";
-import { setLiveArtMotion } from "./live-art-renderer.js";
+import { Artwork } from "./Artwork.jsx";
 import "./arena-layout.css";
 import "./roster.css";
 import "./typography.css";
@@ -273,7 +272,7 @@ function Card({
       <div
         className={`card-art ${card.artKey || card.type} scene-art technique-art`}
       >
-        <LiveArt
+        <Artwork
           art={detail.art}
           alt={detail.alt}
           loading={compact ? "lazy" : undefined}
@@ -415,19 +414,6 @@ function App() {
     }
   });
   const [toast, setToast] = useState("");
-  const [artMotion, setArtMotion] = useState(() => {
-    try {
-      return localStorage.getItem("slay.art-motion") !== "off";
-    } catch {
-      return true;
-    }
-  });
-  useEffect(() => {
-    setLiveArtMotion(artMotion);
-    try {
-      localStorage.setItem("slay.art-motion", artMotion ? "on" : "off");
-    } catch {}
-  }, [artMotion]);
   const [theme, setTheme] = useState(() => {
     try {
       return localStorage.getItem("slay.theme") || "dark";
@@ -683,9 +669,10 @@ function App() {
               <GearSix size={23} />
             </button>
             <div className="profile">
-              <LiveArt
-                art={fighterPoseArt(state.player.id)}
+              <Artwork
+                art={fighterPoseArt(state.player.id, playerCondition)}
                 alt={wrestler.name}
+                condition={playerCondition.id}
                 fit="cover"
                 portrait
                 position={[0.5, 0.2]}
@@ -902,11 +889,6 @@ function App() {
                     condition={playerCondition}
                     name={wrestler.name}
                     side="player"
-                    hit={hit?.target === "player"}
-                    hitId={hit?.target === "player" ? hit.id : null}
-                    cast={cue}
-                    shortened={!cinematics}
-                    still={activePhase === "defeat"}
                   />
                   {state.enemy && (
                     <FighterSprite
@@ -914,10 +896,6 @@ function App() {
                       condition={enemyCondition}
                       name={enemyHUD.name}
                       side="enemy"
-                      hit={hit?.target === "enemy"}
-                      hitId={hit?.target === "enemy" ? hit.id : null}
-                      shortened={!cinematics}
-                      still={state.enemy.hp === 0}
                     />
                   )}
                   <span className="vs-mark">VS</span>
@@ -1135,7 +1113,7 @@ function App() {
                 discard: "버린 카드",
                 roster: "CHOOSE YOUR WRESTLER",
                 settings: "설정",
-                condition: `${previewWrestler.nameKo} 컨디션 및 모션`,
+                condition: `${previewWrestler.nameKo} 컨디션 및 표정`,
                 log: "경기 기록",
                 upgrade: "카드 강화",
               }[modal]
@@ -1144,7 +1122,7 @@ function App() {
               {
                 deck: `${state.deck.length} CARDS IN YOUR DECK`,
                 roster: "THE CONTENDERS",
-                condition: `${previewWrestler.name} · LIVE PREVIEW`,
+                condition: `${previewWrestler.name} · STATE PREVIEW`,
                 upgrade: "TRAINING ROOM",
               }[modal]
             }
@@ -1211,7 +1189,6 @@ function App() {
                 currentId={state.player.id}
                 onStart={startRun}
                 onPreview={(id) => openConditionPreview(id, true)}
-                motionEnabled={artMotion}
               />
             )}
             {modal === "settings" && (
@@ -1237,20 +1214,6 @@ function App() {
                   <small>
                     전체는 카드 아트를 움직이며 보여줍니다. 간결은 같은 아트와
                     결과를 짧게 표시합니다. 기기의 모션 감소 설정도 반영합니다.
-                  </small>
-                </div>
-                <div className="setting-row cinematic-setting motion-art-setting">
-                  <span>일러스트 모션</span>
-                  <button
-                    aria-label={`일러스트 모션: ${artMotion ? "켜짐" : "정지"}. ${artMotion ? "정지로" : "켜짐으로"} 변경`}
-                    aria-pressed={artMotion}
-                    onClick={() => setArtMotion((value) => !value)}
-                  >
-                    {artMotion ? "켜짐" : "정지"}
-                  </button>
-                  <small>
-                    선수와 카드의 호흡·머리카락·시선 움직임을 조절합니다. 기기의
-                    모션 감소 설정을 따릅니다.
                   </small>
                 </div>
                 <div className="setting-row">

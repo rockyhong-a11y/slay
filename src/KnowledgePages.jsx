@@ -27,7 +27,7 @@ import {
   getLibraryCards,
 } from "./card-library.js";
 import "./knowledge.css";
-import { LiveArt } from "./LiveArt.jsx";
+import { Artwork } from "./Artwork.jsx";
 
 function KnowledgeHeader({
   eyebrow,
@@ -511,7 +511,7 @@ function LibraryCard({ card, onSelect }) {
       aria-label={`${card.name}, ${card.discipline}, 에너지 ${card.cost}. 상세 보기`}
     >
       <div className="knowledge-card-image">
-        <LiveArt art={card.art} alt={card.alt} loading="lazy" />
+        <Artwork art={card.art} alt={card.alt} loading="lazy" />
         <span className="knowledge-cost">
           <Lightning size={13} weight="fill" />
           {card.cost}
@@ -571,7 +571,7 @@ function CardDetail({ id, onClose }) {
         <X size={23} />
       </button>
       <div className="knowledge-detail-art">
-        <LiveArt art={detail.art} alt={detail.alt} />
+        <Artwork art={detail.art} alt={detail.alt} />
         <span>{detail.discipline}</span>
       </div>
       <div className="knowledge-detail-copy">

@@ -10,6 +10,14 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 
 선수의 실루엣과 장비는 전투 역할을 드러냅니다. 레이븐은 긴 진홍색 머리의 스트라이커, 발키리는 금발 단발의 그래플러, 노바는 긴 검은 머리의 테크니션입니다. 바이퍼는 금발의 두 갈래 땋은 머리와 그린·레드 장비를 갖춘 제압 전문가, 엠버는 물결치는 갈색 머리와 블랙·레드·골드 장비를 갖춘 근육질 관중 챔피언입니다. 제공된 다섯 참고 이미지의 실루엣·자세·의상 배색을 반영하며, 캐릭터는 선명한 윤곽과 표정의 카툰 2D 방향으로 제작합니다. 원본 참고 파일은 배포하지 않습니다.
 
+## 상태 일러스트와 기술 연출
+
+다섯 선수에게 보통·흥분·열혈·좌절·지침·그로기의 완성 전신 그림을 각각 제공합니다. 활성 경로는 `public/assets/fighters/states/{actor}-{state}.webp`이며 총 30장입니다. 얼굴은 제공된 참고 이미지의 특징을 반영하고, 선수별 카툰 체형·장비·색상을 유지합니다. 상태 배지는 기준과 전신 그림·얼굴 확대를 보여주는 미리보기를 엽니다.
+
+체력 25% 이하의 그로기가 가장 먼저 적용되고, 50% 이하의 지침이 뒤따릅니다. 체력이 50%를 넘으면 압박 60 이상을 좌절로 표시하고, 열기 6 이상은 열혈, 3–5는 흥분, 나머지는 보통입니다. 상대의 약화 2 이상도 좌절 조건에 포함됩니다. 회복·진정·열기 소모 후에는 현재 수치에 맞는 상태 그림으로 돌아갑니다.
+
+선수와 카드 일러스트는 정적 완성 이미지입니다. 카드 25종의 짧은 기술 시네마틱은 실제 전투 결과를 읽어 피해·방어·회복·드로우·열기·압박을 표시합니다. 전체/간결 설정과 운영체제의 모션 감소 설정을 따르며, 재생 중에는 카드 사용·턴 종료 입력을 잠급니다. 정적 상태 변경은 게임 규칙이나 저장 데이터를 바꾸지 않습니다.
+
 ## 플레이 루프
 
 1. 선수를 선택하고 11장의 시작 덱으로 첫 경기에 입장합니다.
@@ -144,11 +152,17 @@ The client stores a run under `slay.run.v1` in `localStorage`; it adds `saveVers
 
 ## 아트 제작과 검증
 
-Blender source is retained in [`artifacts/arena.blend`](../artifacts/arena.blend), with a procedural scene/render script in [`tools/render-arena.py`](../tools/render-arena.py). The script saves the editable scene before its Cycles render. Browser assets are stored in `public/assets/`; the arena is delivered as WebP. Final character and card artwork is produced with the built-in imagegen tool, using original adult fighter identities and role-specific art direction.
+The editable Blender scene is retained in [`artifacts/arena.blend`](../artifacts/arena.blend), with its scene/render script in [`tools/render-arena.py`](../tools/render-arena.py). The browser arena is `public/assets/arena.webp`. Tooling and prompt provenance for character and card images are recorded separately in [`artifacts/art-direction.md`](../artifacts/art-direction.md); original user reference files are not distributed.
 
-Higgsfield was attempted as requested, but did not produce a verified asset. The reference-media upload confirmation remained unanswered for more than 1,350 seconds. A separate text-only generation attempt was stopped after 400.9 seconds without returned generation IDs or a confirmed outcome. It was not resubmitted. Higgsfield is therefore recorded as an attempted workflow, rather than the source of the shipped images. Original reference files are not distributed.
+The final character path uses 30 complete state illustrations at 1000×1500 RGBA WebP. Individual built-in image-generation edits use the previous complete cartoon body and original facial reference for normal, then the corrected normal and same facial reference for each variant. Exact selected prompts and source paths are in [four normal edits](../artifacts/fighter-state-prompts.json), [twenty variants](../artifacts/fighter-state-variant-prompts.json) and [six Viper states](../artifacts/viper-state-prompts.json). Source PNGs are preserved locally in ignored `artifacts/fighter-state-sources/`.
 
-The engine test suite covers reproducible initialization and save/load behavior, invalid actions, energy, block, combos and finishers, exhaustion and reshuffling, nightmare thresholds, defeat, rewards, map transitions, rest, upgrades, shops, events, and full eight-floor wins for all five wrestlers on two deterministic seeds. Strategy regressions also cover debuff timing, multi-hit damage preview, conditional comeback recovery, caps, per-turn limits, old status compatibility, and defeat during nightmare draws without passive recursion or resurrection.
+A [Blender QA gallery](../artifacts/fighter-state-gallery.blend) displays the 30 complete illustrations on individual full-image planes. Its [render](../artifacts/fighter-state-gallery.jpg), [verification data](../artifacts/fighter-state-gallery-facts.json) and [script](../tools/build-state-gallery.py) record whole-texture preservation and a static scene with no armatures or animation. This gallery reviews the finished 2D images.
+
+`fighterPoseArt(actor, condition)` accepts a state ID or a state object and returns `fighters/states/{actor}-{state}.webp`; an unknown actor falls back to Nova and an unknown state falls back to normal. Card images continue to use their individual technique paths. Continuous puppet/mesh rendering and its dedicated tests are removed.
+
+The engine suite covers reproducible initialization and save/load, invalid actions, energy, block, combos and finishers, exhaustion and reshuffling, nightmare thresholds, defeat, rewards, map transitions, rest, upgrades, shops, events, and full eight-floor wins for all five wrestlers on two deterministic seeds. Strategy regressions cover debuff timing, multi-hit damage previews, conditional comeback recovery, caps, per-turn limits, old status compatibility, and nightmare-draw defeat without passive recursion or resurrection.
+
+Presentation tests cover exact health boundaries, health/pressure/heat priority, recovery after real engine actions, the 30 distinct state paths and WebP files, and unchanged outcomes for all 25 card cues. A reachable-source check rejects app-owned canvas drawing or continuous illustration frame loops. The final automated run passed all 45 tests and the production build succeeded. Automated checks do not establish visual reference fidelity or browser layout; those are tracked in the [verification record](../artifacts/cartoon-fighter-qa.md) and [arena checklist](../artifacts/arena-layout-checklist.md).
 
 ```sh
 npm install

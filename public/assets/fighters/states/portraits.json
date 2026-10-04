@@ -1,0 +1,122 @@
+{
+  "raven-normal": {
+    "center": [0.52, 0.118],
+    "width": 0.28
+  },
+  "raven-excited": {
+    "center": [0.52, 0.122],
+    "width": 0.28
+  },
+  "raven-fiery": {
+    "center": [0.553, 0.137],
+    "width": 0.28
+  },
+  "raven-frustrated": {
+    "center": [0.563, 0.125],
+    "width": 0.28
+  },
+  "raven-tired": {
+    "center": [0.566, 0.143],
+    "width": 0.28
+  },
+  "raven-groggy": {
+    "center": [0.541, 0.159],
+    "width": 0.28
+  },
+  "valkyrie-normal": {
+    "center": [0.514, 0.122],
+    "width": 0.29
+  },
+  "valkyrie-excited": {
+    "center": [0.502, 0.122],
+    "width": 0.29
+  },
+  "valkyrie-fiery": {
+    "center": [0.504, 0.12],
+    "width": 0.29
+  },
+  "valkyrie-frustrated": {
+    "center": [0.474, 0.118],
+    "width": 0.29
+  },
+  "valkyrie-tired": {
+    "center": [0.475, 0.143],
+    "width": 0.29
+  },
+  "valkyrie-groggy": {
+    "center": [0.431, 0.147],
+    "width": 0.29
+  },
+  "nova-normal": {
+    "center": [0.491, 0.123],
+    "width": 0.28
+  },
+  "nova-excited": {
+    "center": [0.5, 0.125],
+    "width": 0.28
+  },
+  "nova-fiery": {
+    "center": [0.5, 0.121],
+    "width": 0.28
+  },
+  "nova-frustrated": {
+    "center": [0.486, 0.126],
+    "width": 0.28
+  },
+  "nova-tired": {
+    "center": [0.474, 0.141],
+    "width": 0.28
+  },
+  "nova-groggy": {
+    "center": [0.435, 0.145],
+    "width": 0.28
+  },
+  "viper-normal": {
+    "center": [0.504, 0.126],
+    "width": 0.28
+  },
+  "viper-excited": {
+    "center": [0.503, 0.127],
+    "width": 0.28
+  },
+  "viper-fiery": {
+    "center": [0.535, 0.135],
+    "width": 0.28
+  },
+  "viper-frustrated": {
+    "center": [0.538, 0.128],
+    "width": 0.28
+  },
+  "viper-tired": {
+    "center": [0.546, 0.132],
+    "width": 0.28
+  },
+  "viper-groggy": {
+    "center": [0.585, 0.142],
+    "width": 0.28
+  },
+  "ember-normal": {
+    "center": [0.513, 0.12],
+    "width": 0.28
+  },
+  "ember-excited": {
+    "center": [0.51, 0.12],
+    "width": 0.28
+  },
+  "ember-fiery": {
+    "center": [0.482, 0.12],
+    "width": 0.28
+  },
+  "ember-frustrated": {
+    "center": [0.508, 0.124],
+    "width": 0.28
+  },
+  "ember-tired": {
+    "center": [0.488, 0.127],
+    "width": 0.28
+  },
+  "ember-groggy": {
+    "center": [0.451, 0.145],
+    "width": 0.28
+  }
+}

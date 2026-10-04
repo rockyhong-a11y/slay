@@ -314,14 +314,24 @@ test("pressure breakdown cues report actual self damage and the reset pressure w
   }
 });
 
-test("five original puppet bases exist and every condition keeps its actor's stable source", () => {
+test("all five fighters have six distinct complete state illustrations", () => {
   const paths = new Set();
   const hashes = new Set();
+  assert.equal(Object.keys(WRESTLERS).length, 5);
+  assert.deepEqual(Object.keys(FIGHTER_STATES).sort(), [
+    "excited",
+    "fiery",
+    "frustrated",
+    "groggy",
+    "normal",
+    "tired",
+  ]);
   for (const id of Object.keys(WRESTLERS)) {
-    assert.equal(fighterPoseArt(id, "normal"), `fighters/${id}.webp`);
+    assert.equal(fighterPoseArt(id), `fighters/states/${id}-normal.webp`);
     for (const state of Object.values(FIGHTER_STATES)) {
       const path = fighterPoseArt(id, state);
-      assert.equal(path, `fighters/${id}.webp`);
+      assert.equal(path, `fighters/states/${id}-${state.id}.webp`);
+      assert.equal(fighterPoseArt(id, state.id), path);
       const bytes = readFileSync(
         new URL(`../public/assets/${path}`, import.meta.url),
       );
@@ -332,12 +342,26 @@ test("five original puppet bases exist and every condition keeps its actor's sta
       hashes.add(createHash("sha256").update(bytes).digest("hex"));
     }
   }
-  assert.equal(paths.size, 5);
+  assert.equal(paths.size, 30);
   assert.equal(
     hashes.size,
-    5,
-    "each wrestler has an independent original cartoon source",
+    30,
+    "each condition must have its own completed illustration, not an alias",
   );
-  assert.equal(fighterPoseArt("unknown", "normal"), "fighters/nova.webp");
-  assert.equal(fighterPoseArt("raven", "unknown"), "fighters/raven.webp");
+  assert.equal(
+    fighterPoseArt("unknown", "normal"),
+    "fighters/states/nova-normal.webp",
+  );
+  assert.equal(
+    fighterPoseArt("raven", "unknown"),
+    "fighters/states/raven-normal.webp",
+  );
+  assert.equal(
+    fighterPoseArt("unknown", { id: "groggy" }),
+    "fighters/states/nova-groggy.webp",
+  );
+  assert.equal(
+    fighterPoseArt("raven", null),
+    "fighters/states/raven-normal.webp",
+  );
 });

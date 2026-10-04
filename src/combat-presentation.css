@@ -14,7 +14,6 @@
   width: 100%;
   height: 100%;
   transform-origin: 50% 100%;
-  container-type: size;
 }
 .fighter-sprite-frame .fighter-pose {
   position: absolute;
@@ -23,11 +22,6 @@
   height: 100%;
   object-fit: contain;
   object-position: 50% 100%;
-  translate: 0
-    calc(
-      min(100cqh, calc(100cqw / var(--pose-aspect, 0.666923))) *
-        var(--pose-bottom, 0)
-    );
 }
 .fighter-condition {
   display: inline-flex;
@@ -79,15 +73,6 @@ button.fighter-condition:focus-visible {
   display: flex;
   justify-content: flex-end;
   margin-top: 8px;
-}
-.pose-groggy {
-  scale: 0.74;
-}
-.pose-tired {
-  filter: saturate(0.85);
-}
-.pose-groggy {
-  filter: saturate(0.7);
 }
 
 .technique-scene {
@@ -347,27 +332,6 @@ button.fighter-condition:focus-visible {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .pose-normal {
-    animation: pose-breathe 3.8s ease-in-out infinite;
-  }
-  .pose-excited {
-    animation: pose-bounce 1.5s ease-in-out infinite;
-  }
-  .pose-fiery {
-    animation: pose-surge 2.1s ease-in-out infinite;
-  }
-  .pose-frustrated {
-    animation: pose-unsteady 4s ease-in-out infinite;
-  }
-  .pose-tired {
-    animation: pose-heavy-breathe 2.5s ease-in-out infinite;
-  }
-  .pose-groggy {
-    animation: pose-sway 4.6s ease-in-out infinite;
-  }
-  .pose-still {
-    animation: none;
-  }
   .technique-art-frame {
     animation: scene-strike var(--scene-duration)
       cubic-bezier(0.22, 0.68, 0.16, 1) both;
@@ -400,39 +364,6 @@ button.fighter-condition:focus-visible {
   }
   .scene-still * {
     animation: none !important;
-  }
-}
-@keyframes pose-breathe {
-  50% {
-    transform: translateY(-2px) scaleY(1.008);
-  }
-}
-@keyframes pose-bounce {
-  50% {
-    transform: translateY(-4px) rotate(0.35deg);
-  }
-}
-@keyframes pose-surge {
-  50% {
-    transform: translateX(2px) rotate(0.6deg) scale(1.008);
-  }
-}
-@keyframes pose-unsteady {
-  50% {
-    transform: translateY(2px) rotate(-0.7deg);
-  }
-}
-@keyframes pose-heavy-breathe {
-  50% {
-    transform: translateY(3px) scaleY(0.985);
-  }
-}
-@keyframes pose-sway {
-  25% {
-    transform: rotate(-0.7deg);
-  }
-  75% {
-    transform: rotate(0.6deg) translateY(1px);
   }
 }
 @keyframes scene-progress {
@@ -612,7 +543,6 @@ button.fighter-condition:focus-visible {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .fighter-sprite-frame,
   .technique-scene-visual * {
     animation: none !important;
   }

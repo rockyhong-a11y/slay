@@ -1835,9 +1835,6 @@ h1 {
   color: #766c7b;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .fighter.hit {
-    animation: hit 0.3s ease-in-out;
-  }
   .arena.player-hit:after {
     content: "";
     position: absolute;
@@ -1849,15 +1846,6 @@ h1 {
   }
   .turn-badge > span {
     animation: turn-pulse 2.5s ease-in-out infinite;
-  }
-  @keyframes hit {
-    25% {
-      transform: translateX(9px) rotate(1deg);
-      filter: brightness(1.4);
-    }
-    60% {
-      transform: translateX(-5px);
-    }
   }
   @keyframes flash {
     from {

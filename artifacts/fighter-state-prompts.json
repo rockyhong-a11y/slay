@@ -1,0 +1,49 @@
+{
+  "mode": "built-in image_gen edits",
+  "requests": [
+    {
+      "id": "raven",
+      "state": "normal",
+      "references": [
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/raven.webp",
+        "/tmp/codex-remote-attachments/01a10647-d685-7333-92b8-b7665a9abad9/6E82CCF8-AE48-45EF-BEA1-D5EB08FF0752/5-example.com.jpeg"
+      ],
+      "mode": "built-in edit",
+      "prompt": "Use case: identity-preserve. Asset type: complete full-body character illustration for SLAY women's professional wrestling game, NORMAL / READY state.\nInput image 1 is the EDIT TARGET and locked cartoon BODY / COSTUME / STYLE / POSE. Input image 2 is the original FACE IDENTITY reference.\nPrimary request: refine only the face and its anatomically correct connection to the existing head and neck so this character clearly matches image 2. Keep the reference's narrow pale face, small straight nose, fine lips, grey-blue almond eye, serious calm expression, crimson long hair and diagonal side fringe covering the other eye; small silver earring.\nPreserve image 1's entire cartoon-rendered torso, muscular build, skin color, outfit design, material highlights, all limb anatomy, hand and boot designs and stance. Do not replace the body with photo style. Make the face in the same crisp outlined, polished cel-shaded cartoon rendering as the existing body, using the original facial features accurately. Natural unbroken head-neck-shoulder proportions, symmetric aligned eyes, no pasted-on face, no detached part.\nNORMAL state: composed neutral gaze, mouth relaxed, stable ready stance, anatomically connected shoulders and arms. Retain the same proportions and athletic adult woman.\nComposition: one coherent FINISHED full-body person, head to both complete boots, centered on a tall 2:3 canvas with clean margins. True transparent alpha background. Face, hair, neck and body must form one unified illustration. No multiple figures, no atlas, no isolated parts, no captions, no text, no logo, no watermark, no background glow, no shadow plane.",
+      "output": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-16368317-4dd1-4251-8018-870c54a48aff.png"
+    },
+    {
+      "id": "valkyrie",
+      "state": "normal",
+      "references": [
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/valkyrie.webp",
+        "/tmp/codex-remote-attachments/01a10647-d685-7333-92b8-b7665a9abad9/6E82CCF8-AE48-45EF-BEA1-D5EB08FF0752/3-download.jpg"
+      ],
+      "mode": "built-in edit",
+      "prompt": "Use case: identity-preserve. Asset type: complete full-body character illustration for SLAY women's professional wrestling game, NORMAL / READY state.\nInput image 1 is the EDIT TARGET and locked cartoon BODY / COSTUME / STYLE / POSE. Input image 2 is the original FACE IDENTITY reference.\nPrimary request: refine only the face and its anatomically correct connection to the existing head and neck so this character clearly matches image 2. Keep the reference's pale angular oval face, blue almond eyes with defined outer lashes, fine nose and small lips, assertive calm gaze and short golden-blonde angled bob with exposed forehead on one side.\nPreserve image 1's entire cartoon-rendered torso, muscular build, skin color, outfit design, material highlights, all limb anatomy, hand and boot designs and stance. Do not replace the body with photo style. Make the face in the same crisp outlined, polished cel-shaded cartoon rendering as the existing body, using the original facial features accurately. Natural unbroken head-neck-shoulder proportions, symmetric aligned eyes, no pasted-on face, no detached part.\nNORMAL state: composed neutral gaze, mouth relaxed, stable ready stance, anatomically connected shoulders and arms. Retain the same proportions and athletic adult woman.\nComposition: one coherent FINISHED full-body person, head to both complete boots, centered on a tall 2:3 canvas with clean margins. True transparent alpha background. Face, hair, neck and body must form one unified illustration. No multiple figures, no atlas, no isolated parts, no captions, no text, no logo, no watermark, no background glow, no shadow plane.",
+      "output": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-0cf41690-55a7-46ef-8596-3695cd14ca12.png"
+    },
+    {
+      "id": "nova",
+      "state": "normal",
+      "references": [
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/nova.webp",
+        "/tmp/codex-remote-attachments/01a10647-d685-7333-92b8-b7665a9abad9/6E82CCF8-AE48-45EF-BEA1-D5EB08FF0752/4-Unknown.jpeg"
+      ],
+      "mode": "built-in edit",
+      "prompt": "Use case: identity-preserve. Asset type: complete full-body character illustration for SLAY women's professional wrestling game, NORMAL / READY state.\nInput image 1 is the EDIT TARGET and locked cartoon BODY / COSTUME / STYLE / POSE. Input image 2 is the original FACE IDENTITY reference.\nPrimary request: refine only the face and its anatomically correct connection to the existing head and neck so this character clearly matches image 2. Keep the reference's soft oval face and softly rounded jaw, natural-sized brown eyes, delicate straight nose and subtle pink lips, calm composed expression, straight dark brown-black hair with natural side fringe. Match this particular face, not a generic huge-eyed anime face.\nPreserve image 1's entire cartoon-rendered torso, muscular build, skin color, outfit design, material highlights, all limb anatomy, hand and boot designs and stance. Do not replace the body with photo style. Make the face in the same crisp outlined, polished cel-shaded cartoon rendering as the existing body, using the original facial features accurately. Natural unbroken head-neck-shoulder proportions, symmetric aligned eyes, no pasted-on face, no detached part.\nNORMAL state: composed neutral gaze, mouth relaxed, stable ready stance, anatomically connected shoulders and arms. Retain the same proportions and athletic adult woman.\nComposition: one coherent FINISHED full-body person, head to both complete boots, centered on a tall 2:3 canvas with clean margins. True transparent alpha background. Face, hair, neck and body must form one unified illustration. No multiple figures, no atlas, no isolated parts, no captions, no text, no logo, no watermark, no background glow, no shadow plane.",
+      "output": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-737ebbc1-b2f1-4347-8d12-d8f5dc43023e.png"
+    },
+    {
+      "id": "ember",
+      "state": "normal",
+      "references": [
+        "/Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/public/assets/fighters/ember.webp",
+        "/tmp/codex-remote-attachments/01a10647-d685-7333-92b8-b7665a9abad9/6E82CCF8-AE48-45EF-BEA1-D5EB08FF0752/2-WWE-SUP.jpeg"
+      ],
+      "mode": "built-in edit",
+      "prompt": "Use case: identity-preserve. Asset type: complete full-body character illustration for SLAY women's professional wrestling game, NORMAL / READY state.\nInput image 1 is the EDIT TARGET and locked cartoon BODY / COSTUME / STYLE / POSE. Input image 2 is the original FACE IDENTITY reference.\nPrimary request: refine only the face and its anatomically correct connection to the existing head and neck so this character clearly matches image 2. Keep the reference's warm tan oval face, soft jawline, brown almond eyes, thick arched brows, rounded nose, gentle proud closed-mouth smile and shoulder-length wavy brunette hair; recognizable same woman.\nPreserve image 1's entire cartoon-rendered torso, muscular build, skin color, outfit design, material highlights, all limb anatomy, hand and boot designs and stance. Do not replace the body with photo style. Make the face in the same crisp outlined, polished cel-shaded cartoon rendering as the existing body, using the original facial features accurately. Natural unbroken head-neck-shoulder proportions, symmetric aligned eyes, no pasted-on face, no detached part.\nNORMAL state: composed neutral gaze, mouth relaxed, stable ready stance, anatomically connected shoulders and arms. Retain the same proportions and athletic adult woman.\nComposition: one coherent FINISHED full-body person, head to both complete boots, centered on a tall 2:3 canvas with clean margins. True transparent alpha background. Face, hair, neck and body must form one unified illustration. No multiple figures, no atlas, no isolated parts, no captions, no text, no logo, no watermark, no background glow, no shadow plane.",
+      "output": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-b86405f6-8ecf-4303-b464-a3cf8d6f82a2.png"
+    }
+  ]
+}
