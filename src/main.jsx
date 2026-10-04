@@ -59,7 +59,11 @@ import {
 } from "./game.js";
 import { getCardDetail, CARD_RARITY_LABELS } from "./card-library.js";
 import { CardGuidePage, CardLibraryPage } from "./KnowledgePages.jsx";
-import { selectFighterState, createCardCue } from "./presentation.js";
+import {
+  selectFighterState,
+  createCardCue,
+  fighterPoseArt,
+} from "./presentation.js";
 import {
   FighterSprite,
   FighterCondition,
@@ -72,6 +76,10 @@ import "@fontsource/barlow-condensed/latin-800-italic.css";
 import "@fontsource/noto-sans-kr/korean-400.css";
 import "@fontsource/noto-sans-kr/korean-700.css";
 import "./style.css";
+import { LiveArt } from "./LiveArt.jsx";
+import { setLiveArtMotion } from "./live-art-renderer.js";
+import "./arena-layout.css";
+import "./typography.css";
 
 const asset = (name) => `${import.meta.env.BASE_URL}assets/${name}`;
 const SAVE_KEY = "slay.run.v1";
@@ -85,8 +93,6 @@ const typeNames = {
   defense: "방어",
   guard: "방어",
 };
-const art = (id) =>
-  asset(`${["raven", "valkyrie", "nova"].includes(id) ? id : "nova"}.webp`);
 const navItems = [
   { id: "battle", label: "아레나", icon: Sword },
   { id: "map", label: "챔피언 로드", icon: MapTrifold },
@@ -240,13 +246,10 @@ function Card({
       <div
         className={`card-art ${card.artKey || card.type} scene-art technique-art`}
       >
-        <img
-          src={asset(detail.art)}
+        <LiveArt
+          art={detail.art}
           alt={detail.alt}
           loading={compact ? "lazy" : undefined}
-          decoding="async"
-          width="1024"
-          height="683"
         />
         <span className="card-art-shade" />
       </div>
@@ -383,6 +386,19 @@ function App() {
     }
   });
   const [toast, setToast] = useState("");
+  const [artMotion, setArtMotion] = useState(() => {
+    try {
+      return localStorage.getItem("slay.art-motion") !== "off";
+    } catch {
+      return true;
+    }
+  });
+  useEffect(() => {
+    setLiveArtMotion(artMotion);
+    try {
+      localStorage.setItem("slay.art-motion", artMotion ? "on" : "off");
+    } catch {}
+  }, [artMotion]);
   const [theme, setTheme] = useState(() => {
     try {
       return localStorage.getItem("slay.theme") || "dark";
@@ -623,7 +639,13 @@ function App() {
               <GearSix size={23} />
             </button>
             <div className="profile">
-              <img src={art(state.player.id)} alt={wrestler.name} />
+              <LiveArt
+                art={fighterPoseArt(state.player.id)}
+                alt={wrestler.name}
+                fit="cover"
+                portrait
+                position={[0.5, 0.2]}
+              />
             </div>
           </div>
         </aside>
@@ -1138,7 +1160,11 @@ function App() {
                 <div className="roster-grid">
                   {Object.entries(WRESTLERS).map(([id, w]) => (
                     <div className={`roster-card ${id}`} key={id}>
-                      <img src={art(id)} alt={w.name} />
+                      <LiveArt
+                        art={fighterPoseArt(id)}
+                        alt={w.name}
+                        position={[0.5, 1]}
+                      />
                       <div>
                         <span className="eyebrow">{w.title}</span>
                         <h3>{w.name}</h3>
@@ -1193,6 +1219,20 @@ function App() {
                   <small>
                     전체는 카드 아트를 움직이며 보여줍니다. 간결은 같은 아트와
                     결과를 짧게 표시합니다. 기기의 모션 감소 설정도 반영합니다.
+                  </small>
+                </div>
+                <div className="setting-row cinematic-setting motion-art-setting">
+                  <span>일러스트 모션</span>
+                  <button
+                    aria-label={`일러스트 모션: ${artMotion ? "켜짐" : "정지"}. ${artMotion ? "정지로" : "켜짐으로"} 변경`}
+                    aria-pressed={artMotion}
+                    onClick={() => setArtMotion((value) => !value)}
+                  >
+                    {artMotion ? "켜짐" : "정지"}
+                  </button>
+                  <small>
+                    선수와 카드의 호흡·머리카락·시선 움직임을 조절합니다. 기기의
+                    모션 감소 설정을 따릅니다.
                   </small>
                 </div>
                 <div className="setting-row">
@@ -1379,7 +1419,7 @@ function PhasePanel({ state, act, startRun, setModal }) {
       </div>
     );
   return (
-    <div className="phase-box final small">
+    <div className="phase-box final small" data-outcome={state.phase}>
       {state.phase === "victory" ? (
         <Trophy size={54} weight="duotone" />
       ) : (

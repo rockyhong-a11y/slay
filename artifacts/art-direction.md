@@ -28,7 +28,7 @@ Health takes priority: at most 25% selects groggy, then at most 50% selects tire
 
 All 25 active cards now use independent, move-specific imagegen illustrations at `public/assets/cards/{card-id}.webp`. Every asset is 1024×683 WebP at quality 88. Strikes show the named elbow, shoulder, fist or boot contact; throws show waist locks, backward arches or shoulder carries; submissions show specific arm and head control. Defensive and support cards show guarding, breathing, crowd interaction and recovery. The nightmare has its own psychological scene.
 
-The game, deck and rewards use this same asset mapping. The encyclopedia renders the whole landscape composition and offers a larger, uncropped technique image in each detail view. Classification color and text reinforce the physical technique rather than relying only on artwork.
+The game, deck, rewards, encyclopedia and detail views share this asset mapping and contain the whole landscape composition. Classification color and text reinforce the physical technique rather than relying only on artwork.
 
 Generation mode: built-in imagegen, one final image per card. Original PNG sources are preserved locally in ignored artifact files; optimized browser assets and complete prompt sets are versioned:
 
@@ -38,11 +38,19 @@ Generation mode: built-in imagegen, one final image per card. Original PNG sourc
 
 The three initial generic card images remain as historical source assets and are no longer referenced by active card rendering.
 
+## Live art rigs
+
+The original **43 active WebP images** remain unchanged: 18 fighter/pose images and 25 card illustrations. Hand-authored landmarks in [`src/live-art-rigs.js`](../src/live-art-rigs.js) define each image's local head, hair, torso, limb and visible-eye regions. The renderer uses a custom WebGL 2D deformation mesh, with Canvas 2D fallback. This is a **Live2D-style custom rig**, not native Cubism `.moc3` model data or 3D skeletal animation.
+
+Breathing, gaze, head movement, delayed hair/body motion and blinking operate inside those regions; ropes, crowd, planted feet and image boundaries stay pinned. Closed, obscured, profile and very small eyes omit painted blink masks. The same art component appears in fighters, avatars, roster selection, hand/deck/reward cards, encyclopedia/detail views and cinematics.
+
+Pose changes crossfade smoothly while preserving the motion clock and easing condition parameters. A saved global **Illustration Motion On / Still** setting applies throughout the app. OS reduced motion suppresses spatial motion; offscreen art, art behind an open modal and hidden tabs pause rendering. The original image remains visible while its live renderer loads. Shared motion math and fit calculations are covered by the `npm test` suite.
+
 ## Card-art cinematics
 
 All 25 dedicated card-art compositions now drive short 2D cinematic overlays. Strikes, aerial moves, throws, submissions, grapples, defense, tactics and nightmare use distinct motion paths and timing. Results come from actual before/after engine snapshots: damage and absorbed guard, healing, draw, energy, hype, stress and applied status effects. A serial input lock holds card-play and end-turn controls during the active cue.
 
-Settings offers **Full / Concise** presentation. Concise keeps the same artwork and real outcomes with shorter timing; operating-system reduced-motion preferences suppress spatial motion. The [cinematic screenshot](slay-cinematic.jpg) shows the current presentation.
+Settings offers **Full / Concise** presentation. Concise keeps the same artwork and real outcomes with shorter timing; operating-system reduced-motion preferences suppress spatial motion. Reserved HUD, performer and caption regions keep text clear. Desktop cinematics place contained action art in the left 60% and vertically stacked title/outcomes in the right 40%; mobile uses art above separate caption rows and a 300px stage. Condition previews and roster cards also separate art from text. See the [cinematic screenshot](slay-cinematic.jpg) and [layout geometry checklist](arena-layout-checklist.md).
 
 ## Higgsfield attempt
 
@@ -50,4 +58,4 @@ Higgsfield was requested as part of the art workflow. Reference-upload calls did
 
 ## Fonts
 
-Self-hosted Barlow Condensed and Noto Sans KR are distributed under their included SIL Open Font License files in `public/assets/licenses/`.
+All fonts are self-hosted. Do Hyeon gives Korean titles an angular sports headline; Teko carries scores, changing numerals and finisher/result headlines; Barlow Condensed handles wrestler names and English broadcast captions; Noto Sans KR keeps rules, effects and condition text readable. SIL Open Font License files are included for [Do Hyeon](../public/assets/licenses/DoHyeon-OFL.txt), [Teko](../public/assets/licenses/Teko-OFL.txt), [Barlow Condensed](../public/assets/licenses/BarlowCondensed-OFL.txt) and [Noto Sans KR](../public/assets/licenses/NotoSansKR-OFL.txt).

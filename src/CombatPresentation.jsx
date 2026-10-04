@@ -1,9 +1,12 @@
+"use client";
 import React, { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { Fire, Heartbeat, Shield, Sparkle } from "@phosphor-icons/react";
 import { FIGHTER_STATES, fighterPoseArt } from "./presentation.js";
 import "./combat-presentation.css";
 import poseLayout from "./pose-layout.json";
+import { LiveArt } from "./LiveArt.jsx";
+import { motionTokens } from "./motion-config.js";
 
 const asset = (path) => `${import.meta.env.BASE_URL}assets/${path}`;
 const icons = {
@@ -51,25 +54,7 @@ export function FighterSprite({
   cast = null,
   still = false,
 }) {
-  const base = asset(fighterPoseArt(actor));
-  const requested = asset(fighterPoseArt(actor, condition));
-  const [loaded, setLoaded] = useState(base);
-  const reduced = useReducedMotion();
-  useEffect(() => {
-    let cancelled = false;
-    const image = new Image();
-    image.decoding = "async";
-    image.onload = () => {
-      if (!cancelled) setLoaded(requested);
-    };
-    image.onerror = () => {
-      if (!cancelled) setLoaded(base);
-    };
-    image.src = requested;
-    return () => {
-      cancelled = true;
-    };
-  }, [requested, base]);
+  const requested = fighterPoseArt(actor, condition);
   useEffect(() => {
     const images = Object.keys(FIGHTER_STATES)
       .filter((id) => id !== "normal")
@@ -92,28 +77,18 @@ export function FighterSprite({
       <div
         className={`fighter-sprite-frame pose-${condition.id} ${still ? "pose-still" : ""}`}
       >
-        <AnimatePresence initial={false}>
-          <motion.img
-            key={loaded}
-            src={loaded}
-            alt={`${name} · ${condition.label} 자세`}
-            className="fighter-pose"
-            style={{
-              "--pose-aspect":
-                poseLayout[
-                  loaded.replace(import.meta.env.BASE_URL + "assets/", "")
-                ]?.aspect,
-              "--pose-bottom":
-                poseLayout[
-                  loaded.replace(import.meta.env.BASE_URL + "assets/", "")
-                ]?.bottom,
-            }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: reduced ? 0 : 0.22 }}
-          />
-        </AnimatePresence>
+        <LiveArt
+          art={requested}
+          alt={`${name} · ${condition.label} 자세`}
+          className="fighter-pose"
+          condition={condition.id}
+          still={still}
+          position={[0.5, 1]}
+          style={{
+            "--pose-aspect": poseLayout[requested]?.aspect,
+            "--pose-bottom": poseLayout[requested]?.bottom,
+          }}
+        />
       </div>
     </div>
   );
@@ -138,13 +113,17 @@ export function TechniqueScene({ cue, onComplete, shortened = false }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: reduced ? 0 : 0.12 }}
+      transition={{ duration: reduced ? 0 : motionTokens.duration.fast }}
       style={{ "--scene-duration": `${duration}ms` }}
     >
       <span className="combat-sr-only">{cue.announcement}</span>
       <div className="technique-scene-visual" aria-hidden="true">
         <div className="technique-art-frame">
-          <img src={asset(cue.art)} alt="" decoding="async" />
+          <LiveArt
+            art={cue.art}
+            alt={cue.alt}
+            still={!!(reduced || shortened)}
+          />
         </div>
         <div className="technique-film-shade" />
         <div className="technique-scene-copy">
@@ -178,7 +157,7 @@ export function ConditionGuide({ actor, name }) {
         체력과 마음의 변화가 선수의 표정·자세·대기 움직임에 드러납니다. 아래
         상태를 선택해 {name}의 모션을 미리 볼 수 있습니다.
       </p>
-      <div className="condition-preview">
+      <div className="condition-preview" data-condition={condition.id}>
         <FighterSprite
           actor={actor}
           condition={condition}

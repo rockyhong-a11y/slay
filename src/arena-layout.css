@@ -1,0 +1,432 @@
+/* HUD, performers, and broadcast captions occupy separate, reserved areas.
+   Keep these rules after the base and combat styles, before typography. */
+.arena {
+  --arena-gutter: 26px;
+  --arena-hud-height: 176px;
+  --arena-stage-height: clamp(224px, 21vw, 272px);
+  --arena-footer-height: 44px;
+  height: calc(
+    var(--arena-hud-height) + var(--arena-stage-height) +
+      var(--arena-footer-height)
+  );
+  min-height: calc(
+    var(--arena-hud-height) + var(--arena-stage-height) +
+      var(--arena-footer-height)
+  );
+}
+
+.arena::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: var(--arena-hud-height);
+  background: linear-gradient(180deg, #10111bf2, #10111bdb);
+  border-bottom: 1px solid #ffffff0c;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.arena .fighter-hud {
+  top: 18px;
+  width: min(280px, calc((100% - 2 * var(--arena-gutter) - 72px) / 2));
+  min-width: 0;
+}
+
+.arena .player-hud {
+  left: var(--arena-gutter);
+}
+
+.arena .enemy-hud {
+  right: var(--arena-gutter);
+}
+
+.arena .fighter-name {
+  flex-wrap: wrap;
+  gap: 3px 10px;
+  margin: 5px 0 10px;
+}
+
+.arena .fighter-name h2,
+.arena .fighter-name > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.arena .fighter-status {
+  gap: 5px 11px;
+}
+
+.arena .fighter-status > span,
+.arena .fighter-status > .fighter-condition,
+.arena .enemy-condition-row > .fighter-condition {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.arena .intent span {
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.arena .round-label {
+  top: 22px;
+  width: 56px;
+  z-index: 4;
+}
+
+/* The bottom margin also reserves room for grounding and small rig movement. */
+.arena > .fighter {
+  top: calc(var(--arena-hud-height) + 12px);
+  bottom: calc(var(--arena-footer-height) + 12px);
+  height: calc(var(--arena-stage-height) - 24px);
+  width: 38%;
+  transform-origin: 50% 100%;
+}
+
+.arena > .player-fighter {
+  left: 10%;
+  right: auto;
+}
+
+.arena > .enemy-fighter {
+  right: 10%;
+  left: auto;
+}
+
+.arena .vs-mark {
+  top: calc(var(--arena-hud-height) + var(--arena-stage-height) / 2);
+}
+
+.arena .damage-number {
+  top: calc(var(--arena-hud-height) + var(--arena-stage-height) * 0.38);
+}
+
+.arena .arena-bottom {
+  min-height: var(--arena-footer-height);
+  padding: 7px var(--arena-gutter);
+  gap: 12px;
+  background: linear-gradient(0deg, #0d0e18e8, #0d0e1870);
+}
+
+/* Desktop broadcasts reserve the whole lower left stage for the full action.
+   Captions share a separate column, vertically centered as two stacked rows. */
+.arena .technique-scene-visual {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  grid-template-rows: minmax(0, 1fr) auto auto minmax(0, 1fr);
+  column-gap: 14px;
+  padding-top: var(--arena-hud-height);
+  overflow: hidden;
+}
+
+.arena .technique-art-frame {
+  position: relative;
+  inset: auto;
+  grid-column: 1;
+  grid-row: 1 / -1;
+  min-width: 0;
+  min-height: 0;
+  margin: 24px 46px 32px var(--arena-gutter);
+  z-index: 1;
+}
+
+.arena .technique-art-frame img {
+  object-fit: contain;
+  object-position: center;
+  mask-image: none;
+}
+
+.arena .technique-film-shade {
+  top: var(--arena-hud-height);
+  background: linear-gradient(
+    90deg,
+    #090b1366,
+    transparent 28%,
+    transparent 72%,
+    #090b1366
+  );
+  z-index: 1;
+}
+
+.arena .technique-scene-copy,
+.arena .technique-results {
+  position: relative;
+  inset: auto;
+  width: auto;
+  max-width: none;
+  max-height: none;
+  min-width: 0;
+  z-index: 2;
+  background: #0c0f19f7;
+}
+
+.arena .technique-scene-copy {
+  grid-column: 2;
+  grid-row: 2;
+  padding: 16px var(--arena-gutter) 0 20px;
+  border-left: 1px solid #ffffff12;
+}
+
+.arena .technique-scene-copy strong {
+  margin-top: 3px;
+  overflow-wrap: anywhere;
+}
+
+.arena .technique-results {
+  grid-column: 2;
+  grid-row: 3;
+  padding: 10px var(--arena-gutter) 16px 20px;
+  gap: 5px 8px;
+  align-content: start;
+  border-left: 1px solid #ffffff12;
+}
+
+.arena .technique-results span {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+/* Preview text has its own column and never sits on the portrait. */
+.condition-preview {
+  display: grid;
+  grid-template-columns: minmax(0, 44%) minmax(0, 1fr);
+  height: auto;
+  min-height: 230px;
+  overflow: hidden;
+}
+
+.condition-preview > .fighter {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: 206px;
+  margin: 12px 0;
+  align-self: center;
+  transform-origin: 50% 100%;
+}
+
+.condition-preview > div:last-child {
+  position: relative;
+  inset: auto;
+  translate: none;
+  min-width: 0;
+  align-self: center;
+  padding: 18px 18px 18px 10px;
+}
+
+.condition-preview h3 {
+  overflow-wrap: anywhere;
+}
+
+.condition-preview p {
+  overflow-wrap: break-word;
+}
+
+/* Roster portraits are complete figures in a separate image area. */
+.roster-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 268px auto;
+  align-items: stretch;
+}
+
+.roster-card > img,
+.roster-card > .live-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  object-fit: contain;
+  object-position: 50% 100%;
+  margin: 0;
+  padding: 16px 16px 8px;
+}
+
+/* The live renderer measures its wrapper, so use real inner dimensions.
+   Padding alone would leave its absolute canvas covering the padded space. */
+.roster-card > .live-art {
+  width: calc(100% - 32px);
+  height: calc(100% - 24px);
+  margin: 16px 16px 8px;
+  padding: 0;
+}
+
+.roster-card > div {
+  min-width: 0;
+  margin: 0;
+  padding: 20px;
+  border-top: 1px solid #ffffff0b;
+  background: #1b1920;
+}
+
+.roster-card .roster-stats {
+  flex-wrap: wrap;
+}
+
+.roster-card .primary-button {
+  width: 100%;
+  white-space: normal;
+  gap: 8px;
+  line-height: 1.6;
+}
+
+.roster-card .primary-button svg {
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) and (max-height: 780px) {
+  .arena {
+    --arena-stage-height: 224px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .arena {
+    --arena-gutter: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .arena {
+    --arena-gutter: 14px;
+    --arena-hud-height: 176px;
+    --arena-stage-height: 300px;
+    --arena-footer-height: 42px;
+  }
+
+  .arena .fighter-hud {
+    top: 14px;
+    width: calc((100% - 2 * var(--arena-gutter) - 34px) / 2);
+  }
+
+  .arena .fighter-name {
+    display: block;
+    margin: 5px 0 9px;
+  }
+
+  .arena .fighter-name > span {
+    max-width: none;
+  }
+
+  .arena .fighter-status {
+    gap: 5px 8px;
+  }
+
+  .arena .round-label {
+    top: 17px;
+    width: 28px;
+  }
+
+  .arena > .fighter {
+    width: 44%;
+    top: calc(var(--arena-hud-height) + 10px);
+    bottom: calc(var(--arena-footer-height) + 10px);
+    height: calc(var(--arena-stage-height) - 20px);
+  }
+
+  .arena > .player-fighter {
+    left: 4%;
+  }
+
+  .arena > .enemy-fighter {
+    right: 4%;
+  }
+
+  .arena .arena-bottom {
+    gap: 8px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  /* On narrow screens, keep full art above naturally sized caption rows. */
+  .arena .technique-scene-visual {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) auto auto;
+    column-gap: 0;
+  }
+
+  .arena .technique-art-frame {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 22px 18px 14px;
+  }
+
+  .arena .technique-kicker {
+    gap: 5px 8px;
+    letter-spacing: 0.7px;
+  }
+
+  .arena .technique-scene-copy {
+    grid-column: 1;
+    padding: 8px var(--arena-gutter) 0;
+    border-left: 0;
+    border-top: 1px solid #ffffff0e;
+  }
+
+  .arena .technique-results {
+    grid-column: 1;
+    padding: 6px var(--arena-gutter) 11px;
+    gap: 4px 6px;
+    border-left: 0;
+  }
+
+  .condition-preview {
+    grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
+    min-height: 220px;
+  }
+
+  .condition-preview > .fighter {
+    height: 196px;
+  }
+
+  .condition-preview > div:last-child {
+    padding: 16px 14px 16px 8px;
+  }
+
+  .roster-card {
+    grid-template-columns: minmax(0, 36%) minmax(0, 1fr);
+    grid-template-rows: auto;
+    align-items: stretch;
+  }
+
+  .roster-card > img,
+  .roster-card > .live-art {
+    height: 230px;
+    align-self: center;
+    padding: 12px 6px;
+  }
+
+  .roster-card > .live-art {
+    width: calc(100% - 12px);
+    height: 206px;
+    margin: 12px 6px;
+    padding: 0;
+  }
+
+  .roster-card > div {
+    padding: 17px 14px;
+    border-top: 0;
+    border-left: 1px solid #ffffff0b;
+    background: #1b1920aa;
+  }
+
+  .roster-card .primary-button {
+    padding: 10px 8px;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 370px) {
+  .arena {
+    --arena-gutter: 11px;
+    --arena-hud-height: 184px;
+  }
+
+  .arena .fighter-hud {
+    width: calc((100% - 2 * var(--arena-gutter) - 24px) / 2);
+  }
+
+  .arena .round-label {
+    width: 22px;
+  }
+}

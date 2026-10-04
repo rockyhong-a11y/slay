@@ -795,7 +795,7 @@
   width: 100%;
   object-fit: contain;
 }
-.knowledge-detail-art > span {
+.knowledge-detail-art > span:not(.live-art) {
   position: absolute;
   bottom: 23px;
   left: 25px;

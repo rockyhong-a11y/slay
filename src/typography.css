@@ -1,0 +1,181 @@
+@import "@fontsource/do-hyeon/korean-400.css";
+@import "@fontsource/teko/latin-600.css";
+@import "@fontsource/teko/latin-700.css";
+
+/* Each role uses locally bundled fonts. Korean descriptions keep an open body face. */
+:root {
+  --font-body: "Noto Sans KR", Arial, sans-serif;
+  --font-heading-ko: "Do Hyeon", "Noto Sans KR", sans-serif;
+  --font-display: "Barlow Condensed", "Noto Sans KR", sans-serif;
+  --font-score: "Teko", "Barlow Condensed", sans-serif;
+  --font-impact: "Teko", "Barlow Condensed", "Noto Sans KR", sans-serif;
+  font-family: var(--font-body);
+}
+
+.type-body,
+.card-text p,
+.knowledge-card-copy > p,
+.knowledge-technique,
+.knowledge-effect-comparison p,
+.knowledge-acquisition p,
+.guide-section-content > p,
+.guide-definitions dd,
+.condition-guide > p,
+.condition-preview p,
+.technique-results span {
+  font-family: var(--font-body);
+  font-style: normal;
+  letter-spacing: normal;
+}
+
+/* Angular Korean letterforms belong to titles, never compressed effect copy. */
+.type-heading-ko,
+.knowledge-header h1,
+.guide-section-content h2,
+.guide-bottom h2,
+.knowledge-card-copy h2,
+.knowledge-detail-copy h2,
+.library-empty h2,
+.card-text h3,
+.modal-head h2,
+.route-intro h2,
+.route-node h3,
+.phase-box h2,
+.condition-preview h3,
+.technique-scene-copy strong {
+  font-family: var(--font-heading-ko);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0;
+}
+
+.knowledge-header h1 {
+  letter-spacing: -0.015em;
+}
+.card-text h3,
+.knowledge-card-copy h2 {
+  line-height: 1.35;
+}
+.technique-scene-copy strong {
+  line-height: 1.3;
+}
+
+/* Upright, narrow numerals keep changing scores aligned and easy to scan. */
+.type-score,
+.coins strong,
+.floor-button strong,
+.health-label strong,
+.health-label small,
+.intent strong,
+.round-label strong,
+.energy-orb strong,
+.energy-orb small,
+.pile-button strong,
+.card-cost,
+.stress-meter strong,
+.stress-meter small,
+.combo-meter strong,
+.route-step,
+.library-summary strong,
+.knowledge-cost,
+.guide-hero-line strong,
+.guide-section-mark > span,
+.guide-thresholds strong,
+.library-result-heading strong {
+  font-family: var(--font-score);
+  font-weight: 600;
+  font-style: normal;
+  font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: 0.01em;
+}
+
+/* The broadcast face carries names and small English technique captions. */
+.type-display,
+.chapter-header h1,
+.fighter-name h2,
+.eyebrow,
+.knowledge-eyebrow,
+.fighter-side,
+.round-label > span,
+.card-en,
+.knowledge-card-english,
+.technique-kicker,
+.condition-preview > div:last-child > span {
+  font-family: var(--font-display);
+  font-style: normal;
+}
+.card-en,
+.knowledge-card-english {
+  font-weight: 600;
+  letter-spacing: 0.07em;
+}
+
+/* Teko's compact capitals need room to keep scores readable at phone sizes. */
+.health-label strong {
+  font-size: 19px;
+  line-height: 1;
+}
+.health-label small {
+  font-size: 15px;
+}
+.card-cost {
+  font-size: 24px;
+  line-height: 1;
+  padding-top: 3px;
+}
+.intent strong {
+  font-size: 20px;
+  line-height: 1;
+}
+.stress-meter strong,
+.stress-meter small {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Results and finishers get a stronger event headline, distinct from rules text. */
+.type-impact,
+.reward-panel > h2,
+.phase-box.final h2 {
+  font-family: var(--font-impact);
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.05;
+  letter-spacing: 0.025em;
+}
+.type-victory,
+.phase-box.final[data-outcome="victory"] h2 {
+  font-family: var(--font-impact);
+  letter-spacing: 0.04em;
+}
+.type-defeat,
+.phase-box.final[data-outcome="defeat"] h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+}
+.scene-finisher .technique-scene-copy strong {
+  letter-spacing: 0.015em;
+}
+.scene-nightmare .technique-scene-copy strong,
+.condition-preview:has([data-condition="tired"]) h3,
+.condition-preview:has([data-condition="groggy"]) h3 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+/* State badges and mixed Korean/Latin footer labels remain plain and legible. */
+.fighter-condition,
+.condition-options > button > span:last-child,
+.card-foot,
+.technique-results .result-damage {
+  font-family: var(--font-body);
+  font-style: normal;
+  letter-spacing: normal;
+}
+.fighter-condition,
+.technique-results .result-damage {
+  font-weight: 700;
+}
