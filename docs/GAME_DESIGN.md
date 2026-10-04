@@ -20,7 +20,7 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 
 ## 플레이 루프
 
-1. 선수를 선택하고 11장의 시작 덱으로 첫 경기에 입장합니다.
+1. 선수를 선택하고 11장의 시작 덱으로 첫 경기에 입장합니다. 메디컬 아이스팩 1개를 보관하며 첫 경기에는 철벽 코너가 활성화됩니다.
 2. 매 턴 상대의 의도를 읽고 에너지를 사용하여 카드를 플레이합니다.
 3. 공격을 연결해 열기를 얻고, 피니셔로 경기를 마무리합니다.
 4. 승리하면 크레딧과 서로 다른 카드 3장의 선택 보상을 받습니다. 카드를 받지 않고 덱을 얇게 유지할 수도 있습니다.
@@ -49,7 +49,7 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 
 ## 전투 규칙
 
-- 기본 에너지는 3이며 턴 시작 때 회복합니다. 손에는 5장을 뽑고 최대 10장까지 보유합니다.
+- 기본 에너지는 3이며 턴 시작 때 회복합니다. 손에는 기본 5장을 뽑고 최대 10장까지 보유합니다. 첫 경기의 철벽 코너는 첫 손패만 4장으로 줄이는 대신 시작 방어 7과 매 턴 방어 2를 줍니다.
 - 턴 종료 시 남은 손을 버립니다. 드로우 덱이 비면 버린 카드를 섞습니다. 소멸 카드는 해당 경기에 돌아오지 않습니다.
 - 방어는 공격 피해를 먼저 흡수합니다. 일반 선수의 남은 방어는 다음 턴에 사라지며 발키리는 최대 3을 유지합니다.
 - 공격 카드 사용 횟수는 턴별 콤보로 기록됩니다. 콤보 2회마다 열기 1을 얻으며 열기는 최대 9입니다. 다음 경기에는 최대 2까지 이어집니다.
@@ -61,24 +61,63 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 
 승리하면 압박 5가 감소합니다. 회복 카드, 휴식의 명상, 상점의 멘탈 코칭은 압박을 낮추거나 악몽을 제거합니다. 플레이어는 현재 경기의 공격 효율과 다음 경기의 덱 상태를 함께 판단합니다.
 
-## 8개 구간
+## 연결된 8개 구간
 
-구간은 다음 층에서 하나의 경로를 선택하는 방식입니다. 선택하지 않은 경로는 지나갑니다.
+전체 지도는 시작점, 2–7층의 네 경로, 최종 챔피언십을 연결한 26개 노드의 그래프입니다. 첫 경기 뒤에는 네 갈래 모두 열리며, 다음 층부터 현재 위치의 같은 레인과 인접 레인으로만 이동합니다. 마지막에는 모든 7층 노드가 보스로 합쳐집니다. 지나간 경로, 현재 노드, 실제 진입 가능한 다음 노드, 미래 연결선을 함께 표시합니다. 미래 노드를 직접 선택하거나 연결 없는 갈래로 이동할 수 없습니다.
 
-| 구간 | 선택 가능한 경로                                   |
-| ---- | -------------------------------------------------- |
-| 1    | 데뷔 싱글 매치로 시작                              |
-| 2    | 싱글 매치 / 락커룸 / 백스테이지 이벤트             |
-| 3    | 싱글 매치 / 정예 메인 이벤트 / 프로 숍             |
-| 4    | 싱글 매치 / 락커룸 / 백스테이지 이벤트             |
-| 5    | 싱글 매치 / 정예 메인 이벤트 / 프로 숍             |
-| 6    | 싱글 매치 / 락커룸 / 백스테이지 이벤트             |
-| 7    | 싱글 매치 / 정예 메인 이벤트 / 프로 숍 / 최종 준비 |
-| 8    | EMPRESS 챔피언십                                   |
+| 구간 | 전체 층의 경로                                           |
+| ---- | -------------------------------------------------------- |
+| 1    | 데뷔 싱글 매치                                           |
+| 2    | 싱글 매치 / 락커룸 / 백스테이지 / 하드코어 쇼다운        |
+| 3    | 싱글 매치 / 정예 메인 이벤트 / 프로 숍 / 하드코어 쇼다운 |
+| 4    | 싱글 매치 / 락커룸 / 백스테이지 / 하드코어 쇼다운        |
+| 5    | 싱글 매치 / 정예 메인 이벤트 / 프로 숍 / 하드코어 쇼다운 |
+| 6    | 싱글 매치 / 락커룸 / 백스테이지 / 하드코어 쇼다운        |
+| 7    | 싱글 매치 / 정예 메인 이벤트 / 프로 숍 / 최종 준비       |
+| 8    | EMPRESS 챔피언십                                         |
 
-일반 경기 보상은 35 크레딧, 정예전은 65 크레딧입니다. 정예전은 더 높은 체력과 공격력 대신 언커먼·레어 카드 보상을 제공합니다. 결승 승리 보상은 120 크레딧입니다.
+표는 층 전체의 프리뷰입니다. 현재 위치에서 연결된 노드만 다음 선택지에 나타나므로 모든 갈래를 매번 고를 수는 없습니다. 모든 노드는 시작점에서 도달 가능하며 모든 노드에서 보스로 가는 경로가 있습니다.
 
-락커룸에서는 최대 체력의 30% 회복, 압박 25 감소와 악몽 1장 제거, 카드 1장 영구 강화 중 하나를 선택합니다. 상점에는 카드, 회복, 멘탈 코칭, 자동 강화와 최대 에너지 +1의 컨디셔닝 벨트가 있습니다. 이벤트는 크레딧·기술 획득·체력·압박 사이의 선택을 제공합니다.
+| 경기     | 상대 위험                                 | 크레딧 | 카드 선택            | 추가 보급                 |
+| -------- | ----------------------------------------- | ------ | -------------------- | ------------------------- |
+| 일반     | 일반 체력·공격                            | 35     | 커먼·언커먼·레어 3장 | 소모품 45%, 기믹 20% 확률 |
+| 정예     | 강한 정예 상대                            | 65     | 언커먼·레어 3장      | 소모품 1개, 기믹 1개 확정 |
+| 하드코어 | 같은 층 정예보다 체력 +20%(올림), 공격 +2 | 95     | 레어 4장             | 소모품 1개, 기믹 1개 확정 |
+| 결승     | EMPRESS                                   | 120    | 런 승리로 종료       | —                         |
+
+선택 보상에서는 카드와 별도로 보급을 받을 수 있습니다. 아이템과 기믹 제안은 유형마다 1개이며 독립적으로 수령합니다. 슬롯이 꽉 차면 해당 수령은 불가능하고, 카드 선택 또는 건너뛰기로 지도에 돌아가면 받지 않은 보급은 사라집니다.
+
+락커룸에서는 최대 체력의 30% 회복과 압박 5 감소, 압박 25 감소와 악몽 1장 제거, 카드 1장 영구 강화 중 하나를 선택합니다. 상점에는 카드, 회복, 멘탈 코칭, 자동 강화와 소모품·코너 기믹이 있습니다. 새 상점은 영구 에너지 벨트를 판매하지 않습니다.
+
+백스테이지 선택은 실제 효과와 체력·크레딧 대가를 먼저 보여 줍니다. 체력 비용보다 현재 체력이 높아야 선택할 수 있어 체력 1로 비용을 회피할 수 없습니다. 크레딧 부족이나 보관함 부족으로 보상을 받을 수 없는 선택도 실행되지 않습니다. 락커룸·이벤트 도착에는 설명 장면이 있고, 선택 뒤에는 실제 회복량·지출·획득 결과를 표시합니다.
+
+## 일회용 소모품과 코너 기믹
+
+소모품은 최대 3개를 보관합니다. 전투 중 에너지 없이 사용할 수 있고, 사용한 한 개는 즉시 사라집니다. 카드 사용·콤보·선수 패시브로 취급하지 않습니다. 남은 소모품은 다음 경기까지 유지하며 경기 보상, 프로 숍, 일부 이벤트에서 얻습니다.
+
+| ID             | 소모품           | 정확한 효과                            | 상점 비용 |
+| -------------- | ---------------- | -------------------------------------- | --------- |
+| `icepack`      | 메디컬 아이스팩  | 체력 18 회복 · 압박 5 감소             | 35        |
+| `energygel`    | 러시 에너지 젤   | 이번 턴 에너지 +2 · 압박 +4            | 40        |
+| `resin`        | 그립 레진        | 방어 15                                | 30        |
+| `smokespray`   | 쿨링 미스트      | 상대 약화 2 · 취약 1                   | 40        |
+| `crowdwhistle` | 관중 호루라기    | 열기 +2 · 압박 4 감소                  | 35        |
+| `trainingtape` | 전술 손목 테이프 | 2장 드로우 · 이번 턴 다음 공격 피해 +4 | 35        |
+
+코너 기믹은 미사용 상태로 최대 6개를 보관합니다. 지도·보상·휴식·상점·이벤트에서 한 개를 다음 경기용으로 예약하거나 예약을 해제할 수 있습니다. 예약만으로는 소모되지 않고 경기 입장 때 활성화와 동시에 재고에서 빠집니다. 전투 중 교체할 수 없으며, 현재의 라운드 단위는 **한 경기 전체**입니다. 승리·패배와 함께 만료되고 미사용 재고는 유지합니다. 기믹 보너스는 영구 에너지나 선수 패시브에 누적되지 않습니다.
+
+| ID                | 기믹              | 한 경기 동안의 이점                       | 대가                                | 상점 비용 |
+| ----------------- | ----------------- | ----------------------------------------- | ----------------------------------- | --------- |
+| `ironcorner`      | 철벽 코너         | 경기 시작 방어 7 · 매 턴 방어 +2          | 첫 손패 1장 감소                    | 45        |
+| `spotlightcorner` | 스포트라이트 코너 | 경기 시작 열기 +2 · 매 턴 열기 +1         | 상대 공격력 +2                      | 55        |
+| `grappleclinic`   | 그래플링 클리닉   | 잡기 공격 피해 +3                         | 경기 시작 압박 +8                   | 50        |
+| `speedcorner`     | 오버드라이브 코너 | 매 턴 에너지 +1                           | 카드로 얻는 방어가 60%로 감소(내림) | 60        |
+| `icecorner`       | 리커버리 코너     | 매 턴 체력 3 회복                         | 모든 공격 피해 −2                   | 50        |
+| `mindcorner`      | 멘탈 코너         | 매 턴 압박 5 감소 · 악몽 드로우 압박 무효 | 상대 최대 체력 +20%(올림)           | 45        |
+
+매 턴 효과는 첫 턴에도 적용합니다. 철벽 코너의 첫 방어는 7+2=9, 스포트라이트 코너의 첫 열기는 시작 +2와 턴 +1이 합쳐집니다. 오버드라이브의 카드 방어 감소는 기본 방어·카운터·컴백 보너스를 합친 뒤 내림하며, 소모품 방어에는 적용되지 않습니다. 리커버리의 공격 감소는 타격마다 적용하고 피해가 0 미만으로 내려가지 않습니다. 경기 도중 저장해도 추가 활성화·회복·에너지를 받지 않습니다.
+
+기존 v1 저장의 컨디셔닝 벨트는 런 종료까지 최대 에너지 +1을 유지하는 **기존 영구 장비**로 표시합니다. 새 기믹으로 바꾸거나 효과를 숨기지 않습니다. 새 기믹 시스템 이전 저장에는 현재 전투의 카드·상대·에너지·난수 상태를 보존하며, 소모품 필드가 없을 때 아이스팩 한 개만 최초 정규화 시 지급합니다. 빈 소모품 필드가 저장된 뒤에는 재지급되지 않습니다.
 
 ## 카드 50종
 
@@ -163,8 +202,8 @@ The rules module is [`src/game.js`](../src/game.js). It has no browser or third-
 | `playCard(state, uid)`                             | Resolves a hand card, pile movement, combo, pressure, and any victory                    |
 | `endTurn(state)`                                   | Discards the remaining hand, resolves intent, and starts the next turn                   |
 | `chooseReward(state, cardIdOrNull)`                | Adds an offered card or skips it, then opens the map                                     |
-| `mapForFloor(floor)`                               | Returns the available node definitions for that floor                                    |
-| `advanceToNode(state, nodeIndex)`                  | Enters one available node and increments the floor                                       |
+| `mapForFloor(floor)`                               | Returns all node definitions for that floor as a preview                                 |
+| `advanceToNode(state, nodeIndexOrId)`              | Enters a connected next node and increments the floor                                    |
 | `rest(state, 'heal' / 'meditate' / 'upgrade')`     | Resolves one rest action; automatic upgrade prioritizes a finisher                       |
 | `upgradeCard(state, uid)`                          | Upgrades a chosen permanent card in the rest phase, then opens the map                   |
 | `buyItem(state, itemId)`                           | Pays for an available shop item; insufficient funds are a no-op                          |
@@ -173,7 +212,9 @@ The rules module is [`src/game.js`](../src/game.js). It has no browser or third-
 | `getCardDamage(state, instance)`                   | Previews damage including passives, combo bonuses, and vulnerability                     |
 | `getDrawCount` / `getDeckCount` / `getRunProgress` | Small display helpers                                                                    |
 
-The state includes `player`, `enemy`, `hand`, `draw`, `discard`, `exhaust`, `deck`, `energy`, `maxEnergy`, `turn`, `floor`, `maxFloor`, `phase`, `combo`, `status`, `rewards`, `rewardCoins`, `mapNodes`, `event`, `shopItems`, `history`, `relics`, `stats`, `log`, and the PRNG `seed`. Card instances have stable UIDs. `log` is a string array; `logEvents` provides message types and turn numbers.
+Additional exports are `ITEMS`, `GIMMICKS`, `ITEM_CAPACITY`, `GIMMICK_CAPACITY`, `ROUTE_GRAPH`, `EVENTS`, `normalizeRun(saved)`, `getRouteView(state)`, `useItem(state, uid)`, `equipGimmick(state, uidOrNull)`, `claimLoot(state, kind, id)`, `getRestChoices(state)` and `canResolveEventChoice(state, choiceId)`. `kind` is `item` or `gimmick`. Item actions spend no energy. Illegal actions, unaffordable event costs, unavailable graph nodes and full-capacity acquisitions return the original state unchanged.
+
+The state includes `player`, `enemy`, `hand`, `draw`, `discard`, `exhaust`, `deck`, `energy`, `maxEnergy`, `turn`, `floor`, `maxFloor`, `phase`, `combo`, `status`, `rewards`, `rewardCoins`, `mapNodes`, `event`, `shopItems`, `history`, `relics`, `stats`, `log`, and the PRNG `seed`. New mechanics add `mechanicsVersion: 2`, `route: { currentNodeId, visited }`, `inventory`, `gimmicks`, `equippedGimmickUid`, `activeGimmick`, `rewardLoot`, `arrival`, `lastChoice` and `lastImpact`. Item and gimmick instances are `{ uid, id }`; active gimmicks also carry their encounter node and duration. `getRouteView` supplies the full nodes and edges with `visited`, `available` and `current` flags. `lastChoice.result` contains actual outcome strings; `lastImpact` records actual HP damage and absorbed block for every card/item/intent, including zero-impact support actions. Card instances have stable UIDs. `log` is a string array; `logEvents` provides message types and turn numbers.
 
 `WRESTLERS` now contains five IDs: `raven`, `valkyrie`, `nova`, `viper`, `ember`. Each definition includes `role`, `roleEn`, `strategy`, `complexity` (1–3), `complexityLabel`, `easyLabel`, `strengths`, `playstyle`, `recommendedCards`, and the exact `startingDeck` card IDs. `newRun` constructs instances from that deck. Encyclopedia `startingWrestlers` and acquisition text derive from these definitions.
 
@@ -197,6 +238,8 @@ The final character path uses 30 complete state illustrations at 1000×1500 RGBA
 A [Blender QA gallery](../artifacts/fighter-state-gallery.blend) displays the 30 complete illustrations on individual full-image planes. Its [render](../artifacts/fighter-state-gallery.jpg), [verification data](../artifacts/fighter-state-gallery-facts.json) and [script](../tools/build-state-gallery.py) record whole-texture preservation and a static scene with no armatures or animation. This gallery reviews the finished 2D images.
 
 `fighterPoseArt(actor, condition)` accepts a state ID or a state object and returns `fighters/states/{actor}-{state}.webp`; an unknown actor falls back to Nova and an unknown state falls back to normal. Card images continue to use their individual technique paths. Continuous puppet/mesh rendering and its dedicated tests are removed.
+
+The connected-route suite checks all 26 nodes for reachability and boss continuation, rejects forged future choices, and verifies six consumables, six finite gimmicks, expiry, capacities, affordable physical costs, source offers, exact feedback and one-time v1 migration. Sixty seeded runs (five wrestlers × four seeds × preparation/balanced/risk policies) use only public actions. In this sample all policies completed; average earned credits were 155/365/630 and incoming HP damage was 10.2/15.65/50.3 respectively. The high-risk policy gained more rewards while taking over three times the balanced policy’s damage. These are results for those specified seeds and decisions.
 
 The engine suite covers reproducible initialization and save/load, invalid actions, energy, block, combos and finishers, exhaustion and reshuffling, nightmare thresholds, defeat, rewards, map transitions, rest, upgrades, shops, events, and full eight-floor wins for all five wrestlers on two deterministic seeds. Strategy regressions cover debuff timing, multi-hit damage previews, conditional comeback recovery, caps, per-turn limits, old status compatibility, and nightmare-draw defeat without passive recursion or resurrection. The expansion suite resolves all 50 cards at both upgrade levels for each of the five wrestlers, compares damage previews with actual results, and verifies JSON restore and immutable actions. Across 768 deterministic seeds it checks that all 25 new moves appear in normal rewards and shops, can be acquired once per offer, and can be permanently upgraded at rest.
 

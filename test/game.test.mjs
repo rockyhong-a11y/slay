@@ -33,6 +33,8 @@ function combatWith(ids, wrestler = "raven") {
   state.discard = [];
   state.exhaust = [];
   state.enemy.hp = state.enemy.maxHp = 200;
+  state.activeGimmick = null;
+  state.player.block = 0;
   return state;
 }
 
@@ -48,7 +50,11 @@ test("new runs are deterministic, serializable, and start with unique cards", ()
     assert.deepEqual(state, newRun(id, 12345));
     assert.deepEqual(JSON.parse(JSON.stringify(state)), state);
     assert.equal(state.phase, "combat");
-    assert.equal(state.hand.length, 5);
+    assert.equal(
+      state.hand.length,
+      4,
+      "starter iron corner reduces only the opening hand",
+    );
     assert.equal(state.deck.length, 11);
     assert.equal(new Set(state.deck.map((c) => c.uid)).size, 11);
     assert.equal(state.player.hp, WRESTLERS[id].maxHp);
@@ -157,7 +163,7 @@ test("victories pay once, offer three different rewards, and enter a branching m
   assert.equal(state.phase, "map");
   assert.equal(state.deck.length, 2);
   assert.equal(state.deck[1].id, id);
-  assert.equal(state.mapNodes.length, 3);
+  assert.equal(state.mapNodes.length, 4);
   assert.equal(chooseReward(state, id), state);
   assert.equal(advanceToNode(state, 99), state);
 });
@@ -204,20 +210,20 @@ test("healing is capped, meditation removes a nightmare, and invalid rest action
   assert.ok(!state.deck.some((c) => c.uid === "bad-dream"));
 });
 
-test("shops enforce affordability, prevent duplicate purchases, and grant permanent energy", () => {
-  let state = toMap();
-  state.floor = 2;
-  state.mapNodes = mapForFloor(3);
+test("shops enforce affordability, prevent duplicate purchases, and stock one-encounter gimmicks", () => {
+  let state = rest(advanceToNode(toMap(), 1), "heal");
   state = advanceToNode(state, 2);
   assert.equal(state.phase, "shop");
-  state.player.coins = 99;
-  assert.equal(buyItem(state, "energy-belt"), state);
-  state.player.coins = 150;
-  state = buyItem(state, "energy-belt");
-  assert.equal(state.player.coins, 50);
-  assert.equal(state.maxEnergy, 4);
-  assert.ok(state.relics.some((item) => item.id === "energy-belt"));
-  assert.equal(buyItem(state, "energy-belt"), state);
+  assert.ok(!state.shopItems.some((item) => item.id === "energy-belt"));
+  const offer = state.shopItems.find((item) => item.kind === "gimmick");
+  state.player.coins = offer.cost - 1;
+  assert.equal(buyItem(state, offer.id), state);
+  state.player.coins = offer.cost + 5;
+  state = buyItem(state, offer.id);
+  assert.equal(state.player.coins, 5);
+  assert.equal(state.maxEnergy, 3);
+  assert.ok(state.gimmicks.some((item) => item.id === offer.gimmickId));
+  assert.equal(buyItem(state, offer.id), state);
   state = leaveShop(state);
   assert.equal(state.phase, "map");
   assert.equal(state.floor, 3);
@@ -352,17 +358,20 @@ function strategicRun(id, seed = 20903) {
     } else if (state.phase === "event") {
       state = resolveEvent(state, state.event.choices[1].id);
     } else if (state.phase === "shop") {
+      const healing = state.shopItems.find(
+        (item) => item.id === "treatment" && !item.sold,
+      );
+      const card = state.shopItems.find(
+        (item) =>
+          item.kind === "card" && !item.sold && state.player.coins >= item.cost,
+      );
       if (
-        state.player.coins >= 100 &&
-        !state.shopItems.find((item) => item.id === "energy-belt")?.sold
+        healing &&
+        state.player.coins >= healing.cost &&
+        state.player.maxHp - state.player.hp > 10
       )
-        state = buyItem(state, "energy-belt");
-      else if (
-        state.player.coins >= 40 &&
-        state.player.maxHp - state.player.hp > 10 &&
-        !state.shopItems.find((item) => item.id === "treatment")?.sold
-      )
-        state = buyItem(state, "treatment");
+        state = buyItem(state, healing.id);
+      else if (card) state = buyItem(state, card.id);
       else state = leaveShop(state);
     }
   }
@@ -379,10 +388,6 @@ test("all five wrestlers can complete a real eight-floor run using only public a
       assert.equal(result.history.length, 8, label);
       assert.ok(result.stats.enemiesDefeated >= 3, label);
       assert.ok(result.stats.cardsPlayed > 20, label);
-      assert.ok(
-        result.relics.some((item) => item.id === "energy-belt"),
-        label,
-      );
       assert.ok(
         result.deck.some((card) => card.upgraded),
         label,

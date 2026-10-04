@@ -1,9 +1,13 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion, useAnimationControls } from "motion/react";
 import { createPortal } from "react-dom";
 import { Fire, Heartbeat, Shield, Sparkle } from "@phosphor-icons/react";
-import { FIGHTER_STATES, fighterPoseArt } from "./presentation.js";
+import {
+  FIGHTER_STATES,
+  fighterPoseArt,
+  fighterImpactFrames,
+} from "./presentation.js";
 import "./combat-presentation.css";
 import { Artwork } from "./Artwork.jsx";
 import { motionTokens } from "./motion-config.js";
@@ -44,11 +48,45 @@ export function FighterCondition({ condition, enemy = false, onClick }) {
   );
 }
 
-export function FighterSprite({ actor, condition, name, side }) {
+export function FighterSprite({
+  actor,
+  condition,
+  name,
+  side,
+  impact,
+  shortened = false,
+}) {
   const requested = fighterPoseArt(actor, condition);
+  const reduced = useReducedMotion();
+  const controls = useAnimationControls();
+  const attacking = impact?.attacker === side;
+  const struck = impact?.target === side;
+  const still = reduced || shortened;
+  useEffect(() => {
+    controls.stop();
+    controls.set({ x: 0, y: 0, rotate: 0, filter: "brightness(1)" });
+    const frames = fighterImpactFrames(impact, side, still);
+    if (!frames) return;
+    // The duplicated contact values create a short visual freeze, then a
+    // pronounced recoil. Both animation layers move the complete illustration.
+    controls.start(frames);
+    return () => controls.stop();
+  }, [impact?.id, side, controls, still, attacking, struck]);
   return (
-    <div className={`fighter ${side}-fighter`} data-condition={condition.id}>
-      <div className="fighter-sprite-frame">
+    <div
+      className={`fighter ${side}-fighter`}
+      data-condition={condition.id}
+      data-impact={
+        impact && (attacking || struck)
+          ? attacking
+            ? "attack"
+            : impact.damage
+              ? "hit"
+              : "guard"
+          : undefined
+      }
+    >
+      <motion.div className="fighter-sprite-frame" animate={controls}>
         <Artwork
           art={requested}
           alt={`${name} · ${condition.label} 자세`}
@@ -57,7 +95,56 @@ export function FighterSprite({ actor, condition, name, side }) {
           mirrored={side === "enemy"}
           position={[0.5, 1]}
         />
+      </motion.div>
+    </div>
+  );
+}
+
+const impactRays = Array.from({ length: 12 }, (_, index) => index * 30);
+
+export function ArenaImpact({ cue, onComplete, shortened = false }) {
+  const reduced = useReducedMotion();
+  const complete = useRef(onComplete);
+  complete.current = onComplete;
+  const still = reduced || shortened;
+  const duration = still ? 650 : cue.duration;
+  useEffect(() => {
+    const timer = setTimeout(() => complete.current?.(cue.id), duration);
+    return () => clearTimeout(timer);
+  }, [cue.id, duration]);
+  const guard = !cue.damage;
+  return (
+    <div
+      className={`arena-impact arena-impact-${cue.target} ${guard ? "arena-impact-guard" : "arena-impact-hit"} ${cue.heavy ? "arena-impact-heavy" : ""} ${cue.knockout ? "arena-impact-ko" : ""} ${still ? "arena-impact-still" : ""}`}
+      data-impact-id={cue.id}
+      data-damage={cue.damage}
+      data-blocked={cue.blocked}
+      data-duration={duration}
+      style={{ "--impact-duration": `${duration}ms` }}
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      <span className="combat-sr-only">{cue.announcement}</span>
+      <div className="arena-contact" aria-hidden="true">
+        <span className="arena-shockwave" />
+        <span className="arena-impact-star" />
+        {!still &&
+          impactRays.map((angle) => (
+            <i
+              key={angle}
+              className="arena-impact-ray"
+              style={{ "--ray-angle": `${angle}deg` }}
+            />
+          ))}
+        <div className="arena-impact-score">
+          <small>{cue.label}</small>
+          <strong>{guard ? "BLOCK" : `−${cue.damage}`}</strong>
+          {cue.blocked > 0 && <span>방어 {cue.blocked}</span>}
+          {cue.combo > 1 && cue.damage > 0 && <b>{cue.combo} COMBO</b>}
+        </div>
       </div>
+      {!still && <div className="arena-impact-slash" aria-hidden="true" />}
     </div>
   );
 }
@@ -79,6 +166,8 @@ export function TechniqueScene({ cue, onComplete, shortened = false }) {
       data-card={cue.cardId}
       data-motion={camera.kind}
       data-duration={duration}
+      data-hitstop={still ? 0 : camera.hitstop}
+      data-damage={cue.damage}
       role="status"
       aria-live="polite"
       aria-atomic="true"
@@ -137,10 +226,10 @@ export function TechniqueScene({ cue, onComplete, shortened = false }) {
               camera.impacts.map((at, index) => (
                 <motion.div
                   key={index}
-                  className={`technique-impact ${camera.heavy ? "impact-heavy" : ""} ${camera.pressure ? "impact-pressure" : ""}`}
+                  className={`technique-impact ${camera.heavy ? "impact-heavy" : ""} ${camera.pressure ? "impact-pressure" : ""} ${cue.attacking && !cue.damage ? "impact-blocked" : ""}`}
                   initial={{ opacity: 0, scale: 0.55 }}
                   animate={{
-                    opacity: [0, 0, camera.pressure ? 0.25 : 0.55, 0],
+                    opacity: [0, 0, camera.pressure ? 0.75 : 0.95, 0],
                     scale: [0.55, 0.55, 1, 1.35],
                   }}
                   transition={{
@@ -156,7 +245,63 @@ export function TechniqueScene({ cue, onComplete, shortened = false }) {
                     left: camera.origin.split(" ")[0],
                     top: camera.origin.split(" ")[1],
                   }}
-                />
+                >
+                  <span className="technique-impact-core" />
+                  {!camera.pressure &&
+                    impactRays.map((angle) => (
+                      <i
+                        key={angle}
+                        className="technique-impact-ray"
+                        style={{ "--ray-angle": `${angle}deg` }}
+                      />
+                    ))}
+                </motion.div>
+              ))}
+            {!still &&
+              cue.attacking &&
+              camera.impacts.map((at, index) => (
+                <motion.div
+                  key={`score-${index}`}
+                  className={`technique-hit-score ${cue.knockout ? "technique-hit-ko" : ""} ${!cue.damage ? "technique-hit-guard" : ""}`}
+                  initial={{ opacity: 0, scale: 0.65, y: 15 }}
+                  animate={{
+                    opacity: [0, 0, 1, 1, 0],
+                    scale: [0.65, 0.65, 1.12, 1, 1],
+                    y: [15, 15, 0, -3, -18],
+                  }}
+                  transition={{
+                    duration: duration / 1000,
+                    times: [
+                      0,
+                      Math.max(0.01, at - 0.01),
+                      at,
+                      Math.min(0.96, at + 0.16),
+                      Math.min(1, at + 0.28),
+                    ],
+                  }}
+                  aria-hidden="true"
+                >
+                  <small>
+                    {cue.knockout
+                      ? "K.O."
+                      : !cue.damage
+                        ? "GUARD"
+                        : cue.finisher
+                          ? "FINISHER"
+                          : camera.pressure
+                            ? "LOCKED IN"
+                            : cue.hits > 1
+                              ? `${index + 1} HIT`
+                              : "IMPACT"}
+                  </small>
+                  <strong>
+                    {cue.damage
+                      ? index === camera.impacts.length - 1
+                        ? `−${cue.damage}`
+                        : "CONTACT"
+                      : "BLOCK"}
+                  </strong>
+                </motion.div>
               ))}
           </div>
           <div className="technique-phase-track">

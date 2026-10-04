@@ -59,6 +59,8 @@ function combat(actor, ids) {
   state.discard = [];
   state.exhaust = [];
   state.enemy.hp = state.enemy.maxHp = 500;
+  state.activeGimmick = null;
+  state.player.block = 0;
   state.enemy.intent = { type: "attack", value: 12 };
   return state;
 }

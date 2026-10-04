@@ -14,6 +14,258 @@
   width: 100%;
   height: 100%;
   transform-origin: 50% 100%;
+  will-change: transform, filter;
+}
+
+/* A resolved hit uses the whole fighter image: approach, contact hold, recoil. */
+.arena-impact {
+  --impact-color: #ffba63;
+  position: absolute;
+  inset: var(--arena-hud-height, 112px) 0 var(--arena-footer-height, 26px);
+  z-index: 7;
+  pointer-events: none;
+  overflow: hidden;
+  isolation: isolate;
+}
+.arena-impact-guard {
+  --impact-color: #8ed9ff;
+}
+.arena-impact-ko {
+  --impact-color: #ffe5a7;
+}
+.arena-contact {
+  position: absolute;
+  left: 73%;
+  top: 43%;
+  width: 1px;
+  height: 1px;
+}
+.arena-impact-player .arena-contact {
+  left: 27%;
+}
+.arena-shockwave {
+  position: absolute;
+  width: clamp(70px, 12vw, 160px);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border: 4px solid var(--impact-color);
+  border-radius: 50%;
+  box-shadow:
+    0 0 24px var(--impact-color),
+    inset 0 0 18px var(--impact-color);
+  opacity: 0;
+  animation: arena-shockwave var(--impact-duration) both;
+}
+.arena-impact-heavy .arena-shockwave {
+  border-width: 6px;
+}
+.arena-impact-star {
+  position: absolute;
+  width: clamp(95px, 15vw, 190px);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background: linear-gradient(
+    135deg,
+    #fff6d7,
+    var(--impact-color) 45%,
+    #fb5e43
+  );
+  clip-path: polygon(
+    50% 0,
+    56% 33%,
+    79% 10%,
+    68% 39%,
+    100% 35%,
+    73% 51%,
+    98% 73%,
+    67% 64%,
+    75% 100%,
+    53% 72%,
+    32% 99%,
+    37% 66%,
+    0 75%,
+    30% 53%,
+    0 31%,
+    36% 37%,
+    25% 4%,
+    46% 31%
+  );
+  opacity: 0;
+  animation: arena-contact-flare var(--impact-duration) both;
+}
+.arena-impact-guard .arena-impact-star {
+  background: #d0f5ff;
+  clip-path: polygon(
+    50% 0,
+    88% 14%,
+    88% 55%,
+    72% 83%,
+    50% 100%,
+    28% 83%,
+    12% 55%,
+    12% 14%
+  );
+  width: clamp(60px, 9vw, 105px);
+}
+.arena-impact-ray {
+  position: absolute;
+  height: 3px;
+  width: clamp(54px, 8vw, 120px);
+  left: 0;
+  top: -2px;
+  transform-origin: 0 50%;
+  transform: rotate(var(--ray-angle));
+  background: linear-gradient(
+    90deg,
+    transparent 20%,
+    var(--impact-color) 35%,
+    transparent
+  );
+  opacity: 0;
+  animation: arena-rays var(--impact-duration) both;
+}
+.arena-impact-score {
+  position: absolute;
+  width: clamp(110px, 15vw, 195px);
+  left: 0;
+  top: -38px;
+  translate: -50% -50%;
+  text-align: center;
+  color: #ffefda;
+  transform: rotate(-8deg);
+  text-shadow:
+    3px 3px 0 #211322,
+    -1px -1px 0 #211322,
+    0 0 14px #17101a;
+  opacity: 0;
+  animation: arena-score var(--impact-duration) both;
+}
+.arena-impact-player .arena-impact-score {
+  transform: rotate(8deg);
+}
+.arena-impact-score small {
+  display: block;
+  color: var(--impact-color);
+  font:
+    italic 800 clamp(18px, 2.5vw, 31px)/1 "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 1px;
+}
+.arena-impact-score strong {
+  display: block;
+  margin-top: 3px;
+  font:
+    700 clamp(40px, 5vw, 65px)/0.95 "Teko",
+    sans-serif;
+}
+.arena-impact-score > span,
+.arena-impact-score > b {
+  display: block;
+  font-size: 11px;
+  line-height: 1.6;
+  font-weight: 700;
+}
+.arena-impact-score > b {
+  color: #ffdd8f;
+  letter-spacing: 1px;
+}
+.arena-impact-guard .arena-impact-score {
+  color: #d9f7ff;
+}
+.arena-impact-ko .arena-impact-score strong {
+  font-size: clamp(50px, 6vw, 80px);
+}
+.arena-impact-slash {
+  position: absolute;
+  inset: 25% -10%;
+  transform: rotate(-12deg);
+  opacity: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 45%,
+    #ffcb6222 49%,
+    #fff9db77 50%,
+    transparent 52%
+  );
+  animation: arena-contact-flare var(--impact-duration) both;
+}
+@keyframes arena-shockwave {
+  0%,
+  24% {
+    opacity: 0;
+    scale: 0.45;
+  }
+  29%,
+  39% {
+    opacity: 0.9;
+    scale: 0.7;
+  }
+  58% {
+    opacity: 0.6;
+    scale: 1.6;
+  }
+  80%,
+  100% {
+    opacity: 0;
+    scale: 2.1;
+  }
+}
+@keyframes arena-contact-flare {
+  0%,
+  26% {
+    opacity: 0;
+    scale: 0.6;
+  }
+  29%,
+  39% {
+    opacity: 0.85;
+    scale: 1;
+  }
+  55%,
+  100% {
+    opacity: 0;
+    scale: 1.35;
+  }
+}
+@keyframes arena-rays {
+  0%,
+  25% {
+    opacity: 0;
+  }
+  29%,
+  39% {
+    opacity: 0.9;
+  }
+  64%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes arena-score {
+  0%,
+  25% {
+    opacity: 0;
+    margin-top: 15px;
+  }
+  29%,
+  68% {
+    opacity: 1;
+    margin-top: 0;
+  }
+  100% {
+    opacity: 0;
+    margin-top: -25px;
+  }
+}
+.arena-impact-still .arena-impact-star,
+.arena-impact-still .arena-shockwave,
+.arena-impact-still .arena-impact-slash {
+  display: none;
+}
+.arena-impact-still .arena-impact-score {
+  animation: none;
+  opacity: 1;
+  transform: none;
 }
 .fighter-sprite-frame .fighter-pose {
   position: absolute;
@@ -211,6 +463,118 @@ button.fighter-condition:focus-visible {
     0 0 30px var(--scene-accent),
     inset 0 0 20px var(--scene-accent);
   pointer-events: none;
+}
+.technique-impact-core {
+  position: absolute;
+  inset: 5%;
+  background: linear-gradient(
+    135deg,
+    #fff7cf,
+    var(--scene-accent) 50%,
+    #ff933f
+  );
+  clip-path: polygon(
+    50% 0,
+    56% 33%,
+    79% 10%,
+    68% 39%,
+    100% 35%,
+    73% 51%,
+    98% 73%,
+    67% 64%,
+    75% 100%,
+    53% 72%,
+    32% 99%,
+    37% 66%,
+    0 75%,
+    30% 53%,
+    0 31%,
+    36% 37%,
+    25% 4%,
+    46% 31%
+  );
+  opacity: 0.8;
+}
+.technique-impact-ray {
+  position: absolute;
+  top: 49%;
+  left: 50%;
+  width: 100%;
+  height: 4px;
+  transform: rotate(var(--ray-angle));
+  transform-origin: 0 50%;
+  background: linear-gradient(
+    90deg,
+    transparent 30%,
+    #fff9ca 48%,
+    var(--scene-accent) 65%,
+    transparent
+  );
+}
+.technique-art-window .technique-impact.impact-pressure {
+  background: repeating-radial-gradient(
+    circle,
+    transparent 0 13%,
+    #c4a5ed88 14% 16%,
+    transparent 17% 24%
+  );
+}
+.impact-pressure .technique-impact-core {
+  inset: 35%;
+  border: 3px solid #fff4ff;
+  border-radius: 50%;
+  clip-path: none;
+  background: #bca4ed55;
+}
+.technique-impact.impact-blocked {
+  --scene-accent: #8ed9ff;
+}
+.impact-blocked .technique-impact-core {
+  clip-path: polygon(
+    50% 0,
+    88% 14%,
+    88% 55%,
+    72% 83%,
+    50% 100%,
+    28% 83%,
+    12% 55%,
+    12% 14%
+  );
+  background: #c3ecff;
+}
+.technique-hit-score {
+  position: absolute;
+  bottom: 14%;
+  right: 7%;
+  color: #fff2d8;
+  text-align: center;
+  rotate: -7deg;
+  text-shadow:
+    4px 4px 0 #251520,
+    -1px -1px 0 #251520,
+    0 0 20px #000;
+  pointer-events: none;
+}
+.technique-hit-score > small {
+  display: block;
+  font:
+    italic 800 clamp(22px, 4vw, 52px)/1 "Barlow Condensed",
+    sans-serif;
+  color: var(--scene-accent);
+  letter-spacing: 1px;
+}
+.technique-hit-score > strong {
+  display: block;
+  font:
+    700 clamp(50px, 8vw, 108px)/0.95 "Teko",
+    sans-serif;
+}
+.technique-hit-guard {
+  color: #d1f3ff;
+}
+.technique-hit-ko > small {
+  color: #ffdc87;
+  font-size: clamp(35px, 6vw, 72px);
 }
 .technique-impact.impact-heavy {
   width: 68%;
@@ -565,5 +929,18 @@ button.fighter-condition:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .technique-scene-visual * {
     animation: none !important;
+  }
+  .arena-impact * {
+    animation: none !important;
+  }
+  .arena-impact-star,
+  .arena-shockwave,
+  .arena-impact-slash,
+  .arena-impact-ray {
+    display: none;
+  }
+  .arena-impact-score {
+    opacity: 1;
+    transform: none;
   }
 }

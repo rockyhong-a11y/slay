@@ -27,6 +27,8 @@ function combat(id, cards) {
   state.exhaust = [];
   state.energy = 10;
   state.enemy.hp = state.enemy.maxHp = 500;
+  state.activeGimmick = null;
+  state.player.block = 0;
   return state;
 }
 

@@ -57,22 +57,43 @@ import {
   upgradeCard,
   getCard,
   canPlayCard,
-  mapForFloor,
+  normalizeRun,
+  ITEMS,
+  GIMMICKS,
+  ITEM_CAPACITY,
+  GIMMICK_CAPACITY,
+  useItem,
+  equipGimmick,
+  claimLoot,
+  getRestChoices,
+  canResolveEventChoice,
 } from "./game.js";
 import { getCardDetail, CARD_RARITY_LABELS } from "./card-library.js";
 import { CardGuidePage, CardLibraryPage } from "./KnowledgePages.jsx";
 import { Roster } from "./Roster.jsx";
+import { createCombatQA } from "./combat-qa.js";
+import { createJourneyQA, JOURNEY_QA_PROFILES } from "./journey-qa.js";
 import {
   selectFighterState,
   createCardCue,
+  createArenaImpact,
   fighterPoseArt,
 } from "./presentation.js";
 import {
   FighterSprite,
   FighterCondition,
   TechniqueScene,
+  ArenaImpact,
   ConditionGuide,
 } from "./CombatPresentation.jsx";
+import {
+  ChampionRoad,
+  InventoryTrigger,
+  JourneyInventory,
+  RewardLoot,
+  JourneyLocation,
+  RunArrival,
+} from "./RunJourney.jsx";
 import "@fontsource/barlow-condensed/latin-600.css";
 import "@fontsource/barlow-condensed/latin-700.css";
 import "@fontsource/barlow-condensed/latin-800-italic.css";
@@ -96,12 +117,27 @@ const typeNames = {
   defense: "방어",
   guard: "방어",
 };
+function eventChoiceUnavailable(state, choice) {
+  const effects = choice.effects || {};
+  if (effects.damage && state.player.hp <= effects.damage)
+    return `체력 부족 · 최소 ${effects.damage + 1} 필요`;
+  if (effects.coins < 0 && state.player.coins < -effects.coins)
+    return `크레딧 부족 · ${-effects.coins} 필요`;
+  if (effects.item && state.inventory.length >= ITEM_CAPACITY)
+    return `소모품 가방이 가득 찼습니다 (${ITEM_CAPACITY}/${ITEM_CAPACITY})`;
+  if (effects.gimmick && state.gimmicks.length >= GIMMICK_CAPACITY)
+    return `기믹 보관함이 가득 찼습니다 (${GIMMICK_CAPACITY}/${GIMMICK_CAPACITY})`;
+  return canResolveEventChoice(state, choice.id)
+    ? null
+    : "지금 선택할 수 없습니다";
+}
 const navItems = [
   { id: "battle", label: "아레나", icon: Sword },
   { id: "map", label: "챔피언 로드", icon: MapTrifold },
   { id: "deck", label: "내 덱", icon: Stack },
   { id: "roster", label: "선수", icon: UsersThree },
   { id: "cards", label: "카드 도감", icon: BookOpen },
+  { id: "inventory", label: "코너 보관함", icon: Backpack },
 ];
 const pageFromHash = () =>
   ({ "#cards": "cards", "#guide": "guide", "#map": "map" })[
@@ -109,6 +145,16 @@ const pageFromHash = () =>
   ] || "battle";
 
 function loadRun() {
+  if (import.meta.env.DEV) {
+    const query = new URLSearchParams(window.location.search);
+    if (JOURNEY_QA_PROFILES.includes(query.get("qaJourney")))
+      return createJourneyQA(query.get("qaJourney"));
+    if (["5", "10"].includes(query.get("qaHand")))
+      return createCombatQA({
+        hand: query.get("qaHand"),
+        impact: query.get("qaImpact"),
+      });
+  }
   try {
     const data = JSON.parse(localStorage.getItem(SAVE_KEY));
     if (
@@ -132,7 +178,7 @@ function loadRun() {
         data[key].every((c) => CARDS[c.id]),
       )
     )
-      return data;
+      return normalizeRun(data);
   } catch {}
   return newRun("raven", crypto.getRandomValues(new Uint32Array(1))[0]);
 }
@@ -186,7 +232,14 @@ function Modal({
   const heading = useRef(null);
   const titleId = useId();
   useEffect(() => {
-    ref.current?.showModal();
+    const dialog = ref.current;
+    const trigger = document.activeElement;
+    dialog?.showModal();
+    return () => {
+      dialog?.close();
+      if (trigger instanceof HTMLElement && trigger.isConnected)
+        trigger.focus({ preventScroll: true });
+    };
   }, []);
   useEffect(() => {
     if (ref.current) ref.current.scrollTop = 0;
@@ -231,6 +284,9 @@ function Card({
   index,
   disabled = false,
   compact = false,
+  selected = false,
+  unplayable = false,
+  fanPosition,
   ref,
 }) {
   const present = useIsPresent();
@@ -253,13 +309,26 @@ function Card({
         transition: { duration: 0.18, delay: 0 },
       }}
       transition={{ duration: 0.22, delay: (index || 0) * 0.035 }}
-      className={`game-card ${finisher ? "finisher" : ""} ${nightmare ? "nightmare" : ""} ${compact ? "compact" : ""} ${disabled ? "unplayable" : ""}`}
+      className={`game-card ${finisher ? "finisher" : ""} ${nightmare ? "nightmare" : ""} ${compact ? "compact" : ""} ${unplayable || disabled ? "unplayable" : ""} ${selected ? "is-selected" : ""}`}
+      style={
+        index != null
+          ? { "--fan-position": fanPosition, "--card-index": index }
+          : undefined
+      }
       onClick={onClick}
       disabled={disabled || !present}
       aria-hidden={!present || undefined}
+      aria-pressed={index != null ? selected : undefined}
       tabIndex={!present ? -1 : undefined}
       aria-label={`${card.name}, ${detail.discipline}, 에너지 ${card.cost}, ${card.description}`}
     >
+      {index != null && (
+        <span className="card-peek" aria-hidden="true">
+          <span className="peek-cost">{card.cost}</span>
+          <span className="peek-index">{index === 9 ? 0 : index + 1}</span>
+          <span className="peek-name">{card.name}</span>
+        </span>
+      )}
       <div className="card-top">
         <span className="card-cost">{card.cost}</span>
         <span
@@ -320,82 +389,6 @@ function Health({ hp, maxHp, block, enemy }) {
   );
 }
 
-function RouteMap({ state, onChoose, preview = false }) {
-  const nodeIcon = (type) =>
-    ({
-      fight: Sword,
-      combat: Sword,
-      elite: Skull,
-      rest: Coffee,
-      event: Eye,
-      shop: Storefront,
-      boss: Crown,
-    })[type] || Sword;
-  return (
-    <div className="route-view">
-      <div className="route-intro">
-        <span className="eyebrow">THE ROAD TO GLORY</span>
-        <h2>
-          모든 선택이
-          <br />
-          <em>당신의 경기를 바꾼다.</em>
-        </h2>
-        <p>경기를 치르고, 덱을 다듬고, 최후의 챔피언에게 도전하세요.</p>
-      </div>
-      <div className="route-progress">
-        {Array.from({ length: 8 }, (_, i) => (
-          <React.Fragment key={i}>
-            <div
-              className={`route-step ${i < state.floor - 1 ? "done" : ""} ${i === state.floor - 1 ? "current" : ""}`}
-            >
-              {i < state.floor - 1 ? (
-                <Check size={15} />
-              ) : i === 7 ? (
-                <Crown size={18} />
-              ) : (
-                i + 1
-              )}
-            </div>
-            {i < 7 && <span />}
-          </React.Fragment>
-        ))}
-      </div>
-      <div className="route-choices">
-        {(state.mapNodes?.length
-          ? state.mapNodes
-          : state.floor < 8 && !["victory", "defeat"].includes(state.phase)
-            ? mapForFloor(state.floor + 1)
-            : []
-        ).map((node) => {
-          const Icon = nodeIcon(node.type);
-          return (
-            <button
-              key={node.index}
-              className={`route-node ${node.type}`}
-              onClick={() => onChoose(node.index)}
-              disabled={preview || state.phase !== "map"}
-            >
-              <Icon size={30} />
-              <span className="eyebrow">{node.type.toUpperCase()}</span>
-              <h3>{node.label}</h3>
-              <p>{node.description}</p>
-              <span className="node-enter">
-                {preview ? "다음 갈림길에서 선택" : "이 길로 진입"}
-                <ArrowRight size={16} />
-              </span>
-            </button>
-          );
-        })}
-      </div>
-      {preview && (
-        <p className="muted route-note">
-          현재 구간을 마치면 다음 경로를 선택할 수 있습니다.
-        </p>
-      )}
-    </div>
-  );
-}
-
 function App() {
   const [state, setState] = useState(loadRun);
   const [modal, setModal] = useState(null);
@@ -404,6 +397,12 @@ function App() {
   const [nav, setNav] = useState(pageFromHash);
   const [hit, setHit] = useState(null);
   const [cue, setCue] = useState(null);
+  const [impactCue, setImpactCue] = useState(null);
+  const pendingImpact = useRef(null);
+  const [selectedHandId, setSelectedHandId] = useState(null);
+  const [dismissedArrivals, setDismissedArrivals] = useState([]);
+  const [dismissedFeedback, setDismissedFeedback] = useState(null);
+  const wasArrivalVisible = useRef(false);
   const [combatMenuOpen, setCombatMenuOpen] = useState(false);
   const busyRef = useRef(false);
   const cueSequence = useRef(0);
@@ -430,13 +429,51 @@ function App() {
   const hitTimer = useRef(null);
   const playerCondition = selectFighterState(state.player);
   const enemyCondition = selectFighterState(state.enemy, { enemy: true });
+  const selectedHand =
+    state.hand.find((card) => card.uid === selectedHandId) || state.hand[0];
+  const selectedHandIndex = state.hand.findIndex(
+    (card) => card.uid === selectedHand?.uid,
+  );
+  const arrivalKey = state.arrival && `${state.arrival.nodeId}-${state.phase}`;
+  const arrivalVisible =
+    nav === "battle" &&
+    ["rest", "event"].includes(state.phase) &&
+    !!arrivalKey &&
+    !dismissedArrivals.includes(arrivalKey);
+  const feedbackKey =
+    state.lastChoice &&
+    `${state.route?.currentNodeId}-${state.lastChoice.type}-${state.lastChoice.id}`;
+  const feedback = feedbackKey !== dismissedFeedback ? state.lastChoice : null;
+  const dismissArrival = () => {
+    setDismissedArrivals((current) => [...current, arrivalKey]);
+    busyRef.current = false;
+  };
+  useEffect(() => {
+    if (arrivalVisible) busyRef.current = true;
+    else if (wasArrivalVisible.current && nav === "battle")
+      document
+        .querySelector(".journey-location .phase-box h2")
+        ?.focus({ preventScroll: true });
+    wasArrivalVisible.current = arrivalVisible;
+  }, [arrivalVisible]);
   const completeCue = (id) => {
     setCue((current) => (current?.id === id ? null : current));
+    if (cueSequence.current !== id) return;
+    if (pendingImpact.current?.id === id) {
+      setImpactCue(pendingImpact.current);
+      pendingImpact.current = null;
+    } else busyRef.current = false;
+  };
+  const completeImpact = (id) => {
+    setImpactCue((current) => (current?.id === id ? null : current));
     if (cueSequence.current === id) busyRef.current = false;
   };
   const clearPresentation = () => {
+    cueSequence.current++;
     busyRef.current = false;
     setCue(null);
+    setImpactCue(null);
+    pendingImpact.current = null;
     setHit(null);
     clearTimeout(hitTimer.current);
   };
@@ -451,6 +488,16 @@ function App() {
     toastTimer.current = setTimeout(() => setToast(""), 2600);
   };
   useEffect(() => {
+    if (
+      import.meta.env.DEV &&
+      (["5", "10"].includes(
+        new URLSearchParams(window.location.search).get("qaHand"),
+      ) ||
+        JOURNEY_QA_PROFILES.includes(
+          new URLSearchParams(window.location.search).get("qaJourney"),
+        ))
+    )
+      return;
     try {
       localStorage.setItem(
         SAVE_KEY,
@@ -475,7 +522,10 @@ function App() {
     },
     [],
   );
-  const act = (fn) => setState((current) => fn(current));
+  const act = (fn) => {
+    if (busyRef.current) return;
+    setState((current) => fn(current));
+  };
   const changePage = (id) => {
     clearPresentation();
     setNav(id);
@@ -526,7 +576,13 @@ function App() {
     const actionCue = createCardCue(state, next, instance);
     const id = ++cueSequence.current;
     busyRef.current = true;
+    const impact = createArenaImpact(state, next, {
+      attacker: "player",
+      instance,
+    });
+    pendingImpact.current = impact ? { ...impact, id } : null;
     setCue({ ...actionCue, id });
+    setSelectedHandId(null);
     const arenaBounds = arenaRef.current?.getBoundingClientRect();
     if (
       arenaBounds &&
@@ -550,13 +606,64 @@ function App() {
     const next = endTurn(state);
     if (next === state) return;
     const damage = state.player.hp - next.player.hp;
-    if (damage > 0) {
-      setHit({ target: "player", text: `-${damage}`, id: Date.now() });
+    const impact = createArenaImpact(state, next, { attacker: "enemy" });
+    if (impact) {
+      const id = ++cueSequence.current;
+      busyRef.current = true;
+      setImpactCue({ ...impact, id });
+    }
+    if (damage > 0 && !impact) {
+      setHit({
+        target: "player",
+        text: `멘탈 붕괴 −${damage}`,
+        id: Date.now(),
+      });
       clearTimeout(hitTimer.current);
       hitTimer.current = setTimeout(() => setHit(null), 650);
-    }
+    } else setHit(null);
     sound.play("attack");
     setState(next);
+  };
+  const useSupply = (uid) => {
+    if (busyRef.current) return;
+    const entry = state.inventory.find((item) => item.uid === uid);
+    const next = useItem(state, uid);
+    if (next === state) return;
+    if (nav !== "battle") changePage("battle");
+    const impact = createArenaImpact(state, next, {
+      attacker: "player",
+      label: ITEMS[entry.id].name,
+    });
+    if (impact) {
+      const id = ++cueSequence.current;
+      busyRef.current = true;
+      setImpactCue({ ...impact, id });
+      setModal(null);
+    }
+    setState(next);
+    const changes = [
+      ["체력", next.player.hp - state.player.hp],
+      ["방어", next.player.block - state.player.block],
+      ["에너지", next.energy - state.energy],
+      ["열기", next.player.hype - state.player.hype],
+      ["압박", next.player.stress - state.player.stress],
+      ["상대 약화", (next.enemy?.weak || 0) - (state.enemy?.weak || 0)],
+      [
+        "상대 취약",
+        (next.enemy?.vulnerable || 0) - (state.enemy?.vulnerable || 0),
+      ],
+      [
+        "다음 공격",
+        (next.status?.nextAttack || 0) - (state.status?.nextAttack || 0),
+      ],
+    ]
+      .filter(([, value]) => value)
+      .map(([name, value]) => `${name} ${value > 0 ? "+" : ""}${value}`);
+    const drawn = next.hand.length - state.hand.length;
+    if (drawn > 0) changes.push(`드로우 ${drawn}`);
+    notify(
+      `${ITEMS[entry.id].name} 사용${changes.length ? ` · ${changes.join(" · ")}` : ""}`,
+    );
   };
   useEffect(() => {
     const key = (e) => {
@@ -593,11 +700,14 @@ function App() {
     setState(newRun(id, crypto.getRandomValues(new Uint32Array(1))[0]));
     setModal(null);
     setPreviewFromRoster(false);
+    setDismissedArrivals([]);
+    setDismissedFeedback(null);
+    setSelectedHandId(null);
     changePage("battle");
     notify("새로운 챔피언 로드가 시작됩니다.");
   };
   const navigate = (id) => {
-    if (id === "deck" || id === "roster") setModal(id);
+    if (["deck", "roster", "inventory"].includes(id)) setModal(id);
     else changePage(id);
   };
   const openConditionPreview = (id, fromRoster = false) => {
@@ -626,7 +736,7 @@ function App() {
   return (
     <MotionConfig reducedMotion="user">
       <div
-        className={`app-shell ${nav === "battle" && (activePhase === "combat" || cue) ? "combat-view" : ""}`}
+        className={`app-shell ${nav === "battle" && (activePhase === "combat" || cue || impactCue) ? "combat-view" : ""}`}
       >
         <aside className="sidebar">
           <a
@@ -794,44 +904,45 @@ function App() {
             </div>
           </header>
           <main>
-            {!["cards", "guide"].includes(nav) && (
-              <div className="chapter-header">
-                <div>
-                  <div className="chapter-label">
-                    <span>CHAPTER 01</span>
-                    <span className="label-line" />
-                    <span>
-                      {state.floor === 8 ? "CHAMPIONSHIP" : "THE UNDERGROUND"}
-                    </span>
+            {!["cards", "guide", "map"].includes(nav) &&
+              activePhase !== "map" && (
+                <div className="chapter-header">
+                  <div>
+                    <div className="chapter-label">
+                      <span>CHAPTER 01</span>
+                      <span className="label-line" />
+                      <span>
+                        {state.floor === 8 ? "CHAMPIONSHIP" : "THE UNDERGROUND"}
+                      </span>
+                    </div>
+                    <h1>
+                      {state.floor === 8
+                        ? "THE FINAL RECKONING"
+                        : "THE UNDERGROUND"}
+                      <span className="heading-point">.</span>
+                    </h1>
+                    <p>
+                      {state.floor === 8
+                        ? "왕관은 단 한 명의 것이다."
+                        : "빛이 닿지 않는 링. 당신의 전설은 여기서 시작된다."}
+                    </p>
                   </div>
-                  <h1>
-                    {state.floor === 8
-                      ? "THE FINAL RECKONING"
-                      : "THE UNDERGROUND"}
-                    <span className="heading-point">.</span>
-                  </h1>
-                  <p>
-                    {state.floor === 8
-                      ? "왕관은 단 한 명의 것이다."
-                      : "빛이 닿지 않는 링. 당신의 전설은 여기서 시작된다."}
-                  </p>
+                  <button
+                    className="floor-button"
+                    onClick={() => changePage("map")}
+                  >
+                    <Footprints size={20} />
+                    <span>
+                      현재 구간
+                      <strong>
+                        {String(state.floor).padStart(2, "0")}
+                        <small> / 08</small>
+                      </strong>
+                    </span>
+                    <ArrowRight size={16} />
+                  </button>
                 </div>
-                <button
-                  className="floor-button"
-                  onClick={() => changePage("map")}
-                >
-                  <Footprints size={20} />
-                  <span>
-                    현재 구간
-                    <strong>
-                      {String(state.floor).padStart(2, "0")}
-                      <small> / 08</small>
-                    </strong>
-                  </span>
-                  <ArrowRight size={16} />
-                </button>
-              </div>
-            )}
+              )}
             {nav === "cards" ? (
               <CardLibraryPage
                 onOpenGuide={() => changePage("guide")}
@@ -842,7 +953,7 @@ function App() {
                 onOpenLibrary={() => changePage("cards")}
                 onBack={() => changePage("battle")}
               />
-            ) : nav === "map" ? (
+            ) : nav === "map" || activePhase === "map" ? (
               <section className="map-panel">
                 <button
                   className="text-button back"
@@ -854,19 +965,30 @@ function App() {
                   />
                   아레나로 돌아가기
                 </button>
-                <RouteMap
+                <ChampionRoad
                   state={state}
                   onChoose={(i) => {
                     act((s) => advanceToNode(s, i));
                     changePage("battle");
                   }}
                   preview={state.phase !== "map"}
+                  feedback={feedback}
+                  onDismissFeedback={() => setDismissedFeedback(feedbackKey)}
                 />
               </section>
+            ) : ["rest", "event", "shop"].includes(activePhase) ? (
+              <JourneyLocation state={state}>
+                <PhasePanel
+                  state={state}
+                  act={act}
+                  startRun={startRun}
+                  setModal={setModal}
+                />
+              </JourneyLocation>
             ) : (
               <div className="combat-workspace">
                 <section
-                  className={`arena ${activePhase === "reward" ? "reward-arena" : ""} ${hit?.target === "player" ? "player-hit" : ""} ${cue ? "cinematic-active" : ""}`}
+                  className={`arena ${activePhase === "reward" ? "reward-arena" : ""} ${cue ? "cinematic-active" : ""}`}
                   aria-label="전투 아레나"
                   ref={arenaRef}
                 >
@@ -946,6 +1068,8 @@ function App() {
                     condition={playerCondition}
                     name={wrestler.name}
                     side="player"
+                    impact={impactCue}
+                    shortened={!cinematics}
                   />
                   {state.enemy && (
                     <FighterSprite
@@ -953,11 +1077,13 @@ function App() {
                       condition={enemyCondition}
                       name={enemyHUD.name}
                       side="enemy"
+                      impact={impactCue}
+                      shortened={!cinematics}
                     />
                   )}
                   <span className="vs-mark">VS</span>
                   <AnimatePresence>
-                    {hit && !cue && (
+                    {hit && !cue && !impactCue && (
                       <motion.div
                         key={hit.id}
                         className={`damage-number ${hit.target}`}
@@ -979,10 +1105,34 @@ function App() {
                       />
                     )}
                   </AnimatePresence>
+                  <AnimatePresence>
+                    {impactCue && (
+                      <ArenaImpact
+                        key={impactCue.id}
+                        cue={impactCue}
+                        onComplete={completeImpact}
+                        shortened={!cinematics}
+                      />
+                    )}
+                  </AnimatePresence>
                   <div className="arena-bottom">
                     <span className="arena-location">
-                      <Crosshair size={15} />
-                      UNDERGROUND ARENA
+                      {state.activeGimmick ? (
+                        <Shield size={15} />
+                      ) : (
+                        <Crosshair size={15} />
+                      )}
+                      <span
+                        title={
+                          state.activeGimmick
+                            ? `${GIMMICKS[state.activeGimmick.id]?.description} · ${GIMMICKS[state.activeGimmick.id]?.tradeoff} · 이번 경기 종료 후 만료`
+                            : undefined
+                        }
+                      >
+                        {state.activeGimmick
+                          ? `${GIMMICKS[state.activeGimmick.id]?.name} · 1경기`
+                          : "UNDERGROUND ARENA"}
+                      </span>
                     </span>
                     <div className="turn-badge">
                       <span />
@@ -996,7 +1146,7 @@ function App() {
                       {state.floor === 8 ? "TITLE MATCH" : "SINGLES MATCH"}
                     </span>
                   </div>
-                  {activePhase !== "combat" && !cue && (
+                  {activePhase !== "combat" && !cue && !impactCue && (
                     <div className="phase-overlay">
                       <PhasePanel
                         state={state}
@@ -1068,12 +1218,35 @@ function App() {
                         <strong>{state.draw.length}</strong>
                         <span>드로우 덱</span>
                       </button>
+                      <InventoryTrigger
+                        state={state}
+                        onClick={() => setModal("inventory")}
+                      />
                     </div>
                     <div className="hand-main">
                       <div className="hand-heading">
                         <h2>
                           당신의 패<span>{state.hand.length} CARDS</span>
                         </h2>
+                        <button
+                          type="button"
+                          className="hand-play-button"
+                          onClick={() => selectedHand && play(selectedHand.uid)}
+                          disabled={
+                            !selectedHand ||
+                            !!cue ||
+                            !!impactCue ||
+                            !canPlayCard(state, selectedHand)
+                          }
+                          aria-label={
+                            selectedHand
+                              ? `${getCard(selectedHand).name} 사용`
+                              : "사용할 카드 없음"
+                          }
+                        >
+                          <span>선택 카드 사용</span>
+                          <ArrowRight size={14} />
+                        </button>
                         <span>
                           카드를 선택해 플레이하세요 <kbd>1</kbd>
                           <span className="shortcut-range">~</span>
@@ -1084,15 +1257,27 @@ function App() {
                           </kbd>
                         </span>
                       </div>
-                      <div className="card-hand">
+                      <div
+                        className="card-hand hand-fan"
+                        style={{ "--hand-count": state.hand.length }}
+                      >
                         <AnimatePresence mode="popLayout">
                           {state.hand.map((c, i) => (
                             <Card
                               key={c.uid}
                               instance={c}
                               index={i}
-                              onClick={() => play(c.uid)}
-                              disabled={!!cue || !canPlayCard(state, c)}
+                              onClick={() => setSelectedHandId(c.uid)}
+                              disabled={!!cue || !!impactCue}
+                              unplayable={!canPlayCard(state, c)}
+                              selected={selectedHand?.uid === c.uid}
+                              fanPosition={
+                                i === selectedHandIndex
+                                  ? state.hand.length - 1
+                                  : i < selectedHandIndex
+                                    ? i
+                                    : i - 1
+                              }
                             />
                           ))}
                         </AnimatePresence>
@@ -1113,9 +1298,13 @@ function App() {
                       <button
                         className="end-turn"
                         onClick={end}
-                        disabled={!!cue || activePhase !== "combat"}
+                        disabled={
+                          !!cue || !!impactCue || activePhase !== "combat"
+                        }
                       >
-                        <span>{cue ? "기술 시전 중" : "턴 종료"}</span>
+                        <span>
+                          {cue || impactCue ? "기술 시전 중" : "턴 종료"}
+                        </span>
                         <ArrowRight size={19} />
                         <kbd>SPACE</kbd>
                       </button>
@@ -1172,6 +1361,7 @@ function App() {
                 discard: "버린 카드",
                 roster: "CHOOSE YOUR WRESTLER",
                 settings: "설정",
+                inventory: "코너 보관함",
                 condition: `${previewWrestler.nameKo} 컨디션 및 표정`,
                 log: "경기 기록",
                 upgrade: "카드 강화",
@@ -1248,6 +1438,15 @@ function App() {
                 currentId={state.player.id}
                 onStart={startRun}
                 onPreview={(id) => openConditionPreview(id, true)}
+              />
+            )}
+            {modal === "inventory" && (
+              <JourneyInventory
+                state={state}
+                onUse={useSupply}
+                onEquip={(uid) => act((current) => equipGimmick(current, uid))}
+                onOpenPile={setModal}
+                locked={!!cue || !!impactCue || arrivalVisible}
               />
             )}
             {modal === "settings" && (
@@ -1334,6 +1533,14 @@ function App() {
             )}
           </Modal>
         )}
+        {arrivalVisible && (
+          <RunArrival
+            key={arrivalKey}
+            state={state}
+            onContinue={dismissArrival}
+            shortened={!cinematics}
+          />
+        )}
       </div>
     </MotionConfig>
   );
@@ -1348,6 +1555,10 @@ function PhasePanel({ state, act, startRun, setModal }) {
           MATCH WON<span>.</span>
         </h2>
         <p>당신의 덱에 새로운 기술을 더하세요.</p>
+        <RewardLoot
+          state={state}
+          onClaim={(kind, id) => act((current) => claimLoot(current, kind, id))}
+        />
         <div className="reward-cards">
           {state.rewards.map((id) => (
             <Card
@@ -1370,7 +1581,7 @@ function PhasePanel({ state, act, startRun, setModal }) {
   if (state.phase === "map")
     return (
       <div className="phase-box">
-        <RouteMap
+        <ChampionRoad
           state={state}
           onChoose={(i) => act((s) => advanceToNode(s, i))}
         />
@@ -1381,24 +1592,34 @@ function PhasePanel({ state, act, startRun, setModal }) {
       <div className="phase-box small">
         <Coffee size={36} />
         <span className="eyebrow">BACKSTAGE</span>
-        <h2>다시 링에 오르기 전에.</h2>
+        <h2 tabIndex={-1}>다시 링에 오르기 전에.</h2>
         <p>한 번의 휴식으로 몸을 회복하거나, 마음과 기술을 다듬으세요.</p>
         <div className="phase-actions">
-          <button onClick={() => act((s) => rest(s, "heal"))}>
-            <Heart size={23} />
-            <strong>회복</strong>
-            <span>체력 30% 회복</span>
-          </button>
-          <button onClick={() => act((s) => rest(s, "meditate"))}>
-            <Brain size={23} />
-            <strong>명상</strong>
-            <span>압박 감소 · 악몽 제거</span>
-          </button>
-          <button onClick={() => setModal("upgrade")}>
-            <Sparkle size={23} />
-            <strong>훈련</strong>
-            <span>카드 한 장 강화</span>
-          </button>
+          {getRestChoices(state).map((choice) => {
+            const Icon = { heal: Heart, meditate: Brain, upgrade: Sparkle }[
+              choice.id
+            ];
+            const unavailable =
+              choice.id === "upgrade" &&
+              !state.deck.some(
+                (card) => !card.upgraded && card.id !== "nightmare",
+              );
+            return (
+              <button
+                key={choice.id}
+                disabled={unavailable}
+                onClick={() =>
+                  choice.id === "upgrade"
+                    ? setModal("upgrade")
+                    : act((current) => rest(current, choice.id))
+                }
+              >
+                <Icon size={23} />
+                <strong>{choice.label}</strong>
+                <span>{choice.description}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
     );
@@ -1422,7 +1643,13 @@ function PhasePanel({ state, act, startRun, setModal }) {
                 (item.kind === "heal" &&
                   state.player.hp === state.player.maxHp) ||
                 (item.kind === "upgrade" &&
-                  !state.deck.some((c) => !c.upgraded && c.id !== "nightmare"))
+                  !state.deck.some(
+                    (c) => !c.upgraded && c.id !== "nightmare",
+                  )) ||
+                (item.kind === "item" &&
+                  state.inventory.length >= ITEM_CAPACITY) ||
+                (item.kind === "gimmick" &&
+                  state.gimmicks.length >= GIMMICK_CAPACITY)
               }
             >
               <div>
@@ -1430,7 +1657,15 @@ function PhasePanel({ state, act, startRun, setModal }) {
                 <span>{item.description}</span>
               </div>
               <span>
-                {item.sold ? (
+                {item.kind === "item" &&
+                state.inventory.length >= ITEM_CAPACITY &&
+                !item.sold ? (
+                  "가방 가득 참"
+                ) : item.kind === "gimmick" &&
+                  state.gimmicks.length >= GIMMICK_CAPACITY &&
+                  !item.sold ? (
+                  "보관함 가득 참"
+                ) : item.sold ? (
                   "구매 완료"
                 ) : (
                   <>
@@ -1456,19 +1691,28 @@ function PhasePanel({ state, act, startRun, setModal }) {
       <div className="phase-box small">
         <Eye size={34} />
         <span className="eyebrow">AN UNEXPECTED ENCOUNTER</span>
-        <h2>{state.event?.name || state.event?.title}</h2>
+        <h2 tabIndex={-1}>{state.event?.name || state.event?.title}</h2>
         <p>{state.event?.description}</p>
         <div className="event-choices">
-          {state.event?.choices.map((choice) => (
-            <button
-              key={choice.id}
-              onClick={() => act((s) => resolveEvent(s, choice.id))}
-            >
-              <strong>{choice.label}</strong>
-              <span>{choice.description}</span>
-              <ArrowRight size={18} />
-            </button>
-          ))}
+          {state.event?.choices.map((choice) => {
+            const unavailable = eventChoiceUnavailable(state, choice);
+            return (
+              <button
+                key={choice.id}
+                onClick={() => act((s) => resolveEvent(s, choice.id))}
+                disabled={!!unavailable}
+              >
+                <strong>{choice.label}</strong>
+                <span>{choice.description}</span>
+                {unavailable && (
+                  <small className="journey-choice-unavailable">
+                    {unavailable}
+                  </small>
+                )}
+                <ArrowRight size={18} />
+              </button>
+            );
+          })}
         </div>
       </div>
     );

@@ -1,0 +1,212 @@
+[
+  {
+    "allCardsInside": true,
+    "allFightersInside": true,
+    "allRailsTargetable": true,
+    "canvas": 0,
+    "cards": 5,
+    "document": [320, 720],
+    "endInside": true,
+    "hand": {
+      "bottom": 662,
+      "clientWidth": 308,
+      "height": 214,
+      "right": 314,
+      "scrollWidth": 308,
+      "width": 308,
+      "x": 6,
+      "y": 448
+    },
+    "useInside": true,
+    "viewport": [320, 720]
+  },
+  {
+    "allCardsInside": true,
+    "allFightersInside": true,
+    "allRailsTargetable": true,
+    "canvas": 0,
+    "cards": 5,
+    "document": [393, 852],
+    "endInside": true,
+    "hand": {
+      "bottom": 792,
+      "clientWidth": 377,
+      "height": 228,
+      "right": 385,
+      "scrollWidth": 377,
+      "width": 377,
+      "x": 8,
+      "y": 564
+    },
+    "useInside": true,
+    "viewport": [393, 852]
+  },
+  {
+    "allCardsInside": true,
+    "allFightersInside": true,
+    "allRailsTargetable": true,
+    "canvas": 0,
+    "cards": 5,
+    "document": [667, 375],
+    "endInside": true,
+    "hand": {
+      "bottom": 338,
+      "clientWidth": 324,
+      "height": 219,
+      "right": 661,
+      "scrollWidth": 324,
+      "width": 323.5,
+      "x": 337.5,
+      "y": 119
+    },
+    "useInside": true,
+    "viewport": [667, 375]
+  },
+  {
+    "allCardsInside": true,
+    "allFightersInside": true,
+    "allRailsTargetable": true,
+    "canvas": 0,
+    "cards": 5,
+    "document": [844, 390],
+    "endInside": true,
+    "hand": {
+      "bottom": 343,
+      "clientWidth": 412,
+      "height": 224,
+      "right": 838,
+      "scrollWidth": 412,
+      "width": 412,
+      "x": 426,
+      "y": 119
+    },
+    "useInside": true,
+    "viewport": [844, 390]
+  },
+  {
+    "allCardsInside": true,
+    "allFightersInside": true,
+    "allRailsTargetable": true,
+    "canvas": 0,
+    "cards": 5,
+    "document": [1280, 720],
+    "endInside": true,
+    "hand": {
+      "bottom": 708,
+      "clientWidth": 978,
+      "height": 238,
+      "right": 1138,
+      "scrollWidth": 978,
+      "width": 978,
+      "x": 160,
+      "y": 470
+    },
+    "useInside": true,
+    "viewport": [1280, 720]
+  },
+  {
+    "allCardsInside": true,
+    "allFightersInside": true,
+    "allRailsTargetable": true,
+    "canvas": 0,
+    "cards": 10,
+    "document": [320, 720],
+    "endInside": true,
+    "hand": {
+      "bottom": 662,
+      "clientWidth": 308,
+      "height": 214,
+      "right": 314,
+      "scrollWidth": 308,
+      "width": 308,
+      "x": 6,
+      "y": 448
+    },
+    "useInside": true,
+    "viewport": [320, 720]
+  },
+  {
+    "allCardsInside": true,
+    "allFightersInside": true,
+    "allRailsTargetable": true,
+    "canvas": 0,
+    "cards": 10,
+    "document": [393, 852],
+    "endInside": true,
+    "hand": {
+      "bottom": 792,
+      "clientWidth": 377,
+      "height": 228,
+      "right": 385,
+      "scrollWidth": 377,
+      "width": 377,
+      "x": 8,
+      "y": 564
+    },
+    "useInside": true,
+    "viewport": [393, 852]
+  },
+  {
+    "allCardsInside": true,
+    "allFightersInside": true,
+    "allRailsTargetable": true,
+    "canvas": 0,
+    "cards": 10,
+    "document": [667, 375],
+    "endInside": true,
+    "hand": {
+      "bottom": 338,
+      "clientWidth": 324,
+      "height": 219,
+      "right": 661,
+      "scrollWidth": 324,
+      "width": 323.5,
+      "x": 337.5,
+      "y": 119
+    },
+    "useInside": true,
+    "viewport": [667, 375]
+  },
+  {
+    "allCardsInside": true,
+    "allFightersInside": true,
+    "allRailsTargetable": true,
+    "canvas": 0,
+    "cards": 10,
+    "document": [844, 390],
+    "endInside": true,
+    "hand": {
+      "bottom": 343,
+      "clientWidth": 412,
+      "height": 224,
+      "right": 838,
+      "scrollWidth": 412,
+      "width": 412,
+      "x": 426,
+      "y": 119
+    },
+    "useInside": true,
+    "viewport": [844, 390]
+  },
+  {
+    "allCardsInside": true,
+    "allFightersInside": true,
+    "allRailsTargetable": true,
+    "canvas": 0,
+    "cards": 10,
+    "document": [1280, 720],
+    "endInside": true,
+    "hand": {
+      "bottom": 708,
+      "clientWidth": 978,
+      "height": 238,
+      "right": 1138,
+      "scrollWidth": 978,
+      "width": 978,
+      "x": 160,
+      "y": 470
+    },
+    "useInside": true,
+    "viewport": [1280, 720]
+  }
+]

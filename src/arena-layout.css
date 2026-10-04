@@ -1,3 +1,5 @@
+@import "./hand-fan.css";
+
 /* HUD, performers, and broadcast captions occupy separate, reserved areas.
    Keep these rules after the base and combat styles, before typography. */
 .arena {

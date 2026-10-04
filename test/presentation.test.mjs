@@ -15,6 +15,8 @@ import {
 // Only the piles and encounter are arranged. Effects are resolved by playCard.
 function combatWith(ids, wrestler = "raven", drawIds = ["guard", "strike"]) {
   const state = newRun(wrestler, 12345);
+  state.activeGimmick = null;
+  state.player.block = 0;
   const instances = (list, prefix) =>
     list.map((id, index) => ({
       uid: `${prefix}-${index}`,

@@ -18,7 +18,7 @@ import {
   Shuffle,
   Sparkle,
 } from "@phosphor-icons/react";
-import { CARDS, getCard, WRESTLERS } from "./game.js";
+import { CARDS, getCard, WRESTLERS, ITEMS, GIMMICKS } from "./game.js";
 import {
   CARD_DETAILS,
   CARD_DISCIPLINES,
@@ -126,7 +126,8 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
             ["pressure", "05", "압박과 악몽"],
             ["statuses", "06", "약화와 취약"],
             ["journey", "07", "덱 성장과 경로"],
-            ["controls", "08", "조작과 저장"],
+            ["corner-kit", "08", "아이템과 코너 기믹"],
+            ["controls", "09", "조작과 저장"],
           ].map(([id, n, label]) => (
             <a
               key={id}
@@ -192,7 +193,8 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
             </ol>
             <p className="guide-note">
               에너지는 턴마다 최대치로 회복하며 남은 에너지를 이월하지 않습니다.
-              프로 숍의 컨디셔닝 벨트는 최대 에너지를 1 늘립니다.
+              일부 코너 기믹은 한 경기 동안 에너지나 드로우를 바꿉니다. 선택하기
+              전에 효과와 대가를 함께 확인하세요.
             </p>
           </RuleSection>
           <RuleSection
@@ -407,10 +409,13 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
             icon={Compass}
           >
             <p>
-              11장의 시작 덱으로 8개 구간을 진행합니다. 경기 승리 후 서로 다른
-              카드 3장 중 하나를 얻거나 보상을 건너뜁니다. 일반전은 35, 정예전은
-              65 크레딧을 주며 정예전 보상은 언커먼·레어 카드입니다. 8구간의
-              EMPRESS를 꺾으면 챔피언이 됩니다.
+              11장의 시작 덱으로 8개 구간을 진행합니다. 지도에 이어진 선을 따라
+              다음 노드를 선택하며, 선택한 경로가 이후 갈 수 있는 분기를
+              바꿉니다. 일반전은 35, 정예전은 65, 고위험 계약전은 95 크레딧을
+              줍니다. 정예·계약전은 더 강한 상대와 희귀 카드 보상을 묶습니다.
+              계약전에서는 카드 4장 중 하나를 선택하고 아이템·코너 기믹 보상도
+              받습니다. 카드 보상은 건너뛸 수 있습니다. 8구간의 EMPRESS를 꺾으면
+              챔피언이 됩니다.
             </p>
             <dl className="guide-definitions">
               <div>
@@ -431,27 +436,79 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
               <div>
                 <dt>프로 숍</dt>
                 <dd>
-                  카드, 회복, 멘탈 코칭, 자동 강화, 최대 에너지 +1 벨트를
+                  카드, 회복, 멘탈 코칭, 자동 강화, 아이템과 코너 기믹을
                   크레딧으로 구매합니다. 구매한 항목은 재구매할 수 없습니다.
+                  보관함이 가득 차면 해당 물품을 구매할 수 없습니다.
                 </dd>
               </div>
               <div>
                 <dt>백스테이지</dt>
                 <dd>
-                  체력·압박·크레딧·카드 사이의 선택입니다. 일부 기술은
-                  이벤트에서도 획득할 수 있습니다.
+                  라커룸·백스테이지 컷신 뒤 체력·압박·크레딧·카드·장비 사이에서
+                  선택합니다. 선택 전 이득과 대가를 확인하세요. 위험한 제안은
+                  체력이나 덱의 안정성을 희생하는 대신 더 큰 보상을 줍니다.
                 </dd>
               </div>
             </dl>
             <p>
               드로우를 안정시키려면 무조건 카드를 받는 대신 덱 크기와 비용을
               살펴보세요. 소멸 카드의 경기 내 정리와 명상의 영구 제거는 서로
-              다른 선택입니다.
+              다른 선택입니다. 회복 경로를 고르면 전투 보상을 포기하고, 고위험
+              경로를 고르면 다음 휴식까지 버틸 체력과 자원을 확보해야 합니다.
+            </p>
+          </RuleSection>
+          <RuleSection
+            id="corner-kit"
+            number="08"
+            title="한 번의 비상 대처, 한 경기의 운영 전략"
+            icon={Sparkle}
+          >
+            <p>
+              손패 아래의 <strong>보급</strong> 버튼으로 코너 보관함을 열어 물품을 확인합니다.
+              아이템은 최대 3개, 아직 사용하지 않은 코너 기믹은 최대 6개를
+              보관합니다. 경기 보상·프로 숍·이벤트에서 획득할 수 있습니다.
+            </p>
+            <h3>아이템 · 1회 사용</h3>
+            <p>
+              경기 중 에너지 없이 사용하고 즉시 소모합니다. 다음 턴이나 다음
+              경기에는 돌아오지 않습니다. 사용하지 않은 물품은 다음 경기로
+              가져갑니다. 카드 사용과 콤보를 대신하는 행동은 아닙니다.
+            </p>
+            <dl className="guide-definitions">
+              {Object.values(ITEMS).map((item) => (
+                <div key={item.id}>
+                  <dt>{item.name}</dt>
+                  <dd>{item.description}</dd>
+                </div>
+              ))}
+            </dl>
+            <h3>코너 기믹 · 해당 경기 종료까지</h3>
+            <p>
+              유물을 대신하는 선수 지원 전략입니다. 경기 밖에서 하나를 예약하면
+              다음 경기 입장 시 활성화되고 보관함에서 소모됩니다. 효과는 턴이
+              바뀌어도 유지되며, 해당 경기의 승리·패배와 함께 끝납니다. 예약하지
+              않은 기믹은 보관할 수 있습니다. 대가를 고려해 상대와 내 덱에 맞는
+              지원을 고르세요.
+            </p>
+            <dl className="guide-definitions">
+              {Object.values(GIMMICKS).map((gimmick) => (
+                <div key={gimmick.id}>
+                  <dt>{gimmick.name}</dt>
+                  <dd>
+                    {gimmick.description} <strong>대가:</strong>{" "}
+                    {gimmick.tradeoff}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            <p className="guide-note">
+              기존 저장에 이미 있던 컨디셔닝 벨트는 기존 효과를 유지합니다. 새
+              프로 숍에서는 경기 단위의 코너 기믹을 판매합니다.
             </p>
           </RuleSection>
           <RuleSection
             id="controls"
-            number="08"
+            number="09"
             title="플레이에 집중하세요. 진행은 자동 저장됩니다"
             icon={Keyboard}
           >
@@ -470,9 +527,11 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
               </span>
             </div>
             <p>
-              카드는 클릭이나 터치로도 사용할 수 있습니다. 카드 도감과 이
-              가이드를 보는 동안에는 전투 입력이 적용되지 않습니다. 실제 카드
-              비용과 필요한 열기는 카드에서 확인하세요.
+              손패는 겹친 카드로 한 화면에 모아 표시합니다. 카드를 클릭하거나
+              터치하면 앞으로 펼쳐지고, 효과를 확인한 뒤 사용 버튼을 누릅니다.
+              숫자 단축키는 해당 카드를 바로 사용합니다. 카드 도감과 이 가이드를
+              보는 동안에는 전투 입력이 적용되지 않습니다. 실제 카드 비용과
+              필요한 열기는 카드에서 확인하세요.
             </p>
             <p>
               런은 <strong>현재 브라우저</strong>에 자동 저장됩니다. 새로고침 후

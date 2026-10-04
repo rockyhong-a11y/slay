@@ -278,7 +278,7 @@ export function techniqueShot(cardId, disciplineSlug, finisher = false) {
   };
   const scaleChannel = (values, multiplier = 1) =>
     values.map((value) => (value === 0 ? 0 : value * multiplier));
-  return {
+  const camera = {
     id: `${cardId}-${kind}`,
     kind,
     times: [...(shot.times || shotTimes)],
@@ -296,8 +296,152 @@ export function techniqueShot(cardId, disciplineSlug, finisher = false) {
       variation.duration ||
       (finisher ? Math.max(3100, shot.duration) : shot.duration),
   };
+  // Hold the complete frame at contact, then release into recoil. The engine
+  // has already resolved the action; this hitstop affects only the camera.
+  camera.hitstop = camera.pressure ? 0 : camera.heavy ? 100 : 80;
+  if (camera.hitstop) {
+    for (const contact of camera.impacts) {
+      const index = camera.times.indexOf(contact);
+      if (index < 0 || index === camera.times.length - 1) continue;
+      const holdUntil = Math.min(
+        contact + camera.hitstop / camera.duration,
+        camera.times[index + 1] - 0.001,
+      );
+      camera.times.splice(index + 1, 0, holdUntil);
+      for (const channel of ["x", "y", "scale", "rotate"])
+        camera[channel].splice(index + 1, 0, camera[channel][index]);
+    }
+  }
+  return camera;
 }
 const difference = (a, b) => Math.max(0, (a || 0) - (b || 0));
+
+/** Read resolved damage and guard, never advance time or change engine data. */
+export function createArenaImpact(before, after, options = {}) {
+  if (!before || !after || before === after) return null;
+  const attacker = options.attacker === "enemy" ? "enemy" : "player";
+  const target = attacker === "player" ? "enemy" : "player";
+  const resolved =
+    after.lastImpact?.attacker === attacker ? after.lastImpact : null;
+  // HP can change again after contact: a corner can heal on the new turn and
+  // pressure can cause self damage. Neither belongs in the physical hit score.
+  if (resolved && !resolved.hits) return null;
+  if (
+    !resolved &&
+    attacker === "enemy" &&
+    before.enemy?.intent?.type !== "attack"
+  )
+    return null;
+  const damage = Number.isFinite(options.damage)
+    ? Math.max(0, options.damage)
+    : Number.isFinite(resolved?.damage)
+      ? Math.min(
+          Math.max(0, before[target]?.hp || 0),
+          Math.max(0, resolved.damage),
+        )
+      : difference(before[target]?.hp, after[target]?.hp);
+  let blocked;
+  if (Number.isFinite(options.blocked)) blocked = Math.max(0, options.blocked);
+  else if (Number.isFinite(resolved?.blocked)) blocked = resolved.blocked;
+  else if (attacker === "player")
+    blocked = difference(before.enemy?.block, after.enemy?.block);
+  else if (before.enemy?.intent?.type === "attack") {
+    const incoming =
+      before.enemy.weak > 0
+        ? Math.floor(before.enemy.intent.value * 0.75)
+        : before.enemy.intent.value;
+    blocked = Math.min(before.player?.block || 0, incoming);
+  } else blocked = 0;
+  if (!damage && !blocked) return null;
+  const card = options.instance ? getCard(options.instance) : null;
+  const finisher = card?.type === "finisher";
+  const knockout = (after[target]?.hp ?? 1) <= 0 && damage > 0;
+  const hits = Math.max(1, resolved?.hits || card?.effects.hits || 1);
+  const combo = attacker === "player" ? after.combo || 0 : hits;
+  const heavy = finisher || knockout || damage >= 12 || blocked >= 12;
+  const label =
+    options.label ||
+    (knockout
+      ? "K.O."
+      : !damage
+        ? "GUARD"
+        : finisher
+          ? "FINISHER"
+          : hits > 1
+            ? `${hits} HITS`
+            : heavy
+              ? "HEAVY HIT"
+              : "HIT");
+  return {
+    attacker,
+    target,
+    damage,
+    blocked,
+    hits,
+    combo,
+    heavy,
+    finisher,
+    knockout,
+    label,
+    duration: heavy ? 1040 : 880,
+    announcement: `${attacker === "player" ? "선수" : "상대"} 공격. ${damage ? `피해 ${damage}` : "가드 성공"}${blocked ? `. 방어 ${blocked}` : ""}${knockout ? ". K.O." : ""}.`,
+  };
+}
+
+/** Whole-image motion channels. Reduced motion has no transform or flash. */
+export function fighterImpactFrames(impact, side, still = false) {
+  if (!impact || still || ![impact.attacker, impact.target].includes(side))
+    return null;
+  const attacking = impact.attacker === side;
+  const guarded = !attacking && !impact.damage;
+  const direction = impact.attacker === "player" ? 1 : -1;
+  const force = impact.heavy ? 1.4 : 1;
+  const horizontal = attacking
+    ? [0, -7, 26, 26, 14, 3, 0]
+    : guarded
+      ? [0, 0, 4, 4, 7, 2, 0]
+      : [0, 0, 23, 23, 34, 10, 0];
+  const vertical = attacking
+    ? [0, -2, -5, -5, 0, 0, 0]
+    : guarded
+      ? [0, 0, 1, 1, 0, 0, 0]
+      : [0, 0, -4, -4, 5, 2, 0];
+  const rotation = attacking
+    ? [0, -1, 2, 2, 0, 0, 0]
+    : guarded
+      ? [0, 0, 1, 1, 1, 0, 0]
+      : [0, 0, 4, 4, 6, 1, 0];
+  return {
+    x: horizontal.map((value) => value * direction * force),
+    y: vertical,
+    rotate: rotation.map((value) => value * direction),
+    filter:
+      !attacking && impact.damage
+        ? [
+            "brightness(1)",
+            "brightness(1)",
+            "brightness(1.8)",
+            "brightness(1.8)",
+            "brightness(1.12)",
+            "brightness(1)",
+            "brightness(1)",
+          ]
+        : [
+            "brightness(1)",
+            "brightness(1)",
+            "brightness(1.15)",
+            "brightness(1.15)",
+            "brightness(1)",
+            "brightness(1)",
+            "brightness(1)",
+          ],
+    transition: {
+      duration: impact.duration / 1000,
+      times: [0, 0.14, 0.29, 0.39, 0.57, 0.8, 1],
+      ease: "easeOut",
+    },
+  };
+}
 
 export function createCardCue(before, after, instance) {
   if (!before || !after || before === after) return null;
@@ -411,6 +555,8 @@ export function createCardCue(before, after, instance) {
     camera,
     damage,
     absorbed,
+    hits: card.effects.hits || 1,
+    knockout: damage > 0 && after.enemy?.hp <= 0,
     results,
     announcement: `${card.name}. ${results.map((result) => result.text).join(". ")}.`,
   };

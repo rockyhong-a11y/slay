@@ -1,0 +1,30 @@
+{
+  "mode": "built-in image_gen",
+  "purpose": "SLAY locker-room and backstage event cutscene backgrounds; character illustrations are composited separately as complete images",
+  "assets": [
+    {
+      "id": "lockerroom",
+      "target": "public/assets/events/lockerroom.webp",
+      "prompt": "Use case: stylized-concept. Asset type: polished wide 16:9 environment plate for a female professional wrestling deckbuilding game's locker-room recovery cutscene. An atmospheric underground sports locker room: open steel lockers, a wooden bench with neatly folded athletic towels, plain medical tape and an ice pack, a duffel bag, a mirror, and a half-open door toward the red-lit arena tunnel. No people. Premium hand-painted cel-shaded game background with cinematic perspective, crisp line work, subtle materials, cool graphite shadows and warm overhead lights, matching dark SLAY wrestling art. Composition: natural wide establishing shot at seated eye level; readable bench and lockers, generous uncluttered central-left foreground for a separately composited full fighter illustration, slightly darker lower third for UI captions. Real sports preparation space, calm pre-match atmosphere. Avoid readable text, logos, watermarks, weapons, blood, suggestive decoration, distorted furniture, or photoreal rendering. Deliver one coherent landscape image, no panels.",
+      "source_png": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-debefebc-f21c-44f3-bc29-b46a586959a4.png",
+      "dimensions": [1600, 900],
+      "sha256": "3729e783f0f3261316333aac6d24c4fa2205fbec1fe056459d3e5a62249fffac"
+    },
+    {
+      "id": "backstage",
+      "target": "public/assets/events/backstage.webp",
+      "prompt": "Use case: stylized-concept. Asset type: premium wide 16:9 environment plate for a female professional wrestling deckbuilding game's backstage choice-event cutscene. A quiet arena backstage meeting corner connected to a locker room: a sturdy table with blank clipboard, training wrist tape, a plain water bottle, folded towels and duffel bag; equipment cases and steel lockers in the background, an open corridor where the wrestling ring's crimson lighting glows. No people. Hand-painted cel-shaded sports game concept art, detailed but clean, cinematic camera at eye level, cool charcoal and navy with warm amber practical lights and subtle crimson accents. Composition: one natural establishing shot, leave central-left floor space uncluttered for a separately composited complete character illustration; useful darker lower third for dialogue UI. Mood: a pivotal opportunity between matches. No readable text, signs, logos or watermarks. No weapons, blood, broken anatomy or objects, no photoreal rendering, no split panels.",
+      "source_png": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-135ce3cc-7651-4216-b4fe-d6b708d00ae0.png",
+      "dimensions": [1600, 900],
+      "sha256": "59ef4bc3ff6fafa265fa06d752ecfbdc89ee2c90f18db8b9b6f1cd3f11081d07"
+    },
+    {
+      "id": "highstakes",
+      "target": "public/assets/events/highstakes.webp",
+      "prompt": "Use case: stylized-concept. Asset type: dramatic wide 16:9 environment plate for a female professional wrestling deckbuilding game's high-stakes locker-room event cutscene. A tense underground arena preparation room with steel lockers, a heavy wooden bench, red emergency-style practical lights, a simple unbranded championship belt resting on the bench beside plain contract papers with no readable writing and athletic wrist tape, the entrance curtain toward a bright wrestling ring visible in the rear. No people. Premium hand-painted cel-shaded wrestling game background, strong perspective and crisp illustrative linework, cinematic red rim light against cool charcoal shadows, appealing polished surfaces. Composition: wide establishing view at standing eye level; clear central-left foreground reserved for a separately composited complete fighter illustration, darker lower third reserved for dialogue choices. Mood: dangerous challenge with a tempting prize, a legitimate fictional wrestling promotion. No readable text, logos, watermark, gambling devices, weapons, blood, photoreal rendering or split panels. One coherent landscape background.",
+      "source_png": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-943393ca-8d7e-4e9f-9ba5-8b0dedc1159f.png",
+      "dimensions": [1600, 900],
+      "sha256": "f4276169432230dea9219e05121d56408dbd70576e84e0a472d23fcbd5f268fb"
+    }
+  ]
+}

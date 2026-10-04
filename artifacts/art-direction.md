@@ -11,7 +11,7 @@ The final character set uses **30 complete, static full-body illustrations**: fi
 | RAVEN    | Long crimson hair, side fringe, black/navy athletic gear   | Opening damage and attack combos           |
 | VALKYRIE | Blonde bob, navy gear and white wraps                      | Guard retention and grappling              |
 | NOVA     | Long black hair, dark gear and red/steel guards            | Zero-cost draw and deck cycling            |
-| VIPER    | Blonde twin braids, bare hands/forearms and green gear        | Weak/vulnerable setup and follow-up damage |
+| VIPER    | Blonde twin braids, bare hands/forearms and green gear     | Weak/vulnerable setup and follow-up damage |
 | EMBER    | Wavy brunette hair, muscular build and black/red/gold gear | Crowd heat, calm and low-health comeback   |
 
 States are `normal`, `excited`, `fiery`, `frustrated`, `tired` and `groggy`. They use distinct complete poses and expressions while preserving each fighter's cartoon body and gear. State priority is health ≤25%, health ≤50%, stress ≥60, heat ≥6, heat ≥3, then normal. An enemy's weakness ≥2 also selects frustrated. The condition badge opens all six state previews without changing the run.
@@ -71,6 +71,12 @@ Each image occupies one plane with four vertices, one face and full-image UVs. O
 ## Arena
 
 The repository includes the editable Blender scene `artifacts/arena.blend` and the procedural scene/render script `tools/render-arena.py`. The browser asset is `public/assets/arena.webp`. This state-illustration revision does not claim a new Blender character rig or animation export.
+
+## Journey event cutscenes
+
+Three new cel-shaded wrestling environment plates supply locker-room recovery, backstage opportunities, and high-stakes contract events. The active files are `public/assets/events/lockerroom.webp`, `backstage.webp` and `highstakes.webp`, each 1600×900 RGB WebP exported at quality 90. All three were generated through separate built-in `image_gen` calls; the exact prompts, original PNG paths and production hashes are in [the cutscene prompt record](journey-cutscene-prompts.json). Original PNGs are also copied to ignored `artifacts/journey-{scene}-source.png` files.
+
+The event UI displays the environment and one complete current-fighter illustration. Finite camera transitions and dialogue beats introduce the scene before the player chooses a visible outcome. The scenes do not animate separate facial or body parts. Combat likewise animates complete fighter images for short attack and recoil cues; items and corner gimmicks use the established Phosphor icon system rather than unproduced raster icon paths.
 
 ## Historical production records
 
