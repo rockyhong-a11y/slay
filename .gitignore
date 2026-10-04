@@ -6,3 +6,4 @@ artifacts/*.blend1
 artifacts/*.png
 playwright-report/
 test-results/
+artifacts/card-art-sources/

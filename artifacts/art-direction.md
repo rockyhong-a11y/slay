@@ -18,7 +18,17 @@ Shared generation direction: premium semi-realistic 2.5D character illustration,
 
 ## Card illustrations
 
-`card-strike.webp`, `card-guard.webp`, and `card-focus.webp` were created with imagegen. Their action, defense, and mental recovery scenes share the arena's lighting and palette. The game applies different crops, frames, and effects to express card types.
+All 25 active cards now use independent, move-specific imagegen illustrations at `public/assets/cards/{card-id}.webp`. Every asset is 1024×683 WebP at quality 88. Strikes show the named elbow, shoulder, fist or boot contact; throws show waist locks, backward arches or shoulder carries; submissions show specific arm and head control. Defensive and support cards show guarding, breathing, crowd interaction and recovery. The nightmare has its own psychological scene.
+
+The game, deck and rewards use this same asset mapping. The encyclopedia renders the whole landscape composition and offers a larger, uncropped technique image in each detail view. Classification color and text reinforce the physical technique rather than relying only on artwork.
+
+Generation mode: built-in imagegen, one final image per card. Original PNG sources are preserved locally in ignored artifact files; optimized browser assets and complete prompt sets are versioned:
+
+- [Strikes, aerial moves and finishers — 9 prompts](card-art-strikes.md)
+- [Throws, submissions and defense — 8 prompts](card-art-holds.md)
+- [Support, recovery and nightmare — 8 prompts](card-art-support.md)
+
+The three initial generic card images remain as historical source assets and are no longer referenced by active card rendering.
 
 ## Higgsfield attempt
 

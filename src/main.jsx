@@ -31,7 +31,6 @@ import {
   HandFist,
   Sparkle,
   Crosshair,
-  Moon,
   Check,
   Backpack,
   ArrowSquareOut,
@@ -39,6 +38,7 @@ import {
   Storefront,
   Footprints,
   Crown,
+  BookOpen,
 } from "@phosphor-icons/react";
 import {
   CARDS,
@@ -57,6 +57,8 @@ import {
   canPlayCard,
   mapForFloor,
 } from "./game.js";
+import { getCardDetail, CARD_RARITY_LABELS } from "./card-library.js";
+import { CardGuidePage, CardLibraryPage } from "./KnowledgePages.jsx";
 import "@fontsource/barlow-condensed/latin-600.css";
 import "@fontsource/barlow-condensed/latin-700.css";
 import "@fontsource/barlow-condensed/latin-800-italic.css";
@@ -78,18 +80,17 @@ const typeNames = {
 };
 const art = (id) =>
   asset(`${["raven", "valkyrie", "nova"].includes(id) ? id : "nova"}.webp`);
-const portraitFor = (card) =>
-  ["guard", "grapple"].includes(card.artKey)
-    ? "valkyrie"
-    : ["focus", "counter"].includes(card.artKey)
-      ? "nova"
-      : "raven";
 const navItems = [
   { id: "battle", label: "아레나", icon: Sword },
   { id: "map", label: "챔피언 로드", icon: MapTrifold },
   { id: "deck", label: "내 덱", icon: Stack },
   { id: "roster", label: "선수", icon: UsersThree },
+  { id: "cards", label: "카드 도감", icon: BookOpen },
 ];
+const pageFromHash = () =>
+  ({ "#cards": "cards", "#guide": "guide", "#map": "map" })[
+    window.location.hash
+  ] || "battle";
 
 function loadRun() {
   try {
@@ -195,14 +196,10 @@ function Card({
   const present = useIsPresent();
   const card = getCard(instance);
   if (!card) return null;
+  const detail = getCardDetail(instance);
   const finisher = card.type === "finisher" || card.artKey === "finisher";
   const nightmare = ["nightmare", "curse"].includes(card.type);
   const Element = onClick ? motion.button : motion.article;
-  const sceneArt = ["strike", "finisher"].includes(card.artKey)
-    ? "card-strike.webp"
-    : ["guard", "grapple"].includes(card.artKey)
-      ? "card-guard.webp"
-      : "card-focus.webp";
   return (
     <Element
       ref={ref}
@@ -221,19 +218,30 @@ function Card({
       disabled={disabled || !present}
       aria-hidden={!present || undefined}
       tabIndex={!present ? -1 : undefined}
-      aria-label={`${card.name}, 에너지 ${card.cost}, ${card.description}`}
+      aria-label={`${card.name}, ${detail.discipline}, 에너지 ${card.cost}, ${card.description}`}
     >
       <div className="card-top">
         <span className="card-cost">{card.cost}</span>
-        <span className="card-type">{typeNames[card.type] || "기술"}</span>
+        <span
+          className={`card-type technique-label technique-${detail.disciplineSlug}`}
+          title={`카드 유형: ${typeNames[card.type]} · 기술 분류: ${detail.discipline}`}
+        >
+          {detail.discipline}
+        </span>
         {finisher ? <Crown size={15} /> : <span className="rarity-dot" />}
       </div>
       <div
-        className={`card-art ${card.artKey || card.type} ${sceneArt ? "scene-art" : ""}`}
+        className={`card-art ${card.artKey || card.type} scene-art technique-art`}
       >
-        <img src={sceneArt ? asset(sceneArt) : art(portraitFor(card))} alt="" />
+        <img
+          src={asset(detail.art)}
+          alt={detail.alt}
+          loading={compact ? "lazy" : undefined}
+          decoding="async"
+          width="1024"
+          height="683"
+        />
         <span className="card-art-shade" />
-        {nightmare && <Moon className="curse-icon" size={48} />}
       </div>
       <div className="card-text">
         <h3>{card.name}</h3>
@@ -244,11 +252,7 @@ function Card({
       </div>
       <div className="card-foot">
         <span>
-          {card.rarity === "rare"
-            ? "RARE"
-            : card.rarity === "uncommon"
-              ? "UNCOMMON"
-              : "COMMON"}
+          {CARD_RARITY_LABELS[card.rarity]} · {typeNames[card.type]}
         </span>
         {index != null && <kbd>{index === 9 ? 0 : index + 1}</kbd>}
       </div>
@@ -358,7 +362,7 @@ function RouteMap({ state, onChoose, preview = false }) {
 function App() {
   const [state, setState] = useState(loadRun);
   const [modal, setModal] = useState(null);
-  const [nav, setNav] = useState("battle");
+  const [nav, setNav] = useState(pageFromHash);
   const [hit, setHit] = useState(null);
   const [toast, setToast] = useState("");
   const [theme, setTheme] = useState(() => {
@@ -403,6 +407,38 @@ function App() {
     [],
   );
   const act = (fn) => setState((current) => fn(current));
+  const changePage = (id) => {
+    setNav(id);
+    const hash = id === "battle" ? "" : `#${id}`;
+    if (window.location.hash !== hash) {
+      window.history.pushState(
+        null,
+        "",
+        `${window.location.pathname}${window.location.search}${hash}`,
+      );
+    }
+    window.scrollTo({ top: 0, behavior: "instant" });
+  };
+  useEffect(() => {
+    const syncPage = () => {
+      setNav(pageFromHash());
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener("hashchange", syncPage);
+    window.addEventListener("popstate", syncPage);
+    return () => {
+      window.removeEventListener("hashchange", syncPage);
+      window.removeEventListener("popstate", syncPage);
+    };
+  }, []);
+  useEffect(() => {
+    document.title =
+      nav === "cards"
+        ? "카드 도감 | SLAY"
+        : nav === "guide"
+          ? "카드 시스템 도움말 | SLAY"
+          : "SLAY | Ring of Nightmares";
+  }, [nav]);
   const play = (uid) => {
     if (state.phase !== "combat") return;
     const card = getCard(state.hand.find((c) => c.uid === uid));
@@ -443,11 +479,16 @@ function App() {
     const key = (e) => {
       if (
         modal ||
-        nav !== "battle" ||
+        document.querySelector("dialog[open]") ||
         e.target.closest("input,textarea,select,[contenteditable='true']") ||
         e.repeat
       )
         return;
+      if (e.key === "Escape") {
+        changePage("battle");
+        return;
+      }
+      if (nav !== "battle") return;
       if (/^[0-9]$/.test(e.key)) {
         const c = state.hand[e.key === "0" ? 9 : Number(e.key) - 1];
         if (c) play(c.uid);
@@ -457,9 +498,6 @@ function App() {
         e.preventDefault();
         end();
       }
-      if (e.key === "Escape") {
-        setNav("battle");
-      }
     };
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
@@ -467,12 +505,12 @@ function App() {
   const startRun = (id) => {
     setState(newRun(id, crypto.getRandomValues(new Uint32Array(1))[0]));
     setModal(null);
-    setNav("battle");
+    changePage("battle");
     notify("새로운 챔피언 로드가 시작됩니다.");
   };
   const navigate = (id) => {
     if (id === "deck" || id === "roster") setModal(id);
-    else setNav(id);
+    else changePage(id);
   };
   const intent = state.enemy?.intent;
   const enemyHUD = state.enemy || {
@@ -519,9 +557,10 @@ function App() {
           <div className="sidebar-bottom">
             <button
               className="nav-button"
-              onClick={() => setModal("help")}
-              title="플레이 가이드"
-              aria-label="플레이 가이드"
+              onClick={() => changePage("guide")}
+              title="카드 시스템 도움말"
+              aria-label="카드 시스템 도움말"
+              aria-current={nav === "guide" ? "page" : undefined}
             >
               <Question size={23} />
             </button>
@@ -544,9 +583,17 @@ function App() {
               SLAY<span>RING OF NIGHTMARES</span>
             </div>
             <div className="top-breadcrumb">
-              챔피언 로드
+              {nav === "cards" || nav === "guide"
+                ? "카드 연구실"
+                : "챔피언 로드"}
               <CaretRight size={12} />
-              <strong>언더그라운드</strong>
+              <strong>
+                {nav === "cards"
+                  ? "카드 도감"
+                  : nav === "guide"
+                    ? "카드 시스템"
+                    : "언더그라운드"}
+              </strong>
             </div>
             <div className="top-actions">
               <span
@@ -578,53 +625,68 @@ function App() {
               </button>
               <button
                 className="help-button"
-                aria-label="플레이 가이드"
-                onClick={() => setModal("help")}
+                aria-label="카드 시스템 도움말"
+                onClick={() => changePage("guide")}
               >
                 <Question size={17} />
-                <span>플레이 가이드</span>
+                <span>카드 도움말</span>
               </button>
             </div>
           </header>
           <main>
-            <div className="chapter-header">
-              <div>
-                <div className="chapter-label">
-                  <span>CHAPTER 01</span>
-                  <span className="label-line" />
-                  <span>
-                    {state.floor === 8 ? "CHAMPIONSHIP" : "THE UNDERGROUND"}
-                  </span>
+            {!["cards", "guide"].includes(nav) && (
+              <div className="chapter-header">
+                <div>
+                  <div className="chapter-label">
+                    <span>CHAPTER 01</span>
+                    <span className="label-line" />
+                    <span>
+                      {state.floor === 8 ? "CHAMPIONSHIP" : "THE UNDERGROUND"}
+                    </span>
+                  </div>
+                  <h1>
+                    {state.floor === 8
+                      ? "THE FINAL RECKONING"
+                      : "THE UNDERGROUND"}
+                    <span className="heading-point">.</span>
+                  </h1>
+                  <p>
+                    {state.floor === 8
+                      ? "왕관은 단 한 명의 것이다."
+                      : "빛이 닿지 않는 링. 당신의 전설은 여기서 시작된다."}
+                  </p>
                 </div>
-                <h1>
-                  {state.floor === 8
-                    ? "THE FINAL RECKONING"
-                    : "THE UNDERGROUND"}
-                  <span className="heading-point">.</span>
-                </h1>
-                <p>
-                  {state.floor === 8
-                    ? "왕관은 단 한 명의 것이다."
-                    : "빛이 닿지 않는 링. 당신의 전설은 여기서 시작된다."}
-                </p>
+                <button
+                  className="floor-button"
+                  onClick={() => changePage("map")}
+                >
+                  <Footprints size={20} />
+                  <span>
+                    현재 구간
+                    <strong>
+                      {String(state.floor).padStart(2, "0")}
+                      <small> / 08</small>
+                    </strong>
+                  </span>
+                  <ArrowRight size={16} />
+                </button>
               </div>
-              <button className="floor-button" onClick={() => setNav("map")}>
-                <Footprints size={20} />
-                <span>
-                  현재 구간
-                  <strong>
-                    {String(state.floor).padStart(2, "0")}
-                    <small> / 08</small>
-                  </strong>
-                </span>
-                <ArrowRight size={16} />
-              </button>
-            </div>
-            {nav === "map" ? (
+            )}
+            {nav === "cards" ? (
+              <CardLibraryPage
+                onOpenGuide={() => changePage("guide")}
+                onBack={() => changePage("battle")}
+              />
+            ) : nav === "guide" ? (
+              <CardGuidePage
+                onOpenLibrary={() => changePage("cards")}
+                onBack={() => changePage("battle")}
+              />
+            ) : nav === "map" ? (
               <section className="map-panel">
                 <button
                   className="text-button back"
-                  onClick={() => setNav("battle")}
+                  onClick={() => changePage("battle")}
                 >
                   <ArrowRight
                     size={16}
@@ -636,7 +698,7 @@ function App() {
                   state={state}
                   onChoose={(i) => {
                     act((s) => advanceToNode(s, i));
-                    setNav("battle");
+                    changePage("battle");
                   }}
                   preview={state.phase !== "map"}
                 />
@@ -935,7 +997,6 @@ function App() {
                 discard: "버린 카드",
                 roster: "CHOOSE YOUR WRESTLER",
                 settings: "설정",
-                help: "링에 오를 준비가 되었나요?",
                 log: "경기 기록",
                 upgrade: "카드 강화",
               }[modal]
@@ -944,7 +1005,6 @@ function App() {
               {
                 deck: `${state.deck.length} CARDS IN YOUR DECK`,
                 roster: "THE CONTENDERS",
-                help: "HOW TO PLAY",
                 upgrade: "TRAINING ROOM",
               }[modal]
             }
@@ -1040,76 +1100,6 @@ function App() {
                   ))}
                 </div>
               </>
-            )}
-            {modal === "help" && (
-              <div className="guide">
-                <p>
-                  당신은 언더그라운드에서 챔피언을 향해 올라가는
-                  프로레슬러입니다. 8개 구간을 돌파하고 최종 타이틀 매치를
-                  승리하세요.
-                </p>
-                <div className="guide-row">
-                  <Lightning size={26} />
-                  <div>
-                    <h3>에너지로 카드 플레이</h3>
-                    <p>
-                      매 턴 에너지 3과 카드 5장을 받습니다. 상대의 다음 행동을
-                      보고 공격과 가드를 조합하세요. 남은 가드는 다음 턴에
-                      사라집니다.
-                    </p>
-                  </div>
-                </div>
-                <div className="guide-row">
-                  <Fire size={26} />
-                  <div>
-                    <h3>콤보로 피니셔 완성</h3>
-                    <p>
-                      공격을 연결해 열기를 쌓으세요. 관중 열기 3으로 피니셔를
-                      사용할 수 있습니다. 카드 순서가 중요합니다.
-                    </p>
-                  </div>
-                </div>
-                <div className="guide-row">
-                  <Brain size={26} />
-                  <div>
-                    <h3>압박과 악몽</h3>
-                    <p>
-                      상대의 도발은 심리적 압박을 높입니다. 압박 35부터 악몽이
-                      덱에 추가됩니다. 악몽 카드도 에너지로 해소할 수 있습니다.
-                      집중과 명상으로 압박을 관리하세요.
-                    </p>
-                  </div>
-                </div>
-                <div className="guide-row">
-                  <MapTrifold size={26} />
-                  <div>
-                    <h3>나만의 덱, 나만의 경로</h3>
-                    <p>
-                      승리 후 카드 보상을 선택합니다. 갈림길에서 경기, 정예,
-                      휴식, 상점, 이벤트를 선택하세요. 런은 브라우저에 자동
-                      저장됩니다.
-                    </p>
-                  </div>
-                </div>
-                <div className="guide-shortcuts">
-                  <span>
-                    <kbd>1</kbd> ~ <kbd>9</kbd>, <kbd>0</kbd> 카드 플레이
-                  </span>
-                  <span>
-                    <kbd>SPACE</kbd> 턴 종료
-                  </span>
-                  <span>
-                    <kbd>ESC</kbd> 닫기
-                  </span>
-                </div>
-                <button
-                  className="primary-button full"
-                  onClick={() => setModal(null)}
-                >
-                  링으로 돌아가기
-                  <ArrowRight size={18} />
-                </button>
-              </div>
             )}
             {modal === "settings" && (
               <div className="settings-content">

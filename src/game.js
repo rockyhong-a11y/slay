@@ -465,12 +465,16 @@ export function getCard(instance) {
 
 function describeEffects(base, effects) {
   const parts = [];
-  if (effects.spendHype) parts.push(`열기 ${effects.spendHype} 필요`);
+  if (effects.spendHype) parts.push(`열기 ${effects.spendHype} 소모`);
   if (effects.damage)
     parts.push(
       `피해 ${effects.damage}${effects.hits > 1 ? ` × ${effects.hits}` : ""}`,
     );
-  if (effects.comboDamage) parts.push(`콤보 시 피해 +${effects.comboDamage}`);
+  if (effects.comboDamage)
+    parts.push(
+      `이번 턴 콤보 ${effects.comboRequired || 1} 이상이면 피해 +${effects.comboDamage}`,
+    );
+  if (effects.extraCombo) parts.push(`콤보 +${effects.extraCombo}`);
   if (effects.block) parts.push(`방어 ${effects.block}`);
   if (effects.counterBlock)
     parts.push(`상대 공격 준비 시 방어 +${effects.counterBlock}`);

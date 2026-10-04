@@ -2,11 +2,15 @@
 
 오리지널 여성 프로레슬링 세계를 배경으로 한 싱글 플레이 덱빌딩 로그라이크 웹게임입니다. 상대의 행동을 읽고 공격과 가드를 연결하며, 관중의 열기로 피니셔를 완성하세요. 심리적 압박은 악몽 카드를 덱에 남깁니다.
 
-[플레이](https://rockyhong-a11y.github.io/slay/) · [GitHub](https://github.com/rockyhong-a11y/slay) · [게임 설계](docs/GAME_DESIGN.md)
+[플레이](https://rockyhong-a11y.github.io/slay/) · [카드 도감](https://rockyhong-a11y.github.io/slay/#cards) · [카드 시스템 도움말](https://rockyhong-a11y.github.io/slay/#guide) · [GitHub](https://github.com/rockyhong-a11y/slay) · [게임 설계](docs/GAME_DESIGN.md)
 
 ![SLAY gameplay](artifacts/slay-desktop.jpg)
 
 현재 버전은 **시작부터 챔피언십까지 플레이 가능한 버티컬 슬라이스**입니다. 캐릭터 3명, 카드 25종, 8개 구간과 최종 보스가 구현되어 있습니다.
+
+모든 카드에 기술 동작이 드러나는 전용 아트 25장을 적용했습니다. 타격·공중기·던지기·서브미션·잡기·방어·운영·악몽을 구분하며, 도감에서 이름과 효과를 검색하고 기술 분류·카드 타입·희귀도로 필터링할 수 있습니다. 상세 창은 기술 설명, 기본·강화 효과, 소멸 여부와 획득 방법을 함께 보여줍니다. 도움말은 턴 흐름, 카드 더미, 방어와 예고 행동, 콤보·열기, 압박·악몽, 상태 이상과 덱 성장 규칙을 설명합니다.
+
+![SLAY card encyclopedia](artifacts/slay-library.jpg)
 
 ## 플레이
 
@@ -40,7 +44,7 @@ npm run build
 npm run preview
 ```
 
-`dev`는 개발 서버, `build`는 `dist/`에 배포 파일을 생성합니다. 테스트는 전투 규칙, 저장 결정성, 카드 더미의 무결성 및 세 캐릭터의 실제 완주를 검증합니다.
+`dev`는 개발 서버, `build`는 `dist/`에 배포 파일을 생성합니다. 테스트 21개는 전투 규칙, 저장 결정성, 카드 더미의 무결성, 세 캐릭터의 실제 완주, 도감의 전체 카드 수록·필터·강화 설명과 25장 전용 WebP의 존재 및 중복 여부를 검증합니다.
 
 ## 아트와 라이선스
 

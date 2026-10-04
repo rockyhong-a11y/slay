@@ -3293,3 +3293,62 @@ h1 {
     justify-content: flex-start;
   }
 }
+
+/* Preserve the complete technical action in each dedicated illustration. */
+.card-art.scene-art.technique-art {
+  background: #080b12;
+}
+.card-art.scene-art.technique-art img {
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+}
+.technique-label {
+  font-weight: 700;
+  color: #c5cad3;
+}
+.technique-strike,
+.technique-striking {
+  color: #f58b94;
+}
+.technique-throw,
+.technique-throwing {
+  color: #edbb77;
+}
+.technique-submission {
+  color: #cbb0f3;
+}
+.technique-grapple,
+.technique-clinch {
+  color: #9eb9f0;
+}
+.technique-aerial {
+  color: #90d9ed;
+}
+.technique-defense {
+  color: #9dbfdd;
+}
+.technique-tactics,
+.technique-support {
+  color: #a9d4ad;
+}
+.technique-nightmare {
+  color: #b694ba;
+}
+.sidebar .nav-button[aria-current="page"],
+.sidebar .nav-button[aria-current="page"]:hover {
+  color: var(--red);
+}
+[data-theme="light"] .sidebar .nav-button:hover {
+  color: #fff;
+}
+[data-theme="light"] .sidebar .nav-button[aria-current="page"]:hover {
+  color: var(--red);
+}
+@media (max-width: 767px) {
+  .sidebar nav .nav-button {
+    width: auto;
+    min-width: 0;
+    flex: 1;
+  }
+}
