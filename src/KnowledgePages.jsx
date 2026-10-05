@@ -18,7 +18,14 @@ import {
   Shuffle,
   Sparkle,
 } from "@phosphor-icons/react";
-import { CARDS, getCard, WRESTLERS, ITEMS, GIMMICKS } from "./game.js";
+import {
+  CARDS,
+  getCard,
+  getCardUpgradeOptions,
+  WRESTLERS,
+  ITEMS,
+  GIMMICKS,
+} from "./game.js";
 import {
   CARD_DETAILS,
   CARD_DISCIPLINES,
@@ -27,6 +34,7 @@ import {
   getLibraryCards,
 } from "./card-library.js";
 import "./knowledge.css";
+import "./upgrade-choices.css";
 import { Artwork } from "./Artwork.jsx";
 
 function KnowledgeHeader({
@@ -410,14 +418,18 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
             icon={Compass}
           >
             <p>
-              선수와 덱을 선택해 8개 구간을 진행합니다. 지도는 38개 노드·6개
-              레인으로 나뉘며 이어진 선을 따라 이동합니다. 1·3·5·7구간은 필수
-              전투이므로 최종 보스 전에 최소 4경기를 이겨야 합니다. 2·4·6구간은
-              준비 장소 또는 추가 전투를 고릅니다. 일반전은 35, 정예전은 65,
-              고위험 계약전은 95 크레딧을 줍니다. 정예·계약전은 더 강한 상대와
-              희귀 카드 보상을 묶습니다. 계약전에서는 카드 4장 중 하나를
-              선택하고 아이템·코너 기믹 보상도 받습니다. 카드 보상은 건너뛸 수
-              있습니다. 8구간의 EMPRESS를 꺾으면 챔피언이 됩니다.
+              선수와 덱을 선택해 초급·중급·고급의 3웨이브, 총 24구간을
+              진행합니다. 웨이브마다 지도는 38개 노드·6개 레인으로 나뉘며 이어진
+              선을 따라 이동합니다. 1·3·5·7구간은 필수 전투이므로 각 보스 전에
+              최소 4경기를 이겨야 합니다. 2·4·6구간은 준비 장소 또는 추가 전투를
+              고릅니다. 일반전은 35, 정예전은 65, 고위험 계약전은 95 크레딧을
+              줍니다. 정예·계약전은 더 강한 상대와 희귀 카드 보상을 묶습니다.
+              계약전에서는 카드 4장 중 하나를 선택하고 아이템·코너 기믹 보상도
+              받습니다. 카드 보상은 건너뛸 수 있습니다. 각 웨이브의 8구간에는
+              점점 강해지는 보스가 기다립니다. 첫 두 보스를 이기고 다음 웨이브로
+              진입하면 최대 체력의 35%를 회복하고 압박을 25 낮춥니다.
+              덱·강화·크레딧·미사용 물품은 이어지며, 세 번째 웨이브의 EMPRESS를
+              꺾으면 최종 챔피언이 됩니다.
             </p>
             <dl className="guide-definitions">
               <div>
@@ -431,15 +443,19 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
               <div>
                 <dt>카드 강화</dt>
                 <dd>
-                  기존 카드의 효과를 영구 개선합니다. 한 장은 한 번만 강화할 수
-                  있고 악몽은 훈련으로 강화할 수 없습니다. 도감은 비교를 위해
-                  모든 카드의 정의된 강화 효과를 보여줍니다.
+                  카드 한 장마다 한 번 영구 강화합니다. 기본 카드 5종은 기본기
+                  숙련, 나머지 기술 44종은 각각 3가지 특화 중 하나를 직접
+                  선택합니다. 화력·제압·순환의 효과와 에너지 비용을 비교한 뒤
+                  확정하세요. 같은 기술을 두 장 갖고 있다면 서로 다르게 강화할
+                  수 있습니다. 라커룸 또는 상점에서 카드 선택 → 강화 방향
+                  미리보기 → 강화 확정 순서로 진행합니다. 확정 전에는 휴식이나
+                  크레딧을 소모하지 않습니다. 악몽은 강화할 수 없습니다.
                 </dd>
               </div>
               <div>
                 <dt>프로 숍</dt>
                 <dd>
-                  카드, 회복, 멘탈 코칭, 자동 강화, 아이템과 코너 기믹을
+                  카드, 회복, 멘탈 코칭, 선택 강화, 아이템과 코너 기믹을
                   크레딧으로 구매합니다. 구매한 항목은 재구매할 수 없습니다.
                   보관함이 가득 차면 해당 물품을 구매할 수 없습니다. 카드 영구
                   제거는 상점당 1회, 처음 60크레딧이며 이전 유료 제거 1회마다
@@ -470,11 +486,12 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
               <div>
                 <strong>완성 덱을 저장하고 다시 출전하기</strong>
                 <p>
-                  최종 보스에게 승리하면 완성 덱에 이름을 붙여 최대 20개까지
-                  저장합니다. 다음에는 선수 → 기본 시작 덱 또는 그 선수의 완성
-                  덱 → 아레나 진입 순서로 선택합니다. 카드 종류·장수·강화는
-                  유지하고 체력·크레딧·열기·압박·아이템·기믹은 새 런의 시작
-                  상태로 돌아갑니다. 보관함은 이 브라우저에만 저장됩니다.
+                  세 번째 웨이브의 최종 보스에게 승리하면 완성 덱에 이름을 붙여
+                  최대 20개까지 저장합니다. 다음에는 선수 → 기본 시작 덱 또는 그
+                  선수의 완성 덱 → 아레나 진입 순서로 선택합니다. 카드
+                  종류·장수·강화 방향은 유지하고
+                  체력·크레딧·열기·압박·아이템·기믹은 새 런의 시작 상태로
+                  돌아갑니다. 보관함은 이 브라우저에만 저장됩니다.
                 </p>
               </div>
             </div>
@@ -624,10 +641,13 @@ function LibraryCard({ card, onSelect }) {
           <span>{CARD_TYPE_LABELS[card.type]}</span>
           <span>{CARD_RARITY_LABELS[card.rarity]}</span>
           {card.exhaust && <span className="exhaust-tag">소멸</span>}
+          {card.upgradeLabel && <span>{card.upgradeLabel}</span>}
         </div>
         <p>{card.description}</p>
         <span className="knowledge-card-open">
-          기술 자세히 보기
+          {card.upgradeOptions?.length === 3
+            ? "강화 3종 · 기술 자세히 보기"
+            : "기술 자세히 보기"}
           <ArrowRight size={15} />
         </span>
       </div>
@@ -639,6 +659,7 @@ function CardDetail({ id, onClose }) {
   const ref = useRef(null);
   const base = getCard(id);
   const upgraded = getCard({ id, upgraded: true });
+  const upgradeOptions = getCardUpgradeOptions(id);
   const detail = CARD_DETAILS[id];
   useEffect(() => {
     ref.current?.showModal();
@@ -692,12 +713,40 @@ function CardDetail({ id, onClose }) {
             <h3>기본 효과</h3>
             <p>{base.description}</p>
           </section>
-          <section className="upgraded">
-            <span>UPGRADED</span>
-            <h3>강화 효과</h3>
-            <p>{upgraded.description}</p>
-          </section>
+          {upgradeOptions.length < 3 && (
+            <section className="upgraded">
+              <span>UPGRADED</span>
+              <h3>강화 효과</h3>
+              <p>{upgraded.description}</p>
+            </section>
+          )}
         </div>
+        {upgradeOptions.length === 3 && (
+          <div
+            className="knowledge-upgrade-paths"
+            aria-label="세 가지 강화 특화"
+          >
+            {upgradeOptions.map((option, index) => (
+              <section key={option.id}>
+                <span>
+                  PATH 0{index + 1} · {option.focus}
+                </span>
+                <h3>
+                  {option.label}
+                  <span>
+                    <Lightning size={15} />
+                    {option.cost}
+                  </span>
+                </h3>
+                <p>{option.description}</p>
+              </section>
+            ))}
+            <p className="knowledge-small-note">
+              카드 한 장에 한 방향만 적용됩니다. 이전에 저장한 + 카드는 기존
+              강화 효과를 유지합니다.
+            </p>
+          </div>
+        )}
         {base.type === "nightmare" && (
           <p className="knowledge-small-note">
             악몽의 강화 효과는 데이터 비교용입니다. 실제 런에서는 악몽을
@@ -728,7 +777,15 @@ export function CardLibraryPage({ onOpenGuide, onBack }) {
   const [upgraded, setUpgraded] = useState(false);
   const [selected, setSelected] = useState(null);
   const cards = useMemo(
-    () => getLibraryCards({ search, discipline, type, rarity, upgraded }),
+    () =>
+      getLibraryCards({
+        search,
+        discipline,
+        type,
+        rarity,
+        upgraded,
+        upgradePath: upgraded ? "force" : undefined,
+      }),
     [search, discipline, type, rarity, upgraded],
   );
   const reset = () => {
@@ -798,7 +855,7 @@ export function CardLibraryPage({ onOpenGuide, onBack }) {
             onClick={() => setUpgraded(true)}
           >
             <Sparkle size={15} />
-            강화
+            강화 특화
           </button>
         </div>
         <div className="library-filter-row">
@@ -846,7 +903,11 @@ export function CardLibraryPage({ onOpenGuide, onBack }) {
       <div className="library-result-heading">
         <p role="status" aria-live="polite">
           <strong>{cards.length}</strong> / {Object.keys(CARDS).length} CARDS
-          <span>{upgraded ? "강화 효과 표시 중" : "기본 효과 표시 중"}</span>
+          <span>
+            {upgraded
+              ? "첫 번째 특화 미리보기 · 상세에서 3종 비교"
+              : "기본 효과 표시 중"}
+          </span>
         </p>
         <span>카드를 선택해 기술과 획득 방법을 확인하세요.</span>
       </div>

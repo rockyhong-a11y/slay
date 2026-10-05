@@ -1,6 +1,8 @@
-// Pointer gestures use exposed baseline rails, never the lifted card's z-index.
-export const HAND_DOUBLE_TAP_MS = 320;
+// Taps follow the visible artwork; only an intentional drag uses stable rails.
+export const HAND_DOUBLE_TAP_MS = 420;
 export const HAND_DRAG_THRESHOLD = 7;
+export const HAND_DOUBLE_TAP_DISTANCE = 28;
+export const TOUCH_CONFIRM_MS = 180;
 export const HAND_MAX_TAP_DURATION_MS = 450;
 
 export function createHandGesture() {
@@ -25,6 +27,7 @@ export function beginHandGesture(
   }
   return {
     ...state,
+    lastTap: state.lastTap?.uid === uid ? state.lastTap : null,
     pointer: {
       pointerId,
       initialUid: uid,
@@ -63,11 +66,12 @@ export function finishHandGesture(
   }
   const updated = moveHandGesture(state, { pointerId, uid, x, y });
   const pointer = updated.pointer;
-  const selected = uid || pointer.uid;
+  const selected = uid;
   const duration = time - pointer.startTime;
   const cleanTap =
     !locked &&
     !updated.playLocked &&
+    !!selected &&
     !pointer.moved &&
     duration >= 0 &&
     duration <= HAND_MAX_TAP_DURATION_MS &&
@@ -83,17 +87,26 @@ export function finishHandGesture(
   const doubleTap =
     updated.lastTap?.uid === selected &&
     elapsed >= 0 &&
-    elapsed <= HAND_DOUBLE_TAP_MS;
+    elapsed <= HAND_DOUBLE_TAP_MS &&
+    Math.hypot(x - updated.lastTap.x, y - updated.lastTap.y) <=
+      HAND_DOUBLE_TAP_DISTANCE;
   return {
     state: {
       ...updated,
       pointer: null,
-      lastTap: doubleTap ? null : { uid: selected, time },
+      lastTap: doubleTap ? null : { uid: selected, time, x, y },
       playLocked: doubleTap && playable,
     },
     select: selected,
     play: doubleTap && playable ? selected : null,
+    blocked: doubleTap && !playable,
   };
+}
+
+export function expireHandTap(state, time = Infinity) {
+  return state.lastTap && time - state.lastTap.time > HAND_DOUBLE_TAP_MS
+    ? { ...state, lastTap: null }
+    : state;
 }
 
 export function unlockHandPlay(state) {
@@ -117,7 +130,27 @@ export function createHandHitRegions(cards, { left, right }) {
     .filter((region) => region.right > region.left);
 }
 
-export function hitTestHand(regions, x, { clamp = false } = {}) {
+export function hitTestHand(
+  regions,
+  x,
+  { clamp = false, y, visibleCards } = {},
+) {
+  // Real taps use both coordinates and paint order. The old x-only rails map a
+  // lifted card's face to a hidden neighbor, making the wrong card autoplay.
+  if (visibleCards) {
+    if (!Number.isFinite(x) || !Number.isFinite(y)) return null;
+    return (
+      [...visibleCards]
+        .filter(
+          (card) =>
+            x >= card.left &&
+            x <= card.right &&
+            y >= card.top &&
+            y <= card.bottom,
+        )
+        .sort((a, b) => (b.zIndex || 0) - (a.zIndex || 0))[0]?.uid || null
+    );
+  }
   if (!regions.length || !Number.isFinite(x)) return null;
   const match = regions.find(
     (region, index) =>

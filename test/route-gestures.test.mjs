@@ -25,7 +25,7 @@ test("different nodes, elapsed windows and long presses never complete a pair", 
   tap(tracker, 0);
   assert.equal(tap(tracker, 100, "f2-2").double, false);
   assert.equal(tap(tracker, 200).double, false);
-  assert.equal(tap(tracker, 521).double, false);
+  assert.equal(tap(tracker, 621).double, false);
   tracker.begin({ pointerId: 1, nodeId: "f2-1", x: 50, y: 50, time: 600 });
   assert.equal(
     tracker.finish({ pointerId: 1, nodeId: "f2-1", x: 50, y: 50, time: 1100 }),
@@ -109,4 +109,47 @@ test("capture release preserves a real tap but phase changes expire pending taps
   assert.equal(tap(tracker, 200, "f3-1").double, false);
   assert.equal(tracker.claimEntry("f3-3", ["f3-1"]), false);
   assert.equal(tracker.claimEntry("f3-1", ["f3-1"]), true);
+});
+
+test("two distant taps on the same route tile do not commit a move", () => {
+  const tracker = createRouteTapTracker();
+  tap(tracker, 0);
+  tracker.begin({ pointerId: 1, nodeId: "f2-1", x: 120, y: 50, time: 100 });
+  const result = tracker.finish({
+    pointerId: 1,
+    nodeId: "f2-1",
+    x: 120,
+    y: 50,
+    time: 120,
+  });
+  assert.equal(result.double, false);
+});
+
+test("route armed state expires and an explicit entry remains available", () => {
+  const tracker = createRouteTapTracker();
+  tap(tracker, 0);
+  assert.equal(tracker.armedNodeId, "f2-1");
+  tracker.expire(441);
+  assert.equal(tracker.armedNodeId, null);
+  assert.equal(tap(tracker, 450).double, false);
+  assert.equal(tracker.claimEntry("f2-1", ["f2-1"]), true);
+  assert.equal(tracker.armedNodeId, null);
+});
+
+test("route context changes discard any armed first tap and pending entry lock", () => {
+  const tracker = createRouteTapTracker();
+  tracker.setContext("wave1:map");
+  tap(tracker, 0);
+  tracker.setContext("wave2:map");
+  assert.equal(tracker.armedNodeId, null);
+  assert.equal(tap(tracker, 100).double, false);
+  tracker.claimEntry("f2-1", ["f2-1"]);
+  tracker.abort();
+  assert.equal(
+    tracker.locked,
+    true,
+    "ordinary pointer cancellation cannot duplicate a committed entry",
+  );
+  tracker.reset();
+  assert.equal(tracker.locked, false);
 });

@@ -4,7 +4,7 @@
 
 [플레이](https://rockyhong-a11y.github.io/slay/) · [선수 선택](https://rockyhong-a11y.github.io/slay/#roster) · [카드 도감](https://rockyhong-a11y.github.io/slay/#cards) · [카드 시스템 도움말](https://rockyhong-a11y.github.io/slay/#guide) · [GitHub](https://github.com/rockyhong-a11y/slay) · [게임 설계](docs/GAME_DESIGN.md)
 
-현재 버전은 **시작부터 챔피언십까지 플레이 가능한 버티컬 슬라이스**입니다. 선수 10명, 카드 50종, 38개 노드·6개 레인으로 분기하는 8개 구간과 최종 보스를 구현했습니다. 레이븐은 콤보 타격, 발키리는 가드·잡기, 노바는 드로우·순환, 바이퍼는 약화·취약 제압, 엠버는 관중 열기와 컴백을 활용합니다. 신규 아틀라스는 고비용 파워 기술, 세라프는 공중기·순환, 링스는 관절기·압박 관리, 템페스트는 잡기 콤보, 오닉스는 방어와 카운터를 활용합니다. 각 선수의 11장 시작 덱과 패시브가 실제 전투 규칙에 연결됩니다. 선수 선택에는 신규 5명 필터가 있습니다.
+현재 버전은 **시작부터 챔피언십까지 플레이 가능한 버티컬 슬라이스**입니다. 선수 10명, 카드 50종, 웨이브마다 38개 노드·6개 레인으로 분기하는 8개 구간, 총 3웨이브·24구간과 초·중·고급 보스를 구현했습니다. 레이븐은 콤보 타격, 발키리는 가드·잡기, 노바는 드로우·순환, 바이퍼는 약화·취약 제압, 엠버는 관중 열기와 컴백을 활용합니다. 신규 아틀라스는 고비용 파워 기술, 세라프는 공중기·순환, 링스는 관절기·압박 관리, 템페스트는 잡기 콤보, 오닉스는 방어와 카운터를 활용합니다. 각 선수의 11장 시작 덱과 패시브가 실제 전투 규칙에 연결됩니다. 선수 선택에는 신규 5명 필터가 있습니다.
 
 기존 선수는 참고 이미지의 얼굴·헤어·의상 특징을 반영한 카툰 전신 그림이며, 신규 5명은 기존 선수들의 체형과 렌더링 스타일에 맞춘 오리지널 선수입니다. **보통·흥분·열혈·좌절·지침·그로기, 10명 × 6상태의 완성 일러스트 60장**을 사용합니다. 체력 25% 이하는 그로기, 50% 이하는 지침을 우선 적용하고, 이후 압박 60 이상은 좌절, 열기 6 이상은 열혈, 열기 3–5는 흥분을 표시합니다. 상태 배지를 누르면 기준과 전신 그림·얼굴 확대를 미리 볼 수 있습니다. 선수와 카드 그림은 정적 이미지로 표시됩니다. 바이퍼의 여섯 상태에서 베레모와 건틀릿을 제거하고 맨손·맨팔로 수정했습니다.
 
@@ -18,7 +18,9 @@
 
 세로·가로 단말에서는 전투 영역과 패를 화면 높이에 맞춥니다. 최대 10장의 손패를 겹쳐 한 화면에 모으고, 손패 위를 누른 채 좌우로 드래그하면 한 장씩 상승·강조합니다. 한 번 탭해 선택하고, 같은 카드를 빠르게 두 번 탭해 사용합니다. 화면 전체는 고정되며 긴 지도·도감·도움말과 상세 창만 내부에서 스크롤합니다. 게임 안의 텍스트 롱프레스 팝업과 더블탭 확대도 차단합니다. 기술 사용 시 큰 장면으로 확대하고 배경을 흐리게 처리하며, 파워밤의 들어 올림·낙하, 슬램의 충돌, 관절기의 압박에 맞춰 카메라 이동과 효과를 구분합니다. 완성된 선수 그림 전체의 돌진·피격 밀림, 접촉 순간의 짧은 정지, 충격선과 방어 판정으로 대전격투의 타격감을 표현합니다.
 
-지도는 **38개 노드·6개 레인**으로 구성됩니다. **1·3·5·7구간은 필수 전투**이므로 어떤 경로를 골라도 최종 보스 전에 최소 4경기를 이겨야 합니다. 2·4·6구간에는 회복·상점·백스테이지와 추가 전투가 있어, 준비와 추가 보상 중 선택합니다. 일반전 35, 정예전 65, 하드코어 쇼다운 95 크레딧입니다. 쇼다운은 정예 상대의 체력 20%와 공격력 2를 더하는 대신 레어 카드 4장 중 선택과 아이템·코너 기믹 확정 보상을 제공합니다. 현재 위치의 같은 레인과 인접 레인으로만 이어지므로 앞으로 필요한 준비 장소도 함께 고려하세요.
+아레나는 **루키 → 컨텐더 → 챔피언, 총 3웨이브**입니다. 각 웨이브의 지도는 **38개 노드·6개 레인**으로 구성됩니다. **1·3·5·7구간은 필수 전투**이므로 웨이브 보스 전에 최소 4경기, 최종 완주까지 보스 포함 최소 15경기를 치릅니다. 2·4·6구간에는 회복·상점·백스테이지와 추가 전투가 있어, 준비와 추가 보상 중 선택합니다. 일반전 35, 정예전 65, 하드코어 쇼다운 95 크레딧입니다. 쇼다운은 정예 상대의 체력 20%와 공격력 2를 더하는 대신 레어 카드 4장 중 선택과 아이템·코너 기믹 확정 보상을 제공합니다. 현재 위치의 같은 레인과 인접 레인으로만 이어지므로 앞으로 필요한 준비 장소도 함께 고려하세요.
+
+웨이브 보스는 **IRON REGENT(초급) → SABLE QUEEN(중급) → EMPRESS(고급)**로 바뀌며, 체력·공격뿐 아니라 방어·도발·연속 공격의 행동 순서도 다릅니다. 첫 두 보스 승리 뒤 정비 화면에서 다음 웨이브로 넘어가면 최대 체력의 35% 회복과 압박 25 감소를 받습니다. 덱·강화·크레딧·미사용 물품은 유지하고, 지도와 경기 상태만 새로 시작합니다. 마지막 보스 승리에서 완성 덱을 보관할 수 있습니다.
 
 유물을 대신하는 **코너 기믹 6종은 다음 경기 전에 하나를 예약하고, 그 경기 종료까지 지속**됩니다. 효과와 대가를 함께 고르며 활성화된 기믹은 해당 경기에서 소모됩니다. **아이템 6종은 에너지 없이 1회 사용**하고, 쓰지 않은 물품은 이후 경기로 가져갑니다. 라커룸·백스테이지 이벤트에는 세 종류의 배경과 선수 그림, 대사, 선택 결과를 사용하는 컷신이 있습니다.
 
@@ -83,7 +85,7 @@ The client uses React, Vite, Motion, and Phosphor icons. Gameplay lives in the d
 
 Character assets use `fighters/states/{actor}-{state}.webp`. The ten actors are `raven`, `valkyrie`, `nova`, `viper`, `ember`, `atlas`, `seraph`, `lynx`, `tempest`, and `onyx`; the six states are `normal`, `excited`, `fiery`, `frustrated`, `tired`, and `groggy`. Cards use their 50 dedicated `cards/{id}.webp` illustrations. The app renders completed images rather than continuous canvas rigs; finite card-cast transitions remain.
 
-Every engine action returns a cloned, serializable state. Invalid actions return the original state. A saved PRNG seed makes draw order, encounters, and rewards reproducible after loading. Card instances use `{ uid, id, upgraded }`; permanent deck entries and combat piles share the same logical UID.
+Every engine action returns a cloned, serializable state. Invalid actions return the original state. A saved PRNG seed makes draw order, encounters, and rewards reproducible after loading. Card instances use `{ uid, id, upgraded, upgradePath? }`; permanent deck entries and combat piles share the same logical UID. The optional specialization is `force`, `control`, or `flow`; legacy upgraded cards without it retain their original + effects.
 
 ```js
 import { newRun, playCard, endTurn, chooseReward } from "./src/game.js";

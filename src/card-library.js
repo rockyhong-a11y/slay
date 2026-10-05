@@ -1,4 +1,4 @@
-import { CARDS, WRESTLERS, getCard } from "./game.js";
+import { CARDS, WRESTLERS, getCard, getCardUpgradeOptions } from "./game.js";
 
 export const CARD_DISCIPLINES = [
   { id: "strike", slug: "strike", label: "타격" },
@@ -422,10 +422,15 @@ export function getLibraryCards({
   type = "all",
   rarity = "all",
   upgraded = false,
+  upgradePath,
 } = {}) {
   const query = search.trim().toLocaleLowerCase();
   return Object.keys(CARDS)
-    .map((id) => ({ ...getCard({ id, upgraded }), ...CARD_DETAILS[id] }))
+    .map((id) => ({
+      ...getCard({ id, upgraded, upgradePath }),
+      ...CARD_DETAILS[id],
+      upgradeOptions: getCardUpgradeOptions(id),
+    }))
     .filter(
       (card) => discipline === "all" || card.disciplineSlug === discipline,
     )
@@ -444,6 +449,12 @@ export function getLibraryCards({
           card.technique,
           card.acquisition,
           card.startingWrestlers.join(" "),
+          card.upgradeOptions
+            .map(
+              (option) =>
+                `${option.label} ${option.focus} ${option.description}`,
+            )
+            .join(" "),
         ]
           .join(" ")
           .toLocaleLowerCase()

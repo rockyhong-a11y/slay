@@ -19,7 +19,7 @@ import "./deck-builder.css";
 function groupCards(cards) {
   const groups = new Map();
   for (const card of cards) {
-    const key = `${card.id}:${!!card.upgraded}`;
+    const key = `${card.id}:${!!card.upgraded}:${card.upgradePath || ""}`;
     const group = groups.get(key);
     if (group) group.count++;
     else groups.set(key, { ...card, count: 1, key });
@@ -40,7 +40,10 @@ export function DeckContents({ cards }) {
               {card.cost}
             </span>
             <div>
-              <strong>{card.name}</strong>
+              <strong>
+                {card.name}
+                {card.upgradeLabel ? ` · ${card.upgradeLabel}` : ""}
+              </strong>
               <p>{card.description}</p>
             </div>
             <b aria-label={`${entry.count}장`}>×{entry.count}</b>
@@ -88,8 +91,8 @@ export function DeckLoadout({
         </div>
       </div>
       <p className="loadout-note">
-        클리어한 덱의 카드와 강화 상태를 그대로 가져옵니다. 체력·크레딧·아이템은
-        새 런의 시작 상태로 돌아갑니다.
+        클리어한 덱의 카드와 선택한 강화 분기를 그대로 가져옵니다.
+        체력·크레딧·아이템은 새 런의 시작 상태로 돌아갑니다.
       </p>
       {error && (
         <p className="builder-error" role="alert">
@@ -304,7 +307,7 @@ export function CardRemovalPicker({ state, offer, onRemove, onCancel }) {
                 <strong>{card.name}</strong>
                 <small>
                   {detail.discipline} · 에너지 {card.cost} ·{" "}
-                  {entry.upgraded ? "강화" : "기본"}
+                  {card.upgradeLabel || (entry.upgraded ? "강화" : "기본")}
                 </small>
               </span>
               <Check size={18} />

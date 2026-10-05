@@ -1,0 +1,122 @@
+✔ a single tap selects, then the same card within 320ms plays once (1.160833ms)
+✔ expired taps and a different card never autoplay (0.146417ms)
+✔ negative timestamp deltas cannot make a double tap (0.226834ms)
+✔ a long press selects but clears tap history and cannot precede autoplay (0.152792ms)
+✔ 450ms holds are valid taps, while a negative hold duration is rejected (0.441667ms)
+✔ small touch jitter stays a tap (0.162875ms)
+✔ a sweep and a return to the initial card cannot complete a tap pair (0.065959ms)
+✔ vertical movement of seven pixels cancels tap eligibility (0.04975ms)
+✔ crossing a narrow card rail cancels tap eligibility even below 7px (0.048458ms)
+✔ pointer cancellation discards tap history, including a pending first tap (0.082875ms)
+✔ a second pointer cancels a pending gesture rather than using the card (0.049958ms)
+✔ other pointer moves/releases cannot finish an active pointer (0.048041ms)
+✔ busy cards never select or play; invalid cards remain selectable (0.052292ms)
+✔ play unlock clears old history so a new card cannot inherit a tap (0.038125ms)
+✔ overlapped cards own only stable exposed baseline rails (0.138875ms)
+✔ dragging beyond the hand clamps to an end card but hover never does (0.045125ms)
+✖ a tap on the visible raised card never selects its covered neighbor rail (0.602542ms)
+✖ releasing outside the actual card clears the tap instead of inheriting its uid (0.354667ms)
+✖ two distant taps on one large card are separate intentional selections (0.108958ms)
+✔ a stationary second tap on the same route enters once, including native click duplication (1.102958ms)
+✔ different nodes, elapsed windows and long presses never complete a pair (0.123958ms)
+✔ a drag cannot activate a route even if the pointer returns to its start (0.112666ms)
+✔ scroll cancellation and a release outside the original node erase tap history (0.657417ms)
+✔ multitouch invalidates both pointers until all fingers lift (0.112ms)
+✔ capture release preserves a real tap but phase changes expire pending taps and locks (0.075166ms)
+✖ two distant taps on the same route tile do not commit a move (0.410833ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 22
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 108.143666
+
+✖ failing tests:
+
+test at test/hand-interaction.test.mjs:281:1
+✖ a tap on the visible raised card never selects its covered neighbor rail (0.602542ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'covered'
+  - 'raised'
+  
+      at TestContext.<anonymous> (file:///Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/test/hand-interaction.test.mjs:287:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'covered',
+    expected: 'raised',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/hand-interaction.test.mjs:293:1
+✖ releasing outside the actual card clears the tap instead of inheriting its uid (0.354667ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'a' !== null
+  
+      at TestContext.<anonymous> (file:///Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/test/hand-interaction.test.mjs:297:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'a',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/hand-interaction.test.mjs:301:1
+✖ two distant taps on one large card are separate intentional selections (0.108958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'a' !== null
+  
+      at TestContext.<anonymous> (file:///Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/test/hand-interaction.test.mjs:303:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'a',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/route-gestures.test.mjs:114:1
+✖ two distant taps on the same route tile do not commit a move (0.410833ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///Users/rockyhong/Documents/Codex/2026-10-04/1-slay-2-tcg-3-4/test/route-gestures.test.mjs:119:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

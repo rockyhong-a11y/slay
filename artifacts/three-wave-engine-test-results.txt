@@ -1,0 +1,42 @@
+✔ new runs are deterministic, serializable, and start with unique cards (13.329083ms)
+✔ invalid actions are safe no-ops and valid actions never mutate the input (1.321333ms)
+✔ combos create hype and finishers require and consume it (0.714209ms)
+✔ visible attacks resolve against block and the next turn refills energy (0.25375ms)
+✔ Nova draws an extra card once per turn and exhausted cards cannot reshuffle (0.736459ms)
+✔ pressure thresholds permanently add nightmare cards and a breakdown can defeat (0.217458ms)
+✔ victories pay once, offer three different rewards, and enter a branching map (0.61225ms)
+✔ rest upgrades a chosen permanent card and spends exactly one map node (1.141958ms)
+✔ healing is capped, meditation removes a nightmare, and invalid rest actions do nothing (1.07125ms)
+✔ shops enforce affordability, prevent duplicate purchases, and stock one-encounter gimmicks (2.382291ms)
+✔ events apply a valid choice atomically and saved runs preserve future randomness (2.017458ms)
+✔ the final championship resolves into a complete victory (1.07525ms)
+✔ all card definitions have renderable Korean descriptions and usable artwork keys (1.130125ms)
+✔ all ten wrestlers can complete a real three-wave run using only public actions (613.030083ms)
+✔ ignoring the opponent leads to an actual defeat without invalid negative health (1.234333ms)
+✔ the full eight-floor graph has real connected choices, no dead nodes, and a boss path from every node (16.697542ms)
+✔ each of six consumables applies its authored effect once for zero energy without triggering card passives (2.391ms)
+✔ six finite corner gimmicks have genuine tradeoffs, activate once on entry, and expire on either battle result (15.523792ms)
+✔ corner bonuses persist across JSON load within a battle, reset once each turn, and never stack into permanent max energy (1.589042ms)
+✔ mental corner suppresses nightmare draws only for its active encounter (0.549292ms)
+✔ loot capacity prevents paid empty gains and item/gimmick claims are independent one-time rewards (6.502583ms)
+✔ event physical and credit costs must be affordable, and typed arrival/result data reports actual effects (2.811292ms)
+✔ risk encounters actually pay better than normal and elite encounters, and all six item/gimmick types are offered (215.7715ms)
+✔ normalizing an older v1 save preserves its exact combat and legacy belt, grants a starter item once, and never rerolls RNG (1.024083ms)
+✔ support actions overwrite stale impact fields and incoming intent records actual blocked damage (0.74475ms)
+✔ seeded public-action policies keep all ten fighters viable while dangerous routes exchange more damage for better economy (3917.766417ms)
+✔ three waves have increasing boss stats and distinct action patterns and route previews (12.9605ms)
+✔ every wave retains a minimum four-match route with preparation branches (16.252125ms)
+✔ boss clears award each wave once; only the third clear completes the arena (2.1015ms)
+✔ wave continuation preserves the built deck, money, inventory and removal costs while resetting only the new circuit (1.064958ms)
+✔ wave continuation rejects combat, incomplete/dead bosses, player defeat and terminal victory (0.246709ms)
+✔ legacy active saves resume wave one without rerolling and legacy winners remain terminal (0.852125ms)
+✔ serialized intermission continues deterministically and the public-action fixture clears all three real bosses (60.399208ms)
+✔ a cleared wave can stage one finite corner gimmick for the next opening match (2.401542ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4360.06975

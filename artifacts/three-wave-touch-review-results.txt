@@ -1,0 +1,40 @@
+✔ a single tap selects, then the same card within 420ms plays once (2.685167ms)
+✔ expired taps and a different card never autoplay (0.127458ms)
+✔ negative timestamp deltas cannot make a double tap (0.106958ms)
+✔ a long press selects but clears tap history and cannot precede autoplay (0.148541ms)
+✔ 450ms holds are valid taps, while a negative hold duration is rejected (0.6715ms)
+✔ small touch jitter stays a tap (0.1245ms)
+✔ a sweep and a return to the initial card cannot complete a tap pair (0.112458ms)
+✔ vertical movement of seven pixels cancels tap eligibility (0.063917ms)
+✔ crossing a narrow card rail cancels tap eligibility even below 7px (0.077042ms)
+✔ pointer cancellation discards tap history, including a pending first tap (0.193459ms)
+✔ a second pointer cancels a pending gesture rather than using the card (0.081709ms)
+✔ other pointer moves/releases cannot finish an active pointer (0.067ms)
+✔ busy cards never select or play; invalid cards remain selectable (0.127292ms)
+✔ play unlock clears old history so a new card cannot inherit a tap (0.071083ms)
+✔ overlapped cards own only stable exposed baseline rails (0.200958ms)
+✔ dragging beyond the hand clamps to an end card but hover never does (0.038583ms)
+✔ a tap on the visible raised card never selects its covered neighbor rail (0.059833ms)
+✔ releasing outside the actual card clears the tap instead of inheriting its uid (0.698458ms)
+✔ two distant taps on one large card are separate intentional selections (0.185542ms)
+✔ visible 1/2 tap expires without losing an in-progress pointer (0.046875ms)
+✔ double tap spatial tolerance accepts ordinary finger jitter but rejects 29px (0.025292ms)
+✔ beginning a different card clears old arming before React selection effects run (0.026666ms)
+✔ a stationary bottom-edge press keeps its snapshot target while selection lifts the artwork (0.049667ms)
+✔ a stationary second tap on the same route enters once, including native click duplication (1.801709ms)
+✔ different nodes, elapsed windows and long presses never complete a pair (0.815959ms)
+✔ a drag cannot activate a route even if the pointer returns to its start (0.35775ms)
+✔ scroll cancellation and a release outside the original node erase tap history (0.124417ms)
+✔ multitouch invalidates both pointers until all fingers lift (0.193667ms)
+✔ capture release preserves a real tap but phase changes expire pending taps and locks (0.082ms)
+✔ two distant taps on the same route tile do not commit a move (0.112292ms)
+✔ route armed state expires and an explicit entry remains available (0.22ms)
+✔ route context changes discard any armed first tap and pending entry lock (0.084041ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 131.587917

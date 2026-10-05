@@ -4,6 +4,12 @@
  * All randomness comes from the saved seed; restoring a run reproduces its future.
  */
 
+import {
+  CARD_UPGRADE_PATHS,
+  getUpgradePath,
+  isValidUpgradePath,
+} from "./card-upgrades.js";
+
 const card = (
   name,
   nameEn,
@@ -1028,12 +1034,32 @@ export const ENEMIES = {
     artKey: "raven",
     pattern: ["attack", "taunt", "attack", "guard"],
   },
+  gatekeeper: {
+    id: "valkyrie",
+    name: "IRON REGENT",
+    title: "THE ROOKIE GATEKEEPER",
+    maxHp: 84,
+    attack: 10,
+    taunt: 8,
+    artKey: "valkyrie",
+    pattern: ["guard", "attack", "taunt", "attack"],
+  },
+  contender: {
+    id: "viper",
+    name: "SABLE QUEEN",
+    title: "THE PRESSURE SPECIALIST",
+    maxHp: 124,
+    attack: 12,
+    taunt: 14,
+    artKey: "viper",
+    pattern: ["taunt", "attack", "attack", "guard"],
+  },
   boss: {
     id: "valkyrie",
     name: "EMPRESS",
     title: "THE REIGNING CHAMPION",
-    maxHp: 120,
-    attack: 13,
+    maxHp: 168,
+    attack: 14,
     taunt: 12,
     artKey: "ember",
     pattern: ["attack", "guard", "taunt", "attack", "attack"],
@@ -1176,6 +1202,81 @@ export const MIN_DECK_SIZE = 5;
 export const MIN_PRE_BOSS_COMBATS = 4;
 export const ROUTE_VERSION = 2;
 
+export const WAVES = [
+  {
+    wave: 1,
+    name: "루키 서킷",
+    difficulty: "초급",
+    bossId: "gatekeeper",
+    hpMultiplier: 1,
+    attackBonus: 0,
+    coins: 80,
+  },
+  {
+    wave: 2,
+    name: "컨텐더 서킷",
+    difficulty: "중급",
+    bossId: "contender",
+    hpMultiplier: 1.12,
+    attackBonus: 1,
+    coins: 110,
+  },
+  {
+    wave: 3,
+    name: "챔피언 서킷",
+    difficulty: "고급",
+    bossId: "boss",
+    hpMultiplier: 1.24,
+    attackBonus: 2,
+    coins: 150,
+  },
+];
+
+/** Floors stay local to each graph; stage/progress span the full 24-stop run. */
+export function getWaveInfo(state) {
+  const wave = clamp(
+    Math.trunc(Number(state.wave)) || (state.phase === "victory" ? 3 : 1),
+    1,
+    WAVES.length,
+  );
+  const definition = WAVES[wave - 1];
+  const boss = ENEMIES[definition.bossId];
+  return {
+    ...definition,
+    total: WAVES.length,
+    bossName: boss.name,
+    bossTitle: boss.title,
+    bossArtKey: boss.artKey,
+    completed: state.phase === "victory" ? 3 : (state.waveClears || []).length,
+    stage: (wave - 1) * 8 + clamp(Number(state.floor) || 1, 1, 8),
+    totalStages: WAVES.length * 8,
+    cleared: ["wave-clear", "victory"].includes(state.phase),
+    final: wave === WAVES.length,
+    nextWave: WAVES[wave]
+      ? {
+          ...WAVES[wave],
+          bossName: ENEMIES[WAVES[wave].bossId].name,
+          bossTitle: ENEMIES[WAVES[wave].bossId].title,
+          bossArtKey: ENEMIES[WAVES[wave].bossId].artKey,
+        }
+      : null,
+    recovery: { heal: Math.ceil(state.player.maxHp * 0.35), calm: 25 },
+  };
+}
+
+function routeNodeForWave(state, node) {
+  const result = clone(node);
+  const wave = getWaveInfo(state);
+  if (node.floor === 1)
+    result.label = wave.wave === 1 ? "데뷔 매치" : `${wave.name} 개막전`;
+  if (node.type === "boss") {
+    result.label = `${wave.difficulty} 챔피언십`;
+    result.description = `${wave.bossName} · ${wave.difficulty} 보스 · 승리 보상 ${wave.coins} 크레딧`;
+    result.reward.coins = wave.coins;
+  }
+  return result;
+}
+
 const REMOVE_CARD_CHOICE = {
   id: "remove-card",
   label: "덱 정리",
@@ -1264,10 +1365,10 @@ const ROUTE_TYPES = {
   boss: {
     type: "boss",
     label: "챔피언십",
-    description: "EMPRESS와 최종 결전 · 승리 보상 120 크레딧",
+    description: "현재 웨이브의 챔피언에게 도전 · 보상은 난이도에 따라 증가",
     icon: "crown",
     risk: "결승",
-    reward: { coins: 120, cardChoices: 0 },
+    reward: { coins: WAVES[0].coins, cardChoices: 0 },
     danger: { enemyTier: "boss", hpMultiplier: 1, attackBonus: 0 },
     artKey: "events/highstakes.webp",
   },
@@ -1352,6 +1453,19 @@ export function normalizeRun(current) {
   state.lastChoice ??= null;
   state.arrival ??= null;
   state.lastImpact ??= null;
+  // Completed legacy single-wave runs remain eligible for their earned archive.
+  state.wave = clamp(
+    Math.trunc(Number(state.wave)) || (state.phase === "victory" ? 3 : 1),
+    1,
+    WAVES.length,
+  );
+  state.waveCount = WAVES.length;
+  state.waveClears ||= [];
+  state.waveCombatWins ??= Math.max(
+    0,
+    (state.stats?.enemiesDefeated || 0) -
+      Number(["wave-clear", "victory"].includes(state.phase)),
+  );
   if (!hadInventory && state.mechanicsVersion !== 2)
     addLoot(state, "item", "icepack");
   state.mechanicsVersion = 2;
@@ -1466,7 +1580,9 @@ function availableRouteNodes(state) {
   const nextIds = ROUTE_GRAPH.edges
     .filter((edge) => edge.from === origin)
     .map((edge) => edge.to);
-  return clone(ROUTE_GRAPH.nodes.filter((entry) => nextIds.includes(entry.id)));
+  return ROUTE_GRAPH.nodes
+    .filter((entry) => nextIds.includes(entry.id))
+    .map((node) => routeNodeForWave(state, node));
 }
 
 export function getRouteView(current) {
@@ -1479,7 +1595,7 @@ export function getRouteView(current) {
       : [];
   return {
     nodes: ROUTE_GRAPH.nodes.map((node) => ({
-      ...clone(node),
+      ...routeNodeForWave(state, node),
       visited: visited.includes(node.id),
       current: node.id === state.route?.currentNodeId,
       available: available.includes(node.id),
@@ -1495,19 +1611,23 @@ export function getRouteView(current) {
     maxFloor: 8,
     laneCount: 6,
     minPreBossCombats: MIN_PRE_BOSS_COMBATS,
-    completedCombats: Math.max(
-      0,
-      (state.stats?.enemiesDefeated || 0) - (state.phase === "victory" ? 1 : 0),
-    ),
+    completedCombats:
+      state.waveCombatWins ??
+      Math.max(
+        0,
+        (state.stats?.enemiesDefeated || 0) -
+          Number(["wave-clear", "victory"].includes(state.phase)),
+      ),
+    wave: getWaveInfo(state),
     stageLabels: {
-      1: "데뷔 매치",
+      1: getWaveInfo(state).wave === 1 ? "데뷔 매치" : "서킷 개막전",
       2: "준비 / 추가 도전",
       3: "예선 1",
       4: "준비 / 추가 도전",
       5: "예선 2",
       6: "최종 준비 / 추가 도전",
       7: "최종 예선",
-      8: "챔피언십",
+      8: `${getWaveInfo(state).difficulty} 챔피언십`,
     },
     currentNodeId: state.route?.currentNodeId || null,
     visited: [...visited],
@@ -1516,7 +1636,9 @@ export function getRouteView(current) {
 
 export function equipGimmick(current, uid = null) {
   if (
-    !["map", "rest", "shop", "event", "reward"].includes(current.phase) ||
+    !["map", "rest", "shop", "event", "reward", "wave-clear"].includes(
+      current.phase,
+    ) ||
     (uid !== null &&
       !(current.gimmicks || []).some(
         (item) => item.uid === uid && GIMMICKS[item.id],
@@ -1581,17 +1703,61 @@ export function getCard(instance) {
   const base = CARDS[id];
   if (!base) return null;
   const upgraded = typeof instance === "object" && !!instance?.upgraded;
-  return {
+  const specialization = upgraded
+    ? getUpgradePath(id, instance?.upgradePath)
+    : null;
+  const definition = {
     ...base,
+    ...(specialization?.cost !== undefined
+      ? { cost: specialization.cost }
+      : {}),
+    ...(specialization?.exhaust !== undefined
+      ? { exhaust: specialization.exhaust }
+      : {}),
+  };
+  const effects = {
+    ...base.effects,
+    ...(upgraded ? specialization?.effects || base.upgrade : {}),
+  };
+  return {
+    ...definition,
     id,
     uid: typeof instance === "object" ? instance?.uid : undefined,
     upgraded,
+    upgradePath: specialization?.id,
+    upgradeLabel: specialization?.label,
+    upgradeFocus: specialization?.focus,
     name: base.name + (upgraded ? " +" : ""),
-    effects: { ...base.effects, ...(upgraded ? base.upgrade : {}) },
+    effects,
     description: upgraded
-      ? describeEffects(base, { ...base.effects, ...base.upgrade })
+      ? describeEffects(definition, effects)
       : base.description,
   };
+}
+
+/** Stable choices for an untrained card. Legacy upgraded cards remain intact. */
+export function getCardUpgradeOptions(instance) {
+  const id = typeof instance === "string" ? instance : instance?.id;
+  const base = CARDS[id];
+  if (!base || base.rarity === "nightmare" || instance?.upgraded) return [];
+  const paths = CARD_UPGRADE_PATHS[id] || [
+    { id: "standard", label: "기본기 숙련", focus: "기본 효과 강화" },
+  ];
+  return paths.map((entry) => {
+    const preview = getCard({
+      id,
+      upgraded: true,
+      ...(entry.id !== "standard" ? { upgradePath: entry.id } : {}),
+    });
+    return {
+      ...entry,
+      cost: preview.cost,
+      effects: preview.effects,
+      exhaust: !!preview.exhaust,
+      description: preview.description,
+      preview,
+    };
+  });
 }
 
 function describeEffects(base, effects) {
@@ -1696,8 +1862,9 @@ function setIntent(state) {
 function startCombat(state, type = "fight") {
   const isBoss = type === "boss";
   const isElite = type === "elite" || type === "risk";
+  const wave = getWaveInfo(state);
   const enemyId = isBoss
-    ? "boss"
+    ? wave.bossId
     : isElite
       ? "elite"
       : state.floor === 1
@@ -1707,14 +1874,20 @@ function startCombat(state, type = "fight") {
           : "phantom";
   const definition = ENEMIES[enemyId];
   const extraHp = isBoss ? 0 : (state.floor - 1) * (isElite ? 5 : 4);
+  const maxHp = Math.ceil(
+    (definition.maxHp + extraHp) * (isBoss ? 1 : wave.hpMultiplier),
+  );
   state.enemy = {
     ...clone(definition),
-    maxHp: definition.maxHp + extraHp,
-    hp: definition.maxHp + extraHp,
+    maxHp,
+    hp: maxHp,
     block: 0,
     weak: 0,
     vulnerable: 0,
-    attack: definition.attack + Math.floor((state.floor - 1) / 3),
+    attack:
+      definition.attack +
+      Math.floor((state.floor - 1) / 3) +
+      (isBoss ? 0 : wave.attackBonus),
     type,
   };
   if (type === "risk") {
@@ -1819,6 +1992,10 @@ export function newRun(
     turn: 1,
     floor: 1,
     maxFloor: 8,
+    wave: 1,
+    waveCount: WAVES.length,
+    waveCombatWins: 0,
+    waveClears: [],
     phase: "combat",
     combo: 0,
     log: [],
@@ -1840,7 +2017,7 @@ export function newRun(
     lastChoice: null,
     lastImpact: null,
     stats: { cardsPlayed: 0, damageDealt: 0, enemiesDefeated: 0, finishers: 0 },
-    history: [{ floor: 1, type: "fight", label: "데뷔 매치" }],
+    history: [{ wave: 1, floor: 1, type: "fight", label: "데뷔 매치" }],
     relics: [
       {
         id: `${wrestler.id}-passive`,
@@ -1857,7 +2034,9 @@ export function newRun(
       (entry) =>
         entry &&
         Object.hasOwn(CARDS, entry.id) &&
-        typeof entry.upgraded === "boolean",
+        typeof entry.upgraded === "boolean" &&
+        (entry.upgradePath === undefined ||
+          (entry.upgraded && isValidUpgradePath(entry.id, entry.upgradePath))),
     );
   const openingDeck = validBlueprint
     ? deckBlueprint
@@ -1866,6 +2045,7 @@ export function newRun(
     state.deck.push({
       ...makeInstance(state, entry.id),
       upgraded: entry.upgraded,
+      ...(entry.upgradePath ? { upgradePath: entry.upgradePath } : {}),
     });
   }
   addLoot(state, "item", "icepack");
@@ -2161,8 +2341,10 @@ function sampleRewards(state, count = 3, elite = false, rareOnly = false) {
 function finishCombat(state) {
   state.stats.enemiesDefeated++;
   const isBoss = state.enemy.type === "boss";
+  if (!isBoss) state.waveCombatWins++;
+  const wave = getWaveInfo(state);
   state.rewardCoins = isBoss
-    ? 120
+    ? wave.coins
     : state.enemy.type === "risk"
       ? 95
       : state.enemy.type === "elite"
@@ -2173,8 +2355,20 @@ function finishCombat(state) {
   calm(state, 5);
   expireGimmick(state);
   if (isBoss) {
-    state.phase = "victory";
-    addLog(state, "AND NEW! 당신이 새로운 챔피언입니다.", "victory");
+    state.waveClears.push({
+      wave: wave.wave,
+      boss: state.enemy.name,
+      combats: state.waveCombatWins,
+      coins: state.rewardCoins,
+    });
+    state.phase = wave.final ? "victory" : "wave-clear";
+    addLog(
+      state,
+      wave.final
+        ? "AND NEW! 세 웨이브를 제패한 최종 챔피언입니다."
+        : `WAVE ${wave.wave} CLEAR! ${state.enemy.name}을 꺾었습니다. ${state.rewardCoins} 크레딧 획득. 다음 웨이브 전 정비합니다.`,
+      "victory",
+    );
   } else {
     state.phase = "reward";
     const risk = state.enemy.type === "risk";
@@ -2569,7 +2763,7 @@ function openShop(state) {
     {
       id: "training",
       name: "퍼스널 트레이닝",
-      description: "덱의 카드 1장 자동 강화",
+      description: "카드 1장과 강화 방향을 직접 선택 · 획득 기술은 3갈래 특화",
       cost: 45,
       kind: "upgrade",
     },
@@ -2620,6 +2814,7 @@ export function advanceToNode(current, nodeIndex) {
   state.lastChoice = null;
   state.lastImpact = null;
   state.history.push({
+    wave: state.wave,
     floor: state.floor,
     type: node.type,
     label: node.label,
@@ -2700,8 +2895,12 @@ export function getCardRemovalOffer(state) {
     !EVENTS.some((event) => event.id === state.event?.id)
   )
     return null;
-  const location = state.route?.currentNodeId || `floor-${state.floor}`;
-  const used = state.deckRemoval?.usedNodeIds?.includes(location) || false;
+  const location = `${getWaveInfo(state).wave}:${state.route?.currentNodeId || `floor-${state.floor}`}`;
+  const used =
+    state.deckRemoval?.usedNodeIds?.includes(location) ||
+    (getWaveInfo(state).wave === 1 &&
+      state.deckRemoval?.usedNodeIds?.includes(state.route?.currentNodeId)) ||
+    false;
   const cost =
     state.phase === "shop"
       ? 60 + 20 * (state.deckRemoval?.shopPurchases || 0)
@@ -2747,7 +2946,9 @@ export function removeDeckCard(current, uid) {
   const state = normalizeRun(current);
   if (!removeInstanceInPlace(state, uid)) return current;
   state.player.coins -= offer.cost;
-  state.deckRemoval.usedNodeIds.push(state.route.currentNodeId);
+  state.deckRemoval.usedNodeIds.push(
+    `${state.wave}:${state.route.currentNodeId}`,
+  );
   if (current.phase === "shop") state.deckRemoval.shopPurchases++;
   const name = getCard(instance).name;
   state.lastChoice = {
@@ -2803,16 +3004,29 @@ function recordChoice(state, current, type, choice) {
   };
 }
 
-function upgradeInPlace(state, uid) {
+function upgradeInPlace(state, uid, branchId) {
   const instance = state.deck.find((c) => c.uid === uid);
   if (!instance || instance.upgraded || instance.id === "nightmare")
     return false;
+  if (
+    branchId !== undefined &&
+    !getCardUpgradeOptions(instance).some((entry) => entry.id === branchId)
+  )
+    return false;
   instance.upgraded = true;
+  if (branchId && branchId !== "standard") instance.upgradePath = branchId;
   for (const pile of ["hand", "draw", "discard", "exhaust"]) {
-    const copy = state[pile].find((c) => c.uid === uid);
-    if (copy) copy.upgraded = true;
+    for (const copy of state[pile].filter((c) => c.uid === uid)) {
+      copy.upgraded = true;
+      if (instance.upgradePath) copy.upgradePath = instance.upgradePath;
+    }
   }
-  addLog(state, `${CARDS[instance.id].name}을 강화했습니다.`, "upgrade");
+  const label = getCard(instance).upgradeLabel;
+  addLog(
+    state,
+    `${CARDS[instance.id].name}${label ? ` · ${label}` : ""} 강화 완료.`,
+    "upgrade",
+  );
   return true;
 }
 
@@ -2824,13 +3038,13 @@ function bestUpgrade(state) {
   );
 }
 
-export function upgradeCard(current, instanceId) {
+export function upgradeCard(current, instanceId, branchId) {
   if (current.phase !== "rest") return current;
   const instance = current.deck.find((c) => c.uid === instanceId);
   if (!instance || instance.upgraded || instance.id === "nightmare")
     return current;
   const state = normalizeRun(current);
-  upgradeInPlace(state, instanceId);
+  if (!upgradeInPlace(state, instanceId, branchId)) return current;
   recordChoice(
     state,
     current,
@@ -2894,7 +3108,8 @@ export function buyItem(current, itemOrId) {
     (current.gimmicks || []).length >= GIMMICK_CAPACITY
   )
     return current;
-  if (item.kind === "upgrade" && !bestUpgrade(current)) return current;
+  // A concrete card and specialization are required through purchaseCardUpgrade.
+  if (item.kind === "upgrade") return current;
   if (item.kind === "heal" && current.player.hp === current.player.maxHp)
     return current;
   const state = normalizeRun(current);
@@ -2907,7 +3122,6 @@ export function buyItem(current, itemOrId) {
     const nightmare = state.deck.find((c) => c.id === "nightmare");
     if (nightmare) removeInstanceInPlace(state, nightmare.uid);
   }
-  if (item.kind === "upgrade") upgradeInPlace(state, bestUpgrade(state).uid);
   if (item.kind === "card") state.deck.push(makeInstance(state, item.cardId));
   if (item.kind === "item") addLoot(state, "item", item.itemId);
   if (item.kind === "gimmick") addLoot(state, "gimmick", item.gimmickId);
@@ -2922,6 +3136,27 @@ export function buyItem(current, itemOrId) {
     });
   }
   addLog(state, `${item.name} 구매 · ${item.cost} 크레딧`, "shop");
+  return state;
+}
+
+/** Shop training is atomic: no coins are spent before a valid branch is chosen. */
+export function purchaseCardUpgrade(current, instanceId, branchId) {
+  if (current.phase !== "shop") return current;
+  const item = current.shopItems.find(
+    (entry) => entry.kind === "upgrade" && !entry.sold,
+  );
+  const instance = current.deck.find((entry) => entry.uid === instanceId);
+  if (
+    !item ||
+    current.player.coins < item.cost ||
+    !getCardUpgradeOptions(instance).some((entry) => entry.id === branchId)
+  )
+    return current;
+  const state = normalizeRun(current);
+  if (!upgradeInPlace(state, instanceId, branchId)) return current;
+  state.player.coins -= item.cost;
+  state.shopItems.find((entry) => entry.id === item.id).sold = true;
+  addLog(state, `${item.name} · ${item.cost} 크레딧`, "shop");
   return state;
 }
 
@@ -2988,13 +3223,53 @@ export function getDeckCount(state) {
   return state.deck.length;
 }
 
+/** Advance only after a living boss clear; repeated taps cannot duplicate recovery. */
+export function continueToNextWave(current) {
+  if (
+    current.phase !== "wave-clear" ||
+    current.player.hp <= 0 ||
+    current.enemy?.type !== "boss" ||
+    current.enemy.hp > 0 ||
+    getWaveInfo(current).final
+  )
+    return current;
+  const state = normalizeRun(current);
+  const recovery = getWaveInfo(state).recovery;
+  const healed = Math.min(recovery.heal, state.player.maxHp - state.player.hp);
+  state.player.hp += healed;
+  calm(state, recovery.calm);
+  state.wave++;
+  state.floor = 1;
+  state.waveCombatWins = 0;
+  state.route = {
+    version: ROUTE_VERSION,
+    currentNodeId: "f1-0",
+    visited: ["f1-0"],
+  };
+  state.arrival = null;
+  state.lastChoice = null;
+  state.lastImpact = null;
+  state.history.push({
+    wave: state.wave,
+    floor: 1,
+    type: "fight",
+    label: `${getWaveInfo(state).name} 개막전`,
+  });
+  addLog(
+    state,
+    `웨이브 ${state.wave}/${WAVES.length} · ${getWaveInfo(state).difficulty} 시작. 체력 +${healed}, 압박 최대 ${recovery.calm} 감소.`,
+    "recovery",
+  );
+  startCombat(state);
+  return state;
+}
+
 export function getRunProgress(state) {
+  const wave = getWaveInfo(state);
   return Math.min(
     100,
     Math.round(
-      ((state.floor - 1 + (state.phase === "victory" ? 1 : 0)) /
-        state.maxFloor) *
-        100,
+      ((wave.stage - 1 + Number(wave.cleared)) / wave.totalStages) * 100,
     ),
   );
 }

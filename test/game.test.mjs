@@ -18,6 +18,7 @@ import {
   resolveEvent,
   getCardDamage,
   getRunProgress,
+  continueToNextWave,
 } from "../src/game.js";
 
 function combatWith(ids, wrestler = "raven") {
@@ -243,6 +244,7 @@ test("events apply a valid choice atomically and saved runs preserve future rand
 
 test("the final championship resolves into a complete victory", () => {
   let state = toMap();
+  state.wave = 3;
   state.floor = 7;
   state.mapNodes = mapForFloor(8);
   assert.equal(state.mapNodes.length, 1);
@@ -286,10 +288,12 @@ function strategicRun(id, seed = 20903) {
   ];
   for (
     let step = 0;
-    step < 1000 && !["victory", "defeat"].includes(state.phase);
+    step < 5000 && !["victory", "defeat"].includes(state.phase);
     step++
   ) {
-    if (state.phase === "combat") {
+    if (state.phase === "wave-clear") {
+      state = continueToNextWave(state);
+    } else if (state.phase === "combat") {
       const choices = state.hand
         .filter((c) => canPlayCard(state, c))
         .map((instance) => {
@@ -377,15 +381,17 @@ function strategicRun(id, seed = 20903) {
   return state;
 }
 
-test("all ten wrestlers can complete a real eight-floor run using only public actions", () => {
+test("all ten wrestlers can complete a real three-wave run using only public actions", () => {
   for (const id of Object.keys(WRESTLERS)) {
     for (const seed of [20903, 424242]) {
       const result = strategicRun(id, seed);
       const label = `${id}/${seed}`;
       assert.equal(result.phase, "victory", label);
       assert.equal(result.floor, 8, label);
-      assert.equal(result.history.length, 8, label);
-      assert.ok(result.stats.enemiesDefeated >= 3, label);
+      assert.equal(result.history.length, 24, label);
+      assert.equal(result.wave, 3, label);
+      assert.equal(result.waveClears.length, 3, label);
+      assert.ok(result.stats.enemiesDefeated >= 15, label);
       assert.ok(result.stats.cardsPlayed > 20, label);
       assert.ok(
         result.deck.some((card) => card.upgraded),

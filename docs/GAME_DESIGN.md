@@ -25,7 +25,7 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 3. 공격을 연결해 열기를 얻고, 피니셔로 경기를 마무리합니다.
 4. 승리하면 크레딧과 서로 다른 카드 3장의 선택 보상을 받습니다. 카드를 받지 않고 덱을 얇게 유지할 수도 있습니다.
 5. 1·3·5·7구간에서 전투하고, 2·4·6구간에서는 준비 장소나 추가 전투를 고릅니다. 상점·락커룸·백스테이지에서 불필요한 카드를 영구 제거할 수 있습니다.
-6. 최소 4경기 승리 후 8번째 구간의 챔피언 EMPRESS를 꺾으면 런이 끝납니다. 승리한 완성 덱을 저장해 다음 런에 사용할 수 있습니다. 체력이 0이면 패배합니다.
+6. 각 웨이브에서 최소 4경기 승리 후 8번째 구간의 보스에 도전합니다. 루키·컨텐더·챔피언의 3웨이브를 모두 완료하면 런이 끝납니다. 첫 두 보스 승리 뒤 다음 웨이브 진입 시 최대 체력의 35% 회복과 압박 25 감소를 받고, 덱·강화·크레딧·미사용 물품은 유지합니다. 최종 EMPRESS 승리에서 완성 덱을 저장할 수 있습니다. 체력이 0이면 패배합니다.
 
 ## 열 명의 선수와 서로 다른 운영
 
@@ -66,9 +66,9 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 
 승리하면 압박 5가 감소합니다. 회복 카드, 휴식의 명상, 상점의 멘탈 코칭은 압박을 낮추거나 악몽을 제거합니다. 플레이어는 현재 경기의 공격 효율과 다음 경기의 덱 상태를 함께 판단합니다.
 
-## 연결된 8개 구간
+## 3웨이브와 웨이브별 8개 구간
 
-전체 지도는 시작점, 2–7구간의 여섯 경로, 최종 챔피언십을 연결한 **38개 노드·6개 레인**의 그래프입니다. 첫 경기 뒤에는 여섯 갈래 모두 열리며, 다음 층부터 현재 위치의 같은 레인과 인접 레인으로만 이동합니다. 마지막에는 모든 7구간 노드가 보스로 합쳐집니다. 지나간 경로, 현재 노드, 실제 진입 가능한 다음 노드, 미래 연결선을 함께 표시합니다. 미래 노드를 직접 선택하거나 연결 없는 갈래로 이동할 수 없습니다.
+각 웨이브의 지도는 시작점, 2–7구간의 여섯 경로, 해당 웨이브 챔피언십을 연결한 **38개 노드·6개 레인**의 그래프입니다. 첫 경기 뒤에는 여섯 갈래 모두 열리며, 다음 층부터 현재 위치의 같은 레인과 인접 레인으로만 이동합니다. 마지막에는 모든 7구간 노드가 보스로 합쳐집니다. 지나간 경로, 현재 노드, 실제 진입 가능한 다음 노드, 미래 연결선을 함께 표시합니다. 미래 노드를 직접 선택하거나 연결 없는 갈래로 이동할 수 없습니다.
 
 | 구간 | 단계                     | 여섯 레인의 노드 (왼쪽부터)                            |
 | ---- | ------------------------ | ------------------------------------------------------ |
@@ -79,22 +79,34 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 | 5    | 필수 예선 2              | 싱글 / 정예 / 싱글 / 쇼다운 / 정예 / 싱글              |
 | 6    | 최종 준비 또는 추가 도전 | 싱글 / 락커룸 / 백스테이지 / 쇼다운 / 프로 숍 / 락커룸 |
 | 7    | 필수 최종 예선           | 싱글 / 정예 / 싱글 / 쇼다운 / 정예 / 싱글              |
-| 8    | 최종 보스                | EMPRESS 챔피언십                                       |
+| 8    | 웨이브 보스              | 해당 웨이브 챔피언십                                   |
 
 **1·3·5·7구간은 전투만 있으므로 보스 입장 전 최소 4승**이 필요합니다. 준비 구간에서도 전투를 고르면 보스 전 최대 7경기를 치릅니다. 상점·백스테이지만 이용해 결승에 도착하는 경로는 없습니다.
 
+웨이브별 적 체력과 공격은 단계적으로 오릅니다. 일반·정예·쇼다운의 기본 체력에 초급 ×1, 중급 ×1.12, 고급 ×1.24를 적용하고 공격은 +0/+1/+2입니다. 보스는 별도 체력과 행동 패턴을 사용합니다. 기본 진입 수치는 아래와 같고, 코너 기믹의 대가는 이후 적용됩니다.
+
+| 웨이브 | 서킷 / 난이도 | 보스        | 체력 / 공격 | 첫 4행동                                     | 승리 크레딧 |
+| ------ | ------------- | ----------- | ----------- | -------------------------------------------- | ----------- |
+| 1      | 루키 / 초급   | IRON REGENT | 84 / 12     | 방어 → 공격 → 도발 → 공격                    | 80          |
+| 2      | 컨텐더 / 중급 | SABLE QUEEN | 124 / 14    | 도발 → 공격 → 공격 → 방어                    | 110         |
+| 3      | 챔피언 / 고급 | EMPRESS     | 168 / 16    | 공격 → 방어 → 도발 → 공격 (다음 행동도 공격) | 150         |
+
+각 웨이브는 보스 포함 최소 5경기, 전체 런은 최소 15경기입니다. 첫 두 보스 후 `wave-clear` 정비 화면에서 진행하며, 이미 넘긴 화면에 대한 반복 입력으로 회복이나 보상을 중복 수령할 수 없습니다. 세 번째 보스만 `victory`가 되어 완성 덱 보관을 엽니다. 상점 카드 제거의 장소 제한은 웨이브별로 구분하며 누적 제거 비용은 런 전체에서 유지합니다.
+
 표는 층 전체의 프리뷰입니다. 현재 위치에서 연결된 노드만 다음 선택지에 나타나므로 모든 갈래를 매번 고를 수는 없습니다. 모든 노드는 시작점에서 도달 가능하며 모든 노드에서 보스로 가는 경로가 있습니다.
 
-| 경기     | 상대 위험                                 | 크레딧 | 카드 선택            | 추가 보급                 |
-| -------- | ----------------------------------------- | ------ | -------------------- | ------------------------- |
-| 일반     | 일반 체력·공격                            | 35     | 커먼·언커먼·레어 3장 | 소모품 45%, 기믹 20% 확률 |
-| 정예     | 강한 정예 상대                            | 65     | 언커먼·레어 3장      | 소모품 1개, 기믹 1개 확정 |
-| 하드코어 | 같은 층 정예보다 체력 +20%(올림), 공격 +2 | 95     | 레어 4장             | 소모품 1개, 기믹 1개 확정 |
-| 결승     | EMPRESS                                   | 120    | 런 승리로 종료       | —                         |
+| 경기        | 상대 위험                                 | 크레딧         | 카드 선택            | 추가 보급                 |
+| ----------- | ----------------------------------------- | -------------- | -------------------- | ------------------------- |
+| 일반        | 일반 체력·공격                            | 35             | 커먼·언커먼·레어 3장 | 소모품 45%, 기믹 20% 확률 |
+| 정예        | 강한 정예 상대                            | 65             | 언커먼·레어 3장      | 소모품 1개, 기믹 1개 확정 |
+| 하드코어    | 같은 층 정예보다 체력 +20%(올림), 공격 +2 | 95             | 레어 4장             | 소모품 1개, 기믹 1개 확정 |
+| 웨이브 보스 | 초급 / 중급 / 고급 보스                   | 80 / 110 / 150 | 정비 또는 최종 승리  | —                         |
 
 선택 보상에서는 카드와 별도로 보급을 받을 수 있습니다. 아이템과 기믹 제안은 유형마다 1개이며 독립적으로 수령합니다. 슬롯이 꽉 차면 해당 수령은 불가능하고, 카드 선택 또는 건너뛰기로 지도에 돌아가면 받지 않은 보급은 사라집니다.
 
-락커룸에서는 최대 체력의 30% 회복과 압박 5 감소, 압박 25 감소와 악몽 1장 제거, 카드 1장 영구 강화, 선택 카드 1장 영구 제거 중 하나를 선택합니다. 상점에는 카드, 회복, 멘탈 코칭, 자동 강화, 소모품·코너 기믹과 유료 카드 제거가 있습니다. 새 상점은 영구 에너지 벨트를 판매하지 않습니다. 모든 영구 제거는 덱에 최소 5장을 남깁니다.
+락커룸에서는 최대 체력의 30% 회복과 압박 5 감소, 압박 25 감소와 악몽 1장 제거, 카드 1장 영구 강화, 선택 카드 1장 영구 제거 중 하나를 선택합니다. 상점에는 카드, 회복, 멘탈 코칭, 선택 강화, 소모품·코너 기믹과 유료 카드 제거가 있습니다. 새 상점은 영구 에너지 벨트를 판매하지 않습니다. 모든 영구 제거는 덱에 최소 5장을 남깁니다.
+
+기본 카드 5종은 기존 기본기 숙련을 유지합니다. 획득 카드 41종과 시그니처 3종은 각각 **3개의 서로 다른 특화**, 총 132개 방향을 제공합니다. `force`는 화력 또는 자원 집중, `control`은 약화·취약·방어·압박 관리, `flow`는 드로우·콤보·비용·열기 조건 개선을 중심으로 카드마다 개별 수치를 설계했습니다. 카드 한 장은 한 번만 강화하며 같은 종류의 두 장을 다르게 특화할 수 있습니다. 카드 선택 → 효과/비용 미리보기 → 방향 확정 순서이며, 상점은 확정 시에만 45크레딧을 지불합니다. 라커룸은 확정 시 휴식 행동을 소모합니다. 취소·잘못된 방향·이미 강화된 카드·부족한 크레딧은 상태를 바꾸지 않습니다. 기존 저장의 `upgraded: true` 카드가 방향을 갖고 있지 않으면 이전 + 효과를 그대로 유지합니다.
 
 백스테이지 선택은 실제 효과와 체력·크레딧 대가를 먼저 보여 줍니다. 체력 비용보다 현재 체력이 높아야 선택할 수 있어 체력 1로 비용을 회피할 수 없습니다. 크레딧 부족이나 보관함 부족으로 보상을 받을 수 없는 선택도 실행되지 않습니다. 락커룸·이벤트 도착에는 설명 장면이 있고, 선택 뒤에는 실제 회복량·지출·획득 결과를 표시합니다.
 
@@ -142,7 +154,7 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 
 ## 카드 50종
 
-표는 강화 전의 효과입니다. 강화는 피해, 방어, 드로우 또는 회복량을 개선하며 카드의 UI 설명도 함께 바뀝니다.
+표는 강화 전의 효과입니다. 강화 방향별 효과·비용·이름은 `src/card-upgrades.js`에 정의되고 UI와 전투 모두 `getCard`의 같은 결과를 사용합니다. 도감의 상세에서 각 기술의 3가지 방향을 비교할 수 있습니다.
 
 | ID             | 카드              | 비용 | 분류            | 기본 효과                                 |
 | -------------- | ----------------- | ---- | --------------- | ----------------------------------------- |
@@ -226,7 +238,9 @@ The rules module is [`src/game.js`](../src/game.js). It has no browser or third-
 | `mapForFloor(floor)`                               | Returns all node definitions for that floor as a preview                                           |
 | `advanceToNode(state, nodeIndexOrId)`              | Enters a connected next node and increments the floor                                              |
 | `rest(state, 'heal' / 'meditate' / 'upgrade')`     | Resolves one rest action; automatic upgrade prioritizes a finisher                                 |
-| `upgradeCard(state, uid)`                          | Upgrades a chosen permanent card in the rest phase, then opens the map                             |
+| `upgradeCard(state, uid, branchId)`                          | Applies the selected specialization at rest, then opens the map; omitted branch preserves legacy automation                             |
+| `getCardUpgradeOptions(instance)` | Returns three named specializations for an untrained acquired/signature card, one for a starter, none for nightmares or trained cards |
+| `purchaseCardUpgrade(state, uid, branchId)` | Atomically validates and purchases one selected card specialization at the shop |
 | `buyItem(state, itemId)`                           | Pays for an available shop item; insufficient funds are a no-op                                    |
 | `leaveShop(state)`                                 | Closes the shop and opens the next map                                                             |
 | `resolveEvent(state, choiceId)`                    | Applies a valid event choice, then opens the map                                                   |
@@ -237,7 +251,7 @@ Deck services are `getCardRemovalOffer(state)` and `removeDeckCard(state, uid)`.
 
 Additional exports are `ITEMS`, `GIMMICKS`, `ITEM_CAPACITY`, `GIMMICK_CAPACITY`, `ROUTE_GRAPH`, `EVENTS`, `normalizeRun(saved)`, `getRouteView(state)`, `useItem(state, uid)`, `equipGimmick(state, uidOrNull)`, `claimLoot(state, kind, id)`, `getRestChoices(state)` and `canResolveEventChoice(state, choiceId)`. `kind` is `item` or `gimmick`. Item actions spend no energy. Illegal actions, unaffordable event costs, unavailable graph nodes and full-capacity acquisitions return the original state unchanged.
 
-The state includes `player`, `enemy`, `hand`, `draw`, `discard`, `exhaust`, `deck`, `energy`, `maxEnergy`, `turn`, `floor`, `maxFloor`, `phase`, `combo`, `status`, `rewards`, `rewardCoins`, `mapNodes`, `event`, `shopItems`, `history`, `relics`, `stats`, `log`, and the PRNG `seed`. New mechanics add `mechanicsVersion: 2`, `route: { version: 2, currentNodeId, visited }`, `deckRemoval: { shopPurchases, usedNodeIds }`, `inventory`, `gimmicks`, `equippedGimmickUid`, `activeGimmick`, `rewardLoot`, `arrival`, `lastChoice` and `lastImpact`. Item and gimmick instances are `{ uid, id }`; active gimmicks also carry their encounter node and duration. `getRouteView` supplies the full nodes and edges with `visited`, `available` and `current` flags. `lastChoice.result` contains actual outcome strings; `lastImpact` records actual HP damage and absorbed block for every card/item/intent, including zero-impact support actions. Card instances have stable UIDs. `log` is a string array; `logEvents` provides message types and turn numbers.
+The state includes `player`, `enemy`, `hand`, `draw`, `discard`, `exhaust`, `deck`, `energy`, `maxEnergy`, `turn`, `floor`, `maxFloor`, `wave`, `waveCount`, `waveCombatWins`, `waveClears`, `phase`, `combo`, `status`, `rewards`, `rewardCoins`, `mapNodes`, `event`, `shopItems`, `history`, `relics`, `stats`, `log`, and the PRNG `seed`. `getWaveInfo` supplies local wave metadata, boss details, 24-stage progress and transition recovery; `continueToNextWave` preserves the deck and resources while advancing only a valid living boss clear. Legacy victories remain terminal and archiveable; active older runs enter wave 1 without rerolling their active opponent or seed. New mechanics add `mechanicsVersion: 2`, `route: { version: 2, currentNodeId, visited }`, `deckRemoval: { shopPurchases, usedNodeIds }`, `inventory`, `gimmicks`, `equippedGimmickUid`, `activeGimmick`, `rewardLoot`, `arrival`, `lastChoice` and `lastImpact`. Item and gimmick instances are `{ uid, id }`; active gimmicks also carry their encounter node and duration. `getRouteView` supplies the full nodes and edges with `visited`, `available` and `current` flags. `lastChoice.result` contains actual outcome strings; `lastImpact` records actual HP damage and absorbed block for every card/item/intent, including zero-impact support actions. Card instances have stable UIDs. `log` is a string array; `logEvents` provides message types and turn numbers.
 
 `WRESTLERS` contains ten IDs: `raven`, `valkyrie`, `nova`, `viper`, `ember`, `atlas`, `seraph`, `lynx`, `tempest`, `onyx`. Each definition includes `role`, `roleEn`, `strategy`, `complexity` (1–3), `complexityLabel`, `easyLabel`, `strengths`, `playstyle`, `recommendedCards`, and the exact `startingDeck` card IDs. `newRun` constructs instances from that deck. Encyclopedia `startingWrestlers` and acquisition text derive from these definitions.
 
@@ -246,7 +260,8 @@ Turn-scoped `status.precisionUsed`, `status.crowdUsed`, `status.powerUsed`, `sta
 ```text
 combat → reward → map → combat / rest / event / shop
 rest / event / shop → map
-final boss combat → victory
+wave 1/2 boss combat → wave-clear → next wave opening combat
+wave 3 boss combat → victory
 any combat with player HP 0 → defeat
 ```
 
@@ -270,7 +285,7 @@ A [Blender QA gallery](../artifacts/expanded-fighter-state-gallery.blend) displa
 
 The connected-route suite checks all 38 nodes for reachability and boss continuation, enumerates every complete graph path to require at least four pre-boss fights, and verifies that support-seeking play must win those encounters. Route migration tests retain active opponents, piles, resources and seed. Removal tests cover exact duplicate selection across all piles, escalating shop cost, one service per location, consuming rest/event choices, insufficient funds and the five-card minimum. Archive tests cover completion eligibility, all ten wrestler identities, immutable card blueprints, fresh-run resets, duplicate prevention, the 20-entry limit, corruption recovery and failed storage writes/deletes. Seeded preparation/balanced/risk runs exercise public actions; earlier balance artifacts are historical measurements for the previous route graph.
 
-The engine suite covers reproducible initialization and save/load, invalid actions, energy, block, combos and finishers, exhaustion and reshuffling, nightmare thresholds, defeat, rewards, map transitions, rest, upgrades, shops, events, and full eight-floor wins for all ten wrestlers on two deterministic seeds. Strategy regressions cover debuff timing, multi-hit damage previews, conditional comeback recovery, caps, per-turn limits, old status compatibility, and nightmare-draw defeat without passive recursion or resurrection. The expansion suite resolves all 50 cards at both upgrade levels for each of the ten wrestlers, compares damage previews with actual results, and verifies JSON restore and immutable actions. Across 768 deterministic seeds it checks that all 25 new moves appear in normal rewards and shops, can be acquired once per offer, and can be permanently upgraded at rest.
+The engine suite covers reproducible initialization and save/load, invalid actions, energy, block, combos and finishers, exhaustion and reshuffling, nightmare thresholds, defeat, rewards, map transitions, rest, upgrades, shops, events, and full three-wave, 24-stage wins for all ten wrestlers on two deterministic seeds. Strategy regressions cover debuff timing, multi-hit damage previews, conditional comeback recovery, caps, per-turn limits, old status compatibility, and nightmare-draw defeat without passive recursion or resurrection. The expansion suite resolves all 50 cards at both upgrade levels for each of the ten wrestlers, compares damage previews with actual results, and verifies JSON restore and immutable actions. Across 768 deterministic seeds it checks that all 25 new moves appear in normal rewards and shops, can be acquired once per offer, and can be permanently upgraded at rest.
 
 Presentation tests cover exact health boundaries, health/pressure/heat priority, recovery after real engine actions, the 60 distinct state paths and WebP files, and unchanged outcomes for all 50 card cues. A reachable-source check rejects app-owned canvas drawing or continuous illustration frame loops. Automated checks do not establish visual reference fidelity or browser layout; those are tracked in the [verification record](../artifacts/cartoon-fighter-qa.md) and [arena checklist](../artifacts/arena-layout-checklist.md).
 

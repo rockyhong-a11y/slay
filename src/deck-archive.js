@@ -1,4 +1,5 @@
 import { CARDS, WRESTLERS, newRun } from "./game.js";
+import { isValidUpgradePath } from "./card-upgrades.js";
 
 // Kept apart from the active-run slot: starting over never erases a champion deck.
 export const DECK_ARCHIVE_KEY = "slay-deck-archive-v1";
@@ -40,8 +41,17 @@ function blueprint(cards, allowLegacyUpgrade = false) {
         !(allowLegacyUpgrade && card.upgraded === undefined))
     )
       return null;
+    if (
+      card.upgradePath != null &&
+      (!card.upgraded || !isValidUpgradePath(card.id, card.upgradePath))
+    )
+      return null;
     // No UIDs, temporary effects, or run resources are carried into the archive.
-    result.push({ id: card.id, upgraded: card.upgraded === true });
+    result.push({
+      id: card.id,
+      upgraded: card.upgraded === true,
+      ...(card.upgradePath ? { upgradePath: card.upgradePath } : {}),
+    });
   }
   return result;
 }
@@ -210,6 +220,8 @@ export function canArchiveRun(run) {
     Number.isSafeInteger(run.floor) &&
     run.floor >= 1 &&
     run.floor === run.maxFloor &&
+    (run.waveCount == null ||
+      (Number.isInteger(run.wave) && run.wave === run.waveCount)) &&
     run.enemy?.type === "boss" &&
     run.enemy.hp <= 0 &&
     blueprint(run.deck, true)

@@ -55,6 +55,9 @@ import {
   leaveShop,
   resolveEvent,
   upgradeCard,
+  purchaseCardUpgrade,
+  getWaveInfo,
+  continueToNextWave,
   getCard,
   canPlayCard,
   normalizeRun,
@@ -70,6 +73,9 @@ import {
   getCardRemovalOffer,
   removeDeckCard,
 } from "./game.js";
+import { UpgradeChoices } from "./UpgradeChoices.jsx";
+import { WaveClearPanel } from "./WaveProgression.jsx";
+import "./wave-progression.css";
 import {
   DeckLoadout,
   SaveChampionDeck,
@@ -216,6 +222,7 @@ function loadRun() {
         "event",
         "shop",
         "victory",
+        "wave-clear",
         "defeat",
       ].includes(data.phase) &&
       ["deck", "hand", "draw", "discard", "exhaust", "log", "relics"].every(
@@ -274,6 +281,7 @@ function Modal({
   wide = false,
   className = "",
   closeLabel = "닫기",
+  contentKey,
 }) {
   const ref = useRef(null);
   const heading = useRef(null);
@@ -291,7 +299,7 @@ function Modal({
   useEffect(() => {
     if (ref.current) ref.current.scrollTop = 0;
     heading.current?.focus({ preventScroll: true });
-  }, [title]);
+  }, [title, contentKey]);
   return (
     <dialog
       ref={ref}
@@ -370,7 +378,7 @@ function Card({
       aria-hidden={!present || undefined}
       aria-pressed={index != null ? selected : undefined}
       tabIndex={!present ? -1 : undefined}
-      aria-label={`${card.name}, ${detail.discipline}, 에너지 ${card.cost}, ${card.description}`}
+      aria-label={`${card.name}${card.upgradeLabel ? ` · ${card.upgradeLabel}` : ""}, ${detail.discipline}, 에너지 ${card.cost}, ${card.description}`}
     >
       {index != null && (
         <span className="card-peek" aria-hidden="true">
@@ -408,7 +416,9 @@ function Card({
       </div>
       <div className="card-foot">
         <span>
-          {CARD_RARITY_LABELS[card.rarity]} · {typeNames[card.type]}
+          {card.upgradeLabel
+            ? `강화 · ${card.upgradeLabel}`
+            : `${CARD_RARITY_LABELS[card.rarity]} · ${typeNames[card.type]}`}
         </span>
         {index != null && <kbd>{index === 9 ? 0 : index + 1}</kbd>}
       </div>
@@ -455,6 +465,7 @@ function App() {
   );
   const [archiveError, setArchiveError] = useState("");
   const [savedVictoryId, setSavedVictoryId] = useState(null);
+  const [upgradeTarget, setUpgradeTarget] = useState(null);
   const [previewActor, setPreviewActor] = useState(null);
   const [previewFromRoster, setPreviewFromRoster] = useState(false);
   const [nav, setNav] = useState(pageFromHash);
@@ -498,7 +509,9 @@ function App() {
   const enemyCondition = selectFighterState(state.enemy, { enemy: true });
   const selectedHand =
     state.hand.find((card) => card.uid === selectedHandId) || state.hand[0];
-  const arrivalKey = state.arrival && `${state.arrival.nodeId}-${state.phase}`;
+  const arrivalKey =
+    state.arrival &&
+    `${state.wave || 1}-${state.arrival.nodeId}-${state.phase}`;
   const arrivalVisible =
     nav === "battle" &&
     ["rest", "event"].includes(state.phase) &&
@@ -506,7 +519,7 @@ function App() {
     !dismissedArrivals.includes(arrivalKey);
   const feedbackKey =
     state.lastChoice &&
-    `${state.route?.currentNodeId}-${state.lastChoice.type}-${state.lastChoice.id}`;
+    `${state.wave || 1}-${state.route?.currentNodeId}-${state.lastChoice.type}-${state.lastChoice.id}`;
   const feedback = feedbackKey !== dismissedFeedback ? state.lastChoice : null;
   const dismissArrival = () => {
     setDismissedArrivals((current) => [...current, arrivalKey]);
@@ -634,17 +647,19 @@ function App() {
     mainRef.current?.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [nav, state.phase, state.floor]);
   const play = (uid) => {
-    if (state.phase !== "combat" || busyRef.current) return;
+    if (state.phase !== "combat" || busyRef.current) return false;
     const instance = state.hand.find((c) => c.uid === uid);
     const card = getCard(instance);
     const next = playCard(state, uid);
     if (next === state) {
       notify(
-        card?.type === "finisher"
-          ? "피니셔에는 관중 열기 3이 필요합니다."
-          : "에너지가 부족하거나 사용할 수 없는 카드입니다.",
+        card && state.player.hype < (card.effects.spendHype || 0)
+          ? `이 기술에는 관중 열기 ${card.effects.spendHype}이 필요합니다.`
+          : card && state.energy < card.cost
+            ? `에너지 ${card.cost}이 필요합니다.`
+            : "지금은 사용할 수 없는 카드입니다.",
       );
-      return;
+      return false;
     }
     const actionCue = createCardCue(state, next, instance);
     const id = ++cueSequence.current;
@@ -666,6 +681,7 @@ function App() {
     hitTimer.current = setTimeout(() => setHit(null), 650);
     sound.play(damage > 0 ? "attack" : "skill");
     setState(next);
+    return true;
   };
   const end = () => {
     if (busyRef.current) return;
@@ -846,6 +862,7 @@ function App() {
     setModal("condition");
   };
   const closeModal = () => {
+    setUpgradeTarget(null);
     if (modal === "condition" && previewFromRoster) {
       setPreviewFromRoster(false);
       setModal("roster");
@@ -869,6 +886,24 @@ function App() {
   };
   const intentAttack = intent?.type === "attack" || intent?.type === "heavy";
   const activePhase = state.phase;
+  const waveInfo = getWaveInfo(state);
+  const confirmUpgrade = (path) => {
+    if (busyRef.current || !upgradeTarget) return false;
+    const next =
+      state.phase === "shop"
+        ? purchaseCardUpgrade(state, upgradeTarget, path)
+        : upgradeCard(state, upgradeTarget, path);
+    if (next === state) {
+      notify("이 카드는 지금 강화할 수 없습니다.");
+      return false;
+    }
+    setState(next);
+    closeModal();
+    notify(
+      `${getCard(next.deck.find((card) => card.uid === upgradeTarget)).name} 강화 완료`,
+    );
+    return true;
+  };
   return (
     <MotionConfig reducedMotion="user">
       <div
@@ -936,7 +971,14 @@ function App() {
         <div className="main-shell">
           <header className="topbar">
             <div className="wordmark">
-              SLAY<span>RING OF NIGHTMARES</span>
+              SLAY
+              <span
+                className="wave-top-status"
+                aria-label={`${waveInfo.wave}웨이브 ${waveInfo.total}개 중 ${waveInfo.difficulty}`}
+              >
+                W{waveInfo.wave} / {waveInfo.total}
+                <small>{waveInfo.difficulty}</small>
+              </span>
             </div>
             <div className="top-breadcrumb">
               {nav === "cards" || nav === "guide"
@@ -1048,22 +1090,29 @@ function App() {
                 <div className="chapter-header">
                   <div>
                     <div className="chapter-label">
-                      <span>CHAPTER 01</span>
+                      <span>
+                        WAVE 0{waveInfo.wave} / 0{waveInfo.total} ·{" "}
+                        {waveInfo.difficulty}
+                      </span>
                       <span className="label-line" />
                       <span>
-                        {state.floor === 8 ? "CHAMPIONSHIP" : "THE UNDERGROUND"}
+                        {state.floor === 8
+                          ? `${waveInfo.bossName} · BOSS MATCH`
+                          : waveInfo.name}
                       </span>
                     </div>
                     <h1>
                       {state.floor === 8
-                        ? "THE FINAL RECKONING"
+                        ? waveInfo.final
+                          ? "THE FINAL RECKONING"
+                          : "THE QUALIFIER CROWN"
                         : "THE UNDERGROUND"}
                       <span className="heading-point">.</span>
                     </h1>
                     <p>
                       {state.floor === 8
-                        ? "왕관은 단 한 명의 것이다."
-                        : "빛이 닿지 않는 링. 당신의 전설은 여기서 시작된다."}
+                        ? `${waveInfo.difficulty} 보스 ${waveInfo.bossName}에게 도전합니다.`
+                        : `${waveInfo.wave}웨이브 · ${waveInfo.name}. 덱을 완성하며 다음 보스에 도전하세요.`}
                     </p>
                   </div>
                   <button
@@ -1072,7 +1121,7 @@ function App() {
                   >
                     <Footprints size={20} />
                     <span>
-                      현재 구간
+                      {waveInfo.wave}웨이브 구간
                       <strong>
                         {String(state.floor).padStart(2, "0")}
                         <small> / 08</small>
@@ -1106,6 +1155,8 @@ function App() {
                 </button>
                 <ChampionRoad
                   state={state}
+                  contextKey={`${modal || ""}:${nav}`}
+                  locked={!!modal}
                   onChoose={(i) => {
                     act((s) => advanceToNode(s, i));
                     changePage("battle");
@@ -1115,6 +1166,11 @@ function App() {
                   onDismissFeedback={() => setDismissedFeedback(feedbackKey)}
                 />
               </section>
+            ) : activePhase === "wave-clear" ? (
+              <WaveClearPanel
+                state={state}
+                onContinue={() => act(continueToNextWave)}
+              />
             ) : ["rest", "event", "shop"].includes(activePhase) ? (
               <JourneyLocation state={state}>
                 <PhasePanel
@@ -1122,6 +1178,8 @@ function App() {
                   act={act}
                   startRun={openLoadout}
                   setModal={setModal}
+                  inputContext={`${modal || ""}:${nav}`}
+                  inputLocked={!!modal}
                 />
               </JourneyLocation>
             ) : (
@@ -1170,7 +1228,9 @@ function App() {
                     aria-hidden={!state.enemy}
                   >
                     <span className="fighter-side">
-                      {state.floor === 8 ? "FINAL BOSS" : "OPPONENT"}
+                      {state.floor === 8
+                        ? `WAVE ${waveInfo.wave} BOSS`
+                        : "OPPONENT"}
                     </span>
                     <div className="fighter-name">
                       <h2>{enemyHUD.name}</h2>
@@ -1292,6 +1352,8 @@ function App() {
                         act={act}
                         startRun={openLoadout}
                         setModal={setModal}
+                        inputContext={`${modal || ""}:${nav}`}
+                        inputLocked={!!modal}
                       />
                     </div>
                   )}
@@ -1403,6 +1465,26 @@ function App() {
                         selectedId={selectedHand?.uid}
                         onSelect={setSelectedHandId}
                         onPlay={play}
+                        contextKey={`${state.wave}:${state.floor}:${state.turn}:${state.phase}:${state.energy}:${modal || ""}:${nav}`}
+                        getCardLabel={(uid) => {
+                          const card = getCard(
+                            state.hand.find((entry) => entry.uid === uid),
+                          );
+                          return card
+                            ? `${card.name}${card.upgradeLabel ? ` · ${card.upgradeLabel}` : ""}`
+                            : "카드";
+                        }}
+                        getUnplayableReason={(uid) => {
+                          const card = getCard(
+                            state.hand.find((entry) => entry.uid === uid),
+                          );
+                          if (!card) return "사용할 수 없는 카드입니다.";
+                          if (state.player.hype < (card.effects.spendHype || 0))
+                            return `열기 ${card.effects.spendHype} 필요`;
+                          if (state.energy < card.cost)
+                            return `에너지 ${card.cost} 필요`;
+                          return "기술 연출이 끝나면 사용할 수 있습니다.";
+                        }}
                         isPlayable={(uid) => {
                           const card = state.hand.find(
                             (entry) => entry.uid === uid,
@@ -1503,6 +1585,7 @@ function App() {
         </AnimatePresence>
         {modal && (
           <Modal
+            contentKey={modal === "upgrade" ? upgradeTarget : undefined}
             title={
               {
                 deck: "나의 덱",
@@ -1548,64 +1631,83 @@ function App() {
             }
             onClose={closeModal}
           >
-            {["deck", "draw", "discard", "upgrade"].includes(modal) && (
-              <>
-                {modal === "deck" && (
-                  <div className="deck-builder-toolbar">
-                    <p>현재 런의 덱 · {state.deck.length}장</p>
-                    <button
-                      className="secondary-button"
-                      onClick={() => openLoadout(state.player.id)}
-                    >
-                      <Trophy size={16} /> 완성 덱 보관함 ·{" "}
-                      {archiveResult.archive.decks.length}
-                    </button>
-                  </div>
-                )}
-                <p className="muted modal-desc">
-                  {modal === "upgrade"
-                    ? "강화할 카드를 선택하세요. 한 장을 영구적으로 강화합니다."
-                    : modal === "draw"
-                      ? "드로우 순서는 공개되지 않습니다. 덱이 비면 버린 카드를 섞습니다."
-                      : modal === "deck"
-                        ? "보상과 상점에서 카드를 추가하고, 상점·라커룸·백스테이지에서 불필요한 카드를 영구 제거할 수 있습니다."
-                        : "턴 종료 때 남은 패를 버립니다. 소멸한 카드는 이 경기에 돌아오지 않습니다."}
-                </p>
-                <div className="deck-grid">
-                  {(modal === "upgrade"
-                    ? state.deck.filter(
-                        (c) =>
-                          !c.upgraded &&
-                          !["nightmare", "curse"].includes(getCard(c).type),
-                      )
-                    : modal === "deck"
-                      ? state.deck
-                      : state[modal]
-                  ).map((c) => (
-                    <Card
-                      key={c.uid}
-                      instance={c}
-                      compact
-                      onClick={
-                        modal === "upgrade"
-                          ? () => {
-                              act((s) => upgradeCard(s, c.uid));
-                              setModal(null);
-                            }
-                          : undefined
-                      }
-                    />
-                  ))}
-                </div>
-                {modal !== "upgrade" &&
-                  modal !== "deck" &&
-                  state[modal].length === 0 && (
-                    <div className="empty-state">
-                      <Stack size={38} />
-                      <p>이 카드 더미는 비어 있습니다.</p>
+            {["deck", "draw", "discard", "upgrade"].includes(modal) &&
+              !(modal === "upgrade" && upgradeTarget) && (
+                <>
+                  {modal === "deck" && (
+                    <div className="deck-builder-toolbar">
+                      <p>현재 런의 덱 · {state.deck.length}장</p>
+                      <button
+                        className="secondary-button"
+                        onClick={() => openLoadout(state.player.id)}
+                      >
+                        <Trophy size={16} /> 완성 덱 보관함 ·{" "}
+                        {archiveResult.archive.decks.length}
+                      </button>
                     </div>
                   )}
-              </>
+                  <p className="muted modal-desc">
+                    {modal === "upgrade"
+                      ? "먼저 강화할 한 장을 고르고 강화 방향을 비교하세요. 획득 카드는 서로 다른 3가지 강화 중 하나를 선택합니다."
+                      : modal === "draw"
+                        ? "드로우 순서는 공개되지 않습니다. 덱이 비면 버린 카드를 섞습니다."
+                        : modal === "deck"
+                          ? "보상과 상점에서 카드를 추가하고, 상점·라커룸·백스테이지에서 불필요한 카드를 영구 제거할 수 있습니다."
+                          : "턴 종료 때 남은 패를 버립니다. 소멸한 카드는 이 경기에 돌아오지 않습니다."}
+                  </p>
+                  <div className="deck-grid">
+                    {(modal === "upgrade"
+                      ? state.deck.filter(
+                          (c) =>
+                            !c.upgraded &&
+                            !["nightmare", "curse"].includes(getCard(c).type),
+                        )
+                      : modal === "deck"
+                        ? state.deck
+                        : state[modal]
+                    ).map((c) => (
+                      <Card
+                        key={c.uid}
+                        instance={c}
+                        compact
+                        onClick={
+                          modal === "upgrade"
+                            ? () => {
+                                setUpgradeTarget(c.uid);
+                              }
+                            : undefined
+                        }
+                      />
+                    ))}
+                  </div>
+                  {modal !== "upgrade" &&
+                    modal !== "deck" &&
+                    state[modal].length === 0 && (
+                      <div className="empty-state">
+                        <Stack size={38} />
+                        <p>이 카드 더미는 비어 있습니다.</p>
+                      </div>
+                    )}
+                </>
+              )}
+            {modal === "upgrade" && upgradeTarget && (
+              <UpgradeChoices
+                instance={state.deck.find((card) => card.uid === upgradeTarget)}
+                onChoose={confirmUpgrade}
+                onBack={() => setUpgradeTarget(null)}
+                contextLabel={
+                  state.phase === "shop"
+                    ? "프로 숍 · 퍼스널 트레이닝"
+                    : "라커룸 · 개별 기술 훈련"
+                }
+                cost={
+                  state.phase === "shop"
+                    ? state.shopItems.find(
+                        (item) => item.kind === "upgrade" && !item.sold,
+                      )?.cost || 0
+                    : 0
+                }
+              />
             )}
             {modal === "roster" && (
               <Roster
@@ -1754,7 +1856,14 @@ function App() {
   );
 }
 
-function PhasePanel({ state, act, startRun, setModal }) {
+function PhasePanel({
+  state,
+  act,
+  startRun,
+  setModal,
+  inputContext,
+  inputLocked,
+}) {
   if (state.phase === "reward")
     return (
       <div className="reward-panel">
@@ -1791,6 +1900,8 @@ function PhasePanel({ state, act, startRun, setModal }) {
       <div className="phase-box">
         <ChampionRoad
           state={state}
+          contextKey={inputContext}
+          locked={inputLocked}
           onChoose={(i) => act((s) => advanceToNode(s, i))}
         />
       </div>
@@ -1850,7 +1961,11 @@ function PhasePanel({ state, act, startRun, setModal }) {
           {state.shopItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => act((s) => buyItem(s, item.id))}
+              onClick={() =>
+                item.kind === "upgrade"
+                  ? setModal("upgrade")
+                  : act((s) => buyItem(s, item.id))
+              }
               disabled={
                 state.player.coins < item.cost ||
                 item.sold ||
@@ -1957,7 +2072,7 @@ function PhasePanel({ state, act, startRun, setModal }) {
       </h2>
       <p>
         {state.phase === "victory"
-          ? "타이틀 매치에서 승리했습니다. 당신이 새로운 챔피언입니다."
+          ? "3웨이브의 모든 보스를 제압했습니다. 완성한 강화 덱을 저장하고 다시 도전하세요."
           : `${state.floor}번째 구간에서 경기가 끝났습니다. 다른 덱과 경로로 다시 도전하세요.`}
       </p>
       <div className="champion-actions">

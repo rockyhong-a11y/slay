@@ -54,6 +54,7 @@ function memoryStorage() {
 function completedRun(actorId = "atlas", seed = 1823) {
   let run = newRun(actorId, seed);
   run.floor = run.maxFloor;
+  run.wave = run.waveCount;
   run.enemy.type = "boss";
   run.enemy.hp = 1;
   run.hand = [{ uid: "winning-strike", id: "strike", upgraded: false }];

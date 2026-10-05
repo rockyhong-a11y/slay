@@ -22,6 +22,7 @@ import {
 } from "@phosphor-icons/react";
 import {
   getRouteView,
+  getWaveInfo,
   ITEMS,
   GIMMICKS,
   GIMMICK_CAPACITY,
@@ -30,6 +31,8 @@ import {
 import { Artwork } from "./Artwork.jsx";
 import { fighterPoseArt, selectFighterState } from "./presentation.js";
 import { createRouteTapTracker } from "./route-gestures.js";
+import { HAND_DOUBLE_TAP_MS, TOUCH_CONFIRM_MS } from "./hand-interaction.js";
+import "./touch-feedback.css";
 import "./run-journey.css";
 
 const asset = (path) => `${import.meta.env.BASE_URL}assets/${path}`;
@@ -112,29 +115,60 @@ export function ChampionRoad({
   state,
   onChoose,
   preview = false,
+  locked = false,
+  contextKey,
   feedback,
   onDismissFeedback,
 }) {
   const graph = getRouteView(state);
+  const waveInfo = getWaveInfo(state);
   const [selectedId, setSelectedId] = useState(null);
+  const [tapFeedback, setTapFeedback] = useState(null);
+  const tapTimers = useRef({ arm: null, commit: null });
+  const chooseRef = useRef(onChoose);
+  chooseRef.current = onChoose;
+  const clearTapTimers = () => {
+    clearTimeout(tapTimers.current.arm);
+    clearTimeout(tapTimers.current.commit);
+    tapTimers.current = { arm: null, commit: null };
+  };
   const tapTrackerRef = useRef(null);
   if (!tapTrackerRef.current) {
     tapTrackerRef.current = createRouteTapTracker();
   }
   const tapTracker = tapTrackerRef.current;
-  tapTracker.setContext(
-    `${state.phase}:${state.floor}:${graph.currentNodeId}:${preview}`,
-  );
+  const routeContext = `${state.phase}:${state.wave || 1}:${state.floor}:${graph.currentNodeId}:${preview}:${locked}:${contextKey || ""}`;
+  tapTracker.setContext(routeContext);
   useEffect(() => {
-    const abort = () => tapTracker.abort();
+    clearTapTimers();
+    tapTracker.reset();
+    setTapFeedback(null);
+    setSelectedId(null);
+    return clearTapTimers;
+  }, [routeContext]);
+  useEffect(() => {
+    const abort = () => {
+      clearTapTimers();
+      tapTracker.reset();
+      setTapFeedback(null);
+    };
+    const hide = () => {
+      if (document.hidden) abort();
+    };
     const rejectMultitouch = (event) => {
-      if (event.isPrimary === false) abort();
+      if (
+        event.isPrimary === false ||
+        !event.target.closest?.('[data-route-available="true"]')
+      )
+        abort();
     };
     window.addEventListener("pointerdown", rejectMultitouch, true);
     window.addEventListener("blur", abort);
+    document.addEventListener("visibilitychange", hide);
     return () => {
       window.removeEventListener("pointerdown", rejectMultitouch, true);
       window.removeEventListener("blur", abort);
+      document.removeEventListener("visibilitychange", hide);
       abort();
     };
   }, [tapTracker]);
@@ -145,10 +179,13 @@ export function ChampionRoad({
   const width = 1000;
   const height = rowHeight * maxFloor;
   const byId = new Map(graph.nodes.map((node) => [node.id, node]));
-  const available = graph.nodes.filter((node) => node.available && !preview);
+  const available = graph.nodes.filter(
+    (node) => node.available && !preview && !locked,
+  );
   const chooseNode = (nodeId) => {
     if (
       preview ||
+      locked ||
       state.phase !== "map" ||
       !tapTracker.claimEntry(
         nodeId,
@@ -157,7 +194,13 @@ export function ChampionRoad({
     ) {
       return;
     }
-    onChoose(nodeId);
+    clearTapTimers();
+    setSelectedId(nodeId);
+    setTapFeedback({ nodeId, stage: "confirmed", detail: "✓ 2/2 · 이동 확정" });
+    tapTimers.current.commit = setTimeout(
+      () => chooseRef.current(nodeId),
+      TOUCH_CONFIRM_MS,
+    );
   };
   const beginNodeTap = (event) => {
     const node = event.target.closest('[data-route-available="true"]');
@@ -174,10 +217,16 @@ export function ChampionRoad({
     });
     if (node && primary && !tapTracker.locked) {
       event.currentTarget.setPointerCapture(event.pointerId);
+      setTapFeedback({
+        nodeId: node.dataset.node,
+        stage: "pressed",
+        detail: "누르는 중",
+      });
     }
   };
   const finishNodeTap = (event) => {
     const activeNodeId = tapTracker.activeNodeId;
+    if (tapTracker.locked && !activeNodeId) return;
     const node = activeNodeId
       ? event.currentTarget.querySelector(`[data-node="${activeNodeId}"]`)
       : null;
@@ -195,9 +244,33 @@ export function ChampionRoad({
       y: event.clientY,
       time: event.timeStamp,
     });
-    if (!tap) return;
+    if (!tap) {
+      setTapFeedback(null);
+      clearTimeout(tapTimers.current.arm);
+      return;
+    }
     setSelectedId(tap.nodeId);
     if (tap.double) chooseNode(tap.nodeId);
+    else {
+      clearTimeout(tapTimers.current.arm);
+      setTapFeedback({
+        nodeId: tap.nodeId,
+        stage: "armed",
+        detail: "1/2 · 같은 곳을 한 번 더 탭",
+      });
+      tapTimers.current.arm = setTimeout(() => {
+        tapTracker.expire();
+        setTapFeedback((current) =>
+          current?.stage === "armed"
+            ? {
+                ...current,
+                stage: "selected",
+                detail: "선택됨 · 두 번 탭해 이동",
+              }
+            : current,
+        );
+      }, HAND_DOUBLE_TAP_MS + 1);
+    }
   };
   const selected =
     available.find((node) => node.id === selectedId) ||
@@ -211,7 +284,10 @@ export function ChampionRoad({
     <div className="journey-road">
       <header className="journey-road-heading">
         <div>
-          <span>CHAMPIONSHIP ROAD / 01–08</span>
+          <span>
+            WAVE {waveInfo.wave} / {waveInfo.total} · {waveInfo.difficulty} ·
+            CHAMPIONSHIP ROAD
+          </span>
           <h2>
             왕좌까지 이어지는 선택<span>.</span>
           </h2>
@@ -224,7 +300,7 @@ export function ChampionRoad({
       </header>
       <div className="journey-combat-checkpoints">
         <strong>
-          보스 전 최소 {graph.minPreBossCombats || 4}경기 · 현재{" "}
+          이번 웨이브 보스 전 최소 {graph.minPreBossCombats || 4}경기 · 현재{" "}
           {graph.completedCombats || 0}승
         </strong>
         <span>1·3·5·7구간 필수 전투 / 2·4·6구간 준비 또는 추가 도전</span>
@@ -254,15 +330,25 @@ export function ChampionRoad({
         <div
           className="journey-graph"
           onPointerDown={beginNodeTap}
-          onPointerMove={(event) =>
+          onPointerMove={(event) => {
             tapTracker.move({
               pointerId: event.pointerId,
               x: event.clientX,
               y: event.clientY,
-            })
-          }
+            });
+            if (!tapTracker.activeNodeId) {
+              clearTimeout(tapTimers.current.arm);
+              setTapFeedback((current) =>
+                current?.stage === "confirmed" ? current : null,
+              );
+            }
+          }}
           onPointerUp={finishNodeTap}
-          onPointerCancel={(event) => tapTracker.cancel(event.pointerId)}
+          onPointerCancel={(event) => {
+            tapTracker.cancel(event.pointerId);
+            clearTimeout(tapTimers.current.arm);
+            setTapFeedback(null);
+          }}
           onLostPointerCapture={(event) => tapTracker.cancel(event.pointerId)}
           onDoubleClick={(event) => event.preventDefault()}
           style={{
@@ -312,7 +398,7 @@ export function ChampionRoad({
                   .filter((node) => node.floor === floor)
                   .map((node) => {
                     const Icon = nodeIcons[node.type] || Sword;
-                    const enabled = node.available && !preview;
+                    const enabled = node.available && !preview && !locked;
                     const rewards = rewardText(node),
                       dangers = dangerText(node);
                     return (
@@ -333,10 +419,24 @@ export function ChampionRoad({
                         aria-label={`${node.label}. ${node.description}. ${[...dangers, ...rewards].join(". ")}${enabled ? ". 선택 가능한 경로" : node.visited ? ". 방문한 경로" : ". 잠긴 경로"}`}
                         data-node={node.id}
                         data-route-available={enabled}
+                        data-touch-stage={
+                          tapFeedback?.nodeId === node.id
+                            ? tapFeedback.stage
+                            : undefined
+                        }
                         onClick={(event) => {
                           // Pointer taps are handled above; keyboard and assistive
                           // clicks still select without consuming a route.
-                          if (event.detail === 0) setSelectedId(node.id);
+                          if (event.detail === 0 && !tapTracker.locked) {
+                            tapTracker.abort();
+                            clearTimeout(tapTimers.current.arm);
+                            setSelectedId(node.id);
+                            setTapFeedback({
+                              nodeId: node.id,
+                              stage: "selected",
+                              detail: "선택됨 · 아래 진입 버튼으로 이동",
+                            });
+                          }
                         }}
                       >
                         <span className="journey-node-symbol">
@@ -349,6 +449,17 @@ export function ChampionRoad({
                           )}
                         </span>
                         <strong>{node.label}</strong>
+                        {tapFeedback?.nodeId === node.id && (
+                          <span className="journey-node-tap" aria-hidden="true">
+                            {tapFeedback.stage === "confirmed"
+                              ? "✓ 이동"
+                              : tapFeedback.stage === "armed"
+                                ? "1/2 탭"
+                                : tapFeedback.stage === "pressed"
+                                  ? "●"
+                                  : "✓ 선택"}
+                          </span>
+                        )}
                         {enabled && node.reward?.coins > 0 && (
                           <small>
                             <Coins size={10} />
@@ -397,18 +508,31 @@ export function ChampionRoad({
             )}
             {!preview && selected?.available && (
               <p className="journey-route-hint">
-                선택한 경로를 빠르게 두 번 누르면 이동
+                {tapFeedback?.nodeId === selected.id
+                  ? `${selected.label} · ${tapFeedback.detail}`
+                  : "경로를 한 번 눌러 선택 · 같은 곳을 두 번 탭해 이동"}
               </p>
             )}
           </div>
           <button
             type="button"
             className="primary-button"
-            disabled={preview || !selected?.available}
+            disabled={
+              preview ||
+              locked ||
+              !selected?.available ||
+              tapFeedback?.stage === "confirmed"
+            }
             onClick={() => chooseNode(selected.id)}
           >
-            이 경로로 진입
-            <ArrowRight size={18} />
+            {tapFeedback?.stage === "confirmed"
+              ? "이동 확정"
+              : "이 경로로 진입"}
+            {tapFeedback?.stage === "confirmed" ? (
+              <Check size={18} />
+            ) : (
+              <ArrowRight size={18} />
+            )}
           </button>
         </div>
       </div>
@@ -447,9 +571,14 @@ export function JourneyInventory({
 }) {
   const inventory = state.inventory || [],
     stock = state.gimmicks || [];
-  const staging = ["map", "rest", "shop", "event", "reward"].includes(
-    state.phase,
-  );
+  const staging = [
+    "map",
+    "rest",
+    "shop",
+    "event",
+    "reward",
+    "wave-clear",
+  ].includes(state.phase);
   const active = state.activeGimmick && GIMMICKS[state.activeGimmick.id];
   return (
     <div className="journey-inventory">

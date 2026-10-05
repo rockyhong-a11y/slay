@@ -47,9 +47,11 @@ export function run(actor, seed, policy = "balanced", stopAtFloor = null) {
     "suplex",
     "spotlight",
   ];
-  for (let i = 0; i < 1500 && !["victory", "defeat"].includes(s.phase); i++) {
+  for (let i = 0; i < 5000 && !["victory", "defeat"].includes(s.phase); i++) {
     if (stopAtFloor && s.floor >= stopAtFloor && s.phase === "map") break;
-    if (s.phase === "combat") {
+    if (s.phase === "wave-clear") {
+      s = g.continueToNextWave(s);
+    } else if (s.phase === "combat") {
       let item = s.inventory.find((x) => {
         const e = g.ITEMS[x.id].effects;
         return (
@@ -73,7 +75,10 @@ export function run(actor, seed, policy = "balanced", stopAtFloor = null) {
           ? g.playCard(s, c.uid)
           : g.endTurn(s);
       if (s.lastImpact?.attacker === "enemy") damage += s.lastImpact.damage;
-      if (old.phase === "combat" && ["reward", "victory"].includes(s.phase))
+      if (
+        old.phase === "combat" &&
+        ["reward", "wave-clear", "victory"].includes(s.phase)
+      )
         earned += s.rewardCoins;
     } else if (s.phase === "reward") {
       for (const kind of ["item", "gimmick"]) {

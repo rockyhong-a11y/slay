@@ -4,9 +4,16 @@ import * as game from "./game.js";
 
 // The real App reaches these DEV screens through public game actions. Neither
 // this module nor its query entry survives the production DEV guard.
-export const JOURNEY_QA_PROFILES = ["map", "rest", "event", "shop", "victory"];
+export const JOURNEY_QA_PROFILES = [
+  "map",
+  "rest",
+  "event",
+  "shop",
+  "wave-clear",
+  "victory",
+];
 
-function championQA() {
+function championQA(target = "victory") {
   let state = game.newRun("raven", 23);
   const rewards = [
     "championship",
@@ -27,10 +34,12 @@ function championQA() {
   // No phase, HP, resources, deck entries or upgrades are forged for this screen.
   for (
     let step = 0;
-    step < 1500 && !["victory", "defeat"].includes(state.phase);
+    step < 5000 && ![target, "defeat"].includes(state.phase);
     step++
   ) {
-    if (state.phase === "combat") {
+    if (state.phase === "wave-clear") {
+      state = game.continueToNextWave(state);
+    } else if (state.phase === "combat") {
       const item = state.inventory.find((entry) => {
         const effects = game.ITEMS[entry.id].effects;
         return (
@@ -129,7 +138,7 @@ function championQA() {
       state = offer ? game.buyItem(state, offer.id) : game.leaveShop(state);
     }
   }
-  if (state.phase !== "victory" || !state.deck.some((card) => card.upgraded))
+  if (state.phase !== target || !state.deck.some((card) => card.upgraded))
     throw new Error(
       "Champion QA requires a real completed run with upgraded cards.",
     );
@@ -139,7 +148,7 @@ function championQA() {
 export function createJourneyQA(profile = "map") {
   if (!JOURNEY_QA_PROFILES.includes(profile))
     throw new Error(`Unknown journey QA profile: ${profile}`);
-  if (profile === "victory") return championQA();
+  if (["wave-clear", "victory"].includes(profile)) return championQA(profile);
   let state = createCombatQA({ hand: 10, impact: "ko" });
   state = playCard(state, state.hand[0].uid);
   if (state.phase !== "reward")

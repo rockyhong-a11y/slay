@@ -1,7 +1,13 @@
+import {
+  HAND_DOUBLE_TAP_MS,
+  HAND_DOUBLE_TAP_DISTANCE,
+} from "./hand-interaction.js";
+
 // A route tap is a short, stationary, single-pointer gesture. Native scrolling,
 // long presses and canceled pointers must never become the second entry tap.
 export function createRouteTapTracker({
-  doubleTapDelay = 320,
+  doubleTapDelay = HAND_DOUBLE_TAP_MS,
+  doubleTapDistance = HAND_DOUBLE_TAP_DISTANCE,
   movementTolerance = 9,
   maxTapDuration = 450,
 } = {}) {
@@ -79,9 +85,16 @@ export function createRouteTapTracker({
       const double =
         lastTap?.nodeId === nodeId &&
         time >= lastTap.time &&
-        time - lastTap.time <= doubleTapDelay;
-      lastTap = double ? null : { nodeId, time };
+        time - lastTap.time <= doubleTapDelay &&
+        Math.hypot(x - lastTap.x, y - lastTap.y) <= doubleTapDistance;
+      lastTap = double ? null : { nodeId, time, x, y };
       return { nodeId, double };
+    },
+    expire(time = Infinity) {
+      if (lastTap && time - lastTap.time > doubleTapDelay) lastTap = null;
+    },
+    get armedNodeId() {
+      return lastTap?.nodeId || null;
     },
     cancel(pointerId) {
       // Pointer capture is released after a successful pointerup, too. That

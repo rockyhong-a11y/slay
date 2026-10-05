@@ -1,0 +1,73 @@
+{
+  "viewport": {
+    "width": 393,
+    "height": 852
+  },
+  "firstTapProof": {
+    "count": 10,
+    "feedback": "엘보 스트라이크1/2 · 같은 곳을 한 번 더 탭",
+    "selected": "qa-hand-1",
+    "stage": "armed"
+  },
+  "confirmedProof": {
+    "count": 10,
+    "feedback": "엘보 스트라이크✓ 2/2 · 사용 확정",
+    "selected": "qa-hand-1",
+    "stage": "confirmed"
+  },
+  "bottomTapProof": {
+    "count": 10,
+    "feedback": "파워밤1/2 · 같은 곳을 한 번 더 탭",
+    "selected": "qa-hand-4",
+    "stage": "armed"
+  },
+  "feedbackGeometry": {
+    "card": {
+      "bottom": 774,
+      "height": 208,
+      "left": 86.9921875,
+      "right": 226.9921875,
+      "top": 566,
+      "width": 140,
+      "x": 86.9921875,
+      "y": 566
+    },
+    "document": [
+      393,
+      852,
+      393,
+      852
+    ],
+    "feedback": {
+      "bottom": 791,
+      "height": 24,
+      "left": 12,
+      "right": 381,
+      "top": 767,
+      "width": 369,
+      "x": 12,
+      "y": 767
+    },
+    "hand": {
+      "bottom": 792,
+      "height": 228,
+      "left": 8,
+      "right": 385,
+      "top": 564,
+      "width": 377,
+      "x": 8,
+      "y": 564
+    }
+  },
+  "routeFirstProof": {
+    "hint": "프로 숍 · 1/2 · 같은 곳을 한 번 더 탭",
+    "node": "armed"
+  },
+  "routeConfirmedNativeProof": {
+    "button": "이동 확정",
+    "hint": "프로 숍 · ✓ 2/2 · 이동 확정",
+    "stage": "confirmed"
+  },
+  "routeResult": true,
+  "consoleErrors": []
+}

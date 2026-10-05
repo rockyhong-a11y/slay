@@ -1,0 +1,121 @@
+/* Touch acknowledgement belongs to the exact visible target, not a hidden rail. */
+.hand-touch-feedback {
+  position: absolute;
+  z-index: 45;
+  inset: auto 4px 1px;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 3px 7px;
+  border: 1px solid #e2c698;
+  border-radius: 4px;
+  background: #1a1727f5;
+  color: #ffdda3;
+  pointer-events: none;
+  font-size: 11px;
+  line-height: 1.4;
+  box-shadow: 0 2px 10px #000b;
+}
+.hand-touch-feedback strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hand-touch-feedback span {
+  flex-shrink: 0;
+}
+.touch-confirmed {
+  background: #254e41f5;
+  border-color: #b3ffe0;
+  color: #e4fff0;
+}
+.touch-blocked {
+  background: #5e2b39f5;
+  border-color: #ffb0ae;
+  color: #fff1ef;
+}
+.combat-view .card-hand.hand-fan[data-touch-stage="pressed"] > .is-selected {
+  border-color: #fff6d4;
+  filter: brightness(1.18);
+  box-shadow:
+    0 0 0 3px #ffe0a4,
+    0 0 22px #ffbf7266;
+}
+.combat-view .card-hand.hand-fan[data-touch-stage="armed"] > .is-selected {
+  outline: 3px solid #ffe4a4;
+  animation: touch-card-armed 420ms linear both;
+}
+.combat-view .card-hand.hand-fan[data-touch-stage="confirmed"] > .is-selected {
+  outline: 3px solid #aeffd7;
+  filter: brightness(1.25);
+  box-shadow:
+    0 0 0 3px #76d6b0,
+    0 0 32px #9bffd566;
+}
+.combat-view .card-hand.hand-fan[data-touch-stage="blocked"] > .is-selected {
+  outline: 2px solid #ff8997;
+}
+.journey-node[data-touch-stage="pressed"] {
+  filter: brightness(1.2);
+  background: #3c303b;
+  outline: 2px solid #ffe2ae;
+}
+.journey-node[data-touch-stage="armed"] {
+  outline: 3px solid #ffe0a4;
+  outline-offset: 2px;
+  background: #342b31;
+}
+.journey-node[data-touch-stage="confirmed"] {
+  outline: 3px solid #adffd4;
+  outline-offset: 3px;
+  background: #284b40;
+  box-shadow: 0 0 24px #a4f8ce55;
+}
+.journey-node[data-touch-stage="selected"] {
+  border-color: #f9d69a;
+  background: #302831;
+}
+.journey-node-tap {
+  position: absolute;
+  z-index: 4;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: #f6d698;
+  color: #241e25;
+  font-size: 10px;
+  line-height: 1.2;
+  font-weight: 800;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.journey-node[data-touch-stage="confirmed"] .journey-node-tap {
+  background: #acffcf;
+}
+@keyframes touch-card-armed {
+  from {
+    outline-color: #fff7de;
+  }
+  to {
+    outline-color: #d7b06e;
+  }
+}
+@media (max-width: 370px), (max-height: 440px) {
+  .hand-touch-feedback {
+    min-height: 22px;
+    gap: 5px;
+    font-size: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .combat-view .card-hand.hand-fan[data-touch-stage] > .is-selected {
+    animation: none;
+  }
+  .journey-node[data-touch-stage="pressed"] {
+    transform: none;
+  }
+}
