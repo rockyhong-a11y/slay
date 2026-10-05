@@ -104,6 +104,9 @@ import { Artwork } from "./Artwork.jsx";
 import "./arena-layout.css";
 import "./roster.css";
 import "./typography.css";
+import { HandInteraction } from "./HandInteraction.jsx";
+import { installMobileInteractionGuard } from "./mobile-interactions.js";
+import "./viewport-shell.css";
 
 const asset = (name) => `${import.meta.env.BASE_URL}assets/${name}`;
 const SAVE_KEY = "slay.run.v1";
@@ -281,6 +284,7 @@ function Modal({
 function Card({
   instance,
   onClick,
+  onFocus,
   index,
   disabled = false,
   compact = false,
@@ -316,6 +320,8 @@ function Card({
           : undefined
       }
       onClick={onClick}
+      onFocus={onFocus}
+      data-hand-card-id={index != null ? instance.uid : undefined}
       disabled={disabled || !present}
       aria-hidden={!present || undefined}
       aria-pressed={index != null ? selected : undefined}
@@ -407,6 +413,8 @@ function App() {
   const busyRef = useRef(false);
   const cueSequence = useRef(0);
   const arenaRef = useRef(null);
+  const mainRef = useRef(null);
+  useEffect(() => installMobileInteractionGuard(document), []);
   const [cinematics, setCinematics] = useState(() => {
     try {
       return localStorage.getItem("slay.cinematics") !== "short";
@@ -431,9 +439,6 @@ function App() {
   const enemyCondition = selectFighterState(state.enemy, { enemy: true });
   const selectedHand =
     state.hand.find((card) => card.uid === selectedHandId) || state.hand[0];
-  const selectedHandIndex = state.hand.findIndex(
-    (card) => card.uid === selectedHand?.uid,
-  );
   const arrivalKey = state.arrival && `${state.arrival.nodeId}-${state.phase}`;
   const arrivalVisible =
     nav === "battle" &&
@@ -537,13 +542,13 @@ function App() {
         `${window.location.pathname}${window.location.search}${hash}`,
       );
     }
-    window.scrollTo({ top: 0, behavior: "instant" });
+    mainRef.current?.scrollTo({ top: 0, left: 0, behavior: "instant" });
   };
   useEffect(() => {
     const syncPage = () => {
       clearPresentation();
       setNav(pageFromHash());
-      window.scrollTo(0, 0);
+      mainRef.current?.scrollTo({ top: 0, left: 0, behavior: "instant" });
     };
     window.addEventListener("hashchange", syncPage);
     window.addEventListener("popstate", syncPage);
@@ -560,6 +565,9 @@ function App() {
           ? "카드 시스템 도움말 | SLAY"
           : "SLAY | Ring of Nightmares";
   }, [nav]);
+  useEffect(() => {
+    mainRef.current?.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [nav, state.phase, state.floor]);
   const play = (uid) => {
     if (state.phase !== "combat" || busyRef.current) return;
     const instance = state.hand.find((c) => c.uid === uid);
@@ -583,13 +591,6 @@ function App() {
     pendingImpact.current = impact ? { ...impact, id } : null;
     setCue({ ...actionCue, id });
     setSelectedHandId(null);
-    const arenaBounds = arenaRef.current?.getBoundingClientRect();
-    if (
-      arenaBounds &&
-      (arenaBounds.top < 0 || arenaBounds.bottom > window.innerHeight - 30)
-    ) {
-      arenaRef.current.scrollIntoView({ block: "center", behavior: "instant" });
-    }
     const damage = actionCue.damage;
     setHit(
       card.effects.damage
@@ -903,7 +904,7 @@ function App() {
               </button>
             </div>
           </header>
-          <main>
+          <main ref={mainRef}>
             {!["cards", "guide", "map"].includes(nav) &&
               activePhase !== "map" && (
                 <div className="chapter-header">
@@ -1248,7 +1249,7 @@ function App() {
                           <ArrowRight size={14} />
                         </button>
                         <span>
-                          카드를 선택해 플레이하세요 <kbd>1</kbd>
+                          드래그로 선택 · 더블탭으로 사용 <kbd>1</kbd>
                           <span className="shortcut-range">~</span>
                           <kbd>
                             {state.hand.length === 10
@@ -1257,9 +1258,24 @@ function App() {
                           </kbd>
                         </span>
                       </div>
-                      <div
+                      <HandInteraction
                         className="card-hand hand-fan"
                         style={{ "--hand-count": state.hand.length }}
+                        cards={state.hand}
+                        selectedId={selectedHand?.uid}
+                        onSelect={setSelectedHandId}
+                        onPlay={play}
+                        isPlayable={(uid) => {
+                          const card = state.hand.find(
+                            (entry) => entry.uid === uid,
+                          );
+                          return (
+                            !!card &&
+                            !busyRef.current &&
+                            canPlayCard(state, card)
+                          );
+                        }}
+                        locked={!!cue || !!impactCue}
                       >
                         <AnimatePresence mode="popLayout">
                           {state.hand.map((c, i) => (
@@ -1268,16 +1284,11 @@ function App() {
                               instance={c}
                               index={i}
                               onClick={() => setSelectedHandId(c.uid)}
+                              onFocus={() => setSelectedHandId(c.uid)}
                               disabled={!!cue || !!impactCue}
                               unplayable={!canPlayCard(state, c)}
                               selected={selectedHand?.uid === c.uid}
-                              fanPosition={
-                                i === selectedHandIndex
-                                  ? state.hand.length - 1
-                                  : i < selectedHandIndex
-                                    ? i
-                                    : i - 1
-                              }
+                              fanPosition={i}
                             />
                           ))}
                         </AnimatePresence>
@@ -1292,7 +1303,7 @@ function App() {
                             </span>
                           </div>
                         )}
-                      </div>
+                      </HandInteraction>
                     </div>
                     <div className="turn-controls">
                       <button

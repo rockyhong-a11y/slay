@@ -1,5 +1,5 @@
-/* The complete hand shares one finite area. Every non-selected card exposes
-   its cost, shortcut and vertical name; selection brings a readable card last. */
+/* Every card keeps a fixed baseline rail. Pointer hit regions stay at that
+   baseline while one selected illustration rises over its neighbors. */
 .combat-view .hand-main.hand-fan,
 .combat-view .hand-area.hand-fan .hand-main,
 .combat-view .hand-main:has(.card-hand.hand-fan) {
@@ -57,21 +57,29 @@
   padding: 0;
   margin: 0;
   overflow: hidden;
-  touch-action: manipulation;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
   scroll-snap-type: none;
   scrollbar-width: none;
   isolation: isolate;
 }
 .combat-view .card-hand.hand-fan > .game-card {
   position: absolute;
-  top: 14px;
+  top: 18px;
   left: calc(var(--fan-step) * var(--fan-position, var(--card-index, 0)));
   z-index: calc(2 + var(--fan-position, var(--card-index, 0)));
   width: var(--combat-card-width);
   min-width: var(--combat-card-width);
   display: flex;
   max-height: var(--combat-card-height);
-  transform: none !important;
+  --hand-lift: 0px;
+  transform: translateY(var(--hand-lift)) !important;
+  transition:
+    transform 130ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 100ms ease,
+    box-shadow 100ms ease;
   border-radius: 7px;
   box-shadow: -4px 0 10px #0009;
   outline-offset: -2px;
@@ -82,23 +90,27 @@
 }
 .combat-view .card-hand.hand-fan > .game-card.is-selected,
 .combat-view .card-hand.hand-fan > .game-card[aria-pressed="true"] {
+  --hand-lift: -16px;
   z-index: 30;
-  top: 2px;
-  border-color: #fba88d;
+  border-color: #ffd790;
   box-shadow:
     -5px 2px 18px #07060bbb,
-    0 0 0 1px #fba88d55;
-}
-.combat-view .card-hand.hand-fan > .game-card:hover:not(:disabled),
-.combat-view .card-hand.hand-fan > .game-card:focus-visible {
-  transform: none !important;
-  border-color: #ffc0a0;
+    0 0 0 2px #ffd790b0,
+    0 0 18px #ffb35766,
+    inset 0 0 10px #ffc06c24;
 }
 .combat-view .card-hand.hand-fan > .game-card:hover:not(:disabled) {
-  z-index: 40;
+  /* Selection comes from baseline hit testing, not the raised DOM hitbox. */
+  transform: translateY(var(--hand-lift)) !important;
 }
-.combat-view .card-hand.hand-fan > .game-card:hover:not(:disabled) .card-peek {
-  display: none;
+.combat-view .card-hand.hand-fan.hand-interaction {
+  cursor: grab;
+}
+.combat-view .card-hand.hand-fan.hand-interaction[data-hand-dragging] {
+  cursor: grabbing;
+}
+.combat-view .card-hand.hand-fan.hand-interaction[data-hand-locked] {
+  cursor: wait;
 }
 .combat-view .card-hand.hand-fan .card-peek {
   position: absolute;
@@ -115,7 +127,9 @@
   color: #f1e5e9;
   pointer-events: none;
 }
-.combat-view .card-hand.hand-fan:not(:has(> .game-card:nth-child(4))) .card-peek {
+.combat-view
+  .card-hand.hand-fan:not(:has(> .game-card:nth-child(4)))
+  .card-peek {
   display: none;
 }
 .combat-view .card-hand.hand-fan .card-peek .peek-cost {
@@ -223,5 +237,10 @@
   .combat-view .hand-heading .hand-play-button {
     min-width: 100px;
     font-size: 11px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .combat-view .card-hand.hand-fan > .game-card {
+    transition: none;
   }
 }

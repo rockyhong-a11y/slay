@@ -61,6 +61,7 @@
   position: relative;
   overflow: hidden;
   isolation: isolate;
+  touch-action: pan-y;
   padding: 0 18px;
   background:
     radial-gradient(ellipse at 50% 0, #c84c5920, transparent 35%),
@@ -122,6 +123,10 @@
   border: 1px solid #ffffff10;
   background: var(--surface);
   border-radius: 9px;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 .journey-node:disabled {
   opacity: 0.62;
@@ -228,6 +233,11 @@
   color: var(--muted);
   font-size: 12px;
   line-height: 1.7;
+}
+.journey-route-inspector .journey-route-hint {
+  margin-top: 13px;
+  color: #e6c38e;
+  font-size: 10px;
 }
 .journey-route-inspector > button {
   flex: 0 0 auto;

@@ -29,6 +29,7 @@ import {
 } from "./game.js";
 import { Artwork } from "./Artwork.jsx";
 import { fighterPoseArt, selectFighterState } from "./presentation.js";
+import { createRouteTapTracker } from "./route-gestures.js";
 import "./run-journey.css";
 
 const asset = (path) => `${import.meta.env.BASE_URL}assets/${path}`;
@@ -116,12 +117,86 @@ export function ChampionRoad({
 }) {
   const graph = getRouteView(state);
   const [selectedId, setSelectedId] = useState(null);
+  const tapTrackerRef = useRef(null);
+  if (!tapTrackerRef.current) {
+    tapTrackerRef.current = createRouteTapTracker();
+  }
+  const tapTracker = tapTrackerRef.current;
+  tapTracker.setContext(
+    `${state.phase}:${state.floor}:${graph.currentNodeId}:${preview}`,
+  );
+  useEffect(() => {
+    const abort = () => tapTracker.abort();
+    const rejectMultitouch = (event) => {
+      if (event.isPrimary === false) abort();
+    };
+    window.addEventListener("pointerdown", rejectMultitouch, true);
+    window.addEventListener("blur", abort);
+    return () => {
+      window.removeEventListener("pointerdown", rejectMultitouch, true);
+      window.removeEventListener("blur", abort);
+      abort();
+    };
+  }, [tapTracker]);
   const columns = Math.max(3, ...graph.nodes.map((node) => node.lane + 1));
   const rowHeight = 112;
   const width = 1000;
   const height = rowHeight * 8;
   const byId = new Map(graph.nodes.map((node) => [node.id, node]));
   const available = graph.nodes.filter((node) => node.available && !preview);
+  const chooseNode = (nodeId) => {
+    if (
+      preview ||
+      state.phase !== "map" ||
+      !tapTracker.claimEntry(
+        nodeId,
+        available.map((node) => node.id),
+      )
+    ) {
+      return;
+    }
+    onChoose(nodeId);
+  };
+  const beginNodeTap = (event) => {
+    const node = event.target.closest('[data-route-available="true"]');
+    const primary =
+      event.isPrimary !== false &&
+      (event.pointerType !== "mouse" || event.button === 0);
+    tapTracker.begin({
+      pointerId: event.pointerId,
+      nodeId: node?.dataset.node || null,
+      x: event.clientX,
+      y: event.clientY,
+      time: event.timeStamp,
+      primary,
+    });
+    if (node && primary && !tapTracker.locked) {
+      event.currentTarget.setPointerCapture(event.pointerId);
+    }
+  };
+  const finishNodeTap = (event) => {
+    const activeNodeId = tapTracker.activeNodeId;
+    const node = activeNodeId
+      ? event.currentTarget.querySelector(`[data-node="${activeNodeId}"]`)
+      : null;
+    const rect = node?.getBoundingClientRect();
+    const inside =
+      rect &&
+      event.clientX >= rect.left &&
+      event.clientX <= rect.right &&
+      event.clientY >= rect.top &&
+      event.clientY <= rect.bottom;
+    const tap = tapTracker.finish({
+      pointerId: event.pointerId,
+      nodeId: inside ? activeNodeId : null,
+      x: event.clientX,
+      y: event.clientY,
+      time: event.timeStamp,
+    });
+    if (!tap) return;
+    setSelectedId(tap.nodeId);
+    if (tap.double) chooseNode(tap.nodeId);
+  };
   const selected =
     available.find((node) => node.id === selectedId) ||
     available[0] ||
@@ -141,7 +216,8 @@ export function ChampionRoad({
         </div>
         <p>
           지금 서 있는 곳에서 연결된 길만 선택할 수 있습니다. 강한 상대에게
-          도전하면 더 큰 보상이 기다립니다.
+          도전하면 더 큰 보상이 기다립니다. 한 번 눌러 살펴보고, 같은 경로를
+          빠르게 두 번 누르면 바로 이동합니다.
         </p>
       </header>
       <ChoiceFeedback choice={feedback} onDismiss={onDismissFeedback} />
@@ -162,6 +238,18 @@ export function ChampionRoad({
       <div className="journey-road-layout">
         <div
           className="journey-graph"
+          onPointerDown={beginNodeTap}
+          onPointerMove={(event) =>
+            tapTracker.move({
+              pointerId: event.pointerId,
+              x: event.clientX,
+              y: event.clientY,
+            })
+          }
+          onPointerUp={finishNodeTap}
+          onPointerCancel={(event) => tapTracker.cancel(event.pointerId)}
+          onLostPointerCapture={(event) => tapTracker.cancel(event.pointerId)}
+          onDoubleClick={(event) => event.preventDefault()}
           style={{
             "--route-columns": columns,
             "--route-row-height": `${rowHeight}px`,
@@ -225,7 +313,11 @@ export function ChampionRoad({
                       aria-label={`${node.label}. ${node.description}. ${[...dangers, ...rewards].join(". ")}${enabled ? ". 선택 가능한 경로" : node.visited ? ". 방문한 경로" : ". 잠긴 경로"}`}
                       data-node={node.id}
                       data-route-available={enabled}
-                      onClick={() => setSelectedId(node.id)}
+                      onClick={(event) => {
+                        // Pointer taps are handled above; keyboard and assistive
+                        // clicks still select without consuming a route.
+                        if (event.detail === 0) setSelectedId(node.id);
+                      }}
                     >
                       <span className="journey-node-symbol">
                         <Icon
@@ -282,12 +374,17 @@ export function ChampionRoad({
                 ))}
               </div>
             )}
+            {!preview && selected?.available && (
+              <p className="journey-route-hint">
+                선택한 경로를 빠르게 두 번 누르면 이동
+              </p>
+            )}
           </div>
           <button
             type="button"
             className="primary-button"
             disabled={preview || !selected?.available}
-            onClick={() => onChoose(selected.id)}
+            onClick={() => chooseNode(selected.id)}
           >
             이 경로로 진입
             <ArrowRight size={18} />

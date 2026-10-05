@@ -979,7 +979,7 @@
 @media (orientation: landscape) and (max-height: 520px) and (max-width: 1100px) {
   .app-shell.combat-view {
     --combat-card-width: 132px;
-    --combat-card-height: clamp(176px, calc(100dvh - 176px), 204px);
+    --combat-card-height: clamp(176px, calc(100dvh - 204px), 204px);
     grid-template-columns: minmax(0, 1fr);
   }
   .combat-view .sidebar {

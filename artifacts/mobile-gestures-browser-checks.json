@@ -1,0 +1,2033 @@
+{
+  "testedAt": "2026-10-05",
+  "browser": "Codex In-app Browser, Chromium; native pointer actions",
+  "geometry": [
+    {
+      "cards": [
+        {
+          "rect": {
+            "bottom": 644,
+            "height": 194,
+            "left": 6,
+            "right": 136,
+            "top": 450,
+            "width": 130,
+            "x": 6,
+            "y": 450
+          },
+          "selected": "true",
+          "uid": "qa-hand-1"
+        },
+        {
+          "rect": {
+            "bottom": 660,
+            "height": 194,
+            "left": 50.5,
+            "right": 180.5,
+            "top": 466,
+            "width": 130,
+            "x": 50.5,
+            "y": 466
+          },
+          "selected": "false",
+          "uid": "qa-hand-2"
+        },
+        {
+          "rect": {
+            "bottom": 660,
+            "height": 194,
+            "left": 95,
+            "right": 225,
+            "top": 466,
+            "width": 130,
+            "x": 95,
+            "y": 466
+          },
+          "selected": "false",
+          "uid": "qa-hand-3"
+        },
+        {
+          "rect": {
+            "bottom": 660,
+            "height": 194,
+            "left": 139.5,
+            "right": 269.5,
+            "top": 466,
+            "width": 130,
+            "x": 139.5,
+            "y": 466
+          },
+          "selected": "false",
+          "uid": "qa-hand-4"
+        },
+        {
+          "rect": {
+            "bottom": 660,
+            "height": 194,
+            "left": 184,
+            "right": 314,
+            "top": 466,
+            "width": 130,
+            "x": 184,
+            "y": 466
+          },
+          "selected": "false",
+          "uid": "qa-hand-5"
+        }
+      ],
+      "controls": [
+        {
+          "bottom": 445,
+          "height": 42,
+          "left": 210,
+          "right": 314,
+          "top": 403,
+          "width": 104,
+          "x": 210,
+          "y": 403
+        },
+        {
+          "bottom": 712,
+          "height": 44,
+          "left": 176,
+          "right": 266,
+          "top": 668,
+          "width": 90,
+          "x": 176,
+          "y": 668
+        },
+        {
+          "bottom": 713.25,
+          "height": 46.5,
+          "left": 271,
+          "right": 314,
+          "top": 666.75,
+          "width": 43,
+          "x": 271,
+          "y": 666.75
+        }
+      ],
+      "document": [
+        320,
+        720
+      ],
+      "fighters": [
+        {
+          "bottom": 326,
+          "height": 155,
+          "left": 13.1171875,
+          "right": 156.9296875,
+          "top": 171,
+          "width": 143.8125,
+          "x": 13.1171875,
+          "y": 171
+        },
+        {
+          "bottom": 326,
+          "height": 155,
+          "left": 163.0703125,
+          "right": 306.8828125,
+          "top": 171,
+          "width": 143.8125,
+          "x": 163.0703125,
+          "y": 171
+        }
+      ],
+      "hand": {
+        "bottom": 662,
+        "height": 214,
+        "left": 6,
+        "right": 314,
+        "top": 448,
+        "width": 308,
+        "x": 6,
+        "y": 448
+      },
+      "handControls": {
+        "bottom": 712,
+        "height": 44,
+        "left": 162.5,
+        "right": 314,
+        "top": 668,
+        "width": 151.5,
+        "x": 162.5,
+        "y": 668
+      },
+      "mainScroll": 0,
+      "scroll": [
+        0,
+        0
+      ],
+      "viewport": [
+        320,
+        720
+      ]
+    },
+    {
+      "cards": [
+        {
+          "rect": {
+            "bottom": 774,
+            "height": 208,
+            "left": 8,
+            "right": 148,
+            "top": 566,
+            "width": 140,
+            "x": 8,
+            "y": 566
+          },
+          "selected": "true",
+          "uid": "qa-hand-1"
+        },
+        {
+          "rect": {
+            "bottom": 790,
+            "height": 208,
+            "left": 67.25,
+            "right": 207.25,
+            "top": 582,
+            "width": 140,
+            "x": 67.25,
+            "y": 582
+          },
+          "selected": "false",
+          "uid": "qa-hand-2"
+        },
+        {
+          "rect": {
+            "bottom": 790,
+            "height": 208,
+            "left": 126.5,
+            "right": 266.5,
+            "top": 582,
+            "width": 140,
+            "x": 126.5,
+            "y": 582
+          },
+          "selected": "false",
+          "uid": "qa-hand-3"
+        },
+        {
+          "rect": {
+            "bottom": 790,
+            "height": 208,
+            "left": 185.75,
+            "right": 325.75,
+            "top": 582,
+            "width": 140,
+            "x": 185.75,
+            "y": 582
+          },
+          "selected": "false",
+          "uid": "qa-hand-4"
+        },
+        {
+          "rect": {
+            "bottom": 790,
+            "height": 208,
+            "left": 245,
+            "right": 385,
+            "top": 582,
+            "width": 140,
+            "x": 245,
+            "y": 582
+          },
+          "selected": "false",
+          "uid": "qa-hand-5"
+        }
+      ],
+      "controls": [
+        {
+          "bottom": 561,
+          "height": 42,
+          "left": 281,
+          "right": 385,
+          "top": 519,
+          "width": 104,
+          "x": 281,
+          "y": 519
+        },
+        {
+          "bottom": 842,
+          "height": 44,
+          "left": 231,
+          "right": 331,
+          "top": 798,
+          "width": 100,
+          "x": 231,
+          "y": 798
+        },
+        {
+          "bottom": 843.25,
+          "height": 46.5,
+          "left": 336,
+          "right": 385,
+          "top": 796.75,
+          "width": 49,
+          "x": 336,
+          "y": 796.75
+        }
+      ],
+      "document": [
+        393,
+        852
+      ],
+      "fighters": [
+        {
+          "bottom": 442,
+          "height": 267,
+          "left": 16.5,
+          "right": 192.75,
+          "top": 175,
+          "width": 176.25,
+          "x": 16.5,
+          "y": 175
+        },
+        {
+          "bottom": 442,
+          "height": 267,
+          "left": 200.25,
+          "right": 376.5,
+          "top": 175,
+          "width": 176.25,
+          "x": 200.25,
+          "y": 175
+        }
+      ],
+      "hand": {
+        "bottom": 792,
+        "height": 228,
+        "left": 8,
+        "right": 385,
+        "top": 564,
+        "width": 377,
+        "x": 8,
+        "y": 564
+      },
+      "handControls": {
+        "bottom": 842,
+        "height": 44,
+        "left": 200.5,
+        "right": 385,
+        "top": 798,
+        "width": 184.5,
+        "x": 200.5,
+        "y": 798
+      },
+      "mainScroll": 0,
+      "scroll": [
+        0,
+        0
+      ],
+      "viewport": [
+        393,
+        852
+      ]
+    },
+    {
+      "cards": [
+        {
+          "rect": {
+            "bottom": 297,
+            "height": 176,
+            "left": 337.5,
+            "right": 469.5,
+            "top": 121,
+            "width": 132,
+            "x": 337.5,
+            "y": 121
+          },
+          "selected": "true",
+          "uid": "qa-hand-1"
+        },
+        {
+          "rect": {
+            "bottom": 313,
+            "height": 176,
+            "left": 385.375,
+            "right": 517.375,
+            "top": 137,
+            "width": 132,
+            "x": 385.375,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-2"
+        },
+        {
+          "rect": {
+            "bottom": 313,
+            "height": 176,
+            "left": 433.25,
+            "right": 565.25,
+            "top": 137,
+            "width": 132,
+            "x": 433.25,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-3"
+        },
+        {
+          "rect": {
+            "bottom": 313,
+            "height": 176,
+            "left": 481.125,
+            "right": 613.125,
+            "top": 137,
+            "width": 132,
+            "x": 481.125,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-4"
+        },
+        {
+          "rect": {
+            "bottom": 313,
+            "height": 176,
+            "left": 529,
+            "right": 661,
+            "top": 137,
+            "width": 132,
+            "x": 529,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-5"
+        }
+      ],
+      "controls": [
+        {
+          "bottom": 116,
+          "height": 42,
+          "left": 561,
+          "right": 661,
+          "top": 74,
+          "width": 100,
+          "x": 561,
+          "y": 74
+        },
+        {
+          "bottom": 369,
+          "height": 44,
+          "left": 512,
+          "right": 610,
+          "top": 325,
+          "width": 98,
+          "x": 512,
+          "y": 325
+        },
+        {
+          "bottom": 370.25,
+          "height": 46.5,
+          "left": 615,
+          "right": 661,
+          "top": 323.75,
+          "width": 46,
+          "x": 615,
+          "y": 323.75
+        }
+      ],
+      "document": [
+        667,
+        375
+      ],
+      "fighters": [
+        {
+          "bottom": 338,
+          "height": 183,
+          "left": 13.4296875,
+          "right": 164.53125,
+          "top": 155,
+          "width": 151.1015625,
+          "x": 13.4296875,
+          "y": 155
+        },
+        {
+          "bottom": 338,
+          "height": 183,
+          "left": 170.96875,
+          "right": 322.0703125,
+          "top": 155,
+          "width": 151.1015625,
+          "x": 170.96875,
+          "y": 155
+        }
+      ],
+      "hand": {
+        "bottom": 315,
+        "height": 196,
+        "left": 337.5,
+        "right": 661,
+        "top": 119,
+        "width": 323.5,
+        "x": 337.5,
+        "y": 119
+      },
+      "handControls": {
+        "bottom": 369,
+        "height": 44,
+        "left": 502.25,
+        "right": 661,
+        "top": 325,
+        "width": 158.75,
+        "x": 502.25,
+        "y": 325
+      },
+      "mainScroll": 0,
+      "scroll": [
+        0,
+        0
+      ],
+      "viewport": [
+        667,
+        375
+      ]
+    },
+    {
+      "cards": [
+        {
+          "rect": {
+            "bottom": 307,
+            "height": 186,
+            "left": 426,
+            "right": 558,
+            "top": 121,
+            "width": 132,
+            "x": 426,
+            "y": 121
+          },
+          "selected": "true",
+          "uid": "qa-hand-1"
+        },
+        {
+          "rect": {
+            "bottom": 323,
+            "height": 186,
+            "left": 496,
+            "right": 628,
+            "top": 137,
+            "width": 132,
+            "x": 496,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-2"
+        },
+        {
+          "rect": {
+            "bottom": 323,
+            "height": 186,
+            "left": 566,
+            "right": 698,
+            "top": 137,
+            "width": 132,
+            "x": 566,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-3"
+        },
+        {
+          "rect": {
+            "bottom": 323,
+            "height": 186,
+            "left": 636,
+            "right": 768,
+            "top": 137,
+            "width": 132,
+            "x": 636,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-4"
+        },
+        {
+          "rect": {
+            "bottom": 323,
+            "height": 186,
+            "left": 706,
+            "right": 838,
+            "top": 137,
+            "width": 132,
+            "x": 706,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-5"
+        }
+      ],
+      "controls": [
+        {
+          "bottom": 116.1484375,
+          "height": 42.296875,
+          "left": 738,
+          "right": 838,
+          "top": 73.8515625,
+          "width": 100,
+          "x": 738,
+          "y": 73.8515625
+        },
+        {
+          "bottom": 384,
+          "height": 44,
+          "left": 689,
+          "right": 787,
+          "top": 340,
+          "width": 98,
+          "x": 689,
+          "y": 340
+        },
+        {
+          "bottom": 385.25,
+          "height": 46.5,
+          "left": 792,
+          "right": 838,
+          "top": 338.75,
+          "width": 46,
+          "x": 792,
+          "y": 338.75
+        }
+      ],
+      "document": [
+        844,
+        390
+      ],
+      "fighters": [
+        {
+          "bottom": 353,
+          "height": 198,
+          "left": 19.296875,
+          "right": 207.890625,
+          "top": 155,
+          "width": 188.59375,
+          "x": 19.296875,
+          "y": 155
+        },
+        {
+          "bottom": 353,
+          "height": 198,
+          "left": 216.109375,
+          "right": 404.703125,
+          "top": 155,
+          "width": 188.59375,
+          "x": 216.109375,
+          "y": 155
+        }
+      ],
+      "hand": {
+        "bottom": 325,
+        "height": 206,
+        "left": 426,
+        "right": 838,
+        "top": 119,
+        "width": 412,
+        "x": 426,
+        "y": 119
+      },
+      "handControls": {
+        "bottom": 384,
+        "height": 44,
+        "left": 635,
+        "right": 838,
+        "top": 340,
+        "width": 203,
+        "x": 635,
+        "y": 340
+      },
+      "mainScroll": 0,
+      "scroll": [
+        0,
+        0
+      ],
+      "viewport": [
+        844,
+        390
+      ]
+    },
+    {
+      "cards": [
+        {
+          "rect": {
+            "bottom": 690,
+            "height": 218,
+            "left": 160,
+            "right": 308,
+            "top": 472,
+            "width": 148,
+            "x": 160,
+            "y": 472
+          },
+          "selected": "true",
+          "uid": "qa-hand-1"
+        },
+        {
+          "rect": {
+            "bottom": 706,
+            "height": 218,
+            "left": 367.5,
+            "right": 515.5,
+            "top": 488,
+            "width": 148,
+            "x": 367.5,
+            "y": 488
+          },
+          "selected": "false",
+          "uid": "qa-hand-2"
+        },
+        {
+          "rect": {
+            "bottom": 706,
+            "height": 218,
+            "left": 575,
+            "right": 723,
+            "top": 488,
+            "width": 148,
+            "x": 575,
+            "y": 488
+          },
+          "selected": "false",
+          "uid": "qa-hand-3"
+        },
+        {
+          "rect": {
+            "bottom": 706,
+            "height": 218,
+            "left": 782.5,
+            "right": 930.5,
+            "top": 488,
+            "width": 148,
+            "x": 782.5,
+            "y": 488
+          },
+          "selected": "false",
+          "uid": "qa-hand-4"
+        },
+        {
+          "rect": {
+            "bottom": 706,
+            "height": 218,
+            "left": 990,
+            "right": 1138,
+            "top": 488,
+            "width": 148,
+            "x": 990,
+            "y": 488
+          },
+          "selected": "false",
+          "uid": "qa-hand-5"
+        }
+      ],
+      "controls": [
+        {
+          "bottom": 467.796875,
+          "height": 43.59375,
+          "left": 552.09375,
+          "right": 660.09375,
+          "top": 424.203125,
+          "width": 108,
+          "x": 552.09375,
+          "y": 424.203125
+        },
+        {
+          "bottom": 569.25,
+          "height": 48,
+          "left": 1150,
+          "right": 1262,
+          "top": 521.25,
+          "width": 112,
+          "x": 1150,
+          "y": 521.25
+        },
+        {
+          "bottom": 628.75,
+          "height": 51.5,
+          "left": 1182.1796875,
+          "right": 1229.8203125,
+          "top": 577.25,
+          "width": 47.640625,
+          "x": 1182.1796875,
+          "y": 577.25
+        }
+      ],
+      "document": [
+        1280,
+        720
+      ],
+      "fighters": [
+        {
+          "bottom": 346,
+          "height": 167,
+          "left": 118.3359375,
+          "right": 660.2109375,
+          "top": 179,
+          "width": 541.875,
+          "x": 118.3359375,
+          "y": 179
+        },
+        {
+          "bottom": 346,
+          "height": 167,
+          "left": 683.7890625,
+          "right": 1225.6640625,
+          "top": 179,
+          "width": 541.875,
+          "x": 683.7890625,
+          "y": 179
+        }
+      ],
+      "hand": {
+        "bottom": 708,
+        "height": 238,
+        "left": 160,
+        "right": 1138,
+        "top": 470,
+        "width": 978,
+        "x": 160,
+        "y": 470
+      },
+      "handControls": {
+        "bottom": 708,
+        "height": 286,
+        "left": 1150,
+        "right": 1262,
+        "top": 422,
+        "width": 112,
+        "x": 1150,
+        "y": 422
+      },
+      "mainScroll": 0,
+      "scroll": [
+        0,
+        0
+      ],
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "cards": [
+        {
+          "rect": {
+            "bottom": 644,
+            "height": 194,
+            "left": 6,
+            "right": 136,
+            "top": 450,
+            "width": 130,
+            "x": 6,
+            "y": 450
+          },
+          "selected": "true",
+          "uid": "qa-hand-1"
+        },
+        {
+          "rect": {
+            "bottom": 660,
+            "height": 194,
+            "left": 25.7734375,
+            "right": 155.7734375,
+            "top": 466,
+            "width": 130,
+            "x": 25.7734375,
+            "y": 466
+          },
+          "selected": "false",
+          "uid": "qa-hand-2"
+        },
+        {
+          "rect": {
+            "bottom": 660,
+            "height": 194,
+            "left": 45.5546875,
+            "right": 175.5546875,
+            "top": 466,
+            "width": 130,
+            "x": 45.5546875,
+            "y": 466
+          },
+          "selected": "false",
+          "uid": "qa-hand-3"
+        },
+        {
+          "rect": {
+            "bottom": 660,
+            "height": 194,
+            "left": 65.328125,
+            "right": 195.328125,
+            "top": 466,
+            "width": 130,
+            "x": 65.328125,
+            "y": 466
+          },
+          "selected": "false",
+          "uid": "qa-hand-4"
+        },
+        {
+          "rect": {
+            "bottom": 660,
+            "height": 194,
+            "left": 85.109375,
+            "right": 215.109375,
+            "top": 466,
+            "width": 130,
+            "x": 85.109375,
+            "y": 466
+          },
+          "selected": "false",
+          "uid": "qa-hand-5"
+        },
+        {
+          "rect": {
+            "bottom": 660,
+            "height": 194,
+            "left": 104.8828125,
+            "right": 234.8828125,
+            "top": 466,
+            "width": 130,
+            "x": 104.8828125,
+            "y": 466
+          },
+          "selected": "false",
+          "uid": "qa-hand-6"
+        },
+        {
+          "rect": {
+            "bottom": 660,
+            "height": 194,
+            "left": 124.6640625,
+            "right": 254.6640625,
+            "top": 466,
+            "width": 130,
+            "x": 124.6640625,
+            "y": 466
+          },
+          "selected": "false",
+          "uid": "qa-hand-7"
+        },
+        {
+          "rect": {
+            "bottom": 660,
+            "height": 194,
+            "left": 144.4375,
+            "right": 274.4375,
+            "top": 466,
+            "width": 130,
+            "x": 144.4375,
+            "y": 466
+          },
+          "selected": "false",
+          "uid": "qa-hand-8"
+        },
+        {
+          "rect": {
+            "bottom": 660,
+            "height": 194,
+            "left": 164.21875,
+            "right": 294.21875,
+            "top": 466,
+            "width": 130,
+            "x": 164.21875,
+            "y": 466
+          },
+          "selected": "false",
+          "uid": "qa-hand-9"
+        },
+        {
+          "rect": {
+            "bottom": 660,
+            "height": 194,
+            "left": 184,
+            "right": 314,
+            "top": 466,
+            "width": 130,
+            "x": 184,
+            "y": 466
+          },
+          "selected": "false",
+          "uid": "qa-hand-10"
+        }
+      ],
+      "controls": [
+        {
+          "bottom": 445,
+          "height": 42,
+          "left": 210,
+          "right": 314,
+          "top": 403,
+          "width": 104,
+          "x": 210,
+          "y": 403
+        },
+        {
+          "bottom": 712,
+          "height": 44,
+          "left": 176,
+          "right": 266,
+          "top": 668,
+          "width": 90,
+          "x": 176,
+          "y": 668
+        },
+        {
+          "bottom": 713.25,
+          "height": 46.5,
+          "left": 271,
+          "right": 314,
+          "top": 666.75,
+          "width": 43,
+          "x": 271,
+          "y": 666.75
+        }
+      ],
+      "document": [
+        320,
+        720
+      ],
+      "fighters": [
+        {
+          "bottom": 326,
+          "height": 155,
+          "left": 13.1171875,
+          "right": 156.9296875,
+          "top": 171,
+          "width": 143.8125,
+          "x": 13.1171875,
+          "y": 171
+        },
+        {
+          "bottom": 326,
+          "height": 155,
+          "left": 163.0703125,
+          "right": 306.8828125,
+          "top": 171,
+          "width": 143.8125,
+          "x": 163.0703125,
+          "y": 171
+        }
+      ],
+      "hand": {
+        "bottom": 662,
+        "height": 214,
+        "left": 6,
+        "right": 314,
+        "top": 448,
+        "width": 308,
+        "x": 6,
+        "y": 448
+      },
+      "handControls": {
+        "bottom": 712,
+        "height": 44,
+        "left": 162.5,
+        "right": 314,
+        "top": 668,
+        "width": 151.5,
+        "x": 162.5,
+        "y": 668
+      },
+      "mainScroll": 0,
+      "scroll": [
+        0,
+        0
+      ],
+      "viewport": [
+        320,
+        720
+      ]
+    },
+    {
+      "cards": [
+        {
+          "rect": {
+            "bottom": 774,
+            "height": 208,
+            "left": 8,
+            "right": 148,
+            "top": 566,
+            "width": 140,
+            "x": 8,
+            "y": 566
+          },
+          "selected": "true",
+          "uid": "qa-hand-1"
+        },
+        {
+          "rect": {
+            "bottom": 790,
+            "height": 208,
+            "left": 34.328125,
+            "right": 174.328125,
+            "top": 582,
+            "width": 140,
+            "x": 34.328125,
+            "y": 582
+          },
+          "selected": "false",
+          "uid": "qa-hand-2"
+        },
+        {
+          "rect": {
+            "bottom": 790,
+            "height": 208,
+            "left": 60.6640625,
+            "right": 200.6640625,
+            "top": 582,
+            "width": 140,
+            "x": 60.6640625,
+            "y": 582
+          },
+          "selected": "false",
+          "uid": "qa-hand-3"
+        },
+        {
+          "rect": {
+            "bottom": 790,
+            "height": 208,
+            "left": 86.9921875,
+            "right": 226.9921875,
+            "top": 582,
+            "width": 140,
+            "x": 86.9921875,
+            "y": 582
+          },
+          "selected": "false",
+          "uid": "qa-hand-4"
+        },
+        {
+          "rect": {
+            "bottom": 790,
+            "height": 208,
+            "left": 113.328125,
+            "right": 253.328125,
+            "top": 582,
+            "width": 140,
+            "x": 113.328125,
+            "y": 582
+          },
+          "selected": "false",
+          "uid": "qa-hand-5"
+        },
+        {
+          "rect": {
+            "bottom": 790,
+            "height": 208,
+            "left": 139.6640625,
+            "right": 279.6640625,
+            "top": 582,
+            "width": 140,
+            "x": 139.6640625,
+            "y": 582
+          },
+          "selected": "false",
+          "uid": "qa-hand-6"
+        },
+        {
+          "rect": {
+            "bottom": 790,
+            "height": 208,
+            "left": 165.9921875,
+            "right": 305.9921875,
+            "top": 582,
+            "width": 140,
+            "x": 165.9921875,
+            "y": 582
+          },
+          "selected": "false",
+          "uid": "qa-hand-7"
+        },
+        {
+          "rect": {
+            "bottom": 790,
+            "height": 208,
+            "left": 192.328125,
+            "right": 332.328125,
+            "top": 582,
+            "width": 140,
+            "x": 192.328125,
+            "y": 582
+          },
+          "selected": "false",
+          "uid": "qa-hand-8"
+        },
+        {
+          "rect": {
+            "bottom": 790,
+            "height": 208,
+            "left": 218.6640625,
+            "right": 358.6640625,
+            "top": 582,
+            "width": 140,
+            "x": 218.6640625,
+            "y": 582
+          },
+          "selected": "false",
+          "uid": "qa-hand-9"
+        },
+        {
+          "rect": {
+            "bottom": 790,
+            "height": 208,
+            "left": 245,
+            "right": 385,
+            "top": 582,
+            "width": 140,
+            "x": 245,
+            "y": 582
+          },
+          "selected": "false",
+          "uid": "qa-hand-10"
+        }
+      ],
+      "controls": [
+        {
+          "bottom": 561,
+          "height": 42,
+          "left": 281,
+          "right": 385,
+          "top": 519,
+          "width": 104,
+          "x": 281,
+          "y": 519
+        },
+        {
+          "bottom": 842,
+          "height": 44,
+          "left": 231,
+          "right": 331,
+          "top": 798,
+          "width": 100,
+          "x": 231,
+          "y": 798
+        },
+        {
+          "bottom": 843.25,
+          "height": 46.5,
+          "left": 336,
+          "right": 385,
+          "top": 796.75,
+          "width": 49,
+          "x": 336,
+          "y": 796.75
+        }
+      ],
+      "document": [
+        393,
+        852
+      ],
+      "fighters": [
+        {
+          "bottom": 442,
+          "height": 267,
+          "left": 16.5,
+          "right": 192.75,
+          "top": 175,
+          "width": 176.25,
+          "x": 16.5,
+          "y": 175
+        },
+        {
+          "bottom": 442,
+          "height": 267,
+          "left": 200.25,
+          "right": 376.5,
+          "top": 175,
+          "width": 176.25,
+          "x": 200.25,
+          "y": 175
+        }
+      ],
+      "hand": {
+        "bottom": 792,
+        "height": 228,
+        "left": 8,
+        "right": 385,
+        "top": 564,
+        "width": 377,
+        "x": 8,
+        "y": 564
+      },
+      "handControls": {
+        "bottom": 842,
+        "height": 44,
+        "left": 200.5,
+        "right": 385,
+        "top": 798,
+        "width": 184.5,
+        "x": 200.5,
+        "y": 798
+      },
+      "mainScroll": 0,
+      "scroll": [
+        0,
+        0
+      ],
+      "viewport": [
+        393,
+        852
+      ]
+    },
+    {
+      "cards": [
+        {
+          "rect": {
+            "bottom": 297,
+            "height": 176,
+            "left": 337.5,
+            "right": 469.5,
+            "top": 121,
+            "width": 132,
+            "x": 337.5,
+            "y": 121
+          },
+          "selected": "true",
+          "uid": "qa-hand-1"
+        },
+        {
+          "rect": {
+            "bottom": 313,
+            "height": 176,
+            "left": 358.7734375,
+            "right": 490.7734375,
+            "top": 137,
+            "width": 132,
+            "x": 358.7734375,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-2"
+        },
+        {
+          "rect": {
+            "bottom": 313,
+            "height": 176,
+            "left": 380.0546875,
+            "right": 512.0546875,
+            "top": 137,
+            "width": 132,
+            "x": 380.0546875,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-3"
+        },
+        {
+          "rect": {
+            "bottom": 313,
+            "height": 176,
+            "left": 401.328125,
+            "right": 533.328125,
+            "top": 137,
+            "width": 132,
+            "x": 401.328125,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-4"
+        },
+        {
+          "rect": {
+            "bottom": 313,
+            "height": 176,
+            "left": 422.609375,
+            "right": 554.609375,
+            "top": 137,
+            "width": 132,
+            "x": 422.609375,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-5"
+        },
+        {
+          "rect": {
+            "bottom": 313,
+            "height": 176,
+            "left": 443.8828125,
+            "right": 575.8828125,
+            "top": 137,
+            "width": 132,
+            "x": 443.8828125,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-6"
+        },
+        {
+          "rect": {
+            "bottom": 313,
+            "height": 176,
+            "left": 465.1640625,
+            "right": 597.1640625,
+            "top": 137,
+            "width": 132,
+            "x": 465.1640625,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-7"
+        },
+        {
+          "rect": {
+            "bottom": 313,
+            "height": 176,
+            "left": 486.4375,
+            "right": 618.4375,
+            "top": 137,
+            "width": 132,
+            "x": 486.4375,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-8"
+        },
+        {
+          "rect": {
+            "bottom": 313,
+            "height": 176,
+            "left": 507.71875,
+            "right": 639.71875,
+            "top": 137,
+            "width": 132,
+            "x": 507.71875,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-9"
+        },
+        {
+          "rect": {
+            "bottom": 313,
+            "height": 176,
+            "left": 529,
+            "right": 661,
+            "top": 137,
+            "width": 132,
+            "x": 529,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-10"
+        }
+      ],
+      "controls": [
+        {
+          "bottom": 116,
+          "height": 42,
+          "left": 561,
+          "right": 661,
+          "top": 74,
+          "width": 100,
+          "x": 561,
+          "y": 74
+        },
+        {
+          "bottom": 369,
+          "height": 44,
+          "left": 512,
+          "right": 610,
+          "top": 325,
+          "width": 98,
+          "x": 512,
+          "y": 325
+        },
+        {
+          "bottom": 370.25,
+          "height": 46.5,
+          "left": 615,
+          "right": 661,
+          "top": 323.75,
+          "width": 46,
+          "x": 615,
+          "y": 323.75
+        }
+      ],
+      "document": [
+        667,
+        375
+      ],
+      "fighters": [
+        {
+          "bottom": 338,
+          "height": 183,
+          "left": 13.4296875,
+          "right": 164.53125,
+          "top": 155,
+          "width": 151.1015625,
+          "x": 13.4296875,
+          "y": 155
+        },
+        {
+          "bottom": 338,
+          "height": 183,
+          "left": 170.96875,
+          "right": 322.0703125,
+          "top": 155,
+          "width": 151.1015625,
+          "x": 170.96875,
+          "y": 155
+        }
+      ],
+      "hand": {
+        "bottom": 315,
+        "height": 196,
+        "left": 337.5,
+        "right": 661,
+        "top": 119,
+        "width": 323.5,
+        "x": 337.5,
+        "y": 119
+      },
+      "handControls": {
+        "bottom": 369,
+        "height": 44,
+        "left": 502.25,
+        "right": 661,
+        "top": 325,
+        "width": 158.75,
+        "x": 502.25,
+        "y": 325
+      },
+      "mainScroll": 0,
+      "scroll": [
+        0,
+        0
+      ],
+      "viewport": [
+        667,
+        375
+      ]
+    },
+    {
+      "cards": [
+        {
+          "rect": {
+            "bottom": 307,
+            "height": 186,
+            "left": 426,
+            "right": 558,
+            "top": 121,
+            "width": 132,
+            "x": 426,
+            "y": 121
+          },
+          "selected": "true",
+          "uid": "qa-hand-1"
+        },
+        {
+          "rect": {
+            "bottom": 323,
+            "height": 186,
+            "left": 457.109375,
+            "right": 589.109375,
+            "top": 137,
+            "width": 132,
+            "x": 457.109375,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-2"
+        },
+        {
+          "rect": {
+            "bottom": 323,
+            "height": 186,
+            "left": 488.21875,
+            "right": 620.21875,
+            "top": 137,
+            "width": 132,
+            "x": 488.21875,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-3"
+        },
+        {
+          "rect": {
+            "bottom": 323,
+            "height": 186,
+            "left": 519.328125,
+            "right": 651.328125,
+            "top": 137,
+            "width": 132,
+            "x": 519.328125,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-4"
+        },
+        {
+          "rect": {
+            "bottom": 323,
+            "height": 186,
+            "left": 550.4375,
+            "right": 682.4375,
+            "top": 137,
+            "width": 132,
+            "x": 550.4375,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-5"
+        },
+        {
+          "rect": {
+            "bottom": 323,
+            "height": 186,
+            "left": 581.5546875,
+            "right": 713.5546875,
+            "top": 137,
+            "width": 132,
+            "x": 581.5546875,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-6"
+        },
+        {
+          "rect": {
+            "bottom": 323,
+            "height": 186,
+            "left": 612.6640625,
+            "right": 744.6640625,
+            "top": 137,
+            "width": 132,
+            "x": 612.6640625,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-7"
+        },
+        {
+          "rect": {
+            "bottom": 323,
+            "height": 186,
+            "left": 643.7734375,
+            "right": 775.7734375,
+            "top": 137,
+            "width": 132,
+            "x": 643.7734375,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-8"
+        },
+        {
+          "rect": {
+            "bottom": 323,
+            "height": 186,
+            "left": 674.8828125,
+            "right": 806.8828125,
+            "top": 137,
+            "width": 132,
+            "x": 674.8828125,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-9"
+        },
+        {
+          "rect": {
+            "bottom": 323,
+            "height": 186,
+            "left": 706,
+            "right": 838,
+            "top": 137,
+            "width": 132,
+            "x": 706,
+            "y": 137
+          },
+          "selected": "false",
+          "uid": "qa-hand-10"
+        }
+      ],
+      "controls": [
+        {
+          "bottom": 116.1484375,
+          "height": 42.296875,
+          "left": 738,
+          "right": 838,
+          "top": 73.8515625,
+          "width": 100,
+          "x": 738,
+          "y": 73.8515625
+        },
+        {
+          "bottom": 384,
+          "height": 44,
+          "left": 689,
+          "right": 787,
+          "top": 340,
+          "width": 98,
+          "x": 689,
+          "y": 340
+        },
+        {
+          "bottom": 385.25,
+          "height": 46.5,
+          "left": 792,
+          "right": 838,
+          "top": 338.75,
+          "width": 46,
+          "x": 792,
+          "y": 338.75
+        }
+      ],
+      "document": [
+        844,
+        390
+      ],
+      "fighters": [
+        {
+          "bottom": 353,
+          "height": 198,
+          "left": 19.296875,
+          "right": 207.890625,
+          "top": 155,
+          "width": 188.59375,
+          "x": 19.296875,
+          "y": 155
+        },
+        {
+          "bottom": 353,
+          "height": 198,
+          "left": 216.109375,
+          "right": 404.703125,
+          "top": 155,
+          "width": 188.59375,
+          "x": 216.109375,
+          "y": 155
+        }
+      ],
+      "hand": {
+        "bottom": 325,
+        "height": 206,
+        "left": 426,
+        "right": 838,
+        "top": 119,
+        "width": 412,
+        "x": 426,
+        "y": 119
+      },
+      "handControls": {
+        "bottom": 384,
+        "height": 44,
+        "left": 635,
+        "right": 838,
+        "top": 340,
+        "width": 203,
+        "x": 635,
+        "y": 340
+      },
+      "mainScroll": 0,
+      "scroll": [
+        0,
+        0
+      ],
+      "viewport": [
+        844,
+        390
+      ]
+    },
+    {
+      "cards": [
+        {
+          "rect": {
+            "bottom": 690,
+            "height": 218,
+            "left": 160,
+            "right": 308,
+            "top": 472,
+            "width": 148,
+            "x": 160,
+            "y": 472
+          },
+          "selected": "true",
+          "uid": "qa-hand-1"
+        },
+        {
+          "rect": {
+            "bottom": 706,
+            "height": 218,
+            "left": 252.21875,
+            "right": 400.21875,
+            "top": 488,
+            "width": 148,
+            "x": 252.21875,
+            "y": 488
+          },
+          "selected": "false",
+          "uid": "qa-hand-2"
+        },
+        {
+          "rect": {
+            "bottom": 706,
+            "height": 218,
+            "left": 344.4375,
+            "right": 492.4375,
+            "top": 488,
+            "width": 148,
+            "x": 344.4375,
+            "y": 488
+          },
+          "selected": "false",
+          "uid": "qa-hand-3"
+        },
+        {
+          "rect": {
+            "bottom": 706,
+            "height": 218,
+            "left": 436.6640625,
+            "right": 584.6640625,
+            "top": 488,
+            "width": 148,
+            "x": 436.6640625,
+            "y": 488
+          },
+          "selected": "false",
+          "uid": "qa-hand-4"
+        },
+        {
+          "rect": {
+            "bottom": 706,
+            "height": 218,
+            "left": 528.8828125,
+            "right": 676.8828125,
+            "top": 488,
+            "width": 148,
+            "x": 528.8828125,
+            "y": 488
+          },
+          "selected": "false",
+          "uid": "qa-hand-5"
+        },
+        {
+          "rect": {
+            "bottom": 706,
+            "height": 218,
+            "left": 621.109375,
+            "right": 769.109375,
+            "top": 488,
+            "width": 148,
+            "x": 621.109375,
+            "y": 488
+          },
+          "selected": "false",
+          "uid": "qa-hand-6"
+        },
+        {
+          "rect": {
+            "bottom": 706,
+            "height": 218,
+            "left": 713.328125,
+            "right": 861.328125,
+            "top": 488,
+            "width": 148,
+            "x": 713.328125,
+            "y": 488
+          },
+          "selected": "false",
+          "uid": "qa-hand-7"
+        },
+        {
+          "rect": {
+            "bottom": 706,
+            "height": 218,
+            "left": 805.5546875,
+            "right": 953.5546875,
+            "top": 488,
+            "width": 148,
+            "x": 805.5546875,
+            "y": 488
+          },
+          "selected": "false",
+          "uid": "qa-hand-8"
+        },
+        {
+          "rect": {
+            "bottom": 706,
+            "height": 218,
+            "left": 897.7734375,
+            "right": 1045.7734375,
+            "top": 488,
+            "width": 148,
+            "x": 897.7734375,
+            "y": 488
+          },
+          "selected": "false",
+          "uid": "qa-hand-9"
+        },
+        {
+          "rect": {
+            "bottom": 706,
+            "height": 218,
+            "left": 990,
+            "right": 1138,
+            "top": 488,
+            "width": 148,
+            "x": 990,
+            "y": 488
+          },
+          "selected": "false",
+          "uid": "qa-hand-10"
+        }
+      ],
+      "controls": [
+        {
+          "bottom": 467.796875,
+          "height": 43.59375,
+          "left": 555.09375,
+          "right": 663.09375,
+          "top": 424.203125,
+          "width": 108,
+          "x": 555.09375,
+          "y": 424.203125
+        },
+        {
+          "bottom": 569.25,
+          "height": 48,
+          "left": 1150,
+          "right": 1262,
+          "top": 521.25,
+          "width": 112,
+          "x": 1150,
+          "y": 521.25
+        },
+        {
+          "bottom": 628.75,
+          "height": 51.5,
+          "left": 1182.1796875,
+          "right": 1229.8203125,
+          "top": 577.25,
+          "width": 47.640625,
+          "x": 1182.1796875,
+          "y": 577.25
+        }
+      ],
+      "document": [
+        1280,
+        720
+      ],
+      "fighters": [
+        {
+          "bottom": 346,
+          "height": 167,
+          "left": 118.3359375,
+          "right": 660.2109375,
+          "top": 179,
+          "width": 541.875,
+          "x": 118.3359375,
+          "y": 179
+        },
+        {
+          "bottom": 346,
+          "height": 167,
+          "left": 683.7890625,
+          "right": 1225.6640625,
+          "top": 179,
+          "width": 541.875,
+          "x": 683.7890625,
+          "y": 179
+        }
+      ],
+      "hand": {
+        "bottom": 708,
+        "height": 238,
+        "left": 160,
+        "right": 1138,
+        "top": 470,
+        "width": 978,
+        "x": 160,
+        "y": 470
+      },
+      "handControls": {
+        "bottom": 708,
+        "height": 286,
+        "left": 1150,
+        "right": 1262,
+        "top": 422,
+        "width": 112,
+        "x": 1150,
+        "y": 422
+      },
+      "mainScroll": 0,
+      "scroll": [
+        0,
+        0
+      ],
+      "viewport": [
+        1280,
+        720
+      ]
+    }
+  ],
+  "observedFlows": {
+    "drag": {
+      "selection": "qa-hand-9",
+      "hand": 10,
+      "energy": "10/10",
+      "used": false
+    },
+    "doubleTapPowerbomb": {
+      "hand": 9,
+      "energy": "8/10",
+      "enemyHp": 79,
+      "damage": 21,
+      "uses": 1
+    },
+    "invalidFinisher": {
+      "hand": 10,
+      "energy": "10/10",
+      "used": false
+    },
+    "route": {
+      "singleTap": "inspect f2-1, main scrollTop 669, document scrollY 0",
+      "doubleTap": "LOCKER ROOM arrival, floor 02; no duplicate entry"
+    },
+    "guide": {
+      "anchorTop": 96,
+      "mainScrollTop": 6968.5,
+      "documentScrollY": 0,
+      "userSelect": "none",
+      "nativeRightClickPopup": false,
+      "dragTextSelection": "",
+      "doubleClickScale": 1
+    },
+    "library": {
+      "query": "파워밤",
+      "results": 6,
+      "inputFont": "16px",
+      "landscapeDialogHeight": 351,
+      "dialogScrollHeight": 798,
+      "dialogScrollTop": 375,
+      "documentScrollY": 0
+    },
+    "consoleErrors": 0,
+    "portal": {
+      "userSelect": "none",
+      "touchAction": "manipulation",
+      "documentScrollY": 0,
+      "powerbombHand": 9,
+      "powerbombEnergy": "8/10"
+    },
+    "keyboard": {
+      "TabSelected": "qa-hand-2",
+      "handBefore": 10,
+      "energyBefore": "10/10",
+      "explicitGuardUseHand": 9,
+      "explicitGuardUseEnergy": "9/10",
+      "block": 7
+    },
+    "differentCardTaps": {
+      "selected": "qa-hand-4",
+      "hand": 10,
+      "energy": "10/10",
+      "used": false
+    }
+  },
+  "limitations": [
+    "iOS Safari device, browser toolbar bounce and actual long-press callout have not been exercised on physical hardware; Safari fallback event behavior is covered by unit tests."
+  ]
+}
