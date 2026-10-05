@@ -163,7 +163,7 @@ test("victories pay once, offer three different rewards, and enter a branching m
   assert.equal(state.phase, "map");
   assert.equal(state.deck.length, 2);
   assert.equal(state.deck[1].id, id);
-  assert.equal(state.mapNodes.length, 4);
+  assert.equal(state.mapNodes.length, 6);
   assert.equal(chooseReward(state, id), state);
   assert.equal(advanceToNode(state, 99), state);
 });
@@ -211,8 +211,7 @@ test("healing is capped, meditation removes a nightmare, and invalid rest action
 });
 
 test("shops enforce affordability, prevent duplicate purchases, and stock one-encounter gimmicks", () => {
-  let state = rest(advanceToNode(toMap(), 1), "heal");
-  state = advanceToNode(state, 2);
+  let state = advanceToNode(toMap(), 4);
   assert.equal(state.phase, "shop");
   assert.ok(!state.shopItems.some((item) => item.id === "energy-belt"));
   const offer = state.shopItems.find((item) => item.kind === "gimmick");
@@ -226,7 +225,7 @@ test("shops enforce affordability, prevent duplicate purchases, and stock one-en
   assert.equal(buyItem(state, offer.id), state);
   state = leaveShop(state);
   assert.equal(state.phase, "map");
-  assert.equal(state.floor, 3);
+  assert.equal(state.floor, 2);
 });
 
 test("events apply a valid choice atomically and saved runs preserve future randomness", () => {

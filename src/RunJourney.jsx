@@ -138,10 +138,12 @@ export function ChampionRoad({
       abort();
     };
   }, [tapTracker]);
-  const columns = Math.max(3, ...graph.nodes.map((node) => node.lane + 1));
+  const columns =
+    graph.laneCount || Math.max(3, ...graph.nodes.map((node) => node.lane + 1));
+  const maxFloor = graph.maxFloor || state.maxFloor;
   const rowHeight = 112;
   const width = 1000;
-  const height = rowHeight * 8;
+  const height = rowHeight * maxFloor;
   const byId = new Map(graph.nodes.map((node) => [node.id, node]));
   const available = graph.nodes.filter((node) => node.available && !preview);
   const chooseNode = (nodeId) => {
@@ -203,7 +205,7 @@ export function ChampionRoad({
     graph.nodes.find((node) => node.current);
   const point = (node) => [
     ((node.lane + 0.5) / columns) * width,
-    (8 - node.floor + 0.5) * rowHeight,
+    (maxFloor - node.floor + 0.5) * rowHeight,
   ];
   return (
     <div className="journey-road">
@@ -220,6 +222,19 @@ export function ChampionRoad({
           빠르게 두 번 누르면 바로 이동합니다.
         </p>
       </header>
+      <div className="journey-combat-checkpoints">
+        <strong>
+          보스 전 최소 {graph.minPreBossCombats || 4}경기 · 현재{" "}
+          {graph.completedCombats || 0}승
+        </strong>
+        <span>1·3·5·7구간 필수 전투 / 2·4·6구간 준비 또는 추가 도전</span>
+      </div>
+      {state.route?.migratedFrom && (
+        <p className="loadout-note">
+          기존 진행을 새 예선 경로에 연결했습니다. 승리 횟수에 맞춰 구간을
+          배정했으며, 선수·덱·크레딧과 진행 중인 경기는 유지됩니다.
+        </p>
+      )}
       <ChoiceFeedback choice={feedback} onDismiss={onDismissFeedback} />
       <div className="journey-road-legend">
         <span>
@@ -283,73 +298,79 @@ export function ChampionRoad({
               );
             })}
           </svg>
-          {Array.from({ length: 8 }, (_, index) => 8 - index).map((floor) => (
-            <div
-              className="journey-route-floor"
-              key={floor}
-              aria-label={`${floor}번째 구간`}
-            >
-              <span className="journey-floor-number">
-                {String(floor).padStart(2, "0")}
-              </span>
-              {graph.nodes
-                .filter((node) => node.floor === floor)
-                .map((node) => {
-                  const Icon = nodeIcons[node.type] || Sword;
-                  const enabled = node.available && !preview;
-                  const rewards = rewardText(node),
-                    dangers = dangerText(node);
-                  return (
-                    <button
-                      type="button"
-                      key={node.id}
-                      className={`journey-node type-${node.type} ${node.visited ? "visited" : ""} ${node.current ? "current" : ""} ${enabled ? "available" : ""} ${selected?.id === node.id ? "selected" : ""}`}
-                      style={{ gridColumn: node.lane + 1 }}
-                      disabled={!enabled}
-                      aria-current={node.current ? "step" : undefined}
-                      aria-pressed={
-                        enabled ? selected?.id === node.id : undefined
-                      }
-                      aria-label={`${node.label}. ${node.description}. ${[...dangers, ...rewards].join(". ")}${enabled ? ". 선택 가능한 경로" : node.visited ? ". 방문한 경로" : ". 잠긴 경로"}`}
-                      data-node={node.id}
-                      data-route-available={enabled}
-                      onClick={(event) => {
-                        // Pointer taps are handled above; keyboard and assistive
-                        // clicks still select without consuming a route.
-                        if (event.detail === 0) setSelectedId(node.id);
-                      }}
-                    >
-                      <span className="journey-node-symbol">
-                        <Icon
-                          size={23}
-                          weight={node.current ? "fill" : "regular"}
-                        />
-                        {node.visited && (
-                          <Check className="journey-node-check" size={11} />
+          {Array.from({ length: maxFloor }, (_, index) => maxFloor - index).map(
+            (floor) => (
+              <div
+                className="journey-route-floor"
+                key={floor}
+                aria-label={`${floor}번째 구간 · ${graph.stageLabels?.[floor] || ""}`}
+              >
+                <span className="journey-floor-number">
+                  {String(floor).padStart(2, "0")}
+                </span>
+                {graph.nodes
+                  .filter((node) => node.floor === floor)
+                  .map((node) => {
+                    const Icon = nodeIcons[node.type] || Sword;
+                    const enabled = node.available && !preview;
+                    const rewards = rewardText(node),
+                      dangers = dangerText(node);
+                    return (
+                      <button
+                        type="button"
+                        key={node.id}
+                        className={`journey-node type-${node.type} ${node.visited ? "visited" : ""} ${node.current ? "current" : ""} ${enabled ? "available" : ""} ${selected?.id === node.id ? "selected" : ""}`}
+                        style={{
+                          gridColumn: Number.isInteger(node.lane)
+                            ? node.lane + 1
+                            : `${Math.floor(node.lane) + 1} / span 2`,
+                        }}
+                        disabled={!enabled}
+                        aria-current={node.current ? "step" : undefined}
+                        aria-pressed={
+                          enabled ? selected?.id === node.id : undefined
+                        }
+                        aria-label={`${node.label}. ${node.description}. ${[...dangers, ...rewards].join(". ")}${enabled ? ". 선택 가능한 경로" : node.visited ? ". 방문한 경로" : ". 잠긴 경로"}`}
+                        data-node={node.id}
+                        data-route-available={enabled}
+                        onClick={(event) => {
+                          // Pointer taps are handled above; keyboard and assistive
+                          // clicks still select without consuming a route.
+                          if (event.detail === 0) setSelectedId(node.id);
+                        }}
+                      >
+                        <span className="journey-node-symbol">
+                          <Icon
+                            size={23}
+                            weight={node.current ? "fill" : "regular"}
+                          />
+                          {node.visited && (
+                            <Check className="journey-node-check" size={11} />
+                          )}
+                        </span>
+                        <strong>{node.label}</strong>
+                        {enabled && node.reward?.coins > 0 && (
+                          <small>
+                            <Coins size={10} />
+                            {node.reward.coins}
+                            {node.reward.cardChoices
+                              ? ` · ${node.reward.cardChoices}장`
+                              : ""}
+                          </small>
                         )}
-                      </span>
-                      <strong>{node.label}</strong>
-                      {enabled && node.reward?.coins > 0 && (
-                        <small>
-                          <Coins size={10} />
-                          {node.reward.coins}
-                          {node.reward.cardChoices
-                            ? ` · ${node.reward.cardChoices}장`
-                            : ""}
-                        </small>
-                      )}
-                      {node.risk && (
-                        <em>
-                          {typeof node.risk === "string"
-                            ? node.risk
-                            : "HIGH RISK"}
-                        </em>
-                      )}
-                    </button>
-                  );
-                })}
-            </div>
-          ))}
+                        {node.risk && (
+                          <em>
+                            {typeof node.risk === "string"
+                              ? node.risk
+                              : "HIGH RISK"}
+                          </em>
+                        )}
+                      </button>
+                    );
+                  })}
+              </div>
+            ),
+          )}
         </div>
         <div className="journey-route-inspector" aria-live="polite">
           <div>

@@ -193,11 +193,6 @@ test("every new move is actually offered in normal rewards and shops, purchasabl
     let state = chooseReward(reward, null);
     state = advanceToNode(
       state,
-      state.mapNodes.find((node) => node.type === "rest").index,
-    );
-    state = rest(state, "heal");
-    state = advanceToNode(
-      state,
       state.mapNodes.find((node) => node.type === "shop").index,
     );
     for (const item of state.shopItems) {

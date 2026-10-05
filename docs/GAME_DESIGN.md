@@ -20,12 +20,12 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 
 ## 플레이 루프
 
-1. 선수를 선택하고 11장의 시작 덱으로 첫 경기에 입장합니다. 메디컬 아이스팩 1개를 보관하며 첫 경기에는 철벽 코너가 활성화됩니다.
+1. 선수를 선택한 뒤 11장의 기본 시작 덱 또는 해당 선수의 저장된 완성 덱을 골라 첫 경기에 입장합니다. 메디컬 아이스팩 1개를 보관하며 첫 경기에는 철벽 코너가 활성화됩니다.
 2. 매 턴 상대의 의도를 읽고 에너지를 사용하여 카드를 플레이합니다.
 3. 공격을 연결해 열기를 얻고, 피니셔로 경기를 마무리합니다.
 4. 승리하면 크레딧과 서로 다른 카드 3장의 선택 보상을 받습니다. 카드를 받지 않고 덱을 얇게 유지할 수도 있습니다.
-5. 다음 경로에서 경기, 정예전, 휴식, 상점 또는 이벤트를 선택합니다.
-6. 8번째 구간의 챔피언 EMPRESS를 꺾으면 런이 끝납니다. 체력이 0이면 패배합니다.
+5. 1·3·5·7구간에서 전투하고, 2·4·6구간에서는 준비 장소나 추가 전투를 고릅니다. 상점·락커룸·백스테이지에서 불필요한 카드를 영구 제거할 수 있습니다.
+6. 최소 4경기 승리 후 8번째 구간의 챔피언 EMPRESS를 꺾으면 런이 끝납니다. 승리한 완성 덱을 저장해 다음 런에 사용할 수 있습니다. 체력이 0이면 패배합니다.
 
 ## 열 명의 선수와 서로 다른 운영
 
@@ -68,18 +68,20 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 
 ## 연결된 8개 구간
 
-전체 지도는 시작점, 2–7층의 네 경로, 최종 챔피언십을 연결한 26개 노드의 그래프입니다. 첫 경기 뒤에는 네 갈래 모두 열리며, 다음 층부터 현재 위치의 같은 레인과 인접 레인으로만 이동합니다. 마지막에는 모든 7층 노드가 보스로 합쳐집니다. 지나간 경로, 현재 노드, 실제 진입 가능한 다음 노드, 미래 연결선을 함께 표시합니다. 미래 노드를 직접 선택하거나 연결 없는 갈래로 이동할 수 없습니다.
+전체 지도는 시작점, 2–7구간의 여섯 경로, 최종 챔피언십을 연결한 **38개 노드·6개 레인**의 그래프입니다. 첫 경기 뒤에는 여섯 갈래 모두 열리며, 다음 층부터 현재 위치의 같은 레인과 인접 레인으로만 이동합니다. 마지막에는 모든 7구간 노드가 보스로 합쳐집니다. 지나간 경로, 현재 노드, 실제 진입 가능한 다음 노드, 미래 연결선을 함께 표시합니다. 미래 노드를 직접 선택하거나 연결 없는 갈래로 이동할 수 없습니다.
 
-| 구간 | 전체 층의 경로                                           |
-| ---- | -------------------------------------------------------- |
-| 1    | 데뷔 싱글 매치                                           |
-| 2    | 싱글 매치 / 락커룸 / 백스테이지 / 하드코어 쇼다운        |
-| 3    | 싱글 매치 / 정예 메인 이벤트 / 프로 숍 / 하드코어 쇼다운 |
-| 4    | 싱글 매치 / 락커룸 / 백스테이지 / 하드코어 쇼다운        |
-| 5    | 싱글 매치 / 정예 메인 이벤트 / 프로 숍 / 하드코어 쇼다운 |
-| 6    | 싱글 매치 / 락커룸 / 백스테이지 / 하드코어 쇼다운        |
-| 7    | 싱글 매치 / 정예 메인 이벤트 / 프로 숍 / 최종 준비       |
-| 8    | EMPRESS 챔피언십                                         |
+| 구간 | 단계                     | 여섯 레인의 노드 (왼쪽부터)                            |
+| ---- | ------------------------ | ------------------------------------------------------ |
+| 1    | 필수 전투                | 데뷔 싱글 매치                                         |
+| 2    | 준비 또는 추가 도전      | 싱글 / 락커룸 / 백스테이지 / 쇼다운 / 프로 숍 / 락커룸 |
+| 3    | 필수 예선 1              | 싱글 / 정예 / 싱글 / 쇼다운 / 정예 / 싱글              |
+| 4    | 준비 또는 추가 도전      | 싱글 / 락커룸 / 백스테이지 / 쇼다운 / 프로 숍 / 락커룸 |
+| 5    | 필수 예선 2              | 싱글 / 정예 / 싱글 / 쇼다운 / 정예 / 싱글              |
+| 6    | 최종 준비 또는 추가 도전 | 싱글 / 락커룸 / 백스테이지 / 쇼다운 / 프로 숍 / 락커룸 |
+| 7    | 필수 최종 예선           | 싱글 / 정예 / 싱글 / 쇼다운 / 정예 / 싱글              |
+| 8    | 최종 보스                | EMPRESS 챔피언십                                       |
+
+**1·3·5·7구간은 전투만 있으므로 보스 입장 전 최소 4승**이 필요합니다. 준비 구간에서도 전투를 고르면 보스 전 최대 7경기를 치릅니다. 상점·백스테이지만 이용해 결승에 도착하는 경로는 없습니다.
 
 표는 층 전체의 프리뷰입니다. 현재 위치에서 연결된 노드만 다음 선택지에 나타나므로 모든 갈래를 매번 고를 수는 없습니다. 모든 노드는 시작점에서 도달 가능하며 모든 노드에서 보스로 가는 경로가 있습니다.
 
@@ -92,9 +94,23 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 
 선택 보상에서는 카드와 별도로 보급을 받을 수 있습니다. 아이템과 기믹 제안은 유형마다 1개이며 독립적으로 수령합니다. 슬롯이 꽉 차면 해당 수령은 불가능하고, 카드 선택 또는 건너뛰기로 지도에 돌아가면 받지 않은 보급은 사라집니다.
 
-락커룸에서는 최대 체력의 30% 회복과 압박 5 감소, 압박 25 감소와 악몽 1장 제거, 카드 1장 영구 강화 중 하나를 선택합니다. 상점에는 카드, 회복, 멘탈 코칭, 자동 강화와 소모품·코너 기믹이 있습니다. 새 상점은 영구 에너지 벨트를 판매하지 않습니다.
+락커룸에서는 최대 체력의 30% 회복과 압박 5 감소, 압박 25 감소와 악몽 1장 제거, 카드 1장 영구 강화, 선택 카드 1장 영구 제거 중 하나를 선택합니다. 상점에는 카드, 회복, 멘탈 코칭, 자동 강화, 소모품·코너 기믹과 유료 카드 제거가 있습니다. 새 상점은 영구 에너지 벨트를 판매하지 않습니다. 모든 영구 제거는 덱에 최소 5장을 남깁니다.
 
 백스테이지 선택은 실제 효과와 체력·크레딧 대가를 먼저 보여 줍니다. 체력 비용보다 현재 체력이 높아야 선택할 수 있어 체력 1로 비용을 회피할 수 없습니다. 크레딧 부족이나 보관함 부족으로 보상을 받을 수 없는 선택도 실행되지 않습니다. 락커룸·이벤트 도착에는 설명 장면이 있고, 선택 뒤에는 실제 회복량·지출·획득 결과를 표시합니다.
+
+## 카드 영구 제거와 완성 덱 보관
+
+카드 제거 화면은 덱의 개별 인스턴스를 보여 줍니다. 같은 기술이 여러 장 있어도 선택한 UID 한 장만 영구 덱과 모든 전투 더미에서 제거합니다. 확인 전 취소하면 카드·크레딧·장소 선택을 쓰지 않습니다. 영구 덱은 최소 5장입니다. 턴 종료의 버린 카드 더미나 경기 중 소멸과 달리 제거한 카드는 다음 경기에도 돌아오지 않습니다.
+
+- **프로 숍:** 장소당 1회. 첫 유료 제거는 60크레딧이며, 같은 런에서 이전에 유료 제거한 횟수마다 20크레딧씩 증가합니다. 제거한 뒤 다른 상점 물품은 계속 살 수 있습니다.
+- **락커룸:** 크레딧 없이 제거하고 즉시 지도로 돌아갑니다. 해당 휴식의 회복·명상·강화 선택을 대신합니다.
+- **백스테이지:** 각 이벤트의 덱 정리 선택으로 제거하고 즉시 지도로 돌아갑니다. 해당 이벤트의 다른 보상은 받을 수 없습니다.
+
+최종 보스에게 승리한 뒤 완성 덱에 이름을 붙여 보관합니다. 보관함은 브라우저 전체에서 최대 20개이며, 같은 승리 기록을 재저장해도 중복 항목을 만들지 않습니다. 가득 찼을 때 기존 덱을 자동으로 지우지 않고 사용자가 삭제할 덱을 선택합니다. 보관 덱 삭제는 현재 런에 영향을 주지 않습니다.
+
+진입 흐름은 **선수 선택 → 기본 시작 덱 또는 해당 선수의 완성 덱 선택 → 아레나 진입**입니다. 완성 덱은 카드 종류·장수·강화 여부를 그대로 유지하며 다른 선수에게 넘길 수 없습니다. 새 런에서는 체력·크레딧·열기·압박·에너지·소모품·기믹·전투 더미·패시브 사용 여부·진행을 시작 상태로 초기화하고 카드 UID도 새로 만듭니다. 완성 덱 기록은 플레이 중 변하지 않습니다.
+
+현재 런과 완성 덱 보관함은 별도 브라우저 저장 공간 항목에 남습니다. 새 런은 보관함을 지우지 않습니다. 서버 동기화가 없으며 다른 기기·브라우저에서는 별도의 보관함을 사용합니다. 브라우저 데이터를 지우면 보관함도 사라집니다. 저장 공간이 거부되거나 가득 차면 오류를 표시하고 저장 성공으로 처리하지 않습니다.
 
 ## 일회용 소모품과 코너 기믹
 
@@ -198,28 +214,30 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 
 The rules module is [`src/game.js`](../src/game.js). It has no browser or third-party dependencies. All actions accept the current state and return a cloned next state; illegal actions return the exact original object. States contain only JSON-compatible values.
 
-| Export                                             | Contract                                                                                 |
-| -------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `CARDS` / `WRESTLERS` / `ENEMIES`                  | Definitions keyed by ID                                                                  |
-| `newRun(wrestlerId, seed?)`                        | Creates an 11-card run in immediate combat; default seed is `20903`                      |
-| `getCard(instanceOrId)`                            | Expands a card ID or `{ uid, id, upgraded }`, including upgraded effects and description |
-| `canPlayCard(state, uidOrInstance)`                | Checks combat phase, hand membership, energy, and required hype                          |
-| `playCard(state, uid)`                             | Resolves a hand card, pile movement, combo, pressure, and any victory                    |
-| `endTurn(state)`                                   | Discards the remaining hand, resolves intent, and starts the next turn                   |
-| `chooseReward(state, cardIdOrNull)`                | Adds an offered card or skips it, then opens the map                                     |
-| `mapForFloor(floor)`                               | Returns all node definitions for that floor as a preview                                 |
-| `advanceToNode(state, nodeIndexOrId)`              | Enters a connected next node and increments the floor                                    |
-| `rest(state, 'heal' / 'meditate' / 'upgrade')`     | Resolves one rest action; automatic upgrade prioritizes a finisher                       |
-| `upgradeCard(state, uid)`                          | Upgrades a chosen permanent card in the rest phase, then opens the map                   |
-| `buyItem(state, itemId)`                           | Pays for an available shop item; insufficient funds are a no-op                          |
-| `leaveShop(state)`                                 | Closes the shop and opens the next map                                                   |
-| `resolveEvent(state, choiceId)`                    | Applies a valid event choice, then opens the map                                         |
-| `getCardDamage(state, instance)`                   | Previews damage including passives, combo bonuses, and vulnerability                     |
-| `getDrawCount` / `getDeckCount` / `getRunProgress` | Small display helpers                                                                    |
+| Export                                             | Contract                                                                                           |
+| -------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `CARDS` / `WRESTLERS` / `ENEMIES`                  | Definitions keyed by ID                                                                            |
+| `newRun(wrestlerId, seed?, deckBlueprint?)`        | Creates immediate combat from an 11-card starter or valid saved blueprint; default seed is `20903` |
+| `getCard(instanceOrId)`                            | Expands a card ID or `{ uid, id, upgraded }`, including upgraded effects and description           |
+| `canPlayCard(state, uidOrInstance)`                | Checks combat phase, hand membership, energy, and required hype                                    |
+| `playCard(state, uid)`                             | Resolves a hand card, pile movement, combo, pressure, and any victory                              |
+| `endTurn(state)`                                   | Discards the remaining hand, resolves intent, and starts the next turn                             |
+| `chooseReward(state, cardIdOrNull)`                | Adds an offered card or skips it, then opens the map                                               |
+| `mapForFloor(floor)`                               | Returns all node definitions for that floor as a preview                                           |
+| `advanceToNode(state, nodeIndexOrId)`              | Enters a connected next node and increments the floor                                              |
+| `rest(state, 'heal' / 'meditate' / 'upgrade')`     | Resolves one rest action; automatic upgrade prioritizes a finisher                                 |
+| `upgradeCard(state, uid)`                          | Upgrades a chosen permanent card in the rest phase, then opens the map                             |
+| `buyItem(state, itemId)`                           | Pays for an available shop item; insufficient funds are a no-op                                    |
+| `leaveShop(state)`                                 | Closes the shop and opens the next map                                                             |
+| `resolveEvent(state, choiceId)`                    | Applies a valid event choice, then opens the map                                                   |
+| `getCardDamage(state, instance)`                   | Previews damage including passives, combo bonuses, and vulnerability                               |
+| `getDrawCount` / `getDeckCount` / `getRunProgress` | Small display helpers                                                                              |
+
+Deck services are `getCardRemovalOffer(state)` and `removeDeckCard(state, uid)`. A shop removal pays its quoted fee and stays in the shop; a rest/event removal consumes that location choice and returns to the map. Invalid, unaffordable, repeated or below-minimum removals return the original state.
 
 Additional exports are `ITEMS`, `GIMMICKS`, `ITEM_CAPACITY`, `GIMMICK_CAPACITY`, `ROUTE_GRAPH`, `EVENTS`, `normalizeRun(saved)`, `getRouteView(state)`, `useItem(state, uid)`, `equipGimmick(state, uidOrNull)`, `claimLoot(state, kind, id)`, `getRestChoices(state)` and `canResolveEventChoice(state, choiceId)`. `kind` is `item` or `gimmick`. Item actions spend no energy. Illegal actions, unaffordable event costs, unavailable graph nodes and full-capacity acquisitions return the original state unchanged.
 
-The state includes `player`, `enemy`, `hand`, `draw`, `discard`, `exhaust`, `deck`, `energy`, `maxEnergy`, `turn`, `floor`, `maxFloor`, `phase`, `combo`, `status`, `rewards`, `rewardCoins`, `mapNodes`, `event`, `shopItems`, `history`, `relics`, `stats`, `log`, and the PRNG `seed`. New mechanics add `mechanicsVersion: 2`, `route: { currentNodeId, visited }`, `inventory`, `gimmicks`, `equippedGimmickUid`, `activeGimmick`, `rewardLoot`, `arrival`, `lastChoice` and `lastImpact`. Item and gimmick instances are `{ uid, id }`; active gimmicks also carry their encounter node and duration. `getRouteView` supplies the full nodes and edges with `visited`, `available` and `current` flags. `lastChoice.result` contains actual outcome strings; `lastImpact` records actual HP damage and absorbed block for every card/item/intent, including zero-impact support actions. Card instances have stable UIDs. `log` is a string array; `logEvents` provides message types and turn numbers.
+The state includes `player`, `enemy`, `hand`, `draw`, `discard`, `exhaust`, `deck`, `energy`, `maxEnergy`, `turn`, `floor`, `maxFloor`, `phase`, `combo`, `status`, `rewards`, `rewardCoins`, `mapNodes`, `event`, `shopItems`, `history`, `relics`, `stats`, `log`, and the PRNG `seed`. New mechanics add `mechanicsVersion: 2`, `route: { version: 2, currentNodeId, visited }`, `deckRemoval: { shopPurchases, usedNodeIds }`, `inventory`, `gimmicks`, `equippedGimmickUid`, `activeGimmick`, `rewardLoot`, `arrival`, `lastChoice` and `lastImpact`. Item and gimmick instances are `{ uid, id }`; active gimmicks also carry their encounter node and duration. `getRouteView` supplies the full nodes and edges with `visited`, `available` and `current` flags. `lastChoice.result` contains actual outcome strings; `lastImpact` records actual HP damage and absorbed block for every card/item/intent, including zero-impact support actions. Card instances have stable UIDs. `log` is a string array; `logEvents` provides message types and turn numbers.
 
 `WRESTLERS` contains ten IDs: `raven`, `valkyrie`, `nova`, `viper`, `ember`, `atlas`, `seraph`, `lynx`, `tempest`, `onyx`. Each definition includes `role`, `roleEn`, `strategy`, `complexity` (1–3), `complexityLabel`, `easyLabel`, `strengths`, `playstyle`, `recommendedCards`, and the exact `startingDeck` card IDs. `newRun` constructs instances from that deck. Encyclopedia `startingWrestlers` and acquisition text derive from these definitions.
 
@@ -232,7 +250,11 @@ final boss combat → victory
 any combat with player HP 0 → defeat
 ```
 
-The client stores a run under `slay.run.v1` in `localStorage`; it adds `saveVersion: 1` to its saved payload. New-run UI requests may supply a random seed, while explicit seeds support reproducible tests and replays. Local storage is browser-specific and has no server synchronization.
+The client stores a run under `slay.run.v1` in `localStorage`; it adds `saveVersion: 1` to its saved payload. Route version 2 migrates old support-heavy progress to the qualifier stage earned by actual victories, preserving active combat, cards, resources, offers, PRNG seed and historical choices. Finals already in progress and terminal results are retained. Migration is applied once.
+
+[`src/deck-archive.js`](../src/deck-archive.js) separately stores `{ version: 1, decks }` under `slay-deck-archive-v1`. `canArchiveRun` requires a living player and final-boss victory. `saveCompletedDeck`, `loadDeckArchive`, `deleteSavedDeck`, `getDecksForWrestler` and `startRunFromSavedDeck` validate entries, enforce the 20-entry limit and wrestler identity, preserve exact card blueprints, and report storage failures. A stable completion fingerprint prevents duplicate saves. Blueprints allow 5–80 cards and exclude UIDs and temporary effects.
+
+New-run UI requests supply a fresh random seed, while explicit seeds support reproducible tests and replays. Local storage is browser-specific and has no server synchronization.
 
 ## 아트 제작과 검증
 
@@ -246,7 +268,7 @@ A [Blender QA gallery](../artifacts/expanded-fighter-state-gallery.blend) displa
 
 `fighterPoseArt(actor, condition)` accepts a state ID or a state object and returns `fighters/states/{actor}-{state}.webp`; an unknown actor falls back to Nova and an unknown state falls back to normal. Card images continue to use their individual technique paths. Continuous puppet/mesh rendering and its dedicated tests are removed.
 
-The connected-route suite checks all 26 nodes for reachability and boss continuation, rejects forged future choices, and verifies six consumables, six finite gimmicks, expiry, capacities, affordable physical costs, source offers, exact feedback and one-time v1 migration. Sixty seeded runs (five wrestlers × four seeds × preparation/balanced/risk policies) use only public actions. In this sample all policies completed; average earned credits were 155/365/630 and incoming HP damage was 10.2/15.65/50.3 respectively. The high-risk policy gained more rewards while taking over three times the balanced policy’s damage. These are results for those specified seeds and decisions.
+The connected-route suite checks all 38 nodes for reachability and boss continuation, enumerates every complete graph path to require at least four pre-boss fights, and verifies that support-seeking play must win those encounters. Route migration tests retain active opponents, piles, resources and seed. Removal tests cover exact duplicate selection across all piles, escalating shop cost, one service per location, consuming rest/event choices, insufficient funds and the five-card minimum. Archive tests cover completion eligibility, all ten wrestler identities, immutable card blueprints, fresh-run resets, duplicate prevention, the 20-entry limit, corruption recovery and failed storage writes/deletes. Seeded preparation/balanced/risk runs exercise public actions; earlier balance artifacts are historical measurements for the previous route graph.
 
 The engine suite covers reproducible initialization and save/load, invalid actions, energy, block, combos and finishers, exhaustion and reshuffling, nightmare thresholds, defeat, rewards, map transitions, rest, upgrades, shops, events, and full eight-floor wins for all ten wrestlers on two deterministic seeds. Strategy regressions cover debuff timing, multi-hit damage previews, conditional comeback recovery, caps, per-turn limits, old status compatibility, and nightmare-draw defeat without passive recursion or resurrection. The expansion suite resolves all 50 cards at both upgrade levels for each of the ten wrestlers, compares damage previews with actual results, and verifies JSON restore and immutable actions. Across 768 deterministic seeds it checks that all 25 new moves appear in normal rewards and shops, can be acquired once per offer, and can be permanently upgraded at rest.
 

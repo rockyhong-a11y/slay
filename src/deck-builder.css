@@ -1,0 +1,448 @@
+.loadout-player {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 22px;
+  align-items: center;
+  padding: 12px 20px;
+  background: linear-gradient(120deg, var(--surface2), transparent);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.loadout-player > .artwork {
+  height: 180px;
+}
+.loadout-player h3 {
+  font:
+    800 italic 40px/1.1 "Barlow Condensed",
+    sans-serif;
+  margin: 6px 0;
+}
+.loadout-player p {
+  color: var(--gold);
+  font-size: 13px;
+}
+.loadout-player small {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 10px 0;
+}
+.loadout-note,
+.builder-empty {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--muted);
+  margin: 16px 0;
+}
+.loadout-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.loadout-options > button {
+  min-height: 78px;
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  background: var(--surface2);
+}
+.loadout-options > button.selected,
+.removal-card-list > button.selected {
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 12%, var(--surface));
+}
+.loadout-options > button > span {
+  flex: 1;
+  min-width: 0;
+}
+.loadout-options strong {
+  display: block;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.loadout-options small {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.loadout-options svg {
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.builder-section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: center;
+  margin: 24px 0 12px;
+}
+.builder-section-heading h3 {
+  font-size: 17px;
+  overflow-wrap: anywhere;
+}
+.builder-section-heading > span {
+  font:
+    600 16px "Barlow Condensed",
+    sans-serif;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.blueprint-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.blueprint-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  min-width: 0;
+  background: var(--surface2);
+}
+.blueprint-card > .artwork {
+  width: 62px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.blueprint-card > div {
+  min-width: 0;
+  flex: 1;
+}
+.blueprint-card strong {
+  font-size: 12px;
+}
+.blueprint-card p {
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.blueprint-card > b {
+  font-family: "Barlow Condensed", sans-serif;
+  color: var(--gold);
+  font-size: 19px;
+}
+.blueprint-cost {
+  position: absolute;
+  left: 6px;
+  top: 5px;
+  border-radius: 50%;
+  background: var(--red-dark);
+  border: 1px solid var(--gold);
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  font:
+    700 15px "Barlow Condensed",
+    sans-serif;
+}
+.builder-footer {
+  position: sticky;
+  bottom: -30px;
+  background: var(--surface);
+  margin-top: 22px;
+  padding: 16px 0 8px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+  z-index: 3;
+}
+.builder-footer p {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.builder-footer > div {
+  display: flex;
+  gap: 8px;
+}
+.builder-footer button {
+  min-height: 46px;
+  font-size: 13px;
+}
+.archive-delete {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.archive-delete button {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  text-decoration: underline;
+  min-height: 36px;
+}
+.archive-delete > span {
+  width: 100%;
+}
+.champion-save-summary {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  color: var(--gold);
+  padding: 14px 0;
+}
+.champion-save-summary p {
+  font-size: 12px;
+  margin-top: 6px;
+  color: var(--muted);
+}
+.deck-name-field {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+  margin: 18px 0;
+}
+.deck-name-field input {
+  font: inherit;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--text);
+  background: var(--surface2);
+  width: 100%;
+}
+.builder-error {
+  background: color-mix(in srgb, var(--red) 12%, var(--surface));
+  padding: 12px;
+  color: var(--red);
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 12px 0;
+  border-radius: 6px;
+}
+.card-removal-offer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  width: 100%;
+  padding: 17px;
+  margin: 14px 0;
+  border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--gold) 7%, var(--surface));
+}
+.card-removal-offer > span {
+  flex: 1;
+}
+.card-removal-offer strong {
+  display: block;
+  font-size: 14px;
+  color: var(--gold);
+}
+.card-removal-offer small {
+  display: block;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 5px;
+  font-size: 11px;
+}
+.card-removal-offer > b {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.card-removal-offer:disabled {
+  opacity: 0.5;
+}
+.removal-card-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+.removal-card-list > button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  text-align: left;
+  background: var(--surface2);
+}
+.removal-card-list .artwork {
+  width: 65px;
+  height: 57px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.removal-card-list > button > span {
+  flex: 1;
+  min-width: 0;
+}
+.removal-card-list strong {
+  display: block;
+  font-size: 13px;
+}
+.removal-card-list small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.removal-card-list svg {
+  opacity: 0;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.removal-card-list .selected svg {
+  opacity: 1;
+}
+.removal-selection {
+  min-height: 76px;
+  padding: 16px 0 0;
+  font-size: 14px;
+}
+.removal-selection p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-top: 5px;
+}
+.deck-builder-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+.deck-builder-toolbar p {
+  font-size: 12px;
+  color: var(--muted);
+}
+.deck-builder-toolbar button {
+  min-height: 42px;
+  font-size: 12px;
+}
+.champion-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+}
+.champion-actions .primary-button {
+  justify-content: center;
+}
+.journey-combat-checkpoints {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 15px;
+  background: var(--surface2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin: 14px 0;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.journey-combat-checkpoints strong {
+  color: var(--gold);
+}
+.journey-combat-checkpoints span {
+  color: var(--muted);
+}
+@media (max-width: 600px) {
+  .loadout-player {
+    grid-template-columns: 80px 1fr;
+    gap: 14px;
+    padding: 10px;
+  }
+  .loadout-player > .artwork {
+    height: 140px;
+  }
+  .loadout-player h3 {
+    font-size: 32px;
+  }
+  .loadout-options,
+  .blueprint-cards,
+  .removal-card-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .builder-footer {
+    bottom: -20px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding-bottom: 10px;
+  }
+  .builder-footer p {
+    font-size: 11px;
+  }
+  .builder-footer .primary-button {
+    justify-content: center;
+    flex: 1;
+  }
+  .builder-footer > div {
+    width: 100%;
+  }
+  .loadout-note {
+    font-size: 12px;
+  }
+  .deck-builder-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .journey-combat-checkpoints {
+    flex-direction: column;
+    gap: 3px;
+  }
+  .removal-card-list .artwork {
+    height: 46px;
+  }
+  .card-removal-offer {
+    padding: 13px;
+  }
+}
+@media (max-height: 500px) and (min-width: 601px) {
+  .loadout-player {
+    grid-template-columns: 80px 1fr;
+    gap: 16px;
+    padding: 8px 14px;
+  }
+  .loadout-player > .artwork {
+    height: 104px;
+  }
+  .loadout-player h3 {
+    font-size: 28px;
+    margin: 2px 0;
+  }
+  .loadout-player small {
+    margin: 3px 0;
+  }
+  .loadout-player .eyebrow {
+    font-size: 10px;
+  }
+  .loadout-note {
+    margin: 10px 0;
+    font-size: 12px;
+  }
+  .loadout-options > button {
+    min-height: 62px;
+    padding: 10px;
+  }
+  .builder-footer {
+    padding-top: 10px;
+  }
+}

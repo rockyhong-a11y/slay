@@ -155,9 +155,9 @@ function plainCombat(actor = "ember") {
 }
 
 test("the full eight-floor graph has real connected choices, no dead nodes, and a boss path from every node", () => {
-  assert.equal(g.ROUTE_GRAPH.nodes.length, 26);
+  assert.equal(g.ROUTE_GRAPH.nodes.length, 38);
   const ids = new Set(g.ROUTE_GRAPH.nodes.map((n) => n.id));
-  assert.equal(ids.size, 26);
+  assert.equal(ids.size, 38);
   const reachable = new Set(["f1-0"]);
   for (let floor = 1; floor < 8; floor++)
     for (const edge of g.ROUTE_GRAPH.edges) {
@@ -184,7 +184,7 @@ test("the full eight-floor graph has real connected choices, no dead nodes, and 
     );
   }
   const map = firstMap();
-  assert.equal(map.mapNodes.length, 4);
+  assert.equal(map.mapNodes.length, 6);
   let left = g.chooseReward(win(g.advanceToNode(map, "f2-0")), null);
   assert.deepEqual(
     left.mapNodes.map((n) => n.id),
@@ -370,10 +370,7 @@ test("loot capacity prevents paid empty gains and item/gimmick claims are indepe
   assert.equal(g.claimLoot(reward, "gimmick", "icecorner"), reward);
   const discarded = g.chooseReward(reward, null);
   assert.deepEqual(discarded.rewardLoot, { items: [], gimmicks: [] });
-  let shop = g.advanceToNode(
-    g.rest(g.advanceToNode(firstMap(), "f2-1"), "heal"),
-    "f3-2",
-  );
+  let shop = g.advanceToNode(firstMap(), "f2-4");
   shop.inventory = saved(reward.inventory);
   shop.gimmicks = Array.from({ length: 6 }, (_, n) => ({
     uid: `full-${n}`,
@@ -421,7 +418,7 @@ test("event physical and credit costs must be affordable, and typed arrival/resu
   );
   state = g.advanceToNode(firstMap(), "f2-1");
   state.player.hp -= 7;
-  assert.equal(state.arrival.choices.length, 3);
+  assert.equal(state.arrival.choices.length, 4);
   const rested = g.rest(state, "heal");
   assert.equal(rested.lastChoice.type, "rest");
   assert.ok(rested.lastChoice.result.includes("체력 +7"));

@@ -1172,6 +1172,17 @@ export const GIMMICKS = {
   },
 };
 
+export const MIN_DECK_SIZE = 5;
+export const MIN_PRE_BOSS_COMBATS = 4;
+export const ROUTE_VERSION = 2;
+
+const REMOVE_CARD_CHOICE = {
+  id: "remove-card",
+  label: "덱 정리",
+  description: "카드 1장을 영구 제거 · 최소 5장 유지 · 이번 장소의 선택을 사용",
+  effects: { removeCard: 1 },
+};
+
 const ROUTE_TYPES = {
   fight: {
     type: "fight",
@@ -1223,7 +1234,7 @@ const ROUTE_TYPES = {
   rest: {
     type: "rest",
     label: "락커룸",
-    description: "회복 30% / 압박 −25와 악몽 제거 / 카드 1장 강화 중 선택",
+    description: "회복 / 멘탈 정비 / 카드 강화 / 카드 1장 영구 제거 중 선택",
     icon: "heart",
     risk: "회복",
     reward: { coins: 0, cardChoices: 0 },
@@ -1243,7 +1254,7 @@ const ROUTE_TYPES = {
   shop: {
     type: "shop",
     label: "프로 숍",
-    description: "카드·소모품·1경기 코너 기믹 구매",
+    description: "카드·소모품·코너 기믹 구매 · 유료 카드 1장 영구 제거",
     icon: "bag",
     risk: "준비",
     reward: { coins: 0, cardChoices: 0 },
@@ -1268,18 +1279,18 @@ function buildRouteGraph() {
       ...clone(ROUTE_TYPES.fight),
       id: "f1-0",
       floor: 1,
-      lane: 1,
+      lane: 2.5,
       index: 0,
       label: "데뷔 매치",
     },
   ];
   for (let floor = 2; floor <= 7; floor++) {
-    const types = [
-      "fight",
-      [3, 5, 7].includes(floor) ? "elite" : "rest",
-      floor % 2 ? "shop" : "event",
-      floor === 7 ? "rest" : "risk",
-    ];
+    // Every route crosses three mandatory match rounds after its opening fight.
+    // Preparation rounds keep extra fights as an optional risk/reward choice.
+    const types =
+      floor % 2
+        ? ["fight", "elite", "fight", "risk", "elite", "fight"]
+        : ["fight", "rest", "event", "risk", "shop", "rest"];
     types.forEach((type, index) =>
       nodes.push({
         ...clone(ROUTE_TYPES[type]),
@@ -1287,7 +1298,8 @@ function buildRouteGraph() {
         floor,
         lane: index,
         index,
-        ...(floor === 7 && index === 3 ? { label: "최종 준비" } : {}),
+        stage: floor % 2 ? "match" : "preparation",
+        mandatoryCombat: !!(floor % 2),
       }),
     );
   }
@@ -1295,7 +1307,7 @@ function buildRouteGraph() {
     ...clone(ROUTE_TYPES.boss),
     id: "f8-0",
     floor: 8,
-    lane: 1,
+    lane: 2.5,
     index: 0,
   });
   const edges = [];
@@ -1376,8 +1388,71 @@ export function normalizeRun(current) {
       visited: visited.length ? visited : [currentNode?.id || "f1-0"],
     };
   }
+  if (state.route.version !== ROUTE_VERSION) migrateRoute(state);
+  state.deckRemoval ||= { shopPurchases: 0, usedNodeIds: [] };
+  state.deckRemoval.shopPurchases ??= 0;
+  state.deckRemoval.usedNodeIds ||= [];
+  if (
+    state.phase === "event" &&
+    EVENTS.some((event) => event.id === state.event?.id)
+  ) {
+    if (
+      !state.event.choices.some((choice) => choice.id === REMOVE_CARD_CHOICE.id)
+    )
+      state.event.choices.push(clone(REMOVE_CARD_CHOICE));
+    if (state.arrival) state.arrival.choices = clone(state.event.choices);
+  }
   if (state.phase === "map") state.mapNodes = availableRouteNodes(state);
   return state;
+}
+
+// Legacy routes allowed six support stops in a row. Resume them at the matching
+// qualifier stage using actual victories; never reroll an active encounter,
+// cards, offers, player resources, or random seed. Already-started finals and
+// terminal saves keep their result. Historical choices stay in `history`.
+function migrateRoute(state) {
+  const previous = clone(state.route);
+  const previousFloor = state.floor;
+  const previousType = state.history?.at(-1)?.type || "fight";
+  const wins = Math.max(0, Number(state.stats?.enemiesDefeated) || 0);
+  const combatTypes = ["fight", "elite", "risk", "boss"];
+  const inFinal =
+    state.enemy?.type === "boss" && ["combat", "defeat"].includes(state.phase);
+  let type;
+  if (state.phase === "victory" || inFinal) {
+    state.floor = 8;
+    type = "boss";
+  } else if (state.phase === "combat" || state.phase === "defeat") {
+    state.floor = Math.min(7, 1 + wins * 2);
+    type = state.enemy?.type || "fight";
+  } else if (
+    state.phase === "reward" ||
+    (state.phase === "map" && combatTypes.includes(previousType))
+  ) {
+    state.floor = Math.min(7, Math.max(1, wins * 2 - 1));
+    type = previousType;
+  } else {
+    state.floor = Math.min(6, Math.max(2, wins * 2));
+    type = ["rest", "event", "shop"].includes(state.phase)
+      ? state.phase
+      : previousType;
+  }
+  const node =
+    ROUTE_GRAPH.nodes.find(
+      (entry) => entry.floor === state.floor && entry.type === type,
+    ) || ROUTE_GRAPH.nodes.find((entry) => entry.floor === state.floor);
+  state.maxFloor = 8;
+  state.route = {
+    version: ROUTE_VERSION,
+    currentNodeId: node.id,
+    visited: [node.id],
+    migratedFrom: {
+      floor: previousFloor,
+      currentNodeId: previous.currentNodeId,
+      visited: previous.visited || [],
+    },
+  };
+  if (state.arrival) state.arrival.nodeId = node.id;
 }
 
 function availableRouteNodes(state) {
@@ -1394,7 +1469,9 @@ function availableRouteNodes(state) {
   return clone(ROUTE_GRAPH.nodes.filter((entry) => nextIds.includes(entry.id)));
 }
 
-export function getRouteView(state) {
+export function getRouteView(current) {
+  const state =
+    current.route?.version === ROUTE_VERSION ? current : normalizeRun(current);
   const visited = state.route?.visited || [];
   const available =
     state.phase === "map"
@@ -1415,6 +1492,23 @@ export function getRouteView(state) {
       available:
         edge.from === state.route?.currentNodeId && available.includes(edge.to),
     })),
+    maxFloor: 8,
+    laneCount: 6,
+    minPreBossCombats: MIN_PRE_BOSS_COMBATS,
+    completedCombats: Math.max(
+      0,
+      (state.stats?.enemiesDefeated || 0) - (state.phase === "victory" ? 1 : 0),
+    ),
+    stageLabels: {
+      1: "데뷔 매치",
+      2: "준비 / 추가 도전",
+      3: "예선 1",
+      4: "준비 / 추가 도전",
+      5: "예선 2",
+      6: "최종 준비 / 추가 도전",
+      7: "최종 예선",
+      8: "챔피언십",
+    },
     currentNodeId: state.route?.currentNodeId || null,
     visited: [...visited],
   };
@@ -1694,7 +1788,11 @@ function applyTurnGimmick(state) {
   if (effects.turnCalm) calm(state, effects.turnCalm);
 }
 
-export function newRun(wrestlerId = "raven", seed = 20903) {
+export function newRun(
+  wrestlerId = "raven",
+  seed = 20903,
+  deckBlueprint = null,
+) {
   const wrestler = WRESTLERS[wrestlerId] || WRESTLERS.raven;
   const state = {
     version: 1,
@@ -1736,7 +1834,8 @@ export function newRun(wrestlerId = "raven", seed = 20903) {
     equippedGimmickUid: null,
     activeGimmick: null,
     rewardLoot: { items: [], gimmicks: [] },
-    route: { currentNodeId: "f1-0", visited: ["f1-0"] },
+    route: { version: ROUTE_VERSION, currentNodeId: "f1-0", visited: ["f1-0"] },
+    deckRemoval: { shopPurchases: 0, usedNodeIds: [] },
     arrival: null,
     lastChoice: null,
     lastImpact: null,
@@ -1750,8 +1849,24 @@ export function newRun(wrestlerId = "raven", seed = 20903) {
       },
     ],
   };
-  for (const id of wrestler.startingDeck) {
-    state.deck.push(makeInstance(state, id));
+  const validBlueprint =
+    Array.isArray(deckBlueprint) &&
+    deckBlueprint.length >= MIN_DECK_SIZE &&
+    deckBlueprint.length <= 80 &&
+    deckBlueprint.every(
+      (entry) =>
+        entry &&
+        Object.hasOwn(CARDS, entry.id) &&
+        typeof entry.upgraded === "boolean",
+    );
+  const openingDeck = validBlueprint
+    ? deckBlueprint
+    : wrestler.startingDeck.map((id) => ({ id, upgraded: false }));
+  for (const entry of openingDeck) {
+    state.deck.push({
+      ...makeInstance(state, entry.id),
+      upgraded: entry.upgraded,
+    });
   }
   addLoot(state, "item", "icepack");
   addLoot(state, "gimmick", "ironcorner");
@@ -2430,7 +2545,10 @@ export const EVENTS = [
       },
     ],
   },
-];
+].map((event) => ({
+  ...event,
+  choices: [...event.choices, clone(REMOVE_CARD_CHOICE)],
+}));
 
 function openShop(state) {
   state.shopItems = [
@@ -2444,7 +2562,7 @@ function openShop(state) {
     {
       id: "clarity",
       name: "멘탈 코칭",
-      description: "압박 25 감소 · 악몽 카드 1장 제거",
+      description: "압박 25 감소 · 악몽 카드 1장 제거 (최소 5장 유지)",
       cost: 30,
       kind: "cleanse",
     },
@@ -2561,7 +2679,7 @@ export function getRestChoices(state) {
     {
       id: "meditate",
       label: "멘탈 정비",
-      description: "압박 25 감소 · 영구 덱의 악몽 1장 제거",
+      description: "압박 25 감소 · 영구 덱의 악몽 1장 제거 (최소 5장 유지)",
       effects: { calm: 25, removeNightmare: 1 },
     },
     {
@@ -2570,7 +2688,89 @@ export function getRestChoices(state) {
       description: "선택한 카드 1장 영구 강화",
       effects: { upgrade: 1 },
     },
+    clone(REMOVE_CARD_CHOICE),
   ];
+}
+
+/** A permanent-deck service, separate from the temporary combat discard pile. */
+export function getCardRemovalOffer(state) {
+  if (!["shop", "rest", "event"].includes(state.phase)) return null;
+  if (
+    state.phase === "event" &&
+    !EVENTS.some((event) => event.id === state.event?.id)
+  )
+    return null;
+  const location = state.route?.currentNodeId || `floor-${state.floor}`;
+  const used = state.deckRemoval?.usedNodeIds?.includes(location) || false;
+  const cost =
+    state.phase === "shop"
+      ? 60 + 20 * (state.deckRemoval?.shopPurchases || 0)
+      : 0;
+  const reason = used
+    ? "이 장소에서는 이미 덱을 정리했습니다."
+    : state.deck.length <= MIN_DECK_SIZE
+      ? "덱은 최소 5장을 유지해야 합니다."
+      : state.player.coins < cost
+        ? "크레딧이 부족합니다."
+        : null;
+  return {
+    id: REMOVE_CARD_CHOICE.id,
+    kind: state.phase,
+    label: "카드 영구 제거",
+    description:
+      state.phase === "shop"
+        ? `선택한 카드 1장 영구 제거 · ${cost} 크레딧 · 상점당 1회 · 다음 상점 비용 +20`
+        : "선택한 카드 1장 영구 제거 · 회복·강화·이벤트 보상 대신 선택",
+    cost,
+    minDeckSize: MIN_DECK_SIZE,
+    remaining: used ? 0 : 1,
+    available: !reason,
+    reason,
+  };
+}
+
+function removeInstanceInPlace(state, uid) {
+  if (
+    state.deck.length <= MIN_DECK_SIZE ||
+    !state.deck.some((entry) => entry.uid === uid)
+  )
+    return false;
+  for (const pile of ["deck", "hand", "draw", "discard", "exhaust"])
+    state[pile] = state[pile].filter((entry) => entry.uid !== uid);
+  return true;
+}
+
+export function removeDeckCard(current, uid) {
+  const offer = getCardRemovalOffer(current);
+  const instance = current.deck.find((entry) => entry.uid === uid);
+  if (!offer?.available || !instance) return current;
+  const state = normalizeRun(current);
+  if (!removeInstanceInPlace(state, uid)) return current;
+  state.player.coins -= offer.cost;
+  state.deckRemoval.usedNodeIds.push(state.route.currentNodeId);
+  if (current.phase === "shop") state.deckRemoval.shopPurchases++;
+  const name = getCard(instance).name;
+  state.lastChoice = {
+    type: current.phase,
+    id: REMOVE_CARD_CHOICE.id,
+    label: "카드 영구 제거",
+    description: offer.description,
+    effects: { removeCard: 1, coins: -offer.cost },
+    result: [
+      `${name} 1장 영구 제거`,
+      ...(offer.cost ? [`크레딧 -${offer.cost}`] : []),
+    ],
+  };
+  addLog(
+    state,
+    `${name} 1장 영구 제거${offer.cost ? ` · ${offer.cost} 크레딧` : ""}`,
+    "deck",
+  );
+  if (current.phase !== "shop") {
+    state.event = null;
+    openMap(state);
+  }
+  return state;
 }
 
 function recordChoice(state, current, type, choice) {
@@ -2663,9 +2863,14 @@ export function rest(current, action = "heal") {
   } else {
     calm(state, 25);
     const nightmare = state.deck.find((c) => c.id === "nightmare");
-    if (nightmare)
-      state.deck = state.deck.filter((c) => c.uid !== nightmare.uid);
-    addLog(state, "압박을 25 낮추고 악몽의 흔적을 지웠습니다.", "heal");
+    const removed = nightmare && removeInstanceInPlace(state, nightmare.uid);
+    addLog(
+      state,
+      removed
+        ? "압박을 25 낮추고 악몽 1장을 제거했습니다."
+        : "멘탈 정비 · 압박을 최대 25 낮췄습니다.",
+      "heal",
+    );
   }
   recordChoice(
     state,
@@ -2700,8 +2905,7 @@ export function buyItem(current, itemOrId) {
   if (item.kind === "cleanse") {
     calm(state, 25);
     const nightmare = state.deck.find((c) => c.id === "nightmare");
-    if (nightmare)
-      state.deck = state.deck.filter((c) => c.uid !== nightmare.uid);
+    if (nightmare) removeInstanceInPlace(state, nightmare.uid);
   }
   if (item.kind === "upgrade") upgradeInPlace(state, bestUpgrade(state).uid);
   if (item.kind === "card") state.deck.push(makeInstance(state, item.cardId));
@@ -2732,6 +2936,8 @@ export function canResolveEventChoice(current, choiceId) {
   if (current.phase !== "event") return false;
   const choice = current.event?.choices.find((c) => c.id === choiceId);
   if (!choice) return false;
+  if (choice.effects.removeCard)
+    return !!getCardRemovalOffer(current)?.available;
   const effects = choice.effects;
   return (
     (!effects.damage || current.player.hp > effects.damage) &&
@@ -2749,6 +2955,7 @@ export function resolveEvent(current, choiceId) {
   if (current.phase !== "event" || !canResolveEventChoice(current, choiceId))
     return current;
   const choice = current.event.choices.find((entry) => entry.id === choiceId);
+  if (choice.effects.removeCard) return current; // A concrete UID must be chosen via removeDeckCard.
   const state = normalizeRun(current);
   const effects = choice.effects;
   if (effects.coins) state.player.coins += effects.coins;

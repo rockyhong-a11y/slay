@@ -67,7 +67,22 @@ import {
   claimLoot,
   getRestChoices,
   canResolveEventChoice,
+  getCardRemovalOffer,
+  removeDeckCard,
 } from "./game.js";
+import {
+  DeckLoadout,
+  SaveChampionDeck,
+  CardRemovalPicker,
+  CardRemovalAction,
+} from "./DeckBuilder.jsx";
+import {
+  loadDeckArchive,
+  saveCompletedDeck,
+  deleteSavedDeck,
+  startRunFromSavedDeck,
+  canArchiveRun,
+} from "./deck-archive.js";
 import { getCardDetail, CARD_RARITY_LABELS } from "./card-library.js";
 import { CardGuidePage, CardLibraryPage } from "./KnowledgePages.jsx";
 import { Roster } from "./Roster.jsx";
@@ -106,10 +121,41 @@ import "./roster.css";
 import "./typography.css";
 import { HandInteraction } from "./HandInteraction.jsx";
 import { installMobileInteractionGuard } from "./mobile-interactions.js";
+import {
+  dismissNavigationOnBlur,
+  installNavigationDismissal,
+  navigationFromHash,
+  navigationHash,
+} from "./navigation.js";
 import "./viewport-shell.css";
 
 const asset = (name) => `${import.meta.env.BASE_URL}assets/${name}`;
 const SAVE_KEY = "slay.run.v1";
+function isPreviewRun() {
+  if (!import.meta.env.DEV) return false;
+  const query = new URLSearchParams(window.location.search);
+  return (
+    ["5", "10"].includes(query.get("qaHand")) ||
+    JOURNEY_QA_PROFILES.includes(query.get("qaJourney"))
+  );
+}
+function deckStorageForPage() {
+  if (!isPreviewRun()) return undefined;
+  try {
+    return window.sessionStorage;
+  } catch {
+    return null;
+  }
+}
+function shouldChoosePlayer() {
+  if (isPreviewRun()) return false;
+  try {
+    const saved = JSON.parse(localStorage.getItem(SAVE_KEY));
+    return !saved || !WRESTLERS[saved.player?.id];
+  } catch {
+    return true;
+  }
+}
 const typeNames = {
   attack: "공격",
   skill: "기술",
@@ -142,10 +188,7 @@ const navItems = [
   { id: "cards", label: "카드 도감", icon: BookOpen },
   { id: "inventory", label: "코너 보관함", icon: Backpack },
 ];
-const pageFromHash = () =>
-  ({ "#cards": "cards", "#guide": "guide", "#map": "map" })[
-    window.location.hash
-  ] || "battle";
+const pageFromHash = () => navigationFromHash(window.location.hash).page;
 
 function loadRun() {
   if (import.meta.env.DEV) {
@@ -398,7 +441,20 @@ function Health({ hp, maxHp, block, enemy }) {
 
 function App() {
   const [state, setState] = useState(loadRun);
-  const [modal, setModal] = useState(null);
+  const [modal, setModal] = useState(
+    () =>
+      navigationFromHash(window.location.hash).modal ||
+      (navigationFromHash(window.location.hash).page === "battle" &&
+      shouldChoosePlayer()
+        ? "roster"
+        : null),
+  );
+  const [loadoutActor, setLoadoutActor] = useState(() => state.player.id);
+  const [archiveResult, setArchiveResult] = useState(() =>
+    loadDeckArchive(deckStorageForPage()),
+  );
+  const [archiveError, setArchiveError] = useState("");
+  const [savedVictoryId, setSavedVictoryId] = useState(null);
   const [previewActor, setPreviewActor] = useState(null);
   const [previewFromRoster, setPreviewFromRoster] = useState(false);
   const [nav, setNav] = useState(pageFromHash);
@@ -411,6 +467,8 @@ function App() {
   const [dismissedFeedback, setDismissedFeedback] = useState(null);
   const wasArrivalVisible = useRef(false);
   const [combatMenuOpen, setCombatMenuOpen] = useState(false);
+  const combatMenuRef = useRef(null);
+  useEffect(() => installNavigationDismissal(combatMenuRef.current), []);
   const busyRef = useRef(false);
   const cueSequence = useRef(0);
   const arenaRef = useRef(null);
@@ -535,7 +593,8 @@ function App() {
   const changePage = (id) => {
     clearPresentation();
     setNav(id);
-    const hash = id === "battle" ? "" : `#${id}`;
+    setModal(null);
+    const hash = navigationHash(id);
     if (window.location.hash !== hash) {
       window.history.pushState(
         null,
@@ -548,7 +607,12 @@ function App() {
   useEffect(() => {
     const syncPage = () => {
       clearPresentation();
-      setNav(pageFromHash());
+      const destination = navigationFromHash(
+        window.location.hash,
+        window.history.state?.slayPage,
+      );
+      setNav(destination.page);
+      setModal(destination.modal);
       mainRef.current?.scrollTo({ top: 0, left: 0, behavior: "instant" });
     };
     window.addEventListener("hashchange", syncPage);
@@ -697,9 +761,64 @@ function App() {
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
   }, [state, modal, nav, sound.enabled]);
-  const startRun = (id) => {
+  const openLoadout = (id) => {
+    setLoadoutActor(id);
+    setArchiveResult(loadDeckArchive(deckStorageForPage()));
+    setArchiveError("");
+    setModal("loadout");
+  };
+  const saveVictoryDeck = (name) => {
+    const result = saveCompletedDeck(state, {
+      name,
+      storage: deckStorageForPage(),
+    });
+    if (!result.ok) {
+      setArchiveError(result.message);
+      return;
+    }
+    setArchiveResult(result);
+    setArchiveError("");
+    setSavedVictoryId(result.deck.id);
+    notify(result.message);
+  };
+  const removeArchivedDeck = (id) => {
+    const result = deleteSavedDeck(id, { storage: deckStorageForPage() });
+    if (!result.ok) {
+      setArchiveError(result.message);
+      return false;
+    }
+    setArchiveResult(result);
+    setArchiveError("");
+    notify(result.message);
+    return true;
+  };
+  const removePermanentCard = (uid) => {
+    if (busyRef.current) return;
+    const next = removeDeckCard(state, uid);
+    if (next === state) {
+      notify("지금은 이 카드를 제거할 수 없습니다.");
+      return;
+    }
+    const name = getCard(state.deck.find((card) => card.uid === uid)).name;
+    setState(next);
+    closeModal();
+    notify(`${name} 1장 영구 제거 · 덱 ${next.deck.length}장`);
+  };
+  const startRun = (id, savedDeck = null) => {
+    const seed = crypto.getRandomValues(new Uint32Array(1))[0];
+    const next = savedDeck
+      ? startRunFromSavedDeck(savedDeck, id, seed)
+      : newRun(id, seed);
+    if (!next) {
+      setArchiveError(
+        "이 선수에게 사용할 수 없는 덱입니다. 다시 선택해 주세요.",
+      );
+      return;
+    }
     clearPresentation();
-    setState(newRun(id, crypto.getRandomValues(new Uint32Array(1))[0]));
+    setState(next);
+    setSavedVictoryId(null);
+    setArchiveError("");
     setModal(null);
     setPreviewFromRoster(false);
     setDismissedArrivals([]);
@@ -709,8 +828,17 @@ function App() {
     notify("새로운 챔피언 로드가 시작됩니다.");
   };
   const navigate = (id) => {
-    if (["deck", "roster", "inventory"].includes(id)) setModal(id);
-    else changePage(id);
+    if (["deck", "roster", "inventory"].includes(id)) {
+      clearPresentation();
+      setModal(id);
+      const hash = navigationHash(nav, id);
+      if (window.location.hash !== hash)
+        window.history.pushState(
+          { slayPage: nav },
+          "",
+          `${window.location.pathname}${window.location.search}${hash}`,
+        );
+    } else changePage(id);
   };
   const openConditionPreview = (id, fromRoster = false) => {
     setPreviewActor(id);
@@ -723,6 +851,12 @@ function App() {
       setModal("roster");
     } else {
       setModal(null);
+      if (navigationFromHash(window.location.hash).modal)
+        window.history.replaceState(
+          null,
+          "",
+          `${window.location.pathname}${window.location.search}${navigationHash(nav)}`,
+        );
     }
   };
   const intent = state.enemy?.intent;
@@ -819,6 +953,7 @@ function App() {
             </div>
             <div className="top-actions">
               <details
+                ref={combatMenuRef}
                 className="combat-menu"
                 onToggle={(event) =>
                   setCombatMenuOpen(event.currentTarget.open)
@@ -831,8 +966,10 @@ function App() {
                   event.currentTarget.querySelector("summary").focus();
                 }}
                 onBlur={(event) => {
-                  if (!event.currentTarget.contains(event.relatedTarget))
-                    event.currentTarget.open = false;
+                  dismissNavigationOnBlur(
+                    event.currentTarget,
+                    event.relatedTarget,
+                  );
                 }}
               >
                 <summary
@@ -983,7 +1120,7 @@ function App() {
                 <PhasePanel
                   state={state}
                   act={act}
-                  startRun={startRun}
+                  startRun={openLoadout}
                   setModal={setModal}
                 />
               </JourneyLocation>
@@ -1153,7 +1290,7 @@ function App() {
                       <PhasePanel
                         state={state}
                         act={act}
-                        startRun={startRun}
+                        startRun={openLoadout}
                         setModal={setModal}
                       />
                     </div>
@@ -1377,6 +1514,9 @@ function App() {
                 condition: `${previewWrestler.nameKo} 컨디션 및 표정`,
                 log: "경기 기록",
                 upgrade: "카드 강화",
+                loadout: "아레나 진입 준비",
+                "save-deck": "완성 덱 저장",
+                remove: "덱에서 카드 제거",
               }[modal]
             }
             subtitle={
@@ -1385,11 +1525,21 @@ function App() {
                 roster: "THE CONTENDERS",
                 condition: `${previewWrestler.name} · STATE PREVIEW`,
                 upgrade: "TRAINING ROOM",
+                loadout: "CHOOSE YOUR DECK",
+                "save-deck": "CHAMPION DECK ARCHIVE",
+                remove: "REFINE YOUR DECK",
               }[modal]
             }
-            wide={["deck", "draw", "discard", "roster", "upgrade"].includes(
-              modal,
-            )}
+            wide={[
+              "deck",
+              "draw",
+              "discard",
+              "roster",
+              "upgrade",
+              "loadout",
+              "save-deck",
+              "remove",
+            ].includes(modal)}
             className={modal === "roster" ? "roster-modal" : ""}
             closeLabel={
               modal === "condition" && previewFromRoster
@@ -1400,13 +1550,25 @@ function App() {
           >
             {["deck", "draw", "discard", "upgrade"].includes(modal) && (
               <>
+                {modal === "deck" && (
+                  <div className="deck-builder-toolbar">
+                    <p>현재 런의 덱 · {state.deck.length}장</p>
+                    <button
+                      className="secondary-button"
+                      onClick={() => openLoadout(state.player.id)}
+                    >
+                      <Trophy size={16} /> 완성 덱 보관함 ·{" "}
+                      {archiveResult.archive.decks.length}
+                    </button>
+                  </div>
+                )}
                 <p className="muted modal-desc">
                   {modal === "upgrade"
                     ? "강화할 카드를 선택하세요. 한 장을 영구적으로 강화합니다."
                     : modal === "draw"
                       ? "드로우 순서는 공개되지 않습니다. 덱이 비면 버린 카드를 섞습니다."
                       : modal === "deck"
-                        ? "보상과 상점에서 카드를 추가하고, 휴식 구간에서 강화할 수 있습니다."
+                        ? "보상과 상점에서 카드를 추가하고, 상점·라커룸·백스테이지에서 불필요한 카드를 영구 제거할 수 있습니다."
                         : "턴 종료 때 남은 패를 버립니다. 소멸한 카드는 이 경기에 돌아오지 않습니다."}
                 </p>
                 <div className="deck-grid">
@@ -1448,8 +1610,42 @@ function App() {
             {modal === "roster" && (
               <Roster
                 currentId={state.player.id}
-                onStart={startRun}
+                onStart={openLoadout}
                 onPreview={(id) => openConditionPreview(id, true)}
+              />
+            )}
+            {modal === "loadout" && (
+              <DeckLoadout
+                key={loadoutActor}
+                actorId={loadoutActor}
+                archive={archiveResult.archive}
+                onStart={startRun}
+                onRoster={() => setModal("roster")}
+                onDelete={removeArchivedDeck}
+                error={
+                  archiveError ||
+                  (!archiveResult.ok || archiveResult.recovered
+                    ? archiveResult.message
+                    : "")
+                }
+              />
+            )}
+            {modal === "save-deck" && (
+              <SaveChampionDeck
+                state={state}
+                existing={archiveResult.archive.decks.find(
+                  (deck) => deck.id === savedVictoryId,
+                )}
+                onSave={saveVictoryDeck}
+                error={archiveError}
+              />
+            )}
+            {modal === "remove" && (
+              <CardRemovalPicker
+                state={state}
+                offer={getCardRemovalOffer(state)}
+                onRemove={removePermanentCard}
+                onCancel={closeModal}
               />
             )}
             {modal === "inventory" && (
@@ -1607,32 +1803,38 @@ function PhasePanel({ state, act, startRun, setModal }) {
         <h2 tabIndex={-1}>다시 링에 오르기 전에.</h2>
         <p>한 번의 휴식으로 몸을 회복하거나, 마음과 기술을 다듬으세요.</p>
         <div className="phase-actions">
-          {getRestChoices(state).map((choice) => {
-            const Icon = { heal: Heart, meditate: Brain, upgrade: Sparkle }[
-              choice.id
-            ];
-            const unavailable =
-              choice.id === "upgrade" &&
-              !state.deck.some(
-                (card) => !card.upgraded && card.id !== "nightmare",
+          {getRestChoices(state)
+            .filter((choice) => choice.id !== "remove-card")
+            .map((choice) => {
+              const Icon = { heal: Heart, meditate: Brain, upgrade: Sparkle }[
+                choice.id
+              ];
+              const unavailable =
+                choice.id === "upgrade" &&
+                !state.deck.some(
+                  (card) => !card.upgraded && card.id !== "nightmare",
+                );
+              return (
+                <button
+                  key={choice.id}
+                  disabled={unavailable}
+                  onClick={() =>
+                    choice.id === "upgrade"
+                      ? setModal("upgrade")
+                      : act((current) => rest(current, choice.id))
+                  }
+                >
+                  <Icon size={23} />
+                  <strong>{choice.label}</strong>
+                  <span>{choice.description}</span>
+                </button>
               );
-            return (
-              <button
-                key={choice.id}
-                disabled={unavailable}
-                onClick={() =>
-                  choice.id === "upgrade"
-                    ? setModal("upgrade")
-                    : act((current) => rest(current, choice.id))
-                }
-              >
-                <Icon size={23} />
-                <strong>{choice.label}</strong>
-                <span>{choice.description}</span>
-              </button>
-            );
-          })}
+            })}
         </div>
+        <CardRemovalAction
+          offer={getCardRemovalOffer(state)}
+          onOpen={() => setModal("remove")}
+        />
       </div>
     );
   if (state.phase === "shop")
@@ -1689,6 +1891,10 @@ function PhasePanel({ state, act, startRun, setModal }) {
             </button>
           ))}
         </div>
+        <CardRemovalAction
+          offer={getCardRemovalOffer(state)}
+          onOpen={() => setModal("remove")}
+        />
         <button
           className="primary-button full"
           onClick={() => act((s) => leaveShop(s))}
@@ -1706,26 +1912,32 @@ function PhasePanel({ state, act, startRun, setModal }) {
         <h2 tabIndex={-1}>{state.event?.name || state.event?.title}</h2>
         <p>{state.event?.description}</p>
         <div className="event-choices">
-          {state.event?.choices.map((choice) => {
-            const unavailable = eventChoiceUnavailable(state, choice);
-            return (
-              <button
-                key={choice.id}
-                onClick={() => act((s) => resolveEvent(s, choice.id))}
-                disabled={!!unavailable}
-              >
-                <strong>{choice.label}</strong>
-                <span>{choice.description}</span>
-                {unavailable && (
-                  <small className="journey-choice-unavailable">
-                    {unavailable}
-                  </small>
-                )}
-                <ArrowRight size={18} />
-              </button>
-            );
-          })}
+          {state.event?.choices
+            .filter((choice) => choice.id !== "remove-card")
+            .map((choice) => {
+              const unavailable = eventChoiceUnavailable(state, choice);
+              return (
+                <button
+                  key={choice.id}
+                  onClick={() => act((s) => resolveEvent(s, choice.id))}
+                  disabled={!!unavailable}
+                >
+                  <strong>{choice.label}</strong>
+                  <span>{choice.description}</span>
+                  {unavailable && (
+                    <small className="journey-choice-unavailable">
+                      {unavailable}
+                    </small>
+                  )}
+                  <ArrowRight size={18} />
+                </button>
+              );
+            })}
         </div>
+        <CardRemovalAction
+          offer={getCardRemovalOffer(state)}
+          onOpen={() => setModal("remove")}
+        />
       </div>
     );
   return (
@@ -1748,16 +1960,26 @@ function PhasePanel({ state, act, startRun, setModal }) {
           ? "타이틀 매치에서 승리했습니다. 당신이 새로운 챔피언입니다."
           : `${state.floor}번째 구간에서 경기가 끝났습니다. 다른 덱과 경로로 다시 도전하세요.`}
       </p>
-      <button
-        className="primary-button"
-        onClick={() => startRun(state.player.id)}
-      >
-        다시 도전하기
-        <ArrowCounterClockwise size={18} />
-      </button>
-      <button className="text-button" onClick={() => setModal("roster")}>
-        다른 선수 선택
-      </button>
+      <div className="champion-actions">
+        {canArchiveRun(state) && (
+          <button
+            className="primary-button"
+            onClick={() => setModal("save-deck")}
+          >
+            <Trophy size={18} /> 완성 덱 저장
+          </button>
+        )}
+        <button
+          className="primary-button"
+          onClick={() => startRun(state.player.id)}
+        >
+          선수·덱 선택 후 다시 도전
+          <ArrowCounterClockwise size={18} />
+        </button>
+        <button className="text-button" onClick={() => setModal("roster")}>
+          다른 선수 선택
+        </button>
+      </div>
     </div>
   );
 }

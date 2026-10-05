@@ -75,7 +75,8 @@ export function Roster({ currentId, onStart, onPreview }) {
       </div>
       <p className="roster-run-note">
         상태 미리보기로 표정과 자세를 확인할 수 있습니다. 새 런을 시작하면 현재
-        진행이 선택한 선수의 시작 덱으로 바뀝니다.
+        다음 화면에서 기본 시작 덱 또는 저장한 완성 덱을 선택합니다. 아레나
+        진입을 누르면 현재 진행이 새 런으로 바뀝니다.
       </p>
       <div className="contender-grid">
         {visible.map(([id, fighter]) => (
@@ -191,9 +192,9 @@ export function Roster({ currentId, onStart, onPreview }) {
                   type="button"
                   className="primary-button contender-start-button"
                   onClick={() => onStart(id)}
-                  aria-label={`${fighter.nameKo}로 새 런 시작`}
+                  aria-label={`${fighter.nameKo}의 덱 선택`}
                 >
-                  이 선수로 시작 <ArrowRight size={17} />
+                  이 선수의 덱 선택 <ArrowRight size={17} />
                 </button>
               </div>
             </div>
