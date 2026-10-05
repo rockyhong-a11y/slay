@@ -1,0 +1,426 @@
+{
+  "generatedWith": "builtin image_gen",
+  "creativeEdits": "Each state generated in its own tool call from the normal identity reference. Pillow only converts format/resizes without changing subject.",
+  "assets": [
+    {
+      "id": "atlas",
+      "state": "normal",
+      "useCase": "stylized-concept",
+      "mode": "builtin",
+      "prompt": "Use case: stylized-concept. Asset type: SLAY pro wrestling game whole-body fighter sprite. Input Image 1 is ONLY a visual style, muscular proportions, full-body scale and lighting reference. Create one NEW distinct adult female professional wrestler age 28, no resemblance to a real person. Preserve the referenced high-quality cartoon/anime cel-render illustration language: clean dark contour lines, warm skin planes, glossy sport fabric highlights, anatomically coherent realistic athletic proportions, confident heroic sports presentation. One complete coherent person from head to both boot soles, no separated layers or body-part collage. Portrait 2:3 canvas. Centered front three-quarter ready stance, soles at same baseline, head and boots within frame with 5 percent margin. Actual transparent background with clear alpha; no ground, scenery, gradients, shadows, arena, aura, graphic FX, labels, text or watermark. Practical opaque wrestling outfit, knee pads, high lace-up wrestling boots. No hat, beret, helmet, bulky gauntlets, armor, wings, weapons, or extra people. Exactly two arms and two legs, clean hands with natural fingers. Calm alert normal state, poised for a match with fists raised at waist/chest height and steady face. Athlete identity: ATLAS has a NEW strong square jaw, amber eyes, short copper-red pixie hair with swept fringe, medium tan skin; broad shoulders, visibly muscular biceps, solid abdomen, thick powerful quads similar to the reference muscular proportions. Outfit orange and charcoal cropped wrestling top with racerback, matching fitted mid-thigh shorts, black simple soft wrist tape, charcoal knee pads with orange piping and orange-black high lace-up boots. No jewelry. Original athlete distinct from reference.",
+      "references": [
+        "public/assets/fighters/states/valkyrie-normal.webp"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-872c2864-32e7-45e4-a7a0-c6291add98ef.png",
+      "savedSource": "artifacts/new-roster-sources/atlas-normal.png",
+      "output": "public/assets/fighters/states/atlas-normal.webp",
+      "transparent": true
+    },
+    {
+      "id": "seraph",
+      "state": "normal",
+      "useCase": "stylized-concept",
+      "mode": "builtin",
+      "prompt": "Use case: stylized-concept. Asset type: SLAY pro wrestling game whole-body fighter sprite. Input Image 1 is ONLY a visual style, muscular proportions, full-body scale and lighting reference. Create one NEW distinct adult female professional wrestler age 28, no resemblance to a real person. Preserve the referenced high-quality cartoon/anime cel-render illustration language: clean dark contour lines, warm skin planes, glossy sport fabric highlights, anatomically coherent realistic athletic proportions, confident heroic sports presentation. One complete coherent person from head to both boot soles, no separated layers or body-part collage. Portrait 2:3 canvas. Centered front three-quarter ready stance, soles at same baseline, head and boots within frame with 5 percent margin. Actual transparent background with clear alpha; no ground, scenery, gradients, shadows, arena, aura, graphic FX, labels, text or watermark. Practical opaque wrestling outfit, knee pads, high lace-up wrestling boots. No hat, beret, helmet, bulky gauntlets, armor, wings, weapons, or extra people. Exactly two arms and two legs, clean hands with natural fingers. Calm alert normal state, poised for a match with fists raised at waist/chest height and steady face. Athlete identity: SERAPH has a NEW elegant angular adult face, bright gray-blue eyes, platinum-blonde high ponytail with side fringe, light warm skin; lean athletic muscular proportions similar to reference, defined arms and strong thighs. Outfit ivory-white and cobalt-blue sleeveless zip-front cropped wrestling top, matching opaque fitted shorts, short plain cobalt wrist tape, cobalt knee pads with ivory trim, ivory-cobalt high lace-up boots. No jewelry, wings or armor. Original athlete distinct from reference.",
+      "references": [
+        "public/assets/fighters/states/nova-normal.webp"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-8c83832e-98e1-499a-b7c9-22af52df01b6.png",
+      "savedSource": "artifacts/new-roster-sources/seraph-normal.png",
+      "output": "public/assets/fighters/states/seraph-normal.webp",
+      "transparent": true
+    },
+    {
+      "id": "lynx",
+      "state": "normal",
+      "useCase": "stylized-concept",
+      "mode": "builtin",
+      "prompt": "Use case: stylized-concept. Asset type: SLAY pro wrestling game whole-body fighter sprite. Input Image 1 is ONLY a visual style, muscular proportions, full-body scale and lighting reference. Create one NEW distinct adult female professional wrestler age 28, no resemblance to a real person. Preserve the referenced high-quality cartoon/anime cel-render illustration language: clean dark contour lines, warm skin planes, glossy sport fabric highlights, anatomically coherent realistic athletic proportions, confident heroic sports presentation. One complete coherent person from head to both boot soles, no separated layers or body-part collage. Portrait 2:3 canvas. Centered front three-quarter ready stance, soles at same baseline, head and boots within frame with 5 percent margin. Actual transparent background with clear alpha; no ground, scenery, gradients, shadows, arena, aura, graphic FX, labels, text or watermark. Practical opaque wrestling outfit, knee pads, high lace-up wrestling boots. No hat, beret, helmet, bulky gauntlets, armor, wings, weapons, or extra people. Exactly two arms and two legs, clean hands with natural fingers. Calm alert normal state, poised for a match with fists raised at waist/chest height and steady face. Athlete identity: LYNX has a NEW adult oval face with fierce emerald eyes, silver-gray chin-length asymmetric bob, warm olive skin; athletic strong shoulders, thick powerful legs and toned abdomen similar to reference. Outfit plum-purple and charcoal sleeveless high-neck athletic cropped wrestling top, plum/charcoal fitted mid-thigh shorts, simple black wrist tape, charcoal knee pads with plum piping, plum-black high lace-up boots. No gauntlets, braids, hats or jewelry. Original athlete distinct from reference.",
+      "references": [
+        "public/assets/fighters/states/viper-normal.webp"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-16076460-83e9-4d99-94f1-5ece3d1bbfae.png",
+      "savedSource": "artifacts/new-roster-sources/lynx-normal.png",
+      "output": "public/assets/fighters/states/lynx-normal.webp",
+      "transparent": true
+    },
+    {
+      "id": "tempest",
+      "state": "normal",
+      "useCase": "stylized-concept",
+      "mode": "builtin",
+      "prompt": "Use case: stylized-concept. Asset type: SLAY pro wrestling game whole-body fighter sprite. Input Image 1 is ONLY a visual style, muscular proportions, full-body scale and lighting reference. Create one NEW distinct adult female professional wrestler age 28, no resemblance to a real person. Preserve the referenced high-quality cartoon/anime cel-render illustration language: clean dark contour lines, warm skin planes, glossy sport fabric highlights, anatomically coherent realistic athletic proportions, confident heroic sports presentation. One complete coherent person from head to both boot soles, no separated layers or body-part collage. Portrait 2:3 canvas. Centered front three-quarter ready stance, soles at same baseline, head and boots within frame with 5 percent margin. Actual transparent background with clear alpha; no ground, scenery, gradients, shadows, arena, aura, graphic FX, labels, text or watermark. Practical opaque wrestling outfit, knee pads, high lace-up wrestling boots. No hat, beret, helmet, bulky gauntlets, armor, wings, weapons, or extra people. Exactly two arms and two legs, clean hands with natural fingers. Calm alert normal state, poised for a match with fists raised at waist/chest height and steady face. Athlete identity: TEMPEST has a NEW adult heart-shaped face with determined brown eyes, dark navy-blue hair in a high ponytail with short front wisps, rich warm brown skin; balanced muscular athletic build, strong shoulders and legs, defined abdomen similar to reference. Outfit vivid turquoise and charcoal racerback cropped wrestling top, matching fitted mid-thigh shorts, simple charcoal wrist tape, black knee pads with turquoise lightning-shaped piping, turquoise-black high lace-up boots. No hat or gauntlets. Original athlete distinct from reference.",
+      "references": [
+        "public/assets/fighters/states/ember-normal.webp"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-58750a9b-97a7-447c-b18f-a91baad03050.png",
+      "savedSource": "artifacts/new-roster-sources/tempest-normal.png",
+      "output": "public/assets/fighters/states/tempest-normal.webp",
+      "transparent": true
+    },
+    {
+      "id": "onyx",
+      "state": "normal",
+      "useCase": "stylized-concept",
+      "mode": "builtin",
+      "prompt": "Use case: stylized-concept. Asset type: SLAY pro wrestling game whole-body fighter sprite. Input Image 1 is ONLY a visual style, muscular proportions, full-body scale and lighting reference. Create one NEW distinct adult female professional wrestler age 28, no resemblance to a real person. Preserve the referenced high-quality cartoon/anime cel-render illustration language: clean dark contour lines, warm skin planes, glossy sport fabric highlights, anatomically coherent realistic athletic proportions, confident heroic sports presentation. One complete coherent person from head to both boot soles, no separated layers or body-part collage. Portrait 2:3 canvas. Centered front three-quarter ready stance, soles at same baseline, head and boots within frame with 5 percent margin. Actual transparent background with clear alpha; no ground, scenery, gradients, shadows, arena, aura, graphic FX, labels, text or watermark. Practical opaque wrestling outfit, knee pads, high lace-up wrestling boots. No hat, beret, helmet, bulky gauntlets, armor, wings, weapons, or extra people. Exactly two arms and two legs, clean hands with natural fingers. Calm alert normal state, poised for a match with fists raised at waist/chest height and steady face. Athlete identity: ONYX has a NEW adult oval face, sharp violet-gray eyes, dark brown hair in one thick braided high ponytail with smooth visible hairline, deep brown skin; toned athletic feminine build, strong shoulders and powerful thighs similar to reference. Outfit violet-purple and black sleeveless cropped wrestling top with geometric silver piping, opaque fitted black mid-thigh shorts with violet panels, plain black short wrist tape, black knee pads with violet trim, violet-black high lace-up boots. No hat, gloves or gauntlets. Original athlete distinct from reference.",
+      "references": [
+        "public/assets/fighters/states/raven-normal.webp"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-3817ce3e-da99-4877-845f-a61cf10c6dce.png",
+      "savedSource": "artifacts/new-roster-sources/onyx-normal.png",
+      "output": "public/assets/fighters/states/onyx-normal.webp",
+      "transparent": true
+    },
+    {
+      "id": "atlas",
+      "state": "excited",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: EXCITED: joyful energized athlete, confident open smile, bright wide focused eyes, one fist lifted proudly near shoulder and the other at waist, chest upright with subtle forward energy. Keep full body grounded.",
+      "references": [
+        "artifacts/new-roster-sources/atlas-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-4034cd8e-d408-4267-95b5-d6be0824954a.png",
+      "savedSource": "artifacts/new-roster-sources/atlas-excited.png",
+      "output": "public/assets/fighters/states/atlas-excited.webp",
+      "transparent": true
+    },
+    {
+      "id": "atlas",
+      "state": "fiery",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: FIERY / ON FIRE: intense determined competition expression, eyebrows lowered, teeth subtly clenched, both clenched fists drawn in a tight guard, shoulders tense, slight forward athletic lean with bent knees. Keep full body grounded. No flames or aura.",
+      "references": [
+        "artifacts/new-roster-sources/atlas-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-5cc403a8-a26f-487b-aa12-ace8764e2358.png",
+      "savedSource": "artifacts/new-roster-sources/atlas-fiery.png",
+      "output": "public/assets/fighters/states/atlas-fiery.webp",
+      "transparent": true
+    },
+    {
+      "id": "atlas",
+      "state": "frustrated",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: FRUSTRATED: disappointed but still combative, knitted eyebrows and restrained frown, chin slightly lowered, shoulders drawn inward, fists clenched lower near hips, weight shifted. Keep full body standing and grounded. No broken anatomy or crying.",
+      "references": [
+        "artifacts/new-roster-sources/atlas-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-e3bb4111-f15d-4ae9-a142-2cedb5345515.png",
+      "savedSource": "artifacts/new-roster-sources/atlas-frustrated.png",
+      "output": "public/assets/fighters/states/atlas-frustrated.webp",
+      "transparent": true
+    },
+    {
+      "id": "atlas",
+      "state": "tired",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: TIRED: physically winded after a match, heavy eyelids, slightly parted lips, light sweat on forehead, shoulders gently slouched, knees slightly bent, one palm braced on thigh and the other hanging naturally at side. Preserve trained muscular body without injury. Full body visible.",
+      "references": [
+        "artifacts/new-roster-sources/atlas-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-fb568936-fa73-4c34-aab4-d3a554ee7388.png",
+      "savedSource": "artifacts/new-roster-sources/atlas-tired.png",
+      "output": "public/assets/fighters/states/atlas-tired.webp",
+      "transparent": true
+    },
+    {
+      "id": "atlas",
+      "state": "groggy",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: GROGGY: visibly dazed but conscious after a sports hit, unfocused half-lidded eyes and slightly parted mouth, slumped forward athletic stance, knees bent, both palms planted on respective upper thighs for support. Preserve coherent neck/shoulders/arms and complete boots. No bruising, cuts, blood, torn clothing, or injury.",
+      "references": [
+        "artifacts/new-roster-sources/atlas-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-9469eabb-0d51-412d-8da2-c9da7458abe8.png",
+      "savedSource": "artifacts/new-roster-sources/atlas-groggy.png",
+      "output": "public/assets/fighters/states/atlas-groggy.webp",
+      "transparent": true
+    },
+    {
+      "id": "seraph",
+      "state": "excited",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: EXCITED: joyful energized athlete, confident open smile, bright wide focused eyes, one fist lifted proudly near shoulder and the other at waist, chest upright with subtle forward energy. Keep full body grounded.",
+      "references": [
+        "artifacts/new-roster-sources/seraph-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-17b411d0-d72b-48e3-8882-e7a5707fb9c1.png",
+      "savedSource": "artifacts/new-roster-sources/seraph-excited.png",
+      "output": "public/assets/fighters/states/seraph-excited.webp",
+      "transparent": true
+    },
+    {
+      "id": "seraph",
+      "state": "fiery",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: FIERY / ON FIRE: intense determined competition expression, eyebrows lowered, teeth subtly clenched, both clenched fists drawn in a tight guard, shoulders tense, slight forward athletic lean with bent knees. Keep full body grounded. No flames or aura.",
+      "references": [
+        "artifacts/new-roster-sources/seraph-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-3618390c-a699-4334-b281-66f3c4a64197.png",
+      "savedSource": "artifacts/new-roster-sources/seraph-fiery.png",
+      "output": "public/assets/fighters/states/seraph-fiery.webp",
+      "transparent": true
+    },
+    {
+      "id": "seraph",
+      "state": "frustrated",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: FRUSTRATED: disappointed but still combative, knitted eyebrows and restrained frown, chin slightly lowered, shoulders drawn inward, fists clenched lower near hips, weight shifted. Keep full body standing and grounded. No broken anatomy or crying.",
+      "references": [
+        "artifacts/new-roster-sources/seraph-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-0d2cd001-bc2b-4f06-ba82-780be9010742.png",
+      "savedSource": "artifacts/new-roster-sources/seraph-frustrated.png",
+      "output": "public/assets/fighters/states/seraph-frustrated.webp",
+      "transparent": true
+    },
+    {
+      "id": "seraph",
+      "state": "tired",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: TIRED: physically winded after a match, heavy eyelids, slightly parted lips, light sweat on forehead, shoulders gently slouched, knees slightly bent, one palm braced on thigh and the other hanging naturally at side. Preserve trained muscular body without injury. Full body visible.",
+      "references": [
+        "artifacts/new-roster-sources/seraph-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-68bac378-665b-40ec-b8a6-13fa50c7e32b.png",
+      "savedSource": "artifacts/new-roster-sources/seraph-tired.png",
+      "output": "public/assets/fighters/states/seraph-tired.webp",
+      "transparent": true
+    },
+    {
+      "id": "seraph",
+      "state": "groggy",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: GROGGY: visibly dazed but conscious after a sports hit, unfocused half-lidded eyes and slightly parted mouth, slumped forward athletic stance, knees bent, both palms planted on respective upper thighs for support. Preserve coherent neck/shoulders/arms and complete boots. No bruising, cuts, blood, torn clothing, or injury.",
+      "references": [
+        "artifacts/new-roster-sources/seraph-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-ca92aaac-150d-487e-913c-28167cd149b0.png",
+      "savedSource": "artifacts/new-roster-sources/seraph-groggy.png",
+      "output": "public/assets/fighters/states/seraph-groggy.webp",
+      "transparent": true
+    },
+    {
+      "id": "lynx",
+      "state": "excited",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: EXCITED: joyful energized athlete, confident open smile, bright wide focused eyes, one fist lifted proudly near shoulder and the other at waist, chest upright with subtle forward energy. Keep full body grounded.",
+      "references": [
+        "artifacts/new-roster-sources/lynx-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-127de711-319e-499f-b52e-a300c0c1c285.png",
+      "savedSource": "artifacts/new-roster-sources/lynx-excited.png",
+      "output": "public/assets/fighters/states/lynx-excited.webp",
+      "transparent": true
+    },
+    {
+      "id": "lynx",
+      "state": "fiery",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: FIERY / ON FIRE: intense determined competition expression, eyebrows lowered, teeth subtly clenched, both clenched fists drawn in a tight guard, shoulders tense, slight forward athletic lean with bent knees. Keep full body grounded. No flames or aura.",
+      "references": [
+        "artifacts/new-roster-sources/lynx-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-27d48c31-f0e1-4744-9c08-58a31a664665.png",
+      "savedSource": "artifacts/new-roster-sources/lynx-fiery.png",
+      "output": "public/assets/fighters/states/lynx-fiery.webp",
+      "transparent": true
+    },
+    {
+      "id": "lynx",
+      "state": "frustrated",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: FRUSTRATED: disappointed but still combative, knitted eyebrows and restrained frown, chin slightly lowered, shoulders drawn inward, fists clenched lower near hips, weight shifted. Keep full body standing and grounded. No broken anatomy or crying.",
+      "references": [
+        "artifacts/new-roster-sources/lynx-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-b7cd6ae0-a3ef-4ca7-9b14-9a33173c6a3d.png",
+      "savedSource": "artifacts/new-roster-sources/lynx-frustrated.png",
+      "output": "public/assets/fighters/states/lynx-frustrated.webp",
+      "transparent": true
+    },
+    {
+      "id": "lynx",
+      "state": "tired",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: TIRED: physically winded after a match, heavy eyelids, slightly parted lips, light sweat on forehead, shoulders gently slouched, knees slightly bent, one palm braced on thigh and the other hanging naturally at side. Preserve trained muscular body without injury. Full body visible.",
+      "references": [
+        "artifacts/new-roster-sources/lynx-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-9dd2857f-234c-4990-8bb4-e141ebae1d70.png",
+      "savedSource": "artifacts/new-roster-sources/lynx-tired.png",
+      "output": "public/assets/fighters/states/lynx-tired.webp",
+      "transparent": true
+    },
+    {
+      "id": "lynx",
+      "state": "groggy",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: GROGGY: visibly dazed but conscious after a sports hit, unfocused half-lidded eyes and slightly parted mouth, slumped forward athletic stance, knees bent, both palms planted on respective upper thighs for support. Preserve coherent neck/shoulders/arms and complete boots. No bruising, cuts, blood, torn clothing, or injury.",
+      "references": [
+        "artifacts/new-roster-sources/lynx-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-056db898-137b-42ef-a6d3-373310489bcc.png",
+      "savedSource": "artifacts/new-roster-sources/lynx-groggy.png",
+      "output": "public/assets/fighters/states/lynx-groggy.webp",
+      "transparent": true
+    },
+    {
+      "id": "tempest",
+      "state": "excited",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: EXCITED: joyful energized athlete, confident open smile, bright wide focused eyes, one fist lifted proudly near shoulder and the other at waist, chest upright with subtle forward energy. Keep full body grounded.",
+      "references": [
+        "artifacts/new-roster-sources/tempest-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-c3212d0e-dd75-41be-8886-e65cc2841b33.png",
+      "savedSource": "artifacts/new-roster-sources/tempest-excited.png",
+      "output": "public/assets/fighters/states/tempest-excited.webp",
+      "transparent": true
+    },
+    {
+      "id": "tempest",
+      "state": "fiery",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: FIERY / ON FIRE: intense determined competition expression, eyebrows lowered, teeth subtly clenched, both clenched fists drawn in a tight guard, shoulders tense, slight forward athletic lean with bent knees. Keep full body grounded. No flames or aura.",
+      "references": [
+        "artifacts/new-roster-sources/tempest-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-66da8cab-37b2-4c67-b4d1-875dc8f560a3.png",
+      "savedSource": "artifacts/new-roster-sources/tempest-fiery.png",
+      "output": "public/assets/fighters/states/tempest-fiery.webp",
+      "transparent": true
+    },
+    {
+      "id": "tempest",
+      "state": "frustrated",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: FRUSTRATED: disappointed but still combative, knitted eyebrows and restrained frown, chin slightly lowered, shoulders drawn inward, fists clenched lower near hips, weight shifted. Keep full body standing and grounded. No broken anatomy or crying.",
+      "references": [
+        "artifacts/new-roster-sources/tempest-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-1e7e87ef-3f96-4d54-955b-6e8a1b8b7679.png",
+      "savedSource": "artifacts/new-roster-sources/tempest-frustrated.png",
+      "output": "public/assets/fighters/states/tempest-frustrated.webp",
+      "transparent": true
+    },
+    {
+      "id": "tempest",
+      "state": "tired",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: TIRED: physically winded after a match, heavy eyelids, slightly parted lips, light sweat on forehead, shoulders gently slouched, knees slightly bent, one palm braced on thigh and the other hanging naturally at side. Preserve trained muscular body without injury. Full body visible.",
+      "references": [
+        "artifacts/new-roster-sources/tempest-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-04f4fb23-5679-4179-b79f-2d7233abb051.png",
+      "savedSource": "artifacts/new-roster-sources/tempest-tired.png",
+      "output": "public/assets/fighters/states/tempest-tired.webp",
+      "transparent": true
+    },
+    {
+      "id": "tempest",
+      "state": "groggy",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: whole-body state sprite for SLAY wrestling game. Input Image 1 is the complete NORMAL sprite of this exact adult athlete, age 28. Create ONE complete coherent whole-body state variant of the SAME woman. Lock her facial identity, eye color, hairstyle/hair color, skin tone, muscular proportions, costume design/colors, knee pads, wrist tape and boot design exactly as reference. Preserve the exact clean cartoon/anime cel-render art style, contour lines and glossy fabric lighting. Change only emotional facial expression, coherent complete-body pose and very subtle sweat described below. Camera remains front three-quarter, centered portrait 2:3 same full-body scale, both boot soles and all hair visible with a little margin. Genuine transparent background alpha, only the person. No scenery, ground, cast shadow, gradient, aura, special effects, text, labels, watermark, hats, gauntlets, extra limbs or other characters. One intact anatomical person, no separate face, head or limb layers and no body-part collage. Both hands must attach naturally to arms. State: GROGGY: visibly dazed but conscious after a sports hit, unfocused half-lidded eyes and slightly parted mouth, slumped forward athletic stance, knees bent, both palms planted on respective upper thighs for support. Preserve coherent neck/shoulders/arms and complete boots. No bruising, cuts, blood, torn clothing, or injury.",
+      "references": [
+        "artifacts/new-roster-sources/tempest-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10a5d-10c7-7db2-8539-9e3f871fde5a/exec-57fa5bed-c237-44a4-b9e6-666209dea404.png",
+      "savedSource": "artifacts/new-roster-sources/tempest-groggy.png",
+      "output": "public/assets/fighters/states/tempest-groggy.webp",
+      "transparent": true
+    },
+    {
+      "id": "onyx",
+      "state": "excited",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: complete transparent 2D fighter illustration for SLAY, 1000x1500 portrait aspect. Input image is the EDIT TARGET: Onyx, an original adult female professional wrestler (age30+) with warm brown skin, a dark brown braided high ponytail, athletic muscular build, purple eyes, black/purple/silver athletic crop top and fitted wrestling shorts, black fingerless gloves, purple-trim knee pads and tall purple-laced black wrestling boots. Primary request: change ONLY her face expression and whole-body posture for HYPED / \ud765\ubd84: confident joyful grin, lively attentive eyes, raise both fists slightly into a poised ready guard and subtly open shoulders. Keep full standing stance and consistent head/feet scale. Preserve EXACT identity, recognizable facial features, hairstyle, age, skin tone, athletic muscular body proportions, chest/waist/hips/legs, outfit panels and colors, glove/knee-pad/boot design. Match existing polished cartoon cel-render linework and shading. Render exactly ONE coherent completed person with two anatomically connected arms and legs, natural hands, no collage or segmentation. Entire body, head, hair and both boots visible with comfortable transparent margin, same normal-image facing direction and scale. Genuine transparent background, no opaque backdrop, no brown glow/halo, no ground plane, no shadow rectangle, no text, no symbols, no watermark. Do not add hats, gauntlets, extra accessories or effects.",
+      "references": [
+        "artifacts/new-roster-sources/onyx-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-c6568ae7-984f-4e88-98dd-1ff2fc071dc9.png",
+      "savedSource": "artifacts/new-roster-sources/onyx-excited.png",
+      "output": "public/assets/fighters/states/onyx-excited.webp",
+      "transparent": true
+    },
+    {
+      "id": "onyx",
+      "state": "fiery",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: complete transparent 2D fighter illustration for SLAY, 1000x1500 portrait aspect. Input image is the EDIT TARGET: Onyx, an original adult female professional wrestler (age30+) with warm brown skin, a dark brown braided high ponytail, athletic muscular build, purple eyes, black/purple/silver athletic crop top and fitted wrestling shorts, black fingerless gloves, purple-trim knee pads and tall purple-laced black wrestling boots. Primary request: change ONLY her face expression and whole-body posture for ON FIRE / \uc5f4\ud608: fierce determined eyes and strongly furrowed brows, mouth slightly open with a spirited competitive shout, clench both fists high at chest level and lean forward subtly. Full standing wrestler, no fire/flames or aura. Preserve EXACT identity, recognizable facial features, hairstyle, age, skin tone, athletic muscular body proportions, chest/waist/hips/legs, outfit panels and colors, glove/knee-pad/boot design. Match existing polished cartoon cel-render linework and shading. Render exactly ONE coherent completed person with two anatomically connected arms and legs, natural hands, no collage or segmentation. Entire body, head, hair and both boots visible with comfortable transparent margin, same normal-image facing direction and scale. Genuine transparent background, no opaque backdrop, no brown glow/halo, no ground plane, no shadow rectangle, no text, no symbols, no watermark. Do not add hats, gauntlets, extra accessories or effects.",
+      "references": [
+        "artifacts/new-roster-sources/onyx-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-14a1f101-5391-41c0-963c-1abe3824d893.png",
+      "savedSource": "artifacts/new-roster-sources/onyx-fiery.png",
+      "output": "public/assets/fighters/states/onyx-fiery.webp",
+      "transparent": true
+    },
+    {
+      "id": "onyx",
+      "state": "frustrated",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: complete transparent 2D fighter illustration for SLAY, 1000x1500 portrait aspect. Input image is the EDIT TARGET: Onyx, an original adult female professional wrestler (age30+) with warm brown skin, a dark brown braided high ponytail, athletic muscular build, purple eyes, black/purple/silver athletic crop top and fitted wrestling shorts, black fingerless gloves, purple-trim knee pads and tall purple-laced black wrestling boots. Primary request: change ONLY her face expression and whole-body posture for UNDER PRESSURE / \uc88c\uc808: worried tense brow, tight uneasy mouth and concerned eyes, shoulders slightly drawn in and guard less composed with hands still anatomically coherent. She is an adult competitive athlete under mental pressure, full standing posture. Preserve EXACT identity, recognizable facial features, hairstyle, age, skin tone, athletic muscular body proportions, chest/waist/hips/legs, outfit panels and colors, glove/knee-pad/boot design. Match existing polished cartoon cel-render linework and shading. Render exactly ONE coherent completed person with two anatomically connected arms and legs, natural hands, no collage or segmentation. Entire body, head, hair and both boots visible with comfortable transparent margin, same normal-image facing direction and scale. Genuine transparent background, no opaque backdrop, no brown glow/halo, no ground plane, no shadow rectangle, no text, no symbols, no watermark. Do not add hats, gauntlets, extra accessories or effects.",
+      "references": [
+        "artifacts/new-roster-sources/onyx-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-5e79d570-b4e5-41eb-af78-9960338c873f.png",
+      "savedSource": "artifacts/new-roster-sources/onyx-frustrated.png",
+      "output": "public/assets/fighters/states/onyx-frustrated.webp",
+      "transparent": true
+    },
+    {
+      "id": "onyx",
+      "state": "tired",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: complete transparent 2D fighter illustration for SLAY, 1000x1500 portrait aspect. Input image is the EDIT TARGET: Onyx, an original adult female professional wrestler (age30+) with warm brown skin, a dark brown braided high ponytail, athletic muscular build, purple eyes, black/purple/silver athletic crop top and fitted wrestling shorts, black fingerless gloves, purple-trim knee pads and tall purple-laced black wrestling boots. Primary request: change ONLY her face expression and whole-body posture for FATIGUED / \uc9c0\uce68: heavy eyelids, quiet fatigued open mouth, lowered shoulders and guard, head slightly lowered while still standing on both boots. Retain her strong muscular body and equipment; avoid bruises/blood. Preserve EXACT identity, recognizable facial features, hairstyle, age, skin tone, athletic muscular body proportions, chest/waist/hips/legs, outfit panels and colors, glove/knee-pad/boot design. Match existing polished cartoon cel-render linework and shading. Render exactly ONE coherent completed person with two anatomically connected arms and legs, natural hands, no collage or segmentation. Entire body, head, hair and both boots visible with comfortable transparent margin, same normal-image facing direction and scale. Genuine transparent background, no opaque backdrop, no brown glow/halo, no ground plane, no shadow rectangle, no text, no symbols, no watermark. Do not add hats, gauntlets, extra accessories or effects.",
+      "references": [
+        "artifacts/new-roster-sources/onyx-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-54a03835-e4e3-456e-a140-ece14264f9b3.png",
+      "savedSource": "artifacts/new-roster-sources/onyx-tired.png",
+      "output": "public/assets/fighters/states/onyx-tired.webp",
+      "transparent": true
+    },
+    {
+      "id": "onyx",
+      "state": "groggy",
+      "useCase": "identity-preserve",
+      "mode": "builtin",
+      "prompt": "Use case: identity-preserve. Asset type: complete transparent 2D fighter illustration for SLAY, 1000x1500 portrait aspect. Input image is the EDIT TARGET: Onyx, an original adult female professional wrestler (age30+) with warm brown skin, a dark brown braided high ponytail, athletic muscular build, purple eyes, black/purple/silver athletic crop top and fitted wrestling shorts, black fingerless gloves, purple-trim knee pads and tall purple-laced black wrestling boots. Primary request: change ONLY her face expression and whole-body posture for GROGGY / \uadf8\ub85c\uae30: dazed unfocused eyes, bowed head, visibly slack guard and slightly bent knees as she struggles to recover balance. Keep both arms, both legs and both boots connected correctly and completely visible; feet remain planted, no collapse/cropped body. Preserve EXACT identity, recognizable facial features, hairstyle, age, skin tone, athletic muscular body proportions, chest/waist/hips/legs, outfit panels and colors, glove/knee-pad/boot design. Match existing polished cartoon cel-render linework and shading. Render exactly ONE coherent completed person with two anatomically connected arms and legs, natural hands, no collage or segmentation. Entire body, head, hair and both boots visible with comfortable transparent margin, same normal-image facing direction and scale. Genuine transparent background, no opaque backdrop, no brown glow/halo, no ground plane, no shadow rectangle, no text, no symbols, no watermark. Do not add hats, gauntlets, extra accessories or effects.",
+      "references": [
+        "artifacts/new-roster-sources/onyx-normal.png"
+      ],
+      "generatedSource": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-155d19de-3688-43b4-99c9-ca252abc54f3.png",
+      "savedSource": "artifacts/new-roster-sources/onyx-groggy.png",
+      "output": "public/assets/fighters/states/onyx-groggy.webp",
+      "transparent": true
+    }
+  ]
+}

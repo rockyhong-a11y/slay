@@ -547,7 +547,7 @@ test("support actions overwrite stale impact fields and incoming intent records 
   });
 });
 
-test("seeded public-action policies keep all five fighters viable while dangerous routes exchange more damage for better economy", () => {
+test("seeded public-action policies keep all ten fighters viable while dangerous routes exchange more damage for better economy", () => {
   const totals = {
     safe: { wins: 0, earned: 0, damage: 0 },
     balanced: { wins: 0, earned: 0, damage: 0 },

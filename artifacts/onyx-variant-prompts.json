@@ -1,0 +1,49 @@
+{
+  "entries": [
+    {
+      "actor": "onyx",
+      "state": "excited",
+      "prompt": "Use case: identity-preserve. Asset type: complete transparent 2D fighter illustration for SLAY, 1000x1500 portrait aspect. Input image is the EDIT TARGET: Onyx, an original adult female professional wrestler (age30+) with warm brown skin, a dark brown braided high ponytail, athletic muscular build, purple eyes, black/purple/silver athletic crop top and fitted wrestling shorts, black fingerless gloves, purple-trim knee pads and tall purple-laced black wrestling boots. Primary request: change ONLY her face expression and whole-body posture for HYPED / 흥분: confident joyful grin, lively attentive eyes, raise both fists slightly into a poised ready guard and subtly open shoulders. Keep full standing stance and consistent head/feet scale. Preserve EXACT identity, recognizable facial features, hairstyle, age, skin tone, athletic muscular body proportions, chest/waist/hips/legs, outfit panels and colors, glove/knee-pad/boot design. Match existing polished cartoon cel-render linework and shading. Render exactly ONE coherent completed person with two anatomically connected arms and legs, natural hands, no collage or segmentation. Entire body, head, hair and both boots visible with comfortable transparent margin, same normal-image facing direction and scale. Genuine transparent background, no opaque backdrop, no brown glow/halo, no ground plane, no shadow rectangle, no text, no symbols, no watermark. Do not add hats, gauntlets, extra accessories or effects.",
+      "reference": "artifacts/new-roster-sources/onyx-normal.png",
+      "source": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-c6568ae7-984f-4e88-98dd-1ff2fc071dc9.png",
+      "tool": "built-in image_gen",
+      "output": "public/assets/fighters/states/onyx-excited.webp"
+    },
+    {
+      "actor": "onyx",
+      "state": "fiery",
+      "prompt": "Use case: identity-preserve. Asset type: complete transparent 2D fighter illustration for SLAY, 1000x1500 portrait aspect. Input image is the EDIT TARGET: Onyx, an original adult female professional wrestler (age30+) with warm brown skin, a dark brown braided high ponytail, athletic muscular build, purple eyes, black/purple/silver athletic crop top and fitted wrestling shorts, black fingerless gloves, purple-trim knee pads and tall purple-laced black wrestling boots. Primary request: change ONLY her face expression and whole-body posture for ON FIRE / 열혈: fierce determined eyes and strongly furrowed brows, mouth slightly open with a spirited competitive shout, clench both fists high at chest level and lean forward subtly. Full standing wrestler, no fire/flames or aura. Preserve EXACT identity, recognizable facial features, hairstyle, age, skin tone, athletic muscular body proportions, chest/waist/hips/legs, outfit panels and colors, glove/knee-pad/boot design. Match existing polished cartoon cel-render linework and shading. Render exactly ONE coherent completed person with two anatomically connected arms and legs, natural hands, no collage or segmentation. Entire body, head, hair and both boots visible with comfortable transparent margin, same normal-image facing direction and scale. Genuine transparent background, no opaque backdrop, no brown glow/halo, no ground plane, no shadow rectangle, no text, no symbols, no watermark. Do not add hats, gauntlets, extra accessories or effects.",
+      "reference": "artifacts/new-roster-sources/onyx-normal.png",
+      "source": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-14a1f101-5391-41c0-963c-1abe3824d893.png",
+      "tool": "built-in image_gen",
+      "output": "public/assets/fighters/states/onyx-fiery.webp"
+    },
+    {
+      "actor": "onyx",
+      "state": "frustrated",
+      "prompt": "Use case: identity-preserve. Asset type: complete transparent 2D fighter illustration for SLAY, 1000x1500 portrait aspect. Input image is the EDIT TARGET: Onyx, an original adult female professional wrestler (age30+) with warm brown skin, a dark brown braided high ponytail, athletic muscular build, purple eyes, black/purple/silver athletic crop top and fitted wrestling shorts, black fingerless gloves, purple-trim knee pads and tall purple-laced black wrestling boots. Primary request: change ONLY her face expression and whole-body posture for UNDER PRESSURE / 좌절: worried tense brow, tight uneasy mouth and concerned eyes, shoulders slightly drawn in and guard less composed with hands still anatomically coherent. She is an adult competitive athlete under mental pressure, full standing posture. Preserve EXACT identity, recognizable facial features, hairstyle, age, skin tone, athletic muscular body proportions, chest/waist/hips/legs, outfit panels and colors, glove/knee-pad/boot design. Match existing polished cartoon cel-render linework and shading. Render exactly ONE coherent completed person with two anatomically connected arms and legs, natural hands, no collage or segmentation. Entire body, head, hair and both boots visible with comfortable transparent margin, same normal-image facing direction and scale. Genuine transparent background, no opaque backdrop, no brown glow/halo, no ground plane, no shadow rectangle, no text, no symbols, no watermark. Do not add hats, gauntlets, extra accessories or effects.",
+      "reference": "artifacts/new-roster-sources/onyx-normal.png",
+      "source": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-5e79d570-b4e5-41eb-af78-9960338c873f.png",
+      "tool": "built-in image_gen",
+      "output": "public/assets/fighters/states/onyx-frustrated.webp"
+    },
+    {
+      "actor": "onyx",
+      "state": "tired",
+      "prompt": "Use case: identity-preserve. Asset type: complete transparent 2D fighter illustration for SLAY, 1000x1500 portrait aspect. Input image is the EDIT TARGET: Onyx, an original adult female professional wrestler (age30+) with warm brown skin, a dark brown braided high ponytail, athletic muscular build, purple eyes, black/purple/silver athletic crop top and fitted wrestling shorts, black fingerless gloves, purple-trim knee pads and tall purple-laced black wrestling boots. Primary request: change ONLY her face expression and whole-body posture for FATIGUED / 지침: heavy eyelids, quiet fatigued open mouth, lowered shoulders and guard, head slightly lowered while still standing on both boots. Retain her strong muscular body and equipment; avoid bruises/blood. Preserve EXACT identity, recognizable facial features, hairstyle, age, skin tone, athletic muscular body proportions, chest/waist/hips/legs, outfit panels and colors, glove/knee-pad/boot design. Match existing polished cartoon cel-render linework and shading. Render exactly ONE coherent completed person with two anatomically connected arms and legs, natural hands, no collage or segmentation. Entire body, head, hair and both boots visible with comfortable transparent margin, same normal-image facing direction and scale. Genuine transparent background, no opaque backdrop, no brown glow/halo, no ground plane, no shadow rectangle, no text, no symbols, no watermark. Do not add hats, gauntlets, extra accessories or effects.",
+      "reference": "artifacts/new-roster-sources/onyx-normal.png",
+      "source": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-54a03835-e4e3-456e-a140-ece14264f9b3.png",
+      "tool": "built-in image_gen",
+      "output": "public/assets/fighters/states/onyx-tired.webp"
+    },
+    {
+      "actor": "onyx",
+      "state": "groggy",
+      "prompt": "Use case: identity-preserve. Asset type: complete transparent 2D fighter illustration for SLAY, 1000x1500 portrait aspect. Input image is the EDIT TARGET: Onyx, an original adult female professional wrestler (age30+) with warm brown skin, a dark brown braided high ponytail, athletic muscular build, purple eyes, black/purple/silver athletic crop top and fitted wrestling shorts, black fingerless gloves, purple-trim knee pads and tall purple-laced black wrestling boots. Primary request: change ONLY her face expression and whole-body posture for GROGGY / 그로기: dazed unfocused eyes, bowed head, visibly slack guard and slightly bent knees as she struggles to recover balance. Keep both arms, both legs and both boots connected correctly and completely visible; feet remain planted, no collapse/cropped body. Preserve EXACT identity, recognizable facial features, hairstyle, age, skin tone, athletic muscular body proportions, chest/waist/hips/legs, outfit panels and colors, glove/knee-pad/boot design. Match existing polished cartoon cel-render linework and shading. Render exactly ONE coherent completed person with two anatomically connected arms and legs, natural hands, no collage or segmentation. Entire body, head, hair and both boots visible with comfortable transparent margin, same normal-image facing direction and scale. Genuine transparent background, no opaque backdrop, no brown glow/halo, no ground plane, no shadow rectangle, no text, no symbols, no watermark. Do not add hats, gauntlets, extra accessories or effects.",
+      "reference": "artifacts/new-roster-sources/onyx-normal.png",
+      "source": "/Users/rockyhong/.codex/generated_images/01a10647-d685-7333-92b8-b7665a9abad9/exec-155d19de-3688-43b4-99c9-ca252abc54f3.png",
+      "tool": "built-in image_gen",
+      "output": "public/assets/fighters/states/onyx-groggy.webp"
+    }
+  ]
+}

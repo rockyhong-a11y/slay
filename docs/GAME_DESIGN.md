@@ -6,17 +6,17 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 
 ## 세계와 시각 방향
 
-배경은 가상의 **UNDERGROUND ARENA**입니다. 붉은 로프, 검은 캔버스, 차가운 스포트라이트와 거친 방송 그래픽으로 긴장감을 만듭니다. 다섯 주인공은 모두 성인인 오리지널 여성 선수이며, 실존 선수나 기존 게임 캐릭터의 신원을 사용하지 않습니다.
+배경은 가상의 **UNDERGROUND ARENA**입니다. 붉은 로프, 검은 캔버스, 차가운 스포트라이트와 거친 방송 그래픽으로 긴장감을 만듭니다. 열 명의 주인공은 모두 성인인 오리지널 여성 선수이며, 실존 선수나 기존 게임 캐릭터의 신원을 사용하지 않습니다.
 
-선수의 실루엣과 장비는 전투 역할을 드러냅니다. 레이븐은 긴 진홍색 머리의 스트라이커, 발키리는 금발 단발의 그래플러, 노바는 긴 검은 머리의 테크니션입니다. 바이퍼는 금발의 두 갈래 땋은 머리와 그린·레드 장비를 갖춘 제압 전문가, 엠버는 물결치는 갈색 머리와 블랙·레드·골드 장비를 갖춘 근육질 관중 챔피언입니다. 제공된 다섯 참고 이미지의 실루엣·자세·의상 배색을 반영하며, 캐릭터는 선명한 윤곽과 표정의 카툰 2D 방향으로 제작합니다. 원본 참고 파일은 배포하지 않습니다.
+선수의 실루엣과 장비는 전투 역할을 드러냅니다. 레이븐은 긴 진홍색 머리의 스트라이커, 발키리는 금발 단발의 그래플러, 노바는 긴 검은 머리의 테크니션입니다. 바이퍼는 금발의 두 갈래 땋은 머리와 그린·레드 장비를 갖춘 제압 전문가, 엠버는 물결치는 갈색 머리와 블랙·레드·골드 장비를 갖춘 근육질 관중 챔피언입니다. 제공된 다섯 참고 이미지의 실루엣·자세·의상 배색을 반영하며, 캐릭터는 선명한 윤곽과 표정의 카툰 2D 방향으로 제작합니다. 신규 아틀라스·세라프·링스·템페스트·오닉스는 기존 선수와 유사한 운동선수 체형을 유지하면서 얼굴·머리·장비 배색을 구분합니다. 원본 참고 파일은 배포하지 않습니다.
 
 ## 상태 일러스트와 기술 연출
 
-다섯 선수에게 보통·흥분·열혈·좌절·지침·그로기의 완성 전신 그림을 각각 제공합니다. 활성 경로는 `public/assets/fighters/states/{actor}-{state}.webp`이며 총 30장입니다. 얼굴은 제공된 참고 이미지의 특징을 반영하고, 선수별 카툰 체형·장비·색상을 유지합니다. 상태 배지는 기준과 전신 그림·얼굴 확대를 보여주는 미리보기를 엽니다.
+열 명의 선수에게 보통·흥분·열혈·좌절·지침·그로기의 완성 전신 그림을 각각 제공합니다. 활성 경로는 `public/assets/fighters/states/{actor}-{state}.webp`이며 총 60장입니다. 기존 선수의 얼굴은 제공된 참고 이미지의 특징을 반영하고, 신규 선수는 서로 다른 얼굴·헤어·장비로 구분합니다. 각 상태에서 선수별 체형·색상을 유지합니다. 상태 배지는 기준과 전신 그림·얼굴 확대를 보여주는 미리보기를 엽니다.
 
 체력 25% 이하의 그로기가 가장 먼저 적용되고, 50% 이하의 지침이 뒤따릅니다. 체력이 50%를 넘으면 압박 60 이상을 좌절로 표시하고, 열기 6 이상은 열혈, 3–5는 흥분, 나머지는 보통입니다. 상대의 약화 2 이상도 좌절 조건에 포함됩니다. 회복·진정·열기 소모 후에는 현재 수치에 맞는 상태 그림으로 돌아갑니다.
 
-선수와 카드 일러스트는 정적 완성 이미지입니다. 카드 50종의 기술 시네마틱은 실제 전투 결과를 읽어 피해·방어·회복·드로우·열기·압박을 표시합니다. 전체/간결 설정과 운영체제의 모션 감소 설정을 따르며, 재생 중에는 카드 사용·턴 종료 입력을 잠급니다. 정적 상태 변경은 게임 규칙이나 저장 데이터를 바꾸지 않습니다.
+선수와 카드 일러스트는 정적 완성 이미지입니다. 카드 50종의 기술 시네마틱은 실제 전투 결과를 읽어 피해·방어·회복·드로우·열기·압박을 표시합니다. 전체/간결 설정과 운영체제의 모션 감소 설정을 따르며, 재생 중에는 카드 사용·턴 종료 입력을 잠급니다. 정적 상태 변경은 게임 규칙이나 저장 데이터를 바꾸지 않습니다. 각 카드에 개별 효과 프로필을 연결합니다. 타격은 방향 잔상과 접촉 폭발, 던지기는 그립·들어 올림·회전 궤적과 매트 파동, 서브미션은 고정 관절 타깃과 조임·압박 맥동으로 구분합니다. 실제 방어에 막힌 공격에는 방패를 표시하고, 운영 카드에는 공격 충돌 효과를 만들지 않습니다. 모든 효과는 한 번 재생한 뒤 끝나며, 간결·모션 감소 설정에서는 효과 레이어를 생략합니다.
 
 ## 플레이 루프
 
@@ -27,21 +27,26 @@ SLAY는 지하 여자 프로레슬링 리그에서 챔피언 벨트를 향해 �
 5. 다음 경로에서 경기, 정예전, 휴식, 상점 또는 이벤트를 선택합니다.
 6. 8번째 구간의 챔피언 EMPRESS를 꺾으면 런이 끝납니다. 체력이 0이면 패배합니다.
 
-## 다섯 선수와 서로 다른 운영
+## 열 명의 선수와 서로 다른 운영
 
-| 선수              | 나이 / 체력 | 성향 / 난이도      | 실제 패시브                                                                  | 시작 핵심 기술                          |
-| ----------------- | ----------- | ------------------ | ---------------------------------------------------------------------------- | --------------------------------------- |
-| RAVEN · 레이븐    | 28 / 74     | 콤보 타격 / 입문   | 매 턴 첫 공격 피해 +2                                                        | 레드라인                                |
-| VALKYRIE · 발키리 | 31 / 82     | 가드·잡기 / 입문   | 잡기 피해 +2, 다음 턴에 방어 최대 3 유지                                     | 아이언 클러치                           |
-| NOVA · 노바       | 26 / 68     | 드로우·순환 / 숙련 | 매 턴 첫 0코스트 카드에 1장 추가 드로우                                      | 플래시 스텝                             |
-| VIPER · 바이퍼    | 27 / 72     | 상태 제압 / 전술   | 약화·취약 상대에게 공격 피해 +2. 매 턴 첫 약화·취약 카드 사용 후 취약 1 추가 | 헤드록·카운터 홀드                      |
-| EMBER · 엠버      | 32 / 80     | 관중·컴백 / 전술   | 매 턴 첫 기술 카드로 열기 +1, 압박 −3. 현재 체력이 절반 이하면 체력 +2       | 스포트라이트·관중의 함성·네버 세이 다이 |
+| 선수               | 나이 / 체력 | 성향 / 난이도      | 실제 패시브                                                                  | 시작 핵심 기술                          |
+| ------------------ | ----------- | ------------------ | ---------------------------------------------------------------------------- | --------------------------------------- |
+| RAVEN · 레이븐     | 28 / 74     | 콤보 타격 / 입문   | 매 턴 첫 공격 피해 +2                                                        | 레드라인                                |
+| VALKYRIE · 발키리  | 31 / 82     | 가드·잡기 / 입문   | 잡기 피해 +2, 다음 턴에 방어 최대 3 유지                                     | 아이언 클러치                           |
+| NOVA · 노바        | 26 / 68     | 드로우·순환 / 숙련 | 매 턴 첫 0코스트 카드에 1장 추가 드로우                                      | 플래시 스텝                             |
+| VIPER · 바이퍼     | 27 / 72     | 상태 제압 / 전술   | 약화·취약 상대에게 공격 피해 +2. 매 턴 첫 약화·취약 카드 사용 후 취약 1 추가 | 헤드록·카운터 홀드                      |
+| EMBER · 엠버       | 32 / 80     | 관중·컴백 / 전술   | 매 턴 첫 기술 카드로 열기 +1, 압박 −3. 현재 체력이 절반 이하면 체력 +2       | 스포트라이트·관중의 함성·네버 세이 다이 |
+| ATLAS · 아틀라스   | 33 / 86     | 파워밤 / 입문      | 매 턴 첫 2코스트 이상 잡기 공격 피해 +4, 방어 +3                             | 싯아웃 파워밤·웨이스트록                |
+| SERAPH · 세라프    | 25 / 72     | 공중 순환 / 숙련   | 매 턴 첫 드롭킥·문설트 사용 후 에너지 +1, 추가 드로우 1장                    | 드롭킥·문설트                           |
+| LYNX · 링스        | 29 / 74     | 관절기 / 전술      | 매 턴 첫 관절기 사용 후 방어 +3, 압박 −3                                     | 암바·아메리카나·기무라                  |
+| TEMPEST · 템페스트 | 28 / 76     | 잡기 콤보 / 전술   | 매 턴 선행 콤보 1 이상에서 첫 잡기 공격 피해 +3, 열기 +1                     | 암 드래그·스냅 수플렉스·팝업 파워밤     |
+| ONYX · 오닉스      | 30 / 84     | 수비 카운터 / 전술 | 매 턴 상대 공격 의도에 첫 카운터 기술 사용 후 방어 +4, 다음 공격 피해 +3     | 카운터 홀드·링 크래프트·크로스페이스    |
 
 모든 시작 덱은 11장입니다. 레이븐·발키리·노바의 기존 덱은 엘보 스트라이크 4장, 로프 가드 3장, 클린치·호흡 조절·피니시 무브 각 1장과 전용 시그니처 1장을 유지합니다.
 
-바이퍼는 엘보 스트라이크 3장, 로프 가드 2장, 클린치·호흡 조절·피니시 무브 각 1장, 헤드록 2장, 카운터 홀드 1장으로 시작합니다. 엠버는 엘보 스트라이크 3장, 로프 가드 2장, 클린치·호흡 조절·피니시 무브 각 1장, 스포트라이트·관중의 함성·네버 세이 다이 각 1장으로 시작합니다. 선수별 시작 덱 구성과 기존 카드 효과는 유지하며, 새 25종 기술은 경기 보상과 상점에서 덱에 추가합니다.
+바이퍼는 엘보 스트라이크 3장, 로프 가드 2장, 클린치·호흡 조절·피니시 무브 각 1장, 헤드록 2장, 카운터 홀드 1장으로 시작합니다. 엠버는 엘보 스트라이크 3장, 로프 가드 2장, 클린치·호흡 조절·피니시 무브 각 1장, 스포트라이트·관중의 함성·네버 세이 다이 각 1장으로 시작합니다. 기존 다섯 선수의 시작 덱과 카드 효과를 유지합니다. 신규 선수는 해당 전략에 맞는 11장으로 시작하며, 일부 확장 기술이 시작 덱에 포함됩니다. 새 25종 기술은 모든 선수의 경기 보상과 상점에서도 획득합니다.
 
-레이븐은 첫 공격에 강한 카드를 배치한 뒤 콤보 보상을 노립니다. 발키리는 상대 공격 의도에 잡기·카운터를 맞춰 방어를 확보합니다. 노바는 첫 0코스트 카드와 에너지·드로우를 연결하고 소멸 이후 얇아진 덱을 순환합니다. 바이퍼는 제압 카드를 먼저 써 후속타의 빈틈을 만들고, 엠버는 기술 카드로 피니셔의 열기를 준비하면서 낮은 체력의 컴백을 활용합니다.
+레이븐은 첫 공격에 강한 카드를 배치한 뒤 콤보 보상을 노립니다. 발키리는 상대 공격 의도에 잡기·카운터를 맞춰 방어를 확보합니다. 노바는 첫 0코스트 카드와 에너지·드로우를 연결하고 소멸 이후 얇아진 덱을 순환합니다. 바이퍼는 제압 카드를 먼저 써 후속타의 빈틈을 만들고, 엠버는 기술 카드로 피니셔의 열기를 준비하면서 낮은 체력의 컴백을 활용합니다. 아틀라스는 고비용 잡기를 먼저 쓰고, 세라프는 공중기 에너지 환급으로 순환합니다. 링스는 팔·다리 관절기로 압박을 관리하고, 템페스트는 선행 공격 뒤 잡기를 연결합니다. 오닉스는 공격 의도를 읽어 방어와 후속 공격 보너스를 얻습니다. 링스의 관절기는 암바·기무라·아메리카나·앵클 록·니바·힐 훅·피겨 포이며, 헤드록은 해당 패시브를 발동하지 않습니다.
 
 바이퍼의 추가 피해는 **공격 직전에 이미 있는** 약화·취약을 확인합니다. 첫 헤드록의 피해는 7이며, 그 사용 후 약화 2와 패시브 취약 1을 부여합니다. 다음 엘보 스트라이크는 `(6 + 2) × 1.5`를 내림한 피해 12를 줍니다. 같은 턴의 두 번째 약화·취약 카드는 자체 상태 효과만 적용합니다. 멀티 히트는 각 타격에 피해 보너스를 적용하며 피해 미리보기와 실제 결과가 같습니다.
 
@@ -216,9 +221,9 @@ Additional exports are `ITEMS`, `GIMMICKS`, `ITEM_CAPACITY`, `GIMMICK_CAPACITY`,
 
 The state includes `player`, `enemy`, `hand`, `draw`, `discard`, `exhaust`, `deck`, `energy`, `maxEnergy`, `turn`, `floor`, `maxFloor`, `phase`, `combo`, `status`, `rewards`, `rewardCoins`, `mapNodes`, `event`, `shopItems`, `history`, `relics`, `stats`, `log`, and the PRNG `seed`. New mechanics add `mechanicsVersion: 2`, `route: { currentNodeId, visited }`, `inventory`, `gimmicks`, `equippedGimmickUid`, `activeGimmick`, `rewardLoot`, `arrival`, `lastChoice` and `lastImpact`. Item and gimmick instances are `{ uid, id }`; active gimmicks also carry their encounter node and duration. `getRouteView` supplies the full nodes and edges with `visited`, `available` and `current` flags. `lastChoice.result` contains actual outcome strings; `lastImpact` records actual HP damage and absorbed block for every card/item/intent, including zero-impact support actions. Card instances have stable UIDs. `log` is a string array; `logEvents` provides message types and turn numbers.
 
-`WRESTLERS` now contains five IDs: `raven`, `valkyrie`, `nova`, `viper`, `ember`. Each definition includes `role`, `roleEn`, `strategy`, `complexity` (1–3), `complexityLabel`, `easyLabel`, `strengths`, `playstyle`, `recommendedCards`, and the exact `startingDeck` card IDs. `newRun` constructs instances from that deck. Encyclopedia `startingWrestlers` and acquisition text derive from these definitions.
+`WRESTLERS` contains ten IDs: `raven`, `valkyrie`, `nova`, `viper`, `ember`, `atlas`, `seraph`, `lynx`, `tempest`, `onyx`. Each definition includes `role`, `roleEn`, `strategy`, `complexity` (1–3), `complexityLabel`, `easyLabel`, `strengths`, `playstyle`, `recommendedCards`, and the exact `startingDeck` card IDs. `newRun` constructs instances from that deck. Encyclopedia `startingWrestlers` and acquisition text derive from these definitions.
 
-Turn-scoped `status.precisionUsed` and `status.crowdUsed` preserve the new once-per-turn limits through JSON save/load. Both reset when a new turn or encounter starts. Missing flags in an older version-1 status are interpreted as unused, while existing flags are never rearmed merely by restoring a save. Existing Raven/Valkyrie/Nova saved decks remain unchanged, and the save version remains 1. Invalid actions return the original state and cannot consume or trigger a passive.
+Turn-scoped `status.precisionUsed`, `status.crowdUsed`, `status.powerUsed`, `status.aerialUsed`, `status.jointUsed`, `status.chainUsed`, and `status.counterUsed` preserve once-per-turn limits through JSON save/load. All reset when a new turn or encounter starts. Missing flags in an older version-1 status are interpreted as unused, while existing flags are never rearmed merely by restoring a save. Existing Raven/Valkyrie/Nova saved decks remain unchanged, and the save version remains 1. Invalid actions return the original state and cannot consume or trigger a passive.
 
 ```text
 combat → reward → map → combat / rest / event / shop
@@ -233,17 +238,19 @@ The client stores a run under `slay.run.v1` in `localStorage`; it adds `saveVers
 
 The editable Blender scene is retained in [`artifacts/arena.blend`](../artifacts/arena.blend), with its scene/render script in [`tools/render-arena.py`](../tools/render-arena.py). The browser arena is `public/assets/arena.webp`. Tooling and prompt provenance for character and card images are recorded separately in [`artifacts/art-direction.md`](../artifacts/art-direction.md); original user reference files are not distributed.
 
-The final character path uses 30 complete state illustrations at 1000×1500 RGBA WebP. Individual built-in image-generation edits use the previous complete cartoon body and original facial reference for normal, then the corrected normal and same facial reference for each variant. Exact selected prompts and source paths are in [four normal edits](../artifacts/fighter-state-prompts.json), [twenty variants](../artifacts/fighter-state-variant-prompts.json) and [six Viper states](../artifacts/viper-state-prompts.json). Source PNGs are preserved locally in ignored `artifacts/fighter-state-sources/`.
+The final character path uses 60 complete state illustrations at 1000×1500 RGBA WebP. For the original five wrestlers, individual built-in image-generation edits use the previous complete cartoon body and original facial reference for normal, then the corrected normal and same facial reference for each variant. Exact selected prompts and source paths are in [four normal edits](../artifacts/fighter-state-prompts.json), [twenty variants](../artifacts/fighter-state-variant-prompts.json) and [six Viper states](../artifacts/viper-state-prompts.json). Source PNGs are preserved locally in ignored `artifacts/fighter-state-sources/`.
 
-A [Blender QA gallery](../artifacts/fighter-state-gallery.blend) displays the 30 complete illustrations on individual full-image planes. Its [render](../artifacts/fighter-state-gallery.jpg), [verification data](../artifacts/fighter-state-gallery-facts.json) and [script](../tools/build-state-gallery.py) record whole-texture preservation and a static scene with no armatures or animation. This gallery reviews the finished 2D images.
+The five new wrestlers add 30 individual images generated with the built-in image tool: a normal illustration for each, followed by five edits preserving that wrestler’s identity and body. Exact calls and source paths are in [new wrestler provenance](../artifacts/new-roster-prompts.json). Selected PNGs are preserved locally in ignored `artifacts/new-roster-sources/`.
+
+A [Blender QA gallery](../artifacts/expanded-fighter-state-gallery.blend) displays all 60 complete illustrations on individual full-image planes. Its [render](../artifacts/expanded-fighter-state-gallery.jpg), [verification data](../artifacts/expanded-fighter-state-gallery-facts.json) and [script](../tools/build-state-gallery.py) record whole-texture preservation and a static scene with no armatures or animation. This gallery reviews the finished 2D images.
 
 `fighterPoseArt(actor, condition)` accepts a state ID or a state object and returns `fighters/states/{actor}-{state}.webp`; an unknown actor falls back to Nova and an unknown state falls back to normal. Card images continue to use their individual technique paths. Continuous puppet/mesh rendering and its dedicated tests are removed.
 
 The connected-route suite checks all 26 nodes for reachability and boss continuation, rejects forged future choices, and verifies six consumables, six finite gimmicks, expiry, capacities, affordable physical costs, source offers, exact feedback and one-time v1 migration. Sixty seeded runs (five wrestlers × four seeds × preparation/balanced/risk policies) use only public actions. In this sample all policies completed; average earned credits were 155/365/630 and incoming HP damage was 10.2/15.65/50.3 respectively. The high-risk policy gained more rewards while taking over three times the balanced policy’s damage. These are results for those specified seeds and decisions.
 
-The engine suite covers reproducible initialization and save/load, invalid actions, energy, block, combos and finishers, exhaustion and reshuffling, nightmare thresholds, defeat, rewards, map transitions, rest, upgrades, shops, events, and full eight-floor wins for all five wrestlers on two deterministic seeds. Strategy regressions cover debuff timing, multi-hit damage previews, conditional comeback recovery, caps, per-turn limits, old status compatibility, and nightmare-draw defeat without passive recursion or resurrection. The expansion suite resolves all 50 cards at both upgrade levels for each of the five wrestlers, compares damage previews with actual results, and verifies JSON restore and immutable actions. Across 768 deterministic seeds it checks that all 25 new moves appear in normal rewards and shops, can be acquired once per offer, and can be permanently upgraded at rest.
+The engine suite covers reproducible initialization and save/load, invalid actions, energy, block, combos and finishers, exhaustion and reshuffling, nightmare thresholds, defeat, rewards, map transitions, rest, upgrades, shops, events, and full eight-floor wins for all ten wrestlers on two deterministic seeds. Strategy regressions cover debuff timing, multi-hit damage previews, conditional comeback recovery, caps, per-turn limits, old status compatibility, and nightmare-draw defeat without passive recursion or resurrection. The expansion suite resolves all 50 cards at both upgrade levels for each of the ten wrestlers, compares damage previews with actual results, and verifies JSON restore and immutable actions. Across 768 deterministic seeds it checks that all 25 new moves appear in normal rewards and shops, can be acquired once per offer, and can be permanently upgraded at rest.
 
-Presentation tests cover exact health boundaries, health/pressure/heat priority, recovery after real engine actions, the 30 distinct state paths and WebP files, and unchanged outcomes for all 50 card cues. A reachable-source check rejects app-owned canvas drawing or continuous illustration frame loops. Automated checks do not establish visual reference fidelity or browser layout; those are tracked in the [verification record](../artifacts/cartoon-fighter-qa.md) and [arena checklist](../artifacts/arena-layout-checklist.md).
+Presentation tests cover exact health boundaries, health/pressure/heat priority, recovery after real engine actions, the 60 distinct state paths and WebP files, and unchanged outcomes for all 50 card cues. A reachable-source check rejects app-owned canvas drawing or continuous illustration frame loops. Automated checks do not establish visual reference fidelity or browser layout; those are tracked in the [verification record](../artifacts/cartoon-fighter-qa.md) and [arena checklist](../artifacts/arena-layout-checklist.md).
 
 ```sh
 npm install

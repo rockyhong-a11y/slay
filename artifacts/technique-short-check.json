@@ -1,0 +1,13 @@
+{
+  "effects": 0,
+  "scene": {
+    "card": "strike",
+    "damage": "12",
+    "duration": "650",
+    "effectFamily": "strike",
+    "effectVariant": "elbow",
+    "hitstop": "0",
+    "motion": "strike"
+  },
+  "still": true
+}

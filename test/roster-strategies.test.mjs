@@ -32,16 +32,21 @@ function combat(id, cards) {
   return state;
 }
 
-test("five selectable adults expose distinct strategies and their exact eleven-card starting decks", () => {
+test("ten selectable adults expose distinct strategies and their exact eleven-card starting decks", () => {
   assert.deepEqual(Object.keys(WRESTLERS), [
     "raven",
     "valkyrie",
     "nova",
     "viper",
     "ember",
+    "atlas",
+    "seraph",
+    "lynx",
+    "tempest",
+    "onyx",
   ]);
   assert.equal(Object.keys(CARDS).length, 50);
-  assert.equal(new Set(Object.values(WRESTLERS).map((w) => w.role)).size, 5);
+  assert.equal(new Set(Object.values(WRESTLERS).map((w) => w.role)).size, 10);
   for (const [id, w] of Object.entries(WRESTLERS)) {
     assert.ok(w.age >= 18);
     assert.ok([1, 2, 3].includes(w.complexity));
@@ -283,7 +288,7 @@ test("nightmare draws can defeat Ember without passive recursion or post-defeat 
   assert.equal(state.logEvents.filter((e) => e.type === "passive").length, 1);
 });
 
-test("encyclopedia starting owners are derived from all five actual decks", () => {
+test("encyclopedia starting owners are derived from all ten actual decks", () => {
   for (const [id, detail] of Object.entries(CARD_DETAILS)) {
     const actual = Object.values(WRESTLERS)
       .filter((w) => w.startingDeck.includes(id))
@@ -299,4 +304,9 @@ test("encyclopedia starting owners are derived from all five actual decks", () =
   assert.match(CARD_DETAILS.headlock.acquisition, /프로 숍/);
   assert.match(CARD_DETAILS.spotlight.acquisition, /엠버/);
   assert.match(CARD_DETAILS.comeback.acquisition, /정예/);
+  assert.match(CARD_DETAILS.sitoutpowerbomb.acquisition, /아틀라스/);
+  assert.match(CARD_DETAILS.moonsault.acquisition, /세라프/);
+  assert.match(CARD_DETAILS.kimura.acquisition, /링스/);
+  assert.match(CARD_DETAILS.popuppowerbomb.acquisition, /템페스트/);
+  assert.match(CARD_DETAILS.crossface.acquisition, /오닉스/);
 });

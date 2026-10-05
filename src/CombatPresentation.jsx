@@ -11,6 +11,13 @@ import {
 import "./combat-presentation.css";
 import { Artwork } from "./Artwork.jsx";
 import { motionTokens } from "./motion-config.js";
+import {
+  techniqueEffectLayers,
+  techniqueEffectProfile,
+  TECHNIQUE_EFFECT_MOTION,
+  artworkProjection,
+  projectedArtworkPoint,
+} from "./technique-effects.js";
 
 const icons = {
   normal: Shield,
@@ -115,7 +122,7 @@ export function ArenaImpact({ cue, onComplete, shortened = false }) {
   const guard = !cue.damage;
   return (
     <div
-      className={`arena-impact arena-impact-${cue.target} ${guard ? "arena-impact-guard" : "arena-impact-hit"} ${cue.heavy ? "arena-impact-heavy" : ""} ${cue.knockout ? "arena-impact-ko" : ""} ${still ? "arena-impact-still" : ""}`}
+      className={`arena-impact arena-impact-${cue.target} arena-family-${cue.effectFamily || "strike"} ${cue.throwing ? "arena-impact-throw" : ""} ${guard ? "arena-impact-guard" : "arena-impact-hit"} ${cue.heavy ? "arena-impact-heavy" : ""} ${cue.knockout ? "arena-impact-ko" : ""} ${still ? "arena-impact-still" : ""}`}
       data-impact-id={cue.id}
       data-damage={cue.damage}
       data-blocked={cue.blocked}
@@ -149,6 +156,118 @@ export function ArenaImpact({ cue, onComplete, shortened = false }) {
   );
 }
 
+const effectPaths = {
+  lift: "M31 65 L31 20 M25 27 L31 20 L37 27 M69 65 L69 20 M63 27 L69 20 L75 27",
+  arc: "M17 71 Q48 4 82 69 M74 65 L82 69 L84 61",
+};
+
+function TechniqueEffects({ cue, effect, duration }) {
+  const frame = useRef(null);
+  const [projection, setProjection] = useState(() => artworkProjection(0, 0));
+  useEffect(() => {
+    const node = frame.current;
+    if (!node) return;
+    const measure = () => {
+      const image = node.parentElement?.querySelector(".artwork img");
+      const imageStyle = image ? getComputedStyle(image) : null;
+      const position = imageStyle?.objectPosition
+        .split(" ")
+        .map((value) => parseFloat(value) / 100) || [0.5, 0.5];
+      setProjection(
+        artworkProjection(
+          node.clientWidth,
+          node.clientHeight,
+          imageStyle?.objectFit,
+          position,
+        ),
+      );
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [cue.id]);
+  const layers = techniqueEffectLayers(effect, cue.camera, cue);
+  return (
+    <div
+      className={`technique-effects effects-${effect.family}`}
+      ref={frame}
+      data-effect-family={effect.family}
+      data-effect-variant={effect.variant}
+      data-effect-count={layers.length}
+      aria-hidden="true"
+    >
+      {layers.map((item) => {
+        const center = projectedArtworkPoint(item.center, projection);
+        const channels = { opacity: item.opacity };
+        for (const channel of ["x", "y", "scale", "scaleX", "scaleY", "rotate"])
+          if (item[channel]) channels[channel] = item[channel];
+        const transition = {
+          duration: duration / 1000,
+          times: item.times,
+          ease: TECHNIQUE_EFFECT_MOTION.ease,
+        };
+        const initial = Object.fromEntries(
+          Object.entries(channels).map(([channel, values]) => [
+            channel,
+            values[0],
+          ]),
+        );
+        return (
+          <motion.div
+            key={item.id}
+            className={`technique-fx technique-fx-${item.kind}`}
+            data-effect-layer={item.kind}
+            data-direction={item.direction}
+            data-side={item.side}
+            initial={initial}
+            animate={channels}
+            transition={transition}
+            style={{
+              left: `${center[0] * 100}%`,
+              top: `${center[1] * 100}%`,
+              width: `${item.width * projection.scaleX}%`,
+              ...(effectPaths[item.kind]
+                ? { height: `${100 * projection.scaleY}%` }
+                : {}),
+              "--effect-angle": `${item.angle || 0}deg`,
+            }}
+          >
+            {effectPaths[item.kind] ? (
+              <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+                <motion.path
+                  d={effectPaths[item.kind]}
+                  initial={{ pathLength: item.pathLength[0] }}
+                  animate={{ pathLength: item.pathLength }}
+                  transition={transition}
+                />
+              </svg>
+            ) : item.kind === "burst" ? (
+              <>
+                <span className="technique-impact-core" />
+                {impactRays.map((angle) => (
+                  <i
+                    key={angle}
+                    className="technique-impact-ray"
+                    style={{ "--ray-angle": `${angle}deg` }}
+                  />
+                ))}
+              </>
+            ) : item.kind === "shield" ? (
+              <svg viewBox="0 0 100 100">
+                <path d="M50 8 L83 21 V50 Q83 74 50 92 Q17 74 17 50 V21 Z" />
+                <path d="M33 50 L45 62 L68 37" />
+              </svg>
+            ) : (
+              <span />
+            )}
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+}
+
 export function TechniqueScene({ cue, onComplete, shortened = false }) {
   const reduced = useReducedMotion();
   const complete = useRef(onComplete);
@@ -156,18 +275,22 @@ export function TechniqueScene({ cue, onComplete, shortened = false }) {
   const still = reduced || shortened;
   const duration = still ? 650 : cue.duration;
   const camera = cue.camera;
+  const effect =
+    cue.effect || techniqueEffectProfile(cue.cardId, cue.disciplineSlug);
   useEffect(() => {
     const timer = setTimeout(() => complete.current(cue.id), duration);
     return () => clearTimeout(timer);
   }, [cue.id, duration]);
   const scene = (
     <motion.div
-      className={`technique-scene scene-${cue.disciplineSlug} ${cue.finisher ? "scene-finisher" : ""} ${still ? "scene-still" : ""}`}
+      className={`technique-scene scene-${cue.disciplineSlug} scene-effect-${effect.family} ${cue.finisher ? "scene-finisher" : ""} ${still ? "scene-still" : ""}`}
       data-card={cue.cardId}
       data-motion={camera.kind}
       data-duration={duration}
       data-hitstop={still ? 0 : camera.hitstop}
       data-damage={cue.damage}
+      data-effect-family={effect.family}
+      data-effect-variant={effect.variant}
       role="status"
       aria-live="polite"
       aria-atomic="true"
@@ -221,42 +344,14 @@ export function TechniqueScene({ cue, onComplete, shortened = false }) {
               style={{ transformOrigin: camera.origin }}
             >
               <Artwork art={cue.art} alt={cue.alt} />
+              {!still && (
+                <TechniqueEffects
+                  cue={cue}
+                  effect={effect}
+                  duration={duration}
+                />
+              )}
             </motion.div>
-            {!still &&
-              camera.impacts.map((at, index) => (
-                <motion.div
-                  key={index}
-                  className={`technique-impact ${camera.heavy ? "impact-heavy" : ""} ${camera.pressure ? "impact-pressure" : ""} ${cue.attacking && !cue.damage ? "impact-blocked" : ""}`}
-                  initial={{ opacity: 0, scale: 0.55 }}
-                  animate={{
-                    opacity: [0, 0, camera.pressure ? 0.75 : 0.95, 0],
-                    scale: [0.55, 0.55, 1, 1.35],
-                  }}
-                  transition={{
-                    duration: duration / 1000,
-                    times: [
-                      0,
-                      Math.max(0.01, at - 0.015),
-                      at,
-                      Math.min(1, at + 0.11),
-                    ],
-                  }}
-                  style={{
-                    left: camera.origin.split(" ")[0],
-                    top: camera.origin.split(" ")[1],
-                  }}
-                >
-                  <span className="technique-impact-core" />
-                  {!camera.pressure &&
-                    impactRays.map((angle) => (
-                      <i
-                        key={angle}
-                        className="technique-impact-ray"
-                        style={{ "--ray-angle": `${angle}deg` }}
-                      />
-                    ))}
-                </motion.div>
-              ))}
             {!still &&
               cue.attacking &&
               camera.impacts.map((at, index) => (
@@ -265,9 +360,9 @@ export function TechniqueScene({ cue, onComplete, shortened = false }) {
                   className={`technique-hit-score ${cue.knockout ? "technique-hit-ko" : ""} ${!cue.damage ? "technique-hit-guard" : ""}`}
                   initial={{ opacity: 0, scale: 0.65, y: 15 }}
                   animate={{
-                    opacity: [0, 0, 1, 1, 0],
-                    scale: [0.65, 0.65, 1.12, 1, 1],
-                    y: [15, 15, 0, -3, -18],
+                    opacity: TECHNIQUE_EFFECT_MOTION.scoreOpacity,
+                    scale: TECHNIQUE_EFFECT_MOTION.scoreScale,
+                    y: TECHNIQUE_EFFECT_MOTION.scoreY,
                   }}
                   transition={{
                     duration: duration / 1000,
@@ -321,6 +416,7 @@ export function TechniqueScene({ cue, onComplete, shortened = false }) {
               {cue.nameEn}
             </span>
             <strong>{cue.name}</strong>
+            <span className="technique-effect-label">{effect.label}</span>
           </div>
           <div className="technique-results">
             {cue.results.map((result, index) => (

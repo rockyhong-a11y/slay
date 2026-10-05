@@ -1,0 +1,760 @@
+{
+  "generator": "builtin image_gen",
+  "delivery": "30 separate whole-body 1000x1500 RGBA WebP images, plus five normal compatibility images",
+  "normalization": "Format conversion and proportional resize only; original RGBA PNGs preserved in ignored artifacts/new-roster-sources. No creative editing or body-part composition with Pillow.",
+  "totalBytes": 5914772,
+  "uniqueImages": 30,
+  "statesPerAthlete": 6,
+  "assets": [
+    {
+      "id": "atlas",
+      "state": "normal",
+      "file": "public/assets/fighters/states/atlas-normal.webp",
+      "source": "artifacts/new-roster-sources/atlas-normal.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.70921,
+      "visibleBounds": [
+        152,
+        10,
+        896,
+        1490
+      ],
+      "bytes": 193618,
+      "sha256": "d5cf8e661215f9146713925be521cff44c289425c258116143525941d4f0bec1",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "atlas",
+      "state": "excited",
+      "file": "public/assets/fighters/states/atlas-excited.webp",
+      "source": "artifacts/new-roster-sources/atlas-excited.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.7072,
+      "visibleBounds": [
+        145,
+        10,
+        900,
+        1487
+      ],
+      "bytes": 196766,
+      "sha256": "b3e61d937fefa53398880e074b811d9277870053e253cc93df91902cdfb1f7e2",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "atlas",
+      "state": "fiery",
+      "file": "public/assets/fighters/states/atlas-fiery.webp",
+      "source": "artifacts/new-roster-sources/atlas-fiery.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.70195,
+      "visibleBounds": [
+        121,
+        9,
+        936,
+        1479
+      ],
+      "bytes": 195342,
+      "sha256": "a3e1a3ed3fd282d398bb26ce678440d1212929bd43b1eb60e18fb85d17ae37ee",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "atlas",
+      "state": "frustrated",
+      "file": "public/assets/fighters/states/atlas-frustrated.webp",
+      "source": "artifacts/new-roster-sources/atlas-frustrated.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.70449,
+      "visibleBounds": [
+        151,
+        10,
+        898,
+        1465
+      ],
+      "bytes": 195022,
+      "sha256": "fef12357708544f129f6a5fb2591dbb9cedf9dab224c218a082ad5ba3b8eb93a",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "atlas",
+      "state": "tired",
+      "file": "public/assets/fighters/states/atlas-tired.webp",
+      "source": "artifacts/new-roster-sources/atlas-tired.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.68622,
+      "visibleBounds": [
+        153,
+        11,
+        898,
+        1461
+      ],
+      "bytes": 198720,
+      "sha256": "c89fcbc9b2a4f25c3c03eeab4a80f440bb7494e6646d64e895d7b47bb3f9c8d3",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "atlas",
+      "state": "groggy",
+      "file": "public/assets/fighters/states/atlas-groggy.webp",
+      "source": "artifacts/new-roster-sources/atlas-groggy.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.68024,
+      "visibleBounds": [
+        116,
+        15,
+        928,
+        1466
+      ],
+      "bytes": 200582,
+      "sha256": "7326b58165b0216f1e44990c0591e3b8869a21de96efd33c79936115f9be26bc",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "seraph",
+      "state": "normal",
+      "file": "public/assets/fighters/states/seraph-normal.webp",
+      "source": "artifacts/new-roster-sources/seraph-normal.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.71799,
+      "visibleBounds": [
+        242,
+        2,
+        846,
+        1498
+      ],
+      "bytes": 193394,
+      "sha256": "58b0e73342a030214dd888d3726735a1d867c7ad3356afdcd3aebc00b6dbfaf8",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "seraph",
+      "state": "excited",
+      "file": "public/assets/fighters/states/seraph-excited.webp",
+      "source": "artifacts/new-roster-sources/seraph-excited.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.70645,
+      "visibleBounds": [
+        218,
+        2,
+        849,
+        1500
+      ],
+      "bytes": 208220,
+      "sha256": "882642b765321b9245eed2750b275a9c85ea64312e325be09de20a5fd8ad32ec",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "seraph",
+      "state": "fiery",
+      "file": "public/assets/fighters/states/seraph-fiery.webp",
+      "source": "artifacts/new-roster-sources/seraph-fiery.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.71591,
+      "visibleBounds": [
+        216,
+        6,
+        867,
+        1475
+      ],
+      "bytes": 193680,
+      "sha256": "41bc3e900837f4171d04ec6905f703725ae9eb5a99d9608d81a825b39b94ecce",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "seraph",
+      "state": "frustrated",
+      "file": "public/assets/fighters/states/seraph-frustrated.webp",
+      "source": "artifacts/new-roster-sources/seraph-frustrated.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.71891,
+      "visibleBounds": [
+        239,
+        1,
+        849,
+        1468
+      ],
+      "bytes": 195170,
+      "sha256": "12cca96bc16dc1730799d45903438a09532f9a412d8cbba12b5f73f48617e7ba",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "seraph",
+      "state": "tired",
+      "file": "public/assets/fighters/states/seraph-tired.webp",
+      "source": "artifacts/new-roster-sources/seraph-tired.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.69907,
+      "visibleBounds": [
+        254,
+        7,
+        898,
+        1478
+      ],
+      "bytes": 195846,
+      "sha256": "c571113bebd24864d34ff6c04d52ddf1fa5673f2fa0714d0a7ce379f24bdd26c",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "seraph",
+      "state": "groggy",
+      "file": "public/assets/fighters/states/seraph-groggy.webp",
+      "source": "artifacts/new-roster-sources/seraph-groggy.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.68381,
+      "visibleBounds": [
+        143,
+        7,
+        896,
+        1486
+      ],
+      "bytes": 210384,
+      "sha256": "6262f1dd8f6280f556cb1b7187ed5a4b07de48e31e352d34ded6c49076d3afc9",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "lynx",
+      "state": "normal",
+      "file": "public/assets/fighters/states/lynx-normal.webp",
+      "source": "artifacts/new-roster-sources/lynx-normal.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.697,
+      "visibleBounds": [
+        160,
+        6,
+        891,
+        1497
+      ],
+      "bytes": 186832,
+      "sha256": "25c820f1b70b6f1de9078f979696e806ca7d4ebc269286bc4a52d07b9c7d6eb1",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "lynx",
+      "state": "excited",
+      "file": "public/assets/fighters/states/lynx-excited.webp",
+      "source": "artifacts/new-roster-sources/lynx-excited.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.69713,
+      "visibleBounds": [
+        161,
+        9,
+        899,
+        1495
+      ],
+      "bytes": 191086,
+      "sha256": "a8fd941b3019685387d2a73f8e96f2eea96503605eb6f577feb23d7c8281e8a8",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "lynx",
+      "state": "fiery",
+      "file": "public/assets/fighters/states/lynx-fiery.webp",
+      "source": "artifacts/new-roster-sources/lynx-fiery.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.676,
+      "visibleBounds": [
+        107,
+        9,
+        943,
+        1488
+      ],
+      "bytes": 188600,
+      "sha256": "cb0a32f99fc6fed407a409d61e747f0560932289df9e335df30de1f847999128",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "lynx",
+      "state": "frustrated",
+      "file": "public/assets/fighters/states/lynx-frustrated.webp",
+      "source": "artifacts/new-roster-sources/lynx-frustrated.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.70034,
+      "visibleBounds": [
+        161,
+        4,
+        896,
+        1495
+      ],
+      "bytes": 183492,
+      "sha256": "e492527a944f9fad1014b497c5ec92e757088b51fec563f5677d8feb2e571580",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "lynx",
+      "state": "tired",
+      "file": "public/assets/fighters/states/lynx-tired.webp",
+      "source": "artifacts/new-roster-sources/lynx-tired.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.69253,
+      "visibleBounds": [
+        160,
+        8,
+        873,
+        1470
+      ],
+      "bytes": 184200,
+      "sha256": "8d1e18ac20c38e5a065724280510f932989692863da92ca5093f5e464af656d9",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "lynx",
+      "state": "groggy",
+      "file": "public/assets/fighters/states/lynx-groggy.webp",
+      "source": "artifacts/new-roster-sources/lynx-groggy.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.68833,
+      "visibleBounds": [
+        133,
+        13,
+        923,
+        1466
+      ],
+      "bytes": 188288,
+      "sha256": "ce5f3041c87ced6cee6f72ac022215c963ac1a0d4dd25f9bd989dfc82a92f0ba",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "tempest",
+      "state": "normal",
+      "file": "public/assets/fighters/states/tempest-normal.webp",
+      "source": "artifacts/new-roster-sources/tempest-normal.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.69678,
+      "visibleBounds": [
+        169,
+        2,
+        860,
+        1493
+      ],
+      "bytes": 220334,
+      "sha256": "4283f8fa93d98d82bd821d9fc88c5db83a0cea490012d122c9724a7897f95efd",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "tempest",
+      "state": "excited",
+      "file": "public/assets/fighters/states/tempest-excited.webp",
+      "source": "artifacts/new-roster-sources/tempest-excited.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.69387,
+      "visibleBounds": [
+        168,
+        2,
+        870,
+        1495
+      ],
+      "bytes": 230554,
+      "sha256": "00607234d52fb85820f66d71c537775794cf50368603b041c4d1fe3a25d0a3cf",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "tempest",
+      "state": "fiery",
+      "file": "public/assets/fighters/states/tempest-fiery.webp",
+      "source": "artifacts/new-roster-sources/tempest-fiery.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.68623,
+      "visibleBounds": [
+        130,
+        6,
+        899,
+        1479
+      ],
+      "bytes": 226120,
+      "sha256": "29e4be284bb7daf15dd27b7cf59b41348ba596e1e37d19e23b20cda5715c624c",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "tempest",
+      "state": "frustrated",
+      "file": "public/assets/fighters/states/tempest-frustrated.webp",
+      "source": "artifacts/new-roster-sources/tempest-frustrated.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.70287,
+      "visibleBounds": [
+        166,
+        2,
+        867,
+        1464
+      ],
+      "bytes": 210382,
+      "sha256": "37c283d3c401390f7100e3e4497d51449489b0196e45229960bbaa2133972647",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "tempest",
+      "state": "tired",
+      "file": "public/assets/fighters/states/tempest-tired.webp",
+      "source": "artifacts/new-roster-sources/tempest-tired.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.69685,
+      "visibleBounds": [
+        159,
+        4,
+        848,
+        1471
+      ],
+      "bytes": 220220,
+      "sha256": "a1cd7774aa056be3f9f7b292171c7a82c2e83ae97a22b615853017f3b6b1a2fa",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "tempest",
+      "state": "groggy",
+      "file": "public/assets/fighters/states/tempest-groggy.webp",
+      "source": "artifacts/new-roster-sources/tempest-groggy.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.69613,
+      "visibleBounds": [
+        138,
+        7,
+        892,
+        1467
+      ],
+      "bytes": 211538,
+      "sha256": "6613f79121b6fa61f24fd0ab8fecea494181bddab917d2d5fad5db2f10d4e9e6",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "onyx",
+      "state": "normal",
+      "file": "public/assets/fighters/states/onyx-normal.webp",
+      "source": "artifacts/new-roster-sources/onyx-normal.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.72568,
+      "visibleBounds": [
+        214,
+        8,
+        887,
+        1491
+      ],
+      "bytes": 174968,
+      "sha256": "429eb56cb4e694374f5aa12c340e0176ea9fb2896f3c55ca9d4088bf29055354",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "onyx",
+      "state": "excited",
+      "file": "public/assets/fighters/states/onyx-excited.webp",
+      "source": "artifacts/new-roster-sources/onyx-excited.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.71982,
+      "visibleBounds": [
+        214,
+        8,
+        891,
+        1494
+      ],
+      "bytes": 184842,
+      "sha256": "8cc6563394d020a259ef8e32a5fe2c67c1d2678383eac2bc40cdf7d63e00177f",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "onyx",
+      "state": "fiery",
+      "file": "public/assets/fighters/states/onyx-fiery.webp",
+      "source": "artifacts/new-roster-sources/onyx-fiery.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.70639,
+      "visibleBounds": [
+        182,
+        6,
+        886,
+        1494
+      ],
+      "bytes": 188290,
+      "sha256": "428c681cc9d29a31fbece5e0cce235a0f07744328d844f7eb28f89b36cf11a18",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "onyx",
+      "state": "frustrated",
+      "file": "public/assets/fighters/states/onyx-frustrated.webp",
+      "source": "artifacts/new-roster-sources/onyx-frustrated.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.72592,
+      "visibleBounds": [
+        212,
+        7,
+        888,
+        1490
+      ],
+      "bytes": 174086,
+      "sha256": "dda460b50b58f21bd113a2009156517495f5a589ec0bffb0732a235828eed8b6",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "onyx",
+      "state": "tired",
+      "file": "public/assets/fighters/states/onyx-tired.webp",
+      "source": "artifacts/new-roster-sources/onyx-tired.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.71725,
+      "visibleBounds": [
+        211,
+        6,
+        865,
+        1491
+      ],
+      "bytes": 176902,
+      "sha256": "8a85fbe64a6512e6a374f45b194b37e08532b2a7855edb23251aa6962ffe6b1e",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    },
+    {
+      "id": "onyx",
+      "state": "groggy",
+      "file": "public/assets/fighters/states/onyx-groggy.webp",
+      "source": "artifacts/new-roster-sources/onyx-groggy.png",
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "transparentFraction": 0.69302,
+      "visibleBounds": [
+        215,
+        13,
+        897,
+        1490
+      ],
+      "bytes": 197294,
+      "sha256": "41fa8e197cb9422c60625da90b6faf6bf3f728478c98fc28823ea12348b772be",
+      "visualReview": "Passed: complete coherent whole-body anatomy, face/hair/outfit identity retained, both boots visible, no hats or gauntlets."
+    }
+  ]
+}

@@ -1,5 +1,6 @@
-import { getCard } from "./game.js";
+import { getCard, WRESTLERS } from "./game.js";
 import { getCardDetail } from "./card-library.js";
+import { techniqueEffectProfile } from "./technique-effects.js";
 
 // Presentation reads engine snapshots. It never changes combat or save data.
 export const FIGHTER_STATES = {
@@ -63,9 +64,7 @@ export function selectFighterState(fighter, { enemy = false } = {}) {
 }
 
 export function fighterPoseArt(actor, condition = "normal") {
-  const id = ["raven", "valkyrie", "nova", "viper", "ember"].includes(actor)
-    ? actor
-    : "nova";
+  const id = Object.hasOwn(WRESTLERS, actor) ? actor : "nova";
   const requested = typeof condition === "string" ? condition : condition?.id;
   const state = Object.hasOwn(FIGHTER_STATES, requested) ? requested : "normal";
   return `fighters/states/${id}-${state}.webp`;
@@ -221,15 +220,15 @@ const techniqueCameras = {
   collartie: ["clinch", { origin: "52% 34%" }],
   armdrag: ["throw", { duration: 2400, lift: 0.55, rotation: 0.55 }],
   waistlock: ["clinch", { origin: "55% 54%", pan: -0.8 }],
-  reversal: ["guard", { pan: -2, rotation: -1.8 }],
+  reversal: ["hold", { pan: -0.75, rotation: -1.8, origin: "53% 45%" }],
   guard: ["guard"],
-  ironclad: ["guard", { zoom: 1.03 }],
+  ironclad: ["hold", { zoom: 1.03, origin: "53% 44%" }],
   comeback: ["guard", { lift: 1.25, heavy: true }],
   focus: ["focus"],
-  steelwill: ["focus", { zoom: 1.03 }],
+  steelwill: ["guard", { zoom: 1.03 }],
   spotlight: ["focus", { lift: 1.6, origin: "50% 32%" }],
   rally: ["focus", { lift: 1.4 }],
-  ringcraft: ["focus", { pan: 1.4 }],
+  ringcraft: ["guard", { pan: 1.4 }],
   quickdraw: ["focus", { pan: -1.4 }],
   encore: ["focus", { lift: 0.65 }],
   nightmare: ["nightmare"],
@@ -252,7 +251,7 @@ const portraitFields = {
 };
 const portraitFocus = {
   headlock: { field: 0.6, center: [0.51, 0.36] },
-  armbar: { field: 0.88, center: [0.4, 0.42] },
+  armbar: { field: 0.88, center: [0.6, 0.62] },
   sidewalkslam: { field: 0.8, center: [0.44, 0.4] },
 };
 
@@ -272,6 +271,8 @@ export function techniqueShot(cardId, disciplineSlug, finisher = false) {
     fallback[disciplineSlug] || "focus",
   ];
   const shot = cameraShots[kind];
+  const effect = techniqueEffectProfile(cardId, disciplineSlug);
+  const focalPoint = effect.grip || effect.target;
   const portrait = portraitFocus[cardId] || {
     field: portraitFields[kind],
     center: [0.5, 0.45],
@@ -286,7 +287,7 @@ export function techniqueShot(cardId, disciplineSlug, finisher = false) {
     y: scaleChannel(shot.y, variation.lift),
     scale: scaleChannel(shot.scale, variation.zoom),
     rotate: scaleChannel(shot.rotate, variation.rotation),
-    origin: variation.origin || "50% 50%",
+    origin: focalPoint.map((value) => `${Math.round(value * 100)}%`).join(" "),
     phases: [...shot.phases],
     impacts: [...shot.impacts],
     heavy: variation.heavy ?? shot.heavy ?? finisher,
@@ -355,6 +356,13 @@ export function createArenaImpact(before, after, options = {}) {
   if (!damage && !blocked) return null;
   const card = options.instance ? getCard(options.instance) : null;
   const finisher = card?.type === "finisher";
+  const detail = card ? getCardDetail(card.id) : null;
+  const effect = card
+    ? techniqueEffectProfile(card.id, detail?.disciplineSlug)
+    : null;
+  const effectFamily = effect?.family || "strike";
+  const pressure = effectFamily === "submission";
+  const throwing = effectFamily === "grapple" && !effect.grounded;
   const knockout = (after[target]?.hp ?? 1) <= 0 && damage > 0;
   const hits = Math.max(1, resolved?.hits || card?.effects.hits || 1);
   const combo = attacker === "player" ? after.combo || 0 : hits;
@@ -369,9 +377,15 @@ export function createArenaImpact(before, after, options = {}) {
           ? "FINISHER"
           : hits > 1
             ? `${hits} HITS`
-            : heavy
-              ? "HEAVY HIT"
-              : "HIT");
+            : pressure
+              ? "LOCKED IN"
+              : throwing
+                ? "MAT IMPACT"
+                : effectFamily === "grapple"
+                  ? "GRIP"
+                  : heavy
+                    ? "HEAVY HIT"
+                    : "HIT");
   return {
     attacker,
     target,
@@ -382,6 +396,9 @@ export function createArenaImpact(before, after, options = {}) {
     heavy,
     finisher,
     knockout,
+    effectFamily,
+    pressure,
+    throwing,
     label,
     duration: heavy ? 1040 : 880,
     announcement: `${attacker === "player" ? "선수" : "상대"} 공격. ${damage ? `피해 ${damage}` : "가드 성공"}${blocked ? `. 방어 ${blocked}` : ""}${knockout ? ". K.O." : ""}.`,
@@ -396,27 +413,45 @@ export function fighterImpactFrames(impact, side, still = false) {
   const guarded = !attacking && !impact.damage;
   const direction = impact.attacker === "player" ? 1 : -1;
   const force = impact.heavy ? 1.4 : 1;
-  const horizontal = attacking
-    ? [0, -7, 26, 26, 14, 3, 0]
-    : guarded
-      ? [0, 0, 4, 4, 7, 2, 0]
-      : [0, 0, 23, 23, 34, 10, 0];
-  const vertical = attacking
-    ? [0, -2, -5, -5, 0, 0, 0]
-    : guarded
-      ? [0, 0, 1, 1, 0, 0, 0]
-      : [0, 0, -4, -4, 5, 2, 0];
-  const rotation = attacking
-    ? [0, -1, 2, 2, 0, 0, 0]
-    : guarded
-      ? [0, 0, 1, 1, 1, 0, 0]
-      : [0, 0, 4, 4, 6, 1, 0];
+  const pressure = impact.pressure && impact.damage > 0;
+  const horizontal = pressure
+    ? attacking
+      ? [0, -2, 5, 5, 4, 2, 0]
+      : [0, 0, 2, 2, 4, 1, 0]
+    : attacking
+      ? [0, -7, 26, 26, 14, 3, 0]
+      : guarded
+        ? [0, 0, 4, 4, 7, 2, 0]
+        : [0, 0, 23, 23, 34, 10, 0];
+  const vertical = pressure
+    ? [0, 0, -1, -1, 1, 0, 0]
+    : attacking
+      ? [0, -2, -5, -5, 0, 0, 0]
+      : guarded
+        ? [0, 0, 1, 1, 0, 0, 0]
+        : [0, 0, -4, -4, 5, 2, 0];
+  const rotation = pressure
+    ? [0, 0, 1, 1, 2, 1, 0]
+    : attacking
+      ? [0, -1, 2, 2, 0, 0, 0]
+      : guarded
+        ? [0, 0, 1, 1, 1, 0, 0]
+        : [0, 0, 4, 4, 6, 1, 0];
   return {
     x: horizontal.map((value) => value * direction * force),
     y: vertical,
     rotate: rotation.map((value) => value * direction),
-    filter:
-      !attacking && impact.damage
+    filter: pressure
+      ? [
+          "brightness(1)",
+          "brightness(1.05)",
+          "brightness(1.15)",
+          "brightness(1.15)",
+          "brightness(1.2)",
+          "brightness(1.08)",
+          "brightness(1)",
+        ]
+      : !attacking && impact.damage
         ? [
             "brightness(1)",
             "brightness(1)",
@@ -516,23 +551,27 @@ export function createCardCue(before, after, instance) {
   const drawn = after.hand.filter((c) => !oldHand.has(c.uid)).length;
   if (drawn)
     results.push({ kind: "draw", value: drawn, text: `드로우 ${drawn}` });
-  if (card.effects.energy) {
-    const gained = Math.min(
-      card.effects.energy,
-      Math.max(0, after.energy - (before.energy - card.cost)),
-    );
-    if (gained)
-      results.push({
-        kind: "energy",
-        value: gained,
-        text: `에너지 +${gained}`,
-      });
-  }
-  if (card.effects.nextAttack)
+  // Printed effects and character passives share the same resolved snapshots.
+  // Compare energy after paying the card's cost, so a refund is visible even
+  // when the final energy is lower than the starting value.
+  const energyGained = difference(after.energy, before.energy - card.cost);
+  if (energyGained)
+    results.push({
+      kind: "energy",
+      value: energyGained,
+      text: `에너지 +${energyGained}`,
+    });
+  // An attack consumes the old next-attack bonus before a passive can grant a
+  // new one. Non-attacks retain it; the retained amount is not a fresh gain.
+  const setupBaseline = card.effects.damage
+    ? 0
+    : before.status?.nextAttack || 0;
+  const setupGained = difference(after.status?.nextAttack, setupBaseline);
+  if (setupGained)
     results.push({
       kind: "setup",
-      value: card.effects.nextAttack,
-      text: `다음 공격 +${card.effects.nextAttack}`,
+      value: setupGained,
+      text: `다음 공격 +${setupGained}`,
     });
   if (card.exhaust) results.push({ kind: "exhaust", text: "소멸" });
   const camera = techniqueShot(
@@ -553,6 +592,7 @@ export function createCardCue(before, after, instance) {
     attacking: !!card.effects.damage,
     duration: camera.duration,
     camera,
+    effect: techniqueEffectProfile(card.id, detail.disciplineSlug),
     damage,
     absorbed,
     hits: card.effects.hits || 1,

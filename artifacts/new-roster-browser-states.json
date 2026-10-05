@@ -1,0 +1,572 @@
+[
+  {
+    "id": "atlas",
+    "label": "보통",
+    "art": [
+      {
+        "art": "fighters/states/atlas-normal.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/atlas-normal.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -127.143%; top: 50%; transform: translateY(-12.7%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "normal"
+  },
+  {
+    "id": "atlas",
+    "label": "흥분",
+    "art": [
+      {
+        "art": "fighters/states/atlas-excited.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/atlas-excited.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -130%; top: 50%; transform: translateY(-12.8%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "excited"
+  },
+  {
+    "id": "atlas",
+    "label": "열혈",
+    "art": [
+      {
+        "art": "fighters/states/atlas-fiery.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/atlas-fiery.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -126.786%; top: 50%; transform: translateY(-13.2%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "fiery"
+  },
+  {
+    "id": "atlas",
+    "label": "좌절",
+    "art": [
+      {
+        "art": "fighters/states/atlas-frustrated.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/atlas-frustrated.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -131.429%; top: 50%; transform: translateY(-13.2%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "frustrated"
+  },
+  {
+    "id": "atlas",
+    "label": "지침",
+    "art": [
+      {
+        "art": "fighters/states/atlas-tired.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/atlas-tired.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -145%; top: 50%; transform: translateY(-15.1%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "tired"
+  },
+  {
+    "id": "atlas",
+    "label": "그로기",
+    "art": [
+      {
+        "art": "fighters/states/atlas-groggy.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/atlas-groggy.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -146.429%; top: 50%; transform: translateY(-16.2%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "groggy"
+  },
+  {
+    "id": "seraph",
+    "label": "보통",
+    "art": [
+      {
+        "art": "fighters/states/seraph-normal.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/seraph-normal.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -128.571%; top: 50%; transform: translateY(-12.3%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "normal"
+  },
+  {
+    "id": "seraph",
+    "label": "흥분",
+    "art": [
+      {
+        "art": "fighters/states/seraph-excited.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/seraph-excited.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -131.429%; top: 50%; transform: translateY(-12.3%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "excited"
+  },
+  {
+    "id": "seraph",
+    "label": "열혈",
+    "art": [
+      {
+        "art": "fighters/states/seraph-fiery.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/seraph-fiery.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -130%; top: 50%; transform: translateY(-13%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "fiery"
+  },
+  {
+    "id": "seraph",
+    "label": "좌절",
+    "art": [
+      {
+        "art": "fighters/states/seraph-frustrated.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/seraph-frustrated.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -129.643%; top: 50%; transform: translateY(-12.5%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "frustrated"
+  },
+  {
+    "id": "seraph",
+    "label": "지침",
+    "art": [
+      {
+        "art": "fighters/states/seraph-tired.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/seraph-tired.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -142.143%; top: 50%; transform: translateY(-15.1%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "tired"
+  },
+  {
+    "id": "seraph",
+    "label": "그로기",
+    "art": [
+      {
+        "art": "fighters/states/seraph-groggy.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/seraph-groggy.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -146.429%; top: 50%; transform: translateY(-16%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "groggy"
+  },
+  {
+    "id": "lynx",
+    "label": "보통",
+    "art": [
+      {
+        "art": "fighters/states/lynx-normal.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/lynx-normal.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -125%; top: 50%; transform: translateY(-13.1%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "normal"
+  },
+  {
+    "id": "lynx",
+    "label": "흥분",
+    "art": [
+      {
+        "art": "fighters/states/lynx-excited.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/lynx-excited.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -135.714%; top: 50%; transform: translateY(-13.1%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "excited"
+  },
+  {
+    "id": "lynx",
+    "label": "열혈",
+    "art": [
+      {
+        "art": "fighters/states/lynx-fiery.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/lynx-fiery.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -135.714%; top: 50%; transform: translateY(-15%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "fiery"
+  },
+  {
+    "id": "lynx",
+    "label": "좌절",
+    "art": [
+      {
+        "art": "fighters/states/lynx-frustrated.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/lynx-frustrated.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -131.786%; top: 50%; transform: translateY(-13.7%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "frustrated"
+  },
+  {
+    "id": "lynx",
+    "label": "지침",
+    "art": [
+      {
+        "art": "fighters/states/lynx-tired.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/lynx-tired.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -144.643%; top: 50%; transform: translateY(-16.9%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "tired"
+  },
+  {
+    "id": "lynx",
+    "label": "그로기",
+    "art": [
+      {
+        "art": "fighters/states/lynx-groggy.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/lynx-groggy.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -148.571%; top: 50%; transform: translateY(-18.2%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "groggy"
+  },
+  {
+    "id": "onyx",
+    "label": "보통",
+    "art": [
+      {
+        "art": "fighters/states/onyx-normal.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/onyx-normal.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -140.714%; top: 50%; transform: translateY(-13.4%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "normal"
+  },
+  {
+    "id": "onyx",
+    "label": "흥분",
+    "art": [
+      {
+        "art": "fighters/states/onyx-excited.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/onyx-excited.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -148.214%; top: 50%; transform: translateY(-13.6%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "excited"
+  },
+  {
+    "id": "onyx",
+    "label": "열혈",
+    "art": [
+      {
+        "art": "fighters/states/onyx-fiery.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/onyx-fiery.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -149.643%; top: 50%; transform: translateY(-15%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "fiery"
+  },
+  {
+    "id": "onyx",
+    "label": "좌절",
+    "art": [
+      {
+        "art": "fighters/states/onyx-frustrated.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/onyx-frustrated.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -148.571%; top: 50%; transform: translateY(-13.9%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "frustrated"
+  },
+  {
+    "id": "onyx",
+    "label": "지침",
+    "art": [
+      {
+        "art": "fighters/states/onyx-tired.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/onyx-tired.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -157.143%; top: 50%; transform: translateY(-14.8%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "tired"
+  },
+  {
+    "id": "onyx",
+    "label": "그로기",
+    "art": [
+      {
+        "art": "fighters/states/onyx-groggy.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/onyx-groggy.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -159.286%; top: 50%; transform: translateY(-16.9%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "groggy"
+  },
+  {
+    "id": "tempest",
+    "label": "보통",
+    "art": [
+      {
+        "art": "fighters/states/tempest-normal.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/tempest-normal.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -128.571%; top: 50%; transform: translateY(-12.5%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "normal"
+  },
+  {
+    "id": "tempest",
+    "label": "흥분",
+    "art": [
+      {
+        "art": "fighters/states/tempest-excited.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/tempest-excited.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -128.571%; top: 50%; transform: translateY(-12.3%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "excited"
+  },
+  {
+    "id": "tempest",
+    "label": "열혈",
+    "art": [
+      {
+        "art": "fighters/states/tempest-fiery.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/tempest-fiery.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -132.857%; top: 50%; transform: translateY(-13.7%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "fiery"
+  },
+  {
+    "id": "tempest",
+    "label": "좌절",
+    "art": [
+      {
+        "art": "fighters/states/tempest-frustrated.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/tempest-frustrated.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -135%; top: 50%; transform: translateY(-13%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "frustrated"
+  },
+  {
+    "id": "tempest",
+    "label": "지침",
+    "art": [
+      {
+        "art": "fighters/states/tempest-tired.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/tempest-tired.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -146.429%; top: 50%; transform: translateY(-14.2%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "tired"
+  },
+  {
+    "id": "tempest",
+    "label": "그로기",
+    "art": [
+      {
+        "art": "fighters/states/tempest-groggy.webp",
+        "imageStyle": "object-fit: contain; object-position: 50% 100%; opacity: 1;",
+        "loaded": true,
+        "portrait": false
+      },
+      {
+        "art": "fighters/states/tempest-groggy.webp",
+        "imageStyle": "width: 357.143%; height: auto; max-width: none; left: -157.143%; top: 50%; transform: translateY(-15.9%); opacity: 1;",
+        "loaded": true,
+        "portrait": true
+      }
+    ],
+    "condition": "groggy"
+  }
+]

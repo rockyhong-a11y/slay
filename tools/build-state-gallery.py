@@ -19,11 +19,11 @@ import bpy
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "public" / "assets" / "fighters" / "states"
 OUTPUT = ROOT / "artifacts"
-ACTORS = ("raven", "valkyrie", "nova", "viper", "ember")
+ACTORS = ("raven", "valkyrie", "nova", "viper", "ember", "atlas", "seraph", "lynx", "tempest", "onyx")
 STATES = ("normal", "excited", "fiery", "frustrated", "tired", "groggy")
-BLEND = OUTPUT / "fighter-state-gallery.blend"
-RENDER = OUTPUT / "fighter-state-gallery.jpg"
-FACTS = OUTPUT / "fighter-state-gallery-facts.json"
+BLEND = OUTPUT / "expanded-fighter-state-gallery.blend"
+RENDER = OUTPUT / "expanded-fighter-state-gallery.jpg"
+FACTS = OUTPUT / "expanded-fighter-state-gallery-facts.json"
 PLANE_WIDTH, PLANE_HEIGHT = 2.0, 3.0
 COLUMN_GAP, ROW_GAP = 0.32, 0.55
 LEFT_GUTTER, RIGHT_MARGIN = 1.15, 0.5
@@ -70,7 +70,7 @@ def check_available():
         image, facts = load_whole_image(path)
         checks.append({"actor": actor, "state": state, **facts})
         bpy.data.images.remove(image)
-    print(json.dumps({"mode": "check_only", "available": len(checks), "required": 30, "images": checks}, indent=2))
+    print(json.dumps({"mode": "check_only", "available": len(checks), "required": len(ACTORS) * len(STATES), "images": checks}, indent=2))
 
 
 def emission_material(name, color):
@@ -184,7 +184,7 @@ def scene_facts(objects, source_facts, scene):
         "top": max(point.y for point in frame),
     }
     checks = {
-        "thirty_single_image_planes": inventory["MESH"] == 30 and len(planes) == 30 and len(bpy.data.meshes) == 30,
+        "complete_single_image_planes": inventory["MESH"] == len(ACTORS) * len(STATES) and len(planes) == len(ACTORS) * len(STATES) and len(bpy.data.meshes) == len(ACTORS) * len(STATES),
         "four_vertices_one_face_per_image": all(item["vertices"] == 4 and item["faces"] == 1 for item in planes),
         "one_complete_texture_per_plane": all(item["texture_nodes"] == 1 for item in planes),
         "assigned_texture_is_exact_reported_source": all(item["assigned_texture_sha256"] == [item["source_sha256"]] and item["assigned_texture_names"] == [f'{item["actor"]}-{item["state"]}.webp'] for item in planes),
@@ -193,7 +193,7 @@ def scene_facts(objects, source_facts, scene):
         "no_armatures": inventory["ARMATURE"] == 0,
         "no_actions": len(bpy.data.actions) == 0,
         "no_animation_or_drivers_anywhere": not animated_owners,
-        "only_image_planes_font_captions_and_camera": set(inventory_all).issubset({"MESH", "FONT", "CAMERA"}) and inventory["FONT"] == 48 and inventory["CAMERA"] == 1,
+        "only_image_planes_font_captions_and_camera": set(inventory_all).issubset({"MESH", "FONT", "CAMERA"}) and inventory["FONT"] == 2 + len(STATES) + len(ACTORS) * (2 + len(STATES)) and inventory["CAMERA"] == 1,
         "no_animation_modifiers_constraints_or_parents": all(not item["animation_data"] and not item["modifiers"] and not item["constraints"] and item["parent"] is None for item in planes),
         "exact_source_files_packed": all(item["packed_source_unchanged"] for item in planes),
         "all_complete_planes_inside_camera": all(
@@ -227,7 +227,7 @@ def scene_facts(objects, source_facts, scene):
 def build_gallery():
     missing = [path.name for _, _, path in source_paths() if not path.is_file()]
     if missing:
-        raise RuntimeError("Final gallery requires all 30 complete state images. Missing: " + ", ".join(missing))
+        raise RuntimeError("Final gallery requires all 60 complete state images. Missing: " + ", ".join(missing))
     bpy.ops.object.select_all(action="SELECT")
     bpy.ops.object.delete(use_global=False)
     for collection in (bpy.data.meshes, bpy.data.curves, bpy.data.materials, bpy.data.cameras, bpy.data.lights):
@@ -247,7 +247,7 @@ def build_gallery():
     scene.world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.042, 0.049, 0.06, 1)
     scene.world.node_tree.nodes["Background"].inputs["Strength"].default_value = 1
     total_width = LEFT_GUTTER + 6 * PLANE_WIDTH + 5 * COLUMN_GAP + RIGHT_MARGIN
-    total_height = TOP_MARGIN + 5 * PLANE_HEIGHT + 4 * ROW_GAP + BOTTOM_MARGIN
+    total_height = TOP_MARGIN + len(ACTORS) * PLANE_HEIGHT + (len(ACTORS) - 1) * ROW_GAP + BOTTOM_MARGIN
     camera_data = bpy.data.cameras.new("Gallery orthographic camera")
     camera = bpy.data.objects.new(camera_data.name, camera_data)
     bpy.context.collection.objects.link(camera)
@@ -273,7 +273,7 @@ def build_gallery():
     heading = emission_material("Caption ivory", (0.8, 0.83, 0.88))
     muted = emission_material("Caption muted", (0.36, 0.41, 0.5))
     caption("SLAY  /  COMPLETE STATE ART REVIEW", 0.3, total_height - 0.35, 0.31, heading)
-    caption("30 WHOLE-IMAGE PLANES   /   IDENTICAL FRAMING   /   NO RIGS OR ANIMATION", 0.3, total_height - 0.79, 0.14, muted)
+    caption("60 WHOLE-IMAGE PLANES   /   IDENTICAL FRAMING   /   NO RIGS OR ANIMATION", 0.3, total_height - 0.79, 0.14, muted)
     for column, state in enumerate(STATES):
         x = LEFT_GUTTER + PLANE_WIDTH / 2 + column * (PLANE_WIDTH + COLUMN_GAP)
         caption(state.upper(), x, total_height - 1.22, 0.18, heading, "CENTER")

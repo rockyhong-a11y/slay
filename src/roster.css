@@ -417,3 +417,20 @@
     transform: none;
   }
 }
+
+.contender-new {
+  position: absolute;
+  bottom: 15px;
+  right: 14px;
+  z-index: 2;
+  padding: 5px 8px;
+  border: 1px solid color-mix(in srgb, var(--contender-accent) 65%, transparent);
+  border-radius: 3px;
+  color: var(--contender-accent);
+  background: #10121dea;
+  font:
+    700 11px/1.2 "Barlow Condensed",
+    "Noto Sans KR",
+    sans-serif;
+  letter-spacing: 0.8px;
+}

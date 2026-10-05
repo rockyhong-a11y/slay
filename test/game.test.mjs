@@ -378,7 +378,7 @@ function strategicRun(id, seed = 20903) {
   return state;
 }
 
-test("all five wrestlers can complete a real eight-floor run using only public actions", () => {
+test("all ten wrestlers can complete a real eight-floor run using only public actions", () => {
   for (const id of Object.keys(WRESTLERS)) {
     for (const seed of [20903, 424242]) {
       const result = strategicRun(id, seed);

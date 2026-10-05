@@ -1,4 +1,4 @@
-import { newRun } from "./game.js";
+import { newRun, WRESTLERS } from "./game.js";
 
 // Explicit, isolated DEV fixtures exercise the real App and Card controls.
 // The loader/save guard uses import.meta.env.DEV; these profiles never replace
@@ -6,7 +6,10 @@ import { newRun } from "./game.js";
 export function createCombatQA(profile = {}) {
   const options = typeof profile === "object" ? profile : { hand: profile };
   const count = Number(options.hand) === 10 ? 10 : 5;
-  const state = newRun("viper", 20903);
+  const actor = Object.hasOwn(WRESTLERS, options.actor)
+    ? options.actor
+    : "viper";
+  const state = newRun(actor, 20903);
   const ids = [
     "strike",
     "guard",

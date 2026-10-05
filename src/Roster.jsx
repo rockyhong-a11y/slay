@@ -23,8 +23,13 @@ function deckGroups(deck) {
 export function Roster({ currentId, onStart, onPreview }) {
   const [role, setRole] = useState("all");
   const fighters = Object.entries(WRESTLERS);
+  const newcomers = fighters.filter(([, fighter]) => fighter.newcomer);
   const visible = fighters.filter(([, fighter]) =>
-    role === "all" ? true : fighter.role === role,
+    role === "all"
+      ? true
+      : role === "new"
+        ? fighter.newcomer
+        : fighter.role === role,
   );
   const roles = [...new Set(fighters.map(([, fighter]) => fighter.role))];
 
@@ -48,6 +53,15 @@ export function Roster({ currentId, onStart, onPreview }) {
         >
           전체 선수 <span>{fighters.length}</span>
         </button>
+        {newcomers.length > 0 && (
+          <button
+            type="button"
+            aria-pressed={role === "new"}
+            onClick={() => setRole("new")}
+          >
+            신규 선수 <span>{newcomers.length}</span>
+          </button>
+        )}
         {roles.map((item) => (
           <button
             type="button"
@@ -78,6 +92,9 @@ export function Roster({ currentId, onStart, onPreview }) {
                   "0",
                 )}
               </span>
+              {fighter.newcomer && (
+                <span className="contender-new">NEW · 신규</span>
+              )}
               {currentId === id && (
                 <span className="contender-current">
                   <Check size={12} weight="bold" /> 현재 선수

@@ -1,0 +1,626 @@
+[
+  {
+    "frame": {
+      "height": 275,
+      "width": 363
+    },
+    "image": {
+      "fit": "cover",
+      "position": "60% 62%"
+    },
+    "layers": [
+      {
+        "kind": "clamp",
+        "left": "60%",
+        "opacity": 0.0910382,
+        "top": "71%"
+      },
+      {
+        "kind": "clamp",
+        "left": "78.1729%",
+        "opacity": 0.0910382,
+        "top": "71%"
+      },
+      {
+        "kind": "target",
+        "left": "69.0865%",
+        "opacity": 0,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.0182076,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.0140059,
+        "top": "71%"
+      }
+    ],
+    "sameFrame": true,
+    "scene": {
+      "card": "armbar",
+      "damage": "5",
+      "duration": "2650",
+      "effectFamily": "submission",
+      "effectVariant": "armbar",
+      "hitstop": "0",
+      "motion": "hold"
+    }
+  },
+  {
+    "frame": {
+      "height": 275,
+      "width": 363
+    },
+    "image": {
+      "fit": "cover",
+      "position": "60% 62%"
+    },
+    "layers": [
+      {
+        "kind": "clamp",
+        "left": "60%",
+        "opacity": 0.435881,
+        "top": "71%"
+      },
+      {
+        "kind": "clamp",
+        "left": "78.1729%",
+        "opacity": 0.435881,
+        "top": "71%"
+      },
+      {
+        "kind": "target",
+        "left": "69.0865%",
+        "opacity": 0,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.085741,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.0659546,
+        "top": "71%"
+      }
+    ],
+    "sameFrame": true,
+    "scene": {
+      "card": "armbar",
+      "damage": "5",
+      "duration": "2650",
+      "effectFamily": "submission",
+      "effectVariant": "armbar",
+      "hitstop": "0",
+      "motion": "hold"
+    }
+  },
+  {
+    "frame": {
+      "height": 275,
+      "width": 363
+    },
+    "image": {
+      "fit": "cover",
+      "position": "60% 62%"
+    },
+    "layers": [
+      {
+        "kind": "clamp",
+        "left": "60%",
+        "opacity": 0.9,
+        "top": "71%"
+      },
+      {
+        "kind": "clamp",
+        "left": "78.1729%",
+        "opacity": 0.9,
+        "top": "71%"
+      },
+      {
+        "kind": "target",
+        "left": "69.0865%",
+        "opacity": 0.433072,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.302806,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.123221,
+        "top": "71%"
+      }
+    ],
+    "sameFrame": true,
+    "scene": {
+      "card": "armbar",
+      "damage": "5",
+      "duration": "2650",
+      "effectFamily": "submission",
+      "effectVariant": "armbar",
+      "hitstop": "0",
+      "motion": "hold"
+    }
+  },
+  {
+    "frame": {
+      "height": 275,
+      "width": 363
+    },
+    "image": {
+      "fit": "cover",
+      "position": "60% 62%"
+    },
+    "layers": [
+      {
+        "kind": "clamp",
+        "left": "60%",
+        "opacity": 0.9,
+        "top": "71%"
+      },
+      {
+        "kind": "clamp",
+        "left": "78.1729%",
+        "opacity": 0.9,
+        "top": "71%"
+      },
+      {
+        "kind": "target",
+        "left": "69.0865%",
+        "opacity": 0.8,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.691422,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.285883,
+        "top": "71%"
+      }
+    ],
+    "sameFrame": true,
+    "scene": {
+      "card": "armbar",
+      "damage": "5",
+      "duration": "2650",
+      "effectFamily": "submission",
+      "effectVariant": "armbar",
+      "hitstop": "0",
+      "motion": "hold"
+    }
+  },
+  {
+    "frame": {
+      "height": 275,
+      "width": 363
+    },
+    "image": {
+      "fit": "cover",
+      "position": "60% 62%"
+    },
+    "layers": [
+      {
+        "kind": "clamp",
+        "left": "60%",
+        "opacity": 0.9,
+        "top": "71%"
+      },
+      {
+        "kind": "clamp",
+        "left": "78.1729%",
+        "opacity": 0.9,
+        "top": "71%"
+      },
+      {
+        "kind": "target",
+        "left": "69.0865%",
+        "opacity": 0.8,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.602937,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.604426,
+        "top": "71%"
+      }
+    ],
+    "sameFrame": true,
+    "scene": {
+      "card": "armbar",
+      "damage": "5",
+      "duration": "2650",
+      "effectFamily": "submission",
+      "effectVariant": "armbar",
+      "hitstop": "0",
+      "motion": "hold"
+    }
+  },
+  {
+    "frame": {
+      "height": 275,
+      "width": 363
+    },
+    "image": {
+      "fit": "cover",
+      "position": "60% 62%"
+    },
+    "layers": [
+      {
+        "kind": "clamp",
+        "left": "60%",
+        "opacity": 0.891722,
+        "top": "71%"
+      },
+      {
+        "kind": "clamp",
+        "left": "78.1729%",
+        "opacity": 0.891722,
+        "top": "71%"
+      },
+      {
+        "kind": "target",
+        "left": "69.0865%",
+        "opacity": 0.8,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.704853,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.559467,
+        "top": "71%"
+      }
+    ],
+    "sameFrame": true,
+    "scene": {
+      "card": "armbar",
+      "damage": "5",
+      "duration": "2650",
+      "effectFamily": "submission",
+      "effectVariant": "armbar",
+      "hitstop": "0",
+      "motion": "hold"
+    }
+  },
+  {
+    "frame": {
+      "height": 275,
+      "width": 363
+    },
+    "image": {
+      "fit": "cover",
+      "position": "60% 62%"
+    },
+    "layers": [
+      {
+        "kind": "clamp",
+        "left": "60%",
+        "opacity": 0.875053,
+        "top": "71%"
+      },
+      {
+        "kind": "clamp",
+        "left": "78.1729%",
+        "opacity": 0.875053,
+        "top": "71%"
+      },
+      {
+        "kind": "target",
+        "left": "69.0865%",
+        "opacity": 0.8,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.705092,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.615998,
+        "top": "71%"
+      }
+    ],
+    "sameFrame": true,
+    "scene": {
+      "card": "armbar",
+      "damage": "5",
+      "duration": "2650",
+      "effectFamily": "submission",
+      "effectVariant": "armbar",
+      "hitstop": "0",
+      "motion": "hold"
+    }
+  },
+  {
+    "frame": {
+      "height": 275,
+      "width": 363
+    },
+    "image": {
+      "fit": "cover",
+      "position": "60% 62%"
+    },
+    "layers": [
+      {
+        "kind": "clamp",
+        "left": "60%",
+        "opacity": 0.867507,
+        "top": "71%"
+      },
+      {
+        "kind": "clamp",
+        "left": "78.1729%",
+        "opacity": 0.867507,
+        "top": "71%"
+      },
+      {
+        "kind": "target",
+        "left": "69.0865%",
+        "opacity": 0.8,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.626895,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.711573,
+        "top": "71%"
+      }
+    ],
+    "sameFrame": true,
+    "scene": {
+      "card": "armbar",
+      "damage": "5",
+      "duration": "2650",
+      "effectFamily": "submission",
+      "effectVariant": "armbar",
+      "hitstop": "0",
+      "motion": "hold"
+    }
+  },
+  {
+    "frame": {
+      "height": 275,
+      "width": 363
+    },
+    "image": {
+      "fit": "cover",
+      "position": "60% 62%"
+    },
+    "layers": [
+      {
+        "kind": "clamp",
+        "left": "60%",
+        "opacity": 0.838633,
+        "top": "71%"
+      },
+      {
+        "kind": "clamp",
+        "left": "78.1729%",
+        "opacity": 0.838633,
+        "top": "71%"
+      },
+      {
+        "kind": "target",
+        "left": "69.0865%",
+        "opacity": 0.8,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.556369,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.668588,
+        "top": "71%"
+      }
+    ],
+    "sameFrame": true,
+    "scene": {
+      "card": "armbar",
+      "damage": "5",
+      "duration": "2650",
+      "effectFamily": "submission",
+      "effectVariant": "armbar",
+      "hitstop": "0",
+      "motion": "hold"
+    }
+  },
+  {
+    "frame": {
+      "height": 275,
+      "width": 363
+    },
+    "image": {
+      "fit": "cover",
+      "position": "60% 62%"
+    },
+    "layers": [
+      {
+        "kind": "clamp",
+        "left": "60%",
+        "opacity": 0.780471,
+        "top": "71%"
+      },
+      {
+        "kind": "clamp",
+        "left": "78.1729%",
+        "opacity": 0.780471,
+        "top": "71%"
+      },
+      {
+        "kind": "target",
+        "left": "69.0865%",
+        "opacity": 0.78922,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.640122,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.554379,
+        "top": "71%"
+      }
+    ],
+    "sameFrame": true,
+    "scene": {
+      "card": "armbar",
+      "damage": "5",
+      "duration": "2650",
+      "effectFamily": "submission",
+      "effectVariant": "armbar",
+      "hitstop": "0",
+      "motion": "hold"
+    }
+  },
+  {
+    "frame": {
+      "height": 275,
+      "width": 363
+    },
+    "image": {
+      "fit": "cover",
+      "position": "60% 62%"
+    },
+    "layers": [
+      {
+        "kind": "clamp",
+        "left": "60%",
+        "opacity": 0.755926,
+        "top": "71%"
+      },
+      {
+        "kind": "clamp",
+        "left": "78.1729%",
+        "opacity": 0.755926,
+        "top": "71%"
+      },
+      {
+        "kind": "target",
+        "left": "69.0865%",
+        "opacity": 0.770286,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.675467,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.506181,
+        "top": "71%"
+      }
+    ],
+    "sameFrame": true,
+    "scene": {
+      "card": "armbar",
+      "damage": "5",
+      "duration": "2650",
+      "effectFamily": "submission",
+      "effectVariant": "armbar",
+      "hitstop": "0",
+      "motion": "hold"
+    }
+  },
+  {
+    "frame": {
+      "height": 275,
+      "width": 363
+    },
+    "image": {
+      "fit": "cover",
+      "position": "60% 62%"
+    },
+    "layers": [
+      {
+        "kind": "clamp",
+        "left": "60%",
+        "opacity": 0.688346,
+        "top": "71%"
+      },
+      {
+        "kind": "clamp",
+        "left": "78.1729%",
+        "opacity": 0.688346,
+        "top": "71%"
+      },
+      {
+        "kind": "target",
+        "left": "69.0865%",
+        "opacity": 0.718153,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.597651,
+        "top": "71%"
+      },
+      {
+        "kind": "pressure",
+        "left": "69.0865%",
+        "opacity": 0.592781,
+        "top": "71%"
+      }
+    ],
+    "sameFrame": true,
+    "scene": {
+      "card": "armbar",
+      "damage": "5",
+      "duration": "2650",
+      "effectFamily": "submission",
+      "effectVariant": "armbar",
+      "hitstop": "0",
+      "motion": "hold"
+    }
+  }
+]

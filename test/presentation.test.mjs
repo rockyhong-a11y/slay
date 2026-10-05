@@ -274,7 +274,7 @@ test("throws follow an arc, slams fall to the mat, and locks use pressure close-
   assert.equal(locked.pressure, true);
   assert.ok(locked.scale.at(-1) > locked.scale[0] + 0.2);
   assert.ok(Math.max(...locked.y) - Math.min(...locked.y) < 10);
-  assert.equal(locked.origin, "58% 36%");
+  assert.equal(locked.origin, "52% 48%");
   assert.notEqual(
     locked.origin,
     techniqueShot("heelhook", "submission").origin,
@@ -403,6 +403,88 @@ test("energy cues respect the engine cap, and winning overkill reports only actu
   assert.equal(resultOf(cue, "draw"), undefined);
 });
 
+test("Seraph replay results include the actual aerial energy refund once after paying the card cost", () => {
+  const before = combatWith(["moonsault", "moonsault"], "seraph");
+  before.energy = 3;
+  const snapshot = structuredClone(before);
+  const first = cast(before);
+  assert.equal(first.after.energy, 2);
+  assert.deepEqual(resultOf(first.cue, "energy"), {
+    kind: "energy",
+    value: 1,
+    text: "에너지 +1",
+  });
+  assert.ok(first.cue.announcement.includes("에너지 +1"));
+  assert.deepEqual(before, snapshot);
+  const second = cast(first.after, "hand-1");
+  assert.equal(second.after.energy, 0);
+  assert.equal(resultOf(second.cue, "energy"), undefined);
+
+  const atCap = combatWith(["dropkick"], "seraph");
+  atCap.energy = 10;
+  const refunded = cast(atCap);
+  assert.equal(refunded.after.energy, 10);
+  assert.equal(
+    resultOf(refunded.cue, "energy").value,
+    1,
+    "the refund restores a spent point even when the net energy delta is zero",
+  );
+});
+
+test("Onyx replay results report new counter setup after consuming any previous attack bonus", () => {
+  for (const oldBonus of [0, 3, 6, 9]) {
+    const before = combatWith(["crossface", "crossface"], "onyx");
+    before.enemy.intent = { type: "attack", value: 12 };
+    before.status.nextAttack = oldBonus;
+    const snapshot = structuredClone(before);
+    const first = cast(before);
+    assert.equal(first.after.status.nextAttack, 3);
+    assert.equal(
+      first.cue.damage,
+      getCard("crossface").effects.damage + oldBonus,
+    );
+    assert.deepEqual(resultOf(first.cue, "setup"), {
+      kind: "setup",
+      value: 3,
+      text: "다음 공격 +3",
+    });
+    assert.ok(first.cue.announcement.includes("다음 공격 +3"));
+    assert.deepEqual(before, snapshot);
+    const second = cast(first.after, "hand-1");
+    assert.equal(second.after.status.nextAttack, 0);
+    assert.equal(
+      resultOf(second.cue, "setup"),
+      undefined,
+      "the consumed previous bonus is not a newly granted setup",
+    );
+  }
+});
+
+test("setup cues distinguish retained bonuses, printed additions and counters against nonattack intents", () => {
+  const defending = combatWith(["guard"], "onyx");
+  defending.status.nextAttack = 6;
+  const retained = cast(defending);
+  assert.equal(retained.after.status.nextAttack, 6);
+  assert.equal(resultOf(retained.cue, "setup"), undefined);
+
+  const ready = combatWith(["ringcraft"], "onyx");
+  ready.status.nextAttack = 6;
+  const prepared = cast(ready);
+  assert.equal(prepared.after.status.nextAttack, 10);
+  assert.equal(
+    resultOf(prepared.cue, "setup").value,
+    4,
+    "only the actual new amount is announced, not the accumulated total",
+  );
+
+  const wrongIntent = combatWith(["crossface"], "onyx");
+  wrongIntent.enemy.intent = { type: "guard", value: 7 };
+  wrongIntent.status.nextAttack = 6;
+  const consumed = cast(wrongIntent);
+  assert.equal(consumed.after.status.nextAttack, 0);
+  assert.equal(resultOf(consumed.cue, "setup"), undefined);
+});
+
 test("pressure breakdown cues report actual self damage and the reset pressure without a false calm cue", () => {
   for (const [hp, remainingHp, actualDamage, phase] of [
     [20, 12, 8, "combat"],
@@ -437,10 +519,10 @@ test("pressure breakdown cues report actual self damage and the reset pressure w
   }
 });
 
-test("all five fighters have six distinct complete state illustrations", () => {
+test("all ten fighters have six distinct complete state illustrations", () => {
   const paths = new Set();
   const hashes = new Set();
-  assert.equal(Object.keys(WRESTLERS).length, 5);
+  assert.equal(Object.keys(WRESTLERS).length, 10);
   assert.deepEqual(Object.keys(FIGHTER_STATES).sort(), [
     "excited",
     "fiery",
@@ -465,10 +547,12 @@ test("all five fighters have six distinct complete state illustrations", () => {
       hashes.add(createHash("sha256").update(bytes).digest("hex"));
     }
   }
-  assert.equal(paths.size, 30);
+  const stateCount =
+    Object.keys(WRESTLERS).length * Object.keys(FIGHTER_STATES).length;
+  assert.equal(paths.size, stateCount);
   assert.equal(
     hashes.size,
-    30,
+    stateCount,
     "each condition must have its own completed illustration, not an alias",
   );
   assert.equal(

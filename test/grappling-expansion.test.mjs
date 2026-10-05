@@ -72,7 +72,7 @@ function openingReward(seed) {
   return playCard(state, "winning-strike");
 }
 
-test("25 new named techniques expand the library to 50 without changing starting decks or save shape", () => {
+test("25 named grappling techniques preserve the original five starting decks and v1 save shape", () => {
   assert.equal(NEW_CARDS.length, 25);
   assert.equal(Object.keys(CARDS).length, 50);
   assert.equal(new Set(NEW_CARDS).size, 25);
@@ -83,7 +83,12 @@ test("25 new named techniques expand the library to 50 without changing starting
     assert.ok(base.grapple, id);
     assert.ok(["common", "uncommon", "rare"].includes(base.rarity), id);
     assert.equal(CARD_DETAILS[id].art, `cards/${id}.webp`);
-    assert.equal(CARD_DETAILS[id].startingWrestlers.length, 0);
+    assert.ok(
+      CARD_DETAILS[id].startingWrestlers.every(
+        (actor) => WRESTLERS[actor].newcomer,
+      ),
+      `${id} never changes an original wrestler's starting deck`,
+    );
     assert.equal(
       CARD_DETAILS[id].disciplineSlug,
       THROWS.includes(id)
@@ -111,7 +116,8 @@ test("25 new named techniques expand the library to 50 without changing starting
     const state = newRun(actor);
     assert.equal(state.version, 1);
     assert.equal(state.deck.length, 11);
-    assert.ok(state.deck.every((card) => !NEW_CARDS.includes(card.id)));
+    if (!WRESTLERS[actor].newcomer)
+      assert.ok(state.deck.every((card) => !NEW_CARDS.includes(card.id)));
     assert.deepEqual(state, restored(state));
   }
 });

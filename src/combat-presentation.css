@@ -451,6 +451,322 @@ button.fighter-condition:focus-visible {
   object-position: center;
   mask-image: none;
 }
+.technique-effects {
+  --effect-color: #ffc5a0;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.effects-strike {
+  --effect-color: #ffb392;
+}
+.effects-grapple {
+  --effect-color: #ffd58b;
+}
+.effects-submission {
+  --effect-color: #d0a0ff;
+}
+.effects-defense {
+  --effect-color: #9cddff;
+}
+.effects-tactics {
+  --effect-color: #adebc6;
+}
+.effects-nightmare {
+  --effect-color: #bfa7ef;
+}
+.technique-fx {
+  position: absolute;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  transform-origin: center;
+  color: var(--effect-color);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.technique-fx > span,
+.technique-fx > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.technique-fx svg {
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.technique-fx-streak {
+  height: 4px;
+  aspect-ratio: auto;
+}
+.technique-fx-streak > span {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--effect-color) 48%,
+    #fff6dc 72%,
+    transparent
+  );
+  box-shadow: 0 0 9px #ffd0a866;
+  transform: rotate(var(--effect-angle));
+}
+.technique-fx-burst {
+  background: radial-gradient(circle, #fff7cf6e, transparent 61%);
+}
+.technique-fx-burst .technique-impact-core {
+  position: absolute;
+  inset: 16%;
+  width: 68%;
+  height: 68%;
+  opacity: 0.72;
+}
+.technique-fx-grip > span {
+  width: 65%;
+  height: 70%;
+  margin: 15% auto;
+  border: 3px solid currentColor;
+  border-radius: 4px;
+  box-shadow: 0 0 13px #ffce8644;
+}
+.technique-fx-grip[data-side="-1"] > span {
+  border-right: 0;
+}
+.technique-fx-grip[data-side="1"] > span {
+  border-left: 0;
+}
+.technique-fx-lift,
+.technique-fx-arc {
+  height: 100%;
+  aspect-ratio: auto;
+}
+.technique-fx-lift svg,
+.technique-fx-arc svg {
+  stroke-width: 1.2;
+  filter: drop-shadow(0 0 3px #ffdc98aa);
+}
+.technique-fx-arc[data-direction="-1"] svg {
+  scale: -1 1;
+}
+.technique-fx-mat {
+  border: 3px solid currentColor;
+  border-radius: 50%;
+  box-shadow:
+    0 0 15px #ffce8655,
+    inset 0 0 12px #ffce8655;
+}
+.technique-fx-dust {
+  background: radial-gradient(
+    ellipse,
+    #ffdfac44,
+    #ffe4bb22 30%,
+    transparent 66%
+  );
+}
+.technique-fx-tension > span {
+  height: 38%;
+  margin-top: 31%;
+  border-top: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  border-radius: 50%;
+  background: linear-gradient(90deg, transparent, #ffcf8533, transparent);
+}
+.technique-fx-clamp > span {
+  width: 70%;
+  height: 64%;
+  margin: 18% auto;
+  border: 3px solid currentColor;
+  border-radius: 38% 10% 10% 38%;
+  box-shadow: 0 0 12px #c58eff4d;
+  transform: rotate(var(--effect-angle));
+}
+.technique-fx-clamp[data-side="-1"] > span {
+  border-right: 0;
+}
+.technique-fx-clamp[data-side="1"] > span {
+  border-left: 0;
+  border-radius: 10% 38% 38% 10%;
+}
+.technique-fx-pressure {
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  box-shadow:
+    0 0 18px #c494f54d,
+    inset 0 0 16px #c494f533;
+}
+.technique-fx-pressure > span {
+  width: 68%;
+  height: 68%;
+  margin: 16%;
+  border: 1px solid #e8caff80;
+  border-radius: 50%;
+}
+.technique-fx-target > span {
+  border: 2px dashed currentColor;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    transparent 35%,
+    #dca8ff1a 60%,
+    transparent 65%
+  );
+}
+.technique-fx-target > span::before,
+.technique-fx-target > span::after {
+  content: "";
+  position: absolute;
+  inset: 44% -9%;
+  border-left: 3px solid currentColor;
+  border-right: 3px solid currentColor;
+}
+.technique-fx-target > span::after {
+  rotate: 90deg;
+}
+.technique-fx-shield {
+  color: #a8e2ff;
+}
+.technique-fx-shield svg {
+  fill: #6aa2cc0d;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 5px #89d7ff55);
+}
+.technique-fx-guard-rail {
+  height: 50%;
+  aspect-ratio: auto;
+}
+.technique-fx-guard-rail > span {
+  border: 2px solid currentColor;
+  border-radius: 12px;
+  background: linear-gradient(180deg, transparent, #83cfff33, transparent);
+}
+.technique-fx-breath,
+.technique-fx-release {
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    transparent 38%,
+    #b4eecd22 66%,
+    transparent 73%
+  );
+  box-shadow: 0 0 22px #b4eecd22;
+}
+.technique-fx-release {
+  background: radial-gradient(
+    circle,
+    transparent 40%,
+    #d1bef422 68%,
+    transparent 73%
+  );
+}
+.technique-fx-spotlight {
+  height: 145%;
+  aspect-ratio: auto;
+  background: linear-gradient(180deg, #ffe9b833, #ffe9b814 58%, transparent);
+  clip-path: polygon(44% 0, 56% 0, 92% 100%, 8% 100%);
+}
+.technique-fx-card-echo {
+  aspect-ratio: 0.7;
+  border: 1px solid currentColor;
+  border-radius: 5px;
+  background: linear-gradient(145deg, #c4eec722, #aadbbd08);
+  box-shadow: 0 0 10px #b4eecd22;
+}
+.technique-fx-veil {
+  height: 130%;
+  aspect-ratio: auto;
+  background: linear-gradient(90deg, transparent, #39284299 45%, #150e25aa);
+  clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
+}
+.technique-fx-veil[data-side="-1"] {
+  background: linear-gradient(270deg, transparent, #39284299 45%, #150e25aa);
+}
+.technique-effect-label {
+  display: block;
+  margin-top: 10px;
+  color: var(--scene-accent);
+  font-size: 11px;
+  line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.technique-hit-score {
+  z-index: 2;
+}
+.arena-family-submission {
+  --impact-color: #caa3ff;
+}
+.arena-family-submission.arena-impact-guard {
+  --impact-color: #8ed9ff;
+}
+.arena-family-submission:not(.arena-impact-guard) .arena-impact-star,
+.arena-family-submission .arena-impact-ray,
+.arena-family-submission .arena-impact-slash {
+  display: none;
+}
+.arena-family-submission:not(.arena-impact-guard) .arena-shockwave {
+  border-width: 2px;
+  animation-name: arena-lock-pressure;
+}
+.arena-impact-throw .arena-contact {
+  top: 70%;
+}
+.arena-impact-throw .arena-shockwave {
+  aspect-ratio: 2.5;
+  animation-name: arena-mat-wave;
+}
+.arena-impact-throw .arena-impact-star {
+  width: clamp(50px, 8vw, 110px);
+}
+@keyframes arena-lock-pressure {
+  0%,
+  14% {
+    opacity: 0;
+    scale: 1.2;
+  }
+  29%,
+  39% {
+    opacity: 0.85;
+    scale: 0.85;
+  }
+  57% {
+    opacity: 0.6;
+    scale: 1;
+  }
+  74% {
+    opacity: 0.75;
+    scale: 0.8;
+  }
+  100% {
+    opacity: 0;
+    scale: 0.7;
+  }
+}
+@keyframes arena-mat-wave {
+  0%,
+  24% {
+    opacity: 0;
+    scale: 0.4;
+  }
+  29%,
+  39% {
+    opacity: 0.9;
+    scale: 0.65;
+  }
+  58% {
+    opacity: 0.6;
+    scale: 1.8;
+  }
+  82%,
+  100% {
+    opacity: 0;
+    scale: 2.4;
+  }
+}
 .technique-impact {
   position: absolute;
   width: 46%;
@@ -927,6 +1243,9 @@ button.fighter-condition:focus-visible {
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  .technique-effects {
+    display: none;
+  }
   .technique-scene-visual * {
     animation: none !important;
   }

@@ -765,6 +765,226 @@ export const WRESTLERS = {
       "comeback",
     ],
   },
+  atlas: {
+    id: "atlas",
+    newcomer: true,
+    name: "ATLAS",
+    nameKo: "아틀라스",
+    title: "THE RING TITAN",
+    age: 33,
+    maxHp: 86,
+    signature: "sitoutpowerbomb",
+    passive: "매 턴 첫 2코스트 이상 잡기 공격의 피해 +4 · 방어 +3",
+    description: "강한 어깨와 단단한 중심으로 상대를 들어 올리는 파워하우스.",
+    accent: "#dc9366",
+    artKey: "atlas",
+    role: "파워밤 파워하우스",
+    roleEn: "Powerbomb Powerhouse",
+    strategy:
+      "턴의 첫 고코스트 잡기에 피해와 방어를 더합니다. 허리 고정으로 준비한 뒤 파워밤을 넣고, 남은 에너지로 상대 공격을 받아내세요.",
+    complexity: 1,
+    complexityLabel: "입문",
+    easyLabel: "강한 잡기 한 장으로 공세를 시작하세요",
+    strengths: ["높은 체력", "큰 잡기의 추가 피해", "파워밤 방어 보너스"],
+    playstyle: [
+      "첫 2코스트 이상 잡기에 보너스 집중",
+      "웨이스트록으로 다음 공격 준비",
+      "큰 기술 뒤 남은 에너지로 방어",
+    ],
+    recommendedCards: [
+      "sitoutpowerbomb",
+      "gutwrenchpowerbomb",
+      "spinebuster",
+      "waistlock",
+    ],
+    startingDeck: [
+      "strike",
+      "strike",
+      "guard",
+      "guard",
+      "grapple",
+      "focus",
+      "finisher",
+      "bodyslam",
+      "waistlock",
+      "sitoutpowerbomb",
+      "shoulder",
+    ],
+  },
+  seraph: {
+    id: "seraph",
+    newcomer: true,
+    name: "SERAPH",
+    nameKo: "세라프",
+    title: "THE SKYWARD STAR",
+    age: 25,
+    maxHp: 72,
+    signature: "moonsault",
+    passive: "매 턴 첫 드롭킥·문설트 사용 후 에너지 +1 · 1장 추가 드로우",
+    description:
+      "탄탄한 하체와 경쾌한 도약으로 공중에서 경기의 리듬을 바꾸는 선수.",
+    accent: "#73aedb",
+    artKey: "seraph",
+    role: "공중 순환 에이스",
+    roleEn: "Aerial Cycle Ace",
+    strategy:
+      "드롭킥이나 문설트로 턴당 한 번 에너지와 새 카드를 얻습니다. 먼저 가벼운 공격으로 콤보를 열면 드롭킥의 피해도 커집니다.",
+    complexity: 3,
+    complexityLabel: "숙련",
+    easyLabel: "도약 후 돌아오는 에너지로 다음 수를 설계하세요",
+    strengths: ["공중기 에너지 환급", "추가 드로우", "도약과 콤보 연결"],
+    playstyle: [
+      "드롭킥 전에 가벼운 공격 사용",
+      "문설트 뒤 에너지와 손패 확인",
+      "턴마다 공중 순환 한 번 활용",
+    ],
+    recommendedCards: ["moonsault", "dropkick", "quickdraw", "encore"],
+    startingDeck: [
+      "strike",
+      "strike",
+      "guard",
+      "guard",
+      "grapple",
+      "focus",
+      "finisher",
+      "dropkick",
+      "dropkick",
+      "moonsault",
+      "rally",
+    ],
+  },
+  lynx: {
+    id: "lynx",
+    newcomer: true,
+    name: "LYNX",
+    nameKo: "링스",
+    title: "THE JOINT HUNTER",
+    age: 29,
+    maxHp: 74,
+    signature: "kimura",
+    passive: "매 턴 첫 관절기 사용 후 방어 +3 · 압박 −3",
+    description:
+      "균형 잡힌 운동선수 체형과 예리한 그립으로 팔과 다리의 빈틈을 찾는 헌터.",
+    accent: "#b995d4",
+    artKey: "lynx",
+    role: "관절기 서브미션 헌터",
+    roleEn: "Joint Submission Hunter",
+    strategy:
+      "암바·기무라 같은 관절기로 취약과 약화를 준비하면서 방어와 침착함을 얻습니다. 제압 이후의 공격을 이어 유리한 교환을 쌓으세요.",
+    complexity: 2,
+    complexityLabel: "전술",
+    easyLabel: "관절기로 시작하면 방어와 압박 관리가 따라옵니다",
+    strengths: ["관절기 추가 방어", "압박 관리", "약화와 취약의 균형"],
+    playstyle: [
+      "첫 관절기로 방어와 침착함 확보",
+      "취약 이후 후속 공격 연결",
+      "공격 의도에는 약화 관절기 선택",
+    ],
+    recommendedCards: ["kimura", "armbar", "anklelock", "figurefour"],
+    startingDeck: [
+      "strike",
+      "strike",
+      "guard",
+      "guard",
+      "grapple",
+      "focus",
+      "finisher",
+      "armbar",
+      "armbar",
+      "americana",
+      "kimura",
+    ],
+  },
+  tempest: {
+    id: "tempest",
+    newcomer: true,
+    name: "TEMPEST",
+    nameKo: "템페스트",
+    title: "THE THROW STORM",
+    age: 28,
+    maxHp: 76,
+    signature: "popuppowerbomb",
+    passive: "매 턴 콤보 1 이상에서 첫 잡기 공격의 피해 +3 · 열기 +1",
+    description:
+      "탄탄한 허리와 빠른 발놀림으로 작은 진입을 연속 던지기로 바꾸는 선수.",
+    accent: "#64bca2",
+    artKey: "tempest",
+    role: "연속 던지기 스페셜리스트",
+    roleEn: "Chain Throw Specialist",
+    strategy:
+      "타격이나 암 드래그로 콤보를 연 뒤 잡기로 이어 가면 피해와 열기가 증가합니다. 팝업 파워밤의 콤보 보너스까지 겹쳐 큰 한 방을 노리세요.",
+    complexity: 2,
+    complexityLabel: "전술",
+    easyLabel: "첫 공격 다음에 잡기를 배치하세요",
+    strengths: ["연결 잡기 추가 피해", "빠른 열기 확보", "콤보 파워밤"],
+    playstyle: [
+      "가벼운 공격으로 콤보 시동",
+      "다음 잡기로 턴당 연결 보너스",
+      "열기를 피니셔로 전환",
+    ],
+    recommendedCards: [
+      "armdrag",
+      "snapsuplex",
+      "popuppowerbomb",
+      "foldingpowerbomb",
+    ],
+    startingDeck: [
+      "strike",
+      "strike",
+      "guard",
+      "guard",
+      "grapple",
+      "focus",
+      "finisher",
+      "armdrag",
+      "bodyslam",
+      "snapsuplex",
+      "popuppowerbomb",
+    ],
+  },
+  onyx: {
+    id: "onyx",
+    newcomer: true,
+    name: "ONYX",
+    nameKo: "오닉스",
+    title: "THE COUNTER SENTINEL",
+    age: 30,
+    maxHp: 84,
+    signature: "crossface",
+    passive:
+      "매 턴 상대 공격 준비 중 첫 카운터 기술 사용 후 방어 +4 · 다음 공격 피해 +3",
+    description:
+      "강한 팔다리와 안정된 자세로 상대의 진입을 읽어 되받는 수비형 선수.",
+    accent: "#8f89c8",
+    artKey: "onyx",
+    role: "수비 카운터 센티널",
+    roleEn: "Defensive Counter Sentinel",
+    strategy:
+      "상대의 공개된 공격 의도를 읽고 카운터 홀드·크로스페이스·스파인버스터를 사용합니다. 추가 방어로 충돌을 버틴 뒤 강화된 후속 공격을 넣으세요.",
+    complexity: 2,
+    complexityLabel: "전술",
+    easyLabel: "상대가 공격할 때 카운터부터 사용하세요",
+    strengths: ["공격 의도 대응", "카운터 추가 방어", "강화된 반격"],
+    playstyle: [
+      "공격 의도에 카운터 카드 사용",
+      "다음 공격 피해 보너스 활용",
+      "방어·도발 의도에는 카운터 보너스가 쉬어 갑니다",
+    ],
+    recommendedCards: ["crossface", "reversal", "spinebuster", "ringcraft"],
+    startingDeck: [
+      "strike",
+      "strike",
+      "guard",
+      "guard",
+      "grapple",
+      "focus",
+      "finisher",
+      "reversal",
+      "reversal",
+      "ringcraft",
+      "crossface",
+    ],
+  },
 };
 
 export const ENEMIES = {
@@ -1569,8 +1789,30 @@ function freshTurnStatus() {
     nextAttack: 0,
     precisionUsed: false,
     crowdUsed: false,
+    powerUsed: false,
+    aerialUsed: false,
+    jointUsed: false,
+    chainUsed: false,
+    counterUsed: false,
   };
 }
+
+// The first five rookies keep their established rules. These named technique
+// families define the new specialists without depending on UI/library modules.
+const AERIAL_CYCLE_CARDS = new Set(["dropkick", "moonsault"]);
+const JOINT_LOCK_CARDS = new Set([
+  "armbar",
+  "kimura",
+  "americana",
+  "anklelock",
+  "kneebar",
+  "heelhook",
+  "figurefour",
+]);
+const isPowerAttack = (definition) =>
+  definition.effects.damage > 0 && definition.grapple && definition.cost >= 2;
+const isChainAttack = (definition, combo) =>
+  definition.effects.damage > 0 && definition.grapple && combo >= 1;
 
 // This bonus is shared with the damage preview. Viper checks statuses that
 // already exist before this card; the card's new debuff benefits follow-up hits.
@@ -1580,6 +1822,14 @@ function attackBonus(state, definition) {
   let bonus = state.status.nextAttack || 0;
   if (state.status.firstAttack && id === "raven") bonus += 2;
   if (definition.grapple && id === "valkyrie") bonus += 2;
+  if (id === "atlas" && !state.status.powerUsed && isPowerAttack(definition))
+    bonus += 4;
+  if (
+    id === "tempest" &&
+    !state.status.chainUsed &&
+    isChainAttack(definition, state.combo)
+  )
+    bonus += 3;
   const gimmick = gimmickEffects(state);
   if (definition.grapple) bonus += gimmick.grappleDamage || 0;
   bonus -= gimmick.attackPenalty || 0;
@@ -1590,10 +1840,11 @@ function attackBonus(state, definition) {
   return bonus;
 }
 
-function applyCardPassive(state, definition) {
-  if (state.phase !== "combat" || state.player.hp <= 0) return;
+function applyCardPassive(state, definition, comboBefore) {
+  if (state.phase !== "combat" || state.player.hp <= 0) return 0;
   const id = wrestlerFor(state).id;
   const effects = definition.effects;
+  let extraDraw = 0;
   // Missing flags in older JSON saves mean "not yet used". Once written,
   // these plain booleans survive saving without rearming during the same turn.
   if (
@@ -1626,6 +1877,61 @@ function applyCardPassive(state, definition) {
       "passive",
     );
   }
+  if (id === "atlas" && !state.status.powerUsed && isPowerAttack(definition)) {
+    state.status.powerUsed = true;
+    state.player.block += 3;
+    addLog(state, "링의 거인 · 큰 잡기 피해 +4, 방어 +3.", "passive");
+  }
+  if (
+    id === "seraph" &&
+    !state.status.aerialUsed &&
+    effects.damage > 0 &&
+    AERIAL_CYCLE_CARDS.has(definition.id)
+  ) {
+    state.status.aerialUsed = true;
+    const energy = Math.min(1, 10 - state.energy);
+    state.energy += energy;
+    extraDraw = 1;
+    addLog(
+      state,
+      `스카이 사이클 · 에너지 +${energy}, 추가 드로우 1.`,
+      "passive",
+    );
+  }
+  if (
+    id === "lynx" &&
+    !state.status.jointUsed &&
+    effects.damage > 0 &&
+    JOINT_LOCK_CARDS.has(definition.id)
+  ) {
+    state.status.jointUsed = true;
+    const stress = Math.min(3, state.player.stress);
+    state.player.block += 3;
+    calm(state, 3);
+    addLog(state, `조인트 헌터 · 방어 +3, 압박 −${stress}.`, "passive");
+  }
+  if (
+    id === "tempest" &&
+    !state.status.chainUsed &&
+    isChainAttack(definition, comboBefore)
+  ) {
+    state.status.chainUsed = true;
+    const hype = Math.min(1, 9 - state.player.hype);
+    state.player.hype += hype;
+    addLog(state, `던지기 폭풍 · 연결 잡기 피해 +3, 열기 +${hype}.`, "passive");
+  }
+  if (
+    id === "onyx" &&
+    !state.status.counterUsed &&
+    effects.counterBlock > 0 &&
+    state.enemy.intent.type === "attack"
+  ) {
+    state.status.counterUsed = true;
+    state.player.block += 4;
+    state.status.nextAttack += 3;
+    addLog(state, "카운터 센티널 · 방어 +4, 다음 공격 피해 +3.", "passive");
+  }
+  return extraDraw;
 }
 
 export function playCard(current, instanceId) {
@@ -1640,6 +1946,7 @@ export function playCard(current, instanceId) {
   state.stats.cardsPlayed++;
   let dealt = 0;
   const enemyBlockBefore = state.enemy.block;
+  const comboBefore = state.combo;
 
   if (effects.spendHype) {
     state.player.hype -= effects.spendHype;
@@ -1686,7 +1993,7 @@ export function playCard(current, instanceId) {
   if (effects.stress) gainStress(state, effects.stress);
   if (effects.weak) state.enemy.weak += effects.weak;
   if (effects.vulnerable) state.enemy.vulnerable += effects.vulnerable;
-  applyCardPassive(state, definition);
+  const passiveDraw = applyCardPassive(state, definition, comboBefore);
   (definition.exhaust ? state.exhaust : state.discard).push(instance);
   addLog(
     state,
@@ -1708,7 +2015,7 @@ export function playCard(current, instanceId) {
     finishCombat(state);
     return state;
   }
-  let draw = effects.draw || 0;
+  let draw = (effects.draw || 0) + passiveDraw;
   if (
     wrestler.id === "nova" &&
     definition.cost === 0 &&

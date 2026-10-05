@@ -118,5 +118,125 @@
   "ember-groggy": {
     "center": [0.451, 0.145],
     "width": 0.28
+  },
+  "atlas-normal": {
+    "center": [0.496, 0.127],
+    "width": 0.28
+  },
+  "atlas-excited": {
+    "center": [0.504, 0.128],
+    "width": 0.28
+  },
+  "atlas-fiery": {
+    "center": [0.495, 0.132],
+    "width": 0.28
+  },
+  "atlas-frustrated": {
+    "center": [0.508, 0.132],
+    "width": 0.28
+  },
+  "atlas-tired": {
+    "center": [0.546, 0.151],
+    "width": 0.28
+  },
+  "atlas-groggy": {
+    "center": [0.55, 0.162],
+    "width": 0.28
+  },
+  "seraph-normal": {
+    "center": [0.5, 0.123],
+    "width": 0.28
+  },
+  "seraph-excited": {
+    "center": [0.508, 0.123],
+    "width": 0.28
+  },
+  "seraph-fiery": {
+    "center": [0.504, 0.13],
+    "width": 0.28
+  },
+  "seraph-frustrated": {
+    "center": [0.503, 0.125],
+    "width": 0.28
+  },
+  "seraph-tired": {
+    "center": [0.437, 0.151],
+    "width": 0.28
+  },
+  "seraph-groggy": {
+    "center": [0.414, 0.16],
+    "width": 0.28
+  },
+  "lynx-normal": {
+    "center": [0.49, 0.131],
+    "width": 0.28
+  },
+  "lynx-excited": {
+    "center": [0.52, 0.131],
+    "width": 0.28
+  },
+  "lynx-fiery": {
+    "center": [0.52, 0.15],
+    "width": 0.28
+  },
+  "lynx-frustrated": {
+    "center": [0.509, 0.137],
+    "width": 0.28
+  },
+  "lynx-tired": {
+    "center": [0.545, 0.169],
+    "width": 0.28
+  },
+  "lynx-groggy": {
+    "center": [0.556, 0.182],
+    "width": 0.28
+  },
+  "onyx-normal": {
+    "center": [0.534, 0.134],
+    "width": 0.28
+  },
+  "onyx-excited": {
+    "center": [0.555, 0.136],
+    "width": 0.28
+  },
+  "onyx-fiery": {
+    "center": [0.559, 0.15],
+    "width": 0.28
+  },
+  "onyx-frustrated": {
+    "center": [0.556, 0.139],
+    "width": 0.28
+  },
+  "onyx-tired": {
+    "center": [0.58, 0.148],
+    "width": 0.28
+  },
+  "onyx-groggy": {
+    "center": [0.586, 0.169],
+    "width": 0.28
+  },
+  "tempest-normal": {
+    "center": [0.5, 0.125],
+    "width": 0.28
+  },
+  "tempest-excited": {
+    "center": [0.5, 0.123],
+    "width": 0.28
+  },
+  "tempest-fiery": {
+    "center": [0.512, 0.137],
+    "width": 0.28
+  },
+  "tempest-frustrated": {
+    "center": [0.518, 0.13],
+    "width": 0.28
+  },
+  "tempest-tired": {
+    "center": [0.55, 0.142],
+    "width": 0.28
+  },
+  "tempest-groggy": {
+    "center": [0.58, 0.159],
+    "width": 0.28
   }
 }

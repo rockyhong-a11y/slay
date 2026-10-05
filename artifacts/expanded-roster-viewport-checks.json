@@ -1,0 +1,425 @@
+[
+  {
+    "cfg": {
+      "width": 393,
+      "height": 852,
+      "actor": "atlas"
+    },
+    "boxes": [
+      {
+        "class": "fighter player-fighter",
+        "rect": {
+          "bottom": 442,
+          "right": 192.75,
+          "x": 16.5,
+          "y": 175
+        }
+      },
+      {
+        "class": "fighter enemy-fighter",
+        "rect": {
+          "bottom": 442,
+          "right": 376.5,
+          "x": 200.25,
+          "y": 175
+        }
+      },
+      {
+        "class": "hand-play-button",
+        "rect": {
+          "bottom": 561,
+          "right": 385,
+          "x": 281,
+          "y": 519
+        }
+      },
+      {
+        "class": "game-card     is-selected",
+        "rect": {
+          "bottom": 774,
+          "right": 148,
+          "x": 8,
+          "y": 566
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 790,
+          "right": 174.328125,
+          "x": 34.328125,
+          "y": 582
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 790,
+          "right": 200.6640625,
+          "x": 60.6640625,
+          "y": 582
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 790,
+          "right": 226.9921875,
+          "x": 86.9921875,
+          "y": 582
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 790,
+          "right": 253.328125,
+          "x": 113.328125,
+          "y": 582
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 790,
+          "right": 279.6640625,
+          "x": 139.6640625,
+          "y": 582
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 790,
+          "right": 305.9921875,
+          "x": 165.9921875,
+          "y": 582
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 790,
+          "right": 332.328125,
+          "x": 192.328125,
+          "y": 582
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 790,
+          "right": 358.6640625,
+          "x": 218.6640625,
+          "y": 582
+        }
+      },
+      {
+        "class": "game-card finisher   unplayable ",
+        "rect": {
+          "bottom": 790,
+          "right": 385,
+          "x": 245,
+          "y": 582
+        }
+      }
+    ],
+    "height": 852,
+    "images": [
+      {
+        "loaded": true,
+        "src": "/assets/fighters/states/atlas-normal.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/assets/fighters/states/nova-normal.webp"
+      }
+    ],
+    "scrollHeight": 852,
+    "scrollTop": 0,
+    "scrollWidth": 393,
+    "width": 393
+  },
+  {
+    "cfg": {
+      "width": 844,
+      "height": 390,
+      "actor": "lynx"
+    },
+    "boxes": [
+      {
+        "class": "fighter player-fighter",
+        "rect": {
+          "bottom": 353,
+          "right": 207.890625,
+          "x": 19.296875,
+          "y": 155
+        }
+      },
+      {
+        "class": "fighter enemy-fighter",
+        "rect": {
+          "bottom": 353,
+          "right": 404.703125,
+          "x": 216.109375,
+          "y": 155
+        }
+      },
+      {
+        "class": "hand-play-button",
+        "rect": {
+          "bottom": 116.1484375,
+          "right": 838,
+          "x": 738,
+          "y": 73.8515625
+        }
+      },
+      {
+        "class": "game-card     is-selected",
+        "rect": {
+          "bottom": 307,
+          "right": 558,
+          "x": 426,
+          "y": 121
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 323,
+          "right": 589.109375,
+          "x": 457.109375,
+          "y": 137
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 323,
+          "right": 620.21875,
+          "x": 488.21875,
+          "y": 137
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 323,
+          "right": 651.328125,
+          "x": 519.328125,
+          "y": 137
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 323,
+          "right": 682.4375,
+          "x": 550.4375,
+          "y": 137
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 323,
+          "right": 713.5546875,
+          "x": 581.5546875,
+          "y": 137
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 323,
+          "right": 744.6640625,
+          "x": 612.6640625,
+          "y": 137
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 323,
+          "right": 775.7734375,
+          "x": 643.7734375,
+          "y": 137
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 323,
+          "right": 806.8828125,
+          "x": 674.8828125,
+          "y": 137
+        }
+      },
+      {
+        "class": "game-card finisher   unplayable ",
+        "rect": {
+          "bottom": 323,
+          "right": 838,
+          "x": 706,
+          "y": 137
+        }
+      }
+    ],
+    "height": 390,
+    "images": [
+      {
+        "loaded": true,
+        "src": "/assets/fighters/states/lynx-normal.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/assets/fighters/states/nova-normal.webp"
+      }
+    ],
+    "scrollHeight": 390,
+    "scrollTop": 0,
+    "scrollWidth": 844,
+    "width": 844
+  },
+  {
+    "cfg": {
+      "width": 320,
+      "height": 720,
+      "actor": "onyx"
+    },
+    "boxes": [
+      {
+        "class": "fighter player-fighter",
+        "rect": {
+          "bottom": 326,
+          "right": 156.9296875,
+          "x": 13.1171875,
+          "y": 171
+        }
+      },
+      {
+        "class": "fighter enemy-fighter",
+        "rect": {
+          "bottom": 326,
+          "right": 306.8828125,
+          "x": 163.0703125,
+          "y": 171
+        }
+      },
+      {
+        "class": "hand-play-button",
+        "rect": {
+          "bottom": 445,
+          "right": 314,
+          "x": 210,
+          "y": 403
+        }
+      },
+      {
+        "class": "game-card     is-selected",
+        "rect": {
+          "bottom": 644,
+          "right": 136,
+          "x": 6,
+          "y": 450
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 660,
+          "right": 155.7734375,
+          "x": 25.7734375,
+          "y": 466
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 660,
+          "right": 175.5546875,
+          "x": 45.5546875,
+          "y": 466
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 660,
+          "right": 195.328125,
+          "x": 65.328125,
+          "y": 466
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 660,
+          "right": 215.109375,
+          "x": 85.109375,
+          "y": 466
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 660,
+          "right": 234.8828125,
+          "x": 104.8828125,
+          "y": 466
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 660,
+          "right": 254.6640625,
+          "x": 124.6640625,
+          "y": 466
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 660,
+          "right": 274.4375,
+          "x": 144.4375,
+          "y": 466
+        }
+      },
+      {
+        "class": "game-card     ",
+        "rect": {
+          "bottom": 660,
+          "right": 294.21875,
+          "x": 164.21875,
+          "y": 466
+        }
+      },
+      {
+        "class": "game-card finisher   unplayable ",
+        "rect": {
+          "bottom": 660,
+          "right": 314,
+          "x": 184,
+          "y": 466
+        }
+      }
+    ],
+    "height": 720,
+    "images": [
+      {
+        "loaded": true,
+        "src": "/assets/fighters/states/onyx-normal.webp"
+      },
+      {
+        "loaded": true,
+        "src": "/assets/fighters/states/nova-normal.webp"
+      }
+    ],
+    "scrollHeight": 720,
+    "scrollTop": 0,
+    "scrollWidth": 320,
+    "width": 320
+  }
+]

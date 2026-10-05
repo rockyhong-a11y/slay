@@ -155,6 +155,7 @@ function loadRun() {
     if (["5", "10"].includes(query.get("qaHand")))
       return createCombatQA({
         hand: query.get("qaHand"),
+        actor: query.get("qaActor"),
         impact: query.get("qaImpact"),
       });
   }
