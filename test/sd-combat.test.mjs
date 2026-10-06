@@ -134,7 +134,13 @@ test("powerbombs and suplexes lift then land horizontally while aerial moves lif
 });
 
 test("fully guarded attacks brace and never lift or throw the defending wrestler", () => {
-  for (const id of ["strike", "doubletap", "powerbomb", "suplex", "headlock"]) {
+  for (const id of [
+    "strike",
+    "doubletap",
+    "powerbomb",
+    "suplex",
+    "crossface",
+  ]) {
     const cue = replay(id, true).cue;
     for (let step = 0; step <= 100; step++) {
       const frame = sdCombatFrame(cue, step / 100);
@@ -148,7 +154,7 @@ test("fully guarded attacks brace and never lift or throw the defending wrestler
 });
 
 test("submission remains grounded and sustained while preparation cards do not invent hits", () => {
-  for (const id of ["armbar", "headlock", "anklelock", "kimura"]) {
+  for (const id of ["kneebar", "figurefour", "bostoncrab", "crossface"]) {
     const cue = replay(id).cue;
     for (const p of [0.35, 0.55, 0.68]) {
       const frame = sdCombatFrame(cue, p);
@@ -157,7 +163,17 @@ test("submission remains grounded and sustained while preparation cards do not i
       assert.equal(frame.camera.shakeX, 0, id);
     }
   }
-  for (const id of ["guard", "focus", "spotlight", "rally", "nightmare"]) {
+  for (const id of [
+    "guard",
+    "focus",
+    "spotlight",
+    "rally",
+    "nightmare",
+    "armbar",
+    "headlock",
+    "anklelock",
+    "kimura",
+  ]) {
     const cue = replay(id).cue;
     for (const p of [0.1, 0.55, 0.8])
       assert.equal(sdCombatFrame(cue, p).contact.visible, false, id);
@@ -252,7 +268,7 @@ test("whole-sprite dash, recoil and low holds remain distinct without any body-p
   );
   assert.equal(hit.player.pose, "strike");
   assert.equal(hit.enemy.pose, "hurt");
-  const hold = replay("armbar").cue;
+  const hold = replay("kneebar").cue;
   const held = sdCombatFrame(hold, hold.camera.impacts[0]);
   assert.equal(held.player.pose, "submission");
   assert.ok(

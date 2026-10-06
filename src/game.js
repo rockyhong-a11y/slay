@@ -236,14 +236,14 @@ export const CARDS = {
   headlock: card(
     "헤드록",
     "Headlock",
-    "attack",
+    "skill",
     1,
-    "피해 7. 상대에게 약화 2를 부여합니다.",
+    "약화 2. 카드 1장을 뽑습니다.",
     "common",
     "grapple",
-    { damage: 7, weak: 2 },
-    { damage: 10, weak: 3 },
-    { grapple: true },
+    { weak: 2, draw: 1 },
+    { weak: 3, draw: 1 },
+    { grapple: true, utility: true },
   ),
   quickdraw: card(
     "템포 스틸",
@@ -460,38 +460,42 @@ export const CARDS = {
   armbar: grapplingCard(
     "암바",
     "Armbar",
-    "attack",
+    "skill",
     1,
     "common",
-    { damage: 5, vulnerable: 2 },
-    { damage: 8, vulnerable: 2 },
+    { vulnerable: 2, draw: 2 },
+    { vulnerable: 3, draw: 2 },
+    { utility: true },
   ),
   kimura: grapplingCard(
     "기무라 록",
     "Kimura Lock",
-    "attack",
+    "skill",
     1,
     "uncommon",
-    { damage: 6, weak: 1, vulnerable: 1 },
-    { damage: 9, weak: 2, vulnerable: 1 },
+    { weak: 1, nextCardDiscount: 1 },
+    { weak: 2, nextCardDiscount: 1 },
+    { utility: true, exhaust: true },
   ),
   americana: grapplingCard(
     "아메리카나 록",
     "Americana Lock",
-    "attack",
+    "skill",
     1,
     "common",
-    { damage: 5, block: 5, weak: 1 },
-    { damage: 8, block: 7, weak: 1 },
+    { block: 5, energy: 1 },
+    { block: 8, energy: 1 },
+    { utility: true, exhaust: true },
   ),
   anklelock: grapplingCard(
     "앵클 록",
     "Ankle Lock",
-    "attack",
+    "skill",
     1,
     "common",
-    { damage: 6, weak: 2, calm: 3 },
-    { damage: 9, weak: 2, calm: 5 },
+    { weak: 2, draw: 1 },
+    { weak: 3, draw: 1 },
+    { utility: true },
   ),
   kneebar: grapplingCard(
     "니바",
@@ -505,12 +509,12 @@ export const CARDS = {
   heelhook: grapplingCard(
     "힐 훅",
     "Heel Hook",
-    "attack",
-    1,
+    "skill",
+    0,
     "rare",
-    { damage: 3, weak: 3, vulnerable: 2 },
-    { damage: 6, weak: 4, vulnerable: 3 },
-    { exhaust: true },
+    { weak: 2, vulnerable: 1, nextCardDiscount: 1 },
+    { weak: 3, vulnerable: 2, nextCardDiscount: 1 },
+    { utility: true, exhaust: true },
   ),
   figurefour: grapplingCard(
     "피겨 포 레그록",
@@ -555,9 +559,9 @@ export const CARDS = {
     "skill",
     0,
     "common",
-    { block: 3, nextAttack: 3 },
-    { block: 5, nextAttack: 4 },
-    { exhaust: true },
+    { block: 3, nextCardDiscount: 1 },
+    { block: 5, nextCardDiscount: 1 },
+    { utility: true, exhaust: true },
   ),
   armdrag: grapplingCard(
     "암 드래그",
@@ -575,8 +579,9 @@ export const CARDS = {
     "skill",
     1,
     "uncommon",
-    { block: 6, nextAttack: 6, draw: 1 },
-    { block: 9, nextAttack: 8 },
+    { block: 6, energy: 2 },
+    { block: 8, energy: 2 },
+    { utility: true, exhaust: true },
   ),
 };
 
@@ -1458,6 +1463,9 @@ const addLoot = (state, kind, id) => {
 /** Upgrade v1 saves without rerolling cards, offers, encounters, or their seed. */
 export function normalizeRun(current) {
   const state = clone(current);
+  state.status ||= freshTurnStatus();
+  state.status.nextCardDiscount =
+    state.phase === "combat" ? nextCardDiscount(state) : 0;
   const hadInventory = Array.isArray(state.inventory);
   state.inventory ||= [];
   state.gimmicks ||= [];
@@ -1833,7 +1841,12 @@ function describeEffects(base, effects) {
   if (effects.calm) parts.push(`압박 ${effects.calm} 감소`);
   if (effects.stress) parts.push(`압박 +${effects.stress}`);
   if (effects.draw) parts.push(`${effects.draw}장 드로우`);
-  if (effects.energy) parts.push(`에너지 +${effects.energy}`);
+  if (effects.energy)
+    parts.push(`${base.utility ? "행동력" : "에너지"} +${effects.energy}`);
+  if (effects.nextCardDiscount)
+    parts.push(
+      `이번 턴 다음 1코스트 이상 카드 비용 -${effects.nextCardDiscount}`,
+    );
   if (effects.heal) parts.push(`체력 ${effects.heal} 회복`);
   if (effects.weak) parts.push(`약화 ${effects.weak}`);
   if (effects.vulnerable) parts.push(`취약 ${effects.vulnerable}`);
@@ -2107,6 +2120,24 @@ export function newRun(
   return state;
 }
 
+function nextCardDiscount(state) {
+  const amount = Number(state?.status?.nextCardDiscount);
+  return Number.isFinite(amount)
+    ? Math.min(3, Math.max(0, Math.trunc(amount)))
+    : 0;
+}
+
+/** Temporary discounts belong to the turn, never to a saved deck instance. */
+export function getCardCost(state, instance) {
+  const definition = getCard(instance);
+  if (!definition) return Infinity;
+  const inHand =
+    instance?.uid && state?.hand?.some((card) => card.uid === instance.uid);
+  const discount =
+    state?.phase === "combat" && inHand ? nextCardDiscount(state) : 0;
+  return Math.max(0, definition.cost - discount);
+}
+
 export function canPlayCard(state, instanceOrId) {
   if (state.phase !== "combat") return false;
   const uid =
@@ -2115,7 +2146,7 @@ export function canPlayCard(state, instanceOrId) {
   if (!instance) return false;
   const definition = getCard(instance);
   return (
-    state.energy >= definition.cost &&
+    state.energy >= getCardCost(state, instance) &&
     state.player.hype >= (definition.effects.spendHype || 0)
   );
 }
@@ -2134,6 +2165,7 @@ function freshTurnStatus() {
     firstAttack: true,
     firstZero: true,
     nextAttack: 0,
+    nextCardDiscount: 0,
     precisionUsed: false,
     crowdUsed: false,
     powerUsed: false,
@@ -2248,7 +2280,6 @@ function applyCardPassive(state, definition, comboBefore) {
   if (
     id === "lynx" &&
     !state.status.jointUsed &&
-    effects.damage > 0 &&
     JOINT_LOCK_CARDS.has(definition.id)
   ) {
     state.status.jointUsed = true;
@@ -2289,7 +2320,11 @@ export function playCard(current, instanceId) {
   const definition = getCard(instance);
   const effects = definition.effects;
   const wrestler = wrestlerFor(state);
-  state.energy -= definition.cost;
+  const paidCost = getCardCost(current, instance);
+  state.energy -= paidCost;
+  // Printed zero-cost cards preserve the offer. A paid card consumes the
+  // entire one-card offer, even when the offer reduces its final cost to zero.
+  if (definition.cost > 0) state.status.nextCardDiscount = 0;
   state.stats.cardsPlayed++;
   let dealt = 0;
   const enemyBlockBefore = state.enemy.block;
@@ -2331,6 +2366,11 @@ export function playCard(current, instanceId) {
     state.player.hype = Math.min(9, state.player.hype + effects.hype);
   if (effects.energy)
     state.energy = Math.min(10, state.energy + effects.energy);
+  if (effects.nextCardDiscount)
+    state.status.nextCardDiscount = Math.min(
+      3,
+      Math.max(state.status.nextCardDiscount, effects.nextCardDiscount),
+    );
   if (effects.heal)
     state.player.hp = Math.min(
       state.player.maxHp,
@@ -2344,7 +2384,7 @@ export function playCard(current, instanceId) {
   (definition.exhaust ? state.exhaust : state.discard).push(instance);
   addLog(
     state,
-    `${definition.name}${dealt ? ` · 피해 ${dealt}` : ""}`,
+    `${definition.name}${dealt ? ` · 피해 ${dealt}` : ""}${paidCost < definition.cost ? ` · 코스트 ${definition.cost}→${paidCost}` : ""}`,
     definition.type,
   );
   state.lastImpact = {
@@ -2377,6 +2417,7 @@ export function playCard(current, instanceId) {
 
 function finishDefeat(state) {
   state.phase = "defeat";
+  state.status.nextCardDiscount = 0;
   expireGimmick(state);
   addLog(state, "카운트 3. 오늘의 도전은 여기까지입니다.", "defeat");
 }
@@ -2391,6 +2432,7 @@ function sampleRewards(state, count = 3, elite = false, rareOnly = false) {
 }
 
 function finishCombat(state) {
+  state.status.nextCardDiscount = 0;
   state.stats.enemiesDefeated++;
   const isBoss = state.enemy.type === "boss";
   if (!isBoss) state.waveCombatWins++;

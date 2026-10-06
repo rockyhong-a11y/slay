@@ -412,9 +412,9 @@ test("Seraph replay results include the actual aerial energy refund once after p
   assert.deepEqual(resultOf(first.cue, "energy"), {
     kind: "energy",
     value: 1,
-    text: "에너지 +1",
+    text: "행동력(에너지) +1",
   });
-  assert.ok(first.cue.announcement.includes("에너지 +1"));
+  assert.ok(first.cue.announcement.includes("행동력(에너지) +1"));
   assert.deepEqual(before, snapshot);
   const second = cast(first.after, "hand-1");
   assert.equal(second.after.energy, 0);

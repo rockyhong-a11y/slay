@@ -107,7 +107,7 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
         <div className="guide-hero-line">
           <div>
             <strong>
-              3<span>기본 에너지</span>
+              3<span>기본 행동력</span>
             </strong>
             <Lightning size={23} />
           </div>
@@ -129,7 +129,7 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
         <nav className="guide-toc" aria-label="가이드 목차">
           <span className="knowledge-eyebrow">IN THIS GUIDE</span>
           {[
-            ["turn-flow", "01", "턴과 에너지"],
+            ["turn-flow", "01", "턴과 행동력"],
             ["card-piles", "02", "카드 더미"],
             ["defense", "03", "방어와 상대 의도"],
             ["finishers", "04", "콤보와 피니셔"],
@@ -173,8 +173,9 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
             icon={Lightning}
           >
             <p>
-              각 턴은 기본 에너지 <strong>3</strong>과 카드 <strong>5장</strong>
-              으로 시작합니다. 에너지가 충분하면 공격, 기술, 피니셔 카드를
+              각 턴은 기본 행동력(ENERGY) <strong>3</strong>과 카드{" "}
+              <strong>5장</strong>
+              으로 시작합니다. 행동력이 충분하면 공격, 기술, 피니셔 카드를
               원하는 순서로 사용하세요. 0코스트 카드도 있습니다. 손은 최대
               10장까지 보유할 수 있습니다.
             </p>
@@ -188,7 +189,7 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
                 <span>02</span>
                 <strong>카드 플레이</strong>
                 <p>
-                  에너지를 지불하고 효과를 즉시 해결합니다. 순서가 콤보와 추가
+                  행동력을 지불하고 효과를 즉시 해결합니다. 순서가 콤보와 추가
                   효과를 바꿉니다.
                 </p>
               </li>
@@ -196,15 +197,53 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
                 <span>03</span>
                 <strong>턴 종료</strong>
                 <p>
-                  남은 패를 버리고 상대의 의도를 해결합니다. 다음 턴에 에너지와
+                  남은 패를 버리고 상대의 의도를 해결합니다. 다음 턴에 행동력과
                   패를 새로 받습니다.
                 </p>
               </li>
             </ol>
             <p className="guide-note">
-              에너지는 턴마다 최대치로 회복하며 남은 에너지를 이월하지 않습니다.
-              일부 코너 기믹은 한 경기 동안 에너지나 드로우를 바꿉니다. 선택하기
-              전에 효과와 대가를 함께 확인하세요.
+              행동력은 턴마다 최대치로 회복하며 남은 행동력을 이월하지 않습니다.
+              일부 코너 기믹은 한 경기 동안 행동력이나 드로우를 바꿉니다.
+              선택하기 전에 효과와 대가를 함께 확인하세요.
+            </p>
+            <h3>유틸리티로 다음 기술을 연결하세요</h3>
+            <p>
+              헤드록·암바처럼 상대를 제어하는 일부 카드는 피해 대신 카드 드로우,
+              행동력 회복, 다음 카드의 비용 감소를 제공합니다. 카드의
+              <strong> 유틸리티</strong> 표시로 찾을 수 있습니다. 관절기와
+              잡기라는 기술 분류는 그대로 유지됩니다.
+            </p>
+            <dl className="guide-definitions">
+              <div>
+                <dt>다음 카드 할인</dt>
+                <dd>
+                  이번 턴, 원래 비용이 1 이상인 다음 카드 한 장에 적용됩니다.
+                  비용은 0 아래로 내려가지 않습니다. 0코스트 카드를 먼저 써도
+                  할인은 유지됩니다. 여러 할인을 준비하면 가장 큰 값 하나만
+                  적용하며, 턴이나 경기가 끝나면 사라집니다.
+                </dd>
+              </div>
+              <div>
+                <dt>행동력 증가</dt>
+                <dd>
+                  카드 비용을 먼저 지불한 뒤 행동력을 얻습니다. 현재 턴에는 기본
+                  최대치를 넘어 10까지 얻을 수 있지만 다음 턴으로 이월되지
+                  않습니다.
+                </dd>
+              </div>
+              <div>
+                <dt>카드 드로우</dt>
+                <dd>
+                  새 카드를 즉시 뽑습니다. 손패는 최대 10장이므로 공간을 비우고
+                  사용하세요. 드로우 덱이 비면 버린 카드를 섞어 이어서 뽑습니다.
+                </dd>
+              </div>
+            </dl>
+            <p className="guide-note">
+              예시: 0코스트 칼라 앤 엘보로 할인 1을 준비하면 2코스트 파워밤을
+              행동력 1로 사용할 수 있습니다. 할인된 손패에는 낮아진 비용과 감소
+              표시가 나타납니다. 도감과 덱 목록은 기본 비용을 표시합니다.
             </p>
           </RuleSection>
           <RuleSection
@@ -317,9 +356,9 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
               </span>
             </div>
             <p>
-              피니셔는 에너지와 함께 <strong>열기 3을 소모</strong>합니다. 같은
+              피니셔는 행동력과 함께 <strong>열기 3을 소모</strong>합니다. 같은
               턴에 모은 열기도 바로 사용할 수 있습니다. 카드가 손에 있어도
-              열기나 에너지가 부족하면 사용할 수 없습니다. 다음 경기에는 열기를
+              열기나 행동력이 부족하면 사용할 수 없습니다. 다음 경기에는 열기를
               최대 2까지 가져갑니다.
             </p>
             <p className="guide-note">
@@ -354,7 +393,7 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
             </div>
             <p>
               악몽을 뽑으면 압박이 <strong>3</strong> 증가합니다. 악몽도
-              플레이할 수 있습니다. 에너지 1을 쓰면 압박이 10 줄고 해당 경기에서
+              플레이할 수 있습니다. 행동력 1을 쓰면 압박이 10 줄고 해당 경기에서
               소멸합니다. 다음 경기에는 다시 들어오므로 영구 제거와 구분하세요.
             </p>
             <p>
@@ -447,7 +486,7 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
                 <dd>
                   카드 한 장마다 한 번 영구 강화합니다. 기본 카드 5종은 기본기
                   숙련, 나머지 기술 44종은 각각 3가지 특화 중 하나를 직접
-                  선택합니다. 화력·제압·순환의 효과와 에너지 비용을 비교한 뒤
+                  선택합니다. 화력·제압·순환의 효과와 행동력 비용을 비교한 뒤
                   확정하세요. 같은 기술을 두 장 갖고 있다면 서로 다르게 강화할
                   수 있습니다. 라커룸 또는 상점에서 카드 선택 → 강화 방향
                   미리보기 → 강화 확정 순서로 진행합니다. 확정 전에는 휴식이나
@@ -512,7 +551,7 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
             </p>
             <h3>링사이드 도구 · 1회 사용</h3>
             <p>
-              경기 중 에너지 없이 사용하고 즉시 소모합니다. 다음 턴이나 다음
+              경기 중 행동력 없이 사용하고 즉시 소모합니다. 다음 턴이나 다음
               경기에는 돌아오지 않습니다. 사용하지 않은 물품은 다음 경기로
               가져갑니다. 카드 사용과 콤보를 대신하는 행동은 아닙니다.
             </p>
@@ -598,8 +637,9 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
               올라오고 강조됩니다. 한 번 탭하면 선택하고, 같은 카드를 빠르게 두
               번 탭하면 바로 사용합니다. 드래그를 놓는 동작은 카드를 사용하지
               않습니다. 선택 카드 사용 버튼과 숫자 단축키도 사용할 수 있습니다.
-              에너지나 열기가 부족한 카드는 확인할 수 있지만 사용되지 않습니다.
-              도감과 도움말을 보는 동안에는 전투 입력이 적용되지 않습니다.
+              행동력이나 열기가 부족한 카드는 확인할 수 있지만 사용되지
+              않습니다. 도감과 도움말을 보는 동안에는 전투 입력이 적용되지
+              않습니다.
             </p>
             <p>
               기술 연출은 카드 그림에 초점을 맞춥니다. 타격은 방향 잔상과 접촉
@@ -651,7 +691,7 @@ function LibraryCard({ card, onSelect }) {
       type="button"
       className={`knowledge-card rarity-${card.rarity}`}
       onClick={() => onSelect(card.id)}
-      aria-label={`${card.name}, ${card.discipline}, 에너지 ${card.cost}. 상세 보기`}
+      aria-label={`${card.name}, ${card.discipline}${card.utility ? " · 유틸리티" : ""}, 행동력 ${card.cost}. 상세 보기`}
     >
       <div className="knowledge-card-image">
         <Artwork art={card.art} alt={card.alt} loading="lazy" />
@@ -666,6 +706,7 @@ function LibraryCard({ card, onSelect }) {
         <h2>{card.name}</h2>
         <div className="knowledge-card-tags">
           <span>{CARD_TYPE_LABELS[card.type]}</span>
+          {card.utility && <span className="utility-tag">유틸리티</span>}
           <span>{CARD_RARITY_LABELS[card.rarity]}</span>
           {card.exhaust && <span className="exhaust-tag">소멸</span>}
           {card.upgradeLabel && <span>{card.upgradeLabel}</span>}
@@ -727,9 +768,10 @@ function CardDetail({ id, onClose }) {
         <div className="knowledge-detail-tags">
           <span>
             <Lightning size={15} />
-            에너지 {base.cost}
+            행동력 {base.cost}
           </span>
           <span>{CARD_TYPE_LABELS[base.type]}</span>
+          {base.utility && <span className="utility-tag">유틸리티</span>}
           <span>{CARD_RARITY_LABELS[base.rarity]}</span>
           <span>{base.exhaust ? "사용 후 소멸" : "사용 후 버린 카드"}</span>
         </div>
@@ -904,6 +946,7 @@ export function CardLibraryPage({ onOpenGuide, onBack }) {
             카드 타입
             <select value={type} onChange={(e) => setType(e.target.value)}>
               <option value="all">모든 타입</option>
+              <option value="utility">유틸리티</option>
               {Object.entries(CARD_TYPE_LABELS).map(([id, name]) => (
                 <option key={id} value={id}>
                   {name}

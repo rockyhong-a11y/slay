@@ -83,8 +83,8 @@ test("real strikes, throws, submissions, finishers and support actions produce d
   for (const [id, expected] of [
     ["strike", "cheer"],
     ["powerbomb", "cheer"],
-    ["armbar", "submission"],
-    ["headlock", "submission"],
+    ["kneebar", "submission"],
+    ["crossface", "submission"],
     ["finisher", "eruption"],
     ["guard", "applause"],
     ["spotlight", "cheer"],
@@ -95,12 +95,29 @@ test("real strikes, throws, submissions, finishers and support actions produce d
 });
 
 test("a fully blocked technique gets a gasp and an actual knockout gets a standing ovation", () => {
-  for (const id of ["strike", "armbar", "finisher"]) {
+  for (const id of ["strike", "kneebar", "finisher"]) {
     const blocked = combatWith(id);
     blocked.enemy.block = 1000;
     const result = cast(blocked);
     assert.equal(result.cue.damage, 0);
     assert.equal(result.reaction.kind, "gasp", id);
+  }
+  for (const id of [
+    "headlock",
+    "armbar",
+    "kimura",
+    "americana",
+    "anklelock",
+    "heelhook",
+    "collartie",
+    "waistlock",
+  ]) {
+    const setup = combatWith(id);
+    setup.enemy.block = 1000;
+    const result = cast(setup);
+    assert.equal(result.cue.attacking, false, id);
+    assert.equal(result.cue.damage, 0, id);
+    assert.notEqual(result.reaction.kind, "gasp", `${id} is not a blocked hit`);
   }
   const lethal = combatWith("strike");
   lethal.enemy.hp = 1;

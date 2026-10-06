@@ -241,24 +241,27 @@ test("every new move is actually offered in normal rewards and shops, purchasabl
   }
 });
 
-test("zero-cost arm drag opens a true two-combo throw chain while a tie-up banks the next attack only", () => {
+test("zero-cost arm drag opens a two-combo throw chain while a tie-up reserves its discount for the throw", () => {
   let state = combat("valkyrie", ["collartie", "armdrag", "foldingpowerbomb"]);
   state = playCard(state, "move-0");
-  assert.equal(state.status.nextAttack, 3);
+  assert.equal(state.status.nextCardDiscount, 1);
+  assert.equal(state.status.nextAttack, 0);
   assert.equal(state.combo, 0);
   assert.equal(state.player.hype, 0);
   assert.equal(state.status.firstAttack, true);
-  assert.equal(getCardDamage(state, state.hand[0]), 8);
+  assert.equal(getCardDamage(state, state.hand[0]), 5);
   state = playCard(state, "move-1");
   assert.equal(state.combo, 2);
   assert.equal(state.player.hype, 1);
   assert.equal(state.status.nextAttack, 0);
+  assert.equal(state.status.nextCardDiscount, 1);
   assert.equal(getCardDamage(state, state.hand[0]), 30);
   const before = state.enemy.hp;
   state = playCard(state, "move-2");
   assert.equal(before - state.enemy.hp, 30);
   assert.equal(state.player.block, 12);
-  assert.equal(state.energy, 1);
+  assert.equal(state.energy, 2);
+  assert.equal(state.status.nextCardDiscount, 0);
   assert.deepEqual(
     state.exhaust.map((card) => card.id),
     ["collartie", "armdrag"],
@@ -287,33 +290,40 @@ test("throw combo bonuses use preceding attacks and survive upgrades without bec
   }
 });
 
-test("new joint holds apply debuffs after damage, trigger Viper once, and preserve the limit after save/load", () => {
-  let state = combat("viper", ["americana", "armbar", "kimura"]);
-  assert.equal(getCardDamage(state, state.hand[0]), 5);
+test("joint utilities trigger Viper once and prepare real follow-up damage through save/load", () => {
+  let state = combat("viper", ["kimura", "armbar", "strike"]);
+  state.draw = Array.from({ length: 4 }, (_, index) => ({
+    uid: `reserve-${index}`,
+    id: "guard",
+    upgraded: false,
+  }));
+  assert.equal(getCardDamage(state, state.hand[0]), 0);
   state = playCard(state, "move-0");
-  assert.equal(state.enemy.hp, 495);
+  assert.equal(state.enemy.hp, 500);
   assert.equal(state.enemy.weak, 1);
   assert.equal(state.enemy.vulnerable, 1);
-  assert.equal(getCardDamage(state, state.hand[0]), 10);
+  assert.equal(getCardDamage(state, state.hand[0]), 0);
   state = playCard(restored(state), "move-1");
-  assert.equal(state.enemy.hp, 485);
+  assert.equal(state.enemy.hp, 500);
   assert.equal(state.enemy.vulnerable, 3);
   assert.equal(
     playCard(state, "move-1"),
     state,
     "a used card cannot repeat a passive",
   );
+  assert.equal(getCardDamage(state, state.hand[0]), 12);
   const third = playCard(state, "move-2");
-  assert.equal(third.enemy.weak, 2);
+  assert.equal(third.enemy.hp, 488);
+  assert.equal(third.enemy.weak, 1);
   assert.equal(
     third.enemy.vulnerable,
-    4,
-    "only Kimura's own vulnerability is added",
+    3,
+    "the following attack does not add another passive vulnerability",
   );
   assert.equal(third.status.precisionUsed, true);
   const next = endTurn(third);
-  assert.equal(next.enemy.weak, 1);
-  assert.equal(next.enemy.vulnerable, 3);
+  assert.equal(next.enemy.weak, 0);
+  assert.equal(next.enemy.vulnerable, 2);
   assert.equal(next.status.precisionUsed, false);
 });
 
@@ -377,7 +387,9 @@ test("new setup skills combine with Ember's crowd and Nova's draw without repeat
   ember = playCard(restored(ember), "move-1");
   assert.equal(ember.player.hp, 42);
   assert.equal(ember.player.hype, 1);
-  assert.equal(ember.status.nextAttack, 9);
+  assert.equal(ember.status.nextAttack, 0);
+  assert.equal(ember.energy, 5);
+  assert.equal(ember.player.block, 9);
   assert.equal(ember.status.crowdUsed, true);
 
   let nova = combat("nova", ["armdrag", "collartie"]);

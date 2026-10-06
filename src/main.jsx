@@ -60,6 +60,7 @@ import {
   getWaveInfo,
   continueToNextWave,
   getCard,
+  getCardCost,
   canPlayCard,
   normalizeRun,
   ITEMS,
@@ -154,6 +155,7 @@ import {
   navigationHash,
 } from "./navigation.js";
 import "./viewport-shell.css";
+import "./utility-cards.css";
 
 const asset = (name) => `${import.meta.env.BASE_URL}assets/${name}`;
 const SAVE_KEY = "slay.run.v1";
@@ -327,6 +329,7 @@ function Card({
   compact = false,
   selected = false,
   unplayable = false,
+  battleState,
   fanPosition,
   ref,
 }) {
@@ -334,6 +337,8 @@ function Card({
   const card = getCard(instance);
   if (!card) return null;
   const detail = getCardDetail(instance);
+  const cost = battleState ? getCardCost(battleState, instance) : card.cost;
+  const discounted = cost < card.cost;
   const finisher = card.type === "finisher" || card.artKey === "finisher";
   const nightmare = ["nightmare", "curse"].includes(card.type);
   const Element = onClick ? motion.button : motion.article;
@@ -363,17 +368,29 @@ function Card({
       aria-hidden={!present || undefined}
       aria-pressed={index != null ? selected : undefined}
       tabIndex={!present ? -1 : undefined}
-      aria-label={`${card.name}${card.upgradeLabel ? ` · ${card.upgradeLabel}` : ""}, ${detail.discipline}, 에너지 ${card.cost}, ${card.description}`}
+      aria-label={`${card.name}${card.upgradeLabel ? ` · ${card.upgradeLabel}` : ""}, ${detail.discipline}${card.utility ? " · 유틸리티" : ""}, 행동력 ${cost}${discounted ? `, 기본 비용 ${card.cost}에서 감소` : ""}, ${card.description}`}
     >
       {index != null && (
         <span className="card-peek" aria-hidden="true">
-          <span className="peek-cost">{card.cost}</span>
+          <span className={`peek-cost ${discounted ? "is-discounted" : ""}`}>
+            {cost}
+          </span>
           <span className="peek-index">{index === 9 ? 0 : index + 1}</span>
           <span className="peek-name">{card.name}</span>
         </span>
       )}
       <div className="card-top">
-        <span className="card-cost">{card.cost}</span>
+        <span
+          className={`card-cost ${discounted ? "is-discounted" : ""}`}
+          title={
+            discounted ? `행동력 ${card.cost} → ${cost}` : `행동력 ${cost}`
+          }
+        >
+          {cost}
+          {discounted && (
+            <small className="card-cost-saving">−{card.cost - cost}</small>
+          )}
+        </span>
         <span
           className={`card-type technique-label technique-${detail.disciplineSlug}`}
           title={`카드 유형: ${typeNames[card.type]} · 기술 분류: ${detail.discipline}`}
@@ -391,6 +408,7 @@ function Card({
           loading={compact ? "lazy" : undefined}
         />
         <span className="card-art-shade" />
+        {card.utility && <span className="card-utility-tag">유틸리티</span>}
       </div>
       <div className="card-text">
         <h3>{card.name}</h3>
@@ -536,6 +554,19 @@ function App() {
   const enemyCondition = selectFighterState(state.enemy, { enemy: true });
   const selectedHand =
     state.hand.find((card) => card.uid === selectedHandId) || state.hand[0];
+  const selectedCard = getCard(selectedHand);
+  const selectedCost = selectedCard ? getCardCost(state, selectedHand) : 0;
+  const selectedRequirement = !selectedCard
+    ? "사용할 카드 없음"
+    : cue || impactCue
+      ? "기술 연출 중"
+      : state.phase !== "combat"
+        ? "경기 중 사용 가능"
+        : state.player.hype < (selectedCard.effects.spendHype || 0)
+          ? `열기 ${selectedCard.effects.spendHype} 필요`
+          : state.energy < selectedCost
+            ? `행동력 ${selectedCost} 필요`
+            : `행동력 ${selectedCost}${selectedCost < selectedCard.cost ? ` · ${selectedCard.cost - selectedCost} 감소` : ""}`;
   const arrivalKey =
     state.arrival &&
     `${state.wave || 1}-${state.arrival.nodeId}-${state.phase}`;
@@ -710,8 +741,8 @@ function App() {
       notify(
         card && state.player.hype < (card.effects.spendHype || 0)
           ? `이 기술에는 관중 열기 ${card.effects.spendHype}이 필요합니다.`
-          : card && state.energy < card.cost
-            ? `에너지 ${card.cost}이 필요합니다.`
+          : card && state.energy < getCardCost(state, instance)
+            ? `행동력 ${getCardCost(state, instance)}이 필요합니다.`
             : "지금은 사용할 수 없는 카드입니다.",
       );
       return false;
@@ -1542,7 +1573,18 @@ function App() {
                     <div className="hand-main">
                       <div className="hand-heading">
                         <h2>
-                          당신의 패<span>{state.hand.length} CARDS</span>
+                          당신의 패
+                          {state.status.nextCardDiscount > 0 ? (
+                            <span
+                              className="pending-card-discount"
+                              role="status"
+                              title={`이번 턴, 원래 비용이 1 이상인 다음 카드의 행동력 비용 −${state.status.nextCardDiscount}. 0코스트 카드를 사용해도 유지됩니다.`}
+                            >
+                              다음 비용 −{state.status.nextCardDiscount}
+                            </span>
+                          ) : (
+                            <span>{state.hand.length} CARDS</span>
+                          )}
                         </h2>
                         <button
                           type="button"
@@ -1556,12 +1598,14 @@ function App() {
                           }
                           aria-label={
                             selectedHand
-                              ? `${getCard(selectedHand).name} 사용`
+                              ? `${selectedCard.name} 사용 · ${selectedRequirement}`
                               : "사용할 카드 없음"
                           }
                         >
-                          <span>선택 카드 사용</span>
-                          <ArrowRight size={14} />
+                          <span className="selected-action-label">
+                            선택 카드 사용 <ArrowRight size={14} />
+                          </span>
+                          <small>{selectedRequirement}</small>
                         </button>
                         <span>
                           드래그로 선택 · 더블탭으로 사용 <kbd>1</kbd>
@@ -1580,24 +1624,26 @@ function App() {
                         selectedId={selectedHand?.uid}
                         onSelect={setSelectedHandId}
                         onPlay={play}
-                        contextKey={`${state.wave}:${state.floor}:${state.turn}:${state.phase}:${state.energy}:${modal || ""}:${nav}`}
+                        contextKey={`${state.wave}:${state.floor}:${state.turn}:${state.phase}:${state.energy}:${state.status.nextCardDiscount || 0}:${modal || ""}:${nav}`}
                         getCardLabel={(uid) => {
-                          const card = getCard(
-                            state.hand.find((entry) => entry.uid === uid),
+                          const instance = state.hand.find(
+                            (entry) => entry.uid === uid,
                           );
+                          const card = getCard(instance);
                           return card
-                            ? `${card.name}${card.upgradeLabel ? ` · ${card.upgradeLabel}` : ""}`
+                            ? `${card.name}${card.upgradeLabel ? ` · ${card.upgradeLabel}` : ""} · 행동력 ${getCardCost(state, instance)}`
                             : "카드";
                         }}
                         getUnplayableReason={(uid) => {
-                          const card = getCard(
-                            state.hand.find((entry) => entry.uid === uid),
+                          const instance = state.hand.find(
+                            (entry) => entry.uid === uid,
                           );
+                          const card = getCard(instance);
                           if (!card) return "사용할 수 없는 카드입니다.";
                           if (state.player.hype < (card.effects.spendHype || 0))
                             return `열기 ${card.effects.spendHype} 필요`;
-                          if (state.energy < card.cost)
-                            return `에너지 ${card.cost} 필요`;
+                          const cost = getCardCost(state, instance);
+                          if (state.energy < cost) return `행동력 ${cost} 필요`;
                           return "기술 연출이 끝나면 사용할 수 있습니다.";
                         }}
                         isPlayable={(uid) => {
@@ -1617,6 +1663,7 @@ function App() {
                             <Card
                               key={c.uid}
                               instance={c}
+                              battleState={state}
                               index={i}
                               onClick={() => setSelectedHandId(c.uid)}
                               onFocus={() => setSelectedHandId(c.uid)}

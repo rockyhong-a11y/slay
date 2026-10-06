@@ -32,6 +32,7 @@ const supported = new Set([
   "counterBlock",
   "lowHpBlock",
   "nextAttack",
+  "nextCardDiscount",
   "hype",
   "calm",
   "stress",

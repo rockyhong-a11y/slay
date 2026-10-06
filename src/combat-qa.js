@@ -10,28 +10,49 @@ export function createCombatQA(profile = {}) {
     ? options.actor
     : "viper";
   const state = newRun(actor, 20903);
-  const ids = [
-    "strike",
-    "guard",
-    "headlock",
-    "powerbomb",
-    "armbar",
-    "sitoutpowerbomb",
-    "sidewalkslam",
-    "kimura",
-    "anklelock",
-    "championship",
-  ];
+  const utility = options.impact === "utility";
+  const ids = utility
+    ? [
+        "collartie",
+        "powerbomb",
+        "waistlock",
+        "armbar",
+        "kimura",
+        "americana",
+        "heelhook",
+        "headlock",
+        "anklelock",
+        "guard",
+      ]
+    : [
+        "strike",
+        "guard",
+        "headlock",
+        "powerbomb",
+        "armbar",
+        "sitoutpowerbomb",
+        "sidewalkslam",
+        "kimura",
+        "anklelock",
+        "championship",
+      ];
   state.hand = ids
     .slice(0, count)
     .map((id, index) => ({ id, uid: `qa-hand-${index + 1}`, upgraded: false }));
   state.deck = structuredClone(state.hand);
-  state.draw = [];
+  state.draw = utility
+    ? ["guard", "strike", "headlock", "anklelock"].map((id, index) => ({
+        id,
+        uid: `qa-reserve-${index}`,
+        upgraded: false,
+      }))
+    : [];
+  state.deck.push(...structuredClone(state.draw));
   state.discard = [];
   state.exhaust = [];
   state.phase = "combat";
   state.turn = 1;
-  state.energy = state.maxEnergy = 10;
+  state.energy = state.maxEnergy = utility ? 3 : 10;
   state.player.hp = state.player.maxHp;
   state.player.block = options.impact === "guard" ? 30 : 0;
   state.player.hype = 2;

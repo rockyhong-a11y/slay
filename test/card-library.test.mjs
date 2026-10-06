@@ -176,3 +176,42 @@ test("base and upgraded library views read exact effects from the engine without
   assert.equal(nightmare.onDrawStress, 3);
   assert.equal(nightmare.effects.calm, 14);
 });
+
+test("utility filtering preserves wrestling disciplines and engine costs in the library", () => {
+  const expected = [
+    "headlock",
+    "armbar",
+    "kimura",
+    "americana",
+    "anklelock",
+    "heelhook",
+    "collartie",
+    "waistlock",
+  ];
+  const utilities = getLibraryCards({ type: "utility" });
+  assert.deepEqual(utilities.map((card) => card.id).sort(), expected.sort());
+  assert.equal(
+    getLibraryCards({ type: "utility", discipline: "submission" }).length,
+    6,
+  );
+  assert.equal(
+    getLibraryCards({ type: "utility", discipline: "grapple" }).length,
+    2,
+  );
+  assert.equal(
+    getLibraryCards({ type: "utility", discipline: "throw" }).length,
+    0,
+  );
+  assert.deepEqual(
+    getLibraryCards({ search: "유틸리티" })
+      .map((card) => card.id)
+      .sort(),
+    expected,
+  );
+  for (const card of utilities) {
+    assert.equal(card.cost, getCard(card.id).cost);
+    assert.equal(card.art, `cards/${card.id}.webp`);
+    assert.equal(card.type, "skill");
+  }
+  assert.equal(getLibraryCards({ type: "utility", upgraded: true }).length, 8);
+});

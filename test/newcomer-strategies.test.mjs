@@ -159,7 +159,8 @@ test("Lynx rewards real joint locks once while preserving their printed debuffs 
   assert.equal(state.player.block, 8);
   state = playCard(state, "fixture-3");
   assert.equal(state.player.stress, 9);
-  assert.equal(state.enemy.vulnerable, 3);
+  assert.equal(state.enemy.vulnerable, 2);
+  assert.equal(state.enemy.hp, 500, "utility joint locks create no fake hits");
   assert.equal(
     state.logEvents.filter((event) => event.type === "passive").length,
     1,
@@ -223,7 +224,11 @@ test("Onyx reads actual enemy intent and strengthens the following attack rather
 test("new passive limits survive JSON and invalid actions, and reset only at a turn or new encounter", () => {
   for (const [actor, trigger, flag] of triggers) {
     let state = combat(actor, [trigger, trigger]);
-    state.draw = [{ uid: "passive-draw", id: "guard", upgraded: false }];
+    state.draw = Array.from({ length: 4 }, (_, index) => ({
+      uid: `passive-draw-${index}`,
+      id: "guard",
+      upgraded: false,
+    }));
     if (actor === "tempest") state.combo = 1;
     state.energy = 0;
     const unavailable = copy(state);
@@ -290,7 +295,8 @@ test("support cards and items produce no fake hits or specialist bonuses, even w
 });
 
 test("fully blocked specialist attacks are genuine single attacks without fake health damage or repeated bonuses", () => {
-  for (const [actor, trigger, flag] of triggers) {
+  for (const [actor, originalTrigger, flag] of triggers) {
+    const trigger = actor === "lynx" ? "kneebar" : originalTrigger;
     let state = combat(actor, [trigger, trigger]);
     state.enemy.block = 999;
     if (actor === "tempest") state.combo = 1;

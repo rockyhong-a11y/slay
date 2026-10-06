@@ -153,7 +153,7 @@ test("strike, mat slam, hold, guard, focus and nightmare have distinct contact t
   for (const id of [
     "strike",
     "powerbomb",
-    "armbar",
+    "kneebar",
     "guard",
     "focus",
     "nightmare",

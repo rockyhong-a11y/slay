@@ -191,13 +191,13 @@ test("throws show grip before lifting or arcing, then a mat wave instead of a st
   assert.ok(kinds(replay("suplex").cue).includes("arc"));
 });
 
-test("clinch setup cards retain grip and tension without a fall or a damage score", () => {
+test("clinch utility cards use preparation feedback without a fall or a damage score", () => {
   for (const id of ["collartie", "waistlock"]) {
     const cue = replay(id).cue;
     assert.equal(cue.attacking, false, id);
     assert.equal(cue.damage, 0, id);
     assert.ok(
-      kinds(cue).includes("grip") && kinds(cue).includes("tension"),
+      kinds(cue).includes("breath") && kinds(cue).includes("rising-motes"),
       id,
     );
     assert.ok(!kinds(cue).includes("mat") && !kinds(cue).includes("burst"), id);
@@ -205,10 +205,11 @@ test("clinch setup cards retain grip and tension without a fall or a damage scor
   }
 });
 
-test("all submission cards clamp a targeted joint with sustained pressure and no explosive burst", () => {
+test("damaging submission cards clamp a targeted joint with sustained pressure and no explosive burst", () => {
   for (const [id, detail] of Object.entries(CARD_DETAILS)) {
     if (detail.disciplineSlug !== "submission") continue;
     const cue = replay(id).cue;
+    if (cue.utility) continue;
     const shapeKinds = kinds(cue);
     assert.equal(cue.camera.pressure, true, id);
     assert.equal(cue.camera.hitstop, 0, id);
@@ -240,7 +241,13 @@ test("all submission cards clamp a targeted joint with sustained pressure and no
 });
 
 test("fully guarded attacks replace explosive damage accents with shields and retain actual zero damage", () => {
-  for (const id of ["strike", "doubletap", "powerbomb", "headlock", "armbar"]) {
+  for (const id of [
+    "strike",
+    "doubletap",
+    "powerbomb",
+    "crossface",
+    "kneebar",
+  ]) {
     const { before, after, cue } = replay(id, 100);
     assert.equal(cue.damage, 0, id);
     assert.equal(before.enemy.hp, after.enemy.hp, id);
@@ -289,7 +296,7 @@ test("defense, tactics and nightmare effects communicate preparation or recovery
 
 test("arena follow-through distinguishes clamp pressure from explosive recoil and returns both fighters to rest", () => {
   const strike = replay("strike");
-  const lock = replay("armbar");
+  const lock = replay("kneebar");
   const slam = replay("powerbomb");
   const impactFor = (r) =>
     createArenaImpact(r.before, r.after, { instance: r.instance });
@@ -417,7 +424,13 @@ test("arcade families distinguish fire, mat debris, localized joint pressure spa
       assert.ok(effects.includes(kind), `${id} ${kind}`);
     assert.ok(!effects.includes("embers"), id);
   }
-  for (const id of ["armbar", "headlock", "anklelock", "kimura", "heelhook"]) {
+  for (const id of [
+    "kneebar",
+    "figurefour",
+    "bostoncrab",
+    "crossface",
+    "sharpshooter",
+  ]) {
     const cue = replay(id).cue;
     const effects = techniqueEffectLayers(cue.effect, cue.camera, cue);
     const pressure = effects.filter(

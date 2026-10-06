@@ -80,24 +80,24 @@ test("ten selectable adults expose distinct strategies and their exact eleven-ca
   assert.ok(WRESTLERS.ember.startingDeck.includes("comeback"));
 });
 
-test("Viper sets up vulnerability after the first debuff hit and rewards follow-up attacks", () => {
+test("Viper sets up vulnerability with a utility hold and rewards follow-up attacks", () => {
   let state = combat("viper", ["headlock", "strike", "headlock"]);
-  assert.equal(getCardDamage(state, state.hand[0]), 7);
+  assert.equal(getCardDamage(state, state.hand[0]), 0);
   state = playCard(state, "fixture-0");
   assert.equal(
     state.enemy.hp,
-    493,
-    "the opening headlock does not apply its own future debuff retroactively",
+    500,
+    "the opening utility hold controls without dealing damage",
   );
   assert.equal(state.enemy.weak, 2);
   assert.equal(state.enemy.vulnerable, 1);
   assert.equal(state.status.precisionUsed, true);
   assert.equal(getCardDamage(state, state.hand[0]), 12);
   state = playCard(state, "fixture-1");
-  assert.equal(state.enemy.hp, 481);
-  assert.equal(getCardDamage(state, state.hand[0]), 13);
+  assert.equal(state.enemy.hp, 488);
+  assert.equal(getCardDamage(state, state.hand[0]), 0);
   state = playCard(state, "fixture-2");
-  assert.equal(state.enemy.hp, 468);
+  assert.equal(state.enemy.hp, 488);
   assert.equal(state.enemy.weak, 4);
   assert.equal(
     state.enemy.vulnerable,
@@ -230,6 +230,11 @@ test("new passive limits survive JSON restore and invalid actions neither consum
     ["ember", "guard"],
   ]) {
     let state = combat(id, [trigger, trigger]);
+    state.draw = Array.from({ length: 2 }, (_, index) => ({
+      uid: `passive-reserve-${index}`,
+      id: "guard",
+      upgraded: false,
+    }));
     state.player.hp = 30;
     state.player.stress = 15;
     const before = saved(state);

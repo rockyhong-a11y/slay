@@ -1,4 +1,4 @@
-import { getCard, WRESTLERS } from "./game.js";
+import { getCard, getCardCost, WRESTLERS } from "./game.js";
 import { getCardDetail } from "./card-library.js";
 import {
   techniqueEffectProfile,
@@ -548,8 +548,11 @@ export function createCardCue(before, after, instance) {
   const detail = getCardDetail(instance);
   if (!card || !detail) return null;
   const results = [];
-  const damage = difference(before.enemy?.hp, after.enemy?.hp);
-  const absorbed = difference(before.enemy?.block, after.enemy?.block);
+  const attacking = !!card.effects.damage;
+  const damage = attacking ? difference(before.enemy?.hp, after.enemy?.hp) : 0;
+  const absorbed = attacking
+    ? difference(before.enemy?.block, after.enemy?.block)
+    : 0;
   const guard = difference(after.player.block, before.player.block);
   const heal = difference(after.player.hp, before.player.hp);
   const selfDamage = difference(before.player.hp, after.player.hp);
@@ -561,7 +564,7 @@ export function createCardCue(before, after, instance) {
     after.enemy?.vulnerable,
     before.enemy?.vulnerable,
   );
-  if (card.effects.damage)
+  if (attacking)
     results.push({
       kind: "damage",
       value: damage,
@@ -618,12 +621,25 @@ export function createCardCue(before, after, instance) {
   // Printed effects and character passives share the same resolved snapshots.
   // Compare energy after paying the card's cost, so a refund is visible even
   // when the final energy is lower than the starting value.
-  const energyGained = difference(after.energy, before.energy - card.cost);
+  const paidCost = getCardCost(before, instance);
+  const energyGained = difference(after.energy, before.energy - paidCost);
   if (energyGained)
     results.push({
       kind: "energy",
       value: energyGained,
-      text: `에너지 +${energyGained}`,
+      text: `행동력(에너지) +${energyGained}`,
+    });
+  // A printed paid card spends the old discount even when its payable cost is
+  // zero. A naturally free card retains it. Report the new final discount,
+  // including a paid utility that spends one discount and grants another.
+  const retainedDiscount =
+    card.cost > 0 ? 0 : before.status?.nextCardDiscount || 0;
+  const grantedDiscount = after.status?.nextCardDiscount || 0;
+  if (card.effects.nextCardDiscount && grantedDiscount > retainedDiscount)
+    results.push({
+      kind: "discount",
+      value: grantedDiscount,
+      text: `이번 턴 다음 1코스트 이상 카드 비용 −${grantedDiscount}`,
     });
   // An attack consumes the old next-attack bonus before a passive can grant a
   // new one. Non-attacks retain it; the retained amount is not a fresh gain.
@@ -643,6 +659,21 @@ export function createCardCue(before, after, instance) {
     detail.disciplineSlug,
     card.type === "finisher",
   );
+  const effect = techniqueEffectProfile(card.id, detail.disciplineSlug);
+  if (card.utility) {
+    // Keep the joint-lock illustration and its close-up, but use the existing
+    // setup feedback in both renderers and audio. No impact, hurt pose or hitstop
+    // should imply damage when the card only creates room for the next action.
+    camera.impacts = [];
+    camera.hitstop = 0;
+    camera.heavy = false;
+    camera.pressure = false;
+    camera.phases = ["SETUP", "CONTROL", "READY"];
+    effect.family = "tactics";
+    effect.variant = "utility-control";
+    effect.label = "주도권 확보 · 다음 기술 준비";
+    effect.draw = drawn > 0;
+  }
   return {
     cardId: card.id,
     name: card.name,
@@ -653,10 +684,11 @@ export function createCardCue(before, after, instance) {
     discipline: detail.discipline,
     disciplineSlug: detail.disciplineSlug,
     finisher: card.type === "finisher",
-    attacking: !!card.effects.damage,
+    attacking,
+    utility: !!card.utility,
     duration: camera.duration,
     camera,
-    effect: techniqueEffectProfile(card.id, detail.disciplineSlug),
+    effect,
     damage,
     absorbed,
     hits: card.effects.hits || 1,

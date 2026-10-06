@@ -122,13 +122,9 @@ export const CARD_UPGRADE_PATHS = {
     flow("포지션 스위치", "수비하며 패 보충", { block: 11, draw: 1 }),
   ],
   headlock: [
-    force("크랭크 헤드록", "대미지와 후속 취약", { damage: 11, vulnerable: 1 }),
-    control("슬리퍼 프레셔", "지속 약화와 안정", { weak: 4, calm: 5 }),
-    flow("스냅 헤드록", "콤보와 카드 순환", {
-      damage: 8,
-      draw: 1,
-      extraCombo: 1,
-    }),
+    force("크랭크 헤드록", "취약으로 후속 공격 준비", { vulnerable: 2 }),
+    control("슬리퍼 프레셔", "지속 약화와 안정", { weak: 4, block: 4 }),
+    flow("스냅 헤드록", "제압하며 두 장 드로우", { draw: 2 }),
   ],
   quickdraw: [
     force("액셀러레이터", "폭발적인 행동 자원", { energy: 2 }),
@@ -353,58 +349,24 @@ export const CARD_UPGRADE_PATHS = {
     }),
   ],
   armbar: [
-    force("익스텐디드 암바", "취약 상태의 화력 준비", {
-      damage: 10,
-      vulnerable: 3,
-    }),
-    control("암 트랩", "약화와 방어 확보", { damage: 6, weak: 2, block: 4 }),
-    flow("스위치 암바", "관절기 연계와 드로우", {
-      damage: 7,
-      draw: 1,
-      extraCombo: 1,
-    }),
+    force("익스텐디드 암바", "깊은 취약으로 후속타 준비", { vulnerable: 4 }),
+    control("암 트랩", "패를 채우며 약화와 방어", { weak: 2, block: 3 }),
+    flow("스위치 암바", "세 장에서 다음 기술 찾기", { draw: 3 }),
   ],
   kimura: [
-    force("더블 토크", "피해와 강한 취약", { damage: 11, vulnerable: 2 }),
-    control("숄더 락다운", "약화로 공격 억제", {
-      damage: 7,
-      weak: 3,
-      block: 4,
-    }),
-    flow("기무라 스위치", "다음 홀드로 전환", {
-      damage: 8,
-      draw: 1,
-      nextAttack: 3,
-    }),
+    force("더블 토크", "다음 카드 코스트 2 감소", { nextCardDiscount: 2 }),
+    control("숄더 락다운", "약화와 방어로 전개 보호", { weak: 3, block: 5 }),
+    flow("기무라 스위치", "할인할 다음 카드 두 장 확보", { draw: 2 }),
   ],
   americana: [
-    force("키록 프레셔", "관절 압박과 취약", { damage: 10, vulnerable: 1 }),
-    control("마운트 컨트롤", "방어와 장기 약화", {
-      damage: 6,
-      block: 10,
-      weak: 2,
-    }),
-    flow("키록 스위치", "홀드 이후 카드 보충", {
-      damage: 7,
-      block: 6,
-      draw: 1,
-    }),
+    force("키록 프레셔", "행동력 2로 공세 재개", { energy: 2 }),
+    control("마운트 컨트롤", "행동력을 되찾으며 방어 12", { block: 12 }),
+    flow("키록 스위치", "행동력 회복과 두 장 드로우", { draw: 2 }),
   ],
   anklelock: [
-    force("앵클 크랭크", "하체를 무너뜨리는 취약", {
-      damage: 11,
-      vulnerable: 1,
-    }),
-    control("레그 어레스트", "길게 남기는 약화", {
-      damage: 7,
-      weak: 4,
-      calm: 8,
-    }),
-    flow("앵클 스위치", "발목 제어 이후 연계", {
-      damage: 8,
-      draw: 1,
-      extraCombo: 1,
-    }),
+    force("앵클 크랭크", "약화에 취약을 더하는 제압", { vulnerable: 2 }),
+    control("레그 어레스트", "긴 약화와 압박 해소", { weak: 4, calm: 6 }),
+    flow("앵클 스위치", "발목 제어 이후 두 장 드로우", { draw: 2 }),
   ],
   kneebar: [
     force("스트레이트 니바", "취약을 극대화", { damage: 20, vulnerable: 3 }),
@@ -420,18 +382,12 @@ export const CARD_UPGRADE_PATHS = {
     }),
   ],
   heelhook: [
-    force("딥 힐훅", "큰 취약으로 후속 폭발", { damage: 9, vulnerable: 4 }),
-    control("레그 엔탱글", "압도적인 약화와 방어", {
-      damage: 5,
-      weak: 5,
-      block: 7,
+    force("딥 힐훅", "취약과 코스트 2 할인", {
+      vulnerable: 3,
+      nextCardDiscount: 2,
     }),
-    flow(
-      "캐치 앤 릴리스",
-      "에너지 없이 약화 전개",
-      { damage: 5, draw: 1 },
-      { cost: 0 },
-    ),
+    control("레그 엔탱글", "압도적인 약화와 방어", { weak: 4, block: 7 }),
+    flow("캐치 앤 릴리스", "무료 제압 후 두 장 드로우", { draw: 2 }),
   ],
   figurefour: [
     force("피겨 포 크랭크", "관절 압박과 취약", { damage: 19, vulnerable: 2 }),
@@ -482,9 +438,9 @@ export const CARD_UPGRADE_PATHS = {
     }),
   ],
   collartie: [
-    force("칼라 브레이커", "다음 한 방을 준비", { nextAttack: 9, hype: 1 }),
+    force("칼라 브레이커", "다음 카드 코스트 2 감소", { nextCardDiscount: 2 }),
     control("칼라 쉴드", "무료 방어와 약화", { block: 9, weak: 1 }),
-    flow("칼라 스위치", "준비와 패 교체", { block: 4, nextAttack: 4, draw: 1 }),
+    flow("칼라 스위치", "할인과 패 교체", { block: 4, draw: 1 }),
   ],
   armdrag: [
     force("암 드라이버", "무료 공격과 취약", { damage: 7, vulnerable: 1 }),
@@ -500,19 +456,9 @@ export const CARD_UPGRADE_PATHS = {
     }),
   ],
   waistlock: [
-    force("데드리프트 셋업", "다음 던지기의 화력", {
-      block: 8,
-      nextAttack: 13,
-    }),
-    control("웨이스트 앵커", "상대 진입을 견디는 준비", {
-      block: 13,
-      counterBlock: 5,
-    }),
-    flow("웨이스트 스위치", "후속 기술을 더 찾기", {
-      block: 8,
-      draw: 2,
-      nextAttack: 7,
-    }),
+    force("데드리프트 셋업", "행동력 3으로 큰 기술 준비", { energy: 3 }),
+    control("웨이스트 앵커", "행동력과 방어 13 확보", { block: 13 }),
+    flow("웨이스트 스위치", "행동력과 후속 기술 두 장 확보", { draw: 2 }),
   ],
 };
 

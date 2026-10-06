@@ -191,7 +191,7 @@ test("arcade throws lift the defender before mat contact while locks stay plante
     });
   };
   const slam = fighterImpactFrames(impactFor("powerbomb"), "enemy");
-  const locked = fighterImpactFrames(impactFor("armbar"), "enemy");
+  const locked = fighterImpactFrames(impactFor("kneebar"), "enemy");
   const blocked = fighterImpactFrames(impactFor("powerbomb", 100), "enemy");
   assert.ok(slam.y[1] < -20 && slam.y[2] > 10, "lift precedes mat contact");
   assert.ok(
@@ -206,6 +206,17 @@ test("arcade throws lift the defender before mat contact while locks stay plante
     Math.max(...slam.rotate.map(Math.abs)) >
       Math.max(...locked.rotate.map(Math.abs)),
   );
+  for (const id of [
+    "headlock",
+    "armbar",
+    "kimura",
+    "americana",
+    "anklelock",
+    "heelhook",
+    "collartie",
+    "waistlock",
+  ])
+    assert.equal(impactFor(id), null, `${id} prepares without a damage impact`);
 });
 
 test("guard braces gently while damage has heavier recoil, and every finite channel returns to rest", () => {
