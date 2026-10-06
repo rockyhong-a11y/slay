@@ -245,6 +245,14 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
               행동력 1로 사용할 수 있습니다. 할인된 손패에는 낮아진 비용과 감소
               표시가 나타납니다. 도감과 덱 목록은 기본 비용을 표시합니다.
             </p>
+            <p>
+              SD 관절기 10종을 경기 보상과 프로 숍에서 추가로 획득할 수
+              있습니다. 오모플라타는 큰 기술의 비용을 줄이고, 옥토퍼스 홀드는
+              행동력을 회복하며, 서프보드 스트레치는 방어와 드로우를 함께
+              제공합니다. 도감의 <strong>SD 유틸리티</strong> 필터에서 10종과
+              각각의 강화 3분기를 비교하세요. 원본·SD 전투 모드 모두 사용할 수
+              있습니다.
+            </p>
           </RuleSection>
           <RuleSection
             id="card-piles"
@@ -485,12 +493,18 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
                 <dt>카드 강화</dt>
                 <dd>
                   카드 한 장마다 한 번 영구 강화합니다. 기본 카드 5종은 기본기
-                  숙련, 나머지 기술 44종은 각각 3가지 특화 중 하나를 직접
-                  선택합니다. 화력·제압·순환의 효과와 행동력 비용을 비교한 뒤
-                  확정하세요. 같은 기술을 두 장 갖고 있다면 서로 다르게 강화할
-                  수 있습니다. 라커룸 또는 상점에서 카드 선택 → 강화 방향
-                  미리보기 → 강화 확정 순서로 진행합니다. 확정 전에는 휴식이나
-                  크레딧을 소모하지 않습니다. 악몽은 강화할 수 없습니다.
+                  숙련, 나머지 기술{" "}
+                  {
+                    Object.keys(CARDS).filter(
+                      (id) => getCardUpgradeOptions(id).length === 3,
+                    ).length
+                  }
+                  종은 각각 3가지 특화 중 하나를 직접 선택합니다.
+                  화력·제압·순환의 효과와 행동력 비용을 비교한 뒤 확정하세요.
+                  같은 기술을 두 장 갖고 있다면 서로 다르게 강화할 수 있습니다.
+                  라커룸 또는 상점에서 카드 선택 → 강화 방향 미리보기 → 강화
+                  확정 순서로 진행합니다. 확정 전에는 휴식이나 크레딧을 소모하지
+                  않습니다. 악몽은 강화할 수 없습니다.
                 </dd>
               </div>
               <div>
@@ -691,7 +705,7 @@ function LibraryCard({ card, onSelect }) {
       type="button"
       className={`knowledge-card rarity-${card.rarity}`}
       onClick={() => onSelect(card.id)}
-      aria-label={`${card.name}, ${card.discipline}${card.utility ? " · 유틸리티" : ""}, 행동력 ${card.cost}. 상세 보기`}
+      aria-label={`${card.name}, ${card.discipline}${card.utility ? (card.artStyle === "sd2d" ? " · SD 유틸리티" : " · 유틸리티") : ""}, 행동력 ${card.cost}. 상세 보기`}
     >
       <div className="knowledge-card-image">
         <Artwork art={card.art} alt={card.alt} loading="lazy" />
@@ -706,7 +720,11 @@ function LibraryCard({ card, onSelect }) {
         <h2>{card.name}</h2>
         <div className="knowledge-card-tags">
           <span>{CARD_TYPE_LABELS[card.type]}</span>
-          {card.utility && <span className="utility-tag">유틸리티</span>}
+          {card.utility && (
+            <span className="utility-tag">
+              {card.artStyle === "sd2d" ? "SD 유틸리티" : "유틸리티"}
+            </span>
+          )}
           <span>{CARD_RARITY_LABELS[card.rarity]}</span>
           {card.exhaust && <span className="exhaust-tag">소멸</span>}
           {card.upgradeLabel && <span>{card.upgradeLabel}</span>}
@@ -771,7 +789,11 @@ function CardDetail({ id, onClose }) {
             행동력 {base.cost}
           </span>
           <span>{CARD_TYPE_LABELS[base.type]}</span>
-          {base.utility && <span className="utility-tag">유틸리티</span>}
+          {base.utility && (
+            <span className="utility-tag">
+              {base.artStyle === "sd2d" ? "SD 유틸리티" : "유틸리티"}
+            </span>
+          )}
           <span>{CARD_RARITY_LABELS[base.rarity]}</span>
           <span>{base.exhaust ? "사용 후 소멸" : "사용 후 버린 카드"}</span>
         </div>
@@ -947,6 +969,7 @@ export function CardLibraryPage({ onOpenGuide, onBack }) {
             <select value={type} onChange={(e) => setType(e.target.value)}>
               <option value="all">모든 타입</option>
               <option value="utility">유틸리티</option>
+              <option value="sdutility">SD 유틸리티</option>
               {Object.entries(CARD_TYPE_LABELS).map(([id, name]) => (
                 <option key={id} value={id}>
                   {name}

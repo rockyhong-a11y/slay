@@ -74,7 +74,7 @@ function openingReward(seed) {
 
 test("25 named grappling techniques preserve the original five starting decks and v1 save shape", () => {
   assert.equal(NEW_CARDS.length, 25);
-  assert.equal(Object.keys(CARDS).length, 50);
+  assert.equal(Object.keys(CARDS).length, 60);
   assert.equal(new Set(NEW_CARDS).size, 25);
   const profiles = new Set();
   for (const id of NEW_CARDS) {
@@ -111,7 +111,7 @@ test("25 named grappling techniques preserve the original five starting decks an
     25,
     "each new move has a distinct tactical profile",
   );
-  assert.equal(getLibraryCards({ discipline: "submission" }).length, 13);
+  assert.equal(getLibraryCards({ discipline: "submission" }).length, 23);
   for (const actor of Object.keys(WRESTLERS)) {
     const state = newRun(actor);
     assert.equal(state.version, 1);
@@ -122,7 +122,7 @@ test("25 named grappling techniques preserve the original five starting decks an
   }
 });
 
-test("all 50 cards resolve base and upgraded effects for every wrestler with accurate damage previews and immutable saves", () => {
+test("all 60 cards resolve base and upgraded effects for every wrestler with accurate damage previews and immutable saves", () => {
   for (const actor of Object.keys(WRESTLERS)) {
     for (const id of Object.keys(CARDS)) {
       for (const upgraded of [false, true]) {

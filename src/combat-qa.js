@@ -10,32 +10,46 @@ export function createCombatQA(profile = {}) {
     ? options.actor
     : "viper";
   const state = newRun(actor, 20903);
-  const utility = options.impact === "utility";
-  const ids = utility
+  const sdUtility = options.impact === "sdutility";
+  const utility = options.impact === "utility" || sdUtility;
+  const ids = sdUtility
     ? [
-        "collartie",
-        "powerbomb",
-        "waistlock",
-        "armbar",
-        "kimura",
-        "americana",
-        "heelhook",
-        "headlock",
-        "anklelock",
-        "guard",
+        "wristlock",
+        "hammerlock",
+        "omoplata",
+        "octopushold",
+        "surfboard",
+        "stf",
+        "toehold",
+        "calfslicer",
+        "bowandarrow",
+        "abdominalstretch",
       ]
-    : [
-        "strike",
-        "guard",
-        "headlock",
-        "powerbomb",
-        "armbar",
-        "sitoutpowerbomb",
-        "sidewalkslam",
-        "kimura",
-        "anklelock",
-        "championship",
-      ];
+    : utility
+      ? [
+          "collartie",
+          "powerbomb",
+          "waistlock",
+          "armbar",
+          "kimura",
+          "americana",
+          "heelhook",
+          "headlock",
+          "anklelock",
+          "guard",
+        ]
+      : [
+          "strike",
+          "guard",
+          "headlock",
+          "powerbomb",
+          "armbar",
+          "sitoutpowerbomb",
+          "sidewalkslam",
+          "kimura",
+          "anklelock",
+          "championship",
+        ];
   state.hand = ids
     .slice(0, count)
     .map((id, index) => ({ id, uid: `qa-hand-${index + 1}`, upgraded: false }));

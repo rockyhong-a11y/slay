@@ -460,6 +460,67 @@ export const CARD_UPGRADE_PATHS = {
     control("웨이스트 앵커", "행동력과 방어 13 확보", { block: 13 }),
     flow("웨이스트 스위치", "행동력과 후속 기술 두 장 확보", { draw: 2 }),
   ],
+  wristlock: [
+    force("리스트 레버", "큰 기술을 여는 코스트 2 할인", {
+      nextCardDiscount: 2,
+    }),
+    control("손목 봉쇄", "약화와 방어로 안전한 준비", { weak: 2, block: 4 }),
+    flow("리스트 패스", "할인할 후속 카드 확보", { draw: 1 }),
+  ],
+  hammerlock: [
+    force("해머 프레셔", "방어하며 후속타의 취약 준비", { vulnerable: 2 }),
+    control("숄더 실드", "두터운 방어와 약화", { block: 10, weak: 1 }),
+    flow("해머 스위치", "방어하며 두 장 드로우", { draw: 2 }),
+  ],
+  omoplata: [
+    force("딥 오모플라타", "취약과 코스트 3 할인", {
+      nextCardDiscount: 3,
+      vulnerable: 2,
+    }),
+    control("숄더 케이지", "할인을 확보하며 방어와 약화", {
+      block: 6,
+      weak: 2,
+    }),
+    flow("오모플라타 롤", "할인할 다음 기술 두 장 확보", { draw: 2 }),
+  ],
+  octopushold: [
+    force("옥토퍼스 서지", "행동력 3으로 공세 확장", { energy: 3 }),
+    control("텐타클 가드", "행동력과 방어 및 압박 해소", {
+      block: 7,
+      calm: 10,
+    }),
+    flow("옥토퍼스 릴레이", "행동력을 새 카드로 연결", { draw: 2 }),
+  ],
+  surfboard: [
+    force("서프보드 텐션", "패를 채우며 다음 공격 강화", { nextAttack: 5 }),
+    control("서프보드 크래들", "방어와 압박 해소", { block: 9, calm: 5 }),
+    flow("서프보드 웨이브", "세 장에서 후속 기술 찾기", { draw: 3 }),
+  ],
+  stf: [
+    force("STF 드라이브", "약화를 유지하며 행동력 2", { energy: 2 }),
+    control("STF 락다운", "긴 약화와 안정적인 방어", { weak: 4, block: 5 }),
+    flow("STF 트랜지션", "행동력 회복과 두 장 드로우", { draw: 2 }),
+  ],
+  toehold: [
+    force("토 크랭크", "취약으로 후속 공격 준비", { vulnerable: 2 }),
+    control("토 앵커", "무료 약화와 방어", { weak: 3, block: 3 }),
+    flow("토 스위치", "무료 제압과 두 장 드로우", { draw: 2 }),
+  ],
+  calfslicer: [
+    force("카프 레버", "약화와 코스트 2 할인", { nextCardDiscount: 2 }),
+    control("카프 락다운", "더 긴 약화와 방어 확보", { weak: 4, block: 5 }),
+    flow("카프 릴리즈", "할인을 준비하며 두 장 드로우", { draw: 2 }),
+  ],
+  bowandarrow: [
+    force("풀 드로 보우", "행동력 4로 큰 공세 준비", { energy: 4 }),
+    control("보우 브레이스", "행동력을 채우며 방어 16", { block: 16, calm: 6 }),
+    flow("애로 릴레이", "행동력과 세 장으로 재정비", { draw: 3 }),
+  ],
+  abdominalstretch: [
+    force("코브라 텐션", "열기 3으로 피니셔 준비", { hype: 3 }),
+    control("코어 앵커", "패를 보충하며 방어와 안정", { block: 7, calm: 5 }),
+    flow("코어 트랜지션", "열기를 쌓으며 세 장 드로우", { draw: 3 }),
+  ],
 };
 
 export function getUpgradePath(id, pathId) {

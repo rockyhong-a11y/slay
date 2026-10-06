@@ -45,7 +45,7 @@ test("ten selectable adults expose distinct strategies and their exact eleven-ca
     "tempest",
     "onyx",
   ]);
-  assert.equal(Object.keys(CARDS).length, 50);
+  assert.equal(Object.keys(CARDS).length, 60);
   assert.equal(new Set(Object.values(WRESTLERS).map((w) => w.role)).size, 10);
   for (const [id, w] of Object.entries(WRESTLERS)) {
     assert.ok(w.age >= 18);

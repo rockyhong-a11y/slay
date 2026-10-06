@@ -44,8 +44,8 @@ function replay(id, block = 0) {
 const kinds = (cue) =>
   techniqueEffectLayers(cue.effect, cue.camera, cue).map((x) => x.kind);
 
-test("all 50 cards have an explicit unique effect profile matching their physical discipline", () => {
-  assert.equal(Object.keys(CARDS).length, 50);
+test("all 60 cards have an explicit unique effect profile matching their physical discipline", () => {
+  assert.equal(Object.keys(CARDS).length, 60);
   assert.deepEqual(
     Object.keys(CARD_EFFECT_PROFILES).sort(),
     Object.keys(CARDS).sort(),
@@ -71,7 +71,7 @@ test("all 50 cards have an explicit unique effect profile matching their physica
     );
     ids.add(effect.id);
   }
-  assert.equal(ids.size, 50);
+  assert.equal(ids.size, 60);
 });
 
 test("every card produces finite serializable layers that fade out and preserve the resolved run", () => {

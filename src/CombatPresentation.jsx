@@ -147,6 +147,8 @@ export function TechniqueScene({
   contactCallback.current = onContact;
   const [crowdVisible, setCrowdVisible] = useState(false);
   const still = reduced || shortened;
+  const sdIllustration = cue.artStyle === "sd2d";
+  const sdStage = displayMode === "sd" && !sdIllustration;
   const duration = still ? 650 : cue.duration;
   const playback = useMemo(
     () => cuePlayback(cue, duration, performance.now()),
@@ -210,7 +212,8 @@ export function TechniqueScene({
   }, [cue.id, duration, still, camera, cue.crowd, playback, delivered]);
   const scene = (
     <motion.div
-      className={`technique-scene scene-${cue.disciplineSlug} scene-effect-${effect.family} ${cue.finisher ? "scene-finisher" : ""} ${still ? "scene-still" : ""} ${displayMode === "sd" ? "scene-sd" : ""}`}
+      className={`technique-scene scene-${cue.disciplineSlug} scene-effect-${effect.family} ${cue.finisher ? "scene-finisher" : ""} ${still ? "scene-still" : ""} ${sdStage ? "scene-sd" : ""} ${sdIllustration ? "scene-sd-illustration" : ""}`}
+      data-art-style={cue.artStyle}
       data-card={cue.cardId}
       data-motion={camera.kind}
       data-duration={duration}
@@ -250,7 +253,10 @@ export function TechniqueScene({
       <div className="technique-scene-visual" aria-hidden="true">
         <div className="technique-art-stage">
           <div className="technique-art-window" ref={artWindow}>
-            {displayMode === "sd" ? (
+            {sdIllustration && (
+              <span className="sd-technique-edition">SD · 유틸리티</span>
+            )}
+            {sdStage ? (
               <SDCombatStage
                 player={playerActor}
                 enemy={enemyActor}

@@ -186,6 +186,16 @@ const cameraShots = {
 };
 
 const techniqueCameras = {
+  wristlock: ["hold", { pan: 0.4, lift: 0.4, rotation: 0.25 }],
+  hammerlock: ["hold", { pan: -0.4, lift: 0.3, rotation: -0.25 }],
+  omoplata: ["hold", { pan: 0.55, lift: -0.25, rotation: 0.3 }],
+  octopushold: ["hold", { pan: -0.35, lift: 0.65, rotation: -0.3 }],
+  surfboard: ["hold", { pan: 0.2, lift: 0.4, rotation: 0.2 }],
+  stf: ["hold", { pan: -0.45, lift: -0.2, rotation: -0.2 }],
+  toehold: ["hold", { pan: 0.35, lift: -0.35, rotation: 0.2 }],
+  calfslicer: ["hold", { pan: -0.3, lift: -0.4, rotation: -0.2 }],
+  bowandarrow: ["hold", { pan: 0.3, lift: 0.3, rotation: 0.4 }],
+  abdominalstretch: ["hold", { pan: -0.2, lift: 0.55, rotation: -0.25 }],
   strike: ["strike", { pan: 0.75, origin: "58% 42%" }],
   redline: ["strike", { pan: 1.3, origin: "60% 42%" }],
   shoulder: ["strike", { lift: 0.65, origin: "60% 56%" }],
@@ -254,6 +264,16 @@ const portraitFields = {
   nightmare: 0.72,
 };
 const portraitFocus = {
+  wristlock: { field: 0.96, center: [0.5, 0.5] },
+  hammerlock: { field: 0.96, center: [0.5, 0.5] },
+  omoplata: { field: 1, center: [0.5, 0.5] },
+  octopushold: { field: 0.96, center: [0.5, 0.5] },
+  surfboard: { field: 1, center: [0.5, 0.5] },
+  stf: { field: 1, center: [0.5, 0.5] },
+  toehold: { field: 1, center: [0.5, 0.5] },
+  calfslicer: { field: 1, center: [0.5, 0.5] },
+  bowandarrow: { field: 1, center: [0.5, 0.5] },
+  abdominalstretch: { field: 0.96, center: [0.5, 0.5] },
   headlock: { field: 0.6, center: [0.51, 0.36] },
   armbar: { field: 0.88, center: [0.6, 0.62] },
   sidewalkslam: { field: 0.8, center: [0.44, 0.4] },
@@ -670,9 +690,18 @@ export function createCardCue(before, after, instance) {
     camera.pressure = false;
     camera.phases = ["SETUP", "CONTROL", "READY"];
     effect.family = "tactics";
-    effect.variant = "utility-control";
-    effect.label = "주도권 확보 · 다음 기술 준비";
+    effect.variant =
+      card.artStyle === "sd2d"
+        ? `utility-${effect.variant}`
+        : "utility-control";
+    if (card.artStyle !== "sd2d") effect.label = "주도권 확보 · 다음 기술 준비";
     effect.draw = drawn > 0;
+    if (card.artStyle === "sd2d") {
+      // These paired SD scenes already fill the frame. A restrained push-in
+      // keeps both faces and the complete joint hold visible on small screens.
+      camera.scale = camera.scale.map((value) => 1 + (value - 1) * 0.22);
+      camera.portrait.field = 1;
+    }
   }
   return {
     cardId: card.id,
@@ -680,6 +709,7 @@ export function createCardCue(before, after, instance) {
     nameEn: card.nameEn,
     type: card.type,
     art: detail.art,
+    artStyle: card.artStyle || "classic",
     alt: detail.alt,
     discipline: detail.discipline,
     disciplineSlug: detail.disciplineSlug,

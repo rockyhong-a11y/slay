@@ -1,0 +1,84 @@
+[
+  {
+    "id": "wristlock",
+    "tool": "built-in image_gen",
+    "source": "$CODEX_HOME/generated_images/01a11361-476c-7702-9b05-5cfdcc1e2c75/exec-bf85717b-83ec-443c-be46-4bfe0220a289.png",
+    "output": "public/assets/cards/wristlock.webp",
+    "original": "artifacts/card-art-sources/wristlock.png",
+    "actor": "viper",
+    "targetFighter": "raven",
+    "target": [0.43, 0.43],
+    "rosterReferences": [
+      "public/assets/sd2d/viper.png",
+      "public/assets/sd2d/raven.png"
+    ],
+    "prompt": "Use case: illustration-story. Create one premium hand-drawn 2D SD/chibi professional wrestling trading-card illustration, landscape 1536x1024, 3:2. TWO adult women pro wrestlers with super-deformed big heads and small sturdy muscular athletic bodies, roughly 2.8 heads tall, crisp ink linework and rich anime cel shading, NOT 3D. Full-bleed action illustration only, absolutely no letters/text/logo/card frame/watermark. Inside a dark crowded arena, red ring ropes and warm overhead spotlights, pale blue-gray mat. Medium-wide close action showing both full figures and both readable faces.\nTechnique must be an unmistakable STANDING WRISTLOCK: Viper on viewer left controls Raven's extended right wrist with BOTH bare hands at waist/chest level, twisting the hand outward while Raven's elbow stays slightly bent; the seized forearm is clearly connected from Raven's shoulder through elbow to her wrist, no broken joints. Raven leans forward slightly under controlled pressure, free left hand reaching toward her trapped wrist. Both stand on two clearly visible boots. Two bodies, four arms, four legs, physically connected anatomy, clear hand contact.\nViper: adult blonde woman with twin long thick braids, red hair ties, blue eyes, focused confident face, NO beret/hat, NO gloves, emerald green sleeveless high-neck one-piece wrestling singlet with a black belt and silver buckle, black knee pads, bright red lace-up wrestling boots. Raven: adult long dark crimson red-haired woman, gray eyes, determined strained face, black sports top, black full-length athletic leggings with red side stripes, black fingerless gloves, black/red knee pads and black tall wrestling boots with red laces. Athletic modest sports gear, energetic competitive sports action, no sexual framing, no gore or visible injury. Strong silhouette and readable wrist grip suitable for small card thumbnail.",
+    "review": "Full generated image visually inspected: two readable faces; distinct connected athlete bodies; recognizable technique silhouette; costume and 2D SD style match roster; no text, borders or 3D rendering."
+  },
+  {
+    "id": "hammerlock",
+    "tool": "built-in image_gen",
+    "source": "$CODEX_HOME/generated_images/01a11361-476c-7702-9b05-5cfdcc1e2c75/exec-5226ad3f-804f-473a-adcf-33b9e45e8ed9.png",
+    "output": "public/assets/cards/hammerlock.webp",
+    "original": "artifacts/card-art-sources/hammerlock.png",
+    "actor": "valkyrie",
+    "targetFighter": "nova",
+    "target": [0.5, 0.43],
+    "rosterReferences": [
+      "public/assets/sd2d/valkyrie.png",
+      "public/assets/sd2d/nova.png"
+    ],
+    "prompt": "Use case: illustration-story. Create ONE premium 2D SD/chibi professional wrestling card action illustration. Landscape 1536x1024, 3:2, full bleed with NO text, logo, UI, border or watermark. Exactly TWO adult pro-wrestling women, expressive big chibi heads and short sturdy athletic bodies approximately 2.8 heads tall, crisp hand-inked anime linework, vibrant cel shading, not 3D. Dark arena with dense spectators, warm overhead spotlights, red ring ropes, pale gray-blue wrestling mat. Centered composition with clear margins around both whole bodies for camera movement, both faces visible.\nHAMMERLOCK action, readable side/front three-quarter view: blonde Valkyrie stands behind and slightly left of brunette Nova, controlling Nova's right wrist behind Nova's lower back. Nova's right upper arm points downward along her side, elbow bent naturally about 90 degrees, forearm folded inward across her OWN lower back. Valkyrie's near white-wrapped hand grips that trapped wrist, her other hand steadies Nova's bent elbow. Nova bends slightly forward and turns her face toward viewer, her free left hand extended forward for balance. Show the trapped arm and two distinct hands clearly at hip height. Both wrestlers balanced on two grounded boots, four arms four legs only, anatomically intact continuous bodies, no dislocations.\nValkyrie: adult fair-skinned blonde woman with chin-length bob and blue eyes, concentrated confident expression, navy racerback sports top with white trim, navy athletic wrestling trunks with twin white side stripes, white tape around hands and wrists, navy knee pads, navy-and-white tall lace-up wrestling boots. Nova: adult tan-skinned long dark brown hair, brown eyes, small silver hoop earrings, black sports top and black wrestling trunks with bright cyan side accents, black fingerless gloves and red/black wrist cuffs, black knee pads with small round red center, black boots with red accents. Their muscles are stylized compact athlete muscles; nonsexual energetic sports scene. No gore, injury, extra people in ring, or duplicated limbs. Technique and facial reactions instantly readable as chibi game card art.",
+    "revisionPrompt": "Edit this wrestling illustration, preserving the exact 2D SD/chibi style, both adult women's faces/hair/outfits, arena, lighting and 3:2 format. Correct ONLY the wrestling technique and matching camera view: this must clearly be a HAMMERLOCK with Nova's right elbow bent about 90 degrees and her right forearm pressed diagonally across her OWN LOWER BACK, her glove/wrist between her shoulder blades and belt. The existing extended straight arm is incorrect: reposition it into the folded behind-the-back hammerlock. Use a rear three-quarter camera angle to visibly show Nova's back and bent elbow; Nova turns her head over her left shoulder toward camera so we can still see her face. Blonde Valkyrie stands behind Nova, grasping the trapped wrist in one white-wrapped hand and stabilizing the bent elbow with her other white-wrapped hand. Nova's free hand reaches forward. Both intact full bodies including four boots visible, no detached limbs, no additional limbs or people. Clean readable arm topology and grip. Leave wide safe margins. No text/UI/frame/watermarks.",
+    "discardedSource": "$CODEX_HOME/generated_images/01a11361-476c-7702-9b05-5cfdcc1e2c75/exec-117b668d-7728-4c67-83cc-5b16c536c298.png",
+    "review": "Full generated image visually inspected: two readable faces; distinct connected athlete bodies; recognizable technique silhouette; costume and 2D SD style match roster; no text, borders or 3D rendering."
+  },
+  {
+    "id": "omoplata",
+    "tool": "built-in image_gen",
+    "source": "$CODEX_HOME/generated_images/01a11361-476c-7702-9b05-5cfdcc1e2c75/exec-6e5a3bcb-7b1e-45a1-96c7-ac3504a5ef21.png",
+    "output": "public/assets/cards/omoplata.webp",
+    "original": "artifacts/card-art-sources/omoplata.png",
+    "actor": "lynx",
+    "targetFighter": "ember",
+    "target": [0.52, 0.47],
+    "rosterReferences": [
+      "public/assets/sd2d/lynx.png",
+      "public/assets/sd2d/ember.png"
+    ],
+    "prompt": "Use case: illustration-story. ONE premium 2D SD/chibi pro-wrestling card illustration, landscape 1536x1024, 3:2. Exactly two ADULT women athletes with large expressive chibi heads, sturdy muscular short bodies ~2.8 heads tall, crisp anime ink outlines and layered vibrant cel-shading. No 3D. Full bleed, no text, watermark, logo, UI or frame. Dark packed indoor arena, red ring ropes, warm gold spotlights, clean gray-blue mat. Camera at waist-height side three-quarter view, centered action with generous safe margins and BOTH complete bodies clearly readable.\nThe named move is OMOPLATA, a seated leg-over-shoulder joint lock. Silver-haired Lynx is seated upright on the mat at viewer LEFT, facing the same direction as opponent Ember. Ember kneels at viewer RIGHT, leaning forward low on her free hand, her head turned sideways enough to see her determined strained face. Lynx's near leg comes up and passes OVER Ember's trapped near shoulder from the back, the purple knee pad lies on top of that shoulder, the purple boot bends back down in front of Ember's chest. Ember's trapped arm is folded behind her back between Lynx's thighs. Lynx's other leg is bent on the mat in front of her to secure the figure; Lynx leans slightly forward with one gloved hand controlling Ember's wrist and the other controlling Ember's far hip. Clearly render this seated shoulder lock with the leg over shoulder; not a kick, headscissors, armbar, choke, or a pile of bodies. Four legs, four arms total with intact connected joints.\nLynx: adult tan-skinned woman, short smooth asymmetrical silver bob haircut, green eyes, determined calm expression, sleeveless high-neck black sports crop top with vertical purple side panels, matching black wrestling trunks with purple stripes, black fingerless gloves, black-purple knee pads, purple-laced tall black-purple boots. Ember: adult woman, voluminous long wavy dark brown hair, amber eyes, athletic black sports top and trunks trimmed red and gold, black fingerless gloves with red wrist cuffs, black-red knee pads, black wrestling boots with gold trim and gold laces. Competitive nonsexual sports composition, no gore/injury, no other fighters. Make the distinct silver and brown heads easy to read.",
+    "review": "Full generated image visually inspected: two readable faces; distinct connected athlete bodies; recognizable technique silhouette; costume and 2D SD style match roster; no text, borders or 3D rendering."
+  },
+  {
+    "id": "octopushold",
+    "tool": "built-in image_gen",
+    "source": "$CODEX_HOME/generated_images/01a11361-476c-7702-9b05-5cfdcc1e2c75/exec-5eb3b981-4e25-4ed1-b202-a8ee50621c5e.png",
+    "output": "public/assets/cards/octopushold.webp",
+    "original": "artifacts/card-art-sources/octopushold.png",
+    "actor": "nova",
+    "targetFighter": "atlas",
+    "target": [0.53, 0.39],
+    "rosterReferences": [
+      "public/assets/sd2d/nova.png",
+      "public/assets/sd2d/atlas.png"
+    ],
+    "prompt": "Use case: illustration-story. Create ONE premium 2D SD/chibi wrestling game card illustration, landscape 1536x1024 (3:2), no border/text/logo/watermark/UI. Exactly two ADULT women professional wrestlers with expressive oversized chibi heads, compact muscular bodies about 2.8 heads tall, crisp anime ink linework, rich cel shading, no 3D or photorealism. Full figures centered with safe margins, both faces and every boot in frame. Dark packed arena, red ring ropes, warm dramatic overhead spotlights, cool blue-gray mat.\nNamed technique: STANDING OCTOPUS HOLD / octopus stretch. Make an unmistakable professional-wrestling octopus stretch with distinct, anatomically connected figures. Short orange-haired Atlas remains standing at the front, feet widely planted, bending her torso forward diagonally and grimacing competitively. Long brunette-haired Nova is draped sideways across Atlas's upper back at the rear. Nova's near leg hooks OVER the back of Atlas's neck/near shoulder, with Nova's red-black boot dangling in front of Atlas's upper chest. Nova's other leg hangs down alongside Atlas's hip and curls around Atlas's near thigh, controlling her base. Nova uses both gloved hands to capture Atlas's far wrist and pull that arm backward/upward. Atlas's free hand braces on her own knee. Nova's face is visible above Atlas's shoulder, focused and confident; Atlas's face turned toward viewer also visible. Two torsos, two heads, four arms, four legs; trace each limb clearly. No detached leg, extra boots, joint dislocation or hidden extra body.\nNova: adult tan-skinned woman, long flowing dark brown hair, brown eyes, small silver hoop earrings, black sports top and black wrestling trunks with bright cyan side stripes, black fingerless gloves and red-black wrist cuffs, black knee pads with small red circle, tall black wrestling boots with red accents. Atlas: adult sturdy orange-haired woman, short tousled bright orange pixie hair, amber eyes, black sports top and trunks with bold orange stripes, black fingerless gloves, black knee pads with orange trim, black boots with orange laces and orange trim. Serious yet charming SD sports action; athletic nonsexual framing, no gore, no injuries. Focus on readable body control, contrasting hair colors, two faces and leg-over-shoulder silhouette.",
+    "review": "Full generated image visually inspected: two readable faces; distinct connected athlete bodies; recognizable technique silhouette; costume and 2D SD style match roster; no text, borders or 3D rendering."
+  },
+  {
+    "id": "surfboard",
+    "tool": "built-in image_gen",
+    "source": "$CODEX_HOME/generated_images/01a11361-476c-7702-9b05-5cfdcc1e2c75/exec-25a9a32a-9a69-43d2-a63a-63651f214e1e.png",
+    "output": "public/assets/cards/surfboard.webp",
+    "original": "artifacts/card-art-sources/surfboard.png",
+    "actor": "seraph",
+    "targetFighter": "onyx",
+    "target": [0.52, 0.44],
+    "rosterReferences": [
+      "public/assets/sd2d/seraph.png",
+      "public/assets/sd2d/onyx.png"
+    ],
+    "prompt": "Use case: illustration-story. Create ONE premium 2D SD/chibi pro-wrestling game card illustration, landscape 1536x1024, 3:2. Two ADULT women athletes, oversized expressive chibi heads and sturdy compact athletic bodies about 2.8 heads tall. Crisp anime ink drawing, vibrant rich cel shading, polished hand-drawn illustration, NOT 3D. Full bleed no text/logo/UI/border/watermark. Centered full figures with generous safe margins, arena with dark densely packed spectators, red ring ropes, warm gold overhead spotlights and a clean cool blue-gray mat.\nTechnique: SEATED SURFBOARD rear double-arm shoulder stretch. Onyx sits at the front center of the mat with her legs extended forward and knees gently bent, torso upright, head turned three-quarter toward camera with a spirited strained expression. Blonde Seraph sits directly behind and slightly to the left, her face clearly visible over Onyx's left shoulder. Onyx's BOTH arms extend backward and outward like swept wings. Seraph grips Onyx's LEFT wrist with her own LEFT blue-gloved hand and Onyx's RIGHT wrist with her own RIGHT blue-gloved hand; the arms are clearly separate, with visible space between each limb and body. Seraph braces ONE white-and-blue wrestling boot against Onyx's upper-middle back between her shoulder blades and pulls both arms backward in the classic seated surfboard. Seraph's other bent leg is grounded at her side. Show both pairs of boots and two readable faces, continuous connected shoulders/elbows/wrists, precisely four arms and four legs total. Camera side-front three-quarter view makes the boot bracing the back and both held wrists readable. Do not levitate either wrestler or bend backs unnaturally.\nSeraph: adult light blonde with high ponytail tied with white hairband, blue eyes, white and royal blue athletic sports top, matching white/blue wrestling trunks with blue belt, blue fingerless gloves, blue/white knee pads, tall white and royal blue lace-up boots. Onyx: adult brown-skinned athletic woman with long dark brown braided high ponytail, close cornrows at temples, purple hairband, purple eyes, silver hoop earrings, black sports top and trunks with purple and white side stripes, black fingerless gloves with purple cuffs, black/purple knee pads and black boots with purple laces. Controlled competitive sports performance, athletic nonsexual framing, no gore, no injury, no extra fighters in ring.",
+    "review": "Full generated image visually inspected: two readable faces; distinct connected athlete bodies; recognizable technique silhouette; costume and 2D SD style match roster; no text, borders or 3D rendering."
+  }
+]

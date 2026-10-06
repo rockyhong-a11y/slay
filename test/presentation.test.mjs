@@ -143,7 +143,7 @@ test("conditions return naturally after real healing, calming and finisher heat 
 });
 
 test("every card cue uses its unique technique artwork and actual engine outcome", () => {
-  assert.equal(Object.keys(CARDS).length, 50);
+  assert.equal(Object.keys(CARDS).length, 60);
   const artPaths = new Set();
   for (const id of Object.keys(CARDS)) {
     const before = combatWith([id]);
@@ -174,10 +174,10 @@ test("every card cue uses its unique technique artwork and actual engine outcome
       `${id} presentation must not mutate engine state`,
     );
   }
-  assert.equal(artPaths.size, 50);
+  assert.equal(artPaths.size, 60);
 });
 
-test("all 50 technique cameras are finite, serializable and leave time to read the full scene", () => {
+test("all 60 technique cameras are finite, serializable and leave time to read the full scene", () => {
   for (const [id, definition] of Object.entries(CARDS)) {
     const shot = techniqueShot(
       id,
@@ -204,7 +204,11 @@ test("all 50 technique cameras are finite, serializable and leave time to read t
     );
     assert.equal(shot.phases.length, 3, id);
     assert.match(shot.origin, /^\d+% \d+%$/, id);
-    assert.ok(shot.portrait.field >= 0.6 && shot.portrait.field <= 0.9, id);
+    assert.ok(
+      shot.portrait.field >= 0.6 &&
+        shot.portrait.field <= (definition.artStyle === "sd2d" ? 1 : 0.9),
+      id,
+    );
     assert.equal(shot.portrait.center.length, 2, id);
     assert.ok(
       shot.portrait.center.every((value) => value > 0 && value < 1),

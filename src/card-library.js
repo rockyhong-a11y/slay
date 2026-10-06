@@ -409,6 +409,76 @@ export const CARD_DETAILS = {
     "상대 뒤에서 허리를 양팔로 감아 잡고 손을 연결하는 준비 자세입니다. 방어와 행동력을 확보하는 유틸리티이며 사용 후 소멸합니다. 먼저 사용 비용을 지불해야 하므로 남은 행동력을 확인하고 던지기를 연결하세요.",
     premium,
   ),
+  wristlock: detail(
+    "wristlock",
+    "submission",
+    "SD 바이퍼가 레이븐의 손목과 팔을 양손으로 제어하는 리스트록",
+    "손목을 되잡아 상대의 공격 전개를 끊는 SD 관절기입니다. 행동력 없이 약화와 다음 카드 할인을 준비합니다. 큰 기술을 연결할 할인을 남기고, 사용 후 해당 경기에서 소멸합니다.",
+    reward,
+  ),
+  hammerlock: detail(
+    "hammerlock",
+    "submission",
+    "SD 발키리가 노바의 팔을 등 뒤로 접어 잡는 해머록",
+    "상대의 한 팔을 등 뒤에서 고정하는 SD 관절기입니다. 방어와 드로우를 함께 확보해 패를 순환합니다. 공격 의도를 보고 안전하게 다음 카드를 찾으세요.",
+    reward,
+  ),
+  omoplata: detail(
+    "omoplata",
+    "submission",
+    "SD 링스가 엠버의 어깨와 팔을 다리로 제어하는 오모플라타",
+    "다리로 어깨를 묶어 다음 공격 기회를 만드는 SD 관절기입니다. 취약과 큰 비용 감소로 비싼 기술을 준비합니다. 할인은 이번 턴 다음 1코스트 이상 카드 한 장에 적용하며 소멸합니다.",
+    premium,
+  ),
+  octopushold: detail(
+    "octopushold",
+    "submission",
+    "SD 노바가 아틀라스의 팔과 다리를 엮어 고정하는 옥토퍼스 홀드",
+    "서 있는 상대의 팔과 다리를 함께 제어하는 SD 홀드입니다. 압박을 가라앉히고 행동력을 회복해 긴 턴을 이어 갑니다. 비용을 먼저 지불한 뒤 회복하며 소멸합니다.",
+    premium,
+  ),
+  surfboard: detail(
+    "surfboard",
+    "submission",
+    "SD 세라프가 오닉스의 양팔을 뒤에서 잡아 당기는 서프보드 스트레치",
+    "상대의 양팔을 뒤에서 고정하는 SD 스트레치 홀드입니다. 방어와 두 장의 드로우를 함께 얻어 다음 수를 넓힙니다. 손패의 빈 공간을 확보한 뒤 사용하세요.",
+    reward,
+  ),
+  stf: detail(
+    "stf",
+    "submission",
+    "SD 레이븐이 바이퍼의 한 다리와 상체를 매트에서 고정하는 STF",
+    "매트에서 한 다리와 상체의 움직임을 함께 제한하는 SD 홀드입니다. 약화로 다음 상대 공격을 줄이고 행동력을 되찾습니다. 사용 후 해당 경기에서 소멸합니다.",
+    premium,
+  ),
+  toehold: detail(
+    "toehold",
+    "submission",
+    "SD 템페스트가 발키리의 부츠 앞부분과 발목을 잡는 토 홀드",
+    "발과 발목을 양손으로 제어하는 SD 관절기입니다. 행동력 없이 약화를 준비하고 한 장을 뽑습니다. 기본 0코스트이므로 준비한 할인을 유지하며 사용 후 소멸합니다.",
+    reward,
+  ),
+  calfslicer: detail(
+    "calfslicer",
+    "submission",
+    "SD 오닉스가 세라프의 굽힌 다리 안쪽을 정강이로 고정하는 카프 슬라이서",
+    "굽힌 무릎 안쪽과 종아리를 제어하는 SD 관절기입니다. 약화·드로우·다음 카드 할인으로 후속 기술을 연결합니다. 할인은 한 장에 적용되며 사용 후 소멸합니다.",
+    premium,
+  ),
+  bowandarrow: detail(
+    "bowandarrow",
+    "submission",
+    "SD 아틀라스가 링스의 손목과 발목을 잡고 등을 받치는 보우 앤 애로",
+    "손목과 발목을 함께 제어하고 등을 받치는 SD 스트레치 홀드입니다. 높은 시작 비용을 지불하는 대신 방어와 행동력을 크게 확보합니다. 회복한 행동력은 이번 턴에만 쓸 수 있으며 소멸합니다.",
+    premium,
+  ),
+  abdominalstretch: detail(
+    "abdominalstretch",
+    "submission",
+    "SD 엠버가 노바의 한 다리와 위팔을 서서 고정하는 앱도미널 스트레치",
+    "상대 옆에서 다리와 상체를 고정하는 SD 스트레치 홀드입니다. 두 장의 드로우와 관중 열기로 피니셔를 준비합니다. 직접 공격은 아니므로 공격 콤보를 올리지 않습니다.",
+    premium,
+  ),
 };
 
 export function getCardDetail(idOrInstance) {
@@ -435,7 +505,11 @@ export function getLibraryCards({
       (card) => discipline === "all" || card.disciplineSlug === discipline,
     )
     .filter((card) =>
-      type === "utility" ? card.utility : type === "all" || card.type === type,
+      type === "sdutility"
+        ? card.utility && card.artStyle === "sd2d"
+        : type === "utility"
+          ? card.utility
+          : type === "all" || card.type === type,
     )
     .filter((card) => rarity === "all" || card.rarity === rarity)
     .filter(
@@ -448,6 +522,7 @@ export function getLibraryCards({
           card.discipline,
           card.disciplineSlug,
           card.utility ? "유틸리티 utility" : "",
+          card.artStyle === "sd2d" ? "SD 2D 신규 관절기" : "",
           card.description,
           card.technique,
           card.acquisition,

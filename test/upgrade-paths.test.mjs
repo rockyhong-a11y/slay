@@ -72,14 +72,14 @@ function combat(id, upgradePath) {
 }
 
 test("every acquired and signature technique has exactly three distinct mechanical specializations", () => {
-  assert.equal(acquired.length, 44);
+  assert.equal(acquired.length, 54);
   assert.deepEqual(
     Object.keys(CARD_UPGRADE_PATHS).sort(),
     [...acquired].sort(),
   );
   assert.equal(
     acquired.reduce((count, id) => count + getCardUpgradeOptions(id).length, 0),
-    132,
+    162,
   );
   const source = copy(CARDS);
   for (const id of acquired) {
@@ -127,7 +127,7 @@ test("every acquired and signature technique has exactly three distinct mechanic
   assert.deepEqual(CARDS, source);
 });
 
-test("all 132 choices execute their stated damage, costs, debuffs, resources and card movement", () => {
+test("all 162 choices execute their stated damage, costs, debuffs, resources and card movement", () => {
   for (const id of acquired)
     for (const choice of getCardUpgradeOptions(id)) {
       const state = combat(id, choice.id);

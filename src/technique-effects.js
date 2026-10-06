@@ -13,6 +13,66 @@ const profile = (family, variant, label, target, extra = {}) => ({
 });
 
 export const CARD_EFFECT_PROFILES = {
+  wristlock: profile(
+    "submission",
+    "wristlock",
+    "손목 제압 · 다음 기술 할인",
+    [0.43, 0.43],
+  ),
+  hammerlock: profile(
+    "submission",
+    "hammerlock",
+    "등 뒤 팔 고정 · 가드와 드로우",
+    [0.5, 0.43],
+  ),
+  omoplata: profile(
+    "submission",
+    "omoplata",
+    "어깨 제압 · 큰 기술 준비",
+    [0.52, 0.47],
+  ),
+  octopushold: profile(
+    "submission",
+    "octopus",
+    "팔과 다리 고정 · 행동력 회복",
+    [0.53, 0.39],
+  ),
+  surfboard: profile(
+    "submission",
+    "surfboard",
+    "양팔 제어 · 다음 패 확보",
+    [0.52, 0.44],
+  ),
+  stf: profile(
+    "submission",
+    "stf",
+    "상체와 다리 봉쇄 · 행동력 회복",
+    [0.54, 0.51],
+  ),
+  toehold: profile(
+    "submission",
+    "toehold",
+    "발목 제압 · 가벼운 패 순환",
+    [0.51, 0.54],
+  ),
+  calfslicer: profile(
+    "submission",
+    "calfslicer",
+    "하체 봉쇄 · 할인과 드로우",
+    [0.52, 0.54],
+  ),
+  bowandarrow: profile(
+    "submission",
+    "bow-and-arrow",
+    "등과 팔다리 제어 · 행동력 확보",
+    [0.5, 0.49],
+  ),
+  abdominalstretch: profile(
+    "submission",
+    "abdominal",
+    "측면 홀드 · 열기와 드로우",
+    [0.53, 0.46],
+  ),
   strike: profile("strike", "elbow", "짧은 팔꿈치 타격", [0.59, 0.19]),
   redline: profile("strike", "running", "돌진 · 팔뚝 타격", [0.65, 0.2], {
     strength: 1.35,

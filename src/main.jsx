@@ -368,7 +368,7 @@ function Card({
       aria-hidden={!present || undefined}
       aria-pressed={index != null ? selected : undefined}
       tabIndex={!present ? -1 : undefined}
-      aria-label={`${card.name}${card.upgradeLabel ? ` · ${card.upgradeLabel}` : ""}, ${detail.discipline}${card.utility ? " · 유틸리티" : ""}, 행동력 ${cost}${discounted ? `, 기본 비용 ${card.cost}에서 감소` : ""}, ${card.description}`}
+      aria-label={`${card.name}${card.upgradeLabel ? ` · ${card.upgradeLabel}` : ""}, ${detail.discipline}${card.utility ? (card.artStyle === "sd2d" ? " · SD 유틸리티" : " · 유틸리티") : ""}, 행동력 ${cost}${discounted ? `, 기본 비용 ${card.cost}에서 감소` : ""}, ${card.description}`}
     >
       {index != null && (
         <span className="card-peek" aria-hidden="true">
@@ -408,7 +408,11 @@ function Card({
           loading={compact ? "lazy" : undefined}
         />
         <span className="card-art-shade" />
-        {card.utility && <span className="card-utility-tag">유틸리티</span>}
+        {card.utility && (
+          <span className="card-utility-tag">
+            {card.artStyle === "sd2d" ? "SD 유틸리티" : "유틸리티"}
+          </span>
+        )}
       </div>
       <div className="card-text">
         <h3>{card.name}</h3>

@@ -14,7 +14,7 @@ import {
 
 test("the encyclopedia covers every real engine card with unique technique art and acquisition", () => {
   assert.deepEqual(Object.keys(CARD_DETAILS).sort(), Object.keys(CARDS).sort());
-  assert.equal(getLibraryCards().length, 50);
+  assert.equal(getLibraryCards().length, 60);
   const paths = new Set();
   for (const [id, definition] of Object.entries(CARDS)) {
     const detail = getCardDetail(id);
@@ -31,7 +31,7 @@ test("the encyclopedia covers every real engine card with unique technique art a
     assert.ok(CARD_RARITY_LABELS[definition.rarity]);
     paths.add(detail.art);
   }
-  assert.equal(paths.size, 50);
+  assert.equal(paths.size, 60);
   assert.equal(getCardDetail("not-a-card"), null);
   assert.equal(
     getCardDetail({ id: "strike", upgraded: true }),
@@ -88,12 +88,22 @@ test("physical technique discipline stays separate from engine card type", () =>
       "bostoncrab",
       "sharpshooter",
       "crossface",
+      "wristlock",
+      "hammerlock",
+      "omoplata",
+      "octopushold",
+      "surfboard",
+      "stf",
+      "toehold",
+      "calfslicer",
+      "bowandarrow",
+      "abdominalstretch",
     ].sort(),
   );
   assert.equal(CARD_DETAILS.moonsault.disciplineSlug, "aerial");
 });
 
-test("all 50 technique illustrations exist as distinct WebP files", () => {
+test("all 60 technique illustrations exist as distinct WebP files", () => {
   const hashes = new Set();
   for (const detail of Object.values(CARD_DETAILS)) {
     const bytes = readFileSync(
@@ -187,12 +197,22 @@ test("utility filtering preserves wrestling disciplines and engine costs in the 
     "heelhook",
     "collartie",
     "waistlock",
+    "wristlock",
+    "hammerlock",
+    "omoplata",
+    "octopushold",
+    "surfboard",
+    "stf",
+    "toehold",
+    "calfslicer",
+    "bowandarrow",
+    "abdominalstretch",
   ];
   const utilities = getLibraryCards({ type: "utility" });
   assert.deepEqual(utilities.map((card) => card.id).sort(), expected.sort());
   assert.equal(
     getLibraryCards({ type: "utility", discipline: "submission" }).length,
-    6,
+    16,
   );
   assert.equal(
     getLibraryCards({ type: "utility", discipline: "grapple" }).length,
@@ -213,5 +233,5 @@ test("utility filtering preserves wrestling disciplines and engine costs in the 
     assert.equal(card.art, `cards/${card.id}.webp`);
     assert.equal(card.type, "skill");
   }
-  assert.equal(getLibraryCards({ type: "utility", upgraded: true }).length, 8);
+  assert.equal(getLibraryCards({ type: "utility", upgraded: true }).length, 18);
 });
