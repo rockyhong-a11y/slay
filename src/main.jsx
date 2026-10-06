@@ -225,6 +225,7 @@ function loadRun() {
         hand: query.get("qaHand"),
         actor: query.get("qaActor"),
         impact: query.get("qaImpact"),
+        condition: query.get("qaCondition"),
       });
   }
   try {
@@ -679,7 +680,9 @@ function App() {
       attacker: "player",
       instance,
     });
-    pendingImpact.current = impact ? { ...impact, id } : null;
+    pendingImpact.current = impact
+      ? { ...impact, id, contactPresented: true }
+      : null;
     setCue({ ...actionCue, id });
     setSelectedHandId(null);
     const damage = actionCue.damage;
@@ -690,7 +693,6 @@ function App() {
     );
     clearTimeout(hitTimer.current);
     hitTimer.current = setTimeout(() => setHit(null), 650);
-    sound.play(damage > 0 ? "attack" : "skill");
     setState(next);
     return true;
   };
@@ -714,7 +716,6 @@ function App() {
       clearTimeout(hitTimer.current);
       hitTimer.current = setTimeout(() => setHit(null), 650);
     } else setHit(null);
-    sound.play("attack");
     announceCrowd(
       reactionForOpponent(state, next, impact),
       `enemy-${state.wave}-${state.floor}-${state.turn}`,
@@ -1291,6 +1292,7 @@ function App() {
                   <FighterSprite
                     actor={state.player.id}
                     condition={playerCondition}
+                    vitals={state.player}
                     name={wrestler.name}
                     side="player"
                     impact={impactCue}
@@ -1300,6 +1302,7 @@ function App() {
                     <FighterSprite
                       actor={state.enemy.artKey || state.enemy.id || "valkyrie"}
                       condition={enemyCondition}
+                      vitals={state.enemy}
                       name={enemyHUD.name}
                       side="enemy"
                       impact={impactCue}
@@ -1327,6 +1330,7 @@ function App() {
                         cue={cue}
                         onComplete={completeCue}
                         onCrowd={(reaction) => announceCrowd(reaction, cue.id)}
+                        onContact={(resolved) => sound.technique(resolved)}
                         shortened={!cinematics}
                       />
                     )}
@@ -1337,6 +1341,10 @@ function App() {
                         key={impactCue.id}
                         cue={impactCue}
                         onComplete={completeImpact}
+                        onContact={(resolved) => {
+                          if (!resolved.contactPresented)
+                            sound.impact(resolved);
+                        }}
                         shortened={!cinematics}
                       />
                     )}
@@ -1857,6 +1865,10 @@ function App() {
                   key={previewWrestler.id}
                   actor={previewWrestler.id}
                   name={previewWrestler.name}
+                  initialCondition={
+                    previewFromRoster ? "normal" : playerCondition.id
+                  }
+                  vitals={previewFromRoster ? undefined : state.player}
                 />
               </>
             )}

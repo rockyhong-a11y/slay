@@ -1,0 +1,30 @@
+.artwork > .fighter-wear {
+  position: absolute;
+  display: block;
+  overflow: hidden;
+  max-width: none;
+  margin: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.wear-sweat-drop {
+  animation: wear-sweat-catchlight 3.8s ease-in-out infinite;
+  animation-delay: var(--wear-delay, 0s);
+}
+@keyframes wear-sweat-catchlight {
+  0%,
+  100% {
+    opacity: 0.82;
+  }
+  45% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.9;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wear-sweat-drop {
+    animation: none;
+  }
+}

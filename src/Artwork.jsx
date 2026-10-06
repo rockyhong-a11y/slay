@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { FighterWear } from "./FighterWear.jsx";
+import { artworkImageRect, parseFighterArt } from "./fighter-wear.js";
 import "./artwork.css";
 
 const asset = (path) => import.meta.env.BASE_URL + "assets/" + path;
@@ -29,11 +31,34 @@ export function Artwork({
   loading,
   portrait = false,
   mirrored = false,
+  vitals,
 }) {
+  const surface = useRef(null);
+  const [size, setSize] = useState(null);
   const [loadedArt, setLoadedArt] = useState(null);
   const [portraits, setPortraits] = useState({});
+  const wearArt = parseFighterArt(art);
+  const hasWearArt = Boolean(wearArt);
+  useLayoutEffect(() => {
+    if (!hasWearArt || !surface.current) return;
+    const element = surface.current;
+    const update = () =>
+      setSize({ width: element.clientWidth, height: element.clientHeight });
+    update();
+    if (typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect;
+      setSize((current) =>
+        current?.width === width && current?.height === height
+          ? current
+          : { width, height },
+      );
+    });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [hasWearArt]);
   useEffect(() => {
-    if (!portrait) return;
+    if (!portrait && !hasWearArt) return;
     let active = true;
     loadPortraits().then((data) => {
       if (active) setPortraits(data);
@@ -41,7 +66,7 @@ export function Artwork({
     return () => {
       active = false;
     };
-  }, [portrait, art]);
+  }, [portrait, hasWearArt, art]);
   const stateMatch = art.match(/^fighters\/states\/([a-z]+)-([a-z]+)\.webp$/);
   const fallback = stateMatch ? `fighters/${stateMatch[1]}.webp` : null;
   const crop =
@@ -65,8 +90,13 @@ export function Artwork({
         objectPosition: position.map((value) => `${value * 100}%`).join(" "),
       };
   const ready = loadedArt === art;
+  const wearRect =
+    hasWearArt && size
+      ? artworkImageRect({ ...size, fit, position, portrait, crop })
+      : null;
   return (
     <span
+      ref={surface}
       role="img"
       aria-label={alt}
       className={`artwork ${portrait ? "artwork-portrait" : ""} ${mirrored ? "artwork-mirrored" : ""} ${className}`}
@@ -94,6 +124,15 @@ export function Artwork({
         onLoad={() => setLoadedArt(art)}
         style={{ ...imageStyle, opacity: fallback && !ready ? 0 : 1 }}
       />
+      {ready && hasWearArt && crop && (
+        <FighterWear
+          art={art}
+          src={asset(art)}
+          crop={crop}
+          rect={wearRect}
+          vitals={vitals}
+        />
+      )}
     </span>
   );
 }

@@ -136,11 +136,11 @@
     "width": 0.28
   },
   "atlas-tired": {
-    "center": [0.546, 0.151],
+    "center": [0.435, 0.132],
     "width": 0.28
   },
   "atlas-groggy": {
-    "center": [0.55, 0.162],
+    "center": [0.48, 0.129],
     "width": 0.28
   },
   "seraph-normal": {
@@ -184,11 +184,11 @@
     "width": 0.28
   },
   "lynx-tired": {
-    "center": [0.545, 0.169],
+    "center": [0.53, 0.13],
     "width": 0.28
   },
   "lynx-groggy": {
-    "center": [0.556, 0.182],
+    "center": [0.541, 0.128],
     "width": 0.28
   },
   "onyx-normal": {

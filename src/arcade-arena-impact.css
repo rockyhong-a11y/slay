@@ -1,0 +1,383 @@
+.arcade-arena-impact {
+  --contact-color: #ffb03d;
+  --contact-secondary: #fc5429;
+}
+.arcade-contact-guard {
+  --contact-color: #8de9ff;
+  --contact-secondary: #1c95fc;
+}
+.arcade-contact-submission,
+.arcade-contact-grip {
+  --contact-color: #b897ff;
+  --contact-secondary: #37eaff;
+}
+.arcade-knockout {
+  --contact-color: #ffe689;
+  --contact-secondary: #ff6638;
+}
+.arcade-arena-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    transparent 25%,
+    #1c040a6b 100%
+  );
+  animation: arcade-contact-light var(--impact-duration) both;
+}
+.arcade-arena-impact .arena-contact {
+  top: 48%;
+}
+.arcade-contact-slam .arena-contact {
+  top: 77%;
+}
+.arcade-contact-aura {
+  position: absolute;
+  width: clamp(110px, 20vw, 250px);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #fff9cf33,
+    color-mix(in srgb, var(--contact-secondary) 24%, transparent) 40%,
+    transparent 68%
+  );
+  animation: arcade-contact-light var(--impact-duration) both;
+}
+.arcade-contact-glyph {
+  position: absolute;
+  width: clamp(100px, 15vw, 210px);
+  height: auto;
+  overflow: visible;
+  translate: -50% -50%;
+  filter: drop-shadow(0 0 9px var(--contact-secondary));
+  animation: arcade-contact-pop var(--impact-duration) both;
+}
+.arcade-heavy .arcade-contact-glyph {
+  width: clamp(130px, 18vw, 255px);
+}
+.arcade-fire-shell {
+  fill: var(--contact-color);
+  stroke: var(--contact-secondary);
+  stroke-width: 4;
+}
+.arcade-white-core {
+  fill: #fffde9;
+}
+.arcade-joint-lock,
+.arcade-guard-ripple {
+  fill: none;
+  stroke: var(--contact-color);
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+.arcade-joint-lock circle:first-child {
+  stroke-dasharray: 82 20 12 20;
+  stroke-width: 7;
+}
+.arcade-joint-lock circle:nth-child(2) {
+  stroke: var(--contact-secondary);
+  stroke-width: 2;
+}
+.arcade-joint-lock .arcade-lock-bracket {
+  stroke-width: 3;
+}
+.arcade-guard-ripple {
+  fill: #279bd720;
+}
+.arcade-guard-edge {
+  fill: none;
+  stroke-width: 2;
+}
+.arcade-contact-spark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  border-radius: 100%;
+  width: var(--spark-length);
+  transform-origin: 0 50%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #fffbe5 60%,
+    var(--contact-color)
+  );
+  filter: drop-shadow(0 0 4px var(--contact-secondary));
+  animation: arcade-spark-fan var(--impact-duration) both;
+}
+.arcade-contact-score {
+  position: absolute;
+  width: clamp(105px, 15vw, 190px);
+  left: 0;
+  top: -57px;
+  translate: -50% -50%;
+  text-align: center;
+  color: #fffbef;
+  text-shadow:
+    2px 3px 0 #221b2f,
+    -1px -1px 0 #221b2f,
+    0 3px 15px #000;
+  transform: rotate(-7deg);
+  animation: arcade-score-rise var(--impact-duration) both;
+}
+.arena-impact-player .arcade-contact-score {
+  transform: rotate(7deg);
+}
+.arcade-contact-score small {
+  display: block;
+  font:
+    800 italic clamp(15px, 2vw, 26px)/1.1 "Barlow Condensed",
+    sans-serif;
+  color: var(--contact-color);
+  letter-spacing: 0.5px;
+}
+.arcade-contact-score strong {
+  display: block;
+  font:
+    700 clamp(42px, 5vw, 72px)/0.9 "Teko",
+    sans-serif;
+}
+.arcade-contact-score span,
+.arcade-contact-score b {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+}
+.arcade-contact-score b {
+  color: var(--contact-color);
+  letter-spacing: 2px;
+}
+.arcade-contact-submission .arcade-contact-score {
+  top: -74px;
+}
+.arcade-ko-stamp {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  translate: -50% 0;
+  padding: 4px 22px;
+  border-block: 2px solid #ffe38b;
+  color: #fff4c6;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #301523f0 25% 75%,
+    transparent
+  );
+  font:
+    800 italic clamp(25px, 5vw, 56px)/1.1 "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 4px;
+  animation: arcade-score-rise var(--impact-duration) both;
+}
+.arcade-mat-shock {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+}
+.arcade-mat-shock > span {
+  position: absolute;
+  width: clamp(160px, 25vw, 350px);
+  height: 45px;
+  border: 4px solid #ffe5a1;
+  border-radius: 50%;
+  translate: -50% -50%;
+  box-shadow: 0 0 14px #ff9f4677;
+  animation: arcade-ground-ring var(--impact-duration) both;
+}
+.arcade-mat-shock > span:nth-child(2) {
+  width: clamp(190px, 29vw, 420px);
+  border-width: 1px;
+}
+.arcade-mat-shock > i {
+  position: absolute;
+  width: 10px;
+  height: 12px;
+  background: #dbbc91;
+  border: 1px solid #fff2c0;
+  clip-path: polygon(10% 0, 100% 17%, 70% 100%, 0 65%);
+  animation: arcade-rubble var(--impact-duration) both;
+}
+.arcade-mat-shock > b {
+  position: absolute;
+  width: 100px;
+  height: 34px;
+  top: 0;
+  left: -80px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #d8c8b08c, transparent 70%);
+  animation: arcade-dust var(--impact-duration) both;
+}
+.arcade-mat-shock > b:nth-last-child(2) {
+  left: -10px;
+}
+.arcade-mat-shock > b:last-child {
+  left: -48px;
+  top: 8px;
+}
+.arena:has(.arcade-arena-impact:not(.arcade-still)) .arena-background {
+  filter: brightness(0.7) blur(1.2px);
+}
+@keyframes arcade-contact-pop {
+  0%,
+  24% {
+    opacity: 0;
+    scale: 0.2;
+    rotate: -12deg;
+  }
+  29%,
+  39% {
+    opacity: 1;
+    scale: 1;
+    rotate: 0deg;
+  }
+  54% {
+    opacity: 0.5;
+    scale: 1.4;
+    rotate: 7deg;
+  }
+  72%,
+  100% {
+    opacity: 0;
+    scale: 1.65;
+    rotate: 12deg;
+  }
+}
+@keyframes arcade-contact-light {
+  0%,
+  22% {
+    opacity: 0;
+  }
+  29%,
+  39% {
+    opacity: 1;
+  }
+  75%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes arcade-spark-fan {
+  0%,
+  25% {
+    opacity: 0;
+    transform: rotate(var(--spark-angle)) translateX(5px) scaleX(0.3);
+  }
+  29%,
+  39% {
+    opacity: 1;
+    transform: rotate(var(--spark-angle)) translateX(25px) scaleX(0.8);
+  }
+  64%,
+  100% {
+    opacity: 0;
+    transform: rotate(var(--spark-angle)) translateX(90px) scaleX(0.25);
+  }
+}
+@keyframes arcade-score-rise {
+  0%,
+  25% {
+    opacity: 0;
+    margin-top: 12px;
+    scale: 0.65;
+  }
+  31%,
+  72% {
+    opacity: 1;
+    margin-top: 0;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+    margin-top: -20px;
+    scale: 1;
+  }
+}
+@keyframes arcade-ground-ring {
+  0%,
+  27% {
+    opacity: 0;
+    scale: 0.2;
+  }
+  30%,
+  39% {
+    opacity: 0.9;
+    scale: 0.65;
+  }
+  66% {
+    opacity: 0.4;
+    scale: 1.35;
+  }
+  100% {
+    opacity: 0;
+    scale: 1.6;
+  }
+}
+@keyframes arcade-rubble {
+  0%,
+  27% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0);
+  }
+  32% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0);
+  }
+  67% {
+    opacity: 1;
+    transform: translate(var(--debris-x), var(--debris-y))
+      rotate(var(--debris-r));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--debris-x), 28px) rotate(var(--debris-r));
+  }
+}
+@keyframes arcade-dust {
+  0%,
+  28% {
+    opacity: 0;
+    scale: 0.5;
+  }
+  40% {
+    opacity: 0.8;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+    scale: 2;
+  }
+}
+.arcade-still .arcade-contact-score,
+.arcade-still .arcade-ko-stamp {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+@media (max-width: 650px) {
+  .arcade-contact-score {
+    top: -46px;
+  }
+  .arcade-contact-submission .arcade-contact-score {
+    top: -65px;
+  }
+  .arcade-contact-score span,
+  .arcade-contact-score b {
+    font-size: 9px;
+  }
+  .arcade-contact-spark {
+    height: 2px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arcade-arena-impact * {
+    animation: none !important;
+  }
+  .arcade-contact-score,
+  .arcade-ko-stamp {
+    opacity: 1;
+    transform: none;
+  }
+}

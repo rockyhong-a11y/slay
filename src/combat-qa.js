@@ -36,6 +36,15 @@ export function createCombatQA(profile = {}) {
   state.player.block = options.impact === "guard" ? 30 : 0;
   state.player.hype = 2;
   state.player.stress = 0;
+  const previewCondition = {
+    excited: { hype: 4 },
+    fiery: { hype: 8 },
+    frustrated: { stress: 75 },
+    tired: { hp: Math.ceil(state.player.maxHp * 0.4) },
+    groggy: { hp: Math.floor(state.player.maxHp * 0.2) },
+    critical: { hp: Math.max(1, Math.floor(state.player.maxHp * 0.08)) },
+  }[options.condition];
+  if (previewCondition) Object.assign(state.player, previewCondition);
   state.combo = 0;
   state.activeGimmick = null;
   state.equippedGimmickUid = null;

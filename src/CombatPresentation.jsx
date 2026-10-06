@@ -1,5 +1,11 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { motion, useReducedMotion, useAnimationControls } from "motion/react";
 import { createPortal } from "react-dom";
 import { Fire, Heartbeat, Shield, Sparkle } from "@phosphor-icons/react";
@@ -7,17 +13,17 @@ import {
   FIGHTER_STATES,
   fighterPoseArt,
   fighterImpactFrames,
+  frameTechniqueCamera,
 } from "./presentation.js";
 import "./combat-presentation.css";
 import { Artwork } from "./Artwork.jsx";
 import { motionTokens } from "./motion-config.js";
 import { CrowdCallout } from "./CrowdAtmosphere.jsx";
+import { TechniqueEffects } from "./ArcadeTechniqueFX.jsx";
+import { fighterWearProfile } from "./fighter-wear.js";
 import {
-  techniqueEffectLayers,
   techniqueEffectProfile,
   TECHNIQUE_EFFECT_MOTION,
-  artworkProjection,
-  projectedArtworkPoint,
 } from "./technique-effects.js";
 
 const icons = {
@@ -62,6 +68,7 @@ export function FighterSprite({
   name,
   side,
   impact,
+  vitals,
   shortened = false,
 }) {
   const requested = fighterPoseArt(actor, condition);
@@ -100,6 +107,7 @@ export function FighterSprite({
           alt={`${name} · ${condition.label} 자세`}
           className="fighter-pose"
           condition={condition.id}
+          vitals={vitals}
           mirrored={side === "enemy"}
           position={[0.5, 1]}
         />
@@ -108,171 +116,13 @@ export function FighterSprite({
   );
 }
 
-const impactRays = Array.from({ length: 12 }, (_, index) => index * 30);
-
-export function ArenaImpact({ cue, onComplete, shortened = false }) {
-  const reduced = useReducedMotion();
-  const complete = useRef(onComplete);
-  complete.current = onComplete;
-  const still = reduced || shortened;
-  const duration = still ? 650 : cue.duration;
-  useEffect(() => {
-    const timer = setTimeout(() => complete.current?.(cue.id), duration);
-    return () => clearTimeout(timer);
-  }, [cue.id, duration]);
-  const guard = !cue.damage;
-  return (
-    <div
-      className={`arena-impact arena-impact-${cue.target} arena-family-${cue.effectFamily || "strike"} ${cue.throwing ? "arena-impact-throw" : ""} ${guard ? "arena-impact-guard" : "arena-impact-hit"} ${cue.heavy ? "arena-impact-heavy" : ""} ${cue.knockout ? "arena-impact-ko" : ""} ${still ? "arena-impact-still" : ""}`}
-      data-impact-id={cue.id}
-      data-damage={cue.damage}
-      data-blocked={cue.blocked}
-      data-duration={duration}
-      style={{ "--impact-duration": `${duration}ms` }}
-      role="status"
-      aria-live="polite"
-      aria-atomic="true"
-    >
-      <span className="combat-sr-only">{cue.announcement}</span>
-      <div className="arena-contact" aria-hidden="true">
-        <span className="arena-shockwave" />
-        <span className="arena-impact-star" />
-        {!still &&
-          impactRays.map((angle) => (
-            <i
-              key={angle}
-              className="arena-impact-ray"
-              style={{ "--ray-angle": `${angle}deg` }}
-            />
-          ))}
-        <div className="arena-impact-score">
-          <small>{cue.label}</small>
-          <strong>{guard ? "BLOCK" : `−${cue.damage}`}</strong>
-          {cue.blocked > 0 && <span>방어 {cue.blocked}</span>}
-          {cue.combo > 1 && cue.damage > 0 && <b>{cue.combo} COMBO</b>}
-        </div>
-      </div>
-      {!still && <div className="arena-impact-slash" aria-hidden="true" />}
-    </div>
-  );
-}
-
-const effectPaths = {
-  lift: "M31 65 L31 20 M25 27 L31 20 L37 27 M69 65 L69 20 M63 27 L69 20 L75 27",
-  arc: "M17 71 Q48 4 82 69 M74 65 L82 69 L84 61",
-};
-
-function TechniqueEffects({ cue, effect, duration }) {
-  const frame = useRef(null);
-  const [projection, setProjection] = useState(() => artworkProjection(0, 0));
-  useEffect(() => {
-    const node = frame.current;
-    if (!node) return;
-    const measure = () => {
-      const image = node.parentElement?.querySelector(".artwork img");
-      const imageStyle = image ? getComputedStyle(image) : null;
-      const position = imageStyle?.objectPosition
-        .split(" ")
-        .map((value) => parseFloat(value) / 100) || [0.5, 0.5];
-      setProjection(
-        artworkProjection(
-          node.clientWidth,
-          node.clientHeight,
-          imageStyle?.objectFit,
-          position,
-        ),
-      );
-    };
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [cue.id]);
-  const layers = techniqueEffectLayers(effect, cue.camera, cue);
-  return (
-    <div
-      className={`technique-effects effects-${effect.family}`}
-      ref={frame}
-      data-effect-family={effect.family}
-      data-effect-variant={effect.variant}
-      data-effect-count={layers.length}
-      aria-hidden="true"
-    >
-      {layers.map((item) => {
-        const center = projectedArtworkPoint(item.center, projection);
-        const channels = { opacity: item.opacity };
-        for (const channel of ["x", "y", "scale", "scaleX", "scaleY", "rotate"])
-          if (item[channel]) channels[channel] = item[channel];
-        const transition = {
-          duration: duration / 1000,
-          times: item.times,
-          ease: TECHNIQUE_EFFECT_MOTION.ease,
-        };
-        const initial = Object.fromEntries(
-          Object.entries(channels).map(([channel, values]) => [
-            channel,
-            values[0],
-          ]),
-        );
-        return (
-          <motion.div
-            key={item.id}
-            className={`technique-fx technique-fx-${item.kind}`}
-            data-effect-layer={item.kind}
-            data-direction={item.direction}
-            data-side={item.side}
-            initial={initial}
-            animate={channels}
-            transition={transition}
-            style={{
-              left: `${center[0] * 100}%`,
-              top: `${center[1] * 100}%`,
-              width: `${item.width * projection.scaleX}%`,
-              ...(effectPaths[item.kind]
-                ? { height: `${100 * projection.scaleY}%` }
-                : {}),
-              "--effect-angle": `${item.angle || 0}deg`,
-            }}
-          >
-            {effectPaths[item.kind] ? (
-              <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-                <motion.path
-                  d={effectPaths[item.kind]}
-                  initial={{ pathLength: item.pathLength[0] }}
-                  animate={{ pathLength: item.pathLength }}
-                  transition={transition}
-                />
-              </svg>
-            ) : item.kind === "burst" ? (
-              <>
-                <span className="technique-impact-core" />
-                {impactRays.map((angle) => (
-                  <i
-                    key={angle}
-                    className="technique-impact-ray"
-                    style={{ "--ray-angle": `${angle}deg` }}
-                  />
-                ))}
-              </>
-            ) : item.kind === "shield" ? (
-              <svg viewBox="0 0 100 100">
-                <path d="M50 8 L83 21 V50 Q83 74 50 92 Q17 74 17 50 V21 Z" />
-                <path d="M33 50 L45 62 L68 37" />
-              </svg>
-            ) : (
-              <span />
-            )}
-          </motion.div>
-        );
-      })}
-    </div>
-  );
-}
+export { ArcadeArenaImpact as ArenaImpact } from "./ArcadeArenaImpact.jsx";
 
 export function TechniqueScene({
   cue,
   onComplete,
   onCrowd,
+  onContact,
   shortened = false,
 }) {
   const reduced = useReducedMotion();
@@ -280,12 +130,43 @@ export function TechniqueScene({
   complete.current = onComplete;
   const reactionCallback = useRef(onCrowd);
   reactionCallback.current = onCrowd;
+  const contactCallback = useRef(onContact);
+  contactCallback.current = onContact;
   const [crowdVisible, setCrowdVisible] = useState(false);
   const still = reduced || shortened;
   const duration = still ? 650 : cue.duration;
   const camera = cue.camera;
   const effect =
     cue.effect || techniqueEffectProfile(cue.cardId, cue.disciplineSlug);
+  const artWindow = useRef(null);
+  const [viewport, setViewport] = useState(null);
+  useLayoutEffect(() => {
+    const node = artWindow.current;
+    if (!node) return;
+    const measure = () => {
+      const image = node.querySelector(".artwork img");
+      const style = image ? getComputedStyle(image) : null;
+      const next = {
+        width: node.clientWidth,
+        height: node.clientHeight,
+        fit: style?.objectFit || "contain",
+        position: style?.objectPosition
+          .split(" ")
+          .map((value) => parseFloat(value) / 100) || [0.5, 0.5],
+      };
+      setViewport((previous) =>
+        JSON.stringify(previous) === JSON.stringify(next) ? previous : next,
+      );
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [cue.id]);
+  const framedCamera = useMemo(
+    () => frameTechniqueCamera(camera, effect, viewport),
+    [camera, effect, viewport],
+  );
   useEffect(() => {
     const timer = setTimeout(() => complete.current(cue.id), duration);
     return () => clearTimeout(timer);
@@ -299,6 +180,16 @@ export function TechniqueScene({
     }, at);
     return () => clearTimeout(timer);
   }, [cue.id, duration, still, camera, cue.crowd]);
+  useEffect(() => {
+    const contacts = camera.impacts.length ? camera.impacts : [0.35];
+    const timers = (still ? [0] : contacts).map((at) =>
+      setTimeout(
+        () => contactCallback.current?.(cue),
+        still ? 40 : duration * at,
+      ),
+    );
+    return () => timers.forEach(clearTimeout);
+  }, [cue.id, duration, still, camera]);
   const scene = (
     <motion.div
       className={`technique-scene scene-${cue.disciplineSlug} scene-effect-${effect.family} ${cue.finisher ? "scene-finisher" : ""} ${still ? "scene-still" : ""}`}
@@ -340,7 +231,7 @@ export function TechniqueScene({
       </div>
       <div className="technique-scene-visual" aria-hidden="true">
         <div className="technique-art-stage">
-          <div className="technique-art-window">
+          <div className="technique-art-window" ref={artWindow}>
             <motion.div
               className="technique-art-frame"
               initial={false}
@@ -348,27 +239,26 @@ export function TechniqueScene({
                 still
                   ? { x: 0, y: 0, scale: 1, rotate: 0 }
                   : {
-                      x: camera.x,
-                      y: camera.y,
-                      scale: camera.scale,
-                      rotate: camera.rotate,
+                      x: framedCamera.x,
+                      y: framedCamera.y,
+                      scale: framedCamera.scale,
+                      rotate: framedCamera.rotate,
                     }
               }
               transition={{
                 duration: duration / 1000,
                 times: camera.times,
-                ease: "easeInOut",
+                ease: "linear",
               }}
-              style={{ transformOrigin: camera.origin }}
+              style={{ transformOrigin: framedCamera.origin }}
             >
               <Artwork art={cue.art} alt={cue.alt} />
-              {!still && (
-                <TechniqueEffects
-                  cue={cue}
-                  effect={effect}
-                  duration={duration}
-                />
-              )}
+              <TechniqueEffects
+                cue={cue}
+                effect={effect}
+                duration={duration}
+                still={still}
+              />
             </motion.div>
             {!still &&
               cue.attacking &&
@@ -384,6 +274,7 @@ export function TechniqueScene({
                   }}
                   transition={{
                     duration: duration / 1000,
+                    ease: "linear",
                     times: [
                       0,
                       Math.max(0.01, at - 0.01),
@@ -457,14 +348,30 @@ export function TechniqueScene({
   return createPortal(scene, document.body);
 }
 
-export function ConditionGuide({ actor, name }) {
-  const [selected, setSelected] = useState("normal");
+export function ConditionGuide({
+  actor,
+  name,
+  initialCondition = "normal",
+  vitals,
+}) {
+  const [selected, setSelected] = useState(initialCondition);
   const condition = FIGHTER_STATES[selected];
+  const previewVitals = selected === initialCondition ? vitals : undefined;
+  const wear = fighterWearProfile(selected, previewVitals);
+  const wearLabel =
+    [
+      wear.sweat && (wear.sweat > 1 ? "많은 땀" : "땀"),
+      wear.abrasion && "찰과상",
+      wear.bruise && "멍",
+      wear.blood && "혈흔",
+    ]
+      .filter(Boolean)
+      .join(" · ") || "깨끗한 컨디션";
   return (
     <div className="condition-guide">
       <p>
         체력과 마음의 변화가 선수의 표정과 자세에 드러납니다. 아래 상태를 선택해{" "}
-        {name}의 완성된 상태별 일러스트를 미리 볼 수 있습니다.
+        {name}의 상태별 일러스트와 땀·상처 변화를 미리 볼 수 있습니다.
       </p>
       <div className="condition-preview" data-condition={condition.id}>
         <FighterSprite
@@ -472,6 +379,7 @@ export function ConditionGuide({ actor, name }) {
           condition={condition}
           name={name}
           side="preview"
+          vitals={previewVitals}
         />
         <div className="condition-preview-copy">
           <div className="condition-face-heading">
@@ -480,6 +388,7 @@ export function ConditionGuide({ actor, name }) {
               alt={`${name} · ${condition.label} 표정 확대`}
               className="condition-face-portrait"
               condition={condition.id}
+              vitals={previewVitals}
               portrait
               position={[0.5, 0]}
             />
@@ -489,6 +398,7 @@ export function ConditionGuide({ actor, name }) {
             </div>
           </div>
           <p>{condition.description}</p>
+          <p className="condition-wear-note">{wearLabel}</p>
         </div>
       </div>
       <div
@@ -512,7 +422,9 @@ export function ConditionGuide({ actor, name }) {
       <p className="condition-priority">
         체력이 25% 이하면 그로기, 50% 이하면 지침이 우선합니다. 그다음 압박 60
         이상, 열기 6 이상, 열기 3 이상 순서로 판단합니다. 미리보기는 실제 경기
-        수치를 바꾸지 않습니다.
+        수치를 바꾸지 않습니다. 체력이 낮아질수록 찰과상과 멍이 늘고, 25%
+        이하에서는 눈썹 부근에, 10% 이하에서는 입가에도 작은 혈흔이 나타납니다.
+        회복하면 상처 표현도 완화됩니다.
       </p>
     </div>
   );

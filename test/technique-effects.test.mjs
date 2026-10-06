@@ -78,7 +78,7 @@ test("every card produces finite serializable layers that fade out and preserve 
     const { before, after, cue } = replay(id);
     const originals = [structuredClone(before), structuredClone(after)];
     const layers = techniqueEffectLayers(cue.effect, cue.camera, cue);
-    assert.ok(layers.length >= 1 && layers.length <= 10, id);
+    assert.ok(layers.length >= 1 && layers.length <= 16, id);
     for (const layer of layers) {
       assert.equal(layer.times[0], 0, id);
       assert.equal(layer.times.at(-1), 1, id);
@@ -385,4 +385,76 @@ test("artwork projection keeps joint overlays aligned through letterboxing and c
     offsetX: 0,
     offsetY: 0,
   });
+});
+
+test("arcade hit accents track the resolved contact clock with at most two localized flashes", () => {
+  for (const id of Object.keys(CARDS)) {
+    const cue = replay(id).cue;
+    const layers = techniqueEffectLayers(cue.effect, cue.camera, cue);
+    const flashes = layers.filter((layer) => layer.flashing);
+    assert.ok(flashes.length <= 2, id);
+    for (const flash of flashes) {
+      assert.ok(cue.camera.impacts.includes(flash.contact), id);
+      assert.equal(flash.times[2], flash.contact, id);
+      assert.ok(flash.width <= 38, `${id}: contact flare must stay local`);
+    }
+    for (const layer of layers.filter((layer) => layer.contact !== undefined)) {
+      assert.ok(
+        cue.camera.impacts.includes(layer.contact),
+        `${id} ${layer.kind}`,
+      );
+      assert.equal(layer.times[2], layer.contact, `${id} ${layer.kind}`);
+    }
+  }
+});
+
+test("arcade families distinguish fire, mat debris, sustained joint electricity, shields and recovery particles", () => {
+  assert.ok(kinds(replay("strike").cue).includes("embers"));
+  for (const id of ["powerbomb", "suplex", "moonsault"]) {
+    const effects = kinds(replay(id).cue);
+    for (const kind of ["mat", "dust", "debris", "mat-crack", "floor-aura"])
+      assert.ok(effects.includes(kind), `${id} ${kind}`);
+    assert.ok(!effects.includes("embers"), id);
+  }
+  for (const id of ["armbar", "headlock", "anklelock", "kimura", "heelhook"]) {
+    const cue = replay(id).cue;
+    const effects = techniqueEffectLayers(cue.effect, cue.camera, cue);
+    const electric = effects.filter((layer) => layer.kind === "electric-lock");
+    assert.equal(electric.length, 2, id);
+    assert.ok(
+      electric.every((layer) => layer.times.at(-2) >= 0.9),
+      id,
+    );
+    assert.ok(!effects.some((layer) => layer.flashing), id);
+    assert.ok(
+      electric.every(
+        (layer) =>
+          layer.center[0] === cue.effect.target[0] &&
+          layer.center[1] === cue.effect.target[1],
+      ),
+      id,
+    );
+  }
+  assert.ok(kinds(replay("guard").cue).includes("shield-ripple"));
+  assert.ok(kinds(replay("focus").cue).includes("rising-motes"));
+  assert.ok(kinds(replay("nightmare").cue).includes("fracture"));
+});
+
+test("fully blocked attacks suppress embers, debris and mat cracks as well as damage bursts", () => {
+  for (const id of ["strike", "doubletap", "powerbomb", "suplex"]) {
+    const cue = replay(id, 100).cue;
+    const effects = techniqueEffectLayers(cue.effect, cue.camera, cue);
+    assert.ok(
+      effects.some((layer) => layer.kind === "shield"),
+      id,
+    );
+    assert.ok(
+      !effects.some(
+        (layer) =>
+          layer.flashing ||
+          ["embers", "debris", "mat-crack"].includes(layer.kind),
+      ),
+      id,
+    );
+  }
 });

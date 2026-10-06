@@ -10,11 +10,17 @@
 
 노바의 여섯 상태는 레이븐·바이퍼와 어울리는 **선명한 윤곽선과 셀 셰이딩의 카툰 얼굴**로 다시 제작했습니다. 검은 옆가르마 머리·귀걸이·기존 복장과 체형을 유지하며, 각 상태의 표정과 자세가 한 장의 연결된 전신 그림에 담깁니다.
 
+전체 열 명 선수의 여섯 상태에 **땀·찰과상·멍·작은 혈흔**을 추가했습니다. 열기와 압박이 높거나 체력이 낮으면 땀이 늘고, 체력 70% 이하부터 찰과상, 50% 이하부터 멍, 25% 이하부터 눈썹의 작은 혈흔이 나타납니다. 체력 10% 이하에서는 입가에도 혈흔을 표시합니다. 체력 회복에 따라 표현도 완화되며, 상태 미리보기에서는 해당 상태의 예시를 보여줍니다. 전신과 얼굴 확대에 같은 위치를 적용하고, 기존 완성 그림 전체에 장식을 얹으므로 얼굴·팔·몸을 분리하지 않습니다.
+
+[땀·상처 / 아케이드 연출 검증과 화면](artifacts/condition-arcade-qa.md)
+
 ![열 명 선수의 여섯 상태 일러스트 비교](artifacts/expanded-fighter-state-gallery.jpg)
 
 [세로 겹친 손패](artifacts/journey-fan-393x852.jpg) · [가로 겹친 손패](artifacts/journey-fan-667x375.jpg) · [확대 기술 연출](artifacts/journey-technique-focus.jpg) · [분기 지도](artifacts/journey-road.jpg) · [라커룸 컷신](artifacts/journey-lockerroom.jpg) · [10개 화면 조건 검증](artifacts/journey-fan-geometry.json) · [바이퍼 6상태 검증](artifacts/viper-no-gear-browser-checks.json)
 
 50종의 전용 카드 그림을 사용하는 기술 시네마틱을 제공합니다. 새 기술 25종은 파워밤 5종, 슬램·수플렉스 7종, 관절기·서브미션 10종, 잡기 연결 3종입니다. 각 카드의 유한 애니메이션 효과를 추가했습니다. 타격은 방향 잔상과 접촉 폭발, 그래플링은 조임·들어 올림·낙하와 매트 충격파, 서브미션은 관절 타깃과 지속 압박으로 차별화합니다. 타격·공중기·던지기·서브미션·잡기·방어·운영·악몽을 구분하며, 실제 피해·방어·회복·드로우·열기·압박 결과를 보여줍니다. 재생 중에는 카드와 턴 종료 입력을 잠그며, 기술 연출은 **전체/간결**로 조절합니다. 운영체제의 모션 감소 설정도 따릅니다.
+
+[사용자가 제공한 연출 참고 영상](https://www.youtube.com/watch?v=0QHrqt6sGJY)을 바탕으로 기술 시네마틱과 링 위 피격 효과를 아케이드 스타일로 재작업했습니다. 타격에는 불꽃 궤적과 접촉 섬광, 던지기에는 상승 궤적·매트 충격파·먼지와 파편, 서브미션에는 관절을 둘러싼 전기선과 압박 고리를 사용합니다. 방어는 푸른 실드, 운영은 회복·집중 광원, 악몽은 어두운 에너지로 구분합니다. 접촉 순간의 짧은 정지와 선수 그림 전체의 반동을 연결하며, 실제 피해와 가드·KO 판정을 표시합니다. 소리를 켜면 같은 접촉 시점에 타격음·매트 충돌음·조임 펄스·방어음도 재생됩니다. 모션 감소 또는 간결 설정에서는 움직임과 입자를 줄이고 결과를 정적으로 표시합니다.
 
 경기 배경은 **언더그라운드 클럽·네온 돔·그랜드 스타디움·크라운 콜로세움 4종**입니다. 촘촘한 관중, 다층 발코니, 링사이드 장비와 조명을 담은 1536×1024 그림을 웨이브와 구간에 따라 배치합니다. 기술 접촉 순간에는 환호·기립 환호·술렁임·탭아웃 구호·야유·박수가 실제 판정에 맞춰 나타나며, 관중의 팔과 조명이 반응합니다. 소리를 켜면 관중 소음과 박수·야유 음향도 함께 재생됩니다. 피니셔와 KO는 기립 환호, 완전 방어는 술렁임, 상대 타격·도발과 일부 도구는 야유로 구분합니다.
 
@@ -82,6 +88,8 @@ npm run preview
 
 새 경기장 4종은 내장 이미지 생성으로 제작한 `public/assets/arenas/`의 1536×1024 WebP입니다. [경기장 프롬프트·제작 기록](artifacts/arena-environments.md)에 원본 경로와 구도를 남겼습니다. 프로레슬링 도구 12종과 챔피언 벨트 3종은 각각 `public/assets/equipment/`, `public/assets/belts/`의 전용 SVG 일러스트를 사용합니다.
 
+땀·상처와 아케이드 기술 효과는 직접 작성한 SVG·CSS·Motion 그래픽입니다. 선수·상태별 얼굴과 신체 좌표를 기존 완성 일러스트에 맞춰 배치하며, 피부 표현은 이미지의 투명 영역 밖으로 나가지 않도록 마스킹합니다. 접촉·관중 음향은 Web Audio로 현장에서 합성합니다. 참고 영상의 프레임·음원·게임 리소스를 배포 파일에 복사하지 않습니다.
+
 수정 가능한 [Blender 아레나 장면](artifacts/arena.blend)과 [렌더 스크립트](tools/render-arena.py)를 포함합니다. 60개 완성 이미지를 비교하는 [Blender 검수 갤러리](artifacts/expanded-fighter-state-gallery.blend), [구성 검증 기록](artifacts/expanded-fighter-state-gallery-facts.json), [갤러리 스크립트](tools/build-state-gallery.py)도 함께 제공합니다. 갤러리는 각 완성 그림을 하나의 이미지 평면에 표시합니다.
 
 최종 선수 그림은 `public/assets/fighters/states/`, 카드 그림은 `public/assets/cards/`에 있습니다. 새 컷신 배경은 내장 이미지 생성으로 제작한 `public/assets/events/`의 1600×900 WebP 3장입니다. [컷신 프롬프트와 출처](artifacts/journey-cutscene-prompts.json)와 [전체 아트 제작 기록](artifacts/art-direction.md)에서 제작 경로를 구분합니다. 사용자 제공 원본 참고 파일은 저장소에 배포하지 않습니다.
@@ -96,7 +104,9 @@ The client uses React, Vite, Motion, and Phosphor icons. Gameplay lives in the d
 
 Character assets use `fighters/states/{actor}-{state}.webp`. The ten actors are `raven`, `valkyrie`, `nova`, `viper`, `ember`, `atlas`, `seraph`, `lynx`, `tempest`, and `onyx`; the six states are `normal`, `excited`, `fiery`, `frustrated`, `tired`, and `groggy`. Cards use their 50 dedicated `cards/{id}.webp` illustrations. The app renders completed images rather than continuous canvas rigs; finite card-cast transitions remain.
 
-[`src/arena-environments.js`](src/arena-environments.js) selects a stable match venue and derives crowd reactions from resolved outcomes. [`src/arena-audio.js`](src/arena-audio.js) synthesizes optional crowd beds, claps and boos locally. Championship awards live in the run and are also collected under `slay-championship-belts-v1`; [`src/championship-belts.js`](src/championship-belts.js) validates, migrates and deduplicates those cosmetic records without changing combat balance or saved decks.
+[`src/fighter-wear.js`](src/fighter-wear.js) derives cosmetic wear from current vitals and maps decorations to each intact illustration. [`src/ArcadeTechniqueFX.jsx`](src/ArcadeTechniqueFX.jsx) and [`src/ArcadeArenaImpact.jsx`](src/ArcadeArenaImpact.jsx) render finite, outcome-aware technique and ring-contact effects. Reduced motion keeps readable results without the impact motion or particles.
+
+[`src/arena-environments.js`](src/arena-environments.js) selects a stable match venue and derives crowd reactions from resolved outcomes. [`src/arena-audio.js`](src/arena-audio.js) synthesizes optional contact layers, crowd beds, claps and boos locally. Contact and crowd sources have separate bounded lifetimes; mute, tab hiding and unmount stop and disconnect scheduled sources. Championship awards live in the run and are also collected under `slay-championship-belts-v1`; [`src/championship-belts.js`](src/championship-belts.js) validates, migrates and deduplicates those cosmetic records without changing combat balance or saved decks.
 
 Every engine action returns a cloned, serializable state. Invalid actions return the original state. A saved PRNG seed makes draw order, encounters, and rewards reproducible after loading. Card instances use `{ uid, id, upgraded, upgradePath? }`; permanent deck entries and combat piles share the same logical UID. The optional specialization is `force`, `control`, or `flow`; legacy upgraded cards without it retain their original + effects.
 

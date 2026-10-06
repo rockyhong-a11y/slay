@@ -1,6 +1,10 @@
 import { getCard, WRESTLERS } from "./game.js";
 import { getCardDetail } from "./card-library.js";
-import { techniqueEffectProfile } from "./technique-effects.js";
+import {
+  techniqueEffectProfile,
+  artworkProjection,
+  projectedArtworkPoint,
+} from "./technique-effects.js";
 
 // Presentation reads engine snapshots. It never changes combat or save data.
 export const FIGHTER_STATES = {
@@ -297,6 +301,17 @@ export function techniqueShot(cardId, disciplineSlug, finisher = false) {
       variation.duration ||
       (finisher ? Math.max(3100, shot.duration) : shot.duration),
   };
+  // Arcade anticipation, impact punch-in and recoil stay on one intact image.
+  // The joint-lock camera deliberately uses a steadier, sustained squeeze.
+  if (!camera.pressure && camera.impacts.length) {
+    const force = camera.heavy ? 1.3 : 1.15;
+    camera.x = camera.x.map((value) => value * force);
+    camera.y = camera.y.map((value) => value * force);
+    camera.scale = camera.scale.map((value) =>
+      Math.min(1.25, Math.max(0.8, 1 + (value - 1) * 1.35)),
+    );
+    camera.rotate = camera.rotate.map((value) => value * 1.12);
+  }
   // Hold the complete frame at contact, then release into recoil. The engine
   // has already resolved the action; this hitstop affects only the camera.
   camera.hitstop = camera.pressure ? 0 : camera.heavy ? 100 : 80;
@@ -314,6 +329,39 @@ export function techniqueShot(cardId, disciplineSlug, finisher = false) {
     }
   }
   return camera;
+}
+
+/** Follow the mat at landing without moving the technique's contact marker. */
+export function frameTechniqueCamera(camera, effect, viewport) {
+  if (
+    !viewport?.width ||
+    !viewport?.height ||
+    effect?.family !== "grapple" ||
+    effect.grounded
+  )
+    return camera;
+  const { width, height, fit = "contain", position = [0.5, 0.5] } = viewport;
+  const projection = artworkProjection(width, height, fit, position);
+  const target = projectedArtworkPoint(effect.target, projection);
+  const origin = projectedArtworkPoint(
+    effect.grip || effect.target,
+    projection,
+  );
+  const contact = camera.impacts[0] ?? 1;
+  const y = camera.y.map((pan, index) => {
+    if (camera.times[index] < contact) return pan;
+    const angle = (camera.rotate[index] * Math.PI) / 180;
+    const dx = (target[0] - origin[0]) * width * camera.scale[index];
+    const dy = (target[1] - origin[1]) * height * camera.scale[index];
+    const landing =
+      origin[1] * height + dx * Math.sin(angle) + dy * Math.cos(angle) + pan;
+    return pan - Math.max(0, landing - height * 0.87);
+  });
+  return {
+    ...camera,
+    y,
+    origin: origin.map((value) => `${value * 100}%`).join(" "),
+  };
 }
 const difference = (a, b) => Math.max(0, (a || 0) - (b || 0));
 
@@ -414,29 +462,45 @@ export function fighterImpactFrames(impact, side, still = false) {
   const direction = impact.attacker === "player" ? 1 : -1;
   const force = impact.heavy ? 1.4 : 1;
   const pressure = impact.pressure && impact.damage > 0;
+  const slam = impact.throwing && impact.damage > 0;
+  const grip = impact.effectFamily === "grapple" && !slam && impact.damage > 0;
   const horizontal = pressure
     ? attacking
       ? [0, -2, 5, 5, 4, 2, 0]
       : [0, 0, 2, 2, 4, 1, 0]
-    : attacking
-      ? [0, -7, 26, 26, 14, 3, 0]
-      : guarded
-        ? [0, 0, 4, 4, 7, 2, 0]
-        : [0, 0, 23, 23, 34, 10, 0];
+    : grip
+      ? attacking
+        ? [0, -8, 18, 18, 10, 3, 0]
+        : [0, 0, -8, -8, 9, 2, 0]
+      : attacking
+        ? [0, -10, 35, 35, 14, 3, 0]
+        : guarded
+          ? [0, 0, 4, 4, 7, 2, 0]
+          : [0, 0, 29, 29, 42, 14, 0];
   const vertical = pressure
     ? [0, 0, -1, -1, 1, 0, 0]
-    : attacking
-      ? [0, -2, -5, -5, 0, 0, 0]
-      : guarded
-        ? [0, 0, 1, 1, 0, 0, 0]
-        : [0, 0, -4, -4, 5, 2, 0];
+    : slam
+      ? attacking
+        ? [0, 5, -8, -8, 6, 0, 0]
+        : [0, -28, 16, 16, 24, 6, 0]
+      : attacking
+        ? [0, -2, -5, -5, 0, 0, 0]
+        : guarded
+          ? [0, 0, 1, 1, 0, 0, 0]
+          : [0, 0, -4, -4, 5, 2, 0];
   const rotation = pressure
-    ? [0, 0, 1, 1, 2, 1, 0]
-    : attacking
-      ? [0, -1, 2, 2, 0, 0, 0]
-      : guarded
-        ? [0, 0, 1, 1, 1, 0, 0]
-        : [0, 0, 4, 4, 6, 1, 0];
+    ? attacking
+      ? [0, -1, 2, 2, 3, 1, 0]
+      : [0, 0, 3, 3, 6, 2, 0]
+    : slam
+      ? attacking
+        ? [0, -3, 4, 4, 2, 0, 0]
+        : [0, -12, 8, 8, 14, 3, 0]
+      : attacking
+        ? [0, -1, 2, 2, 0, 0, 0]
+        : guarded
+          ? [0, 0, 1, 1, 1, 0, 0]
+          : [0, 0, 6, 6, 9, 2, 0];
   return {
     x: horizontal.map((value) => value * direction * force),
     y: vertical,
@@ -473,7 +537,7 @@ export function fighterImpactFrames(impact, side, still = false) {
     transition: {
       duration: impact.duration / 1000,
       times: [0, 0.14, 0.29, 0.39, 0.57, 0.8, 1],
-      ease: "easeOut",
+      ease: "linear",
     },
   };
 }

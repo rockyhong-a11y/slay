@@ -751,6 +751,7 @@ export function JourneyLocation({ state, children }) {
         alt=""
         className="journey-location-actor"
         condition={condition.id}
+        vitals={state.player}
       />
       <div className="journey-location-content">{children}</div>
     </section>
@@ -827,6 +828,7 @@ export function RunArrival({ state, onContinue, shortened = false }) {
           art={fighterPoseArt(state.player.id, condition)}
           alt={`${actor?.name || state.player.id} · ${condition.label} 자세`}
           condition={condition.id}
+          vitals={state.player}
         />
       </motion.div>
       <div className="journey-arrival-dialogue">

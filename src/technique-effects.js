@@ -403,19 +403,34 @@ export function techniqueEffectLayers(
   const target = p.target;
   const layers = [];
   const blocked = attacking && damage === 0;
-  const contacts = camera.impacts.length ? camera.impacts : [0.55];
+  // At most two discrete contact flares; pressure effects are sustained light.
+  const contacts = camera.impacts.length ? camera.impacts.slice(0, 2) : [0.55];
   const at = contacts.at(-1);
   const end = Math.min(0.98, at + 0.24);
   const direction = p.direction;
 
   if (p.family === "strike") {
     for (let index = 0; index < 3; index++) {
-      const impact = contacts[Math.min(index, contacts.length - 1)];
+      const contactIndex = Math.min(index, contacts.length - 1);
+      const impact = contacts[contactIndex];
+      const width = 46 - index * 8;
+      const angle = p.angle ?? -8;
+      const radians = (angle * Math.PI) / 180;
+      // The flame's tip is 46% of its width from its center. Place that
+      // endpoint at the reviewed contact rather than across the victim's face.
+      const reach = width * 0.0046;
       layers.push(
         layer(
           "streak",
-          [target[0] - 0.12 * direction, target[1] + (index - 1) * 0.045],
-          55,
+          [
+            target[0] +
+              contactIndex * 0.025 -
+              reach * Math.cos(radians) * direction,
+            target[1] -
+              reach * Math.sin(radians) * (1024 / 683) * direction +
+              (index - 1) * 0.012,
+          ],
+          width,
           [
             0,
             Math.max(0.01, impact - 0.18),
@@ -428,13 +443,13 @@ export function techniqueEffectLayers(
             x: [
               -80 * direction,
               -80 * direction,
-              30 * direction,
-              65 * direction,
-              65 * direction,
+              0,
+              35 * direction,
+              35 * direction,
             ],
             scaleX: [0.1, 0.1, 1, 0.6, 0.6],
           },
-          { angle: p.angle || -8, direction },
+          { angle, direction },
         ),
       );
     }
@@ -443,7 +458,7 @@ export function techniqueEffectLayers(
         layer(
           blocked ? "shield" : "burst",
           [target[0] + index * 0.025, target[1]],
-          37 * p.strength,
+          25 * p.strength,
           [
             0,
             Math.max(0.01, contact - 0.015),
@@ -464,6 +479,7 @@ export function techniqueEffectLayers(
               index * 18 + 8,
             ],
           },
+          { contact, flashing: !blocked },
         ),
       ),
     );
@@ -503,9 +519,9 @@ export function techniqueEffectLayers(
       layers.push(
         layer(
           lifting ? "lift" : "arc",
-          [0.5, 0.48],
+          [0.5, 0.5],
           100,
-          [0, 0.14, 0.32, 0.48, 0.66, 1],
+          [0, at * 0.24, at * 0.56, at * 0.87, at + 0.06, 1],
           [0, 0.5, 0.85, 0.9, 0, 0],
           { pathLength: [0, 0.04, 0.6, 1, 1, 1] },
           { direction },
@@ -735,6 +751,148 @@ export function techniqueEffectLayers(
           ),
         );
   }
+  // Arcade accents occupy the same contact coordinates as the illustration.
+  // There are no ambient loops: every particle exits on the replay clock.
+  if (p.family === "strike" && !blocked) {
+    contacts.forEach((contact, index) => {
+      layers.push(
+        layer(
+          "embers",
+          [target[0] + index * 0.025, target[1]],
+          34 * p.strength,
+          [
+            0,
+            contact - 0.014,
+            contact,
+            contact + 0.08,
+            Math.min(0.96, contact + 0.26),
+            1,
+          ],
+          [0, 0, 0.95, 0.7, 0, 0],
+          {
+            scale: [0.1, 0.1, 0.4, 1, 1.7, 1.7],
+            rotate: [0, 0, 0, direction * 8, direction * 18, direction * 18],
+          },
+          { angle: p.angle || 0, contact, direction },
+        ),
+      );
+    });
+  }
+  if (p.family === "grapple" && !p.grounded && !blocked) {
+    layers.push(
+      layer(
+        "mat-crack",
+        [target[0], target[1]],
+        42 * p.strength,
+        [0, at - 0.01, at, at + 0.07, Math.min(0.97, at + 0.31), 1],
+        [0, 0, 0.78, 0.65, 0, 0],
+        {
+          scaleX: [0.3, 0.3, 0.75, 1.15, 1.35, 1.35],
+          scaleY: [0.15, 0.15, 0.35, 0.5, 0.5, 0.5],
+        },
+        { contact: at },
+      ),
+    );
+    for (const side of [-1, 1])
+      layers.push(
+        layer(
+          "debris",
+          target,
+          22,
+          [0, at - 0.01, at, at + 0.12, Math.min(0.98, at + 0.33), 1],
+          [0, 0, 0.9, 0.85, 0, 0],
+          {
+            x: [0, 0, side * 5, side * 46, side * 88, side * 88],
+            y: [0, 0, 0, -55, 12, 12],
+            rotate: [0, 0, 0, side * 38, side * 95, side * 95],
+            scale: [0.2, 0.2, 0.6, 1, 0.55, 0.55],
+          },
+          { side, contact: at },
+        ),
+      );
+  }
+  if (p.family === "submission" || (p.family === "grapple" && p.grounded)) {
+    for (const side of [-1, 1])
+      layers.push(
+        layer(
+          "electric-lock",
+          target,
+          32 * (p.pressure || 1),
+          [0, 0.18, 0.34, 0.48, 0.62, 0.78, 0.93, 1],
+          [0, 0.12, 0.6, 0.85, 0.65, 0.9, 0.4, 0],
+          {
+            rotate: [
+              0,
+              0,
+              side * 12,
+              side * 20,
+              side * 28,
+              side * 36,
+              side * 42,
+              side * 42,
+            ],
+            scale: [1.25, 1.25, 1.1, 1, 0.94, 0.89, 0.85, 0.85],
+          },
+          { side, angle: p.angle || 0, direction },
+        ),
+      );
+  }
+  if (p.family === "defense") {
+    layers.push(
+      layer(
+        "shield-ripple",
+        target,
+        54,
+        [0, 0.12, 0.3, 0.6, 0.88, 1],
+        [0, 0.12, 0.6, 0.45, 0.2, 0],
+        { scale: [0.5, 0.65, 0.9, 1.06, 1.2, 1.2] },
+      ),
+    );
+  }
+  if (p.family === "tactics" || (p.family === "defense" && p.calm)) {
+    for (const side of [-1, 1])
+      layers.push(
+        layer(
+          "rising-motes",
+          [target[0] + side * 0.1, Math.min(0.84, target[1] + 0.28)],
+          26,
+          [0, 0.16, 0.35, 0.67, 0.9, 1],
+          [0, 0.2, 0.8, 0.65, 0.2, 0],
+          {
+            y: [25, 20, 0, -46, -75, -75],
+            scale: [0.55, 0.65, 0.9, 1, 0.9, 0.9],
+          },
+          { side },
+        ),
+      );
+  }
+  if (p.family === "nightmare") {
+    layers.push(
+      layer(
+        "fracture",
+        target,
+        90,
+        [0, 0.15, 0.35, 0.56, 0.83, 1],
+        [0, 0.18, 0.7, 0.8, 0.25, 0],
+        { scale: [0.6, 0.8, 1, 1.12, 1.5, 1.6] },
+      ),
+    );
+  }
+  // Floor halos strengthen arcade staging without obscuring faces or UI.
+  if (p.family !== "strike" && !blocked)
+    layers.push(
+      layer(
+        "floor-aura",
+        [p.grounded ? target[0] : 0.5, 0.86],
+        p.family === "grapple" ? 64 : 52,
+        [0, 0.1, 0.26, 0.62, 0.9, 1],
+        [0, 0.12, 0.4, 0.45, 0.1, 0],
+        {
+          scaleX: [0.55, 0.65, 0.9, 1.05, 1.25, 1.25],
+          scaleY: [0.12, 0.15, 0.2, 0.23, 0.25, 0.25],
+        },
+      ),
+    );
   return layers.map((value, index) => ({
     ...value,
     id: `${p.id}-${value.kind}-${index}`,
