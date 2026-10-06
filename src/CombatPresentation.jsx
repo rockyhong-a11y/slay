@@ -11,6 +11,7 @@ import {
 import "./combat-presentation.css";
 import { Artwork } from "./Artwork.jsx";
 import { motionTokens } from "./motion-config.js";
+import { CrowdCallout } from "./CrowdAtmosphere.jsx";
 import {
   techniqueEffectLayers,
   techniqueEffectProfile,
@@ -268,10 +269,18 @@ function TechniqueEffects({ cue, effect, duration }) {
   );
 }
 
-export function TechniqueScene({ cue, onComplete, shortened = false }) {
+export function TechniqueScene({
+  cue,
+  onComplete,
+  onCrowd,
+  shortened = false,
+}) {
   const reduced = useReducedMotion();
   const complete = useRef(onComplete);
   complete.current = onComplete;
+  const reactionCallback = useRef(onCrowd);
+  reactionCallback.current = onCrowd;
+  const [crowdVisible, setCrowdVisible] = useState(false);
   const still = reduced || shortened;
   const duration = still ? 650 : cue.duration;
   const camera = cue.camera;
@@ -281,6 +290,15 @@ export function TechniqueScene({ cue, onComplete, shortened = false }) {
     const timer = setTimeout(() => complete.current(cue.id), duration);
     return () => clearTimeout(timer);
   }, [cue.id, duration]);
+  useEffect(() => {
+    setCrowdVisible(false);
+    const at = still ? 80 : duration * (camera.impacts[0] || 0.35);
+    const timer = setTimeout(() => {
+      setCrowdVisible(true);
+      reactionCallback.current?.(cue.crowd);
+    }, at);
+    return () => clearTimeout(timer);
+  }, [cue.id, duration, still, camera, cue.crowd]);
   const scene = (
     <motion.div
       className={`technique-scene scene-${cue.disciplineSlug} scene-effect-${effect.family} ${cue.finisher ? "scene-finisher" : ""} ${still ? "scene-still" : ""}`}
@@ -427,6 +445,9 @@ export function TechniqueScene({ cue, onComplete, shortened = false }) {
                 {result.text}
               </span>
             ))}
+          </div>
+          <div className="technique-crowd-slot">
+            {crowdVisible && <CrowdCallout reaction={cue.crowd} />}
           </div>
         </div>
       </div>

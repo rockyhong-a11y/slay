@@ -3,18 +3,13 @@ import { motion, useReducedMotion } from "motion/react";
 import {
   ArrowRight,
   Backpack,
-  Brain,
   Check,
   Coins,
   Coffee,
   Crown,
   Eye,
   Fire,
-  Heart,
-  Lightning,
-  Shield,
   Skull,
-  Sparkle,
   Stack,
   Storefront,
   Sword,
@@ -29,6 +24,7 @@ import {
   WRESTLERS,
 } from "./game.js";
 import { Artwork } from "./Artwork.jsx";
+import { EquipmentArt } from "./WrestlingEquipment.jsx";
 import { fighterPoseArt, selectFighterState } from "./presentation.js";
 import { createRouteTapTracker } from "./route-gestures.js";
 import { HAND_DOUBLE_TAP_MS, TOUCH_CONFIRM_MS } from "./hand-interaction.js";
@@ -52,16 +48,6 @@ const rarityNames = {
   uncommon: "고급",
   rare: "희귀",
   signature: "시그니처",
-};
-const itemIcon = (definition) => {
-  const effects = definition?.effects || {};
-  if (effects.heal) return Heart;
-  if (effects.block) return Shield;
-  if (effects.energy) return Lightning;
-  if (effects.calm) return Brain;
-  if (effects.hype) return Fire;
-  if (effects.draw) return Stack;
-  return Sparkle;
 };
 function rewardText(node) {
   const reward = node.reward || {};
@@ -584,18 +570,20 @@ export function JourneyInventory({
     <div className="journey-inventory">
       <section>
         <div className="journey-section-heading">
-          <h3>일회용 소모품</h3>
+          <h3>링사이드 도구 · 1회 사용</h3>
           <span>{inventory.length}/3 슬롯</span>
         </div>
-        <p>전투 중 에너지 없이 한 번 사용합니다. 사용한 소모품은 사라집니다.</p>
+        <p>
+          체어, 링벨과 정비 도구를 전투 중 에너지 없이 한 번 사용합니다. 사용한
+          도구는 이번 런의 보관함에서 소모됩니다.
+        </p>
         <div className="journey-item-slots">
           {inventory.map((entry) => {
             const definition = ITEMS[entry.id];
             if (!definition) return null;
-            const Icon = itemIcon(definition);
             return (
               <article key={entry.uid} className="journey-item">
-                <Icon size={26} />
+                <EquipmentArt definition={definition} />
                 <h4>{definition.name}</h4>
                 <p>{definition.description}</p>
                 <button
@@ -621,18 +609,18 @@ export function JourneyInventory({
       </section>
       <section>
         <div className="journey-section-heading">
-          <h3>코너 기믹</h3>
+          <h3>경기 장비 · 1경기 지속</h3>
           <span>
             {stock.length}/{GIMMICK_CAPACITY} 보관
           </span>
         </div>
         <p>
-          다음 경기를 위한 코너 전술입니다. 경기 시작 때 소모되고, 그 경기의
-          승패가 정해지면 효과가 끝납니다.
+          테이블, 사다리, 벨트 등 다음 경기에서 사용할 장비입니다. 경기 시작 때
+          소모되고, 그 경기의 승패가 정해지면 효과가 끝납니다.
         </p>
         {active && (
           <div className="journey-active-gimmick">
-            <Shield size={24} />
+            <EquipmentArt definition={active} />
             <div>
               <span>이번 경기 적용 중 · {state.turn}라운드</span>
               <strong>{active.name}</strong>
@@ -654,6 +642,7 @@ export function JourneyInventory({
             const selected = entry.uid === state.equippedGimmickUid;
             return (
               <article className={selected ? "queued" : ""} key={entry.uid}>
+                <EquipmentArt definition={definition} />
                 <div>
                   <span>{selected ? "다음 경기 예약" : "1경기 사용"}</span>
                   <h4>{definition.name}</h4>
@@ -673,7 +662,7 @@ export function JourneyInventory({
           })}
           {!stock.length && (
             <div className="journey-empty-gimmick">
-              보관 중인 코너 기믹이 없습니다. 경기 보상, 상점과 이벤트에서
+              보관 중인 경기 장비가 없습니다. 경기 보상, 상점과 이벤트에서
               획득할 수 있습니다.
             </div>
           )}
@@ -719,7 +708,7 @@ export function RewardLoot({ state, onClaim }) {
           onClick={() => onClaim(kind, id)}
           disabled={full}
         >
-          <Backpack size={20} />
+          <EquipmentArt definition={definition} />
           <div>
             <strong>{definition.name}</strong>
             <small>{definition.description}</small>

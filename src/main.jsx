@@ -77,6 +77,25 @@ import { UpgradeChoices } from "./UpgradeChoices.jsx";
 import { WaveClearPanel } from "./WaveProgression.jsx";
 import "./wave-progression.css";
 import {
+  getArenaEnvironment,
+  crowdReaction,
+  reactionForTechnique,
+  reactionForOpponent,
+} from "./arena-environments.js";
+import { CrowdAtmosphere } from "./CrowdAtmosphere.jsx";
+import { useArenaSound } from "./arena-audio.js";
+import {
+  collectRunBelts,
+  loadBeltCollection,
+  getEarnedBelts,
+  getLatestBeltAward,
+} from "./championship-belts.js";
+import {
+  EquipmentArt,
+  BeltAward,
+  ChampionshipCollection,
+} from "./WrestlingEquipment.jsx";
+import {
   DeckLoadout,
   SaveChampionDeck,
   CardRemovalPicker,
@@ -235,42 +254,6 @@ function loadRun() {
       return normalizeRun(data);
   } catch {}
   return newRun("raven", crypto.getRandomValues(new Uint32Array(1))[0]);
-}
-
-function useSound() {
-  const [enabled, setEnabled] = useState(false);
-  const ctx = useRef(null);
-  const play = (kind) => {
-    if (!enabled) return;
-    try {
-      ctx.current ||= new (window.AudioContext || window.webkitAudioContext)();
-      const c = ctx.current;
-      c.resume();
-      const osc = c.createOscillator(),
-        gain = c.createGain();
-      osc.type = kind === "attack" ? "triangle" : "sine";
-      osc.frequency.setValueAtTime(
-        kind === "attack" ? 170 : 660,
-        c.currentTime,
-      );
-      osc.frequency.exponentialRampToValueAtTime(
-        kind === "attack" ? 40 : 330,
-        c.currentTime + 0.16,
-      );
-      gain.gain.setValueAtTime(0.16, c.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.22);
-      osc.connect(gain).connect(c.destination);
-      osc.start();
-      osc.stop(c.currentTime + 0.24);
-    } catch {}
-  };
-  useEffect(
-    () => () => {
-      ctx.current?.close();
-    },
-    [],
-  );
-  return { enabled, toggle: () => setEnabled((v) => !v), play };
 }
 
 function Modal({
@@ -464,6 +447,19 @@ function App() {
     loadDeckArchive(deckStorageForPage()),
   );
   const [archiveError, setArchiveError] = useState("");
+  const [beltCollection, setBeltCollection] = useState(() =>
+    loadBeltCollection(deckStorageForPage()),
+  );
+  const beltAwardsKey = getEarnedBelts(state)
+    .map((belt) => belt.id)
+    .join(":");
+  const saveBelts = () =>
+    setBeltCollection(
+      collectRunBelts(state, { storage: deckStorageForPage() }),
+    );
+  useEffect(() => {
+    saveBelts();
+  }, [beltAwardsKey]);
   const [savedVictoryId, setSavedVictoryId] = useState(null);
   const [upgradeTarget, setUpgradeTarget] = useState(null);
   const [previewActor, setPreviewActor] = useState(null);
@@ -472,6 +468,8 @@ function App() {
   const [hit, setHit] = useState(null);
   const [cue, setCue] = useState(null);
   const [impactCue, setImpactCue] = useState(null);
+  const [crowdCue, setCrowdCue] = useState(null);
+  const crowdTimer = useRef(null);
   const pendingImpact = useRef(null);
   const [selectedHandId, setSelectedHandId] = useState(null);
   const [dismissedArrivals, setDismissedArrivals] = useState([]);
@@ -500,8 +498,16 @@ function App() {
       return "dark";
     }
   });
-  const sound = useSound();
+  const sound = useArenaSound();
   const wrestler = WRESTLERS[state.player.id] || WRESTLERS.raven;
+  const environment = getArenaEnvironment(state);
+  const announceCrowd = (reaction, id) => {
+    if (!reaction) return;
+    clearTimeout(crowdTimer.current);
+    setCrowdCue({ ...reaction, id });
+    sound.crowd(reaction);
+    crowdTimer.current = setTimeout(() => setCrowdCue(null), reaction.duration);
+  };
   const previewWrestler = WRESTLERS[previewActor] || wrestler;
   const toastTimer = useRef(null);
   const hitTimer = useRef(null);
@@ -551,6 +557,9 @@ function App() {
     setCue(null);
     setImpactCue(null);
     pendingImpact.current = null;
+    setCrowdCue(null);
+    clearTimeout(crowdTimer.current);
+    sound.stop();
     setHit(null);
     clearTimeout(hitTimer.current);
   };
@@ -596,6 +605,7 @@ function App() {
     () => () => {
       clearTimeout(toastTimer.current);
       clearTimeout(hitTimer.current);
+      clearTimeout(crowdTimer.current);
     },
     [],
   );
@@ -662,6 +672,7 @@ function App() {
       return false;
     }
     const actionCue = createCardCue(state, next, instance);
+    actionCue.crowd = reactionForTechnique(actionCue);
     const id = ++cueSequence.current;
     busyRef.current = true;
     const impact = createArenaImpact(state, next, {
@@ -704,6 +715,10 @@ function App() {
       hitTimer.current = setTimeout(() => setHit(null), 650);
     } else setHit(null);
     sound.play("attack");
+    announceCrowd(
+      reactionForOpponent(state, next, impact),
+      `enemy-${state.wave}-${state.floor}-${state.turn}`,
+    );
     setState(next);
   };
   const useSupply = (uid) => {
@@ -720,9 +735,13 @@ function App() {
       const id = ++cueSequence.current;
       busyRef.current = true;
       setImpactCue({ ...impact, id });
-      setModal(null);
     }
     setState(next);
+    setModal(null);
+    announceCrowd(
+      crowdReaction(ITEMS[entry.id].crowdReaction || "applause"),
+      `gear-${entry.uid}`,
+    );
     const changes = [
       ["체력", next.player.hp - state.player.hp],
       ["방어", next.player.block - state.player.block],
@@ -990,7 +1009,7 @@ function App() {
                   ? "카드 도감"
                   : nav === "guide"
                     ? "카드 시스템"
-                    : "언더그라운드"}
+                    : environment.name}
               </strong>
             </div>
             <div className="top-actions">
@@ -1106,12 +1125,15 @@ function App() {
                         ? waveInfo.final
                           ? "THE FINAL RECKONING"
                           : "THE QUALIFIER CROWN"
-                        : "THE UNDERGROUND"}
+                        : environment.nameEn}
                       <span className="heading-point">.</span>
                     </h1>
                     <p>
                       {state.floor === 8
-                        ? `${waveInfo.difficulty} 보스 ${waveInfo.bossName}에게 도전합니다.`
+                        ? activePhase === "wave-clear" ||
+                          activePhase === "victory"
+                          ? `${waveInfo.bossName} 제압! ${waveInfo.difficulty} 챔피언 타이틀을 획득했습니다.`
+                          : `${waveInfo.difficulty} 보스 ${waveInfo.bossName}에게 도전합니다.`
                         : `${waveInfo.wave}웨이브 · ${waveInfo.name}. 덱을 완성하며 다음 보스에 도전하세요.`}
                     </p>
                   </div>
@@ -1166,7 +1188,7 @@ function App() {
                   onDismissFeedback={() => setDismissedFeedback(feedbackKey)}
                 />
               </section>
-            ) : activePhase === "wave-clear" ? (
+            ) : activePhase === "wave-clear" && !cue && !impactCue ? (
               <WaveClearPanel
                 state={state}
                 onContinue={() => act(continueToNextWave)}
@@ -1191,11 +1213,15 @@ function App() {
                 >
                   <img
                     className="arena-background"
-                    src={asset("arena.webp")}
-                    alt="붉은 링 로프와 스포트라이트가 비추는 지하 프로레슬링 경기장"
+                    src={asset(environment.art)}
+                    alt={`${environment.name} · ${environment.description}`}
                     fetchPriority="high"
                   />
                   <div className="arena-shade" />
+                  <CrowdAtmosphere
+                    reaction={crowdCue}
+                    shortened={!cinematics}
+                  />
                   <div className="fighter-hud player-hud">
                     <span className="fighter-side">YOUR WRESTLER</span>
                     <div className="fighter-name">
@@ -1300,6 +1326,7 @@ function App() {
                         key={cue.id}
                         cue={cue}
                         onComplete={completeCue}
+                        onCrowd={(reaction) => announceCrowd(reaction, cue.id)}
                         shortened={!cinematics}
                       />
                     )}
@@ -1330,7 +1357,7 @@ function App() {
                       >
                         {state.activeGimmick
                           ? `${GIMMICKS[state.activeGimmick.id]?.name} · 1경기`
-                          : "UNDERGROUND ARENA"}
+                          : environment.nameEn}
                       </span>
                     </span>
                     <div className="turn-badge">
@@ -1751,13 +1778,22 @@ function App() {
               />
             )}
             {modal === "inventory" && (
-              <JourneyInventory
-                state={state}
-                onUse={useSupply}
-                onEquip={(uid) => act((current) => equipGimmick(current, uid))}
-                onOpenPile={setModal}
-                locked={!!cue || !!impactCue || arrivalVisible}
-              />
+              <>
+                <JourneyInventory
+                  state={state}
+                  onUse={useSupply}
+                  onEquip={(uid) =>
+                    act((current) => equipGimmick(current, uid))
+                  }
+                  onOpenPile={setModal}
+                  locked={!!cue || !!impactCue || arrivalVisible}
+                />
+                <ChampionshipCollection
+                  state={state}
+                  result={beltCollection}
+                  onRetry={saveBelts}
+                />
+              </>
             )}
             {modal === "settings" && (
               <div className="settings-content">
@@ -1981,6 +2017,15 @@ function PhasePanel({
                   state.gimmicks.length >= GIMMICK_CAPACITY)
               }
             >
+              {["item", "gimmick"].includes(item.kind) && (
+                <EquipmentArt
+                  definition={
+                    item.kind === "item"
+                      ? ITEMS[item.itemId]
+                      : GIMMICKS[item.gimmickId]
+                  }
+                />
+              )}
               <div>
                 <strong>{item.name}</strong>
                 <span>{item.description}</span>
@@ -2057,11 +2102,7 @@ function PhasePanel({
     );
   return (
     <div className="phase-box final small" data-outcome={state.phase}>
-      {state.phase === "victory" ? (
-        <Trophy size={54} weight="duotone" />
-      ) : (
-        <Skull size={50} />
-      )}
+      {state.phase !== "victory" && <Skull size={50} />}
       <span className="eyebrow">
         {state.phase === "victory"
           ? "THE NEW CHAMPION"
@@ -2070,6 +2111,9 @@ function PhasePanel({
       <h2>
         {state.phase === "victory" ? "THE RING IS YOURS." : "DOWN. NEVER OUT."}
       </h2>
+      {state.phase === "victory" && (
+        <BeltAward belt={getLatestBeltAward(state)} compact />
+      )}
       <p>
         {state.phase === "victory"
           ? "3웨이브의 모든 보스를 제압했습니다. 완성한 강화 덱을 저장하고 다시 도전하세요."

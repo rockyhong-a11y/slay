@@ -10,6 +10,8 @@ import {
 import { getWaveInfo, WAVES } from "./game.js";
 import { Artwork } from "./Artwork.jsx";
 import { fighterPoseArt } from "./presentation.js";
+import { getLatestBeltAward } from "./championship-belts.js";
+import { BeltAward } from "./WrestlingEquipment.jsx";
 
 export function WaveClearPanel({ state, onContinue }) {
   const wave = getWaveInfo(state);
@@ -25,6 +27,7 @@ export function WaveClearPanel({ state, onContinue }) {
           <br />
           <span>{wave.difficulty} 웨이브 클리어</span>
         </h2>
+        <BeltAward belt={getLatestBeltAward(state)} />
         <p>
           {wave.bossName}을 제압했습니다. 완성 중인 덱과 선택한 강화 분기를
           가지고 더 강한 상대에게 도전하세요.

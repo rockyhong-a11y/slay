@@ -173,7 +173,7 @@
   }
   .next-boss-preview {
     min-height: 280px;
-    grid-row: 1;
+    grid-row: 2;
   }
   .next-boss-preview > .artwork {
     inset: 20px 0 65px;

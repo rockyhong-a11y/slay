@@ -36,6 +36,8 @@ import {
 import "./knowledge.css";
 import "./upgrade-choices.css";
 import { Artwork } from "./Artwork.jsx";
+import { EquipmentArt } from "./WrestlingEquipment.jsx";
+import { CHAMPIONSHIP_BELTS } from "./championship-belts.js";
 
 function KnowledgeHeader({
   eyebrow,
@@ -508,7 +510,7 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
               기믹은 최대 6개를 보관합니다. 경기 보상·프로 숍·이벤트에서 획득할
               수 있습니다.
             </p>
-            <h3>아이템 · 1회 사용</h3>
+            <h3>링사이드 도구 · 1회 사용</h3>
             <p>
               경기 중 에너지 없이 사용하고 즉시 소모합니다. 다음 턴이나 다음
               경기에는 돌아오지 않습니다. 사용하지 않은 물품은 다음 경기로
@@ -517,23 +519,29 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
             <dl className="guide-definitions">
               {Object.values(ITEMS).map((item) => (
                 <div key={item.id}>
-                  <dt>{item.name}</dt>
+                  <dt>
+                    <EquipmentArt definition={item} />
+                    {item.name}
+                  </dt>
                   <dd>{item.description}</dd>
                 </div>
               ))}
             </dl>
-            <h3>코너 기믹 · 해당 경기 종료까지</h3>
+            <h3>경기 장비 · 해당 경기 종료까지</h3>
             <p>
-              유물을 대신하는 선수 지원 전략입니다. 경기 밖에서 하나를 예약하면
-              다음 경기 입장 시 활성화되고 보관함에서 소모됩니다. 효과는 턴이
-              바뀌어도 유지되며, 해당 경기의 승리·패배와 함께 끝납니다. 예약하지
-              않은 기믹은 보관할 수 있습니다. 대가를 고려해 상대와 내 덱에 맞는
-              지원을 고르세요.
+              테이블·사다리·로프·레플리카 벨트를 활용하는 장비입니다. 경기
+              밖에서 하나를 예약하면 다음 경기 입장 시 활성화되고 보관함에서
+              소모됩니다. 효과는 턴이 바뀌어도 유지되며, 해당 경기의 승리·패배와
+              함께 끝납니다. 예약하지 않은 기믹은 보관할 수 있습니다. 대가를
+              고려해 상대와 내 덱에 맞는 지원을 고르세요.
             </p>
             <dl className="guide-definitions">
               {Object.values(GIMMICKS).map((gimmick) => (
                 <div key={gimmick.id}>
-                  <dt>{gimmick.name}</dt>
+                  <dt>
+                    <EquipmentArt definition={gimmick} />
+                    {gimmick.name}
+                  </dt>
                   <dd>
                     {gimmick.description} <strong>대가:</strong>{" "}
                     {gimmick.tradeoff}
@@ -541,9 +549,28 @@ export function CardGuidePage({ onOpenLibrary, onBack }) {
                 </div>
               ))}
             </dl>
+            <h3>챔피언 벨트 · 영구 우승 기록</h3>
+            <p>
+              각 웨이브의 보스를 제압하면 브론즈·실버·골드 챔피언 벨트를
+              받습니다. 경기 장비인 레플리카 벨트와 달리 소모되지 않는 우승
+              기념품이며, 코너 보관함에서 확인할 수 있습니다. 새 런을 시작해도
+              같은 브라우저에 보관됩니다.
+            </p>
+            <div className="guide-belt-lineup">
+              {CHAMPIONSHIP_BELTS.map((belt) => (
+                <div key={belt.id}>
+                  <EquipmentArt definition={belt} />
+                  <strong>{belt.name}</strong>
+                  <span>
+                    WAVE {belt.wave} · {belt.boss}
+                  </span>
+                </div>
+              ))}
+            </div>
             <p className="guide-note">
-              기존 저장에 이미 있던 컨디셔닝 벨트는 기존 효과를 유지합니다. 새
-              프로 숍에서는 경기 단위의 코너 기믹을 판매합니다.
+              경기장은 웨이브와 구간에 따라 달라집니다. 관중은
+              기술·가드·피니셔와 거친 도구 사용에 환호·구호·야유로 반응합니다.
+              소리 버튼을 켜면 관중 효과음도 들을 수 있습니다.
             </p>
           </RuleSection>
           <RuleSection

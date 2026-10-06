@@ -9,6 +9,7 @@ export const JOURNEY_QA_PROFILES = [
   "rest",
   "event",
   "shop",
+  "wave-boss",
   "wave-clear",
   "victory",
 ];
@@ -40,6 +41,19 @@ function championQA(target = "victory") {
     if (state.phase === "wave-clear") {
       state = game.continueToNextWave(state);
     } else if (state.phase === "combat") {
+      // Stop before the actual final blow, so browser QA exercises the scene,
+      // impact, belt award and intermission transition rather than opening it.
+      if (
+        target === "wave-boss" &&
+        state.wave === 1 &&
+        state.floor === 8 &&
+        state.hand.some(
+          (entry) =>
+            game.canPlayCard(state, entry) &&
+            game.playCard(state, entry.uid).phase === "wave-clear",
+        )
+      )
+        break;
       const item = state.inventory.find((entry) => {
         const effects = game.ITEMS[entry.id].effects;
         return (
@@ -138,7 +152,18 @@ function championQA(target = "victory") {
       state = offer ? game.buyItem(state, offer.id) : game.leaveShop(state);
     }
   }
-  if (state.phase !== target || !state.deck.some((card) => card.upgraded))
+  const reachedTarget =
+    state.phase === target ||
+    (target === "wave-boss" &&
+      state.phase === "combat" &&
+      state.wave === 1 &&
+      state.floor === 8 &&
+      state.hand.some(
+        (entry) =>
+          game.canPlayCard(state, entry) &&
+          game.playCard(state, entry.uid).phase === "wave-clear",
+      ));
+  if (!reachedTarget || !state.deck.some((card) => card.upgraded))
     throw new Error(
       "Champion QA requires a real completed run with upgraded cards.",
     );
@@ -148,7 +173,8 @@ function championQA(target = "victory") {
 export function createJourneyQA(profile = "map") {
   if (!JOURNEY_QA_PROFILES.includes(profile))
     throw new Error(`Unknown journey QA profile: ${profile}`);
-  if (["wave-clear", "victory"].includes(profile)) return championQA(profile);
+  if (["wave-boss", "wave-clear", "victory"].includes(profile))
+    return championQA(profile);
   let state = createCombatQA({ hand: 10, impact: "ko" });
   state = playCard(state, state.hand[0].uid);
   if (state.phase !== "reward")

@@ -1,0 +1,233 @@
+/* Reactions live behind the complete fighter illustrations and outside the HUD. */
+.arena .arena-background {
+  width: 100%;
+  opacity: 0.96;
+  object-position: 50% 61%;
+}
+.arena .arena-shade {
+  background: linear-gradient(
+    180deg,
+    #0a0b1599 0%,
+    #0a0b1512 38%,
+    #0a0b1515 72%,
+    #0a0b1580 100%
+  );
+}
+.crowd-atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  --crowd-color: #e7c787;
+}
+.crowd-boo {
+  --crowd-color: #f28289;
+}
+.crowd-submission {
+  --crowd-color: #bca5ee;
+}
+.crowd-gasp {
+  --crowd-color: #a8d9ed;
+}
+.crowd-light-wash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 28%,
+    color-mix(in srgb, var(--crowd-color) 16%, transparent),
+    transparent 65%
+  );
+  animation: crowd-roar var(--crowd-duration) both;
+}
+.crowd-ringside {
+  position: absolute;
+  left: 0;
+  top: calc(var(--arena-hud-height) + 3px);
+  width: 100%;
+  height: clamp(22px, 5vw, 60px);
+  opacity: 0.78;
+  mask-image: linear-gradient(#000 55%, transparent);
+}
+.crowd-fan {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: fan-cheer 0.7s ease-in-out var(--fan-delay) 3 alternate;
+}
+.crowd-boo .crowd-fan {
+  animation-name: fan-boo;
+}
+.crowd-arm {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: fan-arm 0.6s ease-in-out var(--fan-delay) 4 alternate;
+}
+.crowd-arm.right {
+  animation-direction: alternate-reverse;
+}
+.arena-crowd-caption {
+  position: absolute;
+  bottom: calc(var(--arena-footer-height) + 8px);
+  left: 50%;
+  translate: -50% 0;
+  max-width: calc(100% - 24px);
+  animation: crowd-roar var(--crowd-duration) both;
+}
+.crowd-callout {
+  --crowd-color: #e7c787;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--crowd-color);
+  padding: 12px 14px;
+  border-left: 2px solid currentColor;
+  background: #10131ddd;
+  max-width: 100%;
+  pointer-events: none;
+}
+.crowd-callout.crowd-boo {
+  --crowd-color: #f28289;
+}
+.crowd-callout.crowd-submission {
+  --crowd-color: #bca5ee;
+}
+.crowd-callout.crowd-gasp {
+  --crowd-color: #a8d9ed;
+}
+.crowd-callout > div {
+  min-width: 0;
+}
+.crowd-callout span {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.crowd-callout strong {
+  display: block;
+  font:
+    800 italic 23px/1.05 "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  margin-top: 3px;
+}
+.crowd-callout > .crowd-meter {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 24px;
+  margin-left: auto;
+}
+.crowd-meter i {
+  width: 3px;
+  height: calc(8px + var(--bar) * 3px);
+  background: currentColor;
+  opacity: 0.7;
+}
+.crowd-compact {
+  padding: 6px 10px;
+  gap: 7px;
+  border: 1px solid #e7c78755;
+  border-radius: 4px;
+}
+.crowd-compact strong {
+  font-size: 17px;
+  margin: 0;
+}
+.crowd-compact span {
+  font-size: 8px;
+}
+.crowd-compact > .crowd-meter {
+  height: 18px;
+}
+.technique-crowd-slot {
+  margin-top: 18px;
+  min-height: 54px;
+}
+.technique-crowd-slot .crowd-callout {
+  animation: crowd-caption-in 0.2s ease-out both;
+}
+.crowd-still * {
+  animation: none !important;
+}
+@keyframes fan-cheer {
+  from {
+    transform: translateY(3px) rotate(-3deg);
+  }
+  to {
+    transform: translateY(-4px) rotate(3deg);
+  }
+}
+@keyframes fan-boo {
+  from {
+    transform: rotate(-5deg);
+  }
+  to {
+    transform: rotate(5deg);
+  }
+}
+@keyframes fan-arm {
+  from {
+    transform: rotate(-12deg);
+  }
+  to {
+    transform: rotate(10deg);
+  }
+}
+@keyframes crowd-roar {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  12%,
+  80% {
+    opacity: 1;
+  }
+}
+@keyframes crowd-caption-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 650px) {
+  .technique-crowd-slot {
+    margin-top: 10px;
+    min-height: 44px;
+  }
+  .technique-crowd-slot .crowd-callout {
+    padding: 8px 10px;
+  }
+  .technique-crowd-slot .crowd-callout strong {
+    font-size: 20px;
+  }
+  .crowd-ringside {
+    height: 36px;
+  }
+}
+@media (orientation: landscape) and (max-height: 520px) {
+  .technique-crowd-slot {
+    margin-top: 8px;
+    min-height: 40px;
+  }
+  .technique-crowd-slot .crowd-callout {
+    padding: 6px 8px;
+  }
+  .technique-crowd-slot .crowd-callout strong {
+    font-size: 17px;
+  }
+  .crowd-callout > .crowd-meter {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .crowd-atmosphere *,
+  .technique-crowd-slot .crowd-callout {
+    animation: none !important;
+  }
+}

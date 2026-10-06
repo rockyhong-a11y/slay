@@ -10,6 +10,8 @@ import {
   isValidUpgradePath,
 } from "./card-upgrades.js";
 
+import { normalizeBeltAwards } from "./championship-belts.js";
+
 const card = (
   name,
   nameEn,
@@ -1082,108 +1084,119 @@ export const ITEMS = {
     description: "체력 18 회복 · 압박 5 감소",
     effects: { heal: 18, calm: 5 },
     cost: 35,
-    artKey: "items/icepack.webp",
+    artKey: "equipment/icepack.svg",
+    crowdReaction: "cheer",
   },
   energygel: {
     id: "energygel",
-    name: "러시 에너지 젤",
+    name: "링벨",
     description: "이번 턴 에너지 +2 · 압박 +4",
     effects: { energy: 2, stress: 4 },
     cost: 40,
-    artKey: "items/energygel.webp",
+    artKey: "equipment/ringbell.svg",
+    crowdReaction: "cheer",
   },
   resin: {
     id: "resin",
-    name: "그립 레진",
+    name: "폴딩 체어",
     description: "방어 15",
     effects: { block: 15 },
     cost: 30,
-    artKey: "items/resin.webp",
+    artKey: "equipment/chair.svg",
+    crowdReaction: "boo",
   },
   smokespray: {
     id: "smokespray",
-    name: "쿨링 미스트",
+    name: "죽도",
     description: "상대 약화 2 · 취약 1",
     effects: { weak: 2, vulnerable: 1 },
     cost: 40,
-    artKey: "items/smokespray.webp",
+    artKey: "equipment/kendostick.svg",
+    crowdReaction: "boo",
   },
   crowdwhistle: {
     id: "crowdwhistle",
-    name: "관중 호루라기",
+    name: "링사이드 마이크",
     description: "열기 +2 · 압박 4 감소",
     effects: { hype: 2, calm: 4 },
     cost: 35,
-    artKey: "items/crowdwhistle.webp",
+    artKey: "equipment/microphone.svg",
+    crowdReaction: "cheer",
   },
   trainingtape: {
     id: "trainingtape",
-    name: "전술 손목 테이프",
+    name: "레슬링 손목 테이프",
     description: "2장 드로우 · 이번 턴 다음 공격 피해 +4",
     effects: { draw: 2, nextAttack: 4 },
     cost: 35,
-    artKey: "items/trainingtape.webp",
+    artKey: "equipment/wristtape.svg",
+    crowdReaction: "cheer",
   },
 };
 export const GIMMICKS = {
   ironcorner: {
     id: "ironcorner",
-    name: "철벽 코너",
+    name: "턴버클 패드",
     tier: "전술",
     duration: "encounter",
     description: "경기 시작 방어 7 · 매 턴 방어 +2",
     tradeoff: "첫 손패 1장 감소",
     effects: { startBlock: 7, turnBlock: 2, openingDraw: -1 },
     cost: 45,
-    artKey: "gimmicks/ironcorner.webp",
+    artKey: "equipment/turnbuckle.svg",
+    crowdReaction: "cheer",
   },
   spotlightcorner: {
     id: "spotlightcorner",
-    name: "스포트라이트 코너",
+    name: "스틸 래더",
     tier: "공세",
     duration: "encounter",
     description: "경기 시작 열기 +2 · 매 턴 열기 +1",
     tradeoff: "상대 공격력 +2",
     effects: { startHype: 2, turnHype: 1, enemyAttack: 2 },
     cost: 55,
-    artKey: "gimmicks/spotlightcorner.webp",
+    artKey: "equipment/ladder.svg",
+    crowdReaction: "cheer",
   },
   grappleclinic: {
     id: "grappleclinic",
-    name: "그래플링 클리닉",
+    name: "브레이크어웨이 테이블",
     tier: "제압",
     duration: "encounter",
     description: "잡기 공격 피해 +3",
     tradeoff: "경기 시작 압박 +8",
     effects: { grappleDamage: 3, startStress: 8 },
     cost: 50,
-    artKey: "gimmicks/grappleclinic.webp",
+    artKey: "equipment/table.svg",
+    crowdReaction: "boo",
   },
   speedcorner: {
     id: "speedcorner",
-    name: "오버드라이브 코너",
+    name: "링 로프",
     tier: "속도",
     duration: "encounter",
     description: "매 턴 에너지 +1",
     tradeoff: "카드로 얻는 방어가 60%로 감소(내림)",
     effects: { turnEnergy: 1, cardBlockMultiplier: 0.6 },
     cost: 60,
-    artKey: "gimmicks/speedcorner.webp",
+    artKey: "equipment/ringrope.svg",
+    crowdReaction: "cheer",
   },
   icecorner: {
     id: "icecorner",
-    name: "리커버리 코너",
+    name: "코너 스툴",
     tier: "컴백",
     duration: "encounter",
     description: "매 턴 체력 3 회복",
     tradeoff: "모든 공격 피해 −2",
     effects: { turnHeal: 3, attackPenalty: 2 },
     cost: 50,
-    artKey: "gimmicks/icecorner.webp",
+    artKey: "equipment/stool.svg",
+    crowdReaction: "cheer",
   },
   mindcorner: {
     id: "mindcorner",
-    name: "멘탈 코너",
+    name: "레플리카 챔피언 벨트",
     tier: "심리",
     duration: "encounter",
     description: "매 턴 압박 5 감소 · 악몽 드로우 압박 무효",
@@ -1194,7 +1207,8 @@ export const GIMMICKS = {
       enemyHpMultiplier: 1.2,
     },
     cost: 45,
-    artKey: "gimmicks/mindcorner.webp",
+    artKey: "equipment/replica-belt.svg",
+    crowdReaction: "cheer",
   },
 };
 
@@ -1355,7 +1369,7 @@ const ROUTE_TYPES = {
   shop: {
     type: "shop",
     label: "프로 숍",
-    description: "카드·소모품·코너 기믹 구매 · 유료 카드 1장 영구 제거",
+    description: "카드·소모품·경기 장비 구매 · 유료 카드 1장 영구 제거",
     icon: "bag",
     risk: "준비",
     reward: { coins: 0, cardChoices: 0 },
@@ -1461,6 +1475,7 @@ export function normalizeRun(current) {
   );
   state.waveCount = WAVES.length;
   state.waveClears ||= [];
+  state.championshipBelts = normalizeBeltAwards(state);
   state.waveCombatWins ??= Math.max(
     0,
     (state.stats?.enemiesDefeated || 0) -
@@ -1515,6 +1530,42 @@ export function normalizeRun(current) {
     )
       state.event.choices.push(clone(REMOVE_CARD_CHOICE));
     if (state.arrival) state.arrival.choices = clone(state.event.choices);
+  }
+  for (const offer of state.shopItems || []) {
+    const definition =
+      offer.kind === "item"
+        ? ITEMS[offer.itemId]
+        : offer.kind === "gimmick"
+          ? GIMMICKS[offer.gimmickId]
+          : null;
+    if (!definition) continue;
+    offer.name = definition.name;
+    offer.artKey = definition.artKey;
+    offer.description =
+      offer.kind === "gimmick"
+        ? `${definition.description} · ${definition.tradeoff} · 1경기`
+        : definition.description;
+  }
+  if (state.phase === "event") {
+    const definition = EVENTS.find((entry) => entry.id === state.event?.id);
+    if (definition) {
+      state.event.title = definition.title;
+      state.event.description = definition.description;
+      for (const choice of state.event.choices || []) {
+        const updated = definition.choices.find(
+          (entry) => entry.id === choice.id,
+        );
+        if (updated) {
+          choice.label = updated.label;
+          choice.description = updated.description;
+        }
+      }
+      if (state.arrival) {
+        state.arrival.choices = clone(state.event.choices);
+        state.arrival.title = definition.title;
+        state.arrival.description = definition.description;
+      }
+    }
   }
   if (state.phase === "map") state.mapNodes = availableRouteNodes(state);
   return state;
@@ -1996,6 +2047,7 @@ export function newRun(
     waveCount: WAVES.length,
     waveCombatWins: 0,
     waveClears: [],
+    championshipBelts: [],
     phase: "combat",
     combo: 0,
     log: [],
@@ -2361,6 +2413,7 @@ function finishCombat(state) {
       combats: state.waveCombatWins,
       coins: state.rewardCoins,
     });
+    state.championshipBelts = normalizeBeltAwards(state);
     state.phase = wave.final ? "victory" : "wave-clear";
     addLog(
       state,
@@ -2446,6 +2499,7 @@ export function useItem(current, uid) {
     hits: 0,
     type: "item",
     id: item.id,
+    crowdReaction: definition.crowdReaction,
     turn: state.turn,
   };
   if (state.phase === "combat" && effects.draw) drawCards(state, effects.draw);
@@ -2642,9 +2696,9 @@ export const EVENTS = [
   },
   {
     id: "cornercoach",
-    title: "코너의 작전판",
+    title: "링사이드 장비실",
     description:
-      "코치가 다음 경기를 위한 코너 전략을 제안합니다. 장점과 대가는 한 경기 동안 함께 적용됩니다.",
+      "코치가 다음 경기에 쓸 링 장비를 꺼냅니다. 장비마다 이점과 위험이 한 경기 동안 함께 적용됩니다.",
     artKey: "events/lockerroom.webp",
     cutscene: {
       title: "CORNER PLAN",
@@ -2654,9 +2708,9 @@ export const EVENTS = [
     choices: [
       {
         id: "overdrive",
-        label: "공세 코너를 준비한다",
+        label: "링 로프를 준비한다",
         description:
-          "크레딧 −30 · 오버드라이브 코너 획득 (1경기 에너지 +1 / 카드 방어 60%)",
+          "크레딧 −30 · 링 로프 획득 (1경기 에너지 +1 / 카드 방어 60%)",
         effects: { coins: -30, gimmick: "speedcorner" },
       },
       {
@@ -2667,8 +2721,8 @@ export const EVENTS = [
       },
       {
         id: "gel",
-        label: "에너지 젤을 챙긴다",
-        description: "러시 에너지 젤 획득 · 압박 +6",
+        label: "링벨을 챙긴다",
+        description: "링벨 획득 · 압박 +6",
         effects: { item: "energygel", stress: 6 },
       },
     ],
@@ -2699,9 +2753,8 @@ export const EVENTS = [
       },
       {
         id: "recovercorner",
-        label: "회복 코너를 준비한다",
-        description:
-          "크레딧 −25 · 리커버리 코너 획득 (1경기 턴 회복3 / 공격 −2)",
+        label: "코너 스툴을 준비한다",
+        description: "크레딧 −25 · 코너 스툴 획득 (1경기 턴 회복3 / 공격 −2)",
         effects: { coins: -25, gimmick: "icecorner" },
       },
     ],
@@ -2734,7 +2787,7 @@ export const EVENTS = [
         id: "spotlight",
         label: "관중의 압박을 이용한다",
         description:
-          "스포트라이트 코너 획득 · 압박 +10 (1경기 열기 증가 / 상대 공격 +2)",
+          "스틸 래더 획득 · 압박 +10 (1경기 열기 증가 / 상대 공격 +2)",
         effects: { gimmick: "spotlightcorner", stress: 10 },
       },
     ],

@@ -243,6 +243,7 @@ test("each of six consumables applies its authored effect once for zero energy w
       hits: 0,
       type: "item",
       id,
+      crowdReaction: g.ITEMS[id].crowdReaction,
       turn: 1,
     });
   }

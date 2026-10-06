@@ -1,0 +1,110 @@
+[
+  {
+    "file": "public/assets/fighters/states/nova-excited.webp",
+    "size": [
+      1000,
+      1500
+    ],
+    "mode": "RGBA",
+    "transparentPixels": 1058605,
+    "opaqueOrNearlyOpaquePixels": 418769,
+    "alphaBounds": [
+      44,
+      0,
+      988,
+      1492
+    ],
+    "bytes": 151534,
+    "sha256": "c6d9003f071fa380c520971085dab128c3b94b763a5a1cd29045e3674088ed49"
+  },
+  {
+    "file": "public/assets/fighters/states/nova-fiery.webp",
+    "size": [
+      1000,
+      1500
+    ],
+    "mode": "RGBA",
+    "transparentPixels": 1045192,
+    "opaqueOrNearlyOpaquePixels": 433942,
+    "alphaBounds": [
+      44,
+      0,
+      986,
+      1487
+    ],
+    "bytes": 159330,
+    "sha256": "a87f925e1418098587901247d3b8d9dfd910e1115b1d05cf5b71e9fb8cea6442"
+  },
+  {
+    "file": "public/assets/fighters/states/nova-frustrated.webp",
+    "size": [
+      1000,
+      1500
+    ],
+    "mode": "RGBA",
+    "transparentPixels": 1059100,
+    "opaqueOrNearlyOpaquePixels": 416608,
+    "alphaBounds": [
+      63,
+      0,
+      983,
+      1500
+    ],
+    "bytes": 153902,
+    "sha256": "486bdb9deaa2be9be522d71382accc5fc7b52ff2f59bed45cc8b82817f713a7f"
+  },
+  {
+    "file": "public/assets/fighters/states/nova-groggy.webp",
+    "size": [
+      1000,
+      1500
+    ],
+    "mode": "RGBA",
+    "transparentPixels": 984213,
+    "opaqueOrNearlyOpaquePixels": 493898,
+    "alphaBounds": [
+      63,
+      8,
+      983,
+      1483
+    ],
+    "bytes": 166746,
+    "sha256": "c5e5883b6b1086fbf508d32c371bb02fe2a8970930a0fac3f3464ffab419badd"
+  },
+  {
+    "file": "public/assets/fighters/states/nova-normal.webp",
+    "size": [
+      1000,
+      1500
+    ],
+    "mode": "RGBA",
+    "transparentPixels": 1037027,
+    "opaqueOrNearlyOpaquePixels": 439212,
+    "alphaBounds": [
+      63,
+      0,
+      986,
+      1500
+    ],
+    "bytes": 156254,
+    "sha256": "02f2991613582432c5f597f9553aec7da276b67fc8ee3c344875aa0ddc2e84fe"
+  },
+  {
+    "file": "public/assets/fighters/states/nova-tired.webp",
+    "size": [
+      1000,
+      1500
+    ],
+    "mode": "RGBA",
+    "transparentPixels": 1042488,
+    "opaqueOrNearlyOpaquePixels": 437886,
+    "alphaBounds": [
+      44,
+      6,
+      865,
+      1487
+    ],
+    "bytes": 154744,
+    "sha256": "677227996e3e17279444c9f8ea15c3b7d5dae0c2dc2527f1cf2a03be9a860df5"
+  }
+]
