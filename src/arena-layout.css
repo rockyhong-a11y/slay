@@ -729,6 +729,7 @@
 }
 .combat-view .pile-button > span {
   font-size: 9px;
+  white-space: nowrap;
 }
 .combat-view .pile-button strong {
   font-size: 18px;
@@ -1079,6 +1080,16 @@
   .combat-view .hand-main {
     grid-column: 1 / -1;
     grid-row: 1;
+    container-type: size;
+  }
+  .combat-view .card-hand.hand-fan {
+    --combat-card-height: clamp(136px, calc(100cqh - 70px), 220px);
+  }
+  .combat-view .card-hand .card-art {
+    height: 28%;
+  }
+  .combat-view .card-hand .card-foot {
+    display: none;
   }
   .combat-view .hand-heading > span {
     display: none;

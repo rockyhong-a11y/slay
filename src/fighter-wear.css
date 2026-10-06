@@ -7,24 +7,30 @@
   pointer-events: none;
   z-index: 1;
 }
-.wear-sweat-drop {
-  animation: wear-sweat-catchlight 3.8s ease-in-out infinite;
+.wear-moisture-catchlight {
+  animation: wear-skin-reflection 6.4s ease-in-out infinite;
   animation-delay: var(--wear-delay, 0s);
 }
-@keyframes wear-sweat-catchlight {
+.wear-sweat-bead,
+.wear-wet-streak,
+.wear-skin-film {
+  /* Moisture stays registered to the skin: no falling sprites or pulsing halo. */
+  pointer-events: none;
+}
+@keyframes wear-skin-reflection {
   0%,
   100% {
-    opacity: 0.82;
+    filter: opacity(0.94);
   }
   45% {
-    opacity: 1;
+    filter: opacity(1);
   }
   70% {
-    opacity: 0.9;
+    filter: opacity(0.97);
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .wear-sweat-drop {
+  .wear-moisture-catchlight {
     animation: none;
   }
 }

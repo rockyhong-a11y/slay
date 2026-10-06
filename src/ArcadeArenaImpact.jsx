@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { useReducedMotion } from "motion/react";
+import { cuePlayback, scheduleCueEvents } from "./cue-timing.js";
 import "./arcade-arena-impact.css";
 
 const rays = Array.from({ length: 14 }, (_, index) => index * (360 / 14));
@@ -21,20 +22,22 @@ export function ArcadeArenaImpact({
   callbacks.current = { onComplete, onContact };
   const still = reduced || shortened;
   const duration = still ? 650 : cue.duration;
+  const playback = useMemo(
+    () => cuePlayback(cue, duration, performance.now()),
+    [cue.id, duration],
+  );
+  const delivered = useMemo(() => new Set(), [cue.id]);
   useEffect(() => {
-    const contact = setTimeout(
-      () => callbacks.current.onContact?.(cue),
-      still ? 40 : duration * 0.29,
+    return scheduleCueEvents(
+      cuePlayback(playback, duration, performance.now()),
+      [{ key: "contact", at: still ? 40 : duration * 0.29 }],
+      (key) => {
+        if (key === "complete") callbacks.current.onComplete?.(cue.id);
+        else callbacks.current.onContact?.(cue);
+      },
+      { delivered },
     );
-    const finish = setTimeout(
-      () => callbacks.current.onComplete?.(cue.id),
-      duration,
-    );
-    return () => {
-      clearTimeout(contact);
-      clearTimeout(finish);
-    };
-  }, [cue.id, duration, still]);
+  }, [cue.id, duration, still, playback, delivered]);
   const guard = !cue.damage;
   const family = guard
     ? "guard"
@@ -53,7 +56,10 @@ export function ArcadeArenaImpact({
       data-damage={cue.damage}
       data-blocked={cue.blocked}
       data-duration={duration}
-      style={{ "--impact-duration": `${duration}ms` }}
+      style={{
+        "--impact-duration": `${duration}ms`,
+        "--impact-delay": playback.cssDelay,
+      }}
       role="status"
       aria-live="polite"
       aria-atomic="true"
@@ -63,31 +69,35 @@ export function ArcadeArenaImpact({
       <div className="arena-contact" aria-hidden="true">
         {!still && (
           <>
-            <div className="arcade-contact-aura" />
+            <div className="arcade-contact-flare" />
             {family === "submission" || family === "grip" ? (
               <svg
-                className="arcade-contact-glyph arcade-joint-lock"
+                className="arcade-contact-glyph arcade-joint-pressure"
                 viewBox="0 0 240 240"
               >
-                <circle cx="120" cy="120" r="72" />
-                <circle cx="120" cy="120" r="53" />
-                <path d="M56 100 L82 108 L68 127 L99 123 M178 139 L159 124 L177 110 L146 111 M115 47 L107 72 L125 65 L122 96 M137 183 L128 160 L111 175 L111 143" />
                 <path
-                  className="arcade-lock-bracket"
-                  d="M52 77 V52 H77 M163 52 H188 V77 M188 163 V188 H163 M77 188 H52 V163"
+                  className="arcade-pressure-shell"
+                  d="M120 78L131 108L160 96L142 122L164 141L132 136L118 168L109 136L77 146L98 120L78 101L109 108Z"
+                />
+                <path
+                  className="arcade-white-core"
+                  d="M119 99L128 116L144 122L128 130L118 147L111 131L94 121L111 114Z"
+                />
+                <path
+                  className="arcade-pressure-ticks"
+                  d="M65 65L89 92M175 65L152 92M58 134L83 129M181 144L158 134M118 186V163"
                 />
               </svg>
             ) : family === "guard" ? (
               <svg
-                className="arcade-contact-glyph arcade-guard-ripple"
+                className="arcade-contact-glyph arcade-guard-brace"
                 viewBox="0 0 240 240"
               >
-                <path d="M120 35 L182 61 V116 Q180 164 120 204 Q60 164 58 116 V61 Z" />
-                <path d="M92 118 L114 141 L151 94" />
                 <path
-                  className="arcade-guard-edge"
-                  d="M42 73 Q12 120 46 168 M198 73 Q228 120 194 168"
+                  className="arcade-guard-contact"
+                  d="M120 54L134 103L185 81L154 122L193 151L140 140L119 192L106 140L56 162L86 121L44 91L105 105Z"
                 />
+                <path d="M63 49Q108 70 150 158M48 74Q84 94 107 154M177 68L155 90M185 127L164 123M138 184L130 165" />
               </svg>
             ) : (
               <svg

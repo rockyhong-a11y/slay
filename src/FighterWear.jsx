@@ -1,27 +1,126 @@
 import React, { useId } from "react";
-import { fighterWearAnchors, fighterWearProfile } from "./fighter-wear.js";
+import {
+  fighterWearAnchors,
+  fighterWearProfile,
+  skinMoistureGeometry,
+} from "./fighter-wear.js";
 import "./fighter-wear.css";
 
-function SweatDrop({ x, y, size = 1, delay = 0 }) {
+function SweatBead({ x, y, size = 1, id }) {
   return (
-    <g transform={`translate(${x} ${y}) scale(${size})`}>
-      <g className="wear-sweat-drop" style={{ "--wear-delay": `${delay}s` }}>
-        <path
-          d="M0 -12 C-1 -5 -5 0 -5 5 C-5 12 5 12 5 5 C5 0 1 -5 0 -12Z"
-          fill="#bfe8f1"
-          fillOpacity=".58"
-          stroke="#526b72"
-          strokeOpacity=".55"
-          strokeWidth="1.5"
-        />
-        <path
-          d="M-1 -5 C-1 0 -3 3 -2 7"
-          fill="none"
-          stroke="#fff6e4"
-          strokeWidth="2.8"
-          strokeLinecap="round"
-        />
+    <g
+      transform={`translate(${x} ${y}) scale(${size})`}
+      className="wear-sweat-bead"
+    >
+      <ellipse
+        cx="0"
+        cy="0"
+        rx="3.3"
+        ry="4.4"
+        fill={`url(#${id}-bead)`}
+        stroke="#79634c"
+        strokeOpacity=".2"
+        strokeWidth=".65"
+      />
+      <path
+        d="M-2 -1.8 Q-1.4 -3.7 .4 -3.1"
+        fill="none"
+        stroke="#fffaf1"
+        strokeOpacity=".9"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M-.9 3.5 Q1.3 4 2.2 2"
+        fill="none"
+        stroke="#745744"
+        strokeOpacity=".22"
+        strokeWidth=".8"
+        strokeLinecap="round"
+      />
+    </g>
+  );
+}
+
+function WetStreak({ x, y, length, bend, width, id }) {
+  const path = `M${x} ${y} C${x + bend * 0.2} ${y + length * 0.32} ${x + bend} ${y + length * 0.62} ${x + bend} ${y + length}`;
+  return (
+    <g className="wear-wet-streak">
+      <path
+        d={path}
+        fill="none"
+        stroke="#876e55"
+        strokeOpacity=".14"
+        strokeWidth={width + 1.4}
+        strokeLinecap="round"
+      />
+      <path
+        d={path}
+        fill="none"
+        stroke={`url(#${id}-streak)`}
+        strokeWidth={width}
+        strokeLinecap="round"
+      />
+      <SweatBead x={x + bend} y={y + length + 1.5} size=".55" id={id} />
+    </g>
+  );
+}
+
+function SkinMoisture({ surface, sweat, id, delay = 0 }) {
+  const moisture = skinMoistureGeometry(surface, sweat);
+  return (
+    <g
+      className="wear-skin-moisture"
+      data-moisture-surface={surface}
+      style={{ "--wear-delay": `${delay}s` }}
+    >
+      <g className="wear-skin-film" opacity={moisture.filmOpacity}>
+        {moisture.sheen.map((patch, index) => (
+          <ellipse
+            key={index}
+            cx={patch.x}
+            cy={patch.y}
+            rx={patch.rx}
+            ry={patch.ry}
+            transform={`rotate(${patch.tilt} ${patch.x} ${patch.y})`}
+            fill={`url(#${id}-skin-film)`}
+          />
+        ))}
       </g>
+      <g
+        className="wear-moisture-catchlight"
+        opacity={moisture.specularOpacity}
+      >
+        {surface === "shoulder" ? (
+          <>
+            <path
+              d="M-15 0 C-12 -11 -5 -16 1 -14 C-5 -9 -8 -2 -8 8Z"
+              fill={`url(#${id}-specular)`}
+            />
+            <path
+              d="M4 41 C1 49 3 64 6 68 C7 58 8 47 4 41Z"
+              fill={`url(#${id}-specular)`}
+            />
+          </>
+        ) : (
+          <>
+            <path
+              d="M30 -12 Q34 -19 38 -17 Q35 -10 31 -6Z"
+              fill={`url(#${id}-specular)`}
+            />
+            <path
+              d="M-31 -13 Q-25 -17 -22 -13 Q-25 -9 -30 -7Z"
+              fill={`url(#${id}-specular)`}
+            />
+          </>
+        )}
+      </g>
+      {moisture.streaks.map((streak, index) => (
+        <WetStreak key={index} {...streak} id={id} />
+      ))}
+      {moisture.beads.map((bead, index) => (
+        <SweatBead key={index} {...bead} id={id} />
+      ))}
     </g>
   );
 }
@@ -60,7 +159,6 @@ export function FighterWear({ art, src, crop, rect, vitals }) {
   const anchors = fighterWearAnchors(art, crop);
   if (!anchors || !rect) return null;
   const profile = fighterWearProfile(anchors.condition, vitals);
-  if (!profile.visible) return null;
   const warm = anchors.palette === "warm";
   const [faceX, faceY] = anchors.face;
   return (
@@ -73,6 +171,7 @@ export function FighterWear({ art, src, crop, rect, vitals }) {
       focusable="false"
       data-wear-state={profile.condition}
       data-wear-sweat={profile.sweat}
+      data-wear-sheen="skin-specular"
       data-wear-abrasion={profile.abrasion}
       data-wear-bruise={profile.bruise}
       data-wear-blood={profile.blood}
@@ -89,6 +188,27 @@ export function FighterWear({ art, src, crop, rect, vitals }) {
         >
           <image href={src} x="0" y="0" width="1000" height="1500" />
         </mask>
+        <radialGradient id={`${id}-skin-film`} cx="42%" cy="37%" r="62%">
+          <stop offset="0" stopColor="#fff7e8" stopOpacity=".8" />
+          <stop offset=".35" stopColor="#fff1db" stopOpacity=".45" />
+          <stop offset="1" stopColor="#fff4e4" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id={`${id}-specular`} x1="0" y1="0" x2=".65" y2="1">
+          <stop offset="0" stopColor="#fffdf7" stopOpacity=".12" />
+          <stop offset=".4" stopColor="#fffdf7" stopOpacity=".9" />
+          <stop offset="1" stopColor="#ffeed3" stopOpacity=".08" />
+        </linearGradient>
+        <radialGradient id={`${id}-bead`} cx="35%" cy="27%" r="73%">
+          <stop offset="0" stopColor="#fffdf7" stopOpacity=".36" />
+          <stop offset=".48" stopColor="#fff5e5" stopOpacity=".05" />
+          <stop offset="1" stopColor="#bda386" stopOpacity=".13" />
+        </radialGradient>
+        <linearGradient id={`${id}-streak`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fff8ec" stopOpacity="0" />
+          <stop offset=".25" stopColor="#fff8ec" stopOpacity=".64" />
+          <stop offset=".72" stopColor="#fff8ec" stopOpacity=".36" />
+          <stop offset="1" stopColor="#fff8ec" stopOpacity=".55" />
+        </linearGradient>
         <radialGradient id={`${id}-bruise`}>
           <stop
             offset="0"
@@ -104,9 +224,25 @@ export function FighterWear({ art, src, crop, rect, vitals }) {
         </radialGradient>
       </defs>
       <g mask={`url(#${id}-silhouette)`}>
+        {anchors.shoulders.map(([x, y], index) => (
+          <g key={index} transform={`translate(${x} ${y})`}>
+            <SkinMoisture
+              surface="shoulder"
+              sweat={profile.sweat}
+              id={id}
+              delay={index ? -2.6 : -0.8}
+            />
+          </g>
+        ))}
         <g
           transform={`translate(${faceX} ${faceY}) rotate(${anchors.tilt}) scale(${anchors.faceScaleX} 1)`}
         >
+          <SkinMoisture
+            surface="face"
+            sweat={profile.sweat}
+            id={id}
+            delay={-1.7}
+          />
           {profile.bruise > 0 && (
             <ellipse
               cx="-31"
@@ -154,44 +290,7 @@ export function FighterWear({ art, src, crop, rect, vitals }) {
               )}
             </g>
           )}
-          {profile.sweat > 0 && <SweatDrop x="45" y="-3" size=".78" />}
-          {profile.sweat > 1 && (
-            <SweatDrop x="-42" y="-3" size=".65" delay="-.9" />
-          )}
-          {profile.sweat > 2 && (
-            <>
-              <SweatDrop x="14" y="-48" size=".7" delay="-1.7" />
-              <SweatDrop x="-34" y="30" size=".55" delay="-2.4" />
-            </>
-          )}
         </g>
-        {profile.sweat > 0 &&
-          anchors.shoulders.map(([x, y], index) => (
-            <g key={index}>
-              <SweatDrop
-                x={x}
-                y={y}
-                size={profile.sweat > 1 ? 1.35 : 1}
-                delay={index ? "-1.2" : "-.4"}
-              />
-              {profile.sweat > 1 && (
-                <SweatDrop
-                  x={x + (index ? 12 : -12)}
-                  y={y + 45}
-                  size=".85"
-                  delay={index ? "-2.2" : "-1.5"}
-                />
-              )}
-              {profile.sweat > 2 && (
-                <SweatDrop
-                  x={x + (index ? -15 : 14)}
-                  y={y + 89}
-                  size="1.15"
-                  delay={index ? "-.8" : "-2.7"}
-                />
-              )}
-            </g>
-          ))}
         {profile.abrasion > 1 && (
           <Scuff
             x={anchors.shoulders[0][0] + 10}

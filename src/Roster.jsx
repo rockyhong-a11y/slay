@@ -10,6 +10,7 @@ import {
 import { WRESTLERS, getCard } from "./game.js";
 import { fighterPoseArt } from "./presentation.js";
 import { Artwork } from "./Artwork.jsx";
+import { SDArtwork } from "./SDArtwork.jsx";
 
 function deckGroups(deck) {
   return Object.entries(
@@ -20,7 +21,13 @@ function deckGroups(deck) {
   );
 }
 
-export function Roster({ currentId, onStart, onPreview }) {
+export function Roster({
+  currentId,
+  onStart,
+  onPreview,
+  displayMode = "classic",
+  modeControl,
+}) {
   const [role, setRole] = useState("all");
   const fighters = Object.entries(WRESTLERS);
   const newcomers = fighters.filter(([, fighter]) => fighter.newcomer);
@@ -40,6 +47,7 @@ export function Roster({ currentId, onStart, onPreview }) {
           {fighters.length}명의 선수, 서로 다른 경기 운영. 역할과 패시브를
           비교하고 나의 링 스타일을 선택하세요.
         </p>
+        {modeControl}
       </div>
       <div
         className="roster-role-controls"
@@ -101,11 +109,18 @@ export function Roster({ currentId, onStart, onPreview }) {
                   <Check size={12} weight="bold" /> 현재 선수
                 </span>
               )}
-              <Artwork
-                art={fighterPoseArt(id)}
-                alt={`${fighter.nameKo} · ${fighter.role}`}
-                position={[0.5, 1]}
-              />
+              {displayMode === "sd" ? (
+                <SDArtwork
+                  actor={id}
+                  alt={`${fighter.nameKo} · SD 2D · ${fighter.role}`}
+                />
+              ) : (
+                <Artwork
+                  art={fighterPoseArt(id)}
+                  alt={`${fighter.nameKo} · ${fighter.role}`}
+                  position={[0.5, 1]}
+                />
+              )}
               <span className="contender-role-en">{fighter.roleEn}</span>
             </div>
             <div className="contender-copy">

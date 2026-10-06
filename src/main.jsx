@@ -1,5 +1,6 @@
 import React, { useEffect, useId, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { SDCombatStage } from "./SDCombatStage.jsx";
 import {
   AnimatePresence,
   motion,
@@ -491,6 +492,25 @@ function App() {
       return true;
     }
   });
+  const [displayMode, setDisplayMode] = useState(() => {
+    if (
+      import.meta.env.DEV &&
+      new URLSearchParams(window.location.search).get("qaStyle") === "sd"
+    )
+      return "sd";
+    try {
+      return localStorage.getItem("slay.display-mode") === "sd"
+        ? "sd"
+        : "classic";
+    } catch {
+      return "classic";
+    }
+  });
+  useEffect(() => {
+    try {
+      localStorage.setItem("slay.display-mode", displayMode);
+    } catch {}
+  }, [displayMode]);
   const [toast, setToast] = useState("");
   const [theme, setTheme] = useState(() => {
     try {
@@ -544,7 +564,7 @@ function App() {
     setCue((current) => (current?.id === id ? null : current));
     if (cueSequence.current !== id) return;
     if (pendingImpact.current?.id === id) {
-      setImpactCue(pendingImpact.current);
+      setImpactCue({ ...pendingImpact.current, startedAt: performance.now() });
       pendingImpact.current = null;
     } else busyRef.current = false;
   };
@@ -574,6 +594,30 @@ function App() {
     clearTimeout(toastTimer.current);
     toastTimer.current = setTimeout(() => setToast(""), 2600);
   };
+  const chooseDisplayMode = (mode) => {
+    if (busyRef.current) return;
+    setDisplayMode(mode);
+  };
+  const modeControl = (
+    <div className="sd-mode-control" role="group" aria-label="전투 화면 스타일">
+      <button
+        type="button"
+        aria-pressed={displayMode === "classic"}
+        disabled={!!cue || !!impactCue}
+        onClick={() => chooseDisplayMode("classic")}
+      >
+        원본
+      </button>
+      <button
+        type="button"
+        aria-pressed={displayMode === "sd"}
+        disabled={!!cue || !!impactCue}
+        onClick={() => chooseDisplayMode("sd")}
+      >
+        SD 2D
+      </button>
+    </div>
+  );
   useEffect(() => {
     if (
       import.meta.env.DEV &&
@@ -673,6 +717,12 @@ function App() {
       return false;
     }
     const actionCue = createCardCue(state, next, instance);
+    if (
+      import.meta.env.DEV &&
+      new URLSearchParams(window.location.search).get("qaPlayback") === "slow"
+    ) {
+      actionCue.duration *= 6;
+    }
     actionCue.crowd = reactionForTechnique(actionCue);
     const id = ++cueSequence.current;
     busyRef.current = true;
@@ -683,7 +733,7 @@ function App() {
     pendingImpact.current = impact
       ? { ...impact, id, contactPresented: true }
       : null;
-    setCue({ ...actionCue, id });
+    setCue({ ...actionCue, id, startedAt: performance.now() });
     setSelectedHandId(null);
     const damage = actionCue.damage;
     setHit(
@@ -705,7 +755,7 @@ function App() {
     if (impact) {
       const id = ++cueSequence.current;
       busyRef.current = true;
-      setImpactCue({ ...impact, id });
+      setImpactCue({ ...impact, id, startedAt: performance.now() });
     }
     if (damage > 0 && !impact) {
       setHit({
@@ -735,7 +785,7 @@ function App() {
     if (impact) {
       const id = ++cueSequence.current;
       busyRef.current = true;
-      setImpactCue({ ...impact, id });
+      setImpactCue({ ...impact, id, startedAt: performance.now() });
     }
     setState(next);
     setModal(null);
@@ -1208,7 +1258,7 @@ function App() {
             ) : (
               <div className="combat-workspace">
                 <section
-                  className={`arena ${activePhase === "reward" ? "reward-arena" : ""} ${cue ? "cinematic-active" : ""}`}
+                  className={`arena ${activePhase === "reward" ? "reward-arena" : ""} ${cue ? "cinematic-active" : ""} ${displayMode === "sd" ? "arena-sd" : ""}`}
                   aria-label="전투 아레나"
                   ref={arenaRef}
                 >
@@ -1289,25 +1339,48 @@ function App() {
                       <FighterCondition condition={enemyCondition} enemy />
                     </div>
                   </div>
-                  <FighterSprite
-                    actor={state.player.id}
-                    condition={playerCondition}
-                    vitals={state.player}
-                    name={wrestler.name}
-                    side="player"
-                    impact={impactCue}
-                    shortened={!cinematics}
-                  />
-                  {state.enemy && (
-                    <FighterSprite
-                      actor={state.enemy.artKey || state.enemy.id || "valkyrie"}
-                      condition={enemyCondition}
-                      vitals={state.enemy}
-                      name={enemyHUD.name}
-                      side="enemy"
-                      impact={impactCue}
+                  {displayMode === "sd" ? (
+                    <SDCombatStage
+                      player={state.player.id}
+                      enemy={state.enemy?.artKey || state.enemy?.id || "nova"}
+                      playerCondition={playerCondition.id}
+                      enemyCondition={enemyCondition.id}
+                      cue={impactCue?.contactPresented ? null : impactCue}
+                      incoming={!!impactCue}
+                      paused={!!cue}
                       shortened={!cinematics}
+                      onUnavailable={() => {
+                        setDisplayMode("classic");
+                        notify(
+                          "이 기기에서 SD 화면을 불러오지 못해 원본으로 전환했습니다.",
+                        );
+                      }}
                     />
+                  ) : (
+                    <>
+                      <FighterSprite
+                        actor={state.player.id}
+                        condition={playerCondition}
+                        vitals={state.player}
+                        name={wrestler.name}
+                        side="player"
+                        impact={impactCue}
+                        shortened={!cinematics}
+                      />
+                      {state.enemy && (
+                        <FighterSprite
+                          actor={
+                            state.enemy.artKey || state.enemy.id || "valkyrie"
+                          }
+                          condition={enemyCondition}
+                          vitals={state.enemy}
+                          name={enemyHUD.name}
+                          side="enemy"
+                          impact={impactCue}
+                          shortened={!cinematics}
+                        />
+                      )}
+                    </>
                   )}
                   <span className="vs-mark">VS</span>
                   <AnimatePresence>
@@ -1332,6 +1405,12 @@ function App() {
                         onCrowd={(reaction) => announceCrowd(reaction, cue.id)}
                         onContact={(resolved) => sound.technique(resolved)}
                         shortened={!cinematics}
+                        displayMode={displayMode}
+                        playerActor={state.player.id}
+                        backgroundArt={environment.art}
+                        enemyActor={
+                          state.enemy?.artKey || state.enemy?.id || "nova"
+                        }
                       />
                     )}
                   </AnimatePresence>
@@ -1368,6 +1447,7 @@ function App() {
                           : environment.nameEn}
                       </span>
                     </span>
+                    {modeControl}
                     <div className="turn-badge">
                       <span />
                       {activePhase === "combat"
@@ -1747,6 +1827,8 @@ function App() {
             {modal === "roster" && (
               <Roster
                 currentId={state.player.id}
+                displayMode={displayMode}
+                modeControl={modeControl}
                 onStart={openLoadout}
                 onPreview={(id) => openConditionPreview(id, true)}
               />
@@ -1805,6 +1887,14 @@ function App() {
             )}
             {modal === "settings" && (
               <div className="settings-content">
+                <div className="setting-row">
+                  <span>전투 화면</span>
+                  {modeControl}
+                </div>
+                <p className="sd-setting-note">
+                  SD 2D에서는 작은 선수들이 타격·던지기·서브미션 동작을
+                  펼칩니다. 원본으로 언제든 돌아갈 수 있으며 선택은 저장됩니다.
+                </p>
                 <div className="setting-row">
                   <span>효과음</span>
                   <button

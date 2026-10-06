@@ -93,6 +93,70 @@ export function fighterWearProfile(condition = "normal", vitals) {
   };
 }
 
+// Neutral light on wet skin, independent of blood/scuff thresholds. A healthy
+// fighter keeps a slight skin sheen without acquiring sweat beads or streaks.
+export function skinMoistureProfile(sweat = 0) {
+  const level = clamp(Math.floor(finite(sweat, 0)), 0, 3);
+  return {
+    level,
+    filmOpacity: [0.14, 0.23, 0.34, 0.44][level],
+    specularOpacity: [0.25, 0.36, 0.49, 0.62][level],
+    beadCount: [0, 2, 4, 6][level],
+    streakCount: [0, 0, 1, 2][level],
+  };
+}
+
+// All geometry is local to the inspected skin anchors, then goes through the
+// same portrait/mirror projection as the intact illustration. Streaks stop on
+// the upper arm/cheek instead of falling into clothing or empty space.
+export function skinMoistureGeometry(surface, sweat = 0) {
+  const profile = skinMoistureProfile(sweat);
+  if (surface !== "face" && surface !== "shoulder") return null;
+  const face = surface === "face";
+  const beads = face
+    ? [
+        [42, -3, 0.7],
+        [-39, 1, 0.56],
+        [10, -47, 0.5],
+        [-33, 24, 0.46],
+        [37, 17, 0.4],
+        [-18, -48, 0.38],
+      ]
+    : [
+        [0, 1, 1],
+        [-12, 18, 0.72],
+        [11, 32, 0.62],
+        [-3, 49, 0.84],
+        [9, -14, 0.55],
+        [-15, 62, 0.6],
+      ];
+  const streaks = face
+    ? [
+        { x: 43, y: 1, length: 22, bend: -4, width: 1.6 },
+        { x: -37, y: 4, length: 17, bend: 3, width: 1.2 },
+      ]
+    : [
+        { x: 4, y: 7, length: 41, bend: -4, width: 2.3 },
+        { x: -11, y: 25, length: 39, bend: 6, width: 1.7 },
+      ];
+  return {
+    ...profile,
+    beads: beads
+      .slice(0, profile.beadCount)
+      .map(([x, y, size]) => ({ x, y, size })),
+    streaks: streaks.slice(0, profile.streakCount),
+    sheen: face
+      ? [
+          { x: 35, y: -5, rx: 12, ry: 21, tilt: -18 },
+          { x: -27, y: -7, rx: 12, ry: 17, tilt: 16 },
+        ]
+      : [
+          { x: -2, y: 8, rx: 27, ry: 36, tilt: -12 },
+          { x: 4, y: 57, rx: 12, ry: 27, tilt: 9 },
+        ],
+  };
+}
+
 // Offsets from the existing portrait crop centres to the facial skin plane.
 // Fatigued heads lean independently of the body; these offsets were checked
 // against the complete source illustrations, not a generic skeleton.

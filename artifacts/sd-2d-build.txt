@@ -1,0 +1,32 @@
+
+> slay@1.0.0 build
+> vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 5031 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                 0.98 kB │ gzip:   0.53 kB
+dist/assets/teko-latin-700-normal-D19WDQ7P.woff2                7.28 kB
+dist/assets/teko-latin-600-normal-Cj5MAY47.woff2                7.84 kB
+dist/assets/teko-latin-700-normal-CyJjSmwf.woff                 9.82 kB
+dist/assets/teko-latin-600-normal-CSggg3rU.woff                10.27 kB
+dist/assets/barlow-condensed-latin-700-normal-Dmwat-ge.woff    18.82 kB
+dist/assets/barlow-condensed-latin-600-normal-BFJEwTuo.woff    18.89 kB
+dist/assets/barlow-condensed-latin-800-italic-B5BpsPSY.woff    20.56 kB
+dist/assets/barlow-condensed-latin-600-normal-DepVgxBB.woff2   22.31 kB
+dist/assets/barlow-condensed-latin-700-normal-v1xN8_Wq.woff2   22.44 kB
+dist/assets/barlow-condensed-latin-800-italic-Cnej2eWp.woff2   23.78 kB
+dist/assets/do-hyeon-korean-400-normal-D2BmEaEJ.woff2         180.68 kB
+dist/assets/do-hyeon-korean-400-normal-BdQTCCwj.woff          270.21 kB
+dist/assets/noto-sans-kr-korean-400-normal-CmjJz_gz.woff2     541.86 kB
+dist/assets/noto-sans-kr-korean-700-normal-DvnDzSjd.woff2     559.19 kB
+dist/assets/noto-sans-kr-korean-400-normal-Dvb5JbtY.woff      849.95 kB
+dist/assets/noto-sans-kr-korean-700-normal-KAYYVieF.woff      866.59 kB
+dist/assets/index-CyoNhr_6.css                                181.84 kB │ gzip:  37.01 kB
+dist/assets/motion-xyJCdHb0.js                                127.83 kB │ gzip:  42.06 kB
+dist/assets/icons-DzwlzQvJ.js                                 138.45 kB │ gzip:  33.81 kB
+dist/assets/react-Bkh6H4g-.js                                 221.84 kB │ gzip:  69.03 kB
+dist/assets/index-B8nCmEJ2.js                                 297.30 kB │ gzip: 101.37 kB
+✓ built in 3.54s

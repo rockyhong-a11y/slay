@@ -1,0 +1,1258 @@
+{
+  "sourcePixelsModified": false,
+  "actorsExpected": [
+    "raven",
+    "valkyrie",
+    "nova",
+    "viper",
+    "ember",
+    "atlas",
+    "seraph",
+    "lynx",
+    "tempest",
+    "onyx"
+  ],
+  "actorsMeasured": 10,
+  "posesMeasured": 30,
+  "assets": {
+    "raven": {
+      "source": "public/assets/sd2d/raven.png",
+      "sha256": "cf5436983dcf6845990e41be124e9cd13d0a1d7c7bcca3900d49f9406983a49c",
+      "alphaThreshold": 32,
+      "paddingPixels": 3,
+      "transparentFraction": 0.520975,
+      "foregroundFraction": 0.454929,
+      "nonemptyPoseCount": 3,
+      "majorSilhouetteBands": [
+        {
+          "start": 20,
+          "end": 555,
+          "pixels": 232951
+        },
+        {
+          "start": 584,
+          "end": 1174,
+          "pixels": 247847
+        },
+        {
+          "start": 1222,
+          "end": 1754,
+          "pixels": 235050
+        }
+      ],
+      "valleys": [
+        {
+          "expectedX": 591.333,
+          "search": [413, 769],
+          "interval": [555, 584],
+          "cutX": 569,
+          "minimumStrongPixelsPerColumn": 0
+        },
+        {
+          "expectedX": 1182.667,
+          "search": [1005, 1361],
+          "interval": [1174, 1222],
+          "cutX": 1198,
+          "minimumStrongPixelsPerColumn": 0
+        }
+      ],
+      "edges": {
+        "top": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "bottom": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "left": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "right": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        }
+      },
+      "frames": [
+        {
+          "pose": "idle",
+          "region": [0, 569],
+          "strongBounds": {
+            "x": 20,
+            "y": 109,
+            "width": 535,
+            "height": 719
+          },
+          "foregroundPixels": 232951,
+          "foregroundFraction": 0.461561,
+          "outsideCropFringePixels": 217,
+          "outsideCropMaxAlpha": 2
+        },
+        {
+          "pose": "attack",
+          "region": [569, 1198],
+          "strongBounds": {
+            "x": 584,
+            "y": 111,
+            "width": 590,
+            "height": 717
+          },
+          "foregroundPixels": 247847,
+          "foregroundFraction": 0.444232,
+          "outsideCropFringePixels": 33,
+          "outsideCropMaxAlpha": 1
+        },
+        {
+          "pose": "hurt",
+          "region": [1198, 1774],
+          "strongBounds": {
+            "x": 1222,
+            "y": 116,
+            "width": 532,
+            "height": 712
+          },
+          "foregroundPixels": 235050,
+          "foregroundFraction": 0.46006,
+          "outsideCropFringePixels": 39,
+          "outsideCropMaxAlpha": 1
+        }
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    "valkyrie": {
+      "source": "public/assets/sd2d/valkyrie.png",
+      "sha256": "dd894c275435bf0776fb85b8083e3164202e3e4a35f9649c269c79a2696734db",
+      "alphaThreshold": 32,
+      "paddingPixels": 3,
+      "transparentFraction": 0.478578,
+      "foregroundFraction": 0.492406,
+      "nonemptyPoseCount": 3,
+      "majorSilhouetteBands": [
+        {
+          "start": 17,
+          "end": 534,
+          "pixels": 262590
+        },
+        {
+          "start": 654,
+          "end": 1231,
+          "pixels": 267434
+        },
+        {
+          "start": 1289,
+          "end": 1762,
+          "pixels": 244796
+        }
+      ],
+      "valleys": [
+        {
+          "expectedX": 591.333,
+          "search": [413, 769],
+          "interval": [534, 654],
+          "cutX": 594,
+          "minimumStrongPixelsPerColumn": 0
+        },
+        {
+          "expectedX": 1182.667,
+          "search": [1005, 1361],
+          "interval": [1231, 1289],
+          "cutX": 1260,
+          "minimumStrongPixelsPerColumn": 0
+        }
+      ],
+      "edges": {
+        "top": {
+          "nonzeroPixels": 76,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 1,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "bottom": {
+          "nonzeroPixels": 230,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 5,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "left": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "right": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        }
+      },
+      "frames": [
+        {
+          "pose": "idle",
+          "region": [0, 594],
+          "strongBounds": {
+            "x": 17,
+            "y": 10,
+            "width": 517,
+            "height": 872
+          },
+          "foregroundPixels": 262590,
+          "foregroundFraction": 0.498389,
+          "outsideCropFringePixels": 1000,
+          "outsideCropMaxAlpha": 4
+        },
+        {
+          "pose": "attack",
+          "region": [594, 1260],
+          "strongBounds": {
+            "x": 654,
+            "y": 11,
+            "width": 577,
+            "height": 868
+          },
+          "foregroundPixels": 267434,
+          "foregroundFraction": 0.452709,
+          "outsideCropFringePixels": 733,
+          "outsideCropMaxAlpha": 4
+        },
+        {
+          "pose": "hurt",
+          "region": [1260, 1774],
+          "strongBounds": {
+            "x": 1289,
+            "y": 41,
+            "width": 473,
+            "height": 839
+          },
+          "foregroundPixels": 244796,
+          "foregroundFraction": 0.53693,
+          "outsideCropFringePixels": 371,
+          "outsideCropMaxAlpha": 5
+        }
+      ],
+      "warnings": [
+        "top: low-alpha fringe only (max alpha 1); no strong silhouette clipping.",
+        "bottom: low-alpha fringe only (max alpha 5); no strong silhouette clipping."
+      ],
+      "errors": []
+    },
+    "nova": {
+      "source": "public/assets/sd2d/nova.png",
+      "sha256": "382c9cdd540fb721c61bba3515200d4e4eee538b3716d4215acaf1280e1f9bba",
+      "alphaThreshold": 32,
+      "paddingPixels": 3,
+      "transparentFraction": 0.678149,
+      "foregroundFraction": 0.306715,
+      "nonemptyPoseCount": 3,
+      "majorSilhouetteBands": [
+        {
+          "start": 78,
+          "end": 496,
+          "pixels": 161288
+        },
+        {
+          "start": 651,
+          "end": 1094,
+          "pixels": 165863
+        },
+        {
+          "start": 1264,
+          "end": 1695,
+          "pixels": 155476
+        }
+      ],
+      "valleys": [
+        {
+          "expectedX": 591.333,
+          "search": [413, 769],
+          "interval": [496, 651],
+          "cutX": 573,
+          "minimumStrongPixelsPerColumn": 0
+        },
+        {
+          "expectedX": 1182.667,
+          "search": [1005, 1361],
+          "interval": [1094, 1264],
+          "cutX": 1179,
+          "minimumStrongPixelsPerColumn": 0
+        }
+      ],
+      "edges": {
+        "top": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "bottom": {
+          "nonzeroPixels": 38,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 1,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "left": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "right": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        }
+      },
+      "frames": [
+        {
+          "pose": "idle",
+          "region": [0, 573],
+          "strongBounds": {
+            "x": 78,
+            "y": 150,
+            "width": 418,
+            "height": 615
+          },
+          "foregroundPixels": 161288,
+          "foregroundFraction": 0.317339,
+          "outsideCropFringePixels": 59,
+          "outsideCropMaxAlpha": 1
+        },
+        {
+          "pose": "attack",
+          "region": [573, 1179],
+          "strongBounds": {
+            "x": 651,
+            "y": 153,
+            "width": 443,
+            "height": 613
+          },
+          "foregroundPixels": 165863,
+          "foregroundFraction": 0.30857,
+          "outsideCropFringePixels": 307,
+          "outsideCropMaxAlpha": 1
+        },
+        {
+          "pose": "hurt",
+          "region": [1179, 1774],
+          "strongBounds": {
+            "x": 1264,
+            "y": 178,
+            "width": 431,
+            "height": 592
+          },
+          "foregroundPixels": 155476,
+          "foregroundFraction": 0.294593,
+          "outsideCropFringePixels": 190,
+          "outsideCropMaxAlpha": 1
+        }
+      ],
+      "warnings": [
+        "bottom: low-alpha fringe only (max alpha 1); no strong silhouette clipping."
+      ],
+      "errors": []
+    },
+    "viper": {
+      "source": "public/assets/sd2d/viper.png",
+      "sha256": "e6af758a139c926352ca7a60b17e004184fd6fe2420da00b25ceb3a01d81f75a",
+      "alphaThreshold": 32,
+      "paddingPixels": 3,
+      "transparentFraction": 0.460842,
+      "foregroundFraction": 0.500414,
+      "nonemptyPoseCount": 3,
+      "majorSilhouetteBands": [
+        {
+          "start": 5,
+          "end": 546,
+          "pixels": 268004
+        },
+        {
+          "start": 596,
+          "end": 1177,
+          "pixels": 266750
+        },
+        {
+          "start": 1222,
+          "end": 1769,
+          "pixels": 252666
+        }
+      ],
+      "valleys": [
+        {
+          "expectedX": 591.333,
+          "search": [413, 769],
+          "interval": [546, 596],
+          "cutX": 571,
+          "minimumStrongPixelsPerColumn": 0
+        },
+        {
+          "expectedX": 1182.667,
+          "search": [1005, 1361],
+          "interval": [1177, 1222],
+          "cutX": 1199,
+          "minimumStrongPixelsPerColumn": 0
+        }
+      ],
+      "edges": {
+        "top": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "bottom": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "left": {
+          "nonzeroPixels": 63,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 9,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "right": {
+          "nonzeroPixels": 122,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 10,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        }
+      },
+      "frames": [
+        {
+          "pose": "idle",
+          "region": [0, 571],
+          "strongBounds": {
+            "x": 5,
+            "y": 16,
+            "width": 541,
+            "height": 849
+          },
+          "foregroundPixels": 268004,
+          "foregroundFraction": 0.529153,
+          "outsideCropFringePixels": 414,
+          "outsideCropMaxAlpha": 10
+        },
+        {
+          "pose": "attack",
+          "region": [571, 1199],
+          "strongBounds": {
+            "x": 596,
+            "y": 24,
+            "width": 581,
+            "height": 837
+          },
+          "foregroundPixels": 266750,
+          "foregroundFraction": 0.478874,
+          "outsideCropFringePixels": 541,
+          "outsideCropMaxAlpha": 3
+        },
+        {
+          "pose": "hurt",
+          "region": [1199, 1774],
+          "strongBounds": {
+            "x": 1222,
+            "y": 38,
+            "width": 547,
+            "height": 821
+          },
+          "foregroundPixels": 252666,
+          "foregroundFraction": 0.495399,
+          "outsideCropFringePixels": 666,
+          "outsideCropMaxAlpha": 11
+        }
+      ],
+      "warnings": [
+        "left: low-alpha fringe only (max alpha 9); no strong silhouette clipping.",
+        "right: low-alpha fringe only (max alpha 10); no strong silhouette clipping."
+      ],
+      "errors": []
+    },
+    "ember": {
+      "source": "public/assets/sd2d/ember.png",
+      "sha256": "f00636734df0080293ccf565c7ff047f791d908428ab961a5adb793986a0ec85",
+      "alphaThreshold": 32,
+      "paddingPixels": 3,
+      "transparentFraction": 0.446914,
+      "foregroundFraction": 0.528159,
+      "nonemptyPoseCount": 3,
+      "majorSilhouetteBands": [
+        {
+          "start": 10,
+          "end": 559,
+          "pixels": 285104
+        },
+        {
+          "start": 568,
+          "end": 1185,
+          "pixels": 269539
+        },
+        {
+          "start": 1196,
+          "end": 1763,
+          "pixels": 276436
+        }
+      ],
+      "valleys": [
+        {
+          "expectedX": 591.333,
+          "search": [413, 769],
+          "interval": [559, 568],
+          "cutX": 563,
+          "minimumStrongPixelsPerColumn": 0
+        },
+        {
+          "expectedX": 1182.667,
+          "search": [1005, 1361],
+          "interval": [1185, 1196],
+          "cutX": 1190,
+          "minimumStrongPixelsPerColumn": 0
+        }
+      ],
+      "edges": {
+        "top": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "bottom": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "left": {
+          "nonzeroPixels": 67,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 1,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "right": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        }
+      },
+      "frames": [
+        {
+          "pose": "idle",
+          "region": [0, 563],
+          "strongBounds": {
+            "x": 10,
+            "y": 50,
+            "width": 549,
+            "height": 786
+          },
+          "foregroundPixels": 285104,
+          "foregroundFraction": 0.570915,
+          "outsideCropFringePixels": 379,
+          "outsideCropMaxAlpha": 2
+        },
+        {
+          "pose": "attack",
+          "region": [563, 1190],
+          "strongBounds": {
+            "x": 568,
+            "y": 70,
+            "width": 617,
+            "height": 766
+          },
+          "foregroundPixels": 269539,
+          "foregroundFraction": 0.484652,
+          "outsideCropFringePixels": 116,
+          "outsideCropMaxAlpha": 2
+        },
+        {
+          "pose": "hurt",
+          "region": [1190, 1774],
+          "strongBounds": {
+            "x": 1196,
+            "y": 65,
+            "width": 567,
+            "height": 773
+          },
+          "foregroundPixels": 276436,
+          "foregroundFraction": 0.533652,
+          "outsideCropFringePixels": 48,
+          "outsideCropMaxAlpha": 1
+        }
+      ],
+      "warnings": [
+        "left: low-alpha fringe only (max alpha 1); no strong silhouette clipping."
+      ],
+      "errors": []
+    },
+    "atlas": {
+      "source": "public/assets/sd2d/atlas.png",
+      "sha256": "3a4aa8361b13d277aae22710b65013e806579397a06b0a42419cb14e9dd8ff57",
+      "alphaThreshold": 32,
+      "paddingPixels": 3,
+      "transparentFraction": 0.548525,
+      "foregroundFraction": 0.426159,
+      "nonemptyPoseCount": 3,
+      "majorSilhouetteBands": [
+        {
+          "start": 45,
+          "end": 545,
+          "pixels": 234457
+        },
+        {
+          "start": 622,
+          "end": 1154,
+          "pixels": 220808
+        },
+        {
+          "start": 1272,
+          "end": 1735,
+          "pixels": 215312
+        }
+      ],
+      "valleys": [
+        {
+          "expectedX": 591.333,
+          "search": [413, 769],
+          "interval": [545, 622],
+          "cutX": 583,
+          "minimumStrongPixelsPerColumn": 0
+        },
+        {
+          "expectedX": 1182.667,
+          "search": [1005, 1361],
+          "interval": [1154, 1272],
+          "cutX": 1213,
+          "minimumStrongPixelsPerColumn": 0
+        }
+      ],
+      "edges": {
+        "top": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "bottom": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "left": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "right": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        }
+      },
+      "frames": [
+        {
+          "pose": "idle",
+          "region": [0, 583],
+          "strongBounds": {
+            "x": 45,
+            "y": 47,
+            "width": 500,
+            "height": 808
+          },
+          "foregroundPixels": 234457,
+          "foregroundFraction": 0.453389,
+          "outsideCropFringePixels": 167,
+          "outsideCropMaxAlpha": 1
+        },
+        {
+          "pose": "attack",
+          "region": [583, 1213],
+          "strongBounds": {
+            "x": 622,
+            "y": 46,
+            "width": 532,
+            "height": 808
+          },
+          "foregroundPixels": 220808,
+          "foregroundFraction": 0.39514,
+          "outsideCropFringePixels": 123,
+          "outsideCropMaxAlpha": 1
+        },
+        {
+          "pose": "hurt",
+          "region": [1213, 1774],
+          "strongBounds": {
+            "x": 1272,
+            "y": 49,
+            "width": 463,
+            "height": 805
+          },
+          "foregroundPixels": 215312,
+          "foregroundFraction": 0.432695,
+          "outsideCropFringePixels": 34,
+          "outsideCropMaxAlpha": 1
+        }
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    "seraph": {
+      "source": "public/assets/sd2d/seraph.png",
+      "sha256": "ae620347f110fdcecf1903fc200d448e4f60c88aafa7485388ecee79326efd00",
+      "alphaThreshold": 32,
+      "paddingPixels": 3,
+      "transparentFraction": 0.442805,
+      "foregroundFraction": 0.515292,
+      "nonemptyPoseCount": 3,
+      "majorSilhouetteBands": [
+        {
+          "start": 22,
+          "end": 555,
+          "pixels": 277637
+        },
+        {
+          "start": 584,
+          "end": 1169,
+          "pixels": 274916
+        },
+        {
+          "start": 1223,
+          "end": 1759,
+          "pixels": 258278
+        }
+      ],
+      "valleys": [
+        {
+          "expectedX": 591.333,
+          "search": [413, 769],
+          "interval": [555, 584],
+          "cutX": 569,
+          "minimumStrongPixelsPerColumn": 0
+        },
+        {
+          "expectedX": 1182.667,
+          "search": [1005, 1361],
+          "interval": [1169, 1223],
+          "cutX": 1196,
+          "minimumStrongPixelsPerColumn": 0
+        }
+      ],
+      "edges": {
+        "top": {
+          "nonzeroPixels": 95,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 6,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "bottom": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "left": {
+          "nonzeroPixels": 7,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 1,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "right": {
+          "nonzeroPixels": 3,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 1,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        }
+      },
+      "frames": [
+        {
+          "pose": "idle",
+          "region": [0, 569],
+          "strongBounds": {
+            "x": 22,
+            "y": 8,
+            "width": 533,
+            "height": 863
+          },
+          "foregroundPixels": 277637,
+          "foregroundFraction": 0.5501,
+          "outsideCropFringePixels": 544,
+          "outsideCropMaxAlpha": 7
+        },
+        {
+          "pose": "attack",
+          "region": [569, 1196],
+          "strongBounds": {
+            "x": 584,
+            "y": 14,
+            "width": 585,
+            "height": 855
+          },
+          "foregroundPixels": 274916,
+          "foregroundFraction": 0.494321,
+          "outsideCropFringePixels": 376,
+          "outsideCropMaxAlpha": 2
+        },
+        {
+          "pose": "hurt",
+          "region": [1196, 1774],
+          "strongBounds": {
+            "x": 1223,
+            "y": 9,
+            "width": 536,
+            "height": 861
+          },
+          "foregroundPixels": 258278,
+          "foregroundFraction": 0.503774,
+          "outsideCropFringePixels": 734,
+          "outsideCropMaxAlpha": 2
+        }
+      ],
+      "warnings": [
+        "top: low-alpha fringe only (max alpha 6); no strong silhouette clipping.",
+        "left: low-alpha fringe only (max alpha 1); no strong silhouette clipping.",
+        "right: low-alpha fringe only (max alpha 1); no strong silhouette clipping."
+      ],
+      "errors": []
+    },
+    "lynx": {
+      "source": "public/assets/sd2d/lynx.png",
+      "sha256": "dad1b48eb67610158dd6c4e0eaf2da1b87767d4bea4ee3f3986698564c187c99",
+      "alphaThreshold": 32,
+      "paddingPixels": 3,
+      "transparentFraction": 0.51869,
+      "foregroundFraction": 0.457944,
+      "nonemptyPoseCount": 3,
+      "majorSilhouetteBands": [
+        {
+          "start": 47,
+          "end": 521,
+          "pixels": 244365
+        },
+        {
+          "start": 640,
+          "end": 1171,
+          "pixels": 242179
+        },
+        {
+          "start": 1291,
+          "end": 1765,
+          "pixels": 234049
+        }
+      ],
+      "valleys": [
+        {
+          "expectedX": 591.333,
+          "search": [413, 769],
+          "interval": [521, 640],
+          "cutX": 580,
+          "minimumStrongPixelsPerColumn": 0
+        },
+        {
+          "expectedX": 1182.667,
+          "search": [1005, 1361],
+          "interval": [1171, 1291],
+          "cutX": 1231,
+          "minimumStrongPixelsPerColumn": 0
+        }
+      ],
+      "edges": {
+        "top": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "bottom": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "left": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "right": {
+          "nonzeroPixels": 51,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 2,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        }
+      },
+      "frames": [
+        {
+          "pose": "idle",
+          "region": [0, 580],
+          "strongBounds": {
+            "x": 47,
+            "y": 60,
+            "width": 474,
+            "height": 792
+          },
+          "foregroundPixels": 244365,
+          "foregroundFraction": 0.474993,
+          "outsideCropFringePixels": 158,
+          "outsideCropMaxAlpha": 1
+        },
+        {
+          "pose": "attack",
+          "region": [580, 1231],
+          "strongBounds": {
+            "x": 640,
+            "y": 71,
+            "width": 531,
+            "height": 779
+          },
+          "foregroundPixels": 242179,
+          "foregroundFraction": 0.419403,
+          "outsideCropFringePixels": 398,
+          "outsideCropMaxAlpha": 3
+        },
+        {
+          "pose": "hurt",
+          "region": [1231, 1774],
+          "strongBounds": {
+            "x": 1291,
+            "y": 84,
+            "width": 474,
+            "height": 769
+          },
+          "foregroundPixels": 234049,
+          "foregroundFraction": 0.485941,
+          "outsideCropFringePixels": 361,
+          "outsideCropMaxAlpha": 2
+        }
+      ],
+      "warnings": [
+        "right: low-alpha fringe only (max alpha 2); no strong silhouette clipping."
+      ],
+      "errors": []
+    },
+    "tempest": {
+      "source": "public/assets/sd2d/tempest.png",
+      "sha256": "032f8dbd13f0d4c7fdfe0bf0c412d20b0bc90589216c44f1ac05fe5187f9ff75",
+      "alphaThreshold": 32,
+      "paddingPixels": 3,
+      "transparentFraction": 0.497469,
+      "foregroundFraction": 0.473237,
+      "nonemptyPoseCount": 3,
+      "majorSilhouetteBands": [
+        {
+          "start": 16,
+          "end": 579,
+          "pixels": 254742
+        },
+        {
+          "start": 593,
+          "end": 1202,
+          "pixels": 256403
+        },
+        {
+          "start": 1219,
+          "end": 1758,
+          "pixels": 233511
+        }
+      ],
+      "valleys": [
+        {
+          "expectedX": 591.333,
+          "search": [413, 769],
+          "interval": [579, 593],
+          "cutX": 586,
+          "minimumStrongPixelsPerColumn": 0
+        },
+        {
+          "expectedX": 1182.667,
+          "search": [1005, 1361],
+          "interval": [1202, 1219],
+          "cutX": 1210,
+          "minimumStrongPixelsPerColumn": 0
+        }
+      ],
+      "edges": {
+        "top": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "bottom": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "left": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "right": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        }
+      },
+      "frames": [
+        {
+          "pose": "idle",
+          "region": [0, 586],
+          "strongBounds": {
+            "x": 16,
+            "y": 82,
+            "width": 563,
+            "height": 775
+          },
+          "foregroundPixels": 254742,
+          "foregroundFraction": 0.490094,
+          "outsideCropFringePixels": 47,
+          "outsideCropMaxAlpha": 1
+        },
+        {
+          "pose": "attack",
+          "region": [586, 1210],
+          "strongBounds": {
+            "x": 593,
+            "y": 89,
+            "width": 609,
+            "height": 771
+          },
+          "foregroundPixels": 256403,
+          "foregroundFraction": 0.463249,
+          "outsideCropFringePixels": 259,
+          "outsideCropMaxAlpha": 2
+        },
+        {
+          "pose": "hurt",
+          "region": [1210, 1774],
+          "strongBounds": {
+            "x": 1219,
+            "y": 102,
+            "width": 539,
+            "height": 757
+          },
+          "foregroundPixels": 233511,
+          "foregroundFraction": 0.466772,
+          "outsideCropFringePixels": 129,
+          "outsideCropMaxAlpha": 1
+        }
+      ],
+      "warnings": [],
+      "errors": []
+    },
+    "onyx": {
+      "source": "public/assets/sd2d/onyx.png",
+      "sha256": "f6cca83106383875a248dc776ab017d2937a324ac45bd510693dc4c3f4f5eaeb",
+      "alphaThreshold": 32,
+      "paddingPixels": 3,
+      "transparentFraction": 0.470641,
+      "foregroundFraction": 0.503665,
+      "nonemptyPoseCount": 3,
+      "majorSilhouetteBands": [
+        {
+          "start": 19,
+          "end": 534,
+          "pixels": 265993
+        },
+        {
+          "start": 593,
+          "end": 1132,
+          "pixels": 274190
+        },
+        {
+          "start": 1192,
+          "end": 1754,
+          "pixels": 252353
+        }
+      ],
+      "valleys": [
+        {
+          "expectedX": 591.333,
+          "search": [413, 769],
+          "interval": [534, 593],
+          "cutX": 563,
+          "minimumStrongPixelsPerColumn": 0
+        },
+        {
+          "expectedX": 1182.667,
+          "search": [1005, 1361],
+          "interval": [1132, 1192],
+          "cutX": 1162,
+          "minimumStrongPixelsPerColumn": 0
+        }
+      ],
+      "edges": {
+        "top": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "bottom": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "left": {
+          "nonzeroPixels": 7,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 1,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        },
+        "right": {
+          "nonzeroPixels": 0,
+          "strongPixels": 0,
+          "opaquePixels": 0,
+          "maxAlpha": 0,
+          "longestStrongRun": 0,
+          "longestOpaqueRun": 0
+        }
+      },
+      "frames": [
+        {
+          "pose": "idle",
+          "region": [0, 563],
+          "strongBounds": {
+            "x": 19,
+            "y": 51,
+            "width": 515,
+            "height": 818
+          },
+          "foregroundPixels": 265993,
+          "foregroundFraction": 0.532645,
+          "outsideCropFringePixels": 78,
+          "outsideCropMaxAlpha": 1
+        },
+        {
+          "pose": "attack",
+          "region": [563, 1162],
+          "strongBounds": {
+            "x": 593,
+            "y": 53,
+            "width": 539,
+            "height": 812
+          },
+          "foregroundPixels": 274190,
+          "foregroundFraction": 0.516061,
+          "outsideCropFringePixels": 263,
+          "outsideCropMaxAlpha": 2
+        },
+        {
+          "pose": "hurt",
+          "region": [1162, 1774],
+          "strongBounds": {
+            "x": 1192,
+            "y": 94,
+            "width": 562,
+            "height": 773
+          },
+          "foregroundPixels": 252353,
+          "foregroundFraction": 0.464872,
+          "outsideCropFringePixels": 67,
+          "outsideCropMaxAlpha": 1
+        }
+      ],
+      "warnings": [
+        "left: low-alpha fringe only (max alpha 1); no strong silhouette clipping."
+      ],
+      "errors": []
+    }
+  },
+  "errors": []
+}

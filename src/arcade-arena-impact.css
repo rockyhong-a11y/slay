@@ -3,17 +3,20 @@
   --contact-secondary: #fc5429;
 }
 .arcade-contact-guard {
-  --contact-color: #8de9ff;
-  --contact-secondary: #1c95fc;
+  --contact-color: #ffe5af;
+  --contact-secondary: #cda461;
 }
 .arcade-contact-submission,
 .arcade-contact-grip {
-  --contact-color: #b897ff;
-  --contact-secondary: #37eaff;
+  --contact-color: #ffc978;
+  --contact-secondary: #d88339;
 }
 .arcade-knockout {
   --contact-color: #ffe689;
   --contact-secondary: #ff6638;
+}
+.arcade-arena-impact:not(.arcade-still) * {
+  animation-delay: var(--impact-delay, 0ms);
 }
 .arcade-arena-vignette {
   position: absolute;
@@ -21,7 +24,7 @@
   background: radial-gradient(
     ellipse at 50% 50%,
     transparent 25%,
-    #1c040a6b 100%
+    #1c08046b 100%
   );
   animation: arcade-contact-light var(--impact-duration) both;
 }
@@ -31,7 +34,7 @@
 .arcade-contact-slam .arena-contact {
   top: 77%;
 }
-.arcade-contact-aura {
+.arcade-contact-flare {
   position: absolute;
   width: clamp(110px, 20vw, 250px);
   aspect-ratio: 1;
@@ -65,30 +68,34 @@
 .arcade-white-core {
   fill: #fffde9;
 }
-.arcade-joint-lock,
-.arcade-guard-ripple {
+.arcade-contact-submission .arcade-joint-pressure,
+.arcade-contact-grip .arcade-joint-pressure {
   fill: none;
   stroke: var(--contact-color);
-  stroke-width: 5;
+  stroke-width: 3;
   stroke-linecap: round;
+  width: clamp(78px, 12vw, 150px);
+  filter: drop-shadow(0 0 3px #bd742c66);
 }
-.arcade-joint-lock circle:first-child {
-  stroke-dasharray: 82 20 12 20;
-  stroke-width: 7;
-}
-.arcade-joint-lock circle:nth-child(2) {
-  stroke: var(--contact-secondary);
+.arcade-pressure-shell {
+  fill: #e8a451;
+  stroke: #ffd99c;
   stroke-width: 2;
 }
-.arcade-joint-lock .arcade-lock-bracket {
+.arcade-joint-pressure .arcade-pressure-ticks {
+  fill: none;
+  stroke: #fff0c7;
   stroke-width: 3;
 }
-.arcade-guard-ripple {
-  fill: #279bd720;
-}
-.arcade-guard-edge {
+.arcade-guard-brace {
   fill: none;
-  stroke-width: 2;
+  stroke: #fff0c8;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+.arcade-guard-contact {
+  fill: #eabe7633;
+  stroke: none;
 }
 .arcade-contact-spark {
   position: absolute;
@@ -116,8 +123,8 @@
   text-align: center;
   color: #fffbef;
   text-shadow:
-    2px 3px 0 #221b2f,
-    -1px -1px 0 #221b2f,
+    2px 3px 0 #2f211b,
+    -1px -1px 0 #2f211b,
     0 3px 15px #000;
   transform: rotate(-7deg);
   animation: arcade-score-rise var(--impact-duration) both;
@@ -163,7 +170,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    #301523f0 25% 75%,
+    #302015f0 25% 75%,
     transparent
   );
   font:
@@ -181,15 +188,33 @@
   position: absolute;
   width: clamp(160px, 25vw, 350px);
   height: 45px;
-  border: 4px solid #ffe5a1;
-  border-radius: 50%;
+  background: #f3c377;
+  clip-path: polygon(
+    0 45%,
+    30% 37%,
+    16% 10%,
+    42% 29%,
+    50% 0,
+    58% 29%,
+    82% 9%,
+    68% 36%,
+    100% 49%,
+    71% 57%,
+    86% 89%,
+    57% 69%,
+    48% 100%,
+    40% 67%,
+    15% 91%,
+    30% 57%
+  );
   translate: -50% -50%;
-  box-shadow: 0 0 14px #ff9f4677;
-  animation: arcade-ground-ring var(--impact-duration) both;
+  filter: drop-shadow(0 0 5px #bf7a3966);
+  animation: arcade-ground-burst var(--impact-duration) both;
 }
 .arcade-mat-shock > span:nth-child(2) {
   width: clamp(190px, 29vw, 420px);
-  border-width: 1px;
+  height: 25px;
+  background: #fff0ca;
 }
 .arcade-mat-shock > i {
   position: absolute;
@@ -295,7 +320,7 @@
     scale: 1;
   }
 }
-@keyframes arcade-ground-ring {
+@keyframes arcade-ground-burst {
   0%,
   27% {
     opacity: 0;

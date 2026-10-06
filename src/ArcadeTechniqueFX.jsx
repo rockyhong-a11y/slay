@@ -49,21 +49,21 @@ function EffectGraphic({ item, effect, transition, still }) {
           item={item}
           transition={transition}
           still={still}
-          className="arcade-energy-trace-halo"
+          className="arcade-speed-trace-halo"
         />
         <Trace
           d={path}
           item={item}
           transition={transition}
           still={still}
-          className="arcade-energy-trace"
+          className="arcade-speed-trace"
         />
         <Trace
           d={path}
           item={item}
           transition={transition}
           still={still}
-          className="arcade-energy-trace-core"
+          className="arcade-speed-trace-core"
         />
       </svg>
     );
@@ -123,76 +123,54 @@ function EffectGraphic({ item, effect, transition, still }) {
           ))}
         </g>
       ) : kind === "grip" || kind === "clamp" ? (
-        <g
-          className={`arcade-lock-bracket ${kind === "grip" ? "arcade-grip-bracket" : ""}`}
-        >
+        <g className="arcade-bracing-strokes">
+          <path d="M11 21L44 39L18 25ZM4 46L41 49L6 52ZM14 79L44 61L20 78Z" />
           <path
-            className="arcade-bracket-halo"
-            d="M72 12L40 12L21 31V69L40 88H72"
-          />
-          <path d="M68 17H42L27 33V67L42 83H68M40 39L34 50L40 61" />
-          <path
-            className="arcade-lock-electric"
-            d="M52 5L41 19L52 29L40 43M52 94L43 80L51 72"
+            className="arcade-bracing-white"
+            d="M26 29L43 39M18 49H40M26 71L43 61"
           />
         </g>
-      ) : kind === "tension" ? (
-        <g className="arcade-joint-electric">
-          <path d="M6 50L20 37L26 58L37 36L44 58L51 39L60 62L68 39L79 54L94 47" />
+      ) : kind === "tension" ||
+        kind === "pressure" ||
+        kind === "pressure-sparks" ? (
+        <g className="arcade-pressure-sparks">
+          <path d="M50 32L54 45L69 39L59 50L71 59L55 56L49 71L45 57L29 63L40 51L29 41L44 45Z" />
           <path
-            className="arcade-electric-secondary"
-            d="M12 61L26 49L36 70L48 54M61 35L73 28L84 43"
+            className="arcade-pressure-white"
+            d="M50 40L54 48L62 50L54 54L49 63L46 55L37 51L46 48Z"
           />
-        </g>
-      ) : kind === "electric-lock" ? (
-        <g className="arcade-joint-electric">
-          <path d="M19 62L9 49L20 44L15 27L31 30L35 14L49 21L60 10L65 25L82 22L78 39L93 47L82 55L88 68L71 66" />
           <path
-            className="arcade-electric-secondary"
-            d="M27 75L33 88L45 79L54 91L61 76L74 82L77 65M32 20L35 31L26 38"
-          />
-        </g>
-      ) : kind === "pressure" ? (
-        <g className="arcade-pressure-ring">
-          <circle cx="50" cy="50" r="37" />
-          <circle cx="50" cy="50" r="43" strokeDasharray="40 16 12 20" />
-          <path
-            className="arcade-pressure-inner"
-            d="M24 42A27 27 0 0 1 65 26M76 59A27 27 0 0 1 35 74M23 36L23 45L32 45M77 64L77 55L68 55"
+            className="arcade-pressure-ticks"
+            d="M18 22L33 37M12 57L28 54M77 18L65 36M82 70L68 61M46 87L47 73"
           />
         </g>
       ) : kind === "target" ? (
-        <g className="arcade-target-lock">
-          <path d="M18 37V18H37M63 18H82V37M82 63V82H63M37 82H18V63" />
-          <circle cx="50" cy="50" r="18" />
-          <path d="M50 24V35M50 65V76M24 50H35M65 50H76" />
+        <g className="arcade-contact-mark">
+          <path d="M49 27L54 45L73 49L55 55L50 74L45 56L26 50L44 45Z" />
         </g>
       ) : kind === "shield" ? (
         <g className="arcade-shield">
           <path
-            className="arcade-shield-glass"
-            d="M50 5L86 24V54Q85 80 50 96Q15 80 14 54V24Z"
+            className="arcade-brace-wash"
+            d="M50 23L58 40L84 31L69 49L90 61L64 60L58 85L47 65L25 77L35 57L10 47L37 43L34 19Z"
           />
-          <path d="M50 5L86 24V54Q85 80 50 96Q15 80 14 54V24ZM50 15L76 29V53Q75 73 50 85Q25 73 24 53V29Z" />
+          <path d="M24 20Q53 35 68 64M18 32Q40 40 55 66M79 30L68 41M81 58L69 54M58 83L54 71" />
+        </g>
+      ) : kind === "brace-streaks" ? (
+        <g className="arcade-brace-streaks">
+          <path d="M5 27L33 39M3 50H28M7 73L32 62M95 27L70 39M97 50H73M93 74L71 62" />
+        </g>
+      ) : kind === "mat" ? (
+        <g className="arcade-mat-burst">
+          <path d="M49 1L56 33L77 15L65 39L99 31L72 49L96 67L64 62L80 88L54 70L47 99L42 67L18 87L32 61L1 68L29 49L4 29L34 37L25 9L43 32Z" />
           <path
-            className="arcade-shield-strut"
-            d="M50 16V85M25 31L74 70M75 31L26 70M25 49H75"
+            className="arcade-mat-white"
+            d="M49 20L55 43L72 34L62 49L79 57L57 57L49 80L42 59L24 66L36 51L18 43L42 44Z"
           />
-        </g>
-      ) : kind === "shield-ripple" ? (
-        <g className="arcade-shield-ripple">
-          <circle cx="50" cy="50" r="35" />
-          <circle cx="50" cy="50" r="46" strokeDasharray="32 14" />
-          <path d="M3 50H12M88 50H97M50 3V12M50 88V97" />
-        </g>
-      ) : kind === "mat" || kind === "floor-aura" ? (
-        <g
-          className={`arcade-ground-ring ${kind === "floor-aura" ? "arcade-ground-aura" : ""}`}
-        >
-          <circle className="arcade-ground-glow" cx="50" cy="50" r="37" />
-          <circle cx="50" cy="50" r="34" />
-          <circle cx="50" cy="50" r="46" strokeDasharray="65 8 30 16" />
-          <circle className="arcade-ground-core" cx="50" cy="50" r="25" />
+          <path
+            className="arcade-mat-rays"
+            d="M4 7L30 33M94 10L72 34M2 92L29 71M97 88L73 70"
+          />
         </g>
       ) : kind === "mat-crack" ? (
         <g className="arcade-mat-cracks">
@@ -236,10 +214,8 @@ function EffectGraphic({ item, effect, transition, still }) {
           ))}
         </g>
       ) : kind === "breath" || kind === "spotlight" || kind === "release" ? (
-        <g className="arcade-focus-aura">
-          <circle cx="50" cy="50" r="38" />
-          <circle cx="50" cy="50" r="46" strokeDasharray="75 17 20 31" />
-          <path d="M27 75Q9 46 31 24M70 76Q91 48 69 24" />
+        <g className="arcade-focus-streaks">
+          <path d="M23 82L30 23M34 72L37 39M74 81L68 26M63 70L61 41" />
           {kind === "spotlight" && (
             <path
               className="arcade-spot-rays"
@@ -252,12 +228,12 @@ function EffectGraphic({ item, effect, transition, still }) {
           <path d="M22 10H78V90H22ZM29 17H71V83H29Z" />
           <path d="M49 30L58 49L50 71L40 50Z" />
         </g>
-      ) : kind === "fracture" || kind === "veil" ? (
-        <g className="arcade-nightmare-fracture">
-          <path d="M50 50L37 34L44 20L26 3M50 50L65 43L71 26L94 16M50 50L44 68L51 78L40 98M50 50L24 58L11 44L1 46M50 50L70 69L87 67L97 88" />
+      ) : kind === "stress-slash" || kind === "veil" ? (
+        <g className="arcade-stress-slashes">
+          <path d="M10 20L69 49L29 34ZM5 41L58 53L9 48ZM83 20L54 74L72 35ZM87 64L36 85L84 73Z" />
           <path
-            className="arcade-fracture-secondary"
-            d="M37 34L23 31L17 14M71 26L63 10M44 68L30 75L29 92M70 69L74 87"
+            className="arcade-stress-accent"
+            d="M15 23L54 43M79 32L66 61M48 80L78 69"
           />
         </g>
       ) : null}
@@ -266,20 +242,14 @@ function EffectGraphic({ item, effect, transition, still }) {
 }
 
 const channelsToAnimate = ["x", "y", "scale", "scaleX", "scaleY", "rotate"];
-const staticKinds = new Set([
-  "target",
-  "shield",
-  "breath",
-  "floor-aura",
-  "clamp",
-  "grip",
-]);
+const staticKinds = new Set(["target", "shield", "breath", "clamp", "grip"]);
 
 export const TechniqueEffects = memo(function TechniqueEffects({
   cue,
   effect,
   duration,
   still = false,
+  animationDelay = 0,
 }) {
   const prefersReducedMotion = useReducedMotion();
   const reduced = still || prefersReducedMotion;
@@ -346,6 +316,7 @@ export const TechniqueEffects = memo(function TechniqueEffects({
           projection={projection}
           duration={duration}
           reduced={reduced}
+          animationDelay={animationDelay}
         />
       ))}
     </div>
@@ -353,7 +324,6 @@ export const TechniqueEffects = memo(function TechniqueEffects({
 });
 
 const staticFrame = { opacity: 0.45 };
-const staticFloorFrame = { opacity: 0.45, scaleX: 1, scaleY: 0.2 };
 const staticTransition = { duration: 0 };
 
 const ArcadeEffectLayer = memo(function ArcadeEffectLayer({
@@ -362,6 +332,7 @@ const ArcadeEffectLayer = memo(function ArcadeEffectLayer({
   projection,
   duration,
   reduced,
+  animationDelay,
 }) {
   const center = projectedArtworkPoint(item.center, projection);
   const channels = useMemo(() => {
@@ -383,12 +354,13 @@ const ArcadeEffectLayer = memo(function ArcadeEffectLayer({
   const transition = useMemo(
     () => ({
       duration: duration / 1000,
+      delay: animationDelay,
       times: item.times,
       // Explicit normalized contact times must remain on the cue clock.
       // WAAPI may otherwise ease the entire keyframe timeline.
       ease: "linear",
     }),
-    [duration, item.times],
+    [duration, item.times, animationDelay],
   );
   return (
     <motion.div
@@ -397,13 +369,7 @@ const ArcadeEffectLayer = memo(function ArcadeEffectLayer({
       data-direction={item.direction}
       data-side={item.side}
       initial={reduced ? false : initial}
-      animate={
-        reduced
-          ? item.kind === "floor-aura"
-            ? staticFloorFrame
-            : staticFrame
-          : channels
-      }
+      animate={reduced ? staticFrame : channels}
       transition={reduced ? staticTransition : transition}
       style={{
         left: `${center[0] * 100}%`,

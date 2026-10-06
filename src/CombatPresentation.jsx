@@ -21,6 +21,8 @@ import { motionTokens } from "./motion-config.js";
 import { CrowdCallout } from "./CrowdAtmosphere.jsx";
 import { TechniqueEffects } from "./ArcadeTechniqueFX.jsx";
 import { fighterWearProfile } from "./fighter-wear.js";
+import { SDCombatStage } from "./SDCombatStage.jsx";
+import { cuePlayback, scheduleCueEvents } from "./cue-timing.js";
 import {
   techniqueEffectProfile,
   TECHNIQUE_EFFECT_MOTION,
@@ -84,7 +86,14 @@ export function FighterSprite({
     if (!frames) return;
     // The duplicated contact values create a short visual freeze, then a
     // pronounced recoil. Both animation layers move the complete illustration.
-    controls.start(frames);
+    controls.start({
+      ...frames,
+      transition: {
+        ...frames.transition,
+        delay: cuePlayback(impact, impact.duration, performance.now())
+          .animationDelay,
+      },
+    });
     return () => controls.stop();
   }, [impact?.id, side, controls, still, attacking, struck]);
   return (
@@ -124,6 +133,10 @@ export function TechniqueScene({
   onCrowd,
   onContact,
   shortened = false,
+  displayMode = "classic",
+  playerActor = "raven",
+  enemyActor = "nova",
+  backgroundArt = "arena.webp",
 }) {
   const reduced = useReducedMotion();
   const complete = useRef(onComplete);
@@ -135,6 +148,11 @@ export function TechniqueScene({
   const [crowdVisible, setCrowdVisible] = useState(false);
   const still = reduced || shortened;
   const duration = still ? 650 : cue.duration;
+  const playback = useMemo(
+    () => cuePlayback(cue, duration, performance.now()),
+    [cue.id, duration],
+  );
+  const delivered = useMemo(() => new Set(), [cue.id]);
   const camera = cue.camera;
   const effect =
     cue.effect || techniqueEffectProfile(cue.cardId, cue.disciplineSlug);
@@ -168,31 +186,31 @@ export function TechniqueScene({
     [camera, effect, viewport],
   );
   useEffect(() => {
-    const timer = setTimeout(() => complete.current(cue.id), duration);
-    return () => clearTimeout(timer);
-  }, [cue.id, duration]);
-  useEffect(() => {
-    setCrowdVisible(false);
-    const at = still ? 80 : duration * (camera.impacts[0] || 0.35);
-    const timer = setTimeout(() => {
-      setCrowdVisible(true);
-      reactionCallback.current?.(cue.crowd);
-    }, at);
-    return () => clearTimeout(timer);
-  }, [cue.id, duration, still, camera, cue.crowd]);
-  useEffect(() => {
+    setCrowdVisible(delivered.has("crowd"));
     const contacts = camera.impacts.length ? camera.impacts : [0.35];
-    const timers = (still ? [0] : contacts).map((at) =>
-      setTimeout(
-        () => contactCallback.current?.(cue),
-        still ? 40 : duration * at,
-      ),
+    const events = [
+      ...(still ? [0] : contacts).map((at, index) => ({
+        key: `contact-${index}`,
+        at: still ? 40 : duration * at,
+      })),
+      { key: "crowd", at: still ? 80 : duration * (contacts[0] ?? 0.35) },
+    ];
+    return scheduleCueEvents(
+      cuePlayback(playback, duration, performance.now()),
+      events,
+      (key) => {
+        if (key === "complete") complete.current(cue.id);
+        else if (key === "crowd") {
+          setCrowdVisible(true);
+          reactionCallback.current?.(cue.crowd);
+        } else contactCallback.current?.(cue);
+      },
+      { delivered },
     );
-    return () => timers.forEach(clearTimeout);
-  }, [cue.id, duration, still, camera]);
+  }, [cue.id, duration, still, camera, cue.crowd, playback, delivered]);
   const scene = (
     <motion.div
-      className={`technique-scene scene-${cue.disciplineSlug} scene-effect-${effect.family} ${cue.finisher ? "scene-finisher" : ""} ${still ? "scene-still" : ""}`}
+      className={`technique-scene scene-${cue.disciplineSlug} scene-effect-${effect.family} ${cue.finisher ? "scene-finisher" : ""} ${still ? "scene-still" : ""} ${displayMode === "sd" ? "scene-sd" : ""}`}
       data-card={cue.cardId}
       data-motion={camera.kind}
       data-duration={duration}
@@ -232,34 +250,47 @@ export function TechniqueScene({
       <div className="technique-scene-visual" aria-hidden="true">
         <div className="technique-art-stage">
           <div className="technique-art-window" ref={artWindow}>
-            <motion.div
-              className="technique-art-frame"
-              initial={false}
-              animate={
-                still
-                  ? { x: 0, y: 0, scale: 1, rotate: 0 }
-                  : {
-                      x: framedCamera.x,
-                      y: framedCamera.y,
-                      scale: framedCamera.scale,
-                      rotate: framedCamera.rotate,
-                    }
-              }
-              transition={{
-                duration: duration / 1000,
-                times: camera.times,
-                ease: "linear",
-              }}
-              style={{ transformOrigin: framedCamera.origin }}
-            >
-              <Artwork art={cue.art} alt={cue.alt} />
-              <TechniqueEffects
+            {displayMode === "sd" ? (
+              <SDCombatStage
+                player={playerActor}
+                enemy={enemyActor}
+                backgroundArt={backgroundArt}
                 cue={cue}
-                effect={effect}
-                duration={duration}
-                still={still}
+                shortened={still}
+                cinematic
               />
-            </motion.div>
+            ) : (
+              <motion.div
+                className="technique-art-frame"
+                initial={false}
+                animate={
+                  still
+                    ? { x: 0, y: 0, scale: 1, rotate: 0 }
+                    : {
+                        x: framedCamera.x,
+                        y: framedCamera.y,
+                        scale: framedCamera.scale,
+                        rotate: framedCamera.rotate,
+                      }
+                }
+                transition={{
+                  duration: duration / 1000,
+                  delay: playback.animationDelay,
+                  times: camera.times,
+                  ease: "linear",
+                }}
+                style={{ transformOrigin: framedCamera.origin }}
+              >
+                <Artwork art={cue.art} alt={cue.alt} />
+                <TechniqueEffects
+                  cue={cue}
+                  effect={effect}
+                  duration={duration}
+                  still={still}
+                  animationDelay={playback.animationDelay}
+                />
+              </motion.div>
+            )}
             {!still &&
               cue.attacking &&
               camera.impacts.map((at, index) => (
@@ -274,6 +305,7 @@ export function TechniqueScene({
                   }}
                   transition={{
                     duration: duration / 1000,
+                    delay: playback.animationDelay,
                     ease: "linear",
                     times: [
                       0,
@@ -342,7 +374,11 @@ export function TechniqueScene({
           </div>
         </div>
       </div>
-      <div className="technique-scene-progress" aria-hidden="true" />
+      <div
+        className="technique-scene-progress"
+        style={{ animationDelay: playback.cssDelay }}
+        aria-hidden="true"
+      />
     </motion.div>
   );
   return createPortal(scene, document.body);

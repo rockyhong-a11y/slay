@@ -9,6 +9,8 @@ import {
   fighterWearAnchors,
   artworkImageRect,
   projectWearPoint,
+  skinMoistureProfile,
+  skinMoistureGeometry,
 } from "../src/fighter-wear.js";
 
 const portraits = JSON.parse(
@@ -185,4 +187,117 @@ test("leaning Atlas and Lynx portraits centre the inspected face without shiftin
     fighterWearAnchors(artPath("atlas", "groggy"), portraits["atlas-groggy"])
       .shoulders,
   );
+});
+
+test("healthy skin retains restrained sheen without sweat, then exertion increases wetness", () => {
+  const dry = skinMoistureProfile(
+    fighterWearProfile("normal", live(100)).sweat,
+  );
+  assert.ok(dry.filmOpacity > 0 && dry.filmOpacity < 0.2);
+  assert.equal(dry.beadCount, 0);
+  assert.equal(dry.streakCount, 0);
+  const levels = [100, 85, 50, 25].map((hp) =>
+    skinMoistureProfile(fighterWearProfile("normal", live(hp)).sweat),
+  );
+  for (let index = 1; index < levels.length; index++) {
+    assert.ok(levels[index].filmOpacity > levels[index - 1].filmOpacity);
+    assert.ok(
+      levels[index].specularOpacity > levels[index - 1].specularOpacity,
+    );
+    assert.ok(levels[index].beadCount > levels[index - 1].beadCount);
+    assert.ok(levels[index].streakCount >= levels[index - 1].streakCount);
+  }
+  assert.equal(
+    levels[1].streakCount,
+    0,
+    "light exertion only beads; no painted streams",
+  );
+  assert.equal(levels[3].streakCount, 2);
+  assert.ok(
+    levels[3].filmOpacity < 0.5,
+    "wetness preserves the underlying skin color",
+  );
+  for (const extra of [{ hype: 6 }, { stress: 60 }]) {
+    const fighter = fighterWearProfile("normal", live(100, extra));
+    assert.equal(skinMoistureProfile(fighter.sweat).level, 2);
+    assert.equal(fighter.blood + fighter.bruise + fighter.abrasion, 0);
+  }
+});
+
+test("sweat optical inputs are bounded and invalid surfaces produce no geometry", () => {
+  const baseline = skinMoistureProfile(0);
+  for (const invalid of [undefined, NaN, Infinity, -8])
+    assert.deepEqual(skinMoistureProfile(invalid), baseline);
+  assert.deepEqual(skinMoistureProfile(40), skinMoistureProfile(3));
+  assert.equal(skinMoistureProfile(2.8).level, 2);
+  assert.equal(skinMoistureGeometry("outfit", 3), null);
+});
+
+test("microbeads and short wet streaks stay within calibrated face and shoulder patches", () => {
+  const bounds = { face: [-52, 52, -66, 38], shoulder: [-34, 34, -32, 92] };
+  for (const [surface, [minX, maxX, minY, maxY]] of Object.entries(bounds)) {
+    for (let level = 0; level <= 3; level++) {
+      const geometry = skinMoistureGeometry(surface, level);
+      assert.equal(geometry.beads.length, geometry.beadCount);
+      assert.equal(geometry.streaks.length, geometry.streakCount);
+      for (const bead of geometry.beads) {
+        assert.ok(
+          bead.x - 3.3 * bead.size >= minX && bead.x + 3.3 * bead.size <= maxX,
+        );
+        assert.ok(
+          bead.y - 4.4 * bead.size >= minY && bead.y + 4.4 * bead.size <= maxY,
+        );
+        assert.ok(
+          bead.size <= 1,
+          "beads remain small rather than cartoon teardrops",
+        );
+      }
+      for (const streak of geometry.streaks) {
+        assert.ok(streak.x >= minX && streak.x <= maxX);
+        assert.ok(
+          streak.x + streak.bend >= minX && streak.x + streak.bend <= maxX,
+        );
+        assert.ok(streak.y >= minY && streak.y + streak.length + 4 <= maxY);
+        assert.ok(streak.width <= 2.3 && streak.length <= 41);
+      }
+    }
+  }
+});
+
+test("all 60 pose anchors carry the same local sheen through body and portrait projections", () => {
+  for (const actor of WEAR_ACTORS)
+    for (const state of WEAR_STATES) {
+      const crop = portraits[`${actor}-${state}`];
+      const anchors = fighterWearAnchors(artPath(actor, state), crop);
+      const geometry = skinMoistureGeometry(
+        "shoulder",
+        fighterWearProfile(state).sweat,
+      );
+      const bodyRect = artworkImageRect({ width: 180, height: 240 });
+      const portraitRect = artworkImageRect({
+        width: 76,
+        height: 96,
+        portrait: true,
+        crop,
+      });
+      for (const shoulder of anchors.shoulders)
+        for (const patch of geometry.sheen) {
+          const point = [shoulder[0] + patch.x, shoulder[1] + patch.y];
+          assert.ok(
+            point[0] > 0 && point[0] < 1000 && point[1] > 0 && point[1] < 1500,
+          );
+          for (const [rect, width] of [
+            [bodyRect, 180],
+            [portraitRect, 76],
+          ]) {
+            const normal = projectWearPoint(point, rect);
+            const mirrored = projectWearPoint(point, rect, {
+              mirrored: true,
+              containerWidth: width,
+            });
+            assert.ok(Math.abs(normal[0] + mirrored[0] - width) < 1e-9);
+            assert.equal(normal[1], mirrored[1]);
+          }
+        }
+    }
 });

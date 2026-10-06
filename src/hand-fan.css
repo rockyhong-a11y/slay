@@ -172,6 +172,12 @@
   display: none;
 }
 .combat-view .hand-controls .journey-inventory-trigger {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  grid-template-rows: 19px 13px;
+  align-items: center;
+  justify-items: center;
+  gap: 1px 0;
   width: 40px;
   min-width: 40px;
   min-height: 44px;
@@ -182,6 +188,20 @@
   background: #2a2230;
   color: #ebcedc;
   flex: 0 0 40px;
+}
+.combat-view .hand-controls .journey-inventory-trigger > svg {
+  width: 14px;
+  height: 14px;
+}
+.combat-view .hand-controls .journey-inventory-trigger > strong {
+  font-size: 17px;
+  line-height: 1;
+}
+.combat-view .hand-controls .journey-inventory-trigger > span {
+  grid-column: 1 / -1;
+  line-height: 13px;
+  font-size: 9px;
+  white-space: nowrap;
 }
 @media (max-width: 767px) {
   .combat-view .hand-heading .hand-play-button {

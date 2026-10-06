@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { CARDS, newRun, playCard } from "../src/game.js";
 import { CARD_DETAILS } from "../src/card-library.js";
 import {
@@ -408,26 +409,28 @@ test("arcade hit accents track the resolved contact clock with at most two local
   }
 });
 
-test("arcade families distinguish fire, mat debris, sustained joint electricity, shields and recovery particles", () => {
+test("arcade families distinguish fire, mat debris, localized joint pressure sparks, shields and recovery particles", () => {
   assert.ok(kinds(replay("strike").cue).includes("embers"));
   for (const id of ["powerbomb", "suplex", "moonsault"]) {
     const effects = kinds(replay(id).cue);
-    for (const kind of ["mat", "dust", "debris", "mat-crack", "floor-aura"])
+    for (const kind of ["mat", "dust", "debris", "mat-crack"])
       assert.ok(effects.includes(kind), `${id} ${kind}`);
     assert.ok(!effects.includes("embers"), id);
   }
   for (const id of ["armbar", "headlock", "anklelock", "kimura", "heelhook"]) {
     const cue = replay(id).cue;
     const effects = techniqueEffectLayers(cue.effect, cue.camera, cue);
-    const electric = effects.filter((layer) => layer.kind === "electric-lock");
-    assert.equal(electric.length, 2, id);
+    const pressure = effects.filter(
+      (layer) => layer.kind === "pressure-sparks",
+    );
+    assert.equal(pressure.length, 2, id);
     assert.ok(
-      electric.every((layer) => layer.times.at(-2) >= 0.9),
+      pressure.every((layer) => layer.times.at(-2) >= 0.9),
       id,
     );
     assert.ok(!effects.some((layer) => layer.flashing), id);
     assert.ok(
-      electric.every(
+      pressure.every(
         (layer) =>
           layer.center[0] === cue.effect.target[0] &&
           layer.center[1] === cue.effect.target[1],
@@ -435,9 +438,9 @@ test("arcade families distinguish fire, mat debris, sustained joint electricity,
       id,
     );
   }
-  assert.ok(kinds(replay("guard").cue).includes("shield-ripple"));
+  assert.ok(kinds(replay("guard").cue).includes("brace-streaks"));
   assert.ok(kinds(replay("focus").cue).includes("rising-motes"));
-  assert.ok(kinds(replay("nightmare").cue).includes("fracture"));
+  assert.ok(kinds(replay("nightmare").cue).includes("stress-slash"));
 });
 
 test("fully blocked attacks suppress embers, debris and mat cracks as well as damage bursts", () => {
@@ -456,5 +459,61 @@ test("fully blocked attacks suppress embers, debris and mat cracks as well as da
       ),
       id,
     );
+  }
+});
+
+test("every card uses physical warm accents without electric arcs, magic rings or floor halos", () => {
+  const forbidden = new Set([
+    "electric-lock",
+    "floor-aura",
+    "shield-ripple",
+    "fracture",
+  ]);
+  for (const id of Object.keys(CARDS)) {
+    for (const block of [0, 100]) {
+      const cue = replay(id, block).cue;
+      const layers = techniqueEffectLayers(cue.effect, cue.camera, cue);
+      assert.ok(
+        !layers.some(
+          (layer) =>
+            forbidden.has(layer.kind) ||
+            /electric|aura|ring|ripple/.test(layer.kind),
+        ),
+        `${id}: no magical primitives`,
+      );
+      for (const layer of layers.filter(
+        (layer) => layer.kind === "pressure-sparks",
+      )) {
+        assert.ok(
+          layer.width <= 23,
+          `${id}: pressure stays localized to the joint`,
+        );
+      }
+    }
+  }
+  // Both replay and arena overlays must share the requested warm palette.
+  // Check actual rendered CSS colors so recoloring one renderer cannot leave
+  // cyan/purple VFX behind in the other renderer.
+  for (const path of [
+    "../src/arcade-technique-fx.css",
+    "../src/arcade-arena-impact.css",
+  ]) {
+    const css = readFileSync(new URL(path, import.meta.url), "utf8");
+    for (const match of css.matchAll(
+      /#([a-f\d]{8}|[a-f\d]{6}|[a-f\d]{4}|[a-f\d]{3})\b/gi,
+    )) {
+      const rgb =
+        match[1].length <= 4
+          ? match[1]
+              .slice(0, 3)
+              .split("")
+              .map((channel) => channel + channel)
+              .join("")
+          : match[1].slice(0, 6);
+      const [red, green, blue] = rgb
+        .match(/../g)
+        .map((hex) => parseInt(hex, 16));
+      assert.ok(red >= green && red >= blue, `${path}: cold color ${match[0]}`);
+    }
   }
 });

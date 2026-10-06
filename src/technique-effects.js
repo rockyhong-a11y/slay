@@ -612,7 +612,7 @@ export function techniqueEffectLayers(
         layer(
           "pressure",
           target,
-          26,
+          18,
           [
             0,
             start,
@@ -815,9 +815,9 @@ export function techniqueEffectLayers(
     for (const side of [-1, 1])
       layers.push(
         layer(
-          "electric-lock",
+          "pressure-sparks",
           target,
-          32 * (p.pressure || 1),
+          16 * (p.pressure || 1),
           [0, 0.18, 0.34, 0.48, 0.62, 0.78, 0.93, 1],
           [0, 0.12, 0.6, 0.85, 0.65, 0.9, 0.4, 0],
           {
@@ -840,7 +840,7 @@ export function techniqueEffectLayers(
   if (p.family === "defense") {
     layers.push(
       layer(
-        "shield-ripple",
+        "brace-streaks",
         target,
         54,
         [0, 0.12, 0.3, 0.6, 0.88, 1],
@@ -869,7 +869,7 @@ export function techniqueEffectLayers(
   if (p.family === "nightmare") {
     layers.push(
       layer(
-        "fracture",
+        "stress-slash",
         target,
         90,
         [0, 0.15, 0.35, 0.56, 0.83, 1],
@@ -878,21 +878,6 @@ export function techniqueEffectLayers(
       ),
     );
   }
-  // Floor halos strengthen arcade staging without obscuring faces or UI.
-  if (p.family !== "strike" && !blocked)
-    layers.push(
-      layer(
-        "floor-aura",
-        [p.grounded ? target[0] : 0.5, 0.86],
-        p.family === "grapple" ? 64 : 52,
-        [0, 0.1, 0.26, 0.62, 0.9, 1],
-        [0, 0.12, 0.4, 0.45, 0.1, 0],
-        {
-          scaleX: [0.55, 0.65, 0.9, 1.05, 1.25, 1.25],
-          scaleY: [0.12, 0.15, 0.2, 0.23, 0.25, 0.25],
-        },
-      ),
-    );
   return layers.map((value, index) => ({
     ...value,
     id: `${p.id}-${value.kind}-${index}`,

@@ -1,0 +1,245 @@
+.sd-stage {
+  position: absolute;
+  inset: var(--arena-hud-height, 112px) 0 var(--arena-footer-height, 26px);
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+  isolation: isolate;
+}
+.sd-artwork {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  isolation: isolate;
+}
+.sd-artwork-visual {
+  position: absolute;
+  inset: 0;
+}
+.sd-artwork-mirrored > .sd-artwork-visual {
+  transform: scaleX(-1);
+}
+.sd-artwork-cell {
+  position: absolute;
+  display: block;
+  background-repeat: no-repeat;
+}
+.sd-artwork > .artwork {
+  width: 100%;
+  height: 100%;
+}
+.sd-fighter {
+  position: absolute;
+  width: 30%;
+  height: 80%;
+  left: 25%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  will-change: transform;
+  filter: drop-shadow(0 3px 2px #1c121d55);
+}
+.sd-fighter-enemy {
+  left: 75%;
+}
+.sd-stage-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, #110e191a, transparent 45%, #2315221f);
+}
+.sd-floor-shadow {
+  position: absolute;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    #0a070dcc 10%,
+    #0a070d66 50%,
+    transparent 72%
+  );
+  opacity: 0;
+}
+.sd-contact {
+  position: absolute;
+  z-index: 40;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  color: #ffdbad;
+  filter: drop-shadow(0 0 4px #c17b4a66);
+  pointer-events: none;
+}
+.sd-contact svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.sd-contact-cloud {
+  fill: #ffe9c3;
+  fill-opacity: 0.2;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+.sd-contact-streak {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+.sd-contact[data-family="guard"] {
+  color: #f4d5a7;
+  filter: none;
+}
+.sd-contact[data-family="submission"] {
+  color: #db9e62;
+  filter: drop-shadow(0 0 3px #b5784855);
+}
+.sd-contact[data-family="submission"] .sd-contact-cloud {
+  fill: #cc955b;
+  stroke-width: 1;
+}
+.sd-contact[data-family="submission"] .sd-contact-streak {
+  display: none;
+}
+.sd-broadcast-bug {
+  position: absolute;
+  z-index: 45;
+  right: 12px;
+  top: 8px;
+  color: #e4c68d;
+  font:
+    600 11px/1 "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 3px #000;
+}
+.sd-broadcast-bug i {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: #eab379;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin: 0 3px;
+}
+.sd-loading-note {
+  position: absolute;
+  z-index: 45;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 90%;
+  width: max-content;
+  padding: 4px 9px;
+  border-radius: 5px;
+  color: #e8d3b5;
+  background: #17131edd;
+  font-size: 10px;
+}
+.sd-stage-cinematic {
+  inset: 0;
+  border-radius: inherit;
+}
+.sd-ring-backdrop {
+  position: absolute;
+  inset: -12px;
+  z-index: 0;
+  background-size: cover;
+  background-position: 50% 58%;
+  filter: blur(5px) brightness(0.58) saturate(0.65);
+}
+.sd-stage-cinematic .sd-stage-shade {
+  background:
+    linear-gradient(180deg, #0b07102b, #1e122414),
+    radial-gradient(ellipse at center, transparent 40%, #0b071080);
+}
+.sd-mode-control {
+  display: inline-flex;
+  gap: 1px;
+  padding: 2px;
+  border: 1px solid #79604177;
+  border-radius: 5px;
+  background: #0e0e14bb;
+  pointer-events: auto;
+}
+.sd-mode-control button {
+  border: 0;
+  background: transparent;
+  color: #a49ca6;
+  font:
+    600 11px/1 "Noto Sans KR",
+    sans-serif;
+  padding: 7px 9px;
+  border-radius: 3px;
+  cursor: pointer;
+  min-height: 28px;
+}
+.sd-mode-control button[aria-pressed="true"] {
+  background: #d0a469;
+  color: #211811;
+}
+.sd-mode-control button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+.arena-bottom .sd-mode-control {
+  z-index: 6;
+}
+.arena-sd > .arena-background {
+  filter: blur(2px) brightness(0.66);
+}
+.arena-sd > .vs-mark {
+  display: none;
+}
+.scene-sd .technique-art-window {
+  background: #17121e;
+}
+.scene-sd .technique-art-window:after {
+  display: none;
+}
+.sd-setting-note {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.sd-stage[data-sd-motion="reduced"] .sd-contact {
+  display: none;
+}
+.sd-stage[data-sd-motion="reduced"] .sd-fighter {
+  will-change: auto;
+}
+@media (max-width: 650px) {
+  .arena-bottom .arena-location {
+    max-width: 30%;
+  }
+  .sd-mode-control button {
+    padding: 7px 8px;
+    font-size: 10px;
+  }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .sd-mode-control button {
+    min-height: 22px;
+    padding: 4px 7px;
+    font-size: 9px;
+  }
+  .sd-broadcast-bug {
+    font-size: 9px;
+    top: 5px;
+  }
+  .arena-bottom .arena-location {
+    max-width: 28%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sd-stage .sd-contact {
+    display: none;
+  }
+  .sd-fighter {
+    will-change: auto;
+  }
+}
