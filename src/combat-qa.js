@@ -53,6 +53,7 @@ export function createCombatQA(profile = {}) {
   state.hand = ids
     .slice(0, count)
     .map((id, index) => ({ id, uid: `qa-hand-${index + 1}`, upgraded: false }));
+  if (options.impact === "submission") state.hand[0].id = "figurefour";
   state.deck = structuredClone(state.hand);
   state.draw = utility
     ? ["guard", "strike", "headlock", "anklelock"].map((id, index) => ({

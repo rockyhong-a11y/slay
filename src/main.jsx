@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import { initializeGearWear, trackGearWear } from "./gear-progression.js";
 import { createRoot } from "react-dom/client";
 import { SDCombatStage } from "./SDCombatStage.jsx";
+import { ClassicCombatStage } from "./ClassicCombatStage.jsx";
 import {
   AnimatePresence,
   motion,
@@ -123,7 +124,6 @@ import {
   fighterPoseArt,
 } from "./presentation.js";
 import {
-  FighterSprite,
   FighterCondition,
   TechniqueScene,
   ArenaImpact,
@@ -798,6 +798,13 @@ function App() {
     if (next === state) return;
     const damage = state.player.hp - next.player.hp;
     const impact = createArenaImpact(state, next, { attacker: "enemy" });
+    if (
+      impact &&
+      import.meta.env.DEV &&
+      new URLSearchParams(window.location.search).get("qaPlayback") === "slow"
+    ) {
+      impact.duration *= 6;
+    }
     if (impact) {
       const id = ++cueSequence.current;
       busyRef.current = true;
@@ -1304,7 +1311,7 @@ function App() {
             ) : (
               <div className="combat-workspace">
                 <section
-                  className={`arena ${activePhase === "reward" ? "reward-arena" : ""} ${cue ? "cinematic-active" : ""} ${displayMode === "sd" ? "arena-sd" : ""}`}
+                  className={`arena ${activePhase === "reward" ? "reward-arena" : ""} ${cue ? "cinematic-active" : ""} ${displayMode === "sd" ? "arena-sd" : "arena-classic"}`}
                   aria-label="전투 아레나"
                   ref={arenaRef}
                 >
@@ -1405,30 +1412,18 @@ function App() {
                       }}
                     />
                   ) : (
-                    <>
-                      <FighterSprite
-                        actor={state.player.id}
-                        condition={playerCondition}
-                        vitals={state.player}
-                        name={wrestler.name}
-                        side="player"
-                        impact={impactCue}
-                        shortened={!cinematics}
-                      />
-                      {state.enemy && (
-                        <FighterSprite
-                          actor={
-                            state.enemy.artKey || state.enemy.id || "valkyrie"
-                          }
-                          condition={enemyCondition}
-                          vitals={state.enemy}
-                          name={enemyHUD.name}
-                          side="enemy"
-                          impact={impactCue}
-                          shortened={!cinematics}
-                        />
-                      )}
-                    </>
+                    <ClassicCombatStage
+                      player={state.player.id}
+                      enemy={state.enemy?.artKey || state.enemy?.id || "nova"}
+                      playerCondition={playerCondition.id}
+                      enemyCondition={enemyCondition.id}
+                      playerVitals={state.player}
+                      enemyVitals={state.enemy}
+                      cue={impactCue?.contactPresented ? null : impactCue}
+                      incoming={!!impactCue}
+                      paused={!!cue || !!modal}
+                      shortened={!cinematics}
+                    />
                   )}
                   <span className="vs-mark">VS</span>
                   <AnimatePresence>
@@ -1454,6 +1449,7 @@ function App() {
                         onContact={(resolved) => sound.technique(resolved)}
                         shortened={!cinematics}
                         displayMode={displayMode}
+                        paused={!!modal}
                         playerActor={state.player.id}
                         playerCondition={playerCondition.id}
                         enemyCondition={enemyCondition.id}
@@ -1977,8 +1973,8 @@ function App() {
                   {modeControl}
                 </div>
                 <p className="sd-setting-note">
-                  SD 2D에서는 작은 선수들이 타격·던지기·서브미션 동작을
-                  펼칩니다. 원본으로 언제든 돌아갈 수 있으며 선택은 저장됩니다.
+                  원본과 SD 2D 모두 타격·던지기·서브미션 공방을 보여줍니다.
+                  원하는 캐릭터 스타일로 전환할 수 있으며 선택은 저장됩니다.
                 </p>
                 <div className="setting-row">
                   <span>효과음</span>
@@ -1999,8 +1995,9 @@ function App() {
                     {cinematics ? "전체" : "간결"}
                   </button>
                   <small>
-                    전체는 카드 아트를 움직이며 보여줍니다. 간결은 같은 아트와
-                    결과를 짧게 표시합니다. 기기의 모션 감소 설정도 반영합니다.
+                    전체는 두 선수의 공방과 카드 기술을 보여줍니다. 간결은
+                    이동을 줄이고 결과를 짧게 표시합니다. 기기의 모션 감소
+                    설정도 반영합니다.
                   </small>
                 </div>
                 <div className="setting-row">

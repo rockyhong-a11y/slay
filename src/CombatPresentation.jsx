@@ -22,6 +22,7 @@ import { CrowdCallout } from "./CrowdAtmosphere.jsx";
 import { TechniqueEffects } from "./ArcadeTechniqueFX.jsx";
 import { fighterWearProfile } from "./fighter-wear.js";
 import { SDCombatStage } from "./SDCombatStage.jsx";
+import { ClassicCombatStage } from "./ClassicCombatStage.jsx";
 import { SDArtwork } from "./SDArtwork.jsx";
 import { gearWearProfile } from "./gear-wear.js";
 import { cuePlayback, scheduleCueEvents } from "./cue-timing.js";
@@ -136,6 +137,7 @@ export function TechniqueScene({
   onContact,
   shortened = false,
   displayMode = "classic",
+  paused = false,
   playerActor = "raven",
   enemyActor = "nova",
   playerCondition = "normal",
@@ -155,6 +157,7 @@ export function TechniqueScene({
   const still = reduced || shortened;
   const sdIllustration = cue.artStyle === "sd2d";
   const sdStage = displayMode === "sd" && !sdIllustration;
+  const classicStage = displayMode !== "sd";
   const duration = still ? 650 : cue.duration;
   const playback = useMemo(
     () => cuePlayback(cue, duration, performance.now()),
@@ -218,7 +221,7 @@ export function TechniqueScene({
   }, [cue.id, duration, still, camera, cue.crowd, playback, delivered]);
   const scene = (
     <motion.div
-      className={`technique-scene scene-${cue.disciplineSlug} scene-effect-${effect.family} ${cue.finisher ? "scene-finisher" : ""} ${still ? "scene-still" : ""} ${sdStage ? "scene-sd" : ""} ${sdIllustration ? "scene-sd-illustration" : ""}`}
+      className={`technique-scene scene-${cue.disciplineSlug} scene-effect-${effect.family} ${cue.finisher ? "scene-finisher" : ""} ${still ? "scene-still" : ""} ${sdStage ? "scene-sd" : ""} ${classicStage ? "scene-classic" : ""} ${sdIllustration ? "scene-sd-illustration" : ""}`}
       data-art-style={cue.artStyle}
       data-card={cue.cardId}
       data-motion={camera.kind}
@@ -259,7 +262,7 @@ export function TechniqueScene({
       <div className="technique-scene-visual" aria-hidden="true">
         <div className="technique-art-stage">
           <div className="technique-art-window" ref={artWindow}>
-            {sdIllustration && (
+            {sdIllustration && !classicStage && (
               <span className="sd-technique-edition">SD · 유틸리티</span>
             )}
             {sdStage ? (
@@ -275,6 +278,26 @@ export function TechniqueScene({
                 shortened={still}
                 cinematic
               />
+            ) : classicStage ? (
+              <>
+                <ClassicCombatStage
+                  player={playerActor}
+                  enemy={enemyActor}
+                  playerCondition={playerCondition}
+                  enemyCondition={enemyCondition}
+                  playerVitals={playerVitals}
+                  enemyVitals={enemyVitals}
+                  backgroundArt={backgroundArt}
+                  cue={cue}
+                  shortened={still}
+                  paused={paused}
+                  cinematic
+                />
+                <div className="technique-reference-card">
+                  <Artwork art={cue.art} alt="" />
+                  <span>{cue.discipline}</span>
+                </div>
+              </>
             ) : (
               <motion.div
                 className="technique-art-frame"

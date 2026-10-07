@@ -74,36 +74,39 @@ test("the original complete-image and wear graph has no app-owned animation fram
   }
 });
 
-test("only the finite SD whole-sprite stage owns RAF, with pause, visibility and unmount cleanup", () => {
+test("only finite whole-illustration combat stages own RAF, with pause, visibility and unmount cleanup", () => {
   const sources = appSources();
   const frameOwners = [...sources].filter(([, code]) =>
     /\brequestAnimationFrame\s*\(/.test(code),
   );
   assert.deepEqual(
-    frameOwners.map(([filename]) => filename),
-    [fileURLToPath(new URL("../src/SDCombatStage.jsx", import.meta.url))],
+    frameOwners.map(([filename]) => filename).sort(),
+    ["SDCombatStage.jsx", "ClassicCombatStage.jsx"]
+      .map((name) => fileURLToPath(new URL(`../src/${name}`, import.meta.url)))
+      .sort(),
   );
-  const stage = frameOwners[0][1];
-  assert.match(
-    stage,
-    /playback\.cue\s*&&\s*progress\s*<\s*1\s*&&\s*!playback\.still/,
-    "RAF must stop after the cue and remain idle under reduced motion",
-  );
-  assert.match(
-    stage,
-    /!alive\s*\|\|\s*!visible\s*\|\|\s*document\.hidden\s*\|\|\s*latest\.current\.paused/,
-  );
-  assert.match(stage, /cancelAnimationFrame\s*\(raf\)/);
-  assert.match(
-    stage,
-    /return\s*\(\)\s*=>\s*\{\s*alive\s*=\s*false;\s*cancel\(\)/,
-  );
-  assert.match(stage, /removeEventListener\("visibilitychange",\s*refresh\)/);
-  assert.match(stage, /resize\?\.disconnect\(\)/);
-  assert.match(stage, /intersection\?\.disconnect\(\)/);
-  assert.match(
-    stage,
-    /<SDArtwork\b/,
-    "the stage must render whole illustrated poses",
-  );
+  for (const [filename, stage] of frameOwners) {
+    assert.match(
+      stage,
+      /playback\.cue\s*&&\s*progress\s*<\s*1\s*&&\s*!playback\.still/,
+      "RAF must stop after the cue and remain idle under reduced motion",
+    );
+    assert.match(
+      stage,
+      /!alive\s*\|\|\s*!visible\s*\|\|\s*document\.hidden\s*\|\|\s*latest\.current\.paused/,
+    );
+    assert.match(stage, /cancelAnimationFrame\s*\(raf\)/);
+    assert.match(
+      stage,
+      /return\s*\(\)\s*=>\s*\{\s*alive\s*=\s*false;\s*cancel\(\)/,
+    );
+    assert.match(stage, /removeEventListener\("visibilitychange",\s*refresh\)/);
+    assert.match(stage, /resize\?\.disconnect\(\)/);
+    assert.match(stage, /intersection\?\.disconnect\(\)/);
+    assert.match(
+      stage,
+      filename.endsWith("/SDCombatStage.jsx") ? /<SDArtwork\b/ : /<Artwork\b/,
+      "the stage must render whole illustrated poses",
+    );
+  }
 });

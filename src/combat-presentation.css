@@ -446,6 +446,34 @@ button.fighter-condition:focus-visible {
   animation: none;
   will-change: transform;
 }
+.scene-classic .technique-art-window {
+  background: #17121e;
+}
+.technique-reference-card {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 50;
+  width: clamp(60px, 18%, 106px);
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border: 1px solid #eac99977;
+  border-radius: 5px;
+  box-shadow: 0 3px 12px #0008;
+  background: #121017;
+}
+.technique-reference-card > .artwork {
+  width: 100%;
+  height: 100%;
+}
+.technique-reference-card > span:last-child {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 2px 5px;
+  background: #100d16d9;
+  color: #f7dfb8;
+  font-size: 8px;
+}
 .technique-art-frame img {
   object-fit: contain;
   object-position: center;

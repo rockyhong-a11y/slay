@@ -39,6 +39,7 @@ export function ArcadeArenaImpact({
     );
   }, [cue.id, duration, still, playback, delivered]);
   const guard = !cue.damage;
+  const showContact = !still && !cue.contactPresented;
   const family = guard
     ? "guard"
     : cue.pressure
@@ -56,6 +57,7 @@ export function ArcadeArenaImpact({
       data-damage={cue.damage}
       data-blocked={cue.blocked}
       data-duration={duration}
+      data-contact-presented={!!cue.contactPresented}
       style={{
         "--impact-duration": `${duration}ms`,
         "--impact-delay": playback.cssDelay,
@@ -65,9 +67,11 @@ export function ArcadeArenaImpact({
       aria-atomic="true"
     >
       <span className="combat-sr-only">{cue.announcement}</span>
-      {!still && <div className="arcade-arena-vignette" aria-hidden="true" />}
+      {showContact && (
+        <div className="arcade-arena-vignette" aria-hidden="true" />
+      )}
       <div className="arena-contact" aria-hidden="true">
-        {!still && (
+        {showContact && (
           <>
             <div className="arcade-contact-flare" />
             {family === "submission" || family === "grip" ? (
