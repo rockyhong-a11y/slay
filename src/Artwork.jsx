@@ -1,5 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { FighterWear } from "./FighterWear.jsx";
+import { GearWearOverlay } from "./GearWearOverlay.jsx";
+import { gearWearAnchors } from "./gear-wear.js";
 import { artworkImageRect, parseFighterArt } from "./fighter-wear.js";
 import "./artwork.css";
 
@@ -32,6 +34,7 @@ export function Artwork({
   portrait = false,
   mirrored = false,
   vitals,
+  gearLevel,
 }) {
   const surface = useRef(null);
   const [size, setSize] = useState(null);
@@ -131,6 +134,17 @@ export function Artwork({
           crop={crop}
           rect={wearRect}
           vitals={vitals}
+        />
+      )}
+      {ready && wearArt && wearRect && (
+        <GearWearOverlay
+          actor={wearArt.actor}
+          condition={wearArt.condition}
+          vitals={vitals}
+          gearLevel={gearLevel}
+          anchors={gearWearAnchors(wearArt.actor, wearArt.condition)}
+          mask={{ src: asset(art), width: 1000, height: 1500 }}
+          style={wearRect}
         />
       )}
     </span>

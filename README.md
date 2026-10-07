@@ -18,6 +18,8 @@
 
 [SD 2D·피부 광택·접촉 효과 검수](artifacts/sd-2d-qa.md) · [이전 땀·상처 검증](artifacts/condition-arcade-qa.md)
 
+**경기 중 기어 손상**은 열혈 → 좌절 → 지침 → 그로기의 4단계로 누적됩니다. 열 명의 카툰 60포즈와 SD 30포즈에 맞춰 무릎 보호대·바깥쪽 레깅스·부츠 끈의 마모, 찢김, 풀린 패드와 분리된 끈 조각을 표시합니다. 같은 경기에서 회복해도 손상은 남고, 카툰/SD 전환 및 저장·불러오기에도 유지됩니다. 다음 경기에는 현재 컨디션을 기준으로 다시 시작합니다. 선수 상태 미리보기에서 카툰과 SD를 바꾸며 모든 단계를 비교할 수 있습니다. [구현·전체 선수·모바일 검수](artifacts/gear-wear-qa.md)
+
 ![열 명 선수의 여섯 상태 일러스트 비교](artifacts/expanded-fighter-state-gallery.jpg)
 
 [세로 겹친 손패](artifacts/journey-fan-393x852.jpg) · [가로 겹친 손패](artifacts/journey-fan-667x375.jpg) · [확대 기술 연출](artifacts/journey-technique-focus.jpg) · [분기 지도](artifacts/journey-road.jpg) · [라커룸 컷신](artifacts/journey-lockerroom.jpg) · [10개 화면 조건 검증](artifacts/journey-fan-geometry.json) · [바이퍼 6상태 검증](artifacts/viper-no-gear-browser-checks.json)

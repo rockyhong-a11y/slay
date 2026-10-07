@@ -1,0 +1,1362 @@
+[
+  {
+    "actor": "nova",
+    "style": "카툰",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "nova",
+    "style": "카툰",
+    "level": 2,
+    "patches": 2,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "nova",
+    "style": "카툰",
+    "level": 3,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "nova",
+    "style": "카툰",
+    "level": 4,
+    "patches": 4,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "nova",
+    "style": "SD 2D",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "nova",
+    "style": "SD 2D",
+    "level": 2,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "nova",
+    "style": "SD 2D",
+    "level": 3,
+    "patches": 5,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "nova",
+    "style": "SD 2D",
+    "level": 4,
+    "patches": 6,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "valkyrie",
+    "style": "카툰",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "valkyrie",
+    "style": "카툰",
+    "level": 2,
+    "patches": 2,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "valkyrie",
+    "style": "카툰",
+    "level": 3,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "valkyrie",
+    "style": "카툰",
+    "level": 4,
+    "patches": 4,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "valkyrie",
+    "style": "SD 2D",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "valkyrie",
+    "style": "SD 2D",
+    "level": 2,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "valkyrie",
+    "style": "SD 2D",
+    "level": 3,
+    "patches": 5,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "valkyrie",
+    "style": "SD 2D",
+    "level": 4,
+    "patches": 6,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "ember",
+    "style": "카툰",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "ember",
+    "style": "카툰",
+    "level": 2,
+    "patches": 2,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "ember",
+    "style": "카툰",
+    "level": 3,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "ember",
+    "style": "카툰",
+    "level": 4,
+    "patches": 4,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "ember",
+    "style": "SD 2D",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "ember",
+    "style": "SD 2D",
+    "level": 2,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "ember",
+    "style": "SD 2D",
+    "level": 3,
+    "patches": 5,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "ember",
+    "style": "SD 2D",
+    "level": 4,
+    "patches": 6,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "raven",
+    "style": "카툰",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "raven",
+    "style": "카툰",
+    "level": 2,
+    "patches": 2,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "raven",
+    "style": "카툰",
+    "level": 3,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "raven",
+    "style": "카툰",
+    "level": 4,
+    "patches": 4,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "raven",
+    "style": "SD 2D",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "raven",
+    "style": "SD 2D",
+    "level": 2,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "raven",
+    "style": "SD 2D",
+    "level": 3,
+    "patches": 6,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "raven",
+    "style": "SD 2D",
+    "level": 4,
+    "patches": 7,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "viper",
+    "style": "카툰",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "viper",
+    "style": "카툰",
+    "level": 2,
+    "patches": 2,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "viper",
+    "style": "카툰",
+    "level": 3,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "viper",
+    "style": "카툰",
+    "level": 4,
+    "patches": 4,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "viper",
+    "style": "SD 2D",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "viper",
+    "style": "SD 2D",
+    "level": 2,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "viper",
+    "style": "SD 2D",
+    "level": 3,
+    "patches": 5,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "viper",
+    "style": "SD 2D",
+    "level": 4,
+    "patches": 6,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "atlas",
+    "style": "카툰",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "atlas",
+    "style": "카툰",
+    "level": 2,
+    "patches": 2,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "atlas",
+    "style": "카툰",
+    "level": 3,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "atlas",
+    "style": "카툰",
+    "level": 4,
+    "patches": 4,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "atlas",
+    "style": "SD 2D",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "atlas",
+    "style": "SD 2D",
+    "level": 2,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "atlas",
+    "style": "SD 2D",
+    "level": 3,
+    "patches": 5,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "atlas",
+    "style": "SD 2D",
+    "level": 4,
+    "patches": 6,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "seraph",
+    "style": "카툰",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "seraph",
+    "style": "카툰",
+    "level": 2,
+    "patches": 2,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "seraph",
+    "style": "카툰",
+    "level": 3,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "seraph",
+    "style": "카툰",
+    "level": 4,
+    "patches": 4,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "seraph",
+    "style": "SD 2D",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "seraph",
+    "style": "SD 2D",
+    "level": 2,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "seraph",
+    "style": "SD 2D",
+    "level": 3,
+    "patches": 5,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "seraph",
+    "style": "SD 2D",
+    "level": 4,
+    "patches": 6,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "lynx",
+    "style": "카툰",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "lynx",
+    "style": "카툰",
+    "level": 2,
+    "patches": 2,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "lynx",
+    "style": "카툰",
+    "level": 3,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "lynx",
+    "style": "카툰",
+    "level": 4,
+    "patches": 4,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "lynx",
+    "style": "SD 2D",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "lynx",
+    "style": "SD 2D",
+    "level": 2,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "lynx",
+    "style": "SD 2D",
+    "level": 3,
+    "patches": 5,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "lynx",
+    "style": "SD 2D",
+    "level": 4,
+    "patches": 6,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "onyx",
+    "style": "카툰",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "onyx",
+    "style": "카툰",
+    "level": 2,
+    "patches": 2,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "onyx",
+    "style": "카툰",
+    "level": 3,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "onyx",
+    "style": "카툰",
+    "level": 4,
+    "patches": 4,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "onyx",
+    "style": "SD 2D",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "onyx",
+    "style": "SD 2D",
+    "level": 2,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "onyx",
+    "style": "SD 2D",
+    "level": 3,
+    "patches": 5,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "onyx",
+    "style": "SD 2D",
+    "level": 4,
+    "patches": 6,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "tempest",
+    "style": "카툰",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "tempest",
+    "style": "카툰",
+    "level": 2,
+    "patches": 2,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "tempest",
+    "style": "카툰",
+    "level": 3,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "tempest",
+    "style": "카툰",
+    "level": 4,
+    "patches": 4,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  },
+  {
+    "actor": "tempest",
+    "style": "SD 2D",
+    "level": 1,
+    "patches": 1,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 1/4 · 표면 마모 · 올 풀림"
+  },
+  {
+    "actor": "tempest",
+    "style": "SD 2D",
+    "level": 2,
+    "patches": 3,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 2/4 · 옷감 찢김 · 끈 손상"
+  },
+  {
+    "actor": "tempest",
+    "style": "SD 2D",
+    "level": 3,
+    "patches": 5,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 3/4 · 찢김 확대 · 패드 풀림"
+  },
+  {
+    "actor": "tempest",
+    "style": "SD 2D",
+    "level": 4,
+    "patches": 6,
+    "rects": [
+      {
+        "right": 164.375,
+        "x": 43
+      },
+      {
+        "right": 332,
+        "x": 164.375
+      }
+    ],
+    "summary": "기어 4/4 · 패드 파손 · 끈 조각 분리"
+  }
+]

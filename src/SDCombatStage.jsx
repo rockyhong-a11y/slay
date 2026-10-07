@@ -22,6 +22,8 @@ export function SDCombatStage({
   enemy = "nova",
   playerCondition = "normal",
   enemyCondition = "normal",
+  playerVitals,
+  enemyVitals,
   cue = null,
   incoming = false,
   shortened = false,
@@ -277,6 +279,7 @@ export function SDCombatStage({
               actor={actor}
               pose={poses[index]}
               condition={index ? enemyCondition : playerCondition}
+              vitals={index ? enemyVitals : playerVitals}
               mirrored={!!index}
               onStatus={(value) => setStatus(index, value)}
               onReady={(metadata) => {

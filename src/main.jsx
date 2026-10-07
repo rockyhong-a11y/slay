@@ -1,4 +1,5 @@
-import React, { useEffect, useId, useRef, useState } from "react";
+import React, { useCallback, useEffect, useId, useRef, useState } from "react";
+import { initializeGearWear, trackGearWear } from "./gear-progression.js";
 import { createRoot } from "react-dom/client";
 import { SDCombatStage } from "./SDCombatStage.jsx";
 import {
@@ -457,7 +458,17 @@ function Health({ hp, maxHp, block, enemy }) {
 }
 
 function App() {
-  const [state, setState] = useState(loadRun);
+  const [state, setRunState] = useState(() => initializeGearWear(loadRun()));
+  const setState = useCallback(
+    (update) =>
+      setRunState((previous) =>
+        trackGearWear(
+          previous,
+          typeof update === "function" ? update(previous) : update,
+        ),
+      ),
+    [],
+  );
   const [modal, setModal] = useState(
     () =>
       navigationFromHash(window.location.hash).modal ||
@@ -1380,6 +1391,8 @@ function App() {
                       enemy={state.enemy?.artKey || state.enemy?.id || "nova"}
                       playerCondition={playerCondition.id}
                       enemyCondition={enemyCondition.id}
+                      playerVitals={state.player}
+                      enemyVitals={state.enemy}
                       cue={impactCue?.contactPresented ? null : impactCue}
                       incoming={!!impactCue}
                       paused={!!cue}
@@ -1442,6 +1455,10 @@ function App() {
                         shortened={!cinematics}
                         displayMode={displayMode}
                         playerActor={state.player.id}
+                        playerCondition={playerCondition.id}
+                        enemyCondition={enemyCondition.id}
+                        playerVitals={state.player}
+                        enemyVitals={state.enemy}
                         backgroundArt={environment.art}
                         enemyActor={
                           state.enemy?.artKey || state.enemy?.id || "nova"
@@ -2006,6 +2023,7 @@ function App() {
                   key={previewWrestler.id}
                   actor={previewWrestler.id}
                   name={previewWrestler.name}
+                  displayMode={displayMode}
                   initialCondition={
                     previewFromRoster ? "normal" : playerCondition.id
                   }

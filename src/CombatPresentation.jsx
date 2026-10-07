@@ -22,6 +22,8 @@ import { CrowdCallout } from "./CrowdAtmosphere.jsx";
 import { TechniqueEffects } from "./ArcadeTechniqueFX.jsx";
 import { fighterWearProfile } from "./fighter-wear.js";
 import { SDCombatStage } from "./SDCombatStage.jsx";
+import { SDArtwork } from "./SDArtwork.jsx";
+import { gearWearProfile } from "./gear-wear.js";
 import { cuePlayback, scheduleCueEvents } from "./cue-timing.js";
 import {
   techniqueEffectProfile,
@@ -136,6 +138,10 @@ export function TechniqueScene({
   displayMode = "classic",
   playerActor = "raven",
   enemyActor = "nova",
+  playerCondition = "normal",
+  enemyCondition = "normal",
+  playerVitals,
+  enemyVitals,
   backgroundArt = "arena.webp",
 }) {
   const reduced = useReducedMotion();
@@ -260,6 +266,10 @@ export function TechniqueScene({
               <SDCombatStage
                 player={playerActor}
                 enemy={enemyActor}
+                playerCondition={playerCondition}
+                enemyCondition={enemyCondition}
+                playerVitals={playerVitals}
+                enemyVitals={enemyVitals}
                 backgroundArt={backgroundArt}
                 cue={cue}
                 shortened={still}
@@ -394,12 +404,24 @@ export function ConditionGuide({
   actor,
   name,
   initialCondition = "normal",
+  displayMode = "classic",
   vitals,
 }) {
   const [selected, setSelected] = useState(initialCondition);
+  const [style, setStyle] = useState(displayMode);
+  const [preview, setPreview] = useState(false);
   const condition = FIGHTER_STATES[selected];
-  const previewVitals = selected === initialCondition ? vitals : undefined;
+  const previewVitals =
+    !preview && selected === initialCondition ? vitals : undefined;
   const wear = fighterWearProfile(selected, previewVitals);
+  const gear = gearWearProfile(selected, previewVitals);
+  const gearLabels = [
+    "기어 정비 완료",
+    "표면 마모 · 올 풀림",
+    "옷감 찢김 · 끈 손상",
+    "찢김 확대 · 패드 풀림",
+    "패드 파손 · 끈 조각 분리",
+  ];
   const wearLabel =
     [
       wear.sweat && (wear.sweat > 1 ? "많은 땀" : "땀"),
@@ -413,34 +435,89 @@ export function ConditionGuide({
     <div className="condition-guide">
       <p>
         체력과 마음의 변화가 선수의 표정과 자세에 드러납니다. 아래 상태를 선택해{" "}
-        {name}의 상태별 일러스트와 땀·상처 변화를 미리 볼 수 있습니다.
+        {name}의 상태별 일러스트와 경기복·보호대 손상을 미리 볼 수 있습니다.
       </p>
+      <div
+        className="condition-style-options"
+        role="group"
+        aria-label="상태 미리보기 스타일"
+      >
+        <button
+          type="button"
+          aria-pressed={style === "classic"}
+          onClick={() => setStyle("classic")}
+        >
+          카툰
+        </button>
+        <button
+          type="button"
+          aria-pressed={style === "sd"}
+          onClick={() => setStyle("sd")}
+        >
+          SD 2D
+        </button>
+      </div>
       <div className="condition-preview" data-condition={condition.id}>
-        <FighterSprite
-          actor={actor}
-          condition={condition}
-          name={name}
-          side="preview"
-          vitals={previewVitals}
-        />
+        {style === "sd" ? (
+          <SDArtwork
+            actor={actor}
+            condition={selected}
+            pose={["tired", "groggy"].includes(selected) ? "groggy" : "idle"}
+            vitals={previewVitals}
+            alt={`${name} · ${condition.label} SD 기어 상태`}
+            className="condition-sd-body"
+          />
+        ) : (
+          <FighterSprite
+            actor={actor}
+            condition={condition}
+            name={name}
+            side="preview"
+            vitals={previewVitals}
+          />
+        )}
         <div className="condition-preview-copy">
           <div className="condition-face-heading">
-            <Artwork
-              art={fighterPoseArt(actor, condition)}
-              alt={`${name} · ${condition.label} 표정 확대`}
-              className="condition-face-portrait"
-              condition={condition.id}
-              vitals={previewVitals}
-              portrait
-              position={[0.5, 0]}
-            />
+            {style === "sd" ? (
+              <SDArtwork
+                actor={actor}
+                condition={selected}
+                pose={
+                  ["tired", "groggy"].includes(selected) ? "groggy" : "idle"
+                }
+                vitals={previewVitals}
+                alt={`${name} · ${condition.label} SD 표정 확대`}
+                className="condition-face-portrait"
+                portrait
+              />
+            ) : (
+              <Artwork
+                art={fighterPoseArt(actor, condition)}
+                alt={`${name} · ${condition.label} 표정 확대`}
+                className="condition-face-portrait"
+                condition={condition.id}
+                vitals={previewVitals}
+                portrait
+                position={[0.5, 0]}
+              />
+            )}
             <div>
               <span>{condition.subtitle}</span>
               <h3>{condition.label}</h3>
             </div>
           </div>
           <p>{condition.description}</p>
-          <p className="condition-wear-note">{wearLabel}</p>
+          {style === "classic" && (
+            <p className="condition-wear-note">{wearLabel}</p>
+          )}
+          <p className="condition-gear-note" data-gear-summary={gear.level}>
+            <span className="gear-wear-meter" aria-hidden="true">
+              {[1, 2, 3, 4].map((step) => (
+                <i key={step} data-active={gear.level >= step} />
+              ))}
+            </span>
+            기어 {gear.level}/4 · {gearLabels[gear.level]}
+          </p>
         </div>
       </div>
       <div
@@ -454,7 +531,10 @@ export function ConditionGuide({
             key={item.id}
             aria-pressed={selected === item.id}
             aria-label={`${item.label} 표정과 자세 미리보기. ${item.rule}`}
-            onClick={() => setSelected(item.id)}
+            onClick={() => {
+              setPreview(true);
+              setSelected(item.id);
+            }}
           >
             <FighterCondition condition={item} />
             <span>{item.rule}</span>
@@ -467,6 +547,12 @@ export function ConditionGuide({
         수치를 바꾸지 않습니다. 체력이 낮아질수록 찰과상과 멍이 늘고, 25%
         이하에서는 눈썹 부근에, 10% 이하에서는 입가에도 작은 혈흔이 나타납니다.
         회복하면 상처 표현도 완화됩니다.
+      </p>
+      <p className="condition-priority">
+        기어는 열혈 → 좌절 → 지침 → 그로기 순으로 더 많이 손상됩니다. 같은
+        경기에서는 회복해도 찢어진 옷감과 풀린 패드가 유지되며, 다음 경기 입장
+        시 현재 컨디션부터 새로 적용됩니다. 카툰·SD 전환과 새로고침 후에도 경기
+        중 손상 단계가 이어집니다.
       </p>
     </div>
   );

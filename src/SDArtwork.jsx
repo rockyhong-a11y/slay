@@ -1,8 +1,10 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Artwork } from "./Artwork.jsx";
+import { GearWearOverlay } from "./GearWearOverlay.jsx";
 import { fighterPoseArt } from "./presentation.js";
 import { sdActorId } from "./sd-combat.js";
 import { sdArtworkRect, sdSpriteGeometry } from "./sd-artwork.js";
+import { sdGearWearAnchors } from "./sd-gear-anchors.js";
 import "./sd-combat.css";
 
 const requests = new Map();
@@ -97,6 +99,8 @@ export function SDArtwork({
   actor = "nova",
   pose = "idle",
   condition = "normal",
+  vitals,
+  gearLevel,
   alt = "",
   className = "",
   style,
@@ -197,6 +201,7 @@ export function SDArtwork({
       data-sd-pose={pose}
       data-sd-frame={geometry.frame}
       data-sd-exact={geometry.exact}
+      data-condition={condition}
     >
       {loaded ? (
         <span className="sd-artwork-visual" aria-hidden="true">
@@ -208,12 +213,30 @@ export function SDArtwork({
               backgroundSize: geometry.backgroundSize,
               backgroundPosition: geometry.backgroundPosition,
             }}
-          />
+          >
+            <GearWearOverlay
+              actor={id}
+              condition={condition}
+              vitals={vitals}
+              gearLevel={gearLevel}
+              anchors={sdGearWearAnchors(id, geometry.frame)}
+              mask={{
+                src: image.src,
+                width: image.width,
+                height: image.height,
+                x: -geometry.source.x,
+                y: -geometry.source.y,
+              }}
+            />
+          </span>
         </span>
       ) : (
         <Artwork
           art={fighterPoseArt(id, condition)}
           alt=""
+          condition={condition}
+          vitals={vitals}
+          gearLevel={gearLevel}
           portrait={portrait}
           mirrored={mirrored}
         />
