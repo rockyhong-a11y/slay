@@ -937,6 +937,8 @@ button.fighter-condition:focus-visible {
   box-shadow: 0 0 45px var(--scene-accent);
 }
 .technique-phase-track {
+  position: relative;
+  z-index: 2;
   display: flex;
   justify-content: center;
   gap: clamp(12px, 3vw, 28px);
@@ -957,6 +959,7 @@ button.fighter-condition:focus-visible {
 }
 .technique-caption-panel {
   position: relative;
+  z-index: 2;
   min-width: 0;
   padding: 24px 0 24px 24px;
   border-left: 1px solid #ffffff28;

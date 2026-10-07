@@ -26,6 +26,7 @@ import { ClassicCombatStage } from "./ClassicCombatStage.jsx";
 import { SDArtwork } from "./SDArtwork.jsx";
 import { gearWearProfile } from "./gear-wear.js";
 import { cuePlayback, scheduleCueEvents } from "./cue-timing.js";
+import { techniqueSequence } from "./technique-sequence.js";
 import {
   techniqueEffectProfile,
   TECHNIQUE_EFFECT_MOTION,
@@ -130,13 +131,62 @@ export function FighterSprite({
 
 export { ArcadeArenaImpact as ArenaImpact } from "./ArcadeArenaImpact.jsx";
 
-export function TechniqueScene({
+export function TechniqueScene(props) {
+  const { cue, displayMode = "classic", shortened = false, onComplete } = props;
+  const reduced = useReducedMotion();
+  const [progress, setProgress] = useState({ cueId: cue.id, index: 0 });
+  const shotIndex = progress.cueId === cue.id ? progress.index : 0;
+  const completed = useRef(null);
+  const activeShot = useRef(null);
+  const shots = useMemo(
+    () =>
+      techniqueSequence(cue, {
+        displayMode,
+        still: !!reduced || shortened,
+        now: performance.now(),
+      }),
+    [cue, displayMode, reduced, shortened],
+  );
+  const shot = shots[Math.min(shotIndex, shots.length - 1)];
+  activeShot.current = { cueId: cue.id, shotId: shot.cue.id };
+  const finishShot = (id) => {
+    if (
+      completed.current === cue.id ||
+      activeShot.current.cueId !== cue.id ||
+      activeShot.current.shotId !== id
+    )
+      return;
+    if (shotIndex < shots.length - 1) {
+      setProgress({ cueId: cue.id, index: shotIndex + 1 });
+    } else {
+      completed.current = cue.id;
+      onComplete(cue.id);
+    }
+  };
+  return (
+    <TechniqueSceneShot
+      {...props}
+      key={shot.cue.id}
+      cue={shot.cue}
+      shotKind={shot.kind}
+      shotIndex={shotIndex}
+      shotCount={shots.length}
+      emitCrowd={shotIndex === 0}
+      onComplete={finishShot}
+    />
+  );
+}
+
+function TechniqueSceneShot({
   cue,
   onComplete,
   onCrowd,
   onContact,
   shortened = false,
-  displayMode = "classic",
+  shotKind,
+  shotIndex,
+  shotCount,
+  emitCrowd = true,
   paused = false,
   playerActor = "raven",
   enemyActor = "nova",
@@ -156,8 +206,8 @@ export function TechniqueScene({
   const [crowdVisible, setCrowdVisible] = useState(false);
   const still = reduced || shortened;
   const sdIllustration = cue.artStyle === "sd2d";
-  const sdStage = displayMode === "sd" && !sdIllustration;
-  const classicStage = displayMode !== "sd";
+  const sdStage = shotKind === "sd" && !sdIllustration;
+  const classicStage = shotKind === "fighters";
   const duration = still ? 650 : cue.duration;
   const playback = useMemo(
     () => cuePlayback(cue, duration, performance.now()),
@@ -204,7 +254,9 @@ export function TechniqueScene({
         key: `contact-${index}`,
         at: still ? 40 : duration * at,
       })),
-      { key: "crowd", at: still ? 80 : duration * (contacts[0] ?? 0.35) },
+      ...(emitCrowd
+        ? [{ key: "crowd", at: still ? 80 : duration * (contacts[0] ?? 0.35) }]
+        : []),
     ];
     return scheduleCueEvents(
       cuePlayback(playback, duration, performance.now()),
@@ -218,11 +270,23 @@ export function TechniqueScene({
       },
       { delivered },
     );
-  }, [cue.id, duration, still, camera, cue.crowd, playback, delivered]);
+  }, [
+    cue.id,
+    duration,
+    still,
+    camera,
+    cue.crowd,
+    playback,
+    delivered,
+    emitCrowd,
+  ]);
   const scene = (
     <motion.div
       className={`technique-scene scene-${cue.disciplineSlug} scene-effect-${effect.family} ${cue.finisher ? "scene-finisher" : ""} ${still ? "scene-still" : ""} ${sdStage ? "scene-sd" : ""} ${classicStage ? "scene-classic" : ""} ${sdIllustration ? "scene-sd-illustration" : ""}`}
       data-art-style={cue.artStyle}
+      data-presentation={shotKind}
+      data-sequence-step={shotIndex + 1}
+      data-sequence-count={shotCount}
       data-card={cue.cardId}
       data-motion={camera.kind}
       data-duration={duration}
@@ -233,7 +297,7 @@ export function TechniqueScene({
       role="status"
       aria-live="polite"
       aria-atomic="true"
-      initial={{ opacity: 0 }}
+      initial={{ opacity: shotIndex > 0 ? 1 : 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: reduced ? 0 : motionTokens.duration.fast }}
@@ -256,7 +320,12 @@ export function TechniqueScene({
           {cue.finisher ? "MAIN EVENT" : "RINGSIDE"}
         </strong>
         <span>
-          {still ? "TECHNIQUE" : "REPLAY"} <i /> {cue.discipline}
+          {shotCount > 1
+            ? `${shotIndex + 1}/${shotCount} · ${classicStage ? "FIGHTER REPLAY" : "CARD TECHNIQUE"}`
+            : still
+              ? "TECHNIQUE"
+              : "REPLAY"}{" "}
+          <i /> {cue.discipline}
         </span>
       </div>
       <div className="technique-scene-visual" aria-hidden="true">
