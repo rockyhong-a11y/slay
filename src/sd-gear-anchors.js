@@ -3,8 +3,8 @@ import { sdSpriteFrame } from "./sd-artwork.js";
 // Authored against the original 1774 × 887 RGBA sheets. Each row contains the
 // exact manifest crop followed by gear centres in atlas pixels. Converting at
 // this boundary keeps all wear in the same local rectangle as the sprite.
-// Garment openings retain opaque athletic lining across chest and trunks.
-// Skin openings are confined to the previously authored equipment/outer-leg zones.
+// Central garment openings retain opaque athletic lining across chest/trunks.
+// Skin openings stay on authored shoulder/armhole and outer-hip garment edges.
 const z = (kind, x, y, width, height, angle, minLevel, skin = false) => ({
   kind,
   x,
@@ -89,9 +89,8 @@ const materials = {
 };
 
 // Source-pixel garment rectangles follow the exposed cloth, including poses in
-// which the arms cover most of the shirt. All chest/trunk tears reveal opaque
-// cool-coloured sports lining, never skin. Four large patches balance the upper
-// and lower garment; their original outer contours remain fully intact.
+// which the arms cover most of the shirt. Main panels retain opaque sports
+// lining; secondary windows release one shoulder/side seam and an outer hip.
 const garment = (area, x, y, width, height, angle, minLevel, colors = {}) => ({
   kind: "garment",
   area,
@@ -102,10 +101,42 @@ const garment = (area, x, y, width, height, angle, minLevel, colors = {}) => ({
   angle,
   minLevel,
   skin: false,
+  surface: "opaque-lining",
   lining: "#56616e",
   thread: "#c2c9d2",
   ...colors,
 });
+const sideGarment = (
+  area,
+  x,
+  y,
+  width,
+  height,
+  angle,
+  side,
+  deform = area === "upper" ? "strap" : "seam",
+  colors = {},
+) =>
+  garment(area, x, y, width, height, angle, 2, {
+    ...colors,
+    skin: true,
+    surface: "side-skin",
+    side,
+    deform,
+    site: area === "upper" ? "shoulder-armhole" : "outer-hip",
+  });
+const skinShadows = {
+  nova: "#cf906d",
+  raven: "#ce9274",
+  valkyrie: "#ca9068",
+  viper: "#ca9477",
+  ember: "#c78a61",
+  atlas: "#c78456",
+  seraph: "#cfa283",
+  lynx: "#c58a58",
+  tempest: "#b47b48",
+  onyx: "#a8704d",
+};
 const garmentMaterials = {
   nova: { fabric: "#292a31", accent: "#46c1d8" },
   raven: { fabric: "#34313f", accent: "#a1a5b1" },
@@ -128,201 +159,204 @@ const garments = {
   nova: [
     [
       garment("upper", 327, 498, 104, 43, 0, 1),
-      garment("upper", 381, 480, 31, 37, 14, 2),
+      sideGarment("upper", 365, 446, 30, 48, -32, 1),
       garment("lower", 316, 574, 80, 47, -3, 1),
-      garment("lower", 267, 548, 48, 19, -16, 2),
+      sideGarment("lower", 267, 545, 52, 28, -16, -1),
     ],
     [
       garment("upper", 950, 509, 96, 39, 5, 1),
-      garment("upper", 891, 500, 38, 32, -12, 2),
+      sideGarment("upper", 899, 490, 50, 26, -18, -1, "seam"),
       garment("lower", 919, 578, 76, 46, -13, 1),
-      garment("lower", 855, 544, 48, 20, -18, 2),
+      sideGarment("lower", 855, 541, 52, 28, -18, -1),
     ],
     [
       garment("upper", 1538, 502, 53, 27, 8, 1),
-      garment("upper", 1500, 477, 29, 42, -12, 2),
+      sideGarment("upper", 1500, 461, 21, 37, -17, -1),
       garment("lower", 1480, 573, 65, 40, -12, 1),
-      garment("lower", 1417, 545, 47, 21, -10, 2),
+      sideGarment("lower", 1417, 542, 52, 28, -10, -1),
     ],
   ],
   raven: [
     [
       garment("upper", 304, 510, 95, 44, 4, 1),
-      garment("upper", 378, 501, 70, 47, -13, 2),
+      sideGarment("upper", 376, 447, 32, 52, -31, 1),
       garment("lower", 252, 614, 100, 76, 12, 1),
-      garment("lower", 395, 626, 112, 61, -18, 2),
+      sideGarment("lower", 224, 578, 46, 54, -20, -1),
     ],
     [
       garment("upper", 903, 523, 98, 43, -5, 1),
-      garment("upper", 975, 507, 71, 45, -13, 2),
+      sideGarment("upper", 959, 461, 30, 51, -11, 1),
       garment("lower", 895, 632, 100, 75, 15, 1),
-      garment("lower", 1039, 629, 113, 61, 20, 2),
+      sideGarment("lower", 851, 586, 50, 51, 26, -1),
     ],
     [
       garment("upper", 1569, 496, 65, 43, -12, 1),
-      garment("upper", 1436, 476, 20, 44, -9, 2),
+      sideGarment("upper", 1434, 455, 17, 43, -9, -1, "seam"),
       garment("lower", 1441, 603, 94, 73, 10, 1),
-      garment("lower", 1554, 628, 101, 57, 17, 2),
+      sideGarment("lower", 1399, 575, 42, 50, 14, -1),
     ],
   ],
   valkyrie: [
     [
       garment("upper", 265, 480, 95, 49, 7, 1),
-      garment("upper", 342, 480, 69, 42, -8, 2),
+      sideGarment("upper", 243, 414, 26, 50, -8, -1),
       garment("lower", 283, 589, 98, 60, -4, 1),
-      garment("lower", 202, 556, 67, 29, -15, 2),
+      sideGarment("lower", 197, 548, 66, 35, -16, -1),
     ],
     [
       garment("upper", 916, 494, 110, 50, -2, 1),
-      garment("upper", 998, 498, 36, 31, -13, 2),
+      sideGarment("upper", 1013, 498, 32, 44, 20, 1, "seam", {
+        fabric: "#d3d6df",
+        accent: "#a9b0bc",
+      }),
       garment("lower", 956, 605, 96, 62, -8, 1),
-      garment("lower", 861, 574, 68, 26, 14, 2),
+      sideGarment("lower", 853, 562, 66, 35, 9, -1),
     ],
     [
       garment("upper", 1417, 445, 34, 44, 22, 1),
-      garment("upper", 1495, 477, 42, 24, -18, 2),
+      sideGarment("upper", 1431, 406, 27, 47, 39, -1),
       garment("lower", 1472, 604, 80, 57, -7, 1),
-      garment("lower", 1391, 568, 60, 26, -13, 2),
+      sideGarment("lower", 1383, 555, 56, 36, -21, -1),
     ],
   ],
   viper: [
     [
       garment("upper", 285, 451, 112, 94, 0, 1),
-      garment("upper", 326, 504, 68, 24, -4, 2),
+      sideGarment("upper", 237, 445, 32, 57, 8, -1, "seam"),
       garment("lower", 297, 582, 83, 65, 0, 1),
-      garment("lower", 224, 551, 62, 23, -13, 2),
+      sideGarment("lower", 219, 547, 64, 30, -9, -1),
     ],
     [
       garment("upper", 944, 485, 96, 60, -5, 1),
-      garment("upper", 844, 462, 32, 69, -8, 2),
+      sideGarment("upper", 841, 431, 30, 52, -14, -1, "seam"),
       garment("lower", 902, 596, 82, 65, 14, 1),
-      garment("lower", 829, 562, 70, 25, 3, 2),
+      sideGarment("lower", 814, 552, 68, 32, -2, -1),
     ],
     [
       garment("upper", 1483, 443, 86, 54, -16, 1),
-      garment("upper", 1441, 430, 33, 49, 15, 2),
+      sideGarment("upper", 1463, 397, 42, 30, -16, -1, "seam"),
       garment("lower", 1554, 554, 84, 27, 5, 1),
-      garment("lower", 1498, 598, 32, 36, 21, 2),
+      sideGarment("lower", 1582, 556, 49, 31, 26, 1),
     ],
   ],
   ember: [
     [
       garment("upper", 327, 506, 70, 49, -11, 1),
-      garment("upper", 239, 508, 55, 40, 17, 2),
+      sideGarment("upper", 344, 440, 28, 55, -9, 1),
       garment("lower", 300, 602, 90, 57, 2, 1),
-      garment("lower", 228, 561, 52, 22, -34, 2),
+      sideGarment("lower", 222, 559, 55, 31, -32, -1),
     ],
     [
       garment("upper", 894, 512, 76, 43, -8, 1),
-      garment("upper", 824, 516, 45, 33, 12, 2),
+      sideGarment("upper", 850, 445, 29, 53, 28, -1),
       garment("lower", 921, 607, 87, 55, -8, 1),
-      garment("lower", 1003, 562, 56, 25, 27, 2),
+      sideGarment("lower", 1004, 558, 64, 34, 27, 1),
     ],
     [
       garment("upper", 1482, 502, 57, 22, -16, 1),
-      garment("upper", 1416, 480, 26, 41, -25, 2),
+      sideGarment("upper", 1412, 459, 21, 39, -25, -1),
       garment("lower", 1424, 588, 87, 48, 6, 1),
-      garment("lower", 1362, 557, 51, 28, -21, 2),
+      sideGarment("lower", 1355, 556, 53, 35, -21, -1),
     ],
   ],
   atlas: [
     [
       garment("upper", 322, 492, 74, 53, -12, 1),
-      garment("upper", 232, 496, 57, 34, 14, 2),
+      sideGarment("upper", 358, 419, 26, 52, -10, 1),
       garment("lower", 295, 605, 94, 55, 1, 1),
-      garment("lower", 374, 559, 59, 27, 35, 2),
+      sideGarment("lower", 379, 557, 55, 35, 35, 1),
     ],
     [
       garment("upper", 974, 484, 98, 49, -16, 1),
-      garment("upper", 877, 498, 61, 28, 10, 2),
+      sideGarment("upper", 852, 429, 26, 52, -8, -1),
       garment("lower", 917, 605, 95, 59, -4, 1),
-      garment("lower", 831, 562, 65, 29, -26, 2),
+      sideGarment("lower", 823, 556, 62, 34, -23, -1),
     ],
     [
       garment("upper", 1486, 475, 63, 25, 24, 1),
-      garment("upper", 1553, 498, 33, 27, -17, 2),
+      sideGarment("upper", 1459, 427, 24, 49, -30, -1),
       garment("lower", 1484, 617, 60, 55, 22, 1),
-      garment("lower", 1407, 582, 87, 34, 8, 2),
+      sideGarment("lower", 1388, 579, 70, 36, -10, -1),
     ],
   ],
   seraph: [
     [
       garment("upper", 346, 518, 68, 62, 8, 1, whiteKit),
-      garment("upper", 243, 518, 50, 53, -18, 2, whiteKit),
+      sideGarment("upper", 360, 447, 28, 47, 8, 1),
       garment("lower", 322, 628, 78, 52, -5, 1, whiteKit),
-      garment("lower", 401, 596, 56, 25, -26, 2),
+      sideGarment("lower", 410, 583, 54, 32, 25, 1),
     ],
     [
       garment("upper", 999, 520, 66, 49, -10, 1, whiteKit),
-      garment("upper", 918, 522, 73, 32, 8, 2),
+      sideGarment("upper", 878, 449, 31, 54, 23, -1),
       garment("lower", 932, 627, 70, 54, -5, 1, whiteKit),
-      garment("lower", 844, 589, 76, 29, -15, 2),
+      sideGarment("lower", 833, 580, 69, 33, -14, -1),
     ],
     [
       garment("upper", 1495, 506, 47, 36, 24, 1, whiteKit),
-      garment("upper", 1573, 518, 37, 22, -13, 2, whiteKit),
+      sideGarment("upper", 1490, 447, 27, 47, 28, -1),
       garment("lower", 1520, 616, 70, 40, -7, 1, whiteKit),
-      garment("lower", 1423, 593, 56, 26, -21, 2),
+      sideGarment("lower", 1416, 587, 59, 36, -24, -1),
     ],
   ],
   lynx: [
     [
       garment("upper", 331, 514, 112, 86, -3, 1),
-      garment("upper", 253, 524, 53, 48, -14, 2),
+      sideGarment("upper", 263, 475, 30, 47, 31, -1, "seam"),
       garment("lower", 308, 647, 98, 56, -12, 1),
-      garment("lower", 215, 612, 72, 25, -15, 2),
+      sideGarment("lower", 205, 605, 67, 38, -17, -1),
     ],
     [
       garment("upper", 884, 516, 104, 64, 5, 1),
-      garment("upper", 979, 538, 37, 36, -14, 2),
+      sideGarment("upper", 844, 467, 31, 47, 30, -1, "seam"),
       garment("lower", 906, 654, 84, 59, 6, 1),
-      garment("lower", 830, 626, 73, 41, 18, 2),
+      sideGarment("lower", 813, 617, 70, 38, 14, -1),
     ],
     [
       garment("upper", 1488, 501, 87, 46, 5, 1),
-      garment("upper", 1445, 482, 22, 48, 6, 2),
+      sideGarment("upper", 1454, 449, 28, 48, 20, -1, "seam"),
       garment("lower", 1500, 639, 88, 50, -13, 1),
-      garment("lower", 1409, 609, 72, 29, -14, 2),
+      sideGarment("lower", 1398, 605, 66, 38, -13, -1),
     ],
   ],
   tempest: [
     [
       garment("upper", 366, 553, 79, 46, -12, 1),
-      garment("upper", 270, 548, 57, 39, 11, 2),
+      sideGarment("upper", 284, 480, 29, 51, 27, -1),
       garment("lower", 332, 648, 78, 48, -3, 1),
-      garment("lower", 253, 610, 60, 24, -23, 2),
+      sideGarment("lower", 248, 607, 64, 35, -18, -1),
     ],
     [
       garment("upper", 936, 549, 84, 47, -10, 1),
-      garment("upper", 859, 537, 47, 34, 14, 2),
+      sideGarment("upper", 882, 463, 29, 42, 34, -1),
       garment("lower", 941, 651, 74, 45, -14, 1),
-      garment("lower", 865, 600, 55, 24, 32, 2),
+      sideGarment("lower", 853, 594, 64, 33, 29, -1),
     ],
     [
       garment("upper", 1575, 544, 43, 31, -18, 1),
-      garment("upper", 1488, 533, 27, 35, -10, 2),
+      sideGarment("upper", 1507, 488, 24, 41, 22, -1),
       garment("lower", 1529, 635, 68, 36, -18, 1),
-      garment("lower", 1429, 604, 54, 25, -7, 2),
+      sideGarment("lower", 1416, 600, 57, 34, -10, -1),
     ],
   ],
   onyx: [
     [
       garment("upper", 282, 524, 119, 51, 4, 1),
-      garment("upper", 354, 516, 38, 48, 3, 2),
+      sideGarment("upper", 346, 460, 28, 48, -14, 1),
       garment("lower", 295, 631, 101, 53, -5, 1),
-      garment("lower", 212, 591, 65, 30, -13, 2),
+      sideGarment("lower", 204, 589, 67, 36, -16, -1),
     ],
     [
       garment("upper", 875, 524, 101, 35, 7, 1),
-      garment("upper", 985, 532, 36, 32, -17, 2),
+      sideGarment("upper", 900, 456, 31, 52, 25, -1),
       garment("lower", 888, 640, 94, 54, -3, 1),
-      garment("lower", 811, 589, 70, 29, 10, 2),
+      sideGarment("lower", 801, 585, 65, 36, 10, -1),
     ],
     [
       garment("upper", 1560, 561, 42, 32, -18, 1),
-      garment("upper", 1493, 522, 29, 34, 18, 2),
+      sideGarment("upper", 1494, 485, 27, 49, 0, -1),
       garment("lower", 1469, 632, 75, 43, -8, 1),
-      garment("lower", 1390, 599, 67, 28, -15, 2),
+      sideGarment("lower", 1379, 595, 65, 34, -17, -1),
     ],
   ],
 };
@@ -699,6 +733,9 @@ export function sdGearWearAnchors(actor, frame = 0) {
       ...(zone.kind === "garment" ? garmentMaterials[actor] : null),
       ...zone,
       ...materials[actor]?.[zone.kind],
+      ...(zone.kind === "garment" && zone.skin
+        ? { skinColor: palettes[actor].skin, skinShadow: skinShadows[actor] }
+        : null),
       x: zone.x - left,
       y: zone.y - top,
     })),

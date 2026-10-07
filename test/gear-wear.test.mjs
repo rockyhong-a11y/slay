@@ -155,13 +155,26 @@ test("all 60 inspected poses have finite local patches inside the original canva
   }
 });
 
-test("skin windows remain only on knees and Raven's outer lower thigh", () => {
+test("equipment windows stay on knees and outer thigh; garment cores retain lining", () => {
   for (const actor of GEAR_WEAR_ACTORS)
     for (const state of GEAR_WEAR_STATES)
       for (const zone of gearWearAnchors(actor, state).zones) {
         if (zone.kind === "garment") {
-          assert.equal(zone.skin, false);
-          assert.equal(zone.surface, "lining");
+          if (zone.minLevel === 1) {
+            assert.equal(zone.skin, false);
+            assert.equal(zone.surface, "lining");
+            assert.equal(zone.deform, undefined);
+          } else {
+            assert.equal(zone.skin, true);
+            assert.equal(zone.surface, "side-skin");
+            assert.ok(["strap", "seam"].includes(zone.deform));
+            assert.ok([-1, 1].includes(zone.side));
+            assert.equal(zone.minLevel, 2);
+            assert.ok(zone.width <= 105 && zone.height <= 120);
+            assert.ok(zone.y < 710);
+            for (const color of [zone.skinColor, zone.skinShadow])
+              assert.match(color, /^#[0-9a-f]{6}$/i);
+          }
           continue;
         }
         assert.ok(zone.y - zone.height / 2 > 760, `${actor}-${state}`);
@@ -199,10 +212,10 @@ test("enlarged tired and groggy patches clear the inspected resting hands", () =
     );
   };
   const viper = gearWearAnchors("viper", "groggy").zones.find(
-    (zone) => zone.skin && zone.minLevel === 2,
+    (zone) => zone.kind !== "garment" && zone.skin && zone.minLevel === 2,
   );
   const raven = gearWearAnchors("raven", "tired").zones.find(
-    (zone) => zone.skin && zone.minLevel === 2,
+    (zone) => zone.kind !== "garment" && zone.skin && zone.minLevel === 2,
   );
   assert.ok(
     rotatedTop(viper) > 878,
@@ -220,6 +233,11 @@ test("every pose emphasizes both garments over secondary equipment damage", () =
       const { zones } = gearWearAnchors(actor, state);
       const garments = zones.filter((zone) => zone.kind === "garment");
       assert.equal(garments.length, 4, `${actor}-${state}`);
+      assert.equal(garments.filter((zone) => zone.skin).length, 2);
+      assert.equal(
+        garments.filter((zone) => zone.surface === "lining").length,
+        2,
+      );
       for (const area of ["upper", "lower"]) {
         const panels = garments.filter((zone) => zone.area === area);
         assert.equal(panels.length, 2);
@@ -232,8 +250,11 @@ test("every pose emphasizes both garments over secondary equipment damage", () =
             4000,
         );
         for (const panel of panels) {
-          assert.equal(panel.skin, false);
-          assert.equal(panel.surface, "lining");
+          assert.equal(panel.skin, panel.minLevel === 2);
+          assert.equal(
+            panel.surface,
+            panel.minLevel === 2 ? "side-skin" : "lining",
+          );
           for (const color of [
             panel.fabric,
             panel.accent,
@@ -255,4 +276,26 @@ test("every pose emphasizes both garments over secondary equipment damage", () =
         `${actor}-${state}: garments dominate wear`,
       );
     }
+});
+
+test("occluded straps use visible seams and narrow straps do not broaden into arms", () => {
+  for (const state of ["excited", "fiery"]) {
+    const upper = gearWearAnchors("nova", state).zones[2];
+    assert.equal(upper.deform, "seam");
+    assert.ok(upper.y > 420 && upper.x < 400);
+  }
+  for (const actor of ["ember", "onyx", "tempest"])
+    for (const state of GEAR_WEAR_STATES) {
+      const upper = gearWearAnchors(actor, state).zones[2];
+      assert.equal(upper.deform, "strap");
+      assert.ok(upper.width <= 40, `${actor}-${state}: strap fits its source`);
+      assert.ok(upper.height >= 70);
+    }
+  const viper = gearWearAnchors("viper", "frustrated").zones[2];
+  const left =
+    viper.x -
+    (viper.width * Math.cos((viper.angle * Math.PI) / 180) +
+      viper.height * Math.sin((viper.angle * Math.PI) / 180)) /
+      2;
+  assert.ok(left > 540, "upper opening clears the raised fist");
 });

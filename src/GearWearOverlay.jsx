@@ -2,25 +2,85 @@ import React, { useId } from "react";
 import { gearWearProfile } from "./gear-wear.js";
 import "./gear-wear.css";
 
-// A shredded outer garment reveals its opaque athletic lining. Only authored
-// side/hem patches may reveal skin; the drawing never removes coverage layers.
+// Authored edge openings reveal shaded skin, while central panels keep their
+// athletic lining. A released edge stays attached on one side of the garment.
+function ReleasedGarmentEdge({ zone, level, fabric, edge, shadow, foldId }) {
+  if (!zone.deform || level < 3) return null;
+  const strap = zone.deform === "strap";
+  const dropped = level === 4;
+  const strip = strap
+    ? dropped
+      ? "M-38-43-26-37Q-37-7-17 12Q-2 24 5 42L-6 46Q-10 31-25 24Q-49 5-38-43Z"
+      : "M-38-43-26-37Q-33-13-16-1Q2 12 34 15L31 29Q-3 25-24 11Q-45-4-38-43Z"
+    : dropped
+      ? "M-43-25-27-21Q-25-4-4 0L29-9 42 2 29 39 13 33 9 40-2 29Q-38 18-43-25Z"
+      : "M-43-25-27-21Q-22-4 2-8L38-22 44-6 26 19 12 12 4 21-5 11Q-38 9-43-25Z";
+  return (
+    <g
+      transform={`scale(${zone.side === -1 ? -1 : 1} 1)`}
+      data-gear-deform={zone.deform}
+      data-gear-flap={zone.area}
+      data-gear-release={dropped ? "hanging" : "loosened"}
+      data-gear-release-side={zone.side === -1 ? "left" : "right"}
+      data-gear-loose="true"
+    >
+      <path d={strip} fill={shadow} opacity=".24" transform="translate(2 2)" />
+      <path
+        d={strip}
+        fill={`url(#${foldId})`}
+        stroke={shadow}
+        strokeWidth="1.8"
+      />
+      <path
+        d={strap ? "M-33-38Q-37-7-18 13" : "M-38-20Q-27 9-1 9"}
+        fill="none"
+        stroke={edge}
+        strokeWidth="1.1"
+        opacity=".8"
+      />
+      <path
+        d={
+          strap && dropped
+            ? "M-6 39-11 44M-1 42 1 47M5 40 10 44"
+            : "M27 17 34 23M19 20 20 29"
+        }
+        fill="none"
+        stroke={fabric}
+        strokeWidth="1.8"
+      />
+    </g>
+  );
+}
+
 function GarmentTear({ zone, level, palette, id, index }) {
   const fabric = zone.fabric || palette.fabric;
   const edge = zone.thread || "#c5c3bd";
   const lining = zone.lining || palette.shadow;
-  const opening = [0, 0.2, 0.5, 0.78, 1][level];
+  const opening = (
+    zone.skin ? [0, 0.12, 0.45, 0.75, 0.96] : [0, 0.1, 0.18, 0.3, 0.44]
+  )[level];
   const width = [0, 0.62, 0.82, 0.94, 1][level];
   const liningId = `${id}-lining-${index}`;
   const foldId = `${id}-fold-${index}`;
-  const fill = zone.skin ? `url(#${id}-skin)` : `url(#${liningId})`;
-  const tearPath =
-    "M-47-24-33-31-27-24-14-40-2-32 18-41 22-29 41-34 36-17 48-13 40 0 47 15 33 17 40 32 21 28 13 43-1 33-19 42-23 29-40 33-34 15-48 17-40 3-48-8Z";
+  const skinId = `${id}-skin-${index}`;
+  const skinColor = zone.skinColor || palette.skin;
+  const skinShadow = zone.skinShadow || skinColor;
+  const fill = zone.skin ? `url(#${skinId})` : `url(#${liningId})`;
+  const tearPath = zone.skin
+    ? "M-43-32Q-27-42-12-34L-7-40 4-29Q22-32 34-20L43-23 37-6 45 2 37 12 42 21 28 25 23 37 8 32-2 41-15 34-28 38-30 25Q-45 21-39 7L-46 0-39-12Z"
+    : "M-46-15-30-24-21-19-8-32 5-24 19-30 28-20 45-18 35-4 44 8 27 15 15 27 1 20-13 31-24 22-41 25-35 8-47 4-39-7Z";
   return (
     <g
       data-gear-garment={zone.area}
       data-gear-coverage={zone.skin ? "side-skin" : "opaque-lining"}
     >
       <defs>
+        <linearGradient id={skinId} x1="0" y1="0" x2=".2" y2="1">
+          <stop offset="0" stopColor={skinShadow} />
+          <stop offset=".22" stopColor={skinColor} />
+          <stop offset=".75" stopColor={skinColor} />
+          <stop offset="1" stopColor={skinShadow} />
+        </linearGradient>
         <linearGradient id={liningId} x1="0" y1="0" x2=".15" y2="1">
           <stop offset="0" stopColor={palette.shadow} />
           <stop offset=".2" stopColor={lining} />
@@ -42,9 +102,19 @@ function GarmentTear({ zone, level, palette, id, index }) {
           d={tearPath}
           fill={fill}
           stroke={palette.shadow}
-          strokeWidth="3"
+          strokeWidth={zone.skin ? "1.6" : "2"}
           strokeLinejoin="round"
         />
+        {zone.skin && (
+          <path
+            d="M-26-16Q-4-25 19-12"
+            fill="none"
+            stroke="#fff3df"
+            strokeWidth="4"
+            strokeLinecap="round"
+            opacity=".2"
+          />
+        )}
         {!zone.skin && (
           <path
             d="M-31-9 3-22M-25 6 22-13M-13 18 28 1M-5 29 22 15"
@@ -62,7 +132,11 @@ function GarmentTear({ zone, level, palette, id, index }) {
           strokeLinejoin="bevel"
         />
         <path
-          d="M-45-23-33-29-26-22-14-38M1-32 17-39 21-27 40-32M-38 32-22 27-18 40-1 31M13 41 20 26 37 30"
+          d={
+            zone.skin
+              ? "M-41-31-28-37-14-32M-5-37 5-27M36 13 40 20 29 23M-27 36-16 32-3 38"
+              : "M-44-14-30-21-21-17M-7-29 6-22 18-27M-38 23-25 20-14 28M15 24 27 13 40 8"
+          }
           fill="none"
           stroke={edge}
           strokeWidth="1.2"
@@ -82,8 +156,12 @@ function GarmentTear({ zone, level, palette, id, index }) {
           />
         </g>
       )}
-      {level >= 3 && (
-        <g data-gear-loose="true" data-gear-flap={zone.area}>
+      {level >= 3 && !zone.deform && (
+        <g
+          transform={`scale(${width} ${opening})`}
+          data-gear-loose="true"
+          data-gear-flap={zone.area}
+        >
           <path
             d="M-32-19-14-33-7-21-20 1-25 11-33 2-28-6-38-10Z"
             fill={lining}
@@ -118,8 +196,17 @@ function GarmentTear({ zone, level, palette, id, index }) {
           />
         </g>
       )}
+      <ReleasedGarmentEdge
+        zone={zone}
+        level={level}
+        fabric={fabric}
+        edge={edge}
+        shadow={palette.shadow}
+        foldId={foldId}
+      />
       {level === 4 && (
         <g
+          transform={zone.skin ? undefined : `scale(${width} ${opening})`}
           data-gear-fragment="true"
           fill={fabric}
           stroke={edge}

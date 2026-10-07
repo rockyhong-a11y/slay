@@ -71,7 +71,29 @@ test("every cartoon and SD wear overlay renders finite source-registered geometr
           assert.match(markup, /data-gear-coverage="opaque-lining"/);
           if (condition === "fiery")
             assert.doesNotMatch(markup, /data-gear-opening/);
-          else assert.match(markup, /data-gear-opening="true"/);
+          else {
+            assert.match(markup, /data-gear-opening="true"/);
+            assert.equal(
+              [...markup.matchAll(/data-gear-coverage="side-skin"/g)].length,
+              4,
+              `${actor}/${condition}: each copy has one skin opening per garment`,
+            );
+          }
+          if (["fiery", "frustrated"].includes(condition)) {
+            assert.doesNotMatch(markup, /data-gear-release=/);
+          } else {
+            assert.equal(
+              [...markup.matchAll(/data-gear-deform="(?:strap|seam)"/g)].length,
+              4,
+              `${actor}/${condition}: upper and lower edges release independently`,
+            );
+            assert.match(
+              markup,
+              new RegExp(
+                `data-gear-release="${condition === "groggy" ? "hanging" : "loosened"}"`,
+              ),
+            );
+          }
           if (["tired", "groggy"].includes(condition))
             assert.match(markup, /data-gear-loose="true"/);
           if (condition === "groggy") {
@@ -89,6 +111,49 @@ test("every cartoon and SD wear overlay renders finite source-registered geometr
           }
         }
       }
+    }
+    for (const source of [
+      gearWearAnchors("viper", "normal"),
+      sdGearWearAnchors("viper", 0),
+    ]) {
+      const anchors = {
+        ...source,
+        zones: source.zones.map((zone) =>
+          zone.kind === "garment" && zone.skin
+            ? { ...zone, side: -1, skinColor: "#edb087", skinShadow: "#b57458" }
+            : zone,
+        ),
+      };
+      const healed = renderToStaticMarkup(
+        React.createElement(GearWearOverlay, {
+          actor: "viper",
+          condition: "normal",
+          anchors,
+          vitals: { hp: 100, maxHp: 100, stress: 0, hype: 0, gearWearLevel: 4 },
+        }),
+      );
+      assert.match(healed, /data-gear-level="4"/);
+      assert.equal(
+        [...healed.matchAll(/data-gear-release="hanging"/g)].length,
+        2,
+      );
+      assert.equal(
+        [...healed.matchAll(/data-gear-release-side="left"/g)].length,
+        2,
+      );
+      assert.match(healed, /transform="scale\(-1 1\)"/);
+      assert.match(healed, /stop-color="#edb087"/);
+      assert.match(healed, /stop-color="#b57458"/);
+      assert.equal(
+        [...healed.matchAll(/data-gear-coverage="opaque-lining"/g)].length,
+        2,
+      );
+      const ids = [...healed.matchAll(/\bid="([^"]+)"/g)].map(
+        (match) => match[1],
+      );
+      assert.equal(new Set(ids).size, ids.length);
+      for (const [, id] of healed.matchAll(/url\(#([^)]*)\)/g))
+        assert.ok(ids.includes(id), id);
     }
   } finally {
     await server.close();

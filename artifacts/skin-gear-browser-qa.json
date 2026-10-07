@@ -1,0 +1,3936 @@
+{
+  "classic": [
+    {
+      "actor": "raven",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "normal"
+    },
+    {
+      "actor": "raven",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "excited"
+    },
+    {
+      "actor": "raven",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "fiery"
+    },
+    {
+      "actor": "raven",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "frustrated"
+    },
+    {
+      "actor": "raven",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "tired"
+    },
+    {
+      "actor": "raven",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "groggy"
+    },
+    {
+      "actor": "valkyrie",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "normal"
+    },
+    {
+      "actor": "valkyrie",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "excited"
+    },
+    {
+      "actor": "valkyrie",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "fiery"
+    },
+    {
+      "actor": "valkyrie",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "frustrated"
+    },
+    {
+      "actor": "valkyrie",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "tired"
+    },
+    {
+      "actor": "valkyrie",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "groggy"
+    },
+    {
+      "actor": "nova",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "normal"
+    },
+    {
+      "actor": "nova",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "excited"
+    },
+    {
+      "actor": "nova",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "fiery"
+    },
+    {
+      "actor": "nova",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "frustrated"
+    },
+    {
+      "actor": "nova",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "tired"
+    },
+    {
+      "actor": "nova",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "groggy"
+    },
+    {
+      "actor": "viper",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "normal"
+    },
+    {
+      "actor": "viper",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "excited"
+    },
+    {
+      "actor": "viper",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "fiery"
+    },
+    {
+      "actor": "viper",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "frustrated"
+    },
+    {
+      "actor": "viper",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "tired"
+    },
+    {
+      "actor": "viper",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "groggy"
+    },
+    {
+      "actor": "ember",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "normal"
+    },
+    {
+      "actor": "ember",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "excited"
+    },
+    {
+      "actor": "ember",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "fiery"
+    },
+    {
+      "actor": "ember",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "frustrated"
+    },
+    {
+      "actor": "ember",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "tired"
+    },
+    {
+      "actor": "ember",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "groggy"
+    },
+    {
+      "actor": "atlas",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "normal"
+    },
+    {
+      "actor": "atlas",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "excited"
+    },
+    {
+      "actor": "atlas",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "fiery"
+    },
+    {
+      "actor": "atlas",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "frustrated"
+    },
+    {
+      "actor": "atlas",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "tired"
+    },
+    {
+      "actor": "atlas",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "groggy"
+    },
+    {
+      "actor": "seraph",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "normal"
+    },
+    {
+      "actor": "seraph",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "excited"
+    },
+    {
+      "actor": "seraph",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "fiery"
+    },
+    {
+      "actor": "seraph",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "frustrated"
+    },
+    {
+      "actor": "seraph",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "tired"
+    },
+    {
+      "actor": "seraph",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "groggy"
+    },
+    {
+      "actor": "lynx",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "normal"
+    },
+    {
+      "actor": "lynx",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "excited"
+    },
+    {
+      "actor": "lynx",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "fiery"
+    },
+    {
+      "actor": "lynx",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "frustrated"
+    },
+    {
+      "actor": "lynx",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "tired"
+    },
+    {
+      "actor": "lynx",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "groggy"
+    },
+    {
+      "actor": "onyx",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "normal"
+    },
+    {
+      "actor": "onyx",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "excited"
+    },
+    {
+      "actor": "onyx",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "fiery"
+    },
+    {
+      "actor": "onyx",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "frustrated"
+    },
+    {
+      "actor": "onyx",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "tired"
+    },
+    {
+      "actor": "onyx",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "groggy"
+    },
+    {
+      "actor": "tempest",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "normal"
+    },
+    {
+      "actor": "tempest",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "excited"
+    },
+    {
+      "actor": "tempest",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "fiery"
+    },
+    {
+      "actor": "tempest",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "frustrated"
+    },
+    {
+      "actor": "tempest",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "tired"
+    },
+    {
+      "actor": "tempest",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "groggy"
+    }
+  ],
+  "sd": [
+    {
+      "actor": "raven",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "idle"
+    },
+    {
+      "actor": "raven",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "strike"
+    },
+    {
+      "actor": "raven",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "hurt"
+    },
+    {
+      "actor": "valkyrie",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "idle"
+    },
+    {
+      "actor": "valkyrie",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "strike"
+    },
+    {
+      "actor": "valkyrie",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "hurt"
+    },
+    {
+      "actor": "nova",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "idle"
+    },
+    {
+      "actor": "nova",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "strike"
+    },
+    {
+      "actor": "nova",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "hurt"
+    },
+    {
+      "actor": "viper",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "idle"
+    },
+    {
+      "actor": "viper",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "strike"
+    },
+    {
+      "actor": "viper",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "hurt"
+    },
+    {
+      "actor": "ember",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "idle"
+    },
+    {
+      "actor": "ember",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "strike"
+    },
+    {
+      "actor": "ember",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "hurt"
+    },
+    {
+      "actor": "atlas",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "idle"
+    },
+    {
+      "actor": "atlas",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "strike"
+    },
+    {
+      "actor": "atlas",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "hurt"
+    },
+    {
+      "actor": "seraph",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "idle"
+    },
+    {
+      "actor": "seraph",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "strike"
+    },
+    {
+      "actor": "seraph",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "hurt"
+    },
+    {
+      "actor": "lynx",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "idle"
+    },
+    {
+      "actor": "lynx",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "strike"
+    },
+    {
+      "actor": "lynx",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "hurt"
+    },
+    {
+      "actor": "onyx",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "idle"
+    },
+    {
+      "actor": "onyx",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "strike"
+    },
+    {
+      "actor": "onyx",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "hurt"
+    },
+    {
+      "actor": "tempest",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "idle"
+    },
+    {
+      "actor": "tempest",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "strike"
+    },
+    {
+      "actor": "tempest",
+      "levels": [
+        {
+          "level": 0,
+          "lining": 0,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 1,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 0
+        },
+        {
+          "level": 2,
+          "lining": 2,
+          "ready": "ready",
+          "release": [],
+          "skin": 2
+        },
+        {
+          "level": 3,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "loosened",
+            "loosened"
+          ],
+          "skin": 2
+        },
+        {
+          "level": 4,
+          "lining": 2,
+          "ready": "ready",
+          "release": [
+            "hanging",
+            "hanging"
+          ],
+          "skin": 2
+        }
+      ],
+      "pose": "hurt"
+    }
+  ]
+}

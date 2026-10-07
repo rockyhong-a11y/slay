@@ -18,7 +18,7 @@
 
 [SD 2D·피부 광택·접촉 효과 검수](artifacts/sd-2d-qa.md) · [이전 땀·상처 검증](artifacts/condition-arcade-qa.md)
 
-**경기 중 기어 손상**은 열혈 → 좌절 → 지침 → 그로기의 4단계로 누적됩니다. 열 명의 카툰 60포즈와 SD 30포즈 모두에 **상의 2곳·하의 2곳, 총 360곳의 의상 찢김**을 추가했습니다. 상·하의의 갈라진 원단, 실밥, 접힌 천과 분리된 조각이 함께 커지며 중요 부위는 불투명한 안쪽 경기복이 가립니다. 보호대·부츠 끈에도 손상이 이어집니다. 같은 경기에서 회복해도 손상은 남고, 카툰/SD 전환 및 저장·불러오기에도 유지됩니다. 다음 경기에는 현재 컨디션을 기준으로 다시 시작합니다. 선수 상태 미리보기에서 카툰과 SD를 바꾸며 모든 단계를 비교할 수 있습니다. [상의·하의 집중 수정 검수](artifacts/garment-wear-qa.md) · [최초 기어 손상 검수](artifacts/gear-wear-qa.md)
+**경기 중 기어 손상**은 열혈 → 좌절 → 지침 → 그로기의 4단계로 누적됩니다. 열 명의 카툰 60포즈와 SD 30포즈 모두에서 **상의와 하의가 함께 찢어집니다.** 목둘레·가슴 옆선·옆구리·골반 앞쪽 바깥 가장자리는 원단 사이로 피부가 드러나며, 가슴과 골반 중앙은 경기복과 불투명한 안감이 계속 덮습니다. 지침·그로기 단계에서는 한쪽 끈이 풀리고 옷단이 접혀 벌어지며, 실밥과 분리된 천 조각이 늘어납니다. 보호대·부츠 끈에도 손상이 이어집니다. 같은 경기에서 회복해도 손상은 남고, 카툰/SD 전환 및 저장·불러오기에도 유지됩니다. 다음 경기에는 현재 컨디션을 기준으로 다시 시작합니다. 선수 상태 미리보기에서 카툰과 SD를 바꾸며 모든 단계를 비교할 수 있습니다. [피부가 보이는 찢김·끈·옷단 검수 초안](artifacts/skin-gear-wear-qa.md) · [이전 상의·하의 집중 수정 검수](artifacts/garment-wear-qa.md) · [최초 기어 손상 검수](artifacts/gear-wear-qa.md)
 
 ![열 명 선수의 여섯 상태 일러스트 비교](artifacts/expanded-fighter-state-gallery.jpg)
 
@@ -114,7 +114,7 @@ SD 2D는 내장 `image_gen`으로 제작한 투명 PNG 10장에 전신 포즈 30
 
 ## Technical appendix
 
-The client uses React, Vite, Motion, and Phosphor icons. Gameplay lives in the dependency-free ES module [`src/game.js`](src/game.js). The UI owns image presentation, audio, keyboard input, and browser persistence. [`src/presentation.js`](src/presentation.js) selects fighter conditions, maps each condition to a complete WebP illustration, and derives cinematic outcomes from engine snapshots. [`src/Artwork.jsx`](src/Artwork.jsx) displays those complete images and crops portraits from the same file. Presentation never changes combat or saved state.
+The client uses React, Vite, Motion, and Phosphor icons. Gameplay lives in the dependency-free ES module [`src/game.js`](src/game.js). The UI owns image presentation, audio, keyboard input, and browser persistence. [`src/presentation.js`](src/presentation.js) selects fighter conditions, maps each condition to a complete WebP illustration, and derives cinematic outcomes from engine snapshots. [`src/Artwork.jsx`](src/Artwork.jsx) displays those complete images and crops portraits from the same file. Presentation leaves combat mechanics unchanged; [`src/gear-progression.js`](src/gear-progression.js) persists each fighter's cosmetic `gearWearLevel` until the next match.
 
 Character assets use `fighters/states/{actor}-{state}.webp`. The ten actors are `raven`, `valkyrie`, `nova`, `viper`, `ember`, `atlas`, `seraph`, `lynx`, `tempest`, and `onyx`; the six states are `normal`, `excited`, `fiery`, `frustrated`, `tired`, and `groggy`. Cards use their 50 dedicated `cards/{id}.webp` illustrations. The app renders completed images rather than continuous canvas rigs; finite card-cast transitions remain.
 

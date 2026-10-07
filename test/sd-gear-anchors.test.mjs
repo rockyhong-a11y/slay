@@ -57,7 +57,7 @@ test("all thirty SD wear sets use the exact current sprite crop and keep rotated
   }
 });
 
-test("all thirty poses emphasize both upper and lower garments with intact opaque sports lining", () => {
+test("all thirty poses combine opaque upper/lower core panels with one-sided skin windows", () => {
   for (const actor of Object.keys(manifest)) {
     for (let frame = 0; frame < 3; frame++) {
       const anchors = sdGearWearAnchors(actor, frame);
@@ -80,13 +80,50 @@ test("all thirty poses emphasize both upper and lower garments with intact opaqu
           [1, 2],
           `${context}: ${area} starts at fiery and spreads at frustrated`,
         );
-      }
-      for (const zone of garments) {
+        const core = patches.find((zone) => zone.minLevel === 1);
+        const edge = patches.find((zone) => zone.minLevel === 2);
         assert.equal(
-          zone.skin,
+          core.skin,
           false,
-          `${context}: chest/trunks retain opaque coverage`,
+          `${context}: ${area} core stays covered`,
         );
+        assert.equal(core.surface, "opaque-lining", context);
+        assert.equal(edge.skin, true, `${context}: ${area} side opens`);
+        assert.equal(edge.surface, "side-skin", context);
+        assert.ok([-1, 1].includes(edge.side), `${context}: one released edge`);
+        assert.ok(["strap", "seam"].includes(edge.deform), context);
+        assert.equal(
+          edge.site,
+          area === "upper" ? "shoulder-armhole" : "outer-hip",
+          context,
+        );
+        assert.equal(
+          edge.skinColor,
+          anchors.palette.skin,
+          `${context}: actor-matched skin`,
+        );
+        assert.match(edge.skinShadow, /^#[\da-f]{6}$/i, context);
+        assert.ok(
+          parseInt(edge.skinShadow.slice(1, 3), 16) >
+            parseInt(edge.skinShadow.slice(5, 7), 16),
+          `${context}: warm skin shadow`,
+        );
+        if (area === "upper") {
+          assert.ok(
+            edge.width <= 50 && edge.height <= 57,
+            `${context}: shoulder/armhole window`,
+          );
+        } else {
+          assert.equal(edge.deform, "seam", context);
+          assert.ok(
+            edge.width <= 70 && edge.height <= 54,
+            `${context}: outer hip seam window`,
+          );
+        }
+      }
+      assert.equal(garments.filter((zone) => zone.skin).length, 2, context);
+      assert.equal(garments.filter((zone) => !zone.skin).length, 2, context);
+      for (const zone of garments) {
         for (const key of ["fabric", "accent", "lining", "thread"])
           assert.match(
             zone[key],
@@ -105,7 +142,7 @@ test("all thirty poses emphasize both upper and lower garments with intact opaqu
         );
         const atlasY = zone.y + anchors.source.y;
         assert.ok(
-          atlasY >= 400 && atlasY <= 660,
+          atlasY >= 380 && atlasY <= 660,
           `${context}: actual shirt/trunks height`,
         );
       }
@@ -143,7 +180,9 @@ test("every pose keeps the first pad scuff and introduces a knee tear at frustra
         zones.some((zone) => zone.kind === "boot"),
         context,
       );
-      const openings = zones.filter((zone) => zone.skin);
+      const openings = zones.filter(
+        (zone) => zone.skin && zone.kind !== "garment",
+      );
       assert.ok(openings.length >= 2 && openings.length <= 3, context);
       assert.ok(
         zones.some(
