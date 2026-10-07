@@ -1,0 +1,3486 @@
+{
+  "classic": [
+    {
+      "actor": "raven",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "normal",
+      "style": "classic"
+    },
+    {
+      "actor": "raven",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "excited",
+      "style": "classic"
+    },
+    {
+      "actor": "raven",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "fiery",
+      "style": "classic"
+    },
+    {
+      "actor": "raven",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "frustrated",
+      "style": "classic"
+    },
+    {
+      "actor": "raven",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "tired",
+      "style": "classic"
+    },
+    {
+      "actor": "raven",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "groggy",
+      "style": "classic"
+    },
+    {
+      "actor": "valkyrie",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "normal",
+      "style": "classic"
+    },
+    {
+      "actor": "valkyrie",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "excited",
+      "style": "classic"
+    },
+    {
+      "actor": "valkyrie",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "fiery",
+      "style": "classic"
+    },
+    {
+      "actor": "valkyrie",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "frustrated",
+      "style": "classic"
+    },
+    {
+      "actor": "valkyrie",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "tired",
+      "style": "classic"
+    },
+    {
+      "actor": "valkyrie",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "groggy",
+      "style": "classic"
+    },
+    {
+      "actor": "nova",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "normal",
+      "style": "classic"
+    },
+    {
+      "actor": "nova",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "excited",
+      "style": "classic"
+    },
+    {
+      "actor": "nova",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "fiery",
+      "style": "classic"
+    },
+    {
+      "actor": "nova",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "frustrated",
+      "style": "classic"
+    },
+    {
+      "actor": "nova",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "tired",
+      "style": "classic"
+    },
+    {
+      "actor": "nova",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "groggy",
+      "style": "classic"
+    },
+    {
+      "actor": "viper",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "normal",
+      "style": "classic"
+    },
+    {
+      "actor": "viper",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "excited",
+      "style": "classic"
+    },
+    {
+      "actor": "viper",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "fiery",
+      "style": "classic"
+    },
+    {
+      "actor": "viper",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "frustrated",
+      "style": "classic"
+    },
+    {
+      "actor": "viper",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "tired",
+      "style": "classic"
+    },
+    {
+      "actor": "viper",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "groggy",
+      "style": "classic"
+    },
+    {
+      "actor": "ember",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "normal",
+      "style": "classic"
+    },
+    {
+      "actor": "ember",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "excited",
+      "style": "classic"
+    },
+    {
+      "actor": "ember",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "fiery",
+      "style": "classic"
+    },
+    {
+      "actor": "ember",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "frustrated",
+      "style": "classic"
+    },
+    {
+      "actor": "ember",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "tired",
+      "style": "classic"
+    },
+    {
+      "actor": "ember",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "groggy",
+      "style": "classic"
+    },
+    {
+      "actor": "atlas",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "normal",
+      "style": "classic"
+    },
+    {
+      "actor": "atlas",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "excited",
+      "style": "classic"
+    },
+    {
+      "actor": "atlas",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "fiery",
+      "style": "classic"
+    },
+    {
+      "actor": "atlas",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "frustrated",
+      "style": "classic"
+    },
+    {
+      "actor": "atlas",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "tired",
+      "style": "classic"
+    },
+    {
+      "actor": "atlas",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "groggy",
+      "style": "classic"
+    },
+    {
+      "actor": "seraph",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "normal",
+      "style": "classic"
+    },
+    {
+      "actor": "seraph",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "excited",
+      "style": "classic"
+    },
+    {
+      "actor": "seraph",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "fiery",
+      "style": "classic"
+    },
+    {
+      "actor": "seraph",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "frustrated",
+      "style": "classic"
+    },
+    {
+      "actor": "seraph",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "tired",
+      "style": "classic"
+    },
+    {
+      "actor": "seraph",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "groggy",
+      "style": "classic"
+    },
+    {
+      "actor": "lynx",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "normal",
+      "style": "classic"
+    },
+    {
+      "actor": "lynx",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "excited",
+      "style": "classic"
+    },
+    {
+      "actor": "lynx",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "fiery",
+      "style": "classic"
+    },
+    {
+      "actor": "lynx",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "frustrated",
+      "style": "classic"
+    },
+    {
+      "actor": "lynx",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "tired",
+      "style": "classic"
+    },
+    {
+      "actor": "lynx",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "groggy",
+      "style": "classic"
+    },
+    {
+      "actor": "onyx",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "normal",
+      "style": "classic"
+    },
+    {
+      "actor": "onyx",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "excited",
+      "style": "classic"
+    },
+    {
+      "actor": "onyx",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "fiery",
+      "style": "classic"
+    },
+    {
+      "actor": "onyx",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "frustrated",
+      "style": "classic"
+    },
+    {
+      "actor": "onyx",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "tired",
+      "style": "classic"
+    },
+    {
+      "actor": "onyx",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "groggy",
+      "style": "classic"
+    },
+    {
+      "actor": "tempest",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "normal",
+      "style": "classic"
+    },
+    {
+      "actor": "tempest",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "excited",
+      "style": "classic"
+    },
+    {
+      "actor": "tempest",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "fiery",
+      "style": "classic"
+    },
+    {
+      "actor": "tempest",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "frustrated",
+      "style": "classic"
+    },
+    {
+      "actor": "tempest",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "tired",
+      "style": "classic"
+    },
+    {
+      "actor": "tempest",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "groggy",
+      "style": "classic"
+    }
+  ],
+  "sd": [
+    {
+      "actor": "raven",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "idle",
+      "style": "sd"
+    },
+    {
+      "actor": "raven",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "strike",
+      "style": "sd"
+    },
+    {
+      "actor": "raven",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "hurt",
+      "style": "sd"
+    },
+    {
+      "actor": "valkyrie",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "idle",
+      "style": "sd"
+    },
+    {
+      "actor": "valkyrie",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "strike",
+      "style": "sd"
+    },
+    {
+      "actor": "valkyrie",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "hurt",
+      "style": "sd"
+    },
+    {
+      "actor": "nova",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "idle",
+      "style": "sd"
+    },
+    {
+      "actor": "nova",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "strike",
+      "style": "sd"
+    },
+    {
+      "actor": "nova",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "hurt",
+      "style": "sd"
+    },
+    {
+      "actor": "viper",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "idle",
+      "style": "sd"
+    },
+    {
+      "actor": "viper",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "strike",
+      "style": "sd"
+    },
+    {
+      "actor": "viper",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "hurt",
+      "style": "sd"
+    },
+    {
+      "actor": "ember",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "idle",
+      "style": "sd"
+    },
+    {
+      "actor": "ember",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "strike",
+      "style": "sd"
+    },
+    {
+      "actor": "ember",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "hurt",
+      "style": "sd"
+    },
+    {
+      "actor": "atlas",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "idle",
+      "style": "sd"
+    },
+    {
+      "actor": "atlas",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "strike",
+      "style": "sd"
+    },
+    {
+      "actor": "atlas",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "hurt",
+      "style": "sd"
+    },
+    {
+      "actor": "seraph",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "idle",
+      "style": "sd"
+    },
+    {
+      "actor": "seraph",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "strike",
+      "style": "sd"
+    },
+    {
+      "actor": "seraph",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "hurt",
+      "style": "sd"
+    },
+    {
+      "actor": "lynx",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "idle",
+      "style": "sd"
+    },
+    {
+      "actor": "lynx",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "strike",
+      "style": "sd"
+    },
+    {
+      "actor": "lynx",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "hurt",
+      "style": "sd"
+    },
+    {
+      "actor": "onyx",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "idle",
+      "style": "sd"
+    },
+    {
+      "actor": "onyx",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "strike",
+      "style": "sd"
+    },
+    {
+      "actor": "onyx",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "hurt",
+      "style": "sd"
+    },
+    {
+      "actor": "tempest",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "idle",
+      "style": "sd"
+    },
+    {
+      "actor": "tempest",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "strike",
+      "style": "sd"
+    },
+    {
+      "actor": "tempest",
+      "levels": [
+        {
+          "level": 0,
+          "lower": 0,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 0
+        },
+        {
+          "level": 1,
+          "lower": 1,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 1
+        },
+        {
+          "level": 2,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 3,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        },
+        {
+          "level": 4,
+          "lower": 2,
+          "ready": "ready",
+          "unlined": 0,
+          "upper": 2
+        }
+      ],
+      "pose": "hurt",
+      "style": "sd"
+    }
+  ]
+}

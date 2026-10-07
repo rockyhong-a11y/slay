@@ -417,10 +417,10 @@ export function ConditionGuide({
   const gear = gearWearProfile(selected, previewVitals);
   const gearLabels = [
     "기어 정비 완료",
-    "표면 마모 · 올 풀림",
-    "옷감 찢김 · 끈 손상",
-    "찢김 확대 · 패드 풀림",
-    "패드 파손 · 끈 조각 분리",
+    "상의·하의 실밥 터짐",
+    "상의·하의 원단 갈라짐",
+    "큰 찢김 · 옷단 풀림",
+    "상의·하의 파손 · 천 조각 분리",
   ];
   const wearLabel =
     [
@@ -435,7 +435,7 @@ export function ConditionGuide({
     <div className="condition-guide">
       <p>
         체력과 마음의 변화가 선수의 표정과 자세에 드러납니다. 아래 상태를 선택해{" "}
-        {name}의 상태별 일러스트와 경기복·보호대 손상을 미리 볼 수 있습니다.
+        {name}의 상태별 일러스트와 상의·하의의 찢김을 미리 볼 수 있습니다.
       </p>
       <div
         className="condition-style-options"
@@ -549,10 +549,11 @@ export function ConditionGuide({
         회복하면 상처 표현도 완화됩니다.
       </p>
       <p className="condition-priority">
-        기어는 열혈 → 좌절 → 지침 → 그로기 순으로 더 많이 손상됩니다. 같은
-        경기에서는 회복해도 찢어진 옷감과 풀린 패드가 유지되며, 다음 경기 입장
-        시 현재 컨디션부터 새로 적용됩니다. 카툰·SD 전환과 새로고침 후에도 경기
-        중 손상 단계가 이어집니다.
+        상의와 하의의 바깥 원단이 함께 찢어지고 천 조각이 벌어집니다. 중요
+        부위는 안쪽 경기복으로 가려집니다. 기어는 열혈 → 좌절 → 지침 → 그로기
+        순으로 더 많이 손상됩니다. 같은 경기에서는 회복해도 찢어진 옷감과 풀린
+        패드가 유지되며, 다음 경기 입장 시 현재 컨디션부터 새로 적용됩니다.
+        카툰·SD 전환과 새로고침 후에도 경기 중 손상 단계가 이어집니다.
       </p>
     </div>
   );

@@ -10,7 +10,7 @@ const manifest = JSON.parse(
     "utf8",
   ),
 );
-const kinds = new Set(["fabric", "strap", "pad", "boot"]);
+const kinds = new Set(["fabric", "strap", "pad", "boot", "garment"]);
 const close = (a, b, name) => assert.ok(Math.abs(a - b) < 1e-7, name);
 
 test("all thirty SD wear sets use the exact current sprite crop and keep rotated wear inside it", () => {
@@ -54,6 +54,69 @@ test("all thirty SD wear sets use the exact current sprite crop and keep rotated
         );
       }
     });
+  }
+});
+
+test("all thirty poses emphasize both upper and lower garments with intact opaque sports lining", () => {
+  for (const actor of Object.keys(manifest)) {
+    for (let frame = 0; frame < 3; frame++) {
+      const anchors = sdGearWearAnchors(actor, frame);
+      const context = `${actor} frame ${frame}`;
+      const garments = anchors.zones.filter((zone) => zone.kind === "garment");
+      assert.equal(
+        garments.length,
+        4,
+        `${context}: four distributed cloth tears`,
+      );
+      for (const area of ["upper", "lower"]) {
+        const patches = garments.filter((zone) => zone.area === area);
+        assert.equal(
+          patches.length,
+          2,
+          `${context}: both ${area} cloth panels`,
+        );
+        assert.deepEqual(
+          patches.map((zone) => zone.minLevel).sort(),
+          [1, 2],
+          `${context}: ${area} starts at fiery and spreads at frustrated`,
+        );
+      }
+      for (const zone of garments) {
+        assert.equal(
+          zone.skin,
+          false,
+          `${context}: chest/trunks retain opaque coverage`,
+        );
+        for (const key of ["fabric", "accent", "lining", "thread"])
+          assert.match(
+            zone[key],
+            /^#[\da-f]{6}$/i,
+            `${context}: explicit ${key} material`,
+          );
+        assert.notEqual(
+          zone.lining,
+          anchors.palette.skin,
+          `${context}: lining is never skin-coloured`,
+        );
+        assert.notEqual(
+          zone.lining,
+          zone.fabric,
+          `${context}: torn layers are visually distinct`,
+        );
+        const atlasY = zone.y + anchors.source.y;
+        assert.ok(
+          atlasY >= 400 && atlasY <= 660,
+          `${context}: actual shirt/trunks height`,
+        );
+      }
+      const area = (zones) =>
+        zones.reduce((sum, zone) => sum + zone.width * zone.height, 0);
+      assert.ok(
+        area(garments) >
+          area(anchors.zones.filter((zone) => zone.kind === "pad")) * 1.15,
+        `${context}: clothing damage dominates pad area`,
+      );
+    }
   }
 });
 

@@ -3,8 +3,8 @@ import { sdSpriteFrame } from "./sd-artwork.js";
 // Authored against the original 1774 × 887 RGBA sheets. Each row contains the
 // exact manifest crop followed by gear centres in atlas pixels. Converting at
 // this boundary keeps all wear in the same local rectangle as the sprite.
-// Only wrists, knee pads, boot cuffs and Raven's outer leggings can tear; the
-// chest and pelvis have no anchors and retain the complete source artwork.
+// Garment openings retain opaque athletic lining across chest and trunks.
+// Skin openings are confined to the previously authored equipment/outer-leg zones.
 const z = (kind, x, y, width, height, angle, minLevel, skin = false) => ({
   kind,
   x,
@@ -86,6 +86,245 @@ const materials = {
     fabric: { fabric: "#ede9e9", accent: "#ffffff" },
     strap: { fabric: "#ede9e9", accent: "#ffffff" },
   },
+};
+
+// Source-pixel garment rectangles follow the exposed cloth, including poses in
+// which the arms cover most of the shirt. All chest/trunk tears reveal opaque
+// cool-coloured sports lining, never skin. Four large patches balance the upper
+// and lower garment; their original outer contours remain fully intact.
+const garment = (area, x, y, width, height, angle, minLevel, colors = {}) => ({
+  kind: "garment",
+  area,
+  x,
+  y,
+  width,
+  height,
+  angle,
+  minLevel,
+  skin: false,
+  lining: "#56616e",
+  thread: "#c2c9d2",
+  ...colors,
+});
+const garmentMaterials = {
+  nova: { fabric: "#292a31", accent: "#46c1d8" },
+  raven: { fabric: "#34313f", accent: "#a1a5b1" },
+  valkyrie: { fabric: "#25283f", accent: "#d3d6df" },
+  viper: { fabric: "#087661", accent: "#64ceb6" },
+  ember: { fabric: "#292427", accent: "#b99b68" },
+  atlas: { fabric: "#2c292c", accent: "#c88448" },
+  seraph: { fabric: "#1845ab", accent: "#bacbe7" },
+  lynx: { fabric: "#302935", accent: "#9f7bab" },
+  tempest: { fabric: "#15899d", accent: "#60c0cb" },
+  onyx: { fabric: "#2e2935", accent: "#ae92bf" },
+};
+const whiteKit = {
+  fabric: "#e4e5ef",
+  accent: "#2258d3",
+  lining: "#4a648f",
+  thread: "#f4f4ff",
+};
+const garments = {
+  nova: [
+    [
+      garment("upper", 327, 498, 104, 43, 0, 1),
+      garment("upper", 381, 480, 31, 37, 14, 2),
+      garment("lower", 316, 574, 80, 47, -3, 1),
+      garment("lower", 267, 548, 48, 19, -16, 2),
+    ],
+    [
+      garment("upper", 950, 509, 96, 39, 5, 1),
+      garment("upper", 891, 500, 38, 32, -12, 2),
+      garment("lower", 919, 578, 76, 46, -13, 1),
+      garment("lower", 855, 544, 48, 20, -18, 2),
+    ],
+    [
+      garment("upper", 1538, 502, 53, 27, 8, 1),
+      garment("upper", 1500, 477, 29, 42, -12, 2),
+      garment("lower", 1480, 573, 65, 40, -12, 1),
+      garment("lower", 1417, 545, 47, 21, -10, 2),
+    ],
+  ],
+  raven: [
+    [
+      garment("upper", 304, 510, 95, 44, 4, 1),
+      garment("upper", 378, 501, 70, 47, -13, 2),
+      garment("lower", 252, 614, 100, 76, 12, 1),
+      garment("lower", 395, 626, 112, 61, -18, 2),
+    ],
+    [
+      garment("upper", 903, 523, 98, 43, -5, 1),
+      garment("upper", 975, 507, 71, 45, -13, 2),
+      garment("lower", 895, 632, 100, 75, 15, 1),
+      garment("lower", 1039, 629, 113, 61, 20, 2),
+    ],
+    [
+      garment("upper", 1569, 496, 65, 43, -12, 1),
+      garment("upper", 1436, 476, 20, 44, -9, 2),
+      garment("lower", 1441, 603, 94, 73, 10, 1),
+      garment("lower", 1554, 628, 101, 57, 17, 2),
+    ],
+  ],
+  valkyrie: [
+    [
+      garment("upper", 265, 480, 95, 49, 7, 1),
+      garment("upper", 342, 480, 69, 42, -8, 2),
+      garment("lower", 283, 589, 98, 60, -4, 1),
+      garment("lower", 202, 556, 67, 29, -15, 2),
+    ],
+    [
+      garment("upper", 916, 494, 110, 50, -2, 1),
+      garment("upper", 998, 498, 36, 31, -13, 2),
+      garment("lower", 956, 605, 96, 62, -8, 1),
+      garment("lower", 861, 574, 68, 26, 14, 2),
+    ],
+    [
+      garment("upper", 1417, 445, 34, 44, 22, 1),
+      garment("upper", 1495, 477, 42, 24, -18, 2),
+      garment("lower", 1472, 604, 80, 57, -7, 1),
+      garment("lower", 1391, 568, 60, 26, -13, 2),
+    ],
+  ],
+  viper: [
+    [
+      garment("upper", 285, 451, 112, 94, 0, 1),
+      garment("upper", 326, 504, 68, 24, -4, 2),
+      garment("lower", 297, 582, 83, 65, 0, 1),
+      garment("lower", 224, 551, 62, 23, -13, 2),
+    ],
+    [
+      garment("upper", 944, 485, 96, 60, -5, 1),
+      garment("upper", 844, 462, 32, 69, -8, 2),
+      garment("lower", 902, 596, 82, 65, 14, 1),
+      garment("lower", 829, 562, 70, 25, 3, 2),
+    ],
+    [
+      garment("upper", 1483, 443, 86, 54, -16, 1),
+      garment("upper", 1441, 430, 33, 49, 15, 2),
+      garment("lower", 1554, 554, 84, 27, 5, 1),
+      garment("lower", 1498, 598, 32, 36, 21, 2),
+    ],
+  ],
+  ember: [
+    [
+      garment("upper", 327, 506, 70, 49, -11, 1),
+      garment("upper", 239, 508, 55, 40, 17, 2),
+      garment("lower", 300, 602, 90, 57, 2, 1),
+      garment("lower", 228, 561, 52, 22, -34, 2),
+    ],
+    [
+      garment("upper", 894, 512, 76, 43, -8, 1),
+      garment("upper", 824, 516, 45, 33, 12, 2),
+      garment("lower", 921, 607, 87, 55, -8, 1),
+      garment("lower", 1003, 562, 56, 25, 27, 2),
+    ],
+    [
+      garment("upper", 1482, 502, 57, 22, -16, 1),
+      garment("upper", 1416, 480, 26, 41, -25, 2),
+      garment("lower", 1424, 588, 87, 48, 6, 1),
+      garment("lower", 1362, 557, 51, 28, -21, 2),
+    ],
+  ],
+  atlas: [
+    [
+      garment("upper", 322, 492, 74, 53, -12, 1),
+      garment("upper", 232, 496, 57, 34, 14, 2),
+      garment("lower", 295, 605, 94, 55, 1, 1),
+      garment("lower", 374, 559, 59, 27, 35, 2),
+    ],
+    [
+      garment("upper", 974, 484, 98, 49, -16, 1),
+      garment("upper", 877, 498, 61, 28, 10, 2),
+      garment("lower", 917, 605, 95, 59, -4, 1),
+      garment("lower", 831, 562, 65, 29, -26, 2),
+    ],
+    [
+      garment("upper", 1486, 475, 63, 25, 24, 1),
+      garment("upper", 1553, 498, 33, 27, -17, 2),
+      garment("lower", 1484, 617, 60, 55, 22, 1),
+      garment("lower", 1407, 582, 87, 34, 8, 2),
+    ],
+  ],
+  seraph: [
+    [
+      garment("upper", 346, 518, 68, 62, 8, 1, whiteKit),
+      garment("upper", 243, 518, 50, 53, -18, 2, whiteKit),
+      garment("lower", 322, 628, 78, 52, -5, 1, whiteKit),
+      garment("lower", 401, 596, 56, 25, -26, 2),
+    ],
+    [
+      garment("upper", 999, 520, 66, 49, -10, 1, whiteKit),
+      garment("upper", 918, 522, 73, 32, 8, 2),
+      garment("lower", 932, 627, 70, 54, -5, 1, whiteKit),
+      garment("lower", 844, 589, 76, 29, -15, 2),
+    ],
+    [
+      garment("upper", 1495, 506, 47, 36, 24, 1, whiteKit),
+      garment("upper", 1573, 518, 37, 22, -13, 2, whiteKit),
+      garment("lower", 1520, 616, 70, 40, -7, 1, whiteKit),
+      garment("lower", 1423, 593, 56, 26, -21, 2),
+    ],
+  ],
+  lynx: [
+    [
+      garment("upper", 331, 514, 112, 86, -3, 1),
+      garment("upper", 253, 524, 53, 48, -14, 2),
+      garment("lower", 308, 647, 98, 56, -12, 1),
+      garment("lower", 215, 612, 72, 25, -15, 2),
+    ],
+    [
+      garment("upper", 884, 516, 104, 64, 5, 1),
+      garment("upper", 979, 538, 37, 36, -14, 2),
+      garment("lower", 906, 654, 84, 59, 6, 1),
+      garment("lower", 830, 626, 73, 41, 18, 2),
+    ],
+    [
+      garment("upper", 1488, 501, 87, 46, 5, 1),
+      garment("upper", 1445, 482, 22, 48, 6, 2),
+      garment("lower", 1500, 639, 88, 50, -13, 1),
+      garment("lower", 1409, 609, 72, 29, -14, 2),
+    ],
+  ],
+  tempest: [
+    [
+      garment("upper", 366, 553, 79, 46, -12, 1),
+      garment("upper", 270, 548, 57, 39, 11, 2),
+      garment("lower", 332, 648, 78, 48, -3, 1),
+      garment("lower", 253, 610, 60, 24, -23, 2),
+    ],
+    [
+      garment("upper", 936, 549, 84, 47, -10, 1),
+      garment("upper", 859, 537, 47, 34, 14, 2),
+      garment("lower", 941, 651, 74, 45, -14, 1),
+      garment("lower", 865, 600, 55, 24, 32, 2),
+    ],
+    [
+      garment("upper", 1575, 544, 43, 31, -18, 1),
+      garment("upper", 1488, 533, 27, 35, -10, 2),
+      garment("lower", 1529, 635, 68, 36, -18, 1),
+      garment("lower", 1429, 604, 54, 25, -7, 2),
+    ],
+  ],
+  onyx: [
+    [
+      garment("upper", 282, 524, 119, 51, 4, 1),
+      garment("upper", 354, 516, 38, 48, 3, 2),
+      garment("lower", 295, 631, 101, 53, -5, 1),
+      garment("lower", 212, 591, 65, 30, -13, 2),
+    ],
+    [
+      garment("upper", 875, 524, 101, 35, 7, 1),
+      garment("upper", 985, 532, 36, 32, -17, 2),
+      garment("lower", 888, 640, 94, 54, -3, 1),
+      garment("lower", 811, 589, 70, 29, 10, 2),
+    ],
+    [
+      garment("upper", 1560, 561, 42, 32, -18, 1),
+      garment("upper", 1493, 522, 29, 34, 18, 2),
+      garment("lower", 1469, 632, 75, 43, -8, 1),
+      garment("lower", 1390, 599, 67, 28, -15, 2),
+    ],
+  ],
 };
 
 const sheets = {
@@ -456,7 +695,8 @@ export function sdGearWearAnchors(actor, frame = 0) {
     source: { x: left, y: top, width, height },
     viewBox: [width, height],
     palette: { ...palettes[actor] },
-    zones: zones.map((zone) => ({
+    zones: [...zones, ...(garments[actor]?.[index] || [])].map((zone) => ({
+      ...(zone.kind === "garment" ? garmentMaterials[actor] : null),
       ...zone,
       ...materials[actor]?.[zone.kind],
       x: zone.x - left,

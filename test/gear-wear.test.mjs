@@ -100,13 +100,15 @@ test("damage and activated patch counts only increase across the four wear level
     for (const state of GEAR_WEAR_STATES) {
       const { zones } = gearWearAnchors(actor, state);
       assert.deepEqual(
-        zones.map((zone) => zone.minLevel),
+        zones
+          .filter((zone) => zone.kind !== "garment")
+          .map((zone) => zone.minLevel),
         [1, 2, 3, 4],
       );
       for (let level = 0; level <= 4; level++)
         assert.equal(
           zones.filter((zone) => zone.minLevel <= level).length,
-          level,
+          [0, 3, 6, 7, 8][level],
         );
     }
   }
@@ -126,7 +128,10 @@ test("all 60 inspected poses have finite local patches inside the original canva
       for (const color of Object.values(anchors.palette))
         assert.match(color, /^#[0-9a-f]{6}$/i, key);
       for (const zone of anchors.zones) {
-        assert.ok(["fabric", "strap", "pad", "boot"].includes(zone.kind), key);
+        assert.ok(
+          ["garment", "fabric", "strap", "pad", "boot"].includes(zone.kind),
+          key,
+        );
         for (const value of [
           zone.x,
           zone.y,
@@ -154,6 +159,11 @@ test("skin windows remain only on knees and Raven's outer lower thigh", () => {
   for (const actor of GEAR_WEAR_ACTORS)
     for (const state of GEAR_WEAR_STATES)
       for (const zone of gearWearAnchors(actor, state).zones) {
+        if (zone.kind === "garment") {
+          assert.equal(zone.skin, false);
+          assert.equal(zone.surface, "lining");
+          continue;
+        }
         assert.ok(zone.y - zone.height / 2 > 760, `${actor}-${state}`);
         if (zone.skin) {
           assert.ok(["knee", "outer-thigh"].includes(zone.area));
@@ -188,8 +198,12 @@ test("enlarged tired and groggy patches clear the inspected resting hands", () =
       (zone.width * Math.sin(radians) + zone.height * Math.cos(radians)) / 2
     );
   };
-  const viper = gearWearAnchors("viper", "groggy").zones[1];
-  const raven = gearWearAnchors("raven", "tired").zones[1];
+  const viper = gearWearAnchors("viper", "groggy").zones.find(
+    (zone) => zone.skin && zone.minLevel === 2,
+  );
+  const raven = gearWearAnchors("raven", "tired").zones.find(
+    (zone) => zone.skin && zone.minLevel === 2,
+  );
   assert.ok(
     rotatedTop(viper) > 878,
     "Viper's fingers end above the knee patch",
@@ -198,4 +212,47 @@ test("enlarged tired and groggy patches clear the inspected resting hands", () =
     rotatedTop(raven) > 840,
     "Raven's fingers end above the thigh patch",
   );
+});
+
+test("every pose emphasizes both garments over secondary equipment damage", () => {
+  for (const actor of GEAR_WEAR_ACTORS)
+    for (const state of GEAR_WEAR_STATES) {
+      const { zones } = gearWearAnchors(actor, state);
+      const garments = zones.filter((zone) => zone.kind === "garment");
+      assert.equal(garments.length, 4, `${actor}-${state}`);
+      for (const area of ["upper", "lower"]) {
+        const panels = garments.filter((zone) => zone.area === area);
+        assert.equal(panels.length, 2);
+        assert.deepEqual(
+          panels.map((zone) => zone.minLevel),
+          [1, 2],
+        );
+        assert.ok(
+          panels.reduce((sum, zone) => sum + zone.width * zone.height, 0) >
+            4000,
+        );
+        for (const panel of panels) {
+          assert.equal(panel.skin, false);
+          assert.equal(panel.surface, "lining");
+          for (const color of [
+            panel.fabric,
+            panel.accent,
+            panel.lining,
+            panel.thread,
+          ])
+            assert.match(color, /^#[0-9a-f]{6}$/i);
+        }
+      }
+      const garmentArea = garments.reduce(
+        (sum, zone) => sum + zone.width * zone.height,
+        0,
+      );
+      const equipmentArea = zones
+        .filter((zone) => zone.kind !== "garment")
+        .reduce((sum, zone) => sum + zone.width * zone.height, 0);
+      assert.ok(
+        garmentArea > equipmentArea * 1.8,
+        `${actor}-${state}: garments dominate wear`,
+      );
+    }
 });

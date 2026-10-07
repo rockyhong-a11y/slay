@@ -8,7 +8,7 @@ import { sdGearWearAnchors } from "../src/sd-gear-anchors.js";
 
 test("every cartoon and SD wear overlay renders finite source-registered geometry and isolated masks", async () => {
   const server = await createServer({
-    server: { middlewareMode: true, watch: null, hmr: false },
+    server: { middlewareMode: true, watch: null, hmr: false, ws: false },
     appType: "custom",
     logLevel: "error",
   });
@@ -66,11 +66,27 @@ test("every cartoon and SD wear overlay renders finite source-registered geometr
           assert.match(markup, /mask-type:alpha/);
           assert.match(markup, /aria-hidden="true"/);
           assert.match(markup, /preserveAspectRatio="none"/);
+          assert.match(markup, /data-gear-garment="upper"/);
+          assert.match(markup, /data-gear-garment="lower"/);
+          assert.match(markup, /data-gear-coverage="opaque-lining"/);
           if (condition === "fiery")
             assert.doesNotMatch(markup, /data-gear-opening/);
           else assert.match(markup, /data-gear-opening="true"/);
           if (["tired", "groggy"].includes(condition))
             assert.match(markup, /data-gear-loose="true"/);
+          if (condition === "groggy") {
+            for (const area of ["upper", "lower"]) {
+              assert.ok(
+                [
+                  ...markup.matchAll(
+                    new RegExp(`data-gear-garment="${area}"`, "g"),
+                  ),
+                ].length >= 4,
+                `${actor}: both copies must show at least two ${area} garment tears`,
+              );
+              assert.match(markup, new RegExp(`data-gear-flap="${area}"`));
+            }
+          }
         }
       }
     }
