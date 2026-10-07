@@ -189,6 +189,30 @@ function cueFor(id) {
   );
 }
 
+test("live SD idle fighters use the expanded arena while replay framing stays unchanged", () => {
+  const frame = sdCombatFrame(null, 0);
+  for (const [width, height] of [
+    [390, 380],
+    [520, 220],
+  ]) {
+    const arena = sdSceneProjection(width, height, frame);
+    const previousArena = Math.min((width * 0.83) / 5.5, (height * 0.85) / 3.4);
+    assert.ok(
+      arena.unit > previousArena * 1.07,
+      `${width}x${height}: visibly larger live fighters`,
+    );
+    assert.ok(
+      arena.unit <= Math.min((width * 0.94) / 5.5, (height * 0.94) / 3.4),
+    );
+    const replay = sdSceneProjection(width, height, frame, undefined, true);
+    close(
+      replay.unit,
+      Math.min((width * 0.83) / 5.1, (height * 0.85) / 3.25),
+      `${width}x${height}: original replay fit`,
+    );
+  }
+});
+
 test("every card keeps all rotated and elevated whole sprites inside portrait and landscape stages", () => {
   const ratios = Object.values(manifest).map(
     (entry) =>

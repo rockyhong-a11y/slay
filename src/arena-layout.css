@@ -325,8 +325,9 @@
 /* During a live turn, reserve one viewport for the arena and its controls.
    Reward screens and reference pages keep their normal scrolling layout. */
 .app-shell.combat-view {
-  --combat-card-width: 148px;
-  --combat-card-height: 218px;
+  --combat-card-scale: 0.7;
+  --combat-card-width: calc(148px * var(--combat-card-scale));
+  --combat-card-height: calc(218px * var(--combat-card-scale));
   height: 100dvh;
   min-height: 0;
   display: grid;
@@ -486,13 +487,13 @@
   height: calc(
     100% - var(--arena-hud-height) - var(--arena-footer-height) - 16px
   );
-  width: 46%;
+  width: 50%;
 }
 .combat-view .arena > .player-fighter {
-  left: 3%;
+  left: 0;
 }
 .combat-view .arena > .enemy-fighter {
-  right: 3%;
+  right: 0;
   left: auto;
 }
 .combat-view .arena .fighter-pose > img {
@@ -634,23 +635,24 @@
   outline-offset: 1px;
 }
 .combat-view .card-hand .card-top {
-  height: 26px;
-  min-height: 26px;
-  padding: 4px 8px 0;
-  gap: 5px;
+  height: 22px;
+  min-height: 22px;
+  padding: 3px 5px 0;
+  gap: 3px;
 }
 .combat-view .card-hand .card-cost {
-  width: 22px;
-  height: 22px;
-  font-size: 21px;
+  width: 18px;
+  height: 18px;
+  font-size: 17px;
 }
 .combat-view .card-hand .card-type {
-  font-size: 8px;
+  font-size: 7px;
   letter-spacing: 0;
 }
 .combat-view .card-hand .card-art {
-  height: 34%;
-  margin: 4px 5px 0;
+  height: 44%;
+  flex-shrink: 0;
+  margin: 3px 3px 0;
 }
 .combat-view .card-hand .card-art > .artwork > img {
   inset: 0;
@@ -663,29 +665,26 @@
 }
 .combat-view .card-hand .card-text {
   margin: 0;
-  padding: 6px 8px 0;
+  padding: 4px 5px 0;
   min-height: 0;
 }
 .combat-view .card-hand .card-text h3 {
-  font-size: 13px;
+  font-size: 11px;
   line-height: 1.2;
   word-break: keep-all;
   overflow-wrap: anywhere;
 }
 .combat-view .card-hand .card-text p {
-  margin-top: 5px;
-  font-size: 10px;
-  line-height: 1.45;
-  word-break: keep-all;
-  overflow-wrap: break-word;
+  /* The full effect is shown above the hand at a readable size on selection. */
+  display: none;
 }
 .combat-view .card-hand .card-en {
   display: none;
 }
 .combat-view .card-hand .card-foot {
-  min-height: 19px;
-  padding: 3px 8px 5px;
-  font-size: 7px;
+  min-height: 14px;
+  padding: 2px 5px 3px;
+  font-size: 6px;
   letter-spacing: 0;
 }
 .combat-view .card-hand .card-foot kbd {
@@ -762,8 +761,8 @@
    Energy, pile counts, and the primary action share one reserved control row. */
 @media (max-width: 767px) {
   .app-shell.combat-view {
-    --combat-card-width: 140px;
-    --combat-card-height: 208px;
+    --combat-card-width: calc(140px * var(--combat-card-scale));
+    --combat-card-height: calc(208px * var(--combat-card-scale));
     grid-template-columns: minmax(0, 1fr);
   }
   .combat-view .sidebar {
@@ -825,13 +824,14 @@
     display: none;
   }
   .combat-view .arena > .fighter {
-    width: 47%;
+    /* Transparent source margins overlap; the complete figures stay separate. */
+    width: 58%;
   }
   .combat-view .arena > .player-fighter {
-    left: 2%;
+    left: -4%;
   }
   .combat-view .arena > .enemy-fighter {
-    right: 2%;
+    right: -4%;
   }
   .combat-view .arena .arena-location {
     font-size: 7px;
@@ -934,8 +934,8 @@
 
 @media (max-width: 370px) {
   .app-shell.combat-view {
-    --combat-card-width: 130px;
-    --combat-card-height: 194px;
+    --combat-card-width: calc(130px * var(--combat-card-scale));
+    --combat-card-height: calc(194px * var(--combat-card-scale));
   }
   .combat-view main {
     padding: 6px 6px 8px;
@@ -971,7 +971,7 @@
     width: 43px;
   }
   .combat-view .card-hand .card-text h3 {
-    font-size: 12px;
+    font-size: 10px;
   }
 }
 
@@ -979,8 +979,10 @@
    left and a readable, horizontally scrolling hand with controls on the right. */
 @media (orientation: landscape) and (max-height: 520px) and (max-width: 1100px) {
   .app-shell.combat-view {
-    --combat-card-width: 132px;
-    --combat-card-height: clamp(176px, calc(100dvh - 204px), 204px);
+    --combat-card-width: calc(132px * var(--combat-card-scale));
+    --combat-card-height: calc(
+      clamp(176px, calc(100dvh - 204px), 204px) * var(--combat-card-scale)
+    );
     grid-template-columns: minmax(0, 1fr);
   }
   .combat-view .sidebar {
@@ -1019,18 +1021,48 @@
     padding: 6px;
   }
   .combat-view .combat-workspace {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(268px, 35%);
     grid-template-rows: minmax(0, 1fr);
     gap: 8px;
   }
   .combat-view .arena {
     --arena-gutter: 10px;
-    --arena-hud-height: 108px;
+    --arena-hud-height: 74px;
     --arena-footer-height: 22px;
   }
   .combat-view .arena .fighter-hud {
     top: 6px;
     width: calc((100% - 2 * var(--arena-gutter) - 28px) / 2);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 5px 4px;
+  }
+  .combat-view .arena .fighter-name {
+    margin: 0;
+  }
+  .combat-view .arena .health {
+    width: clamp(70px, 9vw, 100px);
+  }
+  .combat-view .arena .health-label {
+    justify-content: flex-end;
+  }
+  .combat-view .arena .fighter-status {
+    grid-column: 1 / -1;
+    margin-top: 0;
+  }
+  .combat-view .arena .enemy-condition-row,
+  .combat-view .arena .intent {
+    margin-top: 0;
+  }
+  .combat-view .arena > .fighter {
+    width: 50%;
+  }
+  .combat-view .arena > .player-fighter {
+    left: 0;
+  }
+  .combat-view .arena > .enemy-fighter {
+    right: 0;
   }
   .combat-view .arena .fighter-name h2 {
     font-size: 21px;
@@ -1083,10 +1115,19 @@
     container-type: size;
   }
   .combat-view .card-hand.hand-fan {
-    --combat-card-height: clamp(136px, calc(100cqh - 70px), 220px);
+    --combat-card-height: calc(
+      clamp(136px, calc(100cqh - 70px), 220px) * var(--combat-card-scale)
+    );
+    /* Long upgrade descriptions can use another heading line on short phones. */
+    height: min(calc(var(--combat-card-height) + 20px), 100%);
+    min-height: 0;
+  }
+  .combat-view .card-hand.hand-fan > .game-card {
+    height: min(var(--combat-card-height), calc(100% - 20px));
+    min-height: 0;
   }
   .combat-view .card-hand .card-art {
-    height: 28%;
+    height: 40%;
   }
   .combat-view .card-hand .card-foot {
     display: none;

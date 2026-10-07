@@ -141,8 +141,14 @@ export function sdSceneProjection(
   const fieldWidth = Math.max(cinematic ? 3.8 : 5.5, right - left);
   const fieldHeight = Math.max(cinematic ? 3.25 : 3.4, top - bottom);
   const zoom = Math.max(1, number(frame?.camera?.zoom, 1));
+  // The larger arena can frame the wrestlers more closely during a live turn.
+  // Replays retain their existing camera, and the safe fit still reserves space
+  // for every complete rotated or elevated silhouette.
   const preferred =
-    Math.min((w * 0.83) / fieldWidth, (h * 0.85) / fieldHeight) * zoom;
+    Math.min(
+      (w * (cinematic ? 0.83 : 0.92)) / fieldWidth,
+      (h * (cinematic ? 0.85 : 0.91)) / fieldHeight,
+    ) * zoom;
   const safe = Math.min((w * 0.94) / fieldWidth, (h * 0.94) / fieldHeight);
   const centerX = cinematic
     ? (left + right) / 2

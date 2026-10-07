@@ -1,0 +1,438 @@
+{
+  "before": [
+    {
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "arena": {
+          "height": 417,
+          "width": 374,
+          "x": 8,
+          "y": 50
+        },
+        "bottom": {
+          "height": 359,
+          "width": 374,
+          "x": 8,
+          "y": 475
+        },
+        "card": {
+          "height": 208,
+          "width": 140,
+          "x": 8,
+          "y": 558
+        },
+        "fighter": {
+          "height": 259,
+          "width": 174.8359375,
+          "x": 16.4375,
+          "y": 175
+        },
+        "hand": {
+          "height": 228,
+          "width": 374,
+          "x": 8,
+          "y": 556
+        }
+      }
+    },
+    {
+      "size": {
+        "width": 360,
+        "height": 640
+      },
+      "layout": {
+        "arena": {
+          "height": 229,
+          "width": 348,
+          "x": 6,
+          "y": 50
+        },
+        "bottom": {
+          "height": 345,
+          "width": 348,
+          "x": 6,
+          "y": 287
+        },
+        "card": {
+          "height": 194,
+          "width": 130,
+          "x": 6,
+          "y": 370
+        },
+        "fighter": {
+          "height": 75,
+          "width": 162.6171875,
+          "x": 13.9140625,
+          "y": 171
+        },
+        "hand": {
+          "height": 214,
+          "width": 348,
+          "x": 6,
+          "y": 368
+        }
+      }
+    },
+    {
+      "size": {
+        "width": 844,
+        "height": 390
+      },
+      "layout": {
+        "arena": {
+          "height": 346,
+          "width": 412,
+          "x": 6,
+          "y": 38
+        },
+        "bottom": {
+          "height": 346,
+          "width": 412,
+          "x": 426,
+          "y": 38
+        },
+        "card": {
+          "height": 193,
+          "width": 132,
+          "x": 426,
+          "y": 121
+        },
+        "fighter": {
+          "height": 198,
+          "width": 188.59375,
+          "x": 19.296875,
+          "y": 155
+        },
+        "hand": {
+          "height": 213,
+          "width": 412,
+          "x": 426,
+          "y": 119
+        }
+      }
+    },
+    {
+      "size": {
+        "width": 1366,
+        "height": 900
+      },
+      "layout": {
+        "arena": {
+          "height": 503,
+          "width": 1266,
+          "x": 82,
+          "y": 58
+        },
+        "bottom": {
+          "height": 319,
+          "width": 1266,
+          "x": 82,
+          "y": 569
+        },
+        "card": {
+          "height": 218,
+          "width": 148,
+          "x": 160,
+          "y": 652
+        },
+        "fighter": {
+          "height": 347,
+          "width": 581.4375,
+          "x": 120.9140625,
+          "y": 179
+        },
+        "hand": {
+          "height": 238,
+          "width": 1064,
+          "x": 160,
+          "y": 650
+        }
+      }
+    }
+  ],
+  "after": [
+    {
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "arena": {
+          "height": 471.609375,
+          "width": 374,
+          "x": 8,
+          "y": 50
+        },
+        "bottom": {
+          "height": 304.390625,
+          "width": 374,
+          "x": 8,
+          "y": 529.609375
+        },
+        "card": {
+          "height": 145.59375,
+          "width": 98,
+          "x": 8,
+          "y": 620.40625
+        },
+        "description": {
+          "height": 30.796875,
+          "width": 254.0390625,
+          "x": 8,
+          "y": 584.609375
+        },
+        "enemyHUD": {
+          "height": 104.296875,
+          "width": 162,
+          "x": 209,
+          "y": 59
+        },
+        "fighter": {
+          "height": 313.609375,
+          "width": 215.7578125,
+          "x": -5.875,
+          "y": 175
+        },
+        "hand": {
+          "height": 165.59375,
+          "width": 374,
+          "x": 8,
+          "y": 618.40625
+        },
+        "playerHUD": {
+          "height": 83.296875,
+          "width": 162,
+          "x": 19,
+          "y": 59
+        }
+      }
+    },
+    {
+      "size": {
+        "width": 360,
+        "height": 640
+      },
+      "layout": {
+        "arena": {
+          "height": 279.40625,
+          "width": 348,
+          "x": 6,
+          "y": 50
+        },
+        "bottom": {
+          "height": 294.59375,
+          "width": 348,
+          "x": 6,
+          "y": 337.40625
+        },
+        "card": {
+          "height": 135.796875,
+          "width": 91,
+          "x": 6,
+          "y": 428.203125
+        },
+        "description": {
+          "height": 30.796875,
+          "width": 228.0390625,
+          "x": 6,
+          "y": 392.40625
+        },
+        "enemyHUD": {
+          "height": 102.09375,
+          "width": 151,
+          "x": 194,
+          "y": 59
+        },
+        "fighter": {
+          "height": 125.40625,
+          "width": 200.6796875,
+          "x": -6.8359375,
+          "y": 171
+        },
+        "hand": {
+          "height": 155.796875,
+          "width": 348,
+          "x": 6,
+          "y": 426.203125
+        },
+        "playerHUD": {
+          "height": 81.09375,
+          "width": 151,
+          "x": 15,
+          "y": 59
+        }
+      }
+    },
+    {
+      "size": {
+        "width": 844,
+        "height": 390
+      },
+      "layout": {
+        "arena": {
+          "height": 346,
+          "width": 532.8046875,
+          "x": 6,
+          "y": 38
+        },
+        "bottom": {
+          "height": 346,
+          "width": 291.1953125,
+          "x": 546.8046875,
+          "y": 38
+        },
+        "card": {
+          "height": 135.09375,
+          "width": 92.3984375,
+          "x": 546.8046875,
+          "y": 128.796875
+        },
+        "description": {
+          "height": 30.796875,
+          "width": 171.3125,
+          "x": 546.8046875,
+          "y": 93
+        },
+        "enemyHUD": {
+          "height": 54,
+          "width": 241.3984375,
+          "x": 286.40625,
+          "y": 45
+        },
+        "fighter": {
+          "height": 232,
+          "width": 265.3984375,
+          "x": 7,
+          "y": 121
+        },
+        "hand": {
+          "height": 155.09375,
+          "width": 291.1953125,
+          "x": 546.8046875,
+          "y": 126.796875
+        },
+        "playerHUD": {
+          "height": 54,
+          "width": 241.3984375,
+          "x": 17,
+          "y": 45
+        }
+      }
+    },
+    {
+      "size": {
+        "width": 1366,
+        "height": 900
+      },
+      "layout": {
+        "arena": {
+          "height": 568.40625,
+          "width": 1266,
+          "x": 82,
+          "y": 58
+        },
+        "bottom": {
+          "height": 253.59375,
+          "width": 1266,
+          "x": 82,
+          "y": 634.40625
+        },
+        "card": {
+          "height": 152.59375,
+          "width": 103.59375,
+          "x": 160,
+          "y": 717.40625
+        },
+        "description": {
+          "height": 15.3984375,
+          "width": 938.0390625,
+          "x": 160,
+          "y": 693.203125
+        },
+        "enemyHUD": {
+          "height": 106.5,
+          "width": 360,
+          "x": 969,
+          "y": 67
+        },
+        "fighter": {
+          "height": 412.40625,
+          "width": 632,
+          "x": 83,
+          "y": 179
+        },
+        "hand": {
+          "height": 172.59375,
+          "width": 1064,
+          "x": 160,
+          "y": 715.40625
+        },
+        "playerHUD": {
+          "height": 85.5,
+          "width": 360,
+          "x": 101,
+          "y": 67
+        }
+      }
+    },
+    {
+      "size": {
+        "width": 667,
+        "height": 375
+      },
+      "layout": {
+        "arena": {
+          "height": 331,
+          "width": 379,
+          "x": 6,
+          "y": 38
+        },
+        "bottom": {
+          "height": 331,
+          "width": 268,
+          "x": 393,
+          "y": 38
+        },
+        "card": {
+          "height": 124.59375,
+          "width": 92.3984375,
+          "x": 393,
+          "y": 128.796875
+        },
+        "description": {
+          "height": 30.796875,
+          "width": 154.1171875,
+          "x": 393,
+          "y": 93
+        },
+        "enemyHUD": {
+          "height": 54,
+          "width": 164.5,
+          "x": 209.5,
+          "y": 45
+        },
+        "fighter": {
+          "height": 217,
+          "width": 188.5,
+          "x": 7,
+          "y": 121
+        },
+        "hand": {
+          "height": 144.59375,
+          "width": 268,
+          "x": 393,
+          "y": 126.796875
+        },
+        "playerHUD": {
+          "height": 54,
+          "width": 164.5,
+          "x": 17,
+          "y": 45
+        }
+      }
+    }
+  ]
+}

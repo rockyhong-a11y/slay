@@ -1593,20 +1593,37 @@ function App() {
                     </div>
                     <div className="hand-main">
                       <div className="hand-heading">
-                        <h2>
-                          당신의 패
-                          {state.status.nextCardDiscount > 0 ? (
-                            <span
-                              className="pending-card-discount"
-                              role="status"
-                              title={`이번 턴, 원래 비용이 1 이상인 다음 카드의 행동력 비용 −${state.status.nextCardDiscount}. 0코스트 카드를 사용해도 유지됩니다.`}
+                        <div className="hand-selection-copy">
+                          <h2>
+                            당신의 패
+                            {state.status.nextCardDiscount > 0 ? (
+                              <span
+                                className="pending-card-discount"
+                                role="status"
+                                title={`이번 턴, 원래 비용이 1 이상인 다음 카드의 행동력 비용 −${state.status.nextCardDiscount}. 0코스트 카드를 사용해도 유지됩니다.`}
+                              >
+                                다음 비용 −{state.status.nextCardDiscount}
+                              </span>
+                            ) : (
+                              <span>{state.hand.length} CARDS</span>
+                            )}
+                          </h2>
+                          {selectedCard && (
+                            <p
+                              className="hand-selected-description"
+                              aria-live="polite"
+                              aria-atomic="true"
                             >
-                              다음 비용 −{state.status.nextCardDiscount}
-                            </span>
-                          ) : (
-                            <span>{state.hand.length} CARDS</span>
+                              <strong>
+                                {selectedCard.name}
+                                {selectedCard.upgradeLabel
+                                  ? ` · ${selectedCard.upgradeLabel}`
+                                  : ""}
+                              </strong>{" "}
+                              {selectedCard.description}
+                            </p>
                           )}
-                        </h2>
+                        </div>
                         <button
                           type="button"
                           className="hand-play-button"

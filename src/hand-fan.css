@@ -3,11 +3,38 @@
 .combat-view .hand-main.hand-fan,
 .combat-view .hand-area.hand-fan .hand-main,
 .combat-view .hand-main:has(.card-hand.hand-fan) {
-  grid-template-rows: 48px minmax(0, 1fr);
+  grid-template-rows: minmax(48px, auto) minmax(0, 1fr);
 }
 .combat-view .hand-heading:has(.hand-play-button) {
-  height: 48px;
+  min-height: 48px;
+  height: auto;
   align-items: center;
+}
+.combat-view .hand-selection-copy {
+  min-width: 0;
+  flex: 1;
+  padding: 3px 0;
+}
+.combat-view .hand-selection-copy h2 {
+  font-size: 9px;
+  color: var(--muted);
+}
+.combat-view .hand-selected-description {
+  margin: 3px 0 0;
+  color: #d8ccd2;
+  font-size: 11px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.combat-view .hand-selected-description strong {
+  color: #f5ddb8;
+  font-weight: 700;
+}
+.combat-view .hand-heading > span {
+  display: none;
+}
+.combat-view .hand-heading .hand-play-button {
+  flex-shrink: 0;
 }
 .combat-view .hand-heading .hand-play-button {
   min-width: 108px;
@@ -116,7 +143,7 @@
   position: absolute;
   inset: 0 auto 0 0;
   z-index: 5;
-  width: 26px;
+  width: 22px;
   background: linear-gradient(180deg, #443442, #221e2d 70%);
   border-right: 1px solid #ffffff26;
   display: flex;
@@ -157,9 +184,9 @@
   writing-mode: vertical-rl;
   text-orientation: upright;
   align-self: flex-start;
-  max-height: calc(var(--combat-card-height) - 63px);
+  max-height: calc(var(--combat-card-height) - 59px);
   padding-left: 2px;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: 1px;
