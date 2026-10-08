@@ -2,7 +2,16 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
 import { Artwork } from "./Artwork.jsx";
 import { ClassicActionArtwork } from "./ClassicActionArtwork.jsx";
-import { applyClassicActionFrame } from "./action-motion.js";
+import { FluidActionArtwork } from "./FluidActionArtwork.jsx";
+import {
+  applyClassicActionFrame,
+  hasClassicActionArt,
+} from "./action-motion.js";
+import {
+  createFluidCombatTimeline,
+  fluidCombatFrame,
+  fluidEase,
+} from "./fluid-combat.js";
 import { fighterPoseArt } from "./presentation.js";
 import { sdActorId } from "./sd-combat.js";
 import {
@@ -44,6 +53,8 @@ export function ClassicCombatStage({
   const latest = useRef(null);
   const controller = useRef(null);
   const actionMetadata = useRef([null, null]);
+  const fluidRenderers = useRef([]);
+  const originalWindows = useRef([]);
   const ratios = useRef([classicBodyRatio(player), classicBodyRatio(enemy)]);
   ratios.current = [classicBodyRatio(player), classicBodyRatio(enemy)];
   const failures = useRef(new Set());
@@ -94,6 +105,21 @@ export function ClassicCombatStage({
     let cueKey = null,
       cueStart = 0;
     let previousActionPoses = [null, null];
+    let timeline = null,
+      timelineKey = null,
+      timelineMetadata = [];
+    let frameCount = 0,
+      frameElapsed = 0,
+      renderElapsed = 0,
+      previousFrameTime = 0;
+    let frameIntervals = [];
+    const requestedFrame = import.meta.env.DEV
+      ? new URLSearchParams(window.location.search).get("qaFluidFrame")
+      : null;
+    const diagnosticFrame =
+      requestedFrame != null && Number.isFinite(Number(requestedFrame))
+        ? clip(Number(requestedFrame), 0, 0.999)
+        : null;
     const cancel = () => {
       cancelAnimationFrame(raf);
       raf = 0;
@@ -101,7 +127,7 @@ export function ClassicCombatStage({
     const schedule = () => {
       if (!alive || raf || !visible || document.hidden || latest.current.paused)
         return;
-      raf = requestAnimationFrame(draw);
+      raf = requestAnimationFrame((now) => draw(now, true));
     };
     const refresh = () => {
       cancel();
@@ -114,7 +140,8 @@ export function ClassicCombatStage({
       height = Math.max(1, host.clientHeight);
       refresh();
     };
-    function draw(now) {
+    function draw(now, animationFrame = false) {
+      const renderStart = performance.now();
       raf = 0;
       if (!alive || !visible || document.hidden || latest.current.paused)
         return;
@@ -127,13 +154,16 @@ export function ClassicCombatStage({
         cueStart = Number.isFinite(playback.cue?.startedAt)
           ? playback.cue.startedAt
           : now;
+        frameCount = frameElapsed = renderElapsed = previousFrameTime = 0;
+        frameIntervals = [];
       }
       const duration = playback.still
         ? 650
         : Math.max(300, playback.cue?.duration || 1000);
-      const progress = playback.cue
-        ? clip((now - cueStart) / duration, 0, 1)
-        : 0;
+      const frozenFrame = playback.cinematic ? diagnosticFrame : null;
+      const progress =
+        frozenFrame ??
+        (playback.cue ? clip((now - cueStart) / duration, 0, 1) : 0);
       const options = {
         still: playback.still,
         incoming: playback.incoming,
@@ -141,7 +171,7 @@ export function ClassicCombatStage({
         width,
         height,
       };
-      const frame = applyClassicActionFrame(
+      let frame = applyClassicActionFrame(
         classicCombatFrame(playback.cue, progress, options),
         playback.cue,
         progress,
@@ -151,13 +181,60 @@ export function ClassicCombatStage({
           metadata: actionMetadata.current,
         },
       );
-      const projection = classicSceneProjection(
+      const fluidMetadata = actionMetadata.current.map((entry) =>
+        entry?.fluid ? entry : null,
+      );
+      const currentTimelineKey = `${cueKey}:${width}:${height}:${playback.still}`;
+      if (
+        currentTimelineKey !== timelineKey ||
+        fluidMetadata.some((entry, index) => entry !== timelineMetadata[index])
+      ) {
+        timelineKey = currentTimelineKey;
+        timelineMetadata = fluidMetadata;
+        timeline =
+          playback.cue && !playback.still && fluidMetadata.some(Boolean)
+            ? createFluidCombatTimeline(playback.cue, {
+                ...options,
+                actors: playback.actors,
+                metadata: fluidMetadata,
+              })
+            : null;
+      }
+      if (timeline && !playback.still && progress < 1) {
+        const fluid = fluidCombatFrame(timeline, progress);
+        // An unavailable GPU keeps the existing illustrated fallback. Only the
+        // requested five with successfully prepared surfaces use new motion.
+        frame = {
+          ...fluid,
+          player: fluidMetadata[0] ? fluid.player : frame.player,
+          enemy: fluidMetadata[1] ? fluid.enemy : frame.enemy,
+        };
+      }
+      let projection = classicSceneProjection(
         width,
         height,
         frame,
         ratios.current,
         playback.cinematic,
       );
+      if (timeline?.bounds && progress < 1 && !playback.still) {
+        const { left, right, bottom, top } = timeline.bounds;
+        const envelope = {
+          x: (left + right) / 2,
+          y: (bottom + top) / 2,
+          drawWidth: right - left,
+          drawHeight: top - bottom,
+          rz: 0,
+          scale: 1,
+        };
+        projection = classicSceneProjection(
+          width,
+          height,
+          { player: envelope, enemy: envelope, camera: frame.camera },
+          ratios.current,
+          playback.cinematic,
+        );
+      }
       const nextPoses = [];
       const nextActionPoses = [];
       [frame.player, frame.enemy].forEach((body, index) => {
@@ -170,15 +247,47 @@ export function ClassicCombatStage({
         );
         nextPoses.push(pose);
         nextActionPoses.push(body.actionPose || null);
+        const original = originalWindows.current[index];
+        if (body.fluid) {
+          const presence = fluidEase(
+            Math.min(
+              (progress * duration) / 100,
+              ((1 - progress) * duration) / 120,
+            ),
+          );
+          body.fluid.opacity = presence;
+          if (original) {
+            // The original condition illustration keeps its own proportions
+            // inside the fixed action canvas, sharing the same foot anchor.
+            const w = (3 * ratio) / body.drawWidth;
+            const h = 3 / body.drawHeight;
+            original.style.width = `${w * 100}%`;
+            original.style.height = `${h * 100}%`;
+            original.style.left = `${(1 - w) * 50}%`;
+            original.style.top = `${(1 - h) * 100}%`;
+            original.style.visibility = "visible";
+            original.style.opacity = String(1 - presence);
+          }
+        } else if (original) {
+          original.style.width = original.style.height = "100%";
+          original.style.left = original.style.top = "0%";
+          original.style.opacity = "1";
+          original.style.visibility = body.actionPose ? "hidden" : "visible";
+        }
         if (node) {
-          node.style.left = `${point.x}px`;
-          node.style.top = `${point.y}px`;
-          node.style.width = `${(body.drawWidth || 3 * ratio) * projection.unit}px`;
-          node.style.height = `${(body.drawHeight || 3) * projection.unit}px`;
-          node.style.transform = `translate(-50%, -50%) rotate(${-body.rz}rad) scale(${body.scale || 1})`;
+          const logicalWidth = (body.drawWidth || 3 * ratio) * 100;
+          const logicalHeight = (body.drawHeight || 3) * 100;
+          node.style.left = "0px";
+          node.style.top = "0px";
+          const cssWidth = `${logicalWidth}px`,
+            cssHeight = `${logicalHeight}px`;
+          if (node.style.width !== cssWidth) node.style.width = cssWidth;
+          if (node.style.height !== cssHeight) node.style.height = cssHeight;
+          node.style.transform = `translate3d(${point.x - logicalWidth / 2}px, ${point.y - logicalHeight / 2}px, 0) rotate(${-body.rz}rad) scale(${(projection.unit / 100) * (body.scale || 1)})`;
           node.style.zIndex = `${20 + Math.round((body.depth || 0) * 5) + index}`;
           node.dataset.classicPose = pose;
           node.dataset.actionPose = body.actionPose || "original";
+          fluidRenderers.current[index]?.draw(body);
         }
         const ground = classicScreenPoint(body.x, 0.01, projection);
         const bounds = classicBodyBounds(body, ratio);
@@ -223,9 +332,43 @@ export function ClassicCombatStage({
       host.dataset.classicPlayerPose = nextPoses[0];
       host.dataset.classicEnemyPose = nextPoses[1];
       host.dataset.classicProgress = progress.toFixed(3);
+      host.dataset.fluidStage = String(!!timeline && !playback.still);
+      if (
+        import.meta.env.DEV &&
+        playback.cue &&
+        progress < 1 &&
+        !playback.still &&
+        animationFrame
+      ) {
+        if (previousFrameTime) {
+          frameCount++;
+          frameElapsed += now - previousFrameTime;
+          frameIntervals.push(now - previousFrameTime);
+        }
+        previousFrameTime = now;
+        renderElapsed += performance.now() - renderStart;
+        if (frameCount > 0 && frameCount % 15 === 0) {
+          host.dataset.fluidFps = ((frameCount * 1000) / frameElapsed).toFixed(
+            1,
+          );
+          host.dataset.fluidDrawMs = (renderElapsed / (frameCount + 1)).toFixed(
+            2,
+          );
+          host.dataset.fluidSamples = String(frameCount);
+          const ordered = [...frameIntervals].sort((a, b) => a - b);
+          host.dataset.fluidP95Ms =
+            ordered[Math.floor((ordered.length - 1) * 0.95)].toFixed(2);
+        }
+      }
       // The authoritative cue clock aligns independently mounted stages. Hidden or
       // modal pauses stop work; a cue removed during a pause cannot replay later.
-      if (playback.cue && progress < 1 && !playback.still) schedule();
+      if (
+        playback.cue &&
+        progress < 1 &&
+        !playback.still &&
+        frozenFrame == null
+      )
+        schedule();
     }
     const resize =
       typeof ResizeObserver === "undefined" ? null : new ResizeObserver(size);
@@ -241,7 +384,7 @@ export function ClassicCombatStage({
     intersection?.observe(host);
     document.addEventListener("visibilitychange", refresh);
     window.addEventListener("resize", size);
-    controller.current = { refresh };
+    controller.current = { refresh, schedule };
     size();
     return () => {
       alive = false;
@@ -303,6 +446,9 @@ export function ClassicCombatStage({
             aria-hidden="true"
           >
             <span
+              ref={(node) => {
+                originalWindows.current[index] = node;
+              }}
               className="classic-art-window"
               data-action-active={!!actionPoses[index]}
               onLoadCapture={() => setStatus(index, "ready")}
@@ -322,17 +468,34 @@ export function ClassicCombatStage({
                 loading="eager"
               />
             </span>
-            <ClassicActionArtwork
-              actor={actor}
-              pose={actionPoses[index] || "ready"}
-              active={!!actionPoses[index]}
-              still={!!reduced || shortened}
-              mirrored={!!index}
-              onReady={(metadata) => {
-                actionMetadata.current[index] = metadata;
-                controller.current?.refresh();
-              }}
-            />
+            {hasClassicActionArt(actor) ? (
+              <FluidActionArtwork
+                ref={(renderer) => {
+                  fluidRenderers.current[index] = renderer;
+                }}
+                actor={actor}
+                pose={actionPoses[index] || "ready"}
+                active={!!actionPoses[index]}
+                still={!!reduced || shortened}
+                mirrored={!!index}
+                onReady={(metadata) => {
+                  actionMetadata.current[index] = metadata;
+                  controller.current?.schedule();
+                }}
+              />
+            ) : (
+              <ClassicActionArtwork
+                actor={actor}
+                pose={actionPoses[index] || "ready"}
+                active={!!actionPoses[index]}
+                still={!!reduced || shortened}
+                mirrored={!!index}
+                onReady={(metadata) => {
+                  actionMetadata.current[index] = metadata;
+                  controller.current?.refresh();
+                }}
+              />
+            )}
           </span>
         </React.Fragment>
       ))}

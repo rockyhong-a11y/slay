@@ -51,6 +51,22 @@
 .classic-action-cell {
   background-repeat: no-repeat;
 }
+.fluid-action-artwork {
+  position: absolute;
+  inset: 0;
+  display: block;
+  visibility: hidden;
+  pointer-events: none;
+  contain: layout style;
+}
+.fluid-action-artwork[data-fluid-active="true"] {
+  visibility: visible;
+}
+.fluid-action-artwork canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .classic-action-incoming {
   animation: classic-pose-in 50ms linear both;
 }

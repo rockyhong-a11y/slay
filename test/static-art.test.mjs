@@ -26,20 +26,25 @@ function appSources(entrypoint = "../src/main.jsx") {
   return sources;
 }
 
-test("all shipped illustration paths remain free of canvas, Three.js and obsolete body-part rigs", () => {
+const wholePoseRenderers = new Set(
+  ["FluidActionArtwork.jsx", "fluid-artwork.js"].map((name) =>
+    fileURLToPath(new URL(`../src/${name}`, import.meta.url)),
+  ),
+);
+const drawingAPIs = [
+  [/<canvas\b/, "canvas element"],
+  [/createElement\s*\(\s*["']canvas["']/, "created canvas"],
+  [/\bOffscreenCanvas\b/, "offscreen canvas"],
+  [/getContext\s*\(\s*["'](?:2d|webgl2?)["']/, "illustration drawing context"],
+];
+
+test("only the connected whole-pose renderer can draw canvas; no shipped paths use Three.js or obsolete body-part rigs", () => {
   const sources = appSources();
   assert.ok(
     sources.size > 4,
     "the test must traverse the app rather than only its entrypoint",
   );
   const forbidden = [
-    [/<canvas\b/, "canvas element"],
-    [/createElement\s*\(\s*["']canvas["']/, "created canvas"],
-    [/\bOffscreenCanvas\b/, "offscreen canvas"],
-    [
-      /getContext\s*\(\s*["'](?:2d|webgl2?)["']/,
-      "illustration drawing context",
-    ],
     [/(?:\bfrom\s*|\bimport\s*\()\s*["']three(?:\/|["'])/, "Three.js import"],
     [/\b(?:WebGLRenderer|GLTFLoader|AnimationMixer)\b/, "3D renderer"],
     [/\.(?:glb|gltf)["'`]/, "3D model asset"],
@@ -49,7 +54,10 @@ test("all shipped illustration paths remain free of canvas, Three.js and obsolet
     ],
   ];
   for (const [filename, code] of sources) {
-    for (const [pattern, label] of forbidden) {
+    const restrictions = wholePoseRenderers.has(filename)
+      ? forbidden
+      : [...forbidden, ...drawingAPIs];
+    for (const [pattern, label] of restrictions) {
       assert.doesNotMatch(code, pattern, `${filename}: ${label}`);
     }
   }
@@ -71,6 +79,8 @@ test("the original complete-image and wear graph has no app-owned animation fram
   );
   for (const [filename, code] of sources) {
     assert.doesNotMatch(code, /\brequestAnimationFrame\s*\(/, filename);
+    for (const [pattern, label] of drawingAPIs)
+      assert.doesNotMatch(code, pattern, `${filename}: ${label}`);
   }
 });
 

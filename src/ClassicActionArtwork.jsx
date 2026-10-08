@@ -52,7 +52,12 @@ export function preloadClassicActions(actor) {
               );
               return;
             }
-            resolve({ ...entry, id: actor, src: `${base()}${actor}.png` });
+            resolve({
+              ...entry,
+              id: actor,
+              src: `${base()}${actor}.png`,
+              image,
+            });
           };
           image.onerror = () => {
             release();
