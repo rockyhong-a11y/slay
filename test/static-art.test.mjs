@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { dirname, extname, resolve } from "node:path";
+import { basename, dirname, extname, resolve } from "node:path";
 
 // Follow the app's actual local import graph; archived generation files are irrelevant.
 function appSources(entrypoint = "../src/main.jsx") {
@@ -61,7 +61,7 @@ test("only the connected whole-pose renderer can draw canvas; no shipped paths u
       assert.doesNotMatch(code, pattern, `${filename}: ${label}`);
     }
   }
-  assert.ok([...sources.keys()].some((path) => path.endsWith("/Artwork.jsx")));
+  assert.ok([...sources.keys()].some((path) => basename(path) === "Artwork.jsx"));
   const pkg = JSON.parse(
     readFileSync(new URL("../package.json", import.meta.url), "utf8"),
   );
@@ -75,7 +75,7 @@ test("only the connected whole-pose renderer can draw canvas; no shipped paths u
 test("the original complete-image and wear graph has no app-owned animation frame loop", () => {
   const sources = appSources("../src/Artwork.jsx");
   assert.ok(
-    [...sources.keys()].some((path) => path.endsWith("/FighterWear.jsx")),
+    [...sources.keys()].some((path) => basename(path) === "FighterWear.jsx"),
   );
   for (const [filename, code] of sources) {
     assert.doesNotMatch(code, /\brequestAnimationFrame\s*\(/, filename);
@@ -115,7 +115,7 @@ test("only finite whole-illustration combat stages own RAF, with pause, visibili
     assert.match(stage, /intersection\?\.disconnect\(\)/);
     assert.match(
       stage,
-      filename.endsWith("/SDCombatStage.jsx") ? /<SDArtwork\b/ : /<Artwork\b/,
+      basename(filename) === "SDCombatStage.jsx" ? /<SDArtwork\b/ : /<Artwork\b/,
       "the stage must render whole illustrated poses",
     );
   }
