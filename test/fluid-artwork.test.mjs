@@ -22,7 +22,7 @@ const close = (actual, expected, label) =>
     `${label}: ${actual} vs ${expected}`,
   );
 
-test("all sixty complete poses use a stable canvas and preserve the source pixel scale and bottom anchor", () => {
+test("all 120 complete poses use a stable canvas and preserve the source pixel scale and bottom anchor", () => {
   for (const [actor, metadata] of Object.entries(manifest)) {
     const surface = fluidSurface(metadata);
     for (const pose of CLASSIC_ACTION_POSES) {

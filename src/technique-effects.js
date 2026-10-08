@@ -839,6 +839,19 @@ export function techniqueEffectLayers(
     });
   }
   if (p.family === "grapple" && !p.grounded && !blocked) {
+    // Match the elbow's warm contact core at the actual mat impact, while
+    // keeping the lift, landing dust and debris distinct from a standing hit.
+    layers.push(
+      layer(
+        "slam-flare",
+        target,
+        Math.min(38, 28 * p.strength),
+        [0, at - 0.014, at, at + 0.055, Math.min(0.99, at + 0.16), 1],
+        [0, 0, 0.95, 0.8, 0, 0],
+        { scale: [0.2, 0.2, 1, 1.1, 1.5, 1.5] },
+        { contact: at, flashing: true },
+      ),
+    );
     layers.push(
       layer(
         "mat-crack",

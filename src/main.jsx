@@ -115,6 +115,7 @@ import {
 import { getCardDetail, CARD_RARITY_LABELS } from "./card-library.js";
 import { CardGuidePage, CardLibraryPage } from "./KnowledgePages.jsx";
 import { Roster } from "./Roster.jsx";
+import { RosterAnimationPreview } from "./RosterAnimationPreview.jsx";
 import { createCombatQA } from "./combat-qa.js";
 import { createJourneyQA, JOURNEY_QA_PROFILES } from "./journey-qa.js";
 import {
@@ -986,7 +987,10 @@ function App() {
   };
   const closeModal = () => {
     setUpgradeTarget(null);
-    if (modal === "condition" && previewFromRoster) {
+    if (
+      modal === "animations" ||
+      (modal === "condition" && previewFromRoster)
+    ) {
       setPreviewFromRoster(false);
       setModal("roster");
     } else {
@@ -1788,6 +1792,7 @@ function App() {
                 draw: "드로우 덱",
                 discard: "버린 카드",
                 roster: "CHOOSE YOUR WRESTLER",
+                animations: `${previewWrestler.nameKo} 전투 애니메이션`,
                 settings: "설정",
                 inventory: "코너 보관함",
                 condition: `${previewWrestler.nameKo} 컨디션 및 표정`,
@@ -1802,6 +1807,7 @@ function App() {
               {
                 deck: `${state.deck.length} CARDS IN YOUR DECK`,
                 roster: "THE CONTENDERS",
+                animations: "CARD REPLAY",
                 condition: `${previewWrestler.name} · STATE PREVIEW`,
                 upgrade: "TRAINING ROOM",
                 loadout: "CHOOSE YOUR DECK",
@@ -1814,14 +1820,18 @@ function App() {
               "draw",
               "discard",
               "roster",
+              "animations",
               "upgrade",
               "loadout",
               "save-deck",
               "remove",
             ].includes(modal)}
-            className={modal === "roster" ? "roster-modal" : ""}
+            className={
+              ["roster", "animations"].includes(modal) ? "roster-modal" : ""
+            }
             closeLabel={
-              modal === "condition" && previewFromRoster
+              modal === "animations" ||
+              (modal === "condition" && previewFromRoster)
                 ? "선수 선택으로 돌아가기"
                 : "닫기"
             }
@@ -1912,6 +1922,20 @@ function App() {
                 modeControl={modeControl}
                 onStart={openLoadout}
                 onPreview={(id) => openConditionPreview(id, true)}
+                onAnimationPreview={(id) => {
+                  setPreviewActor(id);
+                  setModal("animations");
+                }}
+              />
+            )}
+            {modal === "animations" && (
+              <RosterAnimationPreview
+                key={previewActor}
+                actor={previewActor || state.player.id}
+                displayMode={displayMode}
+                shortened={!cinematics}
+                modeControl={modeControl}
+                onBack={() => setModal("roster")}
               />
             )}
             {modal === "loadout" && (

@@ -4,6 +4,11 @@ export const CLASSIC_ACTION_ACTORS = Object.freeze([
   "nova",
   "viper",
   "ember",
+  "atlas",
+  "seraph",
+  "lynx",
+  "tempest",
+  "onyx",
 ]);
 export const CLASSIC_ACTION_POSES = Object.freeze([
   "ready",
@@ -445,6 +450,11 @@ const GRIPS = {
   nova: { armbar: [0.44, 0.49], leglock: [0.23, 0.69] },
   viper: { armbar: [0.4, 0.44], leglock: [0.52, 0.72] },
   ember: { armbar: [0.44, 0.45], leglock: [0.25, 0.66] },
+  atlas: { armbar: [0.481, 0.564], leglock: [0.301, 0.59] },
+  seraph: { armbar: [0.466, 0.565], leglock: [0.301, 0.591] },
+  lynx: { armbar: [0.472, 0.564], leglock: [0.301, 0.59] },
+  tempest: { armbar: [0.466, 0.557], leglock: [0.3, 0.59] },
+  onyx: { armbar: [0.48, 0.565], leglock: [0.3, 0.59] },
 };
 export const classicActionGrip = (actor, kind) =>
   GRIPS[actorId(actor)]?.[kind] || [0.45, 0.5];

@@ -144,6 +144,23 @@ test("a delayed second shot seeks from its own boundary and completes at the who
   );
 });
 
+test("roster SD previews retain the selected fighter replay even for SD utility card illustrations", () => {
+  for (const cardId of ["powerbomb", "wristlock"]) {
+    const { cue } = resolvedCue(cardId);
+    const shots = techniqueSequence(cue, {
+      displayMode: "sd",
+      includeFighterReplay: true,
+    });
+    assert.deepEqual(
+      shots.map((shot) => shot.kind),
+      ["card", "sd"],
+    );
+    assert.equal(shots[1].cue.startedAt, cue.startedAt + cue.duration);
+    assert.equal(shots[1].cue.damage, cue.damage);
+    assert.equal(shots[1].cue.artStyle, cue.artStyle);
+  }
+});
+
 test("fully elapsed sequences only complete and cannot replay stale contact or crowd events", () => {
   const { cue } = resolvedCue("strike");
   for (const shot of techniqueSequence(cue)) {

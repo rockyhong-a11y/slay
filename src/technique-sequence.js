@@ -2,7 +2,12 @@
 // transition catches up instead of replaying an expired action from the start.
 export function techniqueSequence(
   cue,
-  { displayMode = "classic", still = false, now = 0 } = {},
+  {
+    displayMode = "classic",
+    still = false,
+    now = 0,
+    includeFighterReplay = false,
+  } = {},
 ) {
   const duration = still
     ? 650
@@ -10,7 +15,12 @@ export function techniqueSequence(
       ? cue.duration
       : 2600;
   const startedAt = Number.isFinite(cue.startedAt) ? cue.startedAt : now;
-  const kinds = displayMode === "sd" ? ["sd"] : ["card", "fighters"];
+  const kinds =
+    displayMode === "sd"
+      ? includeFighterReplay
+        ? ["card", "sd"]
+        : ["sd"]
+      : ["card", "fighters"];
   return kinds.map((kind, index) => ({
     kind,
     cue: {

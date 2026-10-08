@@ -25,6 +25,7 @@ export function Roster({
   currentId,
   onStart,
   onPreview,
+  onAnimationPreview,
   displayMode = "classic",
   modeControl,
 }) {
@@ -195,6 +196,14 @@ export function Roster({
                 </ul>
               </details>
               <div className="contender-actions">
+                <button
+                  type="button"
+                  className="contender-preview-button"
+                  onClick={() => onAnimationPreview(id)}
+                  aria-label={`${fighter.nameKo}의 카드별 전투 애니메이션 보기`}
+                >
+                  <Sparkle size={18} /> 전투 애니메이션
+                </button>
                 <button
                   type="button"
                   className="contender-preview-button"

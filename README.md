@@ -10,6 +10,10 @@
 
 노바의 여섯 상태는 레이븐·바이퍼와 어울리는 **선명한 윤곽선과 셀 셰이딩의 카툰 얼굴**로 다시 제작했습니다. 검은 옆가르마 머리·귀걸이·기존 복장과 체형을 유지하며, 각 상태의 표정과 자세가 한 장의 연결된 전신 그림에 담깁니다.
 
+**열 명 모두 원본 전투 동작 12종**을 사용합니다. 신규 아틀라스·세라프·링스·템페스트·오닉스에도 준비·타격·킥·클린치·들어올림·슬램·수플렉스·관절기·가드·피격 포즈를 추가했습니다. 완성된 전신 그림을 하나의 표면으로 보간해 동작을 연결하며, GPU를 사용할 수 없으면 완성 포즈 그림으로 표시합니다. [신규 동작 제작 프롬프트](artifacts/classic-actions/newcomer-prompts.json) · [확장 및 시연 검수](artifacts/newcomer-combat-qa.md)
+
+선수 메뉴의 **전투 애니메이션**에서 선수별로 60종 카드를 시연할 수 있습니다. 상대는 자기 자신을 제외한 아홉 명 중 매번 무작위로 배정하며, 카드 검색·기술 분류·재시연·중지를 제공합니다. 원본과 SD 모두 카드 기술 연출 다음 선택한 선수의 공방을 보여줍니다. 시연은 별도 임시 경기에서 실제 카드 효과와 선수 패시브를 계산하므로 현재 경기와 저장 데이터에 영향을 주지 않습니다. 엘보 스트라이크의 흰색·금색 접촉 효과를 다른 타격과 매트 충돌에도 적용하고, 관절기의 압박·방어의 접촉 표시는 작게 구분합니다.
+
 전체 열 명 선수의 여섯 상태에 **땀·찰과상·멍·작은 혈흔**을 추가했습니다. 열기와 압박이 높거나 체력이 낮으면 땀이 늘고, 체력 70% 이하부터 찰과상, 50% 이하부터 멍, 25% 이하부터 눈썹의 작은 혈흔이 나타납니다. 체력 10% 이하에서는 입가에도 혈흔을 표시합니다. 체력 회복에 따라 표현도 완화되며, 상태 미리보기에서는 해당 상태의 예시를 보여줍니다. 전신과 얼굴 확대에 같은 위치를 적용하고, 기존 완성 그림 전체에 장식을 얹으므로 얼굴·팔·몸을 분리하지 않습니다.
 
 피부에는 기본 광택을 더하고, 운동량에 따라 작은 투명 땀방울과 얇은 흐름·반사광을 겹칩니다. 파란 궤적·전기선·바닥 고리는 제거하고, 엘보와 같은 흰색·금색 접촉 섬광과 먼지·파편으로 통일했습니다.
@@ -92,7 +96,7 @@ npm run preview
 
 신규 유틸리티 10종의 2D SD 카드 아트 제작 기록은 [그룹 A](artifacts/sd-utility-art-a.json)와 [그룹 B](artifacts/sd-utility-art-b.json)에 보관합니다. 전용 카드 그림은 `public/assets/cards/{id}.webp`로 연결합니다.
 
-SD 2D는 내장 `image_gen`으로 제작한 투명 PNG 10장에 전신 포즈 30개를 담았습니다. [제작 프롬프트](artifacts/sd-2d-prompts.json), [배포 그림](public/assets/sd2d/), [알파·포즈 영역 검수](artifacts/sd2d-atlas-qa.json)를 제공합니다. `tools/inspect-sd-atlas.py`는 픽셀을 변경하지 않고 표시 영역만 측정합니다. Higgsfield 이미지 생성은 연결 계정의 `Requires basic plan or higher.` 제한으로 거절되어 사용하지 않았습니다. Blender 3D 시안은 사용자의 2D 변경 요청에 따라 배포에서 제외했으며, 게임은 WebGL·Three.js·GLB를 불러오지 않습니다.
+SD 2D는 내장 `image_gen`으로 제작한 투명 PNG 10장에 전신 포즈 30개를 담았습니다. [제작 프롬프트](artifacts/sd-2d-prompts.json), [배포 그림](public/assets/sd2d/), [알파·포즈 영역 검수](artifacts/sd2d-atlas-qa.json)를 제공합니다. `tools/inspect-sd-atlas.py`는 픽셀을 변경하지 않고 표시 영역만 측정합니다. Higgsfield 이미지 생성은 연결 계정의 `Requires basic plan or higher.` 제한으로 거절되어 사용하지 않았습니다. Blender 3D 시안은 사용자의 2D 변경 요청에 따라 배포에서 제외했으며, 게임은 Three.js·GLB를 불러오지 않습니다. 원본 전투 포즈 보간에는 2D WebGL 표면을 사용합니다.
 
 기존 다섯 선수의 상태 그림 30장은 내장 이미지 생성 도구의 개별 편집 호출로 제작했습니다. 기존 카툰 전신과 원본 얼굴 참고를 함께 사용하고, 보정한 보통 상태를 기준으로 나머지 표정·자세를 제작했습니다. 배포 파일은 투명 배경의 1000×1500 WebP입니다. [보통 상태 4장](artifacts/fighter-state-prompts.json) · [변형 상태 20장](artifacts/fighter-state-variant-prompts.json) · [바이퍼 초기 6장](artifacts/viper-state-prompts.json)에 정확한 프롬프트와 생성 경로를 기록했습니다. 이후 [바이퍼 장비 제거 6장](artifacts/viper-no-gear-prompts.json)을 내장 이미지 편집으로 제작해 현재 배포 파일을 교체했습니다. 신규 카드 25장의 [개별 제작 프롬프트](artifacts/new-card-prompts.json)도 함께 제공합니다.
 
@@ -116,7 +120,7 @@ SD 2D는 내장 `image_gen`으로 제작한 투명 PNG 10장에 전신 포즈 30
 
 The client uses React, Vite, Motion, and Phosphor icons. Gameplay lives in the dependency-free ES module [`src/game.js`](src/game.js). The UI owns image presentation, audio, keyboard input, and browser persistence. [`src/presentation.js`](src/presentation.js) selects fighter conditions, maps each condition to a complete WebP illustration, and derives cinematic outcomes from engine snapshots. [`src/Artwork.jsx`](src/Artwork.jsx) displays those complete images and crops portraits from the same file. Presentation leaves combat mechanics unchanged; [`src/gear-progression.js`](src/gear-progression.js) persists each fighter's cosmetic `gearWearLevel` until the next match.
 
-Character assets use `fighters/states/{actor}-{state}.webp`. The ten actors are `raven`, `valkyrie`, `nova`, `viper`, `ember`, `atlas`, `seraph`, `lynx`, `tempest`, and `onyx`; the six states are `normal`, `excited`, `fiery`, `frustrated`, `tired`, and `groggy`. Cards use their 50 dedicated `cards/{id}.webp` illustrations. The app renders completed images rather than continuous canvas rigs; finite card-cast transitions remain.
+Character assets use `fighters/states/{actor}-{state}.webp`. The ten actors are `raven`, `valkyrie`, `nova`, `viper`, `ember`, `atlas`, `seraph`, `lynx`, `tempest`, and `onyx`; the six states are `normal`, `excited`, `fiery`, `frustrated`, `tired`, and `groggy`. Cards use 60 dedicated illustrations. Classic action atlases contain 12 complete poses per actor. A WebGL surface interpolates whole-pose textures using registered landmarks, with illustrated fallbacks; it never assembles detached body parts. Roster previews resolve all 600 actor/card combinations in disposable runs and use the same combat presentation.
 
 [`src/fighter-wear.js`](src/fighter-wear.js) derives cosmetic wear from current vitals and maps decorations to each intact illustration. [`src/ArcadeTechniqueFX.jsx`](src/ArcadeTechniqueFX.jsx) and [`src/ArcadeArenaImpact.jsx`](src/ArcadeArenaImpact.jsx) render finite, outcome-aware technique and ring-contact effects. Reduced motion keeps readable results without the impact motion or particles.
 

@@ -78,25 +78,22 @@ const frameAt = (action, progress, overrides = {}) => {
   );
 };
 
-test("only the original five actors opt into the action atlas and malformed crops never render", () => {
+test("all ten actors opt into the action atlas and malformed crops never render", () => {
   assert.deepEqual(CLASSIC_ACTION_ACTORS, [
     "raven",
     "valkyrie",
     "nova",
     "viper",
     "ember",
-  ]);
-  for (const actor of CLASSIC_ACTION_ACTORS)
-    assert.equal(hasClassicActionArt(actor), true);
-  for (const actor of [
     "atlas",
     "seraph",
     "lynx",
     "tempest",
     "onyx",
-    "unknown",
-    null,
-  ]) {
+  ]);
+  for (const actor of CLASSIC_ACTION_ACTORS)
+    assert.equal(hasClassicActionArt(actor), true);
+  for (const actor of ["unknown", null]) {
     assert.equal(hasClassicActionArt(actor), false);
     const base = classicCombatFrame(cue("powerbomb", "grapple"), 0.5, options);
     const applied = applyClassicActionFrame(

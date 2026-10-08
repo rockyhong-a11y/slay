@@ -21,6 +21,7 @@ import {
 
 const firstFive = ["raven", "valkyrie", "nova", "viper", "ember"];
 const remainingFive = ["atlas", "seraph", "lynx", "onyx", "tempest"];
+const allActors = [...firstFive, ...remainingFive];
 const assetRoot = new URL("../public/assets/classic-actions/", import.meta.url);
 const manifest = () =>
   JSON.parse(readFileSync(new URL("manifest.json", assetRoot), "utf8"));
@@ -53,15 +54,15 @@ function cueFor(id) {
   );
 }
 
-test("only the first five original wrestlers ship distinct twelve-pose action atlases", () => {
+test("all ten wrestlers ship distinct twelve-pose action atlases", () => {
   const entries = manifest();
   const measured = alphaEvidence();
-  assert.deepEqual(CLASSIC_ACTION_ACTORS, firstFive);
-  assert.deepEqual(Object.keys(entries).sort(), [...firstFive].sort());
-  assert.deepEqual(Object.keys(measured).sort(), [...firstFive].sort());
+  assert.deepEqual([...CLASSIC_ACTION_ACTORS].sort(), [...allActors].sort());
+  assert.deepEqual(Object.keys(entries).sort(), [...allActors].sort());
+  assert.deepEqual(Object.keys(measured).sort(), [...allActors].sort());
   assert.equal(CLASSIC_ACTION_POSES.length, 12);
   const hashes = new Set();
-  for (const actor of firstFive) {
+  for (const actor of allActors) {
     const entry = entries[actor];
     assert.equal(hasClassicActionArt(actor), true, actor);
     assert.deepEqual(
@@ -119,8 +120,8 @@ test("only the first five original wrestlers ship distinct twelve-pose action at
       );
     }
   }
-  assert.equal(hashes.size, 5, "every wrestler has her own action artwork");
-  for (const actor of [...remainingFive, "missing"]) {
+  assert.equal(hashes.size, 10, "every wrestler has her own action artwork");
+  for (const actor of ["missing"]) {
     assert.equal(hasClassicActionArt(actor), false, actor);
     assert.equal(
       entries[actor],
@@ -134,9 +135,9 @@ test("only the first five original wrestlers ship distinct twelve-pose action at
   );
 });
 
-test("all sixty actual action crops preserve source proportions and the same pixel scale through CSS projection", () => {
+test("all 120 actual action crops preserve source proportions and the same pixel scale through CSS projection", () => {
   const entries = manifest();
-  for (const actor of firstFive) {
+  for (const actor of allActors) {
     const entry = entries[actor];
     let worldPixelScale;
     for (const pose of CLASSIC_ACTION_POSES) {
@@ -188,9 +189,9 @@ test("all sixty actual action crops preserve source proportions and the same pix
 
 test("every card fits real action-pose bounds with both action and fallback opponents in portrait and landscape", () => {
   const entries = manifest();
-  const pairs = firstFive.flatMap((actor, index) => [
-    [actor, firstFive[(index + 1) % firstFive.length]],
-    [actor, remainingFive[index]],
+  const pairs = allActors.flatMap((actor, index) => [
+    [actor, allActors[(index + 1) % allActors.length]],
+    [actor, "missing"],
   ]);
   for (const id of Object.keys(CARDS)) {
     const cue = cueFor(id);

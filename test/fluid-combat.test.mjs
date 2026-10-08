@@ -66,7 +66,7 @@ function weights(blend) {
   return values;
 }
 
-test("the first five use a stable feet-aligned canvas across every pose and exact ending knot", () => {
+test("all ten actors use a stable feet-aligned canvas across every pose and exact ending knot", () => {
   for (const actor of CLASSIC_ACTION_ACTORS) {
     for (const id of [
       "strike",
@@ -264,7 +264,7 @@ test("whole-pose blends remain continuous at every boundary and exact contact ho
   }
 });
 
-test("utility holds stay guarded without flashes, while last-five, missing atlases, idle and reduced motion stay unchanged", () => {
+test("utility holds stay guarded without flashes, while missing atlases, idle and reduced motion stay unchanged", () => {
   const options = optionsFor();
   for (const id of ["armbar", "anklelock", "wristlock"]) {
     const timeline = createFluidCombatTimeline(cueFor(id), options);
@@ -278,14 +278,7 @@ test("utility holds stay guarded without flashes, while last-five, missing atlas
     );
   }
   const cue = cueFor("powerbomb");
-  for (const actor of [
-    "atlas",
-    "seraph",
-    "lynx",
-    "tempest",
-    "onyx",
-    "missing",
-  ]) {
+  for (const actor of ["missing"]) {
     const mixed = optionsFor("nova", actor);
     const timeline = createFluidCombatTimeline(cue, mixed);
     for (const p of [0, 0.2, 0.55, 0.83, 1]) {

@@ -1,8 +1,9 @@
+import { NEWCOMER_ACTION_LANDMARKS } from "./newcomer-landmarks.js";
 // Whole-image morph anchors. These landmarks warp a single complete pose texture;
 // they never cut, assemble or independently render body parts.
 // L/R follow the corresponding stance limbs, not sorted screen coordinates. The
 // inverted suplex deliberately puts the head on the opposite side for Valkyrie
-// and Ember. Coordinates are normalized within each manifest source crop.
+// Ember, Lynx and Onyx. Coordinates are normalized within each manifest crop.
 export const ACTION_LANDMARK_NAMES = Object.freeze([
   "head",
   "neck",
@@ -993,6 +994,7 @@ const LANDMARKS = {
   },
 };
 
+Object.assign(LANDMARKS, NEWCOMER_ACTION_LANDMARKS);
 for (const poses of Object.values(LANDMARKS)) {
   for (const points of Object.values(poses)) {
     points.forEach(Object.freeze);
@@ -1002,7 +1004,7 @@ for (const poses of Object.values(LANDMARKS)) {
 }
 Object.freeze(LANDMARKS);
 
-/** Read-only crop-normalized anchors for the first five complete-pose atlases. */
+/** Read-only crop-normalized anchors for all ten complete-pose atlases. */
 export function actionLandmarks(actor, pose = "ready") {
   const id = typeof actor === "string" ? actor : actor?.id || actor?.artKey;
   return LANDMARKS[id]?.[pose] ?? null;

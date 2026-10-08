@@ -1,0 +1,43 @@
+.combat-contact-art .contact-gold {
+  fill: #efb34d;
+  stroke: #ffdf8e;
+  stroke-width: 0.8;
+}
+.combat-contact-art .contact-white {
+  fill: #fffceb;
+  stroke: none;
+}
+.combat-contact-art .contact-spark {
+  fill: #ffe5a0;
+  stroke: none;
+}
+.combat-contact-art .contact-pressure {
+  fill: none;
+  stroke: #fff0c1;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.combat-contact-art .contact-chip {
+  fill: #a9895a;
+  stroke: #ffe5a0;
+  stroke-width: 0.7;
+}
+.combat-contact-art .contact-dust {
+  fill: #dab988;
+  opacity: 0.36;
+}
+.combat-contact-art .contact-mat,
+.combat-contact-art .contact-hold,
+.combat-contact-art .contact-guard {
+  display: none;
+}
+:is(.classic-contact, .sd-contact)[data-family="grapple"] .contact-hit,
+:is(.classic-contact, .sd-contact)[data-family="submission"] .contact-hit,
+:is(.classic-contact, .sd-contact)[data-family="guard"] .contact-hit {
+  display: none;
+}
+:is(.classic-contact, .sd-contact)[data-family="grapple"] .contact-mat,
+:is(.classic-contact, .sd-contact)[data-family="submission"] .contact-hold,
+:is(.classic-contact, .sd-contact)[data-family="guard"] .contact-guard {
+  display: block;
+}

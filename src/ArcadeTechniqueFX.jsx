@@ -95,7 +95,7 @@ function EffectGraphic({ item, effect, transition, still }) {
             d="M0 37L31 40M7 66L29 62M39 21L49 31"
           />
         </g>
-      ) : kind === "burst" ? (
+      ) : kind === "burst" || kind === "slam-flare" ? (
         <g>
           <path
             className="arcade-burst-outer"

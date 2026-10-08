@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
 import { SDArtwork } from "./SDArtwork.jsx";
+import { CombatContactArt } from "./CombatContactArt.jsx";
 import { sdActorId, sdCombatFrame } from "./sd-combat.js";
 import {
   sdBodyBounds,
@@ -291,20 +292,7 @@ export function SDCombatStage({
         </React.Fragment>
       ))}
       <span className="sd-contact" ref={contact} aria-hidden="true">
-        <svg viewBox="-50 -50 100 100" focusable="false">
-          <path
-            className="sd-contact-cloud"
-            d="M0-31 9-21 26-24 27-8 40 0 27 9 25 25 9 22 0 36-9 22-26 25-27 8-40 0-26-8-26-23-10-21Z"
-          />
-          {Array.from({ length: 8 }, (_, i) => (
-            <path
-              key={i}
-              className="sd-contact-streak"
-              d="M0-30 0-44"
-              transform={`rotate(${i * 45})`}
-            />
-          ))}
-        </svg>
+        <CombatContactArt />
       </span>
       {status === "loading" && (
         <span className="sd-loading-note" role="status">

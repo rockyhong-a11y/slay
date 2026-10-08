@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
 import { Artwork } from "./Artwork.jsx";
+import { CombatContactArt } from "./CombatContactArt.jsx";
 import { ClassicActionArtwork } from "./ClassicActionArtwork.jsx";
 import { FluidActionArtwork } from "./FluidActionArtwork.jsx";
 import {
@@ -203,7 +204,7 @@ export function ClassicCombatStage({
       if (timeline && !playback.still && progress < 1) {
         const fluid = fluidCombatFrame(timeline, progress);
         // An unavailable GPU keeps the existing illustrated fallback. Only the
-        // requested five with successfully prepared surfaces use new motion.
+        // supported actors with successfully prepared surfaces use new motion.
         frame = {
           ...fluid,
           player: fluidMetadata[0] ? fluid.player : frame.player,
@@ -500,20 +501,7 @@ export function ClassicCombatStage({
         </React.Fragment>
       ))}
       <span className="classic-contact" ref={contact} aria-hidden="true">
-        <svg viewBox="-50 -50 100 100" focusable="false">
-          <path
-            className="classic-contact-cloud"
-            d="M0-31 9-21 26-24 27-8 40 0 27 9 25 25 9 22 0 36-9 22-26 25-27 8-40 0-26-8-26-23-10-21Z"
-          />
-          {Array.from({ length: 8 }, (_, i) => (
-            <path
-              key={i}
-              className="classic-contact-streak"
-              d="M0-30 0-44"
-              transform={`rotate(${i * 45})`}
-            />
-          ))}
-        </svg>
+        <CombatContactArt />
       </span>
     </div>
   );

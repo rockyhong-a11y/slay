@@ -132,7 +132,13 @@ export function FighterSprite({
 export { ArcadeArenaImpact as ArenaImpact } from "./ArcadeArenaImpact.jsx";
 
 export function TechniqueScene(props) {
-  const { cue, displayMode = "classic", shortened = false, onComplete } = props;
+  const {
+    cue,
+    displayMode = "classic",
+    shortened = false,
+    onComplete,
+    includeFighterReplay = false,
+  } = props;
   const reduced = useReducedMotion();
   const [progress, setProgress] = useState({ cueId: cue.id, index: 0 });
   const shotIndex = progress.cueId === cue.id ? progress.index : 0;
@@ -144,8 +150,9 @@ export function TechniqueScene(props) {
         displayMode,
         still: !!reduced || shortened,
         now: performance.now(),
+        includeFighterReplay,
       }),
-    [cue, displayMode, reduced, shortened],
+    [cue, displayMode, reduced, shortened, includeFighterReplay],
   );
   const shot = shots[Math.min(shotIndex, shots.length - 1)];
   activeShot.current = { cueId: cue.id, shotId: shot.cue.id };
@@ -195,6 +202,8 @@ function TechniqueSceneShot({
   playerVitals,
   enemyVitals,
   backgroundArt = "arena.webp",
+  embedded = false,
+  includeFighterReplay = false,
 }) {
   const reduced = useReducedMotion();
   const complete = useRef(onComplete);
@@ -206,7 +215,8 @@ function TechniqueSceneShot({
   const [crowdVisible, setCrowdVisible] = useState(false);
   const still = reduced || shortened;
   const sdIllustration = cue.artStyle === "sd2d";
-  const sdStage = shotKind === "sd" && !sdIllustration;
+  const sdStage =
+    shotKind === "sd" && (!sdIllustration || includeFighterReplay);
   const classicStage = shotKind === "fighters";
   const duration = still ? 650 : cue.duration;
   const playback = useMemo(
@@ -321,7 +331,7 @@ function TechniqueSceneShot({
         </strong>
         <span>
           {shotCount > 1
-            ? `${shotIndex + 1}/${shotCount} · ${classicStage ? "FIGHTER REPLAY" : "CARD TECHNIQUE"}`
+            ? `${shotIndex + 1}/${shotCount} · ${classicStage || sdStage ? "FIGHTER REPLAY" : "CARD TECHNIQUE"}`
             : still
               ? "TECHNIQUE"
               : "REPLAY"}{" "}
@@ -489,7 +499,7 @@ function TechniqueSceneShot({
       />
     </motion.div>
   );
-  return createPortal(scene, document.body);
+  return embedded ? scene : createPortal(scene, document.body);
 }
 
 export function ConditionGuide({

@@ -7,7 +7,7 @@ from PIL import Image, ImageFilter
 
 ROOT = Path(__file__).resolve().parents[2]
 ASSETS = ROOT / 'public/assets/classic-actions'
-ACTORS = ['raven', 'valkyrie', 'nova', 'viper', 'ember']
+ACTORS = ['raven', 'valkyrie', 'nova', 'viper', 'ember', 'atlas', 'seraph', 'lynx', 'tempest', 'onyx']
 POSES = ['ready', 'windup', 'elbow', 'kick', 'clinch', 'lift', 'slam', 'suplex', 'armbar', 'leglock', 'guard', 'hurt']
 
 def components(alpha):
@@ -117,4 +117,4 @@ for actor in ACTORS:
     records[actor] = {'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'width':width,'height':height,'alphaThreshold':150,'frames':evidence}
 (ASSETS / 'manifest.json').write_text(json.dumps(manifest,separators=(',',':'))+'\n')
 (ROOT / 'artifacts/classic-actions/alpha-qa.json').write_text(json.dumps(records,indent=2)+'\n')
-print('Measured 60 complete source poses; no neighboring character ink inside any clip polygon.')
+print('Measured 120 complete source poses; no neighboring character ink inside any clip polygon.')

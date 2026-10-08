@@ -28,7 +28,7 @@ function insidePolygon([x, y], polygon) {
   return inside;
 }
 
-test("all sixty authored poses register fourteen immutable points inside their own complete silhouettes", () => {
+test("all 120 authored poses register fourteen immutable points inside their own complete silhouettes", () => {
   assert.deepEqual(ACTION_LANDMARK_NAMES, [
     "head",
     "neck",
@@ -83,7 +83,11 @@ test("registration preserves actor-specific inverted suplex direction and overhe
     const suplex = actionLandmarks(actor, "suplex");
     const headX = suplex[0][0];
     const hipX = (suplex[8][0] + suplex[9][0]) / 2;
-    assert.equal(headX > hipX, ["valkyrie", "ember"].includes(actor), actor);
+    assert.equal(
+      headX > hipX,
+      ["valkyrie", "ember", "lynx", "onyx"].includes(actor),
+      actor,
+    );
     const lift = actionLandmarks(actor, "lift");
     assert.ok(
       lift[6][1] < lift[0][1] && lift[7][1] < lift[0][1],
@@ -95,19 +99,11 @@ test("registration preserves actor-specific inverted suplex direction and overhe
       `${actor}: upright neutral registration`,
     );
   }
-  for (const actor of [
-    "atlas",
-    "seraph",
-    "lynx",
-    "onyx",
-    "tempest",
-    "missing",
-    null,
-  ])
+  for (const actor of ["missing", null])
     assert.equal(
       actionLandmarks(actor),
       null,
-      `${actor}: no new renderer for the other wrestlers`,
+      `${actor}: unknown actors retain the fallback`,
     );
   assert.equal(actionLandmarks("raven", "missing"), null);
 });

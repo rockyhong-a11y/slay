@@ -10,8 +10,12 @@
   isolation: isolate;
 }
 .arcade-family-grapple {
-  --arcade-primary: #ffb044;
-  --arcade-secondary: #e97d2d;
+  --arcade-primary: #f3bc60;
+  --arcade-secondary: #ffcf78;
+  --arcade-core: #fffceb;
+}
+.arcade-fx-slam-flare {
+  aspect-ratio: 1.25;
 }
 .arcade-family-submission {
   --arcade-primary: #ffbe69;
