@@ -1,0 +1,702 @@
+{
+  "raven": {
+    "sha256": "a5588f48d36521c79f6d8042c73f1382f79c7b65dda56ca1e247956255ea5b48",
+    "width": 1086,
+    "height": 1448,
+    "alphaThreshold": 150,
+    "frames": {
+      "ready": {
+        "inkBounds": [
+          64,
+          8,
+          316,
+          381
+        ],
+        "inkPixels": 39909,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "windup": {
+        "inkBounds": [
+          430,
+          9,
+          717,
+          385
+        ],
+        "inkPixels": 46649,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "elbow": {
+        "inkBounds": [
+          764,
+          8,
+          1053,
+          387
+        ],
+        "inkPixels": 39908,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "kick": {
+        "inkBounds": [
+          8,
+          402,
+          375,
+          771
+        ],
+        "inkPixels": 37104,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "clinch": {
+        "inkBounds": [
+          402,
+          450,
+          710,
+          750
+        ],
+        "inkPixels": 37711,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "lift": {
+        "inkBounds": [
+          772,
+          381,
+          1064,
+          788
+        ],
+        "inkPixels": 40052,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "slam": {
+        "inkBounds": [
+          26,
+          797,
+          375,
+          1051
+        ],
+        "inkPixels": 44632,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "suplex": {
+        "inkBounds": [
+          387,
+          832,
+          752,
+          1047
+        ],
+        "inkPixels": 39573,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "armbar": {
+        "inkBounds": [
+          759,
+          806,
+          1070,
+          1049
+        ],
+        "inkPixels": 33319,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "leglock": {
+        "inkBounds": [
+          36,
+          1135,
+          299,
+          1392
+        ],
+        "inkPixels": 40164,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "guard": {
+        "inkBounds": [
+          414,
+          1042,
+          669,
+          1416
+        ],
+        "inkPixels": 38057,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "hurt": {
+        "inkBounds": [
+          739,
+          1061,
+          1037,
+          1416
+        ],
+        "inkPixels": 47931,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      }
+    }
+  },
+  "valkyrie": {
+    "sha256": "dbb44c9f7686879a80d77a371d4834957d241eaabc4a5f98fe152d9f1c04bad6",
+    "width": 1086,
+    "height": 1448,
+    "alphaThreshold": 150,
+    "frames": {
+      "ready": {
+        "inkBounds": [
+          77,
+          11,
+          326,
+          376
+        ],
+        "inkPixels": 32100,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "windup": {
+        "inkBounds": [
+          407,
+          20,
+          699,
+          368
+        ],
+        "inkPixels": 35235,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "elbow": {
+        "inkBounds": [
+          754,
+          12,
+          1051,
+          370
+        ],
+        "inkPixels": 31625,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "kick": {
+        "inkBounds": [
+          36,
+          388,
+          393,
+          740
+        ],
+        "inkPixels": 33518,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "clinch": {
+        "inkBounds": [
+          406,
+          423,
+          727,
+          740
+        ],
+        "inkPixels": 34680,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "lift": {
+        "inkBounds": [
+          771,
+          363,
+          1072,
+          755
+        ],
+        "inkPixels": 33691,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "slam": {
+        "inkBounds": [
+          13,
+          796,
+          357,
+          1039
+        ],
+        "inkPixels": 35585,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "suplex": {
+        "inkBounds": [
+          382,
+          799,
+          713,
+          1019
+        ],
+        "inkPixels": 33920,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "armbar": {
+        "inkBounds": [
+          772,
+          773,
+          1071,
+          1034
+        ],
+        "inkPixels": 35670,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "leglock": {
+        "inkBounds": [
+          77,
+          1121,
+          387,
+          1408
+        ],
+        "inkPixels": 39535,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "guard": {
+        "inkBounds": [
+          437,
+          1044,
+          669,
+          1422
+        ],
+        "inkPixels": 35369,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "hurt": {
+        "inkBounds": [
+          756,
+          1064,
+          1065,
+          1417
+        ],
+        "inkPixels": 39260,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      }
+    }
+  },
+  "nova": {
+    "sha256": "34b32d0cc8a61451859f188d7320d09b463ab60b06deff4e9e76844143f917c4",
+    "width": 1086,
+    "height": 1448,
+    "alphaThreshold": 150,
+    "frames": {
+      "ready": {
+        "inkBounds": [
+          68,
+          8,
+          294,
+          366
+        ],
+        "inkPixels": 31989,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "windup": {
+        "inkBounds": [
+          438,
+          10,
+          717,
+          366
+        ],
+        "inkPixels": 37831,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "elbow": {
+        "inkBounds": [
+          783,
+          11,
+          1043,
+          370
+        ],
+        "inkPixels": 36368,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "kick": {
+        "inkBounds": [
+          17,
+          380,
+          389,
+          729
+        ],
+        "inkPixels": 34552,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "clinch": {
+        "inkBounds": [
+          403,
+          423,
+          724,
+          725
+        ],
+        "inkPixels": 34642,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "lift": {
+        "inkBounds": [
+          791,
+          372,
+          1066,
+          738
+        ],
+        "inkPixels": 32315,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "slam": {
+        "inkBounds": [
+          27,
+          770,
+          354,
+          1013
+        ],
+        "inkPixels": 39787,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "suplex": {
+        "inkBounds": [
+          384,
+          831,
+          728,
+          1011
+        ],
+        "inkPixels": 36720,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "armbar": {
+        "inkBounds": [
+          761,
+          756,
+          1082,
+          1012
+        ],
+        "inkPixels": 40284,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "leglock": {
+        "inkBounds": [
+          49,
+          1086,
+          276,
+          1383
+        ],
+        "inkPixels": 42932,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "guard": {
+        "inkBounds": [
+          430,
+          1030,
+          661,
+          1397
+        ],
+        "inkPixels": 34202,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "hurt": {
+        "inkBounds": [
+          773,
+          1049,
+          1054,
+          1397
+        ],
+        "inkPixels": 45182,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      }
+    }
+  },
+  "viper": {
+    "sha256": "ef0f4d496f1c72fb0d84e45d427d77c3c9823d75f4095c8e433cce8cf115a8a3",
+    "width": 1086,
+    "height": 1448,
+    "alphaThreshold": 150,
+    "frames": {
+      "ready": {
+        "inkBounds": [
+          50,
+          11,
+          329,
+          373
+        ],
+        "inkPixels": 39059,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "windup": {
+        "inkBounds": [
+          408,
+          28,
+          716,
+          373
+        ],
+        "inkPixels": 42027,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "elbow": {
+        "inkBounds": [
+          756,
+          8,
+          1062,
+          373
+        ],
+        "inkPixels": 38855,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "kick": {
+        "inkBounds": [
+          18,
+          402,
+          371,
+          748
+        ],
+        "inkPixels": 35109,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "clinch": {
+        "inkBounds": [
+          382,
+          429,
+          712,
+          737
+        ],
+        "inkPixels": 36825,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "lift": {
+        "inkBounds": [
+          784,
+          376,
+          1041,
+          767
+        ],
+        "inkPixels": 34481,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "slam": {
+        "inkBounds": [
+          10,
+          789,
+          395,
+          1056
+        ],
+        "inkPixels": 41848,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "suplex": {
+        "inkBounds": [
+          407,
+          790,
+          723,
+          1043
+        ],
+        "inkPixels": 35269,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "armbar": {
+        "inkBounds": [
+          739,
+          787,
+          1077,
+          1041
+        ],
+        "inkPixels": 38617,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "leglock": {
+        "inkBounds": [
+          37,
+          1131,
+          356,
+          1374
+        ],
+        "inkPixels": 37402,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "guard": {
+        "inkBounds": [
+          413,
+          1055,
+          677,
+          1422
+        ],
+        "inkPixels": 36264,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "hurt": {
+        "inkBounds": [
+          757,
+          1056,
+          1047,
+          1417
+        ],
+        "inkPixels": 47029,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      }
+    }
+  },
+  "ember": {
+    "sha256": "9e599310bde65f06dab1255a2a435d2ce6ae814a495ee0561bfa5fe73483972a",
+    "width": 1086,
+    "height": 1448,
+    "alphaThreshold": 150,
+    "frames": {
+      "ready": {
+        "inkBounds": [
+          66,
+          7,
+          326,
+          368
+        ],
+        "inkPixels": 33804,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "windup": {
+        "inkBounds": [
+          413,
+          13,
+          717,
+          367
+        ],
+        "inkPixels": 39771,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "elbow": {
+        "inkBounds": [
+          765,
+          12,
+          1044,
+          366
+        ],
+        "inkPixels": 36429,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "kick": {
+        "inkBounds": [
+          34,
+          379,
+          395,
+          737
+        ],
+        "inkPixels": 35537,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "clinch": {
+        "inkBounds": [
+          407,
+          398,
+          732,
+          725
+        ],
+        "inkPixels": 35522,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "lift": {
+        "inkBounds": [
+          791,
+          358,
+          1060,
+          737
+        ],
+        "inkPixels": 31208,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "slam": {
+        "inkBounds": [
+          18,
+          762,
+          383,
+          1036
+        ],
+        "inkPixels": 42690,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "suplex": {
+        "inkBounds": [
+          397,
+          775,
+          743,
+          995
+        ],
+        "inkPixels": 35783,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "armbar": {
+        "inkBounds": [
+          776,
+          762,
+          1070,
+          1014
+        ],
+        "inkPixels": 33614,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "leglock": {
+        "inkBounds": [
+          74,
+          1072,
+          303,
+          1386
+        ],
+        "inkPixels": 42742,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "guard": {
+        "inkBounds": [
+          432,
+          1027,
+          685,
+          1400
+        ],
+        "inkPixels": 34068,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      },
+      "hurt": {
+        "inkBounds": [
+          773,
+          1046,
+          1040,
+          1397
+        ],
+        "inkPixels": 42316,
+        "clipContainsWholePose": true,
+        "neighborInkPixels": 0
+      }
+    }
+  }
+}

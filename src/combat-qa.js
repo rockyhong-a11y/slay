@@ -12,44 +12,58 @@ export function createCombatQA(profile = {}) {
   const state = newRun(actor, 20903);
   const sdUtility = options.impact === "sdutility";
   const utility = options.impact === "utility" || sdUtility;
-  const ids = sdUtility
-    ? [
-        "wristlock",
-        "hammerlock",
-        "omoplata",
-        "octopushold",
-        "surfboard",
-        "stf",
-        "toehold",
-        "calfslicer",
-        "bowandarrow",
-        "abdominalstretch",
-      ]
-    : utility
+  const ids =
+    options.impact === "actions"
       ? [
-          "collartie",
-          "powerbomb",
-          "waistlock",
-          "armbar",
-          "kimura",
-          "americana",
-          "heelhook",
-          "headlock",
-          "anklelock",
-          "guard",
-        ]
-      : [
           "strike",
-          "guard",
-          "headlock",
+          "dropkick",
           "powerbomb",
+          "bellysuplex",
+          "bodyslam",
           "armbar",
-          "sitoutpowerbomb",
-          "sidewalkslam",
-          "kimura",
           "anklelock",
-          "championship",
-        ];
+          "guard",
+          "doubletap",
+          "focus",
+        ]
+      : sdUtility
+        ? [
+            "wristlock",
+            "hammerlock",
+            "omoplata",
+            "octopushold",
+            "surfboard",
+            "stf",
+            "toehold",
+            "calfslicer",
+            "bowandarrow",
+            "abdominalstretch",
+          ]
+        : utility
+          ? [
+              "collartie",
+              "powerbomb",
+              "waistlock",
+              "armbar",
+              "kimura",
+              "americana",
+              "heelhook",
+              "headlock",
+              "anklelock",
+              "guard",
+            ]
+          : [
+              "strike",
+              "guard",
+              "headlock",
+              "powerbomb",
+              "armbar",
+              "sitoutpowerbomb",
+              "sidewalkslam",
+              "kimura",
+              "anklelock",
+              "championship",
+            ];
   state.hand = ids
     .slice(0, count)
     .map((id, index) => ({ id, uid: `qa-hand-${index + 1}`, upgraded: false }));

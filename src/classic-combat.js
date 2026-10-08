@@ -71,6 +71,27 @@ export function classicCombatFrame(cue, progress, options = {}) {
   return frame;
 }
 
+export function classicBodyBounds(body, ratio = 2 / 3) {
+  if (!Number.isFinite(body?.drawWidth) || !Number.isFinite(body?.drawHeight))
+    return sdBodyBounds(body, ratio);
+  const scale = Math.max(0.1, finite(body.scale, 1));
+  const angle = finite(body.rz);
+  const halfWidth = (Math.max(0.01, body.drawWidth) * scale) / 2;
+  const halfHeight = (Math.max(0.01, body.drawHeight) * scale) / 2;
+  const ex =
+    Math.abs(Math.cos(angle)) * halfWidth +
+    Math.abs(Math.sin(angle)) * halfHeight;
+  const ey =
+    Math.abs(Math.sin(angle)) * halfWidth +
+    Math.abs(Math.cos(angle)) * halfHeight;
+  return {
+    left: body.x - ex,
+    right: body.x + ex,
+    bottom: body.y - ey,
+    top: body.y + ey,
+  };
+}
+
 // The complete rotated silhouettes determine safe camera bounds. Tall original
 // bodies use the arena height rather than the wider SD atlas field width.
 export function classicSceneProjection(
@@ -83,8 +104,8 @@ export function classicSceneProjection(
   const w = Math.max(1, finite(width, 1));
   const h = Math.max(1, finite(height, 1));
   const boxes = [
-    sdBodyBounds(frame?.player, ratios?.[0] || 2 / 3),
-    sdBodyBounds(frame?.enemy, ratios?.[1] || 2 / 3),
+    classicBodyBounds(frame?.player, ratios?.[0] || 2 / 3),
+    classicBodyBounds(frame?.enemy, ratios?.[1] || 2 / 3),
   ];
   const left = Math.min(...boxes.map((box) => box.left));
   const right = Math.max(...boxes.map((box) => box.right));

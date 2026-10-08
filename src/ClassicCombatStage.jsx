@@ -1,11 +1,13 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
 import { Artwork } from "./Artwork.jsx";
+import { ClassicActionArtwork } from "./ClassicActionArtwork.jsx";
+import { applyClassicActionFrame } from "./action-motion.js";
 import { fighterPoseArt } from "./presentation.js";
 import { sdActorId } from "./sd-combat.js";
-import { sdBodyBounds } from "./sd-artwork.js";
 import {
   classicArtworkStyle,
+  classicBodyBounds,
   classicBodyRatio,
   classicCombatFrame,
   classicSceneProjection,
@@ -41,6 +43,7 @@ export function ClassicCombatStage({
   const shadows = useRef([]);
   const latest = useRef(null);
   const controller = useRef(null);
+  const actionMetadata = useRef([null, null]);
   const ratios = useRef([classicBodyRatio(player), classicBodyRatio(enemy)]);
   ratios.current = [classicBodyRatio(player), classicBodyRatio(enemy)];
   const failures = useRef(new Set());
@@ -48,6 +51,7 @@ export function ClassicCombatStage({
   callback.current = onUnavailable;
   const reduced = useReducedMotion();
   const [statuses, setStatuses] = useState(["loading", "loading"]);
+  const [actionPoses, setActionPoses] = useState([null, null]);
 
   const status = statuses.includes("fallback")
     ? "fallback"
@@ -62,6 +66,7 @@ export function ClassicCombatStage({
     cinematic,
     playerCondition,
     enemyCondition,
+    actors: [player, enemy],
   };
   const setStatus = (index, value) => {
     setStatuses((current) =>
@@ -88,6 +93,7 @@ export function ClassicCombatStage({
       height = 1;
     let cueKey = null,
       cueStart = 0;
+    let previousActionPoses = [null, null];
     const cancel = () => {
       cancelAnimationFrame(raf);
       raf = 0;
@@ -128,13 +134,23 @@ export function ClassicCombatStage({
       const progress = playback.cue
         ? clip((now - cueStart) / duration, 0, 1)
         : 0;
-      const frame = classicCombatFrame(playback.cue, progress, {
+      const options = {
         still: playback.still,
         incoming: playback.incoming,
         bodyRatios: ratios.current,
         width,
         height,
-      });
+      };
+      const frame = applyClassicActionFrame(
+        classicCombatFrame(playback.cue, progress, options),
+        playback.cue,
+        progress,
+        {
+          ...options,
+          actors: playback.actors,
+          metadata: actionMetadata.current,
+        },
+      );
       const projection = classicSceneProjection(
         width,
         height,
@@ -143,6 +159,7 @@ export function ClassicCombatStage({
         playback.cinematic,
       );
       const nextPoses = [];
+      const nextActionPoses = [];
       [frame.player, frame.enemy].forEach((body, index) => {
         const point = classicScreenPoint(body.x, body.y, projection);
         const node = bodies.current[index];
@@ -152,17 +169,19 @@ export function ClassicCombatStage({
           index ? playback.enemyCondition : playback.playerCondition,
         );
         nextPoses.push(pose);
+        nextActionPoses.push(body.actionPose || null);
         if (node) {
           node.style.left = `${point.x}px`;
           node.style.top = `${point.y}px`;
-          node.style.width = `${3 * projection.unit * ratio}px`;
-          node.style.height = `${3 * projection.unit}px`;
+          node.style.width = `${(body.drawWidth || 3 * ratio) * projection.unit}px`;
+          node.style.height = `${(body.drawHeight || 3) * projection.unit}px`;
           node.style.transform = `translate(-50%, -50%) rotate(${-body.rz}rad) scale(${body.scale || 1})`;
           node.style.zIndex = `${20 + Math.round((body.depth || 0) * 5) + index}`;
           node.dataset.classicPose = pose;
+          node.dataset.actionPose = body.actionPose || "original";
         }
         const ground = classicScreenPoint(body.x, 0.01, projection);
-        const bounds = sdBodyBounds(body, ratio);
+        const bounds = classicBodyBounds(body, ratio);
         const shadow = shadows.current[index];
         if (shadow) {
           shadow.style.left = `${ground.x}px`;
@@ -172,6 +191,14 @@ export function ClassicCombatStage({
           shadow.style.opacity = `${clip(0.32 - Math.max(0, bounds.bottom) * 0.08, 0.08, 0.32)}`;
         }
       });
+      if (
+        nextActionPoses.some(
+          (pose, index) => pose !== previousActionPoses[index],
+        )
+      ) {
+        previousActionPoses = nextActionPoses;
+        setActionPoses(nextActionPoses);
+      }
       const impact = contact.current;
       if (impact) {
         const point = classicScreenPoint(
@@ -277,6 +304,7 @@ export function ClassicCombatStage({
           >
             <span
               className="classic-art-window"
+              data-action-active={!!actionPoses[index]}
               onLoadCapture={() => setStatus(index, "ready")}
               onErrorCapture={() => setStatus(index, "fallback")}
             >
@@ -294,6 +322,17 @@ export function ClassicCombatStage({
                 loading="eager"
               />
             </span>
+            <ClassicActionArtwork
+              actor={actor}
+              pose={actionPoses[index] || "ready"}
+              active={!!actionPoses[index]}
+              still={!!reduced || shortened}
+              mirrored={!!index}
+              onReady={(metadata) => {
+                actionMetadata.current[index] = metadata;
+                controller.current?.refresh();
+              }}
+            />
           </span>
         </React.Fragment>
       ))}
